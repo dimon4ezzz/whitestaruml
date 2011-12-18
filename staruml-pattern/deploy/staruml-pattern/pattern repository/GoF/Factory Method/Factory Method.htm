@@ -1,0 +1,60 @@
+<html>
+
+<head>
+<title>Factory Method Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Factory Method </h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Define an interface for creating an object, but let subclasses decide 
+	which class to instantiate. </li>
+  <li>Factory Method lets a class defer instantiation to subclasses.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp;
+<img border="0" src="Factory%20Method_Model1.gif" width="561" height="263"></p>
+<ul type="square">
+  <li><b>Product(Document) :</b> defines the interface of objects the factory 
+	method creates.</li>
+  <li><b>ConcreteProduct(Mydocument) :</b> implements the Product interface.</li>
+  <li><b>Creator(Application) :</b> declares the factory method, which returns 
+	an object of type Product. Creator may also define a default implementation 
+	of the factory method that returns a default ConcreteProduct object. may 
+	call the factory method to create a Product object.</li>
+  <li><b>ConcreteCreator(MyApplication) :</b> overrides the factory method to 
+	return an instance of a ConcreteProduct.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>a class can't anticipate the class of objects it must create.</li>
+  <li>a class wants its subclasses to specify the objects it creates.</li>
+  <li>classes delegate responsibility to one of several helper subclasses, and 
+	you want to localize the knowledge of which helper subclass is the delegate.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>Provides hooks for subclasses</b>. Creating objects inside a class with 
+	a factory method is always more flexible than creating an object directly. 
+	Factory Method gives subclasses a hook for providing an extended version of 
+	an object.</li>
+  <li><b>Connects parallel class hierarchies</b>. In the examples we've 
+	considered so far, the factory method is only called by Creators. But this 
+	doesn't have to be the case; clients can find factory methods useful, 
+	especially in the case of parallel class hierarchies.</li>
+</ul>
+
+<p>¡¡</p>
+
+</body>
+
+</html>

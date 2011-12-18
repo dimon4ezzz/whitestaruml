@@ -1,0 +1,68 @@
+<html>
+
+<head>
+<title>State Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>State</h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Allow an object to alter its behavior when its internal state changes. The 
+	object will appear to change its class.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp; <img border="0" src="State_Model1.gif" width="386" height="217"></p>
+<ul type="square">
+  <li><font face="Verdana"><b>Context : </b>defines the interface of interest to 
+	clients. maintains an instance of a ConcreteState subclass that defines the 
+	current state.</font></li>
+  <li><font face="Verdana"><b>State :</b> defines an interface for encapsulating 
+	the behavior associated with a particular state of the Context.</font></li>
+  <li><font face="Verdana"><b>ConcreteState Subclass : </b>each subclass 
+	implements a behavior associated with a state of the Context.</font></li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>An object's behavior depends on its state, and it must change its behavior 
+	at run-time depending on that state.</li>
+  <li>Operations have large, multipart conditional statements that depend on the 
+	object's state. This state is usually represented by one or more enumerated 
+	constants. Often, several operations will contain this same conditional 
+	structure. The State pattern puts each branch of the conditional in a 
+	separate class. This lets you treat the object's state as an object in its 
+	own right that can vary independently from other objects.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>It localizes state-specific behavior and partitions behavior for 
+	different states. </b>The State pattern puts all behavior associated with a 
+	particular state into one object. Because all state-specific code lives in a 
+	State subclass, new states and transitions can be added easily by defining 
+	new subclasses.</li>
+  <li><b>It makes state transitions explicit. </b> When an object defines its 
+	current state solely in terms of internal data values, its state transitions 
+	have no explicit representation; they only show up as<br>
+	assignments to some variables. Introducing separate objects for different 
+	states makes the transitions more explicit. Also, State objects can protect 
+	the Context from inconsistent internal<br>
+	states, because state transitions are atomic from the Context's 
+	perspective&#8212;they happen by rebinding one variable (the Context's State 
+	object variable), not several .</li>
+  <li><b>State objects can be shared. </b> If State objects have no instance 
+	variables&#8212;that is, the state they represent is encoded entirely in their 
+	type&#8212;then contexts can share a State object. When states are shared in this 
+	way, they are essentially flyweights with no intrinsic state, only behavior.</li>
+</ul>
+
+</body>
+
+</html>

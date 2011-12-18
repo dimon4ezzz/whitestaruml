@@ -1,0 +1,84 @@
+<html>
+
+<head>
+<title>Observer Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Observer </h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Interaction">Interaction</a></li>
+	<li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Define a one-to-many dependency between objects so that when one object 
+	changes state, all its dependents are notified and updated automatically.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp; <img border="0" src="Observer_Model1.gif" width="538" height="317"></p>
+<ul type="square">
+  <li><font face="Verdana"><b>Subject :</b> knows its observers. Any number of 
+	Observer objects may observe a subject. provides an interface for attaching 
+	and detaching Observer objects.</font></li>
+  <li><font face="Verdana"><b>Observer :</b> defines an updating interface for 
+	objects that should be notified of changes in a subject.</font></li>
+  <li><font face="Verdana"><b>ConcreteSubject : </b></font>stores state of 
+	interest to ConcreteObserver objects.</li>
+  <li><font face="Verdana"><b>ConcreteObserver :</b> maintains a reference to a 
+	ConcreteSubject object. stores state that should stay consistent with the 
+	subject's. implements the Observer updating interface to keep its state 
+	consistent with the subject's.</font></li>
+</ul>
+<h2><a name="Interaction">Interaction</a></h2>
+<p>
+<img border="0" src="Observer_Seq1.gif" width="370" height="284"></p>
+<ol>
+  <li>ConcreteSubject notifies its observers whenever a change occurs that could 
+	make its observers' state inconsistent with its own.</li>
+  <li>After being informed of a change in the concrete subject, a 
+	ConcreteObserver object may query the subject for information. </li>
+  <li>ConcreteObserver uses this information to reconcile its state with that of 
+	the subject.</li>
+</ol>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>When an abstraction has two aspects, one dependent on the other. 
+	Encapsulating these aspects in separate objects lets you vary and reuse them 
+	independently.</li>
+  <li>When a change to one object requires changing others, and you don't know 
+	how many objects need to be changed.</li>
+	<li>When an object should be able to notify other objects without making 
+	assumptions about who these objects are. In other words, you don't want 
+	these objects tightly coupled.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>Abstract coupling between Subject and Observer</b>. All a subject knows 
+	is that it has a list of observers, each conforming to the simple interface 
+	of the abstract Observer class. The subject doesn't know the concrete class 
+	of any observer. Thus the coupling between subjects and observers is 
+	abstract and minimal. Because Subject and Observer aren't tightly coupled, 
+	they can belong to different layers of abstraction in a system. A 
+	lower-level subject can communicate and inform a higher-level observer, 
+	thereby keeping the system's layering intact. If Subject and Observer are 
+	lumped together, then the resulting object must either span two layers (and 
+	violate the layering), or it must be forced to live in one layer or the 
+	other (which might compromise the layering abstraction).</li>
+  <li><b>Support for broadcast communication</b>. Unlike an ordinary request, 
+	the notification that a subject sends needn't specify its receiver. The 
+	notification is broadcast automatically to all interested objects that 
+	subscribed to it. The subject doesn't care how many interested objects 
+	exist; its only responsibility is to notify its observers. This gives you 
+	the freedom to add and remove observers at any time. It's up to the observer 
+	to handle or ignore a notification.</li>
+</ul>
+
+</body>
+
+</html>

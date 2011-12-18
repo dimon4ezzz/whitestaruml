@@ -1,0 +1,1 @@
+test(ralal:string, yahoo:array of integer) [if a(1) = 0] /action this

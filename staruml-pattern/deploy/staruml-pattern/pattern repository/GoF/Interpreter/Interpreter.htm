@@ -1,0 +1,88 @@
+<html>
+
+<head>
+<title>Interpreter Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Interpreter </h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+	<li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Given a language, define a represention for its grammar along with an 
+	interpreter that uses the representation to interpret sentences in the 
+	language.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp; <img border="0" src="Interpreter_Model1.gif" width="477" height="267"></p>
+<ul type="square">
+  <li><b>AbstractExpression(RegularExpression):</b> declares an abstract 
+	Interpret operation that is common to all nodes in the abstract syntax</li>
+  <li><b>TerminalExpression(LiteralExpression):</b> implements an Interpret 
+	operation associated with terminal symbols in the grammar. an instance is 
+	required for every terminal symbol in a sentence.</li>
+  <li><b>NonterminalExpression(AlternationExpression, RepetitionExpression, 
+  SequenceExpressions):</b> one such class is required for every rule R ::= R1 
+	R2 ... Rn in the grammar. maintains instance variables of type 
+	AbstractExpression for each of the symbols R1 through Rn. implements an 
+	Interpret operation for nonterminal symbols in the grammar. Interpret 
+	typically calls itself recursively on the variables representing R1 through 
+	R.</li>
+	<li><b>Context:</b> contains information that's global to the interpreter.</li>
+  <li><b>Client:</b> builds (or is given) an abstract syntax tree representing a 
+	particular sentence in the language that the grammar defines. The abstract 
+	syntax tree is assembled from instances of<br>
+	the NonterminalExpression and TerminalExpression classes. invokes the 
+	Interpret operation.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>l the grammar is simple. For complex grammars, the class hierarchy for the 
+	grammar becomes large and unmanageable. Tools such as parser generators are 
+	a better alternative in such cases. They can interpret expressions without 
+	building abstract syntax trees, which can save space and possibly time.</li>
+  <li>efficiency is not a critical concern. The most efficient interpreters are 
+	usually not implemented by interpreting parse trees directly but by first 
+	translating them into another form. For example,<br>
+	regular expressions are often transformed into state machines. But even 
+	then, the translator can be implemented by the Interpreter pattern, so the 
+	pattern is still applicable.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>It's easy to change and extend the grammar. </b> Because the pattern 
+	uses classes to represent grammar rules, you can use inheritance to change 
+	or extend the grammar. Existing expressions<br>
+	can be modified incrementally, and new expressions can be defined as 
+	variations on old ones.</li>
+  <li><b>Implementing the grammar is easy, too. </b> Classes defining nodes in 
+	the abstract syntax tree have similar implementations. These classes are 
+	easy to write, and often their generation can be<br>
+	automated with a compiler or parser generator.</li>
+  <li><b>Complex grammars are hard to maintain. </b> The Interpreter pattern 
+	defines at least one class for every rule in the grammar (grammar rules 
+	defined using BNF may require multiple classes).<br>
+	Hence grammars containing many rules can be hard to manage and maintain. 
+	Other design patterns can be applied to mitigate the problem (see 
+	Implementation). But when the grammar is<br>
+	very complex, other techniques such as parser or compiler generators are 
+	more appropriate.</li>
+  <li><b>Adding new ways to interpret expressions. </b>The Interpreter pattern 
+	makes it easier to evaluate an expression in a new way. For example, you can 
+	support pretty printing or type-checking an expression by defining a new 
+	operation on the expression classes. If you keep creating new ways of 
+	interpreting an expression, then consider using the Visitor pattern to avoid 
+	changing the grammar classes.</li>
+</ul>
+<p>¡¡</p>
+
+</body>
+
+</html>

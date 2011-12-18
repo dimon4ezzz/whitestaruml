@@ -1,0 +1,156 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{E628386D-9908-4FE5-A423-B7E4C44B6830}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="src\WhiteStarUML.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="components\plastic-components\src\PlasticComponents.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="src\option-manager\OptMgr.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-cpp\src\code\CppAddIn.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-generator\src\generator\Generator.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-pattern\src\code\PatternAddIn.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-csharp\src\code\CSharpAddIn.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-java\src\code\JavaAddIn.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-java\src\java-parser\JavaParser.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-rose\src\code\RoseAddIn.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-xmi\src\code\XMIAddIn.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="WhiteStarUML">
+			<MSBuild Projects="src\WhiteStarUML.dproj"/>
+		</Target>
+		<Target Name="WhiteStarUML:Clean">
+			<MSBuild Targets="Clean" Projects="src\WhiteStarUML.dproj"/>
+		</Target>
+		<Target Name="WhiteStarUML:Make">
+			<MSBuild Targets="Make" Projects="src\WhiteStarUML.dproj"/>
+		</Target>
+		<Target Name="PlasticComponents">
+			<MSBuild Projects="components\plastic-components\src\PlasticComponents.dproj"/>
+		</Target>
+		<Target Name="PlasticComponents:Clean">
+			<MSBuild Targets="Clean" Projects="components\plastic-components\src\PlasticComponents.dproj"/>
+		</Target>
+		<Target Name="PlasticComponents:Make">
+			<MSBuild Targets="Make" Projects="components\plastic-components\src\PlasticComponents.dproj"/>
+		</Target>
+		<Target Name="OptMgr">
+			<MSBuild Projects="src\option-manager\OptMgr.dproj"/>
+		</Target>
+		<Target Name="OptMgr:Clean">
+			<MSBuild Targets="Clean" Projects="src\option-manager\OptMgr.dproj"/>
+		</Target>
+		<Target Name="OptMgr:Make">
+			<MSBuild Targets="Make" Projects="src\option-manager\OptMgr.dproj"/>
+		</Target>
+		<Target Name="CppAddIn">
+			<MSBuild Projects="..\staruml-cpp\src\code\CppAddIn.dproj"/>
+		</Target>
+		<Target Name="CppAddIn:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-cpp\src\code\CppAddIn.dproj"/>
+		</Target>
+		<Target Name="CppAddIn:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-cpp\src\code\CppAddIn.dproj"/>
+		</Target>
+		<Target Name="Generator">
+			<MSBuild Projects="..\staruml-generator\src\generator\Generator.dproj"/>
+		</Target>
+		<Target Name="Generator:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-generator\src\generator\Generator.dproj"/>
+		</Target>
+		<Target Name="Generator:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-generator\src\generator\Generator.dproj"/>
+		</Target>
+		<Target Name="PatternAddIn">
+			<MSBuild Projects="..\staruml-pattern\src\code\PatternAddIn.dproj"/>
+		</Target>
+		<Target Name="PatternAddIn:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-pattern\src\code\PatternAddIn.dproj"/>
+		</Target>
+		<Target Name="PatternAddIn:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-pattern\src\code\PatternAddIn.dproj"/>
+		</Target>
+		<Target Name="CSharpAddIn">
+			<MSBuild Projects="..\staruml-csharp\src\code\CSharpAddIn.dproj"/>
+		</Target>
+		<Target Name="CSharpAddIn:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-csharp\src\code\CSharpAddIn.dproj"/>
+		</Target>
+		<Target Name="CSharpAddIn:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-csharp\src\code\CSharpAddIn.dproj"/>
+		</Target>
+		<Target Name="JavaAddIn">
+			<MSBuild Projects="..\staruml-java\src\code\JavaAddIn.dproj"/>
+		</Target>
+		<Target Name="JavaAddIn:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-java\src\code\JavaAddIn.dproj"/>
+		</Target>
+		<Target Name="JavaAddIn:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-java\src\code\JavaAddIn.dproj"/>
+		</Target>
+		<Target Name="JavaParser">
+			<MSBuild Projects="..\staruml-java\src\java-parser\JavaParser.dproj"/>
+		</Target>
+		<Target Name="JavaParser:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-java\src\java-parser\JavaParser.dproj"/>
+		</Target>
+		<Target Name="JavaParser:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-java\src\java-parser\JavaParser.dproj"/>
+		</Target>
+		<Target Name="RoseAddIn">
+			<MSBuild Projects="..\staruml-rose\src\code\RoseAddIn.dproj"/>
+		</Target>
+		<Target Name="RoseAddIn:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-rose\src\code\RoseAddIn.dproj"/>
+		</Target>
+		<Target Name="RoseAddIn:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-rose\src\code\RoseAddIn.dproj"/>
+		</Target>
+		<Target Name="XMIAddIn">
+			<MSBuild Projects="..\staruml-xmi\src\code\XMIAddIn.dproj"/>
+		</Target>
+		<Target Name="XMIAddIn:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-xmi\src\code\XMIAddIn.dproj"/>
+		</Target>
+		<Target Name="XMIAddIn:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-xmi\src\code\XMIAddIn.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="WhiteStarUML;PlasticComponents;OptMgr;CppAddIn;Generator;PatternAddIn;CSharpAddIn;JavaAddIn;JavaParser;RoseAddIn;XMIAddIn"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="WhiteStarUML:Clean;PlasticComponents:Clean;OptMgr:Clean;CppAddIn:Clean;Generator:Clean;PatternAddIn:Clean;CSharpAddIn:Clean;JavaAddIn:Clean;JavaParser:Clean;RoseAddIn:Clean;XMIAddIn:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="WhiteStarUML:Make;PlasticComponents:Make;OptMgr:Make;CppAddIn:Make;Generator:Make;PatternAddIn:Make;CSharpAddIn:Make;JavaAddIn:Make;JavaParser:Make;RoseAddIn:Make;XMIAddIn:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>

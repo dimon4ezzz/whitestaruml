@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ADDINMENU addInID="StarUML.AgoraGenerator">
+  <HEADER>
+    <NAME>StarUML Generator</NAME>
+    <VERSION>1.0</VERSION>
+    <DESCRIPTION>StarUML Generator support to generate automatically various artifacts from UML model.</DESCRIPTION>
+    <COMPANY>Plastic Software, Inc.</COMPANY>
+    <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
+  </HEADER>
+  <BODY>
+    <MAINMENU>
+      <MAINITEM base="TOOLS" caption="StarUML Generator ..." beginGroup="TRUE" actionId="1" 
+                availableWhen="ALWAYS" />
+    </MAINMENU>                
+  </BODY>
+</ADDINMENU>
+

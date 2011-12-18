@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<OPTIONSCHEMA id="StarUML.Cpp">
+  <HEADER>
+    <CAPTION>C++</CAPTION>
+    <DESCRIPTION>C++ Code generation &amp; Reverse engineering Option</DESCRIPTION>
+  </HEADER>
+
+  <BODY>
+    <OPTIONCATEGORY>
+      <CAPTION>Code Generation</CAPTION>
+      <DESCRIPTION>Contains options for generating C++ code from modeling elements.</DESCRIPTION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>General</CAPTION>
+        <DESCRIPTION/>
+        <OPTIONITEM-BOOLEAN key="CREATE_WITH_NO_PROFILE">
+           <CAPTION>Generate codes even when there is no profile</CAPTION>
+           <DESCRIPTION>Specifies whether to generate codes even when C++ profile is not loaded in the project (not recommended).</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+      
+      <OPTIONCLASSIFICATION>
+        <CAPTION>File Generation</CAPTION>
+        <DESCRIPTION/>
+        <OPTIONITEM-STRING key="HEADER_FILE_EXT">
+           <CAPTION>Header file extension name</CAPTION>
+           <DESCRIPTION>Specifies the extension name for C++ header files (e.g. .h).</DESCRIPTION>
+           <DEFAULTVALUE>.h</DEFAULTVALUE>
+        </OPTIONITEM-STRING>
+        <OPTIONITEM-STRING key="BODY_FILE_EXT">
+           <CAPTION>Implementation file extension name</CAPTION>
+           <DESCRIPTION>Specifies the extension name for C++ implementation files (e.g. .cpp).</DESCRIPTION>
+           <DEFAULTVALUE>.cpp</DEFAULTVALUE>
+        </OPTIONITEM-STRING>
+        <OPTIONITEM-STRING key="HEADER_SUB_DIRECTORY">
+           <CAPTION>Header file subdirectory</CAPTION>
+           <DESCRIPTION>Specifies the subdirectory for saving the C++ header file generated. If unspecified, the file is saved in the current directory.</DESCRIPTION>
+           <DEFAULTVALUE></DEFAULTVALUE>
+        </OPTIONITEM-STRING>
+        <OPTIONITEM-STRING key="BODY_SUB_DIRECTORY">
+           <CAPTION>Implementation file subdirectory</CAPTION>
+           <DESCRIPTION>Specifies the subdirectory for saving the C++ implementation file generated. If unspecified, the file is saved in the current directory.</DESCRIPTION>
+           <DEFAULTVALUE></DEFAULTVALUE>
+        </OPTIONITEM-STRING>
+        <OPTIONITEM-ENUMERATION key="FILE_NAME_FORMAT">
+           <CAPTION>Filename format</CAPTION>
+           <DESCRIPTION>Specifies the format for the C++ source file name.</DESCRIPTION>
+           <ENUMERATIONITEM>Same as Model</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Lowercase</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Uppercase</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Lowercase with '_'</ENUMERATIONITEM>
+           <DEFAULTVALUE>0</DEFAULTVALUE>
+        </OPTIONITEM-ENUMERATION>
+        <OPTIONITEM-BOOLEAN key="NAMESPACE_AS_SUB_DIRECTORY">
+           <CAPTION>Generate namespace as subdirectory</CAPTION>
+           <DESCRIPTION>Generates namespace as subdirectory.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Code Generation</CAPTION>
+        <DESCRIPTION/>
+        <OPTIONITEM-BOOLEAN key="PACKAGE_AS_NAMESPACE">
+           <CAPTION>Generate package as namespace</CAPTION>
+           <DESCRIPTION>Generates package elements as namespaces.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="MS_SPECIFIC">
+           <CAPTION>Use Microsoft Visual C++ grammar</CAPTION>
+           <DESCRIPTION>Generates code using Microsoft Visual C++ grammar.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="MANAGED_CPP">
+           <CAPTION>.NET Managed C++ support</CAPTION>
+           <DESCRIPTION>Generates code using .NET Managed C++ grammar.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="GENERATE_COMMENT">
+           <CAPTION>Generate documentation as comment</CAPTION>
+           <DESCRIPTION>Generates documentation of element as comment in code.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-ENUMERATION key="MEMBER_ORDER">
+           <CAPTION>Member order</CAPTION>
+           <DESCRIPTION>Determines the code generation order for the members defined in classes and interfaces.</DESCRIPTION>
+           <ENUMERATIONITEM>Public member first</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Private member first</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Unorder</ENUMERATIONITEM>
+           <DEFAULTVALUE>0</DEFAULTVALUE>
+        </OPTIONITEM-ENUMERATION>
+      </OPTIONCLASSIFICATION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Code Style</CAPTION>
+        <DESCRIPTION/>
+        <OPTIONITEM-BOOLEAN key="USE_SPACE">
+           <CAPTION>Insert tabs as spaces</CAPTION>
+           <DESCRIPTION>Uses space instead of tab for indentation.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-RANGE key="SPACE_MAGNITUDE">
+           <CAPTION>Tab width</CAPTION>
+           <DESCRIPTION>Specifies the number of spaces to be used when inserting tabs as spaces.</DESCRIPTION>
+           <DEFAULTVALUE>4</DEFAULTVALUE>
+           <MINVALUE>0</MINVALUE>
+           <MAXVALUE>16</MAXVALUE>
+           <STEP>1</STEP>
+        </OPTIONITEM-RANGE>
+        <OPTIONITEM-BOOLEAN key="BRACE_PUT_NEWLINE">
+           <CAPTION>Place the opening curly brace in the new line</CAPTION>
+           <DESCRIPTION>Places the opening curly brace "{" in the new line.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>File Header</CAPTION>
+        <DESCRIPTION/>
+        <OPTIONITEM-TEXT key="HEADER_COMMENT">
+           <CAPTION>File Header Comments</CAPTION>
+           <DESCRIPTION>Adds the comments in the beginning of the source file.</DESCRIPTION>
+<DEFAULTVALUE>//
+//
+//  Generated by StarUML(tm) C++ Add-In
+//
+//  @@ Project : @p
+//  @@ File Name : @f
+//  @@ Date : @d
+//  @@ Author : @a
+//
+//
+</DEFAULTVALUE>
+        </OPTIONITEM-TEXT>
+        <OPTIONITEM-TEXT key="DEFAULT_HEADER_INCLUDE">
+           <CAPTION>Default Include text for header file</CAPTION>
+           <DESCRIPTION>Contains the #include text that is included in all header files generated.</DESCRIPTION>
+           <DEFAULTVALUE></DEFAULTVALUE>
+        </OPTIONITEM-TEXT>
+        <OPTIONITEM-TEXT key="DEFAULT_BODY_INCLUDE">
+           <CAPTION>Default Include text for implementation file</CAPTION>
+           <DESCRIPTION>Contains the #include text that is included in all implementation files generated.</DESCRIPTION>
+           <DEFAULTVALUE></DEFAULTVALUE>
+        </OPTIONITEM-TEXT>
+      </OPTIONCLASSIFICATION>
+    </OPTIONCATEGORY>
+    
+    <OPTIONCATEGORY>
+      <CAPTION>Reverse Engineering</CAPTION>
+      <DESCRIPTION>Contains options for reverse engineering C++ code into model information.</DESCRIPTION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Model Generation</CAPTION>
+        <DESCRIPTION/>
+        <OPTIONITEM-BOOLEAN key="CREATE_PUBLIC_MEMBER">
+           <CAPTION>Generate public member</CAPTION>
+           <DESCRIPTION>Specifies whether to generate class and interface members with public visibility.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="CREATE_PROTECTED_MEMBER">
+           <CAPTION>Generate protected member</CAPTION>
+           <DESCRIPTION>Specifies whether to generate class and interface members with protected visibility.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="CREATE_PRIVATE_MEMBER">
+           <CAPTION>Generate private member</CAPTION>
+           <DESCRIPTION>Specifies whether to generate class and interface members with private visibility.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="OMIT_INITIAL_VALUE">
+           <CAPTION>Omit initial value for data members</CAPTION>
+           <DESCRIPTION>Does not include the initial data member value in the Attribute model information.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="FIELD_AS_ASSOC">
+           <CAPTION>Generate data member as Association</CAPTION>
+           <DESCRIPTION>Analyzes the data member information in the source code to establish association relationships with the respective data member type models. If unchecked, data member information is generated as attribute for the respective class model.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Diagram</CAPTION>
+        <DESCRIPTION/>
+        <OPTIONITEM-BOOLEAN key="CREATE_OVERVIEW">
+           <CAPTION>Generate Overview diagram</CAPTION>
+           <DESCRIPTION>Specifies whether to generate the Overview diagram for the generated model. If unchecked, the following diagram and view options are ignored.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-STRING key="DIGRAM_NAME">
+           <CAPTION>Diagram name</CAPTION>
+           <DESCRIPTION>Specifies the Overview diagram name. The package name can be included in the diagram name by using %s (e.g. Overview of %s).</DESCRIPTION>
+           <DEFAULTVALUE>Overview of %s</DEFAULTVALUE>
+        </OPTIONITEM-STRING>
+      </OPTIONCLASSIFICATION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>View</CAPTION>
+        <DESCRIPTION/>
+        <OPTIONITEM-BOOLEAN key="SUPRESS_ATTR">
+           <CAPTION>Suppress the Attribute compartment of Class</CAPTION>
+           <DESCRIPTION>Suppresses the Attribute compartment of the Class View when generating the Overview diagram.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="SUPRESS_OPER">
+           <CAPTION>Suppress the Operation compartment of Class</CAPTION>
+           <DESCRIPTION>Suppresses the Operation compartment of the Class View when generating the Overview diagram.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="HIDE_OPER_SIGNATURE">
+           <CAPTION>Hide operation signature</CAPTION>
+           <DESCRIPTION>Hides the operation signature when generating the Overview diagram.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="INHERITANCE_ONLY">
+           <CAPTION>Generate Generalization and Realization views only for relations</CAPTION>
+           <DESCRIPTION>Generates generalization and realization views only for relations when generating the Overview diagram. When used appropriately with other view options, this option is very useful for drawing the inheritance relations of overall classes and interfaces within the package.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+      
+    </OPTIONCATEGORY>
+    
+  </BODY>
+</OPTIONSCHEMA>

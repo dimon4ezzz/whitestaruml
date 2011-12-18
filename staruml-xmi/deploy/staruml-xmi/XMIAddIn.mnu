@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ADDINMENU addInID="StarUML.XMIAddIn">
+  <HEADER>
+    <NAME>XMI Add-In</NAME>
+    <VERSION>1.0</VERSION>
+    <DESCRIPTION>Add-In to import and export XMI</DESCRIPTION>
+    <COMPANY>Plastic Software, Inc.</COMPANY>
+    <COPYRIGHT>Copyright (C) 2004 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
+  </HEADER>
+  <BODY>
+    <MAINMENU>
+      <MAINITEM base="IMPORT" caption="XMI ..." beginGroup="TRUE" actionId="1" 
+                availableWhen="ALWAYS" />
+      <MAINITEM base="EXPORT" caption="XMI ..." beginGroup="TRUE" actionId="2" 
+                availableWhen="ALWAYS" />
+    </MAINMENU>
+  </BODY>
+</ADDINMENU>
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="EUC-KR" ?>
+<DIRECTMDAGENERATIONUNIT version="1.0">
+  <GROUP>StarUML</GROUP>
+  <CATEGORY>Implementation</CATEGORY>
+  <NAME>Pseudo Code (IMP)</NAME>
+  <DESCRIPTION>Generate pseudo codes from class model elements in project.</DESCRIPTION>
+  <DOCUMENTTYPE>DOCUMENT</DOCUMENTTYPE>
+  <FORMAT>TXT</FORMAT>
+  <DATE>2005-10-30</DATE>
+  <VERSION>1.0</VERSION>
+  <APPROACH></APPROACH>
+  <TRANSLATORTYPE>TEXT</TRANSLATORTYPE>
+  <TRANSLATORNAME></TRANSLATORNAME>
+  <SAMPLE>C:\Program Files\StarUML\Samples\Sample model for Generator.uml</SAMPLE>
+  <TUTORIAL></TUTORIAL>
+  <VALIDATOR></VALIDATOR>
+  <PARAMETERS>
+    <PARAMETER>
+      <NAME>TemplateFile</NAME>
+      <TYPE>FILENAME</TYPE>
+      <VALUE>$PATH$\template.cot</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>OutputFile</NAME>
+      <TYPE>STRING</TYPE>
+      <VALUE>$TARGET$\Out.txt</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>intermediate</NAME>
+      <TYPE>FILENAME</TYPE>
+      <VALUE>$TARGET$\script.js</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>target</NAME>
+      <TYPE>STRING</TYPE>
+      <VALUE>$TARGET$</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>Keep Comments</NAME>
+      <TYPE>BOOLEAN</TYPE>
+      <VALUE>false</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>ShowGenerationProcess</NAME>
+      <TYPE>BOOLEAN</TYPE>
+      <VALUE>true</VALUE>
+    </PARAMETER>
+  </PARAMETERS>
+</DIRECTMDAGENERATIONUNIT>

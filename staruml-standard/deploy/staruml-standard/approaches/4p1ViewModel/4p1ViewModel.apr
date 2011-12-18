@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<APPROACH version="1.0"> 
+  <HEADER>
+    <NAME>4p1ViewModel</NAME>
+    <DISPLAYNAME>4+1 View Model</DISPLAYNAME>
+    <DESCRIPTION>Approach to support 4+1 View Model of software architecture</DESCRIPTION>
+  </HEADER>
+  <BODY>
+    <IMPORTPROFILES>
+    </IMPORTPROFILES>
+    <MODELSTRUCTURE>
+      <MODEL name="Scenarios">
+        <DIAGRAM type="UseCase" name="Main"/>
+      </MODEL>
+      <MODEL name="Logical View">
+        <DIAGRAM type="Class" name="Main" defaultDiagram="True"/>
+      </MODEL>
+      <MODEL name="Development View">
+        <DIAGRAM type="Component" name="Main"/>
+      </MODEL>
+      <MODEL name="Process View">
+        <DIAGRAM type="Component" name="Main"/>
+      </MODEL>
+      <MODEL name="Physical View">
+        <DIAGRAM type="Deployment" name="Main"/>
+      </MODEL>
+    </MODELSTRUCTURE>
+  </BODY>
+</APPROACH>
+

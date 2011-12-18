@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<APPROACH version="1.0"> 
+  <HEADER>
+    <NAME>Default</NAME>
+    <DISPLAYNAME>Default Approach</DISPLAYNAME>
+    <DESCRIPTION>Default Apporach for StarUML</DESCRIPTION>
+  </HEADER>
+  <BODY>
+    <IMPORTPROFILES>
+      <PROFILE>UMLStandard</PROFILE>
+    </IMPORTPROFILES>
+    <MODELSTRUCTURE>
+      <MODEL name="Use Case Model" stereotypeProfile="UMLStandard" stereotypeName="useCaseModel">
+        <DIAGRAM type="UseCase" name="Main"/>
+      </MODEL>
+      <MODEL name="Analysis Model" stereotypeProfile="UMLStandard" stereotypeName="analysisModel">
+        <DIAGRAM type="Class" diagramTypeProfile="UMLStandard" diagramTypeName="RobustnessDiagram" name="Main" defaultDiagram="True"/>
+      </MODEL>
+      <MODEL name="Design Model" stereotypeProfile="UMLStandard" stereotypeName="designModel">
+        <DIAGRAM type="Class" name="Main" defaultDiagram="True"/>
+      </MODEL>
+      <MODEL name="Implementation Model" stereotypeProfile="UMLStandard" stereotypeName="implementationModel">
+        <DIAGRAM type="Component" name="Main"/>
+      </MODEL>
+      <MODEL name="Deployment Model"  stereotypeProfile="UMLStandard" stereotypeName="deploymentModel">
+        <DIAGRAM type="Deployment" name="Main"/>
+      </MODEL>
+    </MODELSTRUCTURE>
+  </BODY>
+</APPROACH>
+

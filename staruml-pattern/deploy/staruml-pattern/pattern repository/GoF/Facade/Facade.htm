@@ -1,0 +1,76 @@
+<html>
+
+<head>
+<title>Facade Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Facade </h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Interaction">Interaction</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Provide a unified interface to a set of interfaces in a subsystem. Facade 
+	defines a higher-level interface that makes the subsystem easier to use.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>
+<img border="0" src="Facade_Model.gif" width="425" height="326">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+<ul type="square">
+  <li><b>Facade :</b> knows which subsystem classes are responsible for a 
+	request. delegates client requests to appropriate subsystem objects.</li>
+  <li><b>Subsystem Classes :</b> implement subsystem functionality. handle work 
+	assigned by the Facade object. have no knowledge of the facade; that is, 
+	they keep no references to it.</li>
+</ul>
+<h2><a name="Interaction">Interaction</a></h2>
+<p>
+<img border="0" src="Facade_Model2.gif" width="448" height="304"></p>
+<ul type="square">
+  <li>Clients communicate with the subsystem by sending requests to Facade, 
+	which forwards them to the appropriate subsystem object(s). Although the 
+	subsystem objects perform the actual work, the facade may have to do work of 
+	its own to translate its interface to subsystem interfaces.</li>
+  <li>Clients that use the facade don't have to access its subsystem objects 
+	directly.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>&nbsp;you want to provide a simple interface to a complex subsystem. 
+	Subsystems often get more complex as they evolve. Most patterns, when 
+	applied, result in more and smaller classes. This makes the subsystem more 
+	reusable and easier to customize, but it also becomes harder to use for 
+	clients that don't need to customize it. A facade can provide a simple 
+	default view of the subsystem that is good enough for most clients. Only 
+	clients needing more customizability will need to look beyond the facade.</li>
+  <li>there are many dependencies between clients and the implementation classes 
+	of an abstraction. Introduce a facade to decouple the subsystem from clients 
+	and other subsystems, thereby promoting subsystem independence and 
+	portability.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li>&nbsp;It shields clients from subsystem components, thereby reducing the 
+	number of objects that clients deal with and making the subsystem easier to 
+	use.</li>
+  <li>It promotes weak coupling between the subsystem and its clients. Often the 
+	components in a subsystem are strongly coupled. Weak coupling lets you vary 
+	the components of the subsystem without affecting its clients. Facades help 
+	layer a system and the dependencies between objects. They can eliminate 
+	complex or circular dependencies. This can be an important consequence when 
+	the client and the subsystem are implemented independently.</li>
+  <li>It doesn't prevent applications from using subsystem classes if they need 
+	to. Thus you can choose between ease of use and generality.</li>
+</ul>
+
+</body>
+
+</html>

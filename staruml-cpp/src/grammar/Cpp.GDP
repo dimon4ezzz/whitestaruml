@@ -1,0 +1,63 @@
+[Grammars]
+	cpp.GDL, CPP
+
+[Output]
+	Cpp.GMR, __Cpp
+
+[Samples]
+	sample1.cpp, NULL
+	sample2.cpp, NULL
+	sample3.cpp, NULL, CPP.program
+	sample4.cpp, NULL
+	sample5.cpp, NULL
+	sample6.cpp, NULL
+	sample7.cpp, NULL
+	sample8.cpp, NULL
+	sample10.cpp, NULL
+	jointcalendar.cpp, NULL
+	frankfurt.cpp, NULL
+	helsinki.cpp, NULL
+	johannesburg.cpp, NULL
+	budapest.cpp, NULL
+	array.hpp, NULL
+	grid.hpp, NULL
+	sample11.cpp, NULL
+	Sample1.h, NULL
+	Sample12.cpp, NULL
+	test.hpp, NULL
+	sample13.cpp, NULL
+	sample14.cpp, NULL
+	main.cpp, NULL
+	viewer.cpp, NULL
+	AnimationExportSheet.cpp, CPP.program
+	AddFriend.cpp, NULL
+	_test.h, NULL
+	sample2.h, NULL
+	demo.h, NULL
+	_unavailable_collection.h, NULL
+	_test_sub.h, NULL
+	\, CPP.program
+
+[Breakpoints]
+	Position=_test_sub.h,4294
+	Position=_test_sub.h,3275
+	Position=_test_sub.h,224
+
+[Project Info]
+Version = 2
+
+
+[Project Settings]
+	ParseEntireInput = Y
+	ReportParseTimes = N
+	StepIntoTerminals = Y
+	StepIntoSpaces = N
+	ExpandNodesOption = 1
+	DataSourceOption = 1
+	BuildDebugTree = Y
+	StepIntoTokens = N
+	StackShowBacktrackSymbols = Y
+	SaveCache = Y
+	SaveTree = Y
+	SaveErrors = Y
+	InsertErrorNodes = Y
