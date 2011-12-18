@@ -1,0 +1,79 @@
+<html>
+
+<head>
+<title>Strategy Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Strategy</h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Define a family of algorithms, encapsulate each one, and make them 
+	interchangeable. </li>
+  <li>Strategy lets the algorithm vary independently from clients that use it.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp;
+<img border="0" src="Strategy_Model1.gif" width="557" height="205"></p>
+<ul type="square">
+  <li><b><font face="Verdana">Strategy </font></b><font face="Verdana"><b>: </b>
+  declares an interface common to all supported algorithms. Context uses this 
+	interface to call the algorithm defined by a ConcreteStrategy.</font></li>
+  <li><b><font face="Verdana">ConcreteStrategy </font></b><font face="Verdana">
+  <b>:</b> implements the algorithm using the Strategy interface.</font></li>
+  <li><font face="Verdana"><b>Context : </b></font>is configured with a 
+	ConcreteStrategy object. maintains a reference to a Strategy object. may 
+	define an interface that lets Strategy access its data.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>many related classes differ only in their behavior. Strategies provide a 
+	way to configure a class with one of many behaviors.</li>
+  <li>you need different variants of an algorithm. For example, you might define 
+	algorithms reflecting different space/time trade-offs. Strategies can be 
+	used when these variants are implemented as a class hierarchy of algorithms.</li>
+  <li>an algorithm uses data that clients shouldn't know about. Use the Strategy 
+	pattern to avoid exposing complex, algorithm-specific data structures.</li>
+  <li>a class defines many behaviors, and these appear as multiple conditional 
+	statements in its operations. Instead of many conditionals, move related 
+	conditional branches into their own<br>
+	Strategy class.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>Families of related algorithms. </b> Hierarchies of Strategy classes 
+	define a family of algorithms or behaviors for contexts to reuse. 
+	Inheritance can help factor out common functionality of the<br>
+	algorithms.</li>
+  <li><b>An alternative to subclassing. </b> Inheritance offers another way to 
+	support a variety of algorithms or behaviors. You can subclass a Context 
+	class directly to give it different behaviors. But this hardwires the 
+	behavior into Context. It mixes the algorithm implementation with Context's, 
+	making Context harder to understand, maintain, and extend. And you can't 
+	vary the algorithm<br>
+	dynamically. You wind up with many related classes whose only difference is 
+	the algorithm or behavior they employ. Encapsulating the algorithm in 
+	separate Strategy classes lets you vary the algorithm independently of its 
+	context, making it easier to switch, understand, and extend.</li>
+  <li><b>Strategies eliminate conditional statements. </b>The Strategy pattern 
+	offers an alternative to conditional statements for selecting desired 
+	behavior. When different behaviors are lumped into<br>
+	one class, it's hard to avoid using conditional statements to select the 
+	right behavior. Encapsulating the behavior in separate Strategy classes 
+	eliminates these conditional statements.</li>
+  <li><b>A choice of implementations. </b> Strategies can provide different 
+	implementations of the same behavior. The client can choose among strategies 
+	with different time and space trade-offs.</li>
+</ul>
+
+</body>
+
+</html>

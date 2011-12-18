@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PROFILE version="1.0">
+	<HEADER>
+		<NAME>Java</NAME>
+		<DISPLAYNAME>Java Profile</DISPLAYNAME>
+		<DESCRIPTION>Java Language Profile</DESCRIPTION>
+	</HEADER>
+	<BODY>
+		<STEREOTYPELIST>
+
+			<STEREOTYPE>
+				<NAME>JavaSourceFile</NAME>
+  			<DESCRIPTION>Source file with Java code</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLComponent</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>JavaClassFile</NAME>
+  			<DESCRIPTION>File with compiled Java source code</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLComponent</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>JavaArchiveFile</NAME>
+  			<DESCRIPTION>.jar typed Java archive file</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLComponent</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+		</STEREOTYPELIST>
+
+		<TAGDEFINITIONSETLIST>
+
+			<TAGDEFINITIONSET>
+				<NAME>JavaStrictfp</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+					<BASECLASS>UMLInterface</BASECLASS>
+					<BASECLASS>UMLOperation</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>JavaStrictfp</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>JavaClass</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>JavaStatic</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>JavaField</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLAttribute</BASECLASS>
+					<BASECLASS>UMLAssociationEnd</BASECLASS>					
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>JavaVolatile</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>JavaTransient</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>JavaCollection</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>JavaDimensions</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLAttribute</BASECLASS>
+					<BASECLASS>UMLAssociationEnd</BASECLASS>
+					<BASECLASS>UMLParameter</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>JavaDimensions</NAME>
+						<TAGTYPE>Integer</TAGTYPE>
+						<DEFAULTDATAVALUE>0</DEFAULTDATAVALUE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>JavaOperation</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLOperation</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>JavaNative</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>JavaThrows</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>JavaParameter</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLParameter</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>JavaFinal</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+			
+		</TAGDEFINITIONSETLIST>
+
+		<DATATYPELIST>
+			<DATATYPE>
+				<NAME>int</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>float</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>boolean</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>char</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>double</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>short</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>long</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>byte</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>void</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>Boolean</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>Byte</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>Character</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>Double</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>Float</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>Integer</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>Long</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>Object</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>Short</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>String</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>Void</NAME>
+			</DATATYPE>
+		</DATATYPELIST>
+	</BODY>
+</PROFILE>

@@ -1,0 +1,70 @@
+<html>
+
+<head>
+<title>Decorator Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Decorator </h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Attach additional responsibilities to an object dynamically. </li>
+  <li>Decorators provide a flexible alternative to subclassing for extending 
+	functionality.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp;
+<img border="0" src="Decorator_Model1.gif" width="622" height="288"></p>
+<ul type="square">
+  <li><font face="Verdana"><b>Component : </b>defines the interface for objects 
+	that can have responsibilities added to them dynamically.</font></li>
+  <li><font face="Verdana"><b>Decorator :</b> maintains a reference to a 
+	Component object and defines an interface that conforms to Component's 
+	interface.</font></li>
+  <li><font face="Verdana"><b>ConcreteDecorator :</b> 
+  adds responsibilities to the component.</font></li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>to add responsibilities to individual objects dynamically and 
+	transparently, that is, without affecting other objects.</li>
+  <li>for responsibilities that can be withdrawn.</li>
+  <li>when extension by subclassing is impractical. Sometimes a large number of 
+	independent extensions are possible and would produce an explosion of 
+	subclasses to support every combination. Or a class definition may be hidden 
+	or otherwise unavailable for subclassing.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>More flexibility than static inheritance. </b>The Decorator pattern 
+	provides a more flexible way to add responsibilities to objects than can be 
+	had with static (multiple) inheritance. With decorators responsibilities can 
+	be added and removed at run-time simply by attaching and detaching them. </li>
+  <li><b>Avoids feature-laden classes high up in the hierarchy. </b>Decorator 
+	offers a pay-as-you-go approach to adding responsibilities. Instead of 
+	trying to support all foreseeable features in a complex, customizable class, 
+	you can define a simple class and add functionality incrementally with 
+	Decorator objects. Functionality can be composed from simple pieces. As a 
+	result, an application needn't pay for features it doesn't use. </li>
+  <li><b>A decorator and its component aren't identical. </b>A decorator acts as 
+	a transparent enclosure. But from an object identity point of view, a 
+	decorated component is not identical to the component itself. Hence you 
+	shouldn't rely on object identity when you use decorators<b>.</b></li>
+  <li><b>Lots of little objects. </b>A design that uses Decorator often results 
+	in systems composed of lots of little objects that all look alike. The 
+	objects differ only in the way they are interconnected, not in their class 
+	or in the value of their variables. Although these systems are easy to 
+	customize by those who understand them, they can be hard to learn and debug.</li>
+</ul>
+
+</body>
+
+</html>

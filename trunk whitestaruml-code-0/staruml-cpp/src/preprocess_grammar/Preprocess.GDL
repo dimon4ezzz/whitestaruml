@@ -1,0 +1,239 @@
+/***************************************************************************
+
+				Grammar for C++ Preprocessing
+ 				( directive hiding version )
+
+@author :		Kim Jeong-il
+@date :		2004. 6. 16
+@start symbol :	compilation_unit
+@remarks
+	- 이 버전을 원래의 2004. 2. 2 제작된 C++ Preprocessing 문법을 일부 수정하여 
+	  directive를 숨기고, text만 표시되도록 변경된 것이다.
+	- #if, #ifdef, #ifndef, #endif directive를 제외한 전체 directive 부분은
+	  AST에 나타나지 않는다.
+	- directive 밖의 text에 해당하는 부분도 token_list 하나로 나타난다.
+
+	- #if, #elif directive의 constant_expression을 정확하게 처리하지 못한다.
+**************************************************************************************/
+
+grammar Preprocess 
+		<HIDELITERALS, 
+		HIDEREPEATERS,
+		BACKTRACK,
+		SPACE = space_symbol> 
+{
+	compilation_unit ::=
+		[ awareness_unit_list ] ;
+
+	awareness_unit_list ::= 
+		{ awareness_unit } ;
+
+	awareness_unit ::=
+		directive
+		| no_directive_block ;
+
+	no_directive_block <TERMINAL> ::=
+		token_list ;
+		
+	directive ::=
+		define_directive
+		| include_directive
+		| undef_directive
+		| conditional
+		| error_directive
+		| null_directive
+		| other_directive ;	// pragrma, inline, ...
+
+	define_directive <TERMINAL, SPACE = space_symbol_in_directive> ::=
+		"#" "define" identifier [ parameters ] ( end_of_line| token_list_in_directive ) ;
+
+	parameters ::=
+		"(" [ { identifier, "," } ] ")" ;
+
+	include_directive <TERMINAL, HIDDEN> ::=
+		"#" "include" "\"" path_spec "\""
+		| "#" "include" "<" path_spec ">" 
+		| "#" "include" token_list_in_directive ;
+
+	undef_directive <TERMINAL, HIDDEN> ::=
+		"#" "undef" identifier ;
+
+	error_directive <TERMINAL, HIDDEN> ::=
+		"#" "error" error_comment ;
+
+	error_comment <SPACE=""> ::=
+		[ { error_comment_fragment ( "\\" [ end_of_line ] ) } ] 
+		error_comment_fragment end_of_line ;
+
+	error_comment_fragment <TERMINAL> ::=
+		'[^\\\n\r]*' ;
+
+	null_directive <TERMINAL, HIDDEN, SPACE=""> ::=
+		"#" end_of_line ;
+
+	other_directive <TERMINAL, HIDDEN> ::=
+		"#" directive_name [ token_list_in_directive ] ;
+
+	directive_name<TERMINAL> ::=
+		identifier (? ^.identifier !::= reserved_directive ) ;
+
+	conditional ::=
+		if_part #anchor
+		[ elif_parts ] [ else_part ] 
+		endif_line #synch ;
+
+	if_part ::=
+		if_line [ awareness_unit_list ] ;
+
+	if_line <TERMINAL, HIDDEN> ::=
+		if_expr_clause
+		| ifdef_clause
+		| ifndef_clause ;
+
+	if_expr_clause ::=
+		"#" "if" constant_expression ;
+
+	ifdef_clause ::=
+		"#" "ifdef" identifier ;
+
+	ifndef_clause ::=
+		"#" "ifndef" identifier ;
+
+	elif_parts <TERMINAL, HIDDEN> ::=
+		{ elif_part } ;
+
+	elif_part ::=
+		elif_line [ awareness_unit_list ] ;
+
+	elif_line ::=
+		"#" "elif" constant_expression ;
+
+	else_part <TERMINAL, HIDDEN> ::=
+		else_line [ awareness_unit_list ] ;
+
+	else_line ::=
+		"#" "else" ;
+
+	endif_line <TERMINAL> ::=
+		"#" "endif" ;
+
+	constant_expression <TERMINAL, HIDDEN> ::=
+		token_list_in_directive ;
+
+	number_or_ident ::=
+		numeric | identifier ;	
+
+	operator<TERMINAL> ::=
+		"==" | "!=" | ">" | "<" | ">=" | "<=" ;
+
+	token_list<TERMINAL> ::=
+		{ cpp_token } ;
+
+	token_list_in_directive <TERMINAL, SPACE = space_symbol_in_directive> ::=
+		{ cpp_token_in_directive } ;
+
+	path_spec ::=
+		*( "\"" | "\10" | "\13" )
+		| * ( ">" | "\10" | "\13" ) ;
+
+	reserved_directive ::=
+		"define" | "include" | "undef" | "error"
+		| "if" | "ifdef" | "ifndef"
+		| "elif" | "else" | "endif" ;
+
+//======================================================
+//
+//   tokens
+//
+//======================================================
+	
+	cpp_token ::=
+		identifier
+		| literal
+		| "..." | "<<=" | ">>=" | "->*"
+		| "::" | "!=" | "==" | ">=" | "<="
+		| "*=" | "/=" | "^=" | "+=" | "-="
+		| "%=" | "&&" | "||" | "<<" | ">>"
+		| "&=" | "|=" | "++" | "--" | "->"
+		| ";" | ":" | "(" | ")" | "{" | "}"
+		| "," | "<" | ">" | "=" | "[" | "]"
+		| "*" | "/" | "%" | "+" | "-" | "^"
+		| "&" | "|" | "~" | ".*" | "." | "!" 
+		| "?" ;
+	
+	cpp_token_in_directive ::=
+		"#@" | "##" | "#"
+		| cpp_token ;
+
+	identifier ::= 
+		'[a-zA-Z_][a-zA-Z0-9_$]*' ;
+
+	literal ::= 
+		  numeric_constant	// includes integers (decimal, hex, octal) and floats 
+		| string_literal
+		| character_constant
+		;
+			
+	numeric_constant ::= 
+		[sign]
+		( hex_constant
+		  | octal_constant
+		  | float_constant
+		)
+		[numeric_suffix] ;
+		
+	numeric_suffix ::= 
+		'[LlUuFf]+';
+				    
+	hex_constant ::= 
+		'0[xX][a-fA-F0-9]+' ;
+	
+	octal_constant ::= 
+		'0[oO][0-7]+' ;
+	
+	float_constant ::= 
+		  numeric ["." [numeric]] [exponent_part]
+		| "." numeric ;
+	
+	exponent_part ::= 
+		("e" | "E") [sign] numeric;
+
+	sign ::= 
+		'[+\-]' ;
+
+	// literal_constant is a quote-enclosed string
+	string_literal<TERMINAL,
+			   SPACE=""> ::= 
+		 	{ text_segment, [whitespace]} ;
+
+	text_segment ::= 
+		["L"] "\"" text_elem [more_text_elems] "\"" ;
+
+	text_elem  ::= 
+		*('[\\\"]');
+
+	more_text_elems ::= 
+		'\\.' text_elem [more_text_elems] ;
+
+	character_constant ::= 
+		["L"] '\'\\?([ 0-9A-Za-z]+|.)\'';
+
+	space_symbol<TERMINAL,HIDDEN> ::= 
+		{ ( "\32" | end_of_line |"\t" | "\12" | "\26" )
+		  | "//" *( end_of_line )				 
+		  | "/*" *( "*/" ) "*/"
+		  | "\\" end_of_line		// line continuation  
+		,0 };
+
+	space_symbol_in_directive<TERMINAL,HIDDEN> ::= 
+		{ ( "\32" | "\t" | "\12" | "\26" )
+		  | "//" *( end_of_line )				 
+		  | "/*" *( "*/" ) "*/" 
+		  | "\\" end_of_line			// line continuation  
+		,0 };
+
+	end_of_line<TERMINAL,HIDDEN> ::=
+		 "\n\r" | "\r\n" | "\n" | "\r" ;
+
+};
+

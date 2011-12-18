@@ -1,0 +1,44 @@
+<html>
+
+<head>
+<title>Session EJB</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Session EJB</h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>To implement business service layers.</li>
+  <li>To maintain/change status for single clients.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp;
+<img border="0" src="SessionEJB.gif"></p>
+<ul type="square">
+  <li><b>SessionBean :</b> Bean for implementing business logic.</li>
+  <li><b>Session :</b> Remote Interface that defines the business logic.</li>
+  <li><b>SessionHome :</b> Home Interface that defines the method that manages the SessionBean life cycle.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>Can be used for processing business tasks and information to generate useful results.</li>
+  <li>Can be used for developing components that process business logic.</li>
+
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li>Increased usability and enhanced CBD-based development by separating the business logic processing part from the data processing part.</li>
+  <li>Easier development and distribution as Bean's role is clearly defined.</li>
+</ul>
+
+</body>
+
+</html>

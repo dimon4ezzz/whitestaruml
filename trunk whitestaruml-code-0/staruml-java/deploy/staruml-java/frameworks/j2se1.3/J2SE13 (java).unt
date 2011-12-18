@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XPD:UNIT xmlns:XPD="http://www.plasticsoftware.com/products/plastic" version="1">
+<XPD:HEADER>
+<XPD:SUBUNITS>
+<XPD:UNIT owner="Ks1wqQSCuk+0fG5pgPPE+AAA" index="11">J2SE13 (java.sql).unt</XPD:UNIT>
+<XPD:UNIT owner="Ks1wqQSCuk+0fG5pgPPE+AAA" index="10">J2SE13 (java.rmi).unt</XPD:UNIT>
+<XPD:UNIT owner="Ks1wqQSCuk+0fG5pgPPE+AAA" index="9">J2SE13 (java.net).unt</XPD:UNIT>
+<XPD:UNIT owner="Ks1wqQSCuk+0fG5pgPPE+AAA" index="8">J2SE13 (java.math).unt</XPD:UNIT>
+<XPD:UNIT owner="Ks1wqQSCuk+0fG5pgPPE+AAA" index="7">J2SE13 (java.text).unt</XPD:UNIT>
+<XPD:UNIT owner="Ks1wqQSCuk+0fG5pgPPE+AAA" index="6">J2SE13 (java.beans).unt</XPD:UNIT>
+<XPD:UNIT owner="Ks1wqQSCuk+0fG5pgPPE+AAA" index="5">J2SE13 (java.io).unt</XPD:UNIT>
+<XPD:UNIT owner="Ks1wqQSCuk+0fG5pgPPE+AAA" index="4">J2SE13 (java.security).unt</XPD:UNIT>
+<XPD:UNIT owner="Ks1wqQSCuk+0fG5pgPPE+AAA" index="3">J2SE13 (java.util).unt</XPD:UNIT>
+<XPD:UNIT owner="Ks1wqQSCuk+0fG5pgPPE+AAA" index="2">J2SE13 (java.lang).unt</XPD:UNIT>
+<XPD:UNIT owner="Ks1wqQSCuk+0fG5pgPPE+AAA" index="1">J2SE13 (java.awt).unt</XPD:UNIT>
+<XPD:UNIT owner="Ks1wqQSCuk+0fG5pgPPE+AAA" index="0">J2SE13 (java.applet).unt</XPD:UNIT>
+</XPD:SUBUNITS>
+</XPD:HEADER>
+<XPD:BODY>
+<XPD:OBJ name="DocumentElement" type="UMLPackage" guid="Ks1wqQSCuk+0fG5pgPPE+AAA">
+<XPD:ATTR name="Name" type="string">java</XPD:ATTR>
+</XPD:OBJ>
+</XPD:BODY>
+</XPD:UNIT>

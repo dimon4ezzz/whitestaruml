@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="EUC-KR" ?>
+<DIRECTMDAGENERATIONUNIT version="1.0">
+  <GROUP>StarUML</GROUP>
+  <CATEGORY>Assessment</CATEGORY>
+  <NAME>Design Assessment (DAS)</NAME>
+  <DESCRIPTION>Generate design assessment report for class model elements in project.</DESCRIPTION>
+  <DOCUMENTTYPE>DOCUMENT</DOCUMENTTYPE>
+  <FORMAT>XLS</FORMAT>
+  <DATE>2005-10-30</DATE>
+  <VERSION>1.0</VERSION>
+  <APPROACH></APPROACH>
+  <TRANSLATORTYPE>EXCEL</TRANSLATORTYPE>
+  <TRANSLATORNAME></TRANSLATORNAME>
+  <SAMPLE>C:\Program Files\StarUML\Samples\Sample model for Generator.uml</SAMPLE>
+  <TUTORIAL></TUTORIAL>
+  <VALIDATOR></VALIDATOR>
+  <PARAMETERS>
+    <PARAMETER>
+      <NAME>TemplateFile</NAME>
+      <TYPE>FILENAME</TYPE>
+      <VALUE>$PATH$\Template.xls</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>OutputFile</NAME>
+      <TYPE>STRING</TYPE>
+      <VALUE>$TARGET$\DAS(gen).xls</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>Keep Comments</NAME>
+      <TYPE>BOOLEAN</TYPE>
+      <VALUE>false</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>ShowGenerationProcess</NAME>
+      <TYPE>STRING</TYPE>
+      <VALUE>false</VALUE>
+    </PARAMETER>
+  </PARAMETERS>
+</DIRECTMDAGENERATIONUNIT>

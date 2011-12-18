@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ADDINMENU addInID="StarUML.CppAddIn">
+  <HEADER>
+    <NAME>C++ Add-In</NAME>
+    <VERSION>1.0</VERSION>
+    <DESCRIPTION>Add-In to provide the engineering function of C++ in StarUML as code generation and reverse engineering.</DESCRIPTION>
+    <COMPANY>Plastic Software, Inc.</COMPANY>
+    <COPYRIGHT>Copyright (C) 2004 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
+  </HEADER>
+  <BODY>
+    <MAINMENU>
+      <MAINITEM caption="&amp;C++" beginGroup="TRUE" availableWhen="MODEL_SELECTED">
+        <!-- reserved menu item for checking UML Model 
+        <MAINITEM caption="Syntax Check" actionId="1" />
+        -->
+        <MAINITEM caption="&amp;Generate Code..." actionId="2" />
+        <MAINITEM caption="&amp;Reverse Engineer..." actionId="3" />
+      </MAINITEM>
+    </MAINMENU>
+    
+    <POPUPMENU>
+      <POPUPITEM caption="&amp;C++" beginGroup="TRUE" availableWhen="MODEL_SELECTED">
+        <!-- reserved menu item for checking UML Model 
+        <POPUPITEM caption="Syntax Check" actionId="1" />
+        -->
+        <POPUPITEM caption="&amp;Generate Code..." actionId="2" />
+        <POPUPITEM caption="&amp;Reverse Engineer..." actionId="3" />
+      </POPUPITEM>
+    </POPUPMENU>
+  </BODY>
+</ADDINMENU>
+

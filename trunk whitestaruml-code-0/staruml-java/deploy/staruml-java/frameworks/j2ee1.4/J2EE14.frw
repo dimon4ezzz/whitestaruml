@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FRAMEWORK version="1.0">
+  <HEADER>
+    <NAME>J2EE1.4</NAME>
+    <DISPLAYNAME>Java 2 Enterprise 1.4</DISPLAYNAME>
+    <DESCRIPTION>Java 2 Enterprise Edition (J2EE) 1.4 Framework</DESCRIPTION>
+  </HEADER>
+  <BODY>
+  <FRAMEWORKMODELS>
+    <UNIT>J2EE14 (java).unt</UNIT>
+    <UNIT>J2EE14 (javax).unt</UNIT>
+    <UNIT>J2EE14 (org).unt</UNIT> 
+    <UNIT>J2EE14 (com).unt</UNIT> 
+    <UNIT>J2EE14 (sunw).unt</UNIT>     
+  </FRAMEWORKMODELS>
+  </BODY>
+</FRAMEWORK>

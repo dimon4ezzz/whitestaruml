@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<title>Template Method Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Template Method</h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Define the skeleton of an algorithm in an operation, deferring some steps 
+	to subclasses. </li>
+  <li>Template Method lets subclasses redefine certain steps of an algorithm 
+	without changing the algorithm's structure.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp;
+<img border="0" src="Template%20Method_Model1.gif" width="362" height="252"></p>
+<ul type="square">
+  <li><b><font face="Verdana">AbstractClass </font></b><font face="Verdana"><b>:
+  </b>defines abstract primitive operations that concrete subclasses define to 
+	implement steps of an algorithm. implements a template method defining the 
+	skeleton of an algorithm. The template method calls primitive operations as 
+	well as operations defined in AbstractClass or those of other objects.</font></li>
+  <li><b><font face="Verdana">ConcreteClass </font></b><font face="Verdana"><b>:</b> 
+  implements the primitive operations to carry out subclass-specific steps of 
+	the algorithm.</font></li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>to implement the invariant parts of an algorithm once and leave it up to 
+	subclasses to implement the behavior that can vary.</li>
+  <li>when common behavior among subclasses should be factored and localized in 
+	a common class to avoid code duplication. This is a good example of &quot;refactoring 
+	to generalize&quot; as described by<br>
+	Opdyke and Johnson. You first identify the differences in the existing code 
+	and then separate the differences into new operations. Finally, you replace 
+	the differing code with a template method that calls one of these new 
+	operations.</li>
+  <li>to control subclasses extensions. You can define a template method that 
+	calls &quot;hook&quot; operations (see Consequences) at specific points, thereby 
+	permitting extensions only at those points.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>Template methods are a fundamental technique for code reuse. </b> They 
+	are particularly important in class libraries, because they are the means 
+	for factoring out common behavior in library classes.</li>
+  <li><b>Template methods lead to an inverted control structure that's sometimes 
+	referred to as &quot;the Hollywood principle,&quot; that is, &quot;Don't call us, we'll 
+	call you&quot; . </b>This refers to how a parent class calls the operations of a 
+	subclass and not the other way around.</li>
+</ul>
+
+</body>
+
+</html>

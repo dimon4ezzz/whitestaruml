@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="EUC-KR" ?>
+<DIRECTMDAGENERATIONUNIT version="1.0">
+  <GROUP>StarUML</GROUP>
+  <CATEGORY>Requirement</CATEGORY>
+  <NAME>Usecase Specification Document (UCS)</NAME>
+  <DESCRIPTION>Generate usecase report for usecase model elements in project.</DESCRIPTION>
+  <DOCUMENTTYPE>DOCUMENT</DOCUMENTTYPE>
+  <FORMAT>DOC</FORMAT>
+  <DATE>2005-10-30</DATE>
+  <VERSION>1.0</VERSION>
+  <PROFILES>
+    <PROFILE>UMLStandard</PROFILE>
+  </PROFILES>
+  <APPROACH></APPROACH>
+  <TRANSLATORTYPE>WORD</TRANSLATORTYPE>
+  <TRANSLATORNAME></TRANSLATORNAME>
+  <SAMPLE>C:\Program Files\StarUML\Samples\Sample model for Generator.uml</SAMPLE>
+  <TUTORIAL></TUTORIAL>
+  <VALIDATOR></VALIDATOR>
+  <PARAMETERS>
+    <PARAMETER>
+      <NAME>TemplateFile</NAME>
+      <TYPE>FILENAME</TYPE>
+      <VALUE>$PATH$\Template.doc</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>OutputFile</NAME>
+      <TYPE>STRING</TYPE>
+      <VALUE>$TARGET$\UCS(gen).doc</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>Keep Comments</NAME>
+      <TYPE>STRING</TYPE>
+      <VALUE>false</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>ShowGenerationProcess</NAME>
+      <TYPE>STRING</TYPE>
+      <VALUE>false</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>Normal Generation</NAME>
+      <TYPE>BOOLEAN</TYPE>
+      <VALUE>true</VALUE>
+    </PARAMETER>
+    <PARAMETER>
+      <NAME>Generate Index</NAME>
+      <TYPE>BOOLEAN</TYPE>
+      <VALUE>true</VALUE>
+    </PARAMETER>
+  </PARAMETERS>
+</DIRECTMDAGENERATIONUNIT>

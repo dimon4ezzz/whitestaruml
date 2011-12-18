@@ -1,0 +1,42 @@
+public class IntVector
+{
+	public IntVector(int length) {}
+	public int Length {
+		get{}
+	}					// read-only property
+	public int this[int index] {
+		get{}
+	}		// read-write indexer
+	public static IntVector operator ++(IntVector iv) {
+	}
+	public static IntVector operator >(IntVector iv) {
+	}
+	public static implicit operator overk[] (IntVector iv) {
+	}
+
+
+}
+class A
+{
+	public A(int x, int y) {}
+}
+class B: A
+{
+	public B(int x, int y): base(x + y, x - y) {}
+}
+
+class A
+{
+	~A() {
+		Console.WriteLine("A's destructor");
+	}
+}
+class B: A
+{
+	extern ~B() {
+		Console.WriteLine("B's destructor");
+	}
+}
+
+
+

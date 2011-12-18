@@ -1,0 +1,203 @@
+(notation
+  (onarrange
+    (mofsetattr view 'StereotypeDisplay' 'sdkNone')
+    (mofsetattr view 'SuppressOperations' true)
+    (mofsetattr view 'ShowProperty' false)
+    (mofsetattr view 'ShowOperationSignature' false)
+    (mofsetattr view 'ShowCompartmentStereotype' false)
+    (mofsetattr view 'ShowCompartmentVisibility' false)
+    (arrangeObject view)
+  )
+
+  (ondraw
+    // 상위개체여부 - 나중에 고치기
+    (set isSuperType true)
+
+
+    // 해당 클래스의 association(associationEnd)를 가져온다
+    (set c (mofcolcount model 'Associations'))
+    (for i 0 (- c 1)
+
+      (sequence
+        // associationEnd의 association의 1번째 Connection(AssociationEnd)이
+        (set assocEnd (mofcolat model 'Associations' i))
+
+        // 현재 associationEnd인지 비교하여 같으면 isSuperType false
+        (if (= assocEnd (mofcolat (mofref assocEnd 'Association') 'Connections' 1))
+          (set isSuperType false)
+          nil)
+      )
+    )
+
+    // 초기 변수 설정
+    (set x left) // 다음 텍스트가 출력될 X 위치
+    (set y top)  // 다음 텍스트가 출력될 Y 위치
+    (set space 3) // 다음 텍스트까지의 공백 간격
+    (set w 0)    // 현재까지 텍스트의 폭
+
+    // 개체이름
+    (set y (+ y space))
+    (set name (mofattr model 'Name'))
+    (set tableName (tagval model 'ERD' 'table' 'TableName'))
+    (if (!= tableName '') (set name (concat name '/ ' tableName)))
+    (textout x y name)
+    (set w (textwidth name))
+    (set y (+ y (textheight name)))
+    (set y (+ y space))
+
+    // 그림자
+    (setbrushcolor 'clSilver')
+    (setbrushstyle 'bsSolid')
+    (setpencolor 'clSilver')
+    (if isSuperType
+      (rect (+ x 5) (+ y 5) (+ right 5) (+ bottom 5))
+      (roundrect (+ x 5) (+ y 5) (+ right 5) (+ bottom 5) 10 10))
+
+    // 박스 그리기
+//    (setbrushcolor (mofattr view 'FillColor'))
+//    (setbrushstyle 'bsSolid')
+    (setdefaultstyle)
+    (if isSuperType
+      (rect x y right bottom)
+      (roundrect x y right bottom 10 10))
+
+    // column 그리기
+    (set x (+ x 5))
+    (set y (+ y space))
+
+    // PK column 그리기
+    (set hasPKs false)
+    (for i 0 (- (mofColCount model 'Attributes') 1)
+      (sequence
+      
+        // i번째 column을 선택
+        (set attr (mofColAt model 'Attributes' i))
+        (set keys '')
+
+        // column이 PK인지 비교
+        (if (tagVal attr 'ERD' 'column' 'PK') //(= b true)
+          (sequence
+            (if (tagVal attr 'ERD' 'column' 'FK') //(= b true)
+              (sequence
+                (setfontstyle 'fsItalic')
+                (if (!= keys '') (set keys (concat keys ',')))
+                (set keys (concat keys 'FK'))))
+
+            (if (tagVal attr 'ERD' 'column' 'AK') //(= b true)
+              (sequence
+                (if (!= keys '') (set keys (concat keys ',')))
+                (set keys (concat keys 'AK'))))
+
+            (if (tagVal attr 'ERD' 'column' 'IE') //(= b true)
+              (sequence
+                (if (!= keys '') (set keys (concat keys ',')))
+                (set keys (concat keys 'IE'))))
+
+            (set attrName (mofAttr attr 'Name'))
+
+            (set columnName (tagval attr 'ERD' 'column' 'ColumnName'))
+            (if (!= columnName '') (set attrName (concat attrName '/ ' columnName)))
+
+            (set type (mofattr attr 'TypeExpression'))
+            (if (!= type '') (set attrName (concat attrName ': ' type)))
+
+            (set nullOption (tagval attr 'ERD' 'column' 'NullOption'))
+            (if (!= nullOption '') (set attrName (concat attrName '  ' nullOption)))
+            
+            // 키속성에 괄호 추가
+            (if (!= keys '')
+                (set attrName (concat attrName ' (' keys ')')))
+                
+
+            // PK 그리기
+            (drawbitmap x y 'primarykey.bmp' true)
+            (textout (+ x 16) y attrName)
+            (setdefaultstyle)
+            
+            // 변수 상태 변경 (PK 존재 여부, 다음 행 높이, 전체 폭)
+            (set hasPKs true)
+            (set y (+ y (textHeight attrName)))
+            (set newW (+ (textwidth attrName) 16))
+            (if (> newW w) (set w newW))
+          )
+        )
+      )
+    )
+
+    // line 그리기
+    (if hasPKs
+      (sequence
+        (set y (+ y space))
+        (line left y right y)
+        (set y (+ y space))
+      )
+      (sequence
+        (set y (+ y space))
+        (set y (+ y (mofattr view 'FontSize')))
+        (set y (+ y space))
+        (line left y right y)
+        (set y (+ y space))
+      ))
+
+    // 나머지 column 그리기
+    (for i 0 (- (mofColCount model 'Attributes') 1)
+      (sequence
+        // i번째 column을 선택
+        (set attr (mofColAt model 'Attributes' i))
+        (set keys '')
+
+        // column이 PK가 아닌것만 비교
+        (if (= (tagVal attr 'ERD' 'column' 'PK') false)
+          (sequence
+            (if (tagVal attr 'ERD' 'column' 'FK') //(= b true)
+              (sequence
+                (setfontstyle 'fsItalic')
+                (if (!= keys '') (set keys (concat keys ',')))
+                (set keys (concat keys 'FK'))))
+
+            (if (tagVal attr 'ERD' 'column' 'AK') //(= b true)
+              (sequence
+                (if (!= keys '') (set keys (concat keys ',')))
+                (set keys (concat keys 'AK'))))
+
+            (if (tagVal attr 'ERD' 'column' 'IE') //(= b true)
+              (sequence
+                (if (!= keys '') (set keys (concat keys ',')))
+                (set keys (concat keys 'IE'))))
+
+            (set attrName (mofAttr attr 'Name'))
+
+            (set columnName (tagval attr 'ERD' 'column' 'ColumnName'))
+            (if (!= columnName '') (set attrName (concat attrName '/ ' columnName)))
+            
+            (set type (mofattr attr 'TypeExpression'))
+            (if (!= type '') (set attrName (concat attrName ': ' type)))
+
+            (set nullOption (tagval attr 'ERD' 'column' 'NullOption'))
+            (if (!= nullOption '') (set attrName (concat attrName '  ' nullOption)))
+
+            // 키속성에 괄호 추가
+            (if (!= keys '')
+              (sequence
+                (set attrName (concat attrName ' (' keys ')'))
+                (drawbitmap x y 'keygroups.bmp' true))
+              (drawbitmap x y 'column.bmp' true))
+              
+            // 컬럼 그리기
+            (textout (+ x 16) y attrName)
+            (setdefaultstyle)
+            
+            // 변수 상태 변경 (다음 행 높이, 전체 폭)
+            (set y (+ y (textHeight attrName)))
+            (set newW (+ (textwidth attrName) 16))
+            (if (> newW w) (set w newW))
+          )
+        )
+      )
+    )
+
+    (set minWidth (+ w space space space))
+    (set minHeight (- (+ y space space space space) Top))
+
+  )
+)

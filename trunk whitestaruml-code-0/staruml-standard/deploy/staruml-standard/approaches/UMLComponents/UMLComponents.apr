@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<APPROACH version="1.0"> 
+  <HEADER>
+    <NAME>UMLComponents</NAME>
+    <DISPLAYNAME>UML Components Approach</DISPLAYNAME>
+    <DESCRIPTION>Approach for UML Components processs</DESCRIPTION>
+  </HEADER>
+  <BODY>
+    <IMPORTPROFILES>
+    </IMPORTPROFILES>
+    <MODELSTRUCTURE>
+      <MODEL name="Requirements">
+        <MODEL name="Business Concept Model">
+          <DIAGRAM type="Class" name="Business Concept Diagram"/>
+        </MODEL>
+        <MODEL name="Use Case Model">
+          <DIAGRAM type="UseCase" name="Use Case Diagram" defaultDiagram="True"/>
+        </MODEL>
+      </MODEL>
+      <MODEL name="Specifications">
+        <MODEL name="Business Type Model">
+          <DIAGRAM type="Class" name="Business Type Model Diagram"/>
+        </MODEL>
+        <MODEL name="Interface Specifications">
+        </MODEL>
+        <MODEL name="Component Specifications">
+        </MODEL>
+        <MODEL name="Component Architecture">
+          <DIAGRAM type="Component" name="Component Architecture Diagram" defaultDiagram="True"/>
+          <MODEL name="Interactions">
+          </MODEL>
+        </MODEL>
+      </MODEL>
+    </MODELSTRUCTURE>
+  </BODY>
+</APPROACH>
+
