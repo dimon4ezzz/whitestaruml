@@ -48,7 +48,7 @@ unit RevEngModelTranslate;
 interface
 
 uses
-  JavaParser_TLB, StarUML_TLB,
+  WSJavaParser_TLB, WhiteStarUML_TLB,
   Classes, SysUtils;
 
 type

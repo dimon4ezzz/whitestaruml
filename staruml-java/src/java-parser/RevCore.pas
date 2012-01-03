@@ -48,7 +48,7 @@ unit RevCore;
 interface
 
 uses
-  Classes, ComObj, ActiveX, IniFiles, SysUtils, JavaParser_TLB;
+  Classes, ComObj, ActiveX, IniFiles, SysUtils, WSJavaParser_TLB;
 
 type
   PAutoObject = class;

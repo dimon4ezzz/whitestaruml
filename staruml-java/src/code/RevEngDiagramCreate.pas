@@ -48,7 +48,7 @@ unit RevEngDiagramCreate;
 interface
 
 uses
-  Classes, StarUML_TLB;
+  Classes, WhiteStarUML_TLB;
 
 type
   // events

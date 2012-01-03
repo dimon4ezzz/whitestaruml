@@ -48,7 +48,7 @@ unit Utilities;
 interface
 
 uses
-  XMLDoc, XMLIntf, StarUML_TLB, Classes, Graphics, Types;
+  XMLDoc, XMLIntf, WhiteStarUML_TLB, Classes, Graphics, Types;
 
 type
   PStrArray = array of string;

@@ -84,7 +84,7 @@ uses
   ImportFrameworkFrm in 'ImportFrameworkFrm.pas' {ImportFrameworkForm},
   OptionDeps in 'OptionDeps.pas',
   ExprParsers in 'ExprParsers.pas',
-  StarUML_TLB in 'StarUML_TLB.pas',
+  WhiteStarUML_TLB in 'WhiteStarUML_TLB.pas',
   CoreAuto in 'CoreAuto.pas',
   UMLModelsAuto in 'UMLModelsAuto.pas',
   ViewCoreAuto in 'ViewCoreAuto.pas',
@@ -134,12 +134,13 @@ uses
   PropEdtWithJvclInspector in 'PropEdtWithJvclInspector.pas' {PropertyEditorWithJvclInspector: TFrame},
   NavBarFrame in 'NavBarFrame.pas' {PaletteNavBarFrame: TFrame},
   NavBarFrameVclImpl in 'NavBarFrameVclImpl.pas' {PaletteNavBarFrameVclImpl: TFrame},
-  WINGRAPHVIZLib_TLB in 'WINGRAPHVIZLib_TLB.pas',
   MenuManager in 'MenuManager.pas',
   MenuManagerTdxImpl in 'MenuManagerTdxImpl.pas',
   QuickDialogFrmTdxBase in 'QuickDialogFrmTdxBase.pas' {QuickDialogFormTdxBase},
   MainFrm in 'MainFrm.pas' {MainForm},
-  PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas';
+  PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas',
+  CategoryButtons in 'CategoryButtons.pas',
+  GraphVizInterface in 'GraphVizInterface.pas';
 
 {$R *.TLB}
 
@@ -158,9 +159,9 @@ begin
   // Show Splash Form.
   if (ComServer.StartMode = smStandalone) then
   begin
-//    SplashForm := TSplashForm.Create(Application);
-//    SplashForm.Show;
-//    SplashForm.Repaint;
+    SplashForm := TSplashForm.Create(Application);
+    SplashForm.Show;
+    SplashForm.Repaint;
   end;
 
   Application.Title := 'WhiteStarUML';

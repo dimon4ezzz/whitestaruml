@@ -1,29 +1,29 @@
-unit JavaParser_TLB;
+unit WSJavaParser_TLB;
 
 // ************************************************************************ //
-// WARNING                                                                    
-// -------                                                                    
-// The types declared in this file were generated from data read from a       
-// Type Library. If this type library is explicitly or indirectly (via        
-// another type library referring to this type library) re-imported, or the   
-// 'Refresh' command of the Type Library Editor activated while editing the   
-// Type Library, the contents of this file will be regenerated and all        
-// manual modifications will be lost.                                         
+// WARNING
+// -------
+// The types declared in this file were generated from data read from a
+// Type Library. If this type library is explicitly or indirectly (via
+// another type library referring to this type library) re-imported, or the
+// 'Refresh' command of the Type Library Editor activated while editing the
+// Type Library, the contents of this file will be regenerated and all
+// manual modifications will be lost.
 // ************************************************************************ //
 
 // $Rev: 17244 $
-// File generated on 27/11/2011 13:38:57 from Type Library described below.
+// File generated on 1/2/2012 11:33:47 AM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\StarUMLFresh\modules\staruml-java\JavaParser.dll (1)
-// LIBID: {CAC3FDB6-58F4-4F04-BBC7-68F2F0EFEFD6}
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml-java\src\java-parser\JavaParser (1)
+// LIBID: {638317AD-3D94-499D-945E-D0ED21ABBAD5}
 // LCID: 0
-// Helpfile: 
+// Helpfile:
 // HelpString: JavaParser Library
-// DepndLst: 
+// DepndLst:
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
 // ************************************************************************ //
-{$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers. 
+{$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
 {$WARN SYMBOL_PLATFORM OFF}
 {$WRITEABLECONST ON}
 {$VARPROPSETTER ON}
@@ -31,25 +31,25 @@ unit JavaParser_TLB;
 interface
 
 uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
-  
+
 
 // *********************************************************************//
-// GUIDS declared in the TypeLibrary. Following prefixes are used:        
-//   Type Libraries     : LIBID_xxxx                                      
-//   CoClasses          : CLASS_xxxx                                      
-//   DISPInterfaces     : DIID_xxxx                                       
-//   Non-DISP interfaces: IID_xxxx                                        
+// GUIDS declared in the TypeLibrary. Following prefixes are used:
+//   Type Libraries     : LIBID_xxxx
+//   CoClasses          : CLASS_xxxx
+//   DISPInterfaces     : DIID_xxxx
+//   Non-DISP interfaces: IID_xxxx
 // *********************************************************************//
 const
   // TypeLibrary Major and minor versions
-  JavaParserMajorVersion = 1;
-  JavaParserMinorVersion = 0;
+  WSJavaParserMajorVersion = 1;
+  WSJavaParserMinorVersion = 0;
 
-  LIBID_JavaParser: TGUID = '{CAC3FDB6-58F4-4F04-BBC7-68F2F0EFEFD6}';
+  LIBID_WSJavaParser: TGUID = '{638317AD-3D94-499D-945E-D0ED21ABBAD5}';
 
   IID_IJavaParserObj: TGUID = '{5DD0F86C-AD7B-4024-B0A9-8D10194BE79A}';
   DIID_IJavaParserObjEvents: TGUID = '{7F8D581D-252E-4DE9-9F08-E3C79462D590}';
-  CLASS_JavaParserObj: TGUID = '{2AF52FD6-B808-43C4-AEA9-1105892EC187}';
+  CLASS_JavaParserObj: TGUID = '{1FB67975-76DD-411C-9D39-DCB9EE1AAD4C}';
   IID_IJavaElement: TGUID = '{D7439CFF-3A53-4982-86A9-53B4D44A5670}';
   IID_IJavaCompilationUnit: TGUID = '{E0DC3BC8-762F-4363-9452-2E3882050F1E}';
   IID_IJavaMember: TGUID = '{62C7410A-CC64-4694-8945-265F29E5E33F}';
@@ -63,7 +63,7 @@ const
   IID_IJavaParameter: TGUID = '{6E0FC72C-FF73-4CA9-9A53-DC7001878909}';
 
 // *********************************************************************//
-// Declaration of Enumerations defined in Type Library                    
+// Declaration of Enumerations defined in Type Library
 // *********************************************************************//
 // Constants for enum VisibilityKind
 type
@@ -77,7 +77,7 @@ const
 type
 
 // *********************************************************************//
-// Forward declaration of types defined in TypeLibrary                    
+// Forward declaration of types defined in TypeLibrary
 // *********************************************************************//
   IJavaParserObj = interface;
   IJavaParserObjDisp = dispinterface;
@@ -106,8 +106,8 @@ type
   IJavaParameterDisp = dispinterface;
 
 // *********************************************************************//
-// Declaration of CoClasses defined in Type Library                       
-// (NOTE: Here we map each CoClass to its Default Interface)              
+// Declaration of CoClasses defined in Type Library
+// (NOTE: Here we map each CoClass to its Default Interface)
 // *********************************************************************//
   JavaParserObj = IJavaParserObj;
 
@@ -156,7 +156,7 @@ type
 
 // *********************************************************************//
 // DispIntf:  IJavaParserObjEvents
-// Flags:     (4096) Dispatchable
+// Flags:     (0)
 // GUID:      {7F8D581D-252E-4DE9-9F08-E3C79462D590}
 // *********************************************************************//
   IJavaParserObjEvents = dispinterface
@@ -633,11 +633,11 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoJavaParserObj provides a Create and CreateRemote method to          
-// create instances of the default interface IJavaParserObj exposed by              
-// the CoClass JavaParserObj. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// The Class CoJavaParserObj provides a Create and CreateRemote method to
+// create instances of the default interface IJavaParserObj exposed by
+// the CoClass JavaParserObj. The functions are intended to be used by
+// clients wishing to automate the CoClass objects exposed by the
+// server of this typelibrary.
 // *********************************************************************//
   CoJavaParserObj = class
     class function Create: IJavaParserObj;
@@ -659,3 +659,4 @@ begin
 end;
 
 end.
+

@@ -48,7 +48,7 @@ unit LayoutDgm;
 interface
 
 uses
-  GraphicClasses, Core, ViewCore, UMLViews, WINGRAPHVIZLib_TLB,
+  GraphicClasses, Core, ViewCore, UMLViews, {WINGRAPHVIZLib_TLB,}
   Classes;
 
 const
@@ -133,8 +133,8 @@ type
   // PDiagramLayout
   PDiagramLayout = class
   private
-    DOT: TDOT;
-    NEATO: TNEATO;
+    //DOT: TDOT;
+    //NEATO: TNEATO;
     GraphvizPlainOutputParser: PGraphvizPlainOutputParser;
     procedure SmoothPoints(APoints: PPoints; Times: Integer = 1);
     procedure RoughPoints(APoints: PPoints; Epsilon: Real = 1.1);
@@ -156,7 +156,7 @@ var
 implementation
 
 uses
-  Types, SysUtils, Forms;
+  Types, SysUtils, Forms, GraphVizInterface;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -363,15 +363,15 @@ end;
 constructor PDiagramLayout.Create;
 begin
   inherited;
-  DOT := TDOT.Create(Application);
-  NEATO := TNEATO.Create(Application);
+  //DOT := TDOT.Create(Application);
+  //NEATO := TNEATO.Create(Application);
   GraphvizPlainOutputParser := PGraphvizPlainOutputParser.Create;
 end;
 
 destructor PDiagramLayout.Destroy;
 begin
-  DOT := nil;
-  NEATO := nil;
+  //DOT := nil;
+  //NEATO := nil;
   GraphvizPlainOutputParser.Free;
   inherited;
 end;
@@ -582,15 +582,26 @@ end;
 procedure PDiagramLayout.LayoutDiagram(ADiagramView: PDiagramView; IsDigraph: Boolean = True; RankDir: PRankDirKind = rkTopBottom; Reversed: Boolean = False);
 var
   Output: TStringList;
-  PlainOutput: WideString;
+  PlainOutput: string;
   Graph: PGraphvizGraph;
+  OutputGraph: PAnsiChar;
+  ResultOp: Integer;
+  LayoutAlgorithm: AnsiString;
 begin
   Output := TStringList.Create;
   GenerateGraphRep(ADiagramView, Output, IsDigraph, RankDir, Reversed);
   if IsDigraph then
-    PlainOutput := DOT.ToPlain(Output.Text)
+    LayoutAlgorithm := 'dot'
   else
-    PlainOutput := NEATO.ToPlain(Output.Text);
+    LayoutAlgorithm := 'neato';
+
+  ResultOp := LayoutGraph(PAnsiChar(LayoutAlgorithm),
+    PAnsiChar(AnsiString(Output.Text)),@OutputGraph);
+  assert(ResultOp = 0);
+  PlainOutput := string(OutputGraph);
+  DeleteOutputGraph(OutputGraph);
+  //PlainOutput := DOT.ToPlain(Output.Text)
+
   Graph := GraphvizPlainOutputParser.Parse(PlainOutput);
   ApplyToDiagramView(Graph, ADiagramView);
   Output.Free;

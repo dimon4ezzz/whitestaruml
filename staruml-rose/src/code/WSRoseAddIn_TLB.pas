@@ -1,4 +1,4 @@
-unit CppAddIn_TLB;
+unit WSRoseAddIn_TLB;
 
 // ************************************************************************ //
 // WARNING
@@ -12,17 +12,17 @@ unit CppAddIn_TLB;
 // ************************************************************************ //
 
 // $Rev: 17244 $
-// File generated on 03/12/2011 14:13:57 from Type Library described below.
+// File generated on 1/1/2012 4:46:31 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\StarUML\staruml-cpp\src\code\CppAddIn (1)
-// LIBID: {F536C296-897D-4FC0-9C94-B263A0B350F8}
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml-rose\src\code\RoseAddIn (1)
+// LIBID: {A5C0474D-A3F2-4784-95E1-3629D439644F}
 // LCID: 0
 // Helpfile:
-// HelpString: CppAddIn Library
+// HelpString: WSRoseAddIn Library
 // DepndLst:
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
-//   (2) v1.0 StarUML, (C:\JS\Delphi\StarUMLFresh\StarUML.exe)
+//   (2) v1.0 WhiteStarUML, (C:\JS\Delphi\StarUMLFresh\WhiteStarUML.exe)
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
 {$WARN SYMBOL_PLATFORM OFF}
@@ -31,7 +31,7 @@ unit CppAddIn_TLB;
 {$ALIGN 4}
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleServer, StarUML_TLB, StdVCL, Variants;
+uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants, WhiteStarUML_TLB;
 
 
 
@@ -44,29 +44,29 @@ uses Windows, ActiveX, Classes, Graphics, OleServer, StarUML_TLB, StdVCL, Varian
 // *********************************************************************//
 const
   // TypeLibrary Major and minor versions
-  CppAddInMajorVersion = 1;
-  CppAddInMinorVersion = 0;
+  WSRoseAddInMajorVersion = 1;
+  WSRoseAddInMinorVersion = 0;
 
-  LIBID_CppAddIn: TGUID = '{F536C296-897D-4FC0-9C94-B263A0B350F8}';
+  LIBID_WSRoseAddIn: TGUID = '{A5C0474D-A3F2-4784-95E1-3629D439644F}';
 
-  CLASS_CppAddInObj: TGUID = '{34480074-9829-4543-B43D-FF0421F2C8DF}';
+  CLASS_RoseAddInObj: TGUID = '{AD36BDD6-CE9C-44CD-8D65-440C16EDBF4C}';
 type
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library
 // (NOTE: Here we map each CoClass to its Default Interface)
 // *********************************************************************//
-  CppAddInObj = IStarUMLAddIn;
+  RoseAddInObj = IStarUMLAddIn;
 
 
 // *********************************************************************//
-// The Class CoCppAddInObj provides a Create and CreateRemote method to
+// The Class CoRoseAddInObj provides a Create and CreateRemote method to
 // create instances of the default interface IStarUMLAddIn exposed by
-// the CoClass CppAddInObj. The functions are intended to be used by
+// the CoClass RoseAddInObj. The functions are intended to be used by
 // clients wishing to automate the CoClass objects exposed by the
 // server of this typelibrary.
 // *********************************************************************//
-  CoCppAddInObj = class
+  CoRoseAddInObj = class
     class function Create: IStarUMLAddIn;
     class function CreateRemote(const MachineName: string): IStarUMLAddIn;
   end;
@@ -75,14 +75,14 @@ implementation
 
 uses ComObj;
 
-class function CoCppAddInObj.Create: IStarUMLAddIn;
+class function CoRoseAddInObj.Create: IStarUMLAddIn;
 begin
-  Result := CreateComObject(CLASS_CppAddInObj) as IStarUMLAddIn;
+  Result := CreateComObject(CLASS_RoseAddInObj) as IStarUMLAddIn;
 end;
 
-class function CoCppAddInObj.CreateRemote(const MachineName: string): IStarUMLAddIn;
+class function CoRoseAddInObj.CreateRemote(const MachineName: string): IStarUMLAddIn;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_CppAddInObj) as IStarUMLAddIn;
+  Result := CreateRemoteComObject(MachineName, CLASS_RoseAddInObj) as IStarUMLAddIn;
 end;
 
 end.

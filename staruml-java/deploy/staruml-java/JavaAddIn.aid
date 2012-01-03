@@ -2,8 +2,8 @@
 <ADDIN>
     <NAME>Java AddIn</NAME>
     <DISPLAYNAME>Java Add-In</DISPLAYNAME>
-    <COMOBJ>JavaAddIn.JavaAddInObj</COMOBJ>
-    <FILENAME>JavaAddIn.dll</FILENAME>
+    <COMOBJ>WSJavaAddIn.JavaAddInObj</COMOBJ>
+    <FILENAME>WSJavaAddIn.dll</FILENAME>
     <COMPANY>Plastic Software, Inc.</COMPANY>
     <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
     <HELPFILE>http://www.staruml.com</HELPFILE>

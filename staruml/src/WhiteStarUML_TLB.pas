@@ -1,4 +1,4 @@
-unit StarUML_TLB;
+unit WhiteStarUML_TLB;
 
 // ************************************************************************ //
 // WARNING
@@ -12,14 +12,14 @@ unit StarUML_TLB;
 // ************************************************************************ //
 
 // $Rev: 17244 $
-// File generated on 03/12/2011 14:49:36 from Type Library described below.
+// File generated on 1/1/2012 3:01:43 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\StarUML\staruml\src\StarUML (1)
-// LIBID: {4DDF767D-D515-44DA-B05E-1EA0FE73FBC7}
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml\src\WhiteStarUML (1)
+// LIBID: {4D5F69B3-73FC-4C09-A1CE-73D1A677A0E7}
 // LCID: 0
 // Helpfile:
-// HelpString: StarUML Library
+// HelpString: WhiteStarUML Library
 // DepndLst:
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
 // ************************************************************************ //
@@ -42,13 +42,13 @@ uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
 // *********************************************************************//
 const
   // TypeLibrary Major and minor versions
-  StarUMLMajorVersion = 1;
-  StarUMLMinorVersion = 0;
+  WhiteStarUMLMajorVersion = 1;
+  WhiteStarUMLMinorVersion = 0;
 
-  LIBID_StarUML: TGUID = '{4DDF767D-D515-44DA-B05E-1EA0FE73FBC7}';
+  LIBID_WhiteStarUML: TGUID = '{4D5F69B3-73FC-4C09-A1CE-73D1A677A0E7}';
 
   IID_IStarUMLApplication: TGUID = '{366A8FBC-259E-4228-AC6D-293D15041864}';
-  CLASS_StarUMLApplication: TGUID = '{0F6753BD-9775-4011-90B2-594B2E71CC6D}';
+  CLASS_WhiteStarUMLApplication: TGUID = '{E155F938-9A1D-4555-9831-7E3C18B27F83}';
   IID_IUMLFactory: TGUID = '{93B49661-E40C-4B36-A385-E937DF875AB4}';
   IID_IElement: TGUID = '{6BF1C43B-C90E-4E10-AEA9-AAE19D4FA5AF}';
   IID_IModel: TGUID = '{37CE5188-CEB9-4F67-8A49-46BC11667706}';
@@ -994,7 +994,7 @@ type
 // Declaration of CoClasses defined in Type Library
 // (NOTE: Here we map each CoClass to its Default Interface)
 // *********************************************************************//
-  StarUMLApplication = IStarUMLApplication;
+  WhiteStarUMLApplication = IStarUMLApplication;
 
 
 // *********************************************************************//
@@ -34590,13 +34590,13 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoStarUMLApplication provides a Create and CreateRemote method to
+// The Class CoWhiteStarUMLApplication provides a Create and CreateRemote method to
 // create instances of the default interface IStarUMLApplication exposed by
-// the CoClass StarUMLApplication. The functions are intended to be used by
+// the CoClass WhiteStarUMLApplication. The functions are intended to be used by
 // clients wishing to automate the CoClass objects exposed by the
 // server of this typelibrary.
 // *********************************************************************//
-  CoStarUMLApplication = class
+  CoWhiteStarUMLApplication = class
     class function Create: IStarUMLApplication;
     class function CreateRemote(const MachineName: string): IStarUMLApplication;
   end;
@@ -34605,14 +34605,14 @@ implementation
 
 uses ComObj;
 
-class function CoStarUMLApplication.Create: IStarUMLApplication;
+class function CoWhiteStarUMLApplication.Create: IStarUMLApplication;
 begin
-  Result := CreateComObject(CLASS_StarUMLApplication) as IStarUMLApplication;
+  Result := CreateComObject(CLASS_WhiteStarUMLApplication) as IStarUMLApplication;
 end;
 
-class function CoStarUMLApplication.CreateRemote(const MachineName: string): IStarUMLApplication;
+class function CoWhiteStarUMLApplication.CreateRemote(const MachineName: string): IStarUMLApplication;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_StarUMLApplication) as IStarUMLApplication;
+  Result := CreateRemoteComObject(MachineName, CLASS_WhiteStarUMLApplication) as IStarUMLApplication;
 end;
 
 end.

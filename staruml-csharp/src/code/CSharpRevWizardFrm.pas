@@ -52,7 +52,7 @@ uses
   ImgList, Controls, ComCtrls, ExtCtrls, StdCtrls, Forms, Classes,
   Windows, Messages, SysUtils, Variants, Graphics,
   Dialogs, JvWizard,  ElXPThemedControl,
-  ElTree, StarUML_TLB, FileCtrl, SelTreeFrame, ShellCtrls, JvExControls,
+  ElTree, WhiteStarUML_TLB, FileCtrl, SelTreeFrame, ShellCtrls, JvExControls,
   JvComponent;
 
 type

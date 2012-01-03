@@ -1,4 +1,4 @@
-library XMIAddIn;
+library WSCSharpAddIn;
 
 {******************************************************************************}
 {                                                                              }
@@ -47,17 +47,18 @@ library XMIAddIn;
 
 uses
   ComServ,
-  XMIAddInObj in 'XMIAddInObj.pas',
-  XMIImportFrm in 'XMIImportFrm.pas' {XMIImportForm},
-  NLS_XMIAddIn in 'NLS_XMIAddIn.pas',
+  CSharpAddInObj in 'CSharpAddInObj.pas',
+  WSCSharpAddIn_TLB in 'WSCSharpAddIn_TLB.pas',
+  CSharpRevWizardFrm in 'CSharpRevWizardFrm.pas' {CSharpRevWizardForm},
+  SelTreeFrame in 'SelTreeFrame.pas' {SelectTreeFrame: TFrame},
   Symbols in 'Symbols.pas',
-  Utilities in 'Utilities.pas',
-  XMIToStarUML in 'XMIToStarUML.pas',
-  XMIAddIn_TLB in 'XMIAddIn_TLB.pas',
-  XMIExportFrm in 'XMIExportFrm.pas' {XMIExportForm},
-  XMIExporter13 in 'XMIExporter13.pas',
-  XMIExporter in 'XMIExporter.pas',
-  NLS in 'NLS.pas';
+  CSharpElements in 'CSharpElements.pas',
+  CSharpReverseEngine in 'CSharpReverseEngine.pas',
+  Utility in 'Utility.pas',
+  CodeGenFrm in 'CodeGenFrm.pas' {CodeGenForm},
+  CodeGenerator in 'CodeGenerator.pas',
+  NLS in 'NLS.pas',
+  NLS_CSharpAddIn in 'NLS_CSharpAddIn.pas';
 
 exports
   DllGetClassObject,

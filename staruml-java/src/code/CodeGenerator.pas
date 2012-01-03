@@ -48,7 +48,7 @@ unit CodeGenerator;
 interface
 
 uses
-  Utility, StarUML_TLB,
+  Utility, WhiteStarUML_TLB,
   Classes;
 
 type

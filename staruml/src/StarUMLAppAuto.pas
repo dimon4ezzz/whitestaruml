@@ -50,7 +50,7 @@ interface
 {$HINTS OFF}
 
 uses
-  BasicClasses, Core, CoreAuto, StarUML_TLB,
+  BasicClasses, Core, CoreAuto, WhiteStarUML_TLB,
   Classes, Forms, ComObj;
 
 const
@@ -1833,7 +1833,7 @@ initialization
   ElementSelectorAuto := nil;
   ElementListSelectorAuto := nil;
   EventPublisherAuto := nil;
-  TAutoObjectFactory.Create(ComServer, PStarUMLApplicationAuto, CLASS_StarUMLApplication,
+  TAutoObjectFactory.Create(ComServer, PStarUMLApplicationAuto, CLASS_WhiteStarUMLApplication,
     ciMultiInstance, tmApartment);
 finalization
   if UMLFactoryAuto <> nil then begin

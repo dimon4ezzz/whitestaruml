@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{6800C90C-8B49-4B15-8E46-9015DA5876D8}</ProjectGuid>
 			<MainSource>WhiteStarUML.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Config Condition="'$(Config)'==''">Release</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
@@ -20,7 +20,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_ExeOutput>C:\JS\Delphi\StarUMLFresh</DCC_ExeOutput>
+			<DCC_ExeOutput>..\deploy</DCC_ExeOutput>
 			<BRCC_Verbose>true</BRCC_Verbose>
 			<BRCC_CompilerToUse>rc</BRCC_CompilerToUse>
 			<DCC_UsePackage>dxCoreRS14;cxLibraryRS14;cxDataRS14;dxThemeRS14;cxEditorsRS14;cxSchedulerGridRS14;cxSchedulerRS14;cxExportRS14;dxComnRS14;dxDockingRS14;cxBarEditItemRS14;dxBarExtItemsRS14;dxBarRS14</DCC_UsePackage>
@@ -31,7 +31,7 @@
 			<DCC_UNSAFE_TYPE>true</DCC_UNSAFE_TYPE>
 			<DCC_Platform>x86</DCC_Platform>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_DependencyCheckOutputName>..\..\..\StarUMLFresh\WhiteStarUML.exe</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>..\deploy\WhiteStarUML.exe</DCC_DependencyCheckOutputName>
 			<DCC_K>false</DCC_K>
 			<DCC_F>false</DCC_F>
 			<DCC_S>false</DCC_S>
@@ -114,7 +114,7 @@
 			</DCCReference>
 			<DCCReference Include="OptionDeps.pas"/>
 			<DCCReference Include="ExprParsers.pas"/>
-			<DCCReference Include="StarUML_TLB.pas"/>
+			<DCCReference Include="WhiteStarUML_TLB.pas"/>
 			<DCCReference Include="CoreAuto.pas"/>
 			<DCCReference Include="UMLModelsAuto.pas"/>
 			<DCCReference Include="ViewCoreAuto.pas"/>
@@ -226,7 +226,6 @@
 				<Form>PaletteNavBarFrameVclImpl</Form>
 				<DesignClass>TFrame</DesignClass>
 			</DCCReference>
-			<DCCReference Include="WINGRAPHVIZLib_TLB.pas"/>
 			<DCCReference Include="MenuManager.pas"/>
 			<DCCReference Include="MenuManagerTdxImpl.pas"/>
 			<DCCReference Include="QuickDialogFrmTdxBase.pas">
@@ -236,7 +235,9 @@
 				<Form>MainForm</Form>
 			</DCCReference>
 			<DCCReference Include="PGMR101Lib_TLB.pas"/>
-			<RidlCompile Include="StarUML.ridl"/>
+			<DCCReference Include="CategoryButtons.pas"/>
+			<DCCReference Include="GraphVizInterface.pas"/>
+			<RidlCompile Include="WhiteStarUML.ridl"/>
 			<None Include="WhiteStarUML.manifest"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
@@ -269,9 +270,9 @@
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
 						<VersionInfo Name="MajorVer">5</VersionInfo>
-						<VersionInfo Name="MinorVer">1</VersionInfo>
-						<VersionInfo Name="Release">2</VersionInfo>
-						<VersionInfo Name="Build">1</VersionInfo>
+						<VersionInfo Name="MinorVer">2</VersionInfo>
+						<VersionInfo Name="Release">1</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -283,7 +284,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">5.1.2.1</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">5.2.1.0</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>

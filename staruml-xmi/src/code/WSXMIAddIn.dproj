@@ -1,7 +1,7 @@
 ﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 		<PropertyGroup>
 			<ProjectGuid>{615B71D1-7245-4A8D-970D-088FCD1EF2C2}</ProjectGuid>
-			<MainSource>XMIAddIn.dpr</MainSource>
+			<MainSource>WSXMIAddIn.dpr</MainSource>
 			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
@@ -23,7 +23,7 @@
 			<DCC_ExeOutput>..\..\deploy\staruml-xmi</DCC_ExeOutput>
 			<DCC_UnitSearchPath>..\..\..\staruml\src;..\..\..\staruml\components\plastic-components\src;..\..\..\eltree\Code\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_DependencyCheckOutputName>..\..\deploy\staruml-xmi\XMIAddIn.dll</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>..\..\deploy\staruml-xmi\WSXMIAddIn.dll</DCC_DependencyCheckOutputName>
 			<GenDll>true</GenDll>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_Platform>x86</DCC_Platform>
@@ -38,7 +38,7 @@
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>
-			<DelphiCompile Include="XMIAddIn.dpr">
+			<DelphiCompile Include="WSXMIAddIn.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
 			<DCCReference Include="XMIAddInObj.pas"/>
@@ -49,7 +49,7 @@
 			<DCCReference Include="Symbols.pas"/>
 			<DCCReference Include="Utilities.pas"/>
 			<DCCReference Include="XMIToStarUML.pas"/>
-			<DCCReference Include="XMIAddIn_TLB.pas"/>
+			<DCCReference Include="WSXMIAddIn_TLB.pas"/>
 			<DCCReference Include="XMIExportFrm.pas">
 				<Form>XMIExportForm</Form>
 			</DCCReference>
@@ -76,17 +76,13 @@
 			<BorlandProject>
 				<Delphi.Personality>
 					<Source>
-						<Source Name="MainSource">XMIAddIn.dpr</Source>
+						<Source Name="MainSource">WSXMIAddIn.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="HostApplication">C:\PLASTIC\PLASTIC.exe</Parameters>
 						<Parameters Name="UseLauncher">False</Parameters>
 						<Parameters Name="LoadAllSymbols">True</Parameters>
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
 					</Parameters>
-					<Language>
-						<Language Name="RootDir">..\..\..\..\Exported\staruml-xmi\src\code\</Language>
-					</Language>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">True</VersionInfo>

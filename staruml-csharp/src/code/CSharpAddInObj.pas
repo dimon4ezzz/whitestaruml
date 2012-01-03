@@ -51,10 +51,10 @@ interface
 
 uses
   Windows, ActiveX, Classes, ComObj,
-  StarUML_TLB, NLS_CSharpAddIn;
+  WhiteStarUML_TLB, NLS_CSharpAddIn, StdVcl;
 
 type
-  TCSharpAddInObj = class(TComObject,IStarUMLAddIn)
+  TCSharpAddInObj = class(TTypedComObject,IStarUMLAddIn)
   private
     StarUMLApp: IStarUMLApplication;
     procedure ReverseCSharpCode;
@@ -72,13 +72,13 @@ type
     destructor Destroy; override;
   end;
 
-const
-  Class_CSharpAddInObj: TGUID = '{18936F35-F68E-4D92-AC51-CE481938A23A}';
+//const
+//  Class_CSharpAddInObj: TGUID = '{18936F35-F68E-4D92-AC51-CE481938A23A}';
 
 implementation
 
 uses
-  ComServ, Dialogs, CSharpRevWizardFrm, CodeGenFrm, Forms, Symbols;
+  ComServ, Dialogs, CSharpRevWizardFrm, CodeGenFrm, Forms, Symbols, WSCSharpAddIn_TLB;
 
 function TCSharpAddInObj.InitializeAddIn:HResult;
 begin
@@ -106,7 +106,7 @@ end;
 procedure TCSharpAddInObj.Initialize;
 begin
   inherited;
-  StarUMLApp := CoStarUMLApplication.Create;
+  StarUMLApp := CoWhiteStarUMLApplication.Create;
   Application.Handle := StarUMLApp.Handle;
 end;
 
@@ -215,6 +215,8 @@ end;
 
 //############################################################################//
 initialization
-  TComObjectFactory.Create(ComServer, TCSharpAddInObj, Class_CSharpAddInObj,
-    'CSharpAddInObj', '', ciMultiInstance, tmApartment);
+ // TComObjectFactory.Create(ComServer, TCSharpAddInObj, Class_CSharpAddInObj,
+ //   'CSharpAddInObj', '', ciMultiInstance, tmApartment);
+    TTypedComObjectFactory.Create(ComServer, TCSharpAddInObj, CLASS_CSharpAddInObj,
+    ciMultiInstance, tmApartment);
 end.

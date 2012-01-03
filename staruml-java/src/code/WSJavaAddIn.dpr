@@ -1,4 +1,4 @@
-library PatternAddIn;
+library WSJavaAddIn;
 
 {******************************************************************************}
 {                                                                              }
@@ -47,15 +47,20 @@ library PatternAddIn;
 
 uses
   ComServ,
-  PatternAddInObj in 'PatternAddInObj.pas',
-  PatternAddInFrm in 'PatternAddInFrm.pas' {PatternAddInForm},
-  PatternAddIn_TLB in 'PatternAddIn_TLB.pas',
-  PatternDef in 'PatternDef.pas',
-  PatternParamColEditForm in 'PatternParamColEditForm.pas' {PatternParamColEditFrm},
+  JavaAddInObj in 'JavaAddInObj.pas',
+  SelTreeFrame in 'SelTreeFrame.pas' {SelectTreeFrame: TFrame},
   Symbols in 'Symbols.pas',
-  NLS_PatternAddIn in 'NLS_PatternAddIn.pas',
+  RevEngModelTranslate in 'RevEngModelTranslate.pas',
+  RevEngDiagramCreate in 'RevEngDiagramCreate.pas',
+  RevEng in 'RevEng.pas',
+  CodeGenWizardFrm in 'CodeGenWizardFrm.pas' {CodeGenWizardForm},
+  RevEngWizardFrm in 'RevEngWizardFrm.pas' {RevEngWizardForm},
+  JavaDoc in 'JavaDoc.pas',
   NLS in 'NLS.pas',
-  PatternAddInFrmWithJvclInspector in 'PatternAddInFrmWithJvclInspector.pas' {PatternAddInFormWithJvclInspector};
+  NLS_JavaAddIn in 'NLS_JavaAddIn.pas',
+  CodeGenerator in 'CodeGenerator.pas',
+  Utility in 'Utility.pas',
+  WSJavaAddIn_TLB in 'WSJavaAddIn_TLB.pas';
 
 exports
   DllGetClassObject,

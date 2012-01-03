@@ -48,7 +48,7 @@ unit RevEng;
 interface
 
 uses
-  RevEngModelTranslate, RevEngDiagramCreate, JavaParser_TLB, StarUML_TLB,
+  RevEngModelTranslate, RevEngDiagramCreate, WSJavaParser_TLB, WhiteStarUML_TLB,
   Classes, SysUtils;
 
 type
@@ -177,7 +177,7 @@ uses
 
 constructor PJavaReverse.Create;
 begin
-  StarUMLApp := CoStarUMLApplication.Create;
+  StarUMLApp := CoWhiteStarUMLApplication.Create;
   Parser := CoJavaParserObj.Create;
   ModelTranslator := PModelTranslator.Create(Parser, StarUMLApp);
   DiagramCreator := PDiagramCreator.Create(StarUMLApp);

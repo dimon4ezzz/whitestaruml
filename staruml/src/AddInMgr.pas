@@ -50,7 +50,7 @@ interface
 uses
   Classes, ActiveX, XMLDoc, XMLIntf, ComObj, ComCtrls, Windows, Registry, dxBar, SysUtils,
   Graphics, Core,
-  StarUML_TLB {dxPageControl} {cxPC};
+  WhiteStarUML_TLB {dxPageControl} {cxPC};
 
 const
   EXT_DIR = 'modules';
@@ -1195,6 +1195,7 @@ var
   Msg: string;
   I: Integer;
   R: Boolean;
+  ClassID: TGUID;
 begin
   if FCOMObjName <> '' then begin
     try
@@ -1219,7 +1220,8 @@ begin
 
     try
       if ActiveFlag then begin
-        FStarUMLAddIn := CreateCOMObject(ProgIDToClassID(FCOMObjName)) as IStarUMLAddIn;
+        ClassID := ProgIDToClassID(FCOMObjName);
+        FStarUMLAddIn := CreateCOMObject(ClassID) as IStarUMLAddIn;
         FStarUMLAddIn.InitializeAddIn;
       end else begin
         if Assigned(FStarUMLAddIn) then FStarUMLAddIn.FinalizeAddIn;

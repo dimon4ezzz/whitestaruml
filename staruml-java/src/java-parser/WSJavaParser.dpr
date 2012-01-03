@@ -1,4 +1,4 @@
-library JavaAddIn;
+library WSJavaParser;
 
 {******************************************************************************}
 {                                                                              }
@@ -47,20 +47,12 @@ library JavaAddIn;
 
 uses
   ComServ,
-  JavaAddInObj in 'JavaAddInObj.pas',
-  SelTreeFrame in 'SelTreeFrame.pas' {SelectTreeFrame: TFrame},
-  Symbols in 'Symbols.pas',
-  RevEngModelTranslate in 'RevEngModelTranslate.pas',
-  RevEngDiagramCreate in 'RevEngDiagramCreate.pas',
-  RevEng in 'RevEng.pas',
-  CodeGenWizardFrm in 'CodeGenWizardFrm.pas' {CodeGenWizardForm},
-  RevEngWizardFrm in 'RevEngWizardFrm.pas' {RevEngWizardForm},
-  JavaDoc in 'JavaDoc.pas',
-  NLS in 'NLS.pas',
-  NLS_JavaAddIn in 'NLS_JavaAddIn.pas',
-  CodeGenerator in 'CodeGenerator.pas',
-  Utility in 'Utility.pas',
-  JavaAddIn_TLB in 'JavaAddIn_TLB.pas';
+  JavaParserObjAuto in 'JavaParserObjAuto.pas' {JavaParserObj: CoClass},
+  JavaElements in 'JavaElements.pas',
+  RevCore in 'RevCore.pas',
+  JavaElementsAuto in 'JavaElementsAuto.pas',
+  JavaParserObj in 'JavaParserObj.pas',
+  WSJavaParser_TLB in 'WSJavaParser_TLB.pas';
 
 exports
   DllGetClassObject,

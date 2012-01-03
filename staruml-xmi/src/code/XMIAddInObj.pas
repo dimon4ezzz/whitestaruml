@@ -51,10 +51,10 @@ interface
 
 uses
   Windows, ActiveX, Classes, ComObj,
-  StarUML_TLB;
+  WhiteStarUML_TLB, StdVcl;
 
 type
-  TXMIAddInObj = class(TComObject, IStarUMLAddIn)
+  TXMIAddInObj = class(TTypedComObject, IStarUMLAddIn)
   private
     StarUMLApp: IStarUMLApplication;
   protected
@@ -66,14 +66,14 @@ type
     destructor Destroy; override;
   end;
 
-const
-  Class_XMIAddInObj: TGUID = '{ECB02F6D-7C5F-4083-AB8E-D66A468913D8}';
+//const
+//  Class_XMIAddInObj: TGUID = '{ECB02F6D-7C5F-4083-AB8E-D66A468913D8}';
 
 implementation
 
 uses
   ComServ, Forms,
-  XMIImportFrm, XMIExportFrm;
+  XMIImportFrm, XMIExportFrm, WSXMIAddIn_TLB;
 
 ////////////////////////////////////////////////////////////////////////////////
 // TXMIAddInObj
@@ -81,7 +81,7 @@ uses
 procedure TXMIAddInObj.Initialize;
 begin
   inherited;
-  StarUMLApp := CreateOleObject('StarUML.StarUMLApplication') as IStarUMLApplication;
+  StarUMLApp := CreateOleObject('WhiteStarUML.WhiteStarUMLApplication') as IStarUMLApplication;
   Application.Handle := StarUMLApp.Handle;
 end;
 
@@ -130,6 +130,8 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 
 initialization
-  TComObjectFactory.Create(ComServer, TXMIAddInObj, Class_XMIAddInObj,
-    'XMIAddInObj', '', ciMultiInstance, tmApartment);
+  //TComObjectFactory.Create(ComServer, TXMIAddInObj, Class_XMIAddInObj,
+  //  'XMIAddInObj', '', ciMultiInstance, tmApartment);
+  TTypedComObjectFactory.Create(ComServer, TXMIAddInObj, CLASS_XMIAddInObj,
+    ciMultiInstance, tmApartment);
 end.

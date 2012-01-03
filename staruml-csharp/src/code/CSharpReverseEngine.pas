@@ -49,7 +49,7 @@ interface
 
 uses
   Classes, Types,
-  CSharpElements, PGMR101Lib_TLB, StarUML_TLB;
+  CSharpElements, PGMR101Lib_TLB, WhiteStarUML_TLB;
 
 type
 	// Forward Interface declarations
@@ -482,7 +482,7 @@ end;
 
 procedure PRevEngine.SetupCSharpElementBuilder(ACSharpUMLBuilder:PCSharpUMLBuilder);
 begin
-  ACSharpUMLBuilder.StarUMLApp := CoStarUMLApplication.Create;
+  ACSharpUMLBuilder.StarUMLApp := CoWhiteStarUMLApplication.Create;
   ACSharpUMLBuilder.DocChk := DocChk;
   ACSharpUMLBuilder.FieldInitValChk := FieldInitValChk;
   ACSharpUMLBuilder.PublicChk := PublicChk;
@@ -529,7 +529,7 @@ var
   I, J: Integer;
 begin
   if FIsCancel then exit;
-  StarUMLApp := CoStarUMLApplication.Create;
+  StarUMLApp := CoWhiteStarUMLApplication.Create;
   try
     UMLDiagram := StarUMLApp.UMLFactory.CreateClassDiagram(AUMLPackage);
     UMLDiagramView := UMLDiagram.DiagramView;

@@ -12,28 +12,25 @@
 			<Projects Include="src\option-manager\OptMgr.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="..\staruml-cpp\src\code\CppAddIn.dproj">
+			<Projects Include="..\staruml-cpp\src\code\WSCppAddIn.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="..\staruml-generator\src\generator\Generator.dproj">
+			<Projects Include="..\staruml-pattern\src\code\WSPatternAddIn.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="..\staruml-pattern\src\code\PatternAddIn.dproj">
+			<Projects Include="..\staruml-csharp\src\code\WSCSharpAddIn.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="..\staruml-csharp\src\code\CSharpAddIn.dproj">
+			<Projects Include="..\staruml-java\src\code\WSJavaAddIn.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="..\staruml-java\src\code\JavaAddIn.dproj">
+			<Projects Include="..\staruml-java\src\java-parser\WSJavaParser.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="..\staruml-java\src\java-parser\JavaParser.dproj">
+			<Projects Include="..\staruml-rose\src\code\WSRoseAddIn.dproj">
 				<Dependencies/>
 			</Projects>
-			<Projects Include="..\staruml-rose\src\code\RoseAddIn.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="..\staruml-xmi\src\code\XMIAddIn.dproj">
+			<Projects Include="..\staruml-xmi\src\code\WSXMIAddIn.dproj">
 				<Dependencies/>
 			</Projects>
 		</ItemGroup>
@@ -71,86 +68,77 @@
 		<Target Name="OptMgr:Make">
 			<MSBuild Targets="Make" Projects="src\option-manager\OptMgr.dproj"/>
 		</Target>
-		<Target Name="CppAddIn">
-			<MSBuild Projects="..\staruml-cpp\src\code\CppAddIn.dproj"/>
+		<Target Name="WSCppAddIn">
+			<MSBuild Projects="..\staruml-cpp\src\code\WSCppAddIn.dproj"/>
 		</Target>
-		<Target Name="CppAddIn:Clean">
-			<MSBuild Targets="Clean" Projects="..\staruml-cpp\src\code\CppAddIn.dproj"/>
+		<Target Name="WSCppAddIn:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-cpp\src\code\WSCppAddIn.dproj"/>
 		</Target>
-		<Target Name="CppAddIn:Make">
-			<MSBuild Targets="Make" Projects="..\staruml-cpp\src\code\CppAddIn.dproj"/>
+		<Target Name="WSCppAddIn:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-cpp\src\code\WSCppAddIn.dproj"/>
 		</Target>
-		<Target Name="Generator">
-			<MSBuild Projects="..\staruml-generator\src\generator\Generator.dproj"/>
+		<Target Name="WSPatternAddIn">
+			<MSBuild Projects="..\staruml-pattern\src\code\WSPatternAddIn.dproj"/>
 		</Target>
-		<Target Name="Generator:Clean">
-			<MSBuild Targets="Clean" Projects="..\staruml-generator\src\generator\Generator.dproj"/>
+		<Target Name="WSPatternAddIn:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-pattern\src\code\WSPatternAddIn.dproj"/>
 		</Target>
-		<Target Name="Generator:Make">
-			<MSBuild Targets="Make" Projects="..\staruml-generator\src\generator\Generator.dproj"/>
+		<Target Name="WSPatternAddIn:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-pattern\src\code\WSPatternAddIn.dproj"/>
 		</Target>
-		<Target Name="PatternAddIn">
-			<MSBuild Projects="..\staruml-pattern\src\code\PatternAddIn.dproj"/>
+		<Target Name="WSCSharpAddIn">
+			<MSBuild Projects="..\staruml-csharp\src\code\WSCSharpAddIn.dproj"/>
 		</Target>
-		<Target Name="PatternAddIn:Clean">
-			<MSBuild Targets="Clean" Projects="..\staruml-pattern\src\code\PatternAddIn.dproj"/>
+		<Target Name="WSCSharpAddIn:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-csharp\src\code\WSCSharpAddIn.dproj"/>
 		</Target>
-		<Target Name="PatternAddIn:Make">
-			<MSBuild Targets="Make" Projects="..\staruml-pattern\src\code\PatternAddIn.dproj"/>
+		<Target Name="WSCSharpAddIn:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-csharp\src\code\WSCSharpAddIn.dproj"/>
 		</Target>
-		<Target Name="CSharpAddIn">
-			<MSBuild Projects="..\staruml-csharp\src\code\CSharpAddIn.dproj"/>
+		<Target Name="WSJavaAddIn">
+			<MSBuild Projects="..\staruml-java\src\code\WSJavaAddIn.dproj"/>
 		</Target>
-		<Target Name="CSharpAddIn:Clean">
-			<MSBuild Targets="Clean" Projects="..\staruml-csharp\src\code\CSharpAddIn.dproj"/>
+		<Target Name="WSJavaAddIn:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-java\src\code\WSJavaAddIn.dproj"/>
 		</Target>
-		<Target Name="CSharpAddIn:Make">
-			<MSBuild Targets="Make" Projects="..\staruml-csharp\src\code\CSharpAddIn.dproj"/>
+		<Target Name="WSJavaAddIn:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-java\src\code\WSJavaAddIn.dproj"/>
 		</Target>
-		<Target Name="JavaAddIn">
-			<MSBuild Projects="..\staruml-java\src\code\JavaAddIn.dproj"/>
+		<Target Name="WSJavaParser">
+			<MSBuild Projects="..\staruml-java\src\java-parser\WSJavaParser.dproj"/>
 		</Target>
-		<Target Name="JavaAddIn:Clean">
-			<MSBuild Targets="Clean" Projects="..\staruml-java\src\code\JavaAddIn.dproj"/>
+		<Target Name="WSJavaParser:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-java\src\java-parser\WSJavaParser.dproj"/>
 		</Target>
-		<Target Name="JavaAddIn:Make">
-			<MSBuild Targets="Make" Projects="..\staruml-java\src\code\JavaAddIn.dproj"/>
+		<Target Name="WSJavaParser:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-java\src\java-parser\WSJavaParser.dproj"/>
 		</Target>
-		<Target Name="JavaParser">
-			<MSBuild Projects="..\staruml-java\src\java-parser\JavaParser.dproj"/>
+		<Target Name="WSRoseAddIn">
+			<MSBuild Projects="..\staruml-rose\src\code\WSRoseAddIn.dproj"/>
 		</Target>
-		<Target Name="JavaParser:Clean">
-			<MSBuild Targets="Clean" Projects="..\staruml-java\src\java-parser\JavaParser.dproj"/>
+		<Target Name="WSRoseAddIn:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-rose\src\code\WSRoseAddIn.dproj"/>
 		</Target>
-		<Target Name="JavaParser:Make">
-			<MSBuild Targets="Make" Projects="..\staruml-java\src\java-parser\JavaParser.dproj"/>
+		<Target Name="WSRoseAddIn:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-rose\src\code\WSRoseAddIn.dproj"/>
 		</Target>
-		<Target Name="RoseAddIn">
-			<MSBuild Projects="..\staruml-rose\src\code\RoseAddIn.dproj"/>
+		<Target Name="WSXMIAddIn">
+			<MSBuild Projects="..\staruml-xmi\src\code\WSXMIAddIn.dproj"/>
 		</Target>
-		<Target Name="RoseAddIn:Clean">
-			<MSBuild Targets="Clean" Projects="..\staruml-rose\src\code\RoseAddIn.dproj"/>
+		<Target Name="WSXMIAddIn:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-xmi\src\code\WSXMIAddIn.dproj"/>
 		</Target>
-		<Target Name="RoseAddIn:Make">
-			<MSBuild Targets="Make" Projects="..\staruml-rose\src\code\RoseAddIn.dproj"/>
-		</Target>
-		<Target Name="XMIAddIn">
-			<MSBuild Projects="..\staruml-xmi\src\code\XMIAddIn.dproj"/>
-		</Target>
-		<Target Name="XMIAddIn:Clean">
-			<MSBuild Targets="Clean" Projects="..\staruml-xmi\src\code\XMIAddIn.dproj"/>
-		</Target>
-		<Target Name="XMIAddIn:Make">
-			<MSBuild Targets="Make" Projects="..\staruml-xmi\src\code\XMIAddIn.dproj"/>
+		<Target Name="WSXMIAddIn:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-xmi\src\code\WSXMIAddIn.dproj"/>
 		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="WhiteStarUML;PlasticComponents;OptMgr;CppAddIn;Generator;PatternAddIn;CSharpAddIn;JavaAddIn;JavaParser;RoseAddIn;XMIAddIn"/>
+			<CallTarget Targets="WhiteStarUML;PlasticComponents;OptMgr;WSCppAddIn;WSPatternAddIn;WSCSharpAddIn;WSJavaAddIn;WSJavaParser;WSRoseAddIn;WSXMIAddIn"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="WhiteStarUML:Clean;PlasticComponents:Clean;OptMgr:Clean;CppAddIn:Clean;Generator:Clean;PatternAddIn:Clean;CSharpAddIn:Clean;JavaAddIn:Clean;JavaParser:Clean;RoseAddIn:Clean;XMIAddIn:Clean"/>
+			<CallTarget Targets="WhiteStarUML:Clean;PlasticComponents:Clean;OptMgr:Clean;WSCppAddIn:Clean;WSPatternAddIn:Clean;WSCSharpAddIn:Clean;WSJavaAddIn:Clean;WSJavaParser:Clean;WSRoseAddIn:Clean;WSXMIAddIn:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="WhiteStarUML:Make;PlasticComponents:Make;OptMgr:Make;CppAddIn:Make;Generator:Make;PatternAddIn:Make;CSharpAddIn:Make;JavaAddIn:Make;JavaParser:Make;RoseAddIn:Make;XMIAddIn:Make"/>
+			<CallTarget Targets="WhiteStarUML:Make;PlasticComponents:Make;OptMgr:Make;WSCppAddIn:Make;WSPatternAddIn:Make;WSCSharpAddIn:Make;WSJavaAddIn:Make;WSJavaParser:Make;WSRoseAddIn:Make;WSXMIAddIn:Make"/>
 		</Target>
 		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 	</Project>

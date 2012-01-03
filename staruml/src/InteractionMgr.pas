@@ -977,17 +977,6 @@ begin
   AddPredefinedCreateHandlers;
   with MainForm do begin
     { diagram menu interactions }
-    {AddPredefinedDiagramMenuInteraction(DK_USECASE_DIAGRAM, ModelAddDiagramUseCaseDiagram, ['UseCase']);
-    AddPredefinedDiagramMenuInteraction(DK_CLASS_DIAGRAM, ModelAddDiagramClassDiagram, ['Class']);
-    AddPredefinedDiagramMenuInteraction(DK_SEQUENCEROLE_DIAGRAM, ModelAddDiagramSequenceRoleDiagram, ['SequenceRole']);
-    AddPredefinedDiagramMenuInteraction(DK_SEQUENCE_DIAGRAM, ModelAddDiagramSequenceDiagram, ['Sequence']);
-    AddPredefinedDiagramMenuInteraction(DK_COLLABORATIONROLE_DIAGRAM, ModelAddDiagramCollaborationRoleDiagram, ['CollaborationRole']);
-    AddPredefinedDiagramMenuInteraction(DK_COLLABORATION_DIAGRAM, ModelAddDiagramCollaborationDiagram, ['Collaboration']);
-    AddPredefinedDiagramMenuInteraction(DK_STATECHART_DIAGRAM, ModelAddDiagramStatechartDiagram, ['Statechart']);
-    AddPredefinedDiagramMenuInteraction(DK_ACTIVITY_DIAGRAM, ModelAddDiagramActivityDiagram, ['Activity']);
-    AddPredefinedDiagramMenuInteraction(DK_COMPONENT_DIAGRAM, ModelAddDiagramComponentDiagram, ['Component']);
-    AddPredefinedDiagramMenuInteraction(DK_DEPLOYMENT_DIAGRAM, ModelAddDiagramDeploymentDiagram, ['Deployment']);
-    AddPredefinedDiagramMenuInteraction(DK_COMPOSITESTRUCTURE_DIAGRAM, ModelAddDiagramCompositeStructureDiagram, ['CompositeStructure']);}
     with MenuManager do begin
       AddPredefinedDiagramMenuInteraction(DK_USECASE_DIAGRAM, GetPredefinedElement(MODEL_ADD_USE_CASE_DIAGRAM), ['UseCase']);
       AddPredefinedDiagramMenuInteraction(DK_CLASS_DIAGRAM, GetPredefinedElement(MODEL_ADD_CLASS_DIAGRAM), ['Class']);
@@ -1002,64 +991,6 @@ begin
       AddPredefinedDiagramMenuInteraction(DK_COMPOSITESTRUCTURE_DIAGRAM, GetPredefinedElement(MODEL_ADD_COMPOSITE_STRUCTURE_DIAGRAM), ['CompositeStructure']);
     end;
     { model menu interactions }
-    {AddPredefinedModelMenuInteraction(EK_MODEL, 0, ModelAddModel);
-    AddPredefinedModelMenuInteraction(EK_SUBSYSTEM, 0, ModelAddSubsystem);
-    AddPredefinedModelMenuInteraction(EK_PACKAGE, 0, ModelAddPackage);
-    AddPredefinedModelMenuInteraction(EK_CLASS, 0, ModelAddClass);
-    AddPredefinedModelMenuInteraction(EK_INTERFACE, 0, ModelAddInterface);
-    AddPredefinedModelMenuInteraction(EK_USECASE, 0, ModelAddUseCase);
-    AddPredefinedModelMenuInteraction(EK_ACTOR, 0, ModelAddActor);
-    AddPredefinedModelMenuInteraction(EK_SIGNAL, 0, ModelAddSignal);
-    AddPredefinedModelMenuInteraction(EK_EXCEPTION, 0, ModelAddException);
-    AddPredefinedModelMenuInteraction(EK_OBJECT, 0, ModelAddObject);
-    AddPredefinedModelMenuInteraction(EK_ENUMERATION, 0, ModelAddEnumeration);
-    AddPredefinedModelMenuInteraction(EK_COMPONENT, 0, ModelAddComponent);
-    AddPredefinedModelMenuInteraction(EK_COMPONENTINSTANCE, 0, ModelAddComponentInstance);
-    AddPredefinedModelMenuInteraction(EK_NODE, 0, ModelAddNode);
-    AddPredefinedModelMenuInteraction(EK_NODEINSTANCE, 0, ModelAddNodeInstance);
-    AddPredefinedModelMenuInteraction(EK_OPERATION, 0, ModelAddOperation);
-    AddPredefinedModelMenuInteraction(EK_ATTRIBUTE, 0, ModelAddAttribute);
-    AddPredefinedModelMenuInteraction(EK_PARAMETER, 0, ModelAddParameter);
-    AddPredefinedModelMenuInteraction(EK_TEMPLATEPARAMETER, 0, ModelAddTemplateParameter);
-    AddPredefinedModelMenuInteraction(EK_ENUMERATIONLITERAL, 0, ModelAddEnumerationLiteral);
-    AddPredefinedModelMenuInteraction(EK_COLLABORATION, 0, ModelAddCollaboration);
-    AddPredefinedModelMenuInteraction(EK_COLLABORATIONINSTANCESET, 0, ModelAddCollaborationInstanceSet);
-    AddPredefinedModelMenuInteraction(EK_CLASSIFIERROLE, 0, ModelAddClassifierRole);
-    AddPredefinedModelMenuInteraction(EK_INTERACTION, 0, ModelAddInteraction);
-    AddPredefinedModelMenuInteraction(EK_INTERACTIONINSTANCESET, 0, ModelAddInteractionInstanceSet);
-    AddPredefinedModelMenuInteraction(EK_STATEMACHINE, 0, ModelAddStateMachine);
-    AddPredefinedModelMenuInteraction(EK_ACTIVITYGRAPH, 0, ModelAddActivityGraph);
-    AddPredefinedModelMenuInteraction(EK_STATE, 0, ModelAddState);
-    AddPredefinedModelMenuInteraction(EK_SUBMACHINESTATE, 0, ModelAddSubmachineState);
-    AddPredefinedModelMenuInteraction(EK_ACTIONSTATE, 0, ModelAddActionState);
-    AddPredefinedModelMenuInteraction(EK_SUBACTIVITYSTATE, 0, ModelAddSubactivityState);
-    AddPredefinedModelMenuInteraction(EK_FINALSTATE, 0, ModelAddFinalState);
-    AddPredefinedModelMenuInteraction(EK_PSEUDOSTATE, FA_PSEUDOSTATE_INITIALSTATE, ModelAddInitialState);
-    AddPredefinedModelMenuInteraction(EK_PSEUDOSTATE, FA_PSEUDOSTATE_DECISION, ModelAddDecision);
-    AddPredefinedModelMenuInteraction(EK_PSEUDOSTATE, FA_PSEUDOSTATE_JUNCTIONPOINT, ModelAddJunctionPoint);
-    AddPredefinedModelMenuInteraction(EK_PSEUDOSTATE, FA_PSEUDOSTATE_CHOICEPOINT, ModelAddChoicePoint);
-    AddPredefinedModelMenuInteraction(EK_PSEUDOSTATE, FA_PSEUDOSTATE_SHALLOWHISTORY, ModelAddShallowHistory);
-    AddPredefinedModelMenuInteraction(EK_PSEUDOSTATE, FA_PSEUDOSTATE_DEEPHISTORY, ModelAddDeepHistory);
-    AddPredefinedModelMenuInteraction(EK_PSEUDOSTATE, FA_PSEUDOSTATE_SYNCHRONIZATION, ModelAddSynchronization);
-    AddPredefinedModelMenuInteraction(EK_SWIMLANE, 0, ModelAddSwimlane);
-    AddPredefinedModelMenuInteraction(EK_UNINTERPRETEDACTION, -1, ModelAddEffect);
-    AddPredefinedModelMenuInteraction(EK_UNINTERPRETEDACTION, FA_UNINTERPRETEDACTION_ENTRY, ModelAddEntryAction);
-    AddPredefinedModelMenuInteraction(EK_UNINTERPRETEDACTION, FA_UNINTERPRETEDACTION_DO, ModelAddDoAction);
-    AddPredefinedModelMenuInteraction(EK_UNINTERPRETEDACTION, FA_UNINTERPRETEDACTION_EXIT, ModelAddExitAction);
-    AddPredefinedModelMenuInteraction(EK_SIGNALEVENT, 0, ModelAddSignalEvent);
-    AddPredefinedModelMenuInteraction(EK_CALLEVENT, 0, ModelAddCallEvent);
-    AddPredefinedModelMenuInteraction(EK_TIMEEVENT, 0, ModelAddTimeEvent);
-    AddPredefinedModelMenuInteraction(EK_CHANGEEVENT, 0, ModelAddChangeEvent);
-    AddPredefinedModelMenuInteraction(EK_OBJECTFLOWSTATE, 0, ModelAddObjectFlowState);
-    AddPredefinedModelMenuInteraction(EK_FLOWFINALSTATE, 0, ModelAddFlowFinalState);
-    AddPredefinedModelMenuInteraction(EK_SIGNALACCEPTSTATE, 0, ModelAddSignalAcceptState);
-    AddPredefinedModelMenuInteraction(EK_SIGNALSENDSTATE, 0, ModelAddSignalSendState);
-    AddPredefinedModelMenuInteraction(EK_ARTIFACT, 0, ModelAddArtifact);
-    AddPredefinedModelMenuInteraction(EK_ATTRIBUTELINK, 0, ModelAddAttributeLink);
-    AddPredefinedModelMenuInteraction(EK_PORT, 0, ModelAddPort);
-    AddPredefinedModelMenuInteraction(EK_EXTENSIONPOINT, 0, ModelAddExtensionPoint);
-    AddPredefinedModelMenuInteraction(EK_COMBINEDFRAGMENT, 0, ModelAddCombinedFragment);
-    AddPredefinedModelMenuInteraction(EK_INTERACTIONOPERAND, 0, ModelAddInteractionOperand);}
     with MenuManager do begin
       AddPredefinedModelMenuInteraction(EK_MODEL, 0, GetPredefinedElement(MODEL_ADD_MODEL));
       AddPredefinedModelMenuInteraction(EK_SUBSYSTEM, 0, GetPredefinedElement(MODEL_ADD_SUBSYSTEM));

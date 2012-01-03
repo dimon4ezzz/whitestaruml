@@ -1,4 +1,4 @@
-library JavaParser;
+library WSPatternAddIn;
 
 {******************************************************************************}
 {                                                                              }
@@ -47,12 +47,15 @@ library JavaParser;
 
 uses
   ComServ,
-  JavaParserObjAuto in 'JavaParserObjAuto.pas' {JavaParserObj: CoClass},
-  JavaElements in 'JavaElements.pas',
-  RevCore in 'RevCore.pas',
-  JavaElementsAuto in 'JavaElementsAuto.pas',
-  JavaParserObj in 'JavaParserObj.pas',
-  JavaParser_TLB in 'JavaParser_TLB.pas';
+  PatternAddInObj in 'PatternAddInObj.pas',
+  PatternAddInFrm in 'PatternAddInFrm.pas' {PatternAddInForm},
+  WSPatternAddIn_TLB in 'WSPatternAddIn_TLB.pas',
+  PatternDef in 'PatternDef.pas',
+  PatternParamColEditForm in 'PatternParamColEditForm.pas' {PatternParamColEditFrm},
+  Symbols in 'Symbols.pas',
+  NLS_PatternAddIn in 'NLS_PatternAddIn.pas',
+  NLS in 'NLS.pas',
+  PatternAddInFrmWithJvclInspector in 'PatternAddInFrmWithJvclInspector.pas' {PatternAddInFormWithJvclInspector};
 
 exports
   DllGetClassObject,

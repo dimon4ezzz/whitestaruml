@@ -50,7 +50,7 @@ interface
 {$HINTS OFF}
 
 uses
-  GraphicClasses, BasicClasses, Core, CoreAuto, ViewCore, StarUML_TLB;
+  GraphicClasses, BasicClasses, Core, CoreAuto, ViewCore, WhiteStarUML_TLB;
 
 type
   // Forward Declaration

@@ -1,4 +1,4 @@
-library CppAddIn;
+library WSRoseAddIn;
 
 {******************************************************************************}
 {                                                                              }
@@ -47,22 +47,18 @@ library CppAddIn;
 
 uses
   ComServ,
-  CppAddIn_TLB in 'CppAddIn_TLB.pas',
-  CppAddInObj in 'CppAddInObj.pas',
-  CppElements in 'CppElements.pas',
-  RevEngineFrm in 'RevEngineFrm.pas' {RevEngineForm},
-  SelTreeFrame in 'SelTreeFrame.pas' {SelectTreeFrame: TFrame},
+  RoseAddInObj in 'RoseAddInObj.pas',
+  PetalElements in 'PetalElements.pas',
+  PetalObjFacto in 'PetalObjFacto.pas',
+  RoseImportFrm in 'RoseImportFrm.pas' {RoseImportForm},
   Symbols in 'Symbols.pas',
-  CodeGenFrm in 'CodeGenFrm.pas' {CodeGenForm},
-  RevEngine in 'RevEngine.pas',
-  CodeModelBuilder in 'CodeModelBuilder.pas',
-  Utility in 'Utility.pas',
-  ModelTranslator in 'ModelTranslator.pas',
-  CodeGenerator in 'CodeGenerator.pas',
-  DirectiveRemover in 'DirectiveRemover.pas',
-  DiagramCreate in 'DiagramCreate.pas',
+  WSRoseAddIn_TLB in 'WSRoseAddIn_TLB.pas',
+  PetalDoc in 'PetalDoc.pas',
+  RoseToStarUML in 'RoseToStarUML.pas',
+  GmrNodes in 'GmrNodes.pas',
+  Utilities in 'Utilities.pas',
   NLS in 'NLS.pas',
-  NLS_CppAddIn in 'NLS_CppAddIn.pas';
+  NLS_RoseAddIn in 'NLS_RoseAddIn.pas';
 
 exports
   DllGetClassObject,

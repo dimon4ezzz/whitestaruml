@@ -50,7 +50,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Buttons, ComCtrls, ExtCtrls,
-  PatternDef, StarUML_TLB;
+  PatternDef, WhiteStarUML_TLB;
 
 type
   // PElemListItemWrapper

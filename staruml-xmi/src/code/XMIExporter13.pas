@@ -49,7 +49,7 @@ interface
 
 uses
   XMIExporter,
-  Classes, StarUML_TLB;
+  Classes, WhiteStarUML_TLB;
 
 type
   // PXMIViewStyleKind

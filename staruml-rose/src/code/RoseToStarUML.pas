@@ -48,7 +48,7 @@ unit RoseToStarUML;
 interface
 
 uses
-  PetalDoc, PetalElements, StarUML_TLB,
+  PetalDoc, PetalElements, WhiteStarUML_TLB,
   SysUtils;
 
 type

@@ -50,7 +50,7 @@ interface
 {$HINTS OFF}
 
 uses
-  Core, CoreAuto, ViewCoreAuto, StarUML_TLB;
+  Core, CoreAuto, ViewCoreAuto, WhiteStarUML_TLB;
 
 type
   // Forward Declaration

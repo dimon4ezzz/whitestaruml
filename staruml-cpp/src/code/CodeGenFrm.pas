@@ -51,7 +51,7 @@ uses
   CodeGenerator,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ComCtrls, ExtCtrls, ShellCtrls, SelTreeFrame,
-  Spin, ElTree, StarUML_TLB, ImgList, FlatPanel, JvWizard, JvExControls,
+  Spin, ElTree, WhiteStarUML_TLB, ImgList, FlatPanel, JvWizard, JvExControls,
   JvComponent;
 
 type

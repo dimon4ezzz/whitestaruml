@@ -1,7 +1,7 @@
 ﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 		<PropertyGroup>
-			<ProjectGuid>{A57C794C-FB13-4723-9708-BC380D69B6EF}</ProjectGuid>
-			<MainSource>PatternAddIn.dpr</MainSource>
+			<ProjectGuid>{1AD881F1-9193-432C-8516-C8608153BAF2}</ProjectGuid>
+			<MainSource>WSRoseAddIn.dpr</MainSource>
 			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
@@ -20,10 +20,10 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_ExeOutput>..\..\deploy\staruml-pattern</DCC_ExeOutput>
-			<DCC_UnitSearchPath>C:\JS\Delphi\StarUML\staruml\src;..\..\..\eltree\Code\Source;..\..\..\staruml\components\plastic-components\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_ExeOutput>..\..\deploy\staruml-rose</DCC_ExeOutput>
+			<DCC_UnitSearchPath>..\..\..\staruml\src;..\..\..\staruml\components\plastic-components\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_DependencyCheckOutputName>..\..\deploy\staruml-pattern\PatternAddIn.dll</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>..\..\deploy\staruml-rose\WSRoseAddIn.dll</DCC_DependencyCheckOutputName>
 			<GenDll>true</GenDll>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_Platform>x86</DCC_Platform>
@@ -38,25 +38,24 @@
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>
-			<DelphiCompile Include="PatternAddIn.dpr">
+			<DelphiCompile Include="WSRoseAddIn.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="PatternAddInObj.pas"/>
-			<DCCReference Include="PatternAddInFrm.pas">
-				<Form>PatternAddInForm</Form>
-			</DCCReference>
-			<DCCReference Include="PatternAddIn_TLB.pas"/>
-			<DCCReference Include="PatternDef.pas"/>
-			<DCCReference Include="PatternParamColEditForm.pas">
-				<Form>PatternParamColEditFrm</Form>
+			<DCCReference Include="RoseAddInObj.pas"/>
+			<DCCReference Include="PetalElements.pas"/>
+			<DCCReference Include="PetalObjFacto.pas"/>
+			<DCCReference Include="RoseImportFrm.pas">
+				<Form>RoseImportForm</Form>
 			</DCCReference>
 			<DCCReference Include="Symbols.pas"/>
-			<DCCReference Include="NLS_PatternAddIn.pas"/>
+			<DCCReference Include="WSRoseAddIn_TLB.pas"/>
+			<DCCReference Include="PetalDoc.pas"/>
+			<DCCReference Include="RoseToStarUML.pas"/>
+			<DCCReference Include="GmrNodes.pas"/>
+			<DCCReference Include="Utilities.pas"/>
 			<DCCReference Include="NLS.pas"/>
-			<DCCReference Include="PatternAddInFrmWithJvclInspector.pas">
-				<Form>PatternAddInFormWithJvclInspector</Form>
-			</DCCReference>
-			<RidlCompile Include="PatternAddIn.ridl"/>
+			<DCCReference Include="NLS_RoseAddIn.pas"/>
+			<RidlCompile Include="RoseAddIn.ridl"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
@@ -76,10 +75,9 @@
 			<BorlandProject>
 				<Delphi.Personality>
 					<Source>
-						<Source Name="MainSource">PatternAddIn.dpr</Source>
+						<Source Name="MainSource">WSRoseAddIn.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="HostApplication">C:\PLASTIC\PLASTIC.exe</Parameters>
 						<Parameters Name="UseLauncher">False</Parameters>
 						<Parameters Name="LoadAllSymbols">True</Parameters>
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
@@ -100,11 +98,11 @@
 						<VersionInfo Name="CodePage">949</VersionInfo>
 					</VersionInfo>
 					<VersionInfoKeys>
-						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="CompanyName">Plastic Software, Inc.</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription"/>
 						<VersionInfoKeys Name="FileVersion">1.0.1.72</VersionInfoKeys>
-						<VersionInfoKeys Name="InternalName"/>
-						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="InternalName">RoseAddIn</VersionInfoKeys>
+						<VersionInfoKeys Name="LegalCopyright">(r) All rights reserved.</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename"/>
 						<VersionInfoKeys Name="ProductName"/>
@@ -115,7 +113,6 @@
 				<ActiveXProjectInfo>
 					<version>1</version>
 				</ActiveXProjectInfo>
-				<ModelSupport>False</ModelSupport>
 			</BorlandProject>
 			<ProjectFileVersion>12</ProjectFileVersion>
 		</ProjectExtensions>

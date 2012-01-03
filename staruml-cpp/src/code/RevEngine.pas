@@ -49,7 +49,7 @@ interface
 
 uses
   CppElements, CodeModelBuilder, ModelTranslator, DiagramCreate, Utility,
-  Classes, SysUtils, StarUML_TLB;
+  Classes, SysUtils, WhiteStarUML_TLB;
 
 type
   // enumerations

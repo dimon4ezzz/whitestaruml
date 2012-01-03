@@ -48,7 +48,7 @@ unit PatternDef;
 interface
 
 uses
-  StarUML_TLB,
+  WhiteStarUML_TLB,
   Classes, SysUtils, comctrls, Forms, Windows, xmldom, XMLIntf, msxmldom, XMLDoc,
   MSScriptControl_TLB;
 

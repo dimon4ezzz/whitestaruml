@@ -50,7 +50,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ComCtrls, ExtCtrls,
-  StarUML_TLB, PetalDoc, RoseToStarUML, Buttons, XPMan;
+  WhiteStarUML_TLB, PetalDoc, RoseToStarUML, Buttons, XPMan;
 
 type
   // TRoseImportForm

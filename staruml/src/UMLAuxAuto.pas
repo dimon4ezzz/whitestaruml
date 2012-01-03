@@ -48,7 +48,7 @@ unit UMLAuxAuto;
 interface
 
 uses
-  BasicClasses, UMLAux, CoreAuto, StarUML_TLB;
+  BasicClasses, UMLAux, CoreAuto, WhiteStarUML_TLB;
 
 type
   // PUMLDocumentAuto
