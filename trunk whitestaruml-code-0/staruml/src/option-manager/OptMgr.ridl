@@ -6,10 +6,10 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 6/11/2011 12:35:45 PM (- $Rev: 12980 $, 5195207).
+// File generated on 1/1/2012 3:46:26 PM (- $Rev: 12980 $, 11988661).
 
 [
-  uuid(C5EF8E94-B2FE-4709-A92A-D9A50940AE9C),
+  uuid(84BEB7B3-6221-43ED-B410-E83A5D83CED9),
   version(1.0),
   helpstring("General Option Manager Library")
 
@@ -193,7 +193,7 @@ library OptMgr
   };
 
   [
-    uuid(E109632F-9B41-4FB9-89FE-DE416C0256AA),
+    uuid(9890E665-379A-4DFD-A6B4-884A8D5AEAEF),
     version(1.0)
   ]
   coclass OptionManager

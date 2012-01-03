@@ -1,4 +1,4 @@
-library RoseAddIn;
+library WSXMIAddIn;
 
 {******************************************************************************}
 {                                                                              }
@@ -47,18 +47,17 @@ library RoseAddIn;
 
 uses
   ComServ,
-  RoseAddInObj in 'RoseAddInObj.pas',
-  PetalElements in 'PetalElements.pas',
-  PetalObjFacto in 'PetalObjFacto.pas',
-  RoseImportFrm in 'RoseImportFrm.pas' {RoseImportForm},
+  XMIAddInObj in 'XMIAddInObj.pas',
+  XMIImportFrm in 'XMIImportFrm.pas' {XMIImportForm},
+  NLS_XMIAddIn in 'NLS_XMIAddIn.pas',
   Symbols in 'Symbols.pas',
-  RoseAddIn_TLB in 'RoseAddIn_TLB.pas',
-  PetalDoc in 'PetalDoc.pas',
-  RoseToStarUML in 'RoseToStarUML.pas',
-  GmrNodes in 'GmrNodes.pas',
   Utilities in 'Utilities.pas',
-  NLS in 'NLS.pas',
-  NLS_RoseAddIn in 'NLS_RoseAddIn.pas';
+  XMIToStarUML in 'XMIToStarUML.pas',
+  WSXMIAddIn_TLB in 'WSXMIAddIn_TLB.pas',
+  XMIExportFrm in 'XMIExportFrm.pas' {XMIExportForm},
+  XMIExporter13 in 'XMIExporter13.pas',
+  XMIExporter in 'XMIExporter.pas',
+  NLS in 'NLS.pas';
 
 exports
   DllGetClassObject,

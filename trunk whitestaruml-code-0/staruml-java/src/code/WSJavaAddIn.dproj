@@ -1,7 +1,7 @@
 ﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 		<PropertyGroup>
-			<ProjectGuid>{EB0B0DD4-3DE7-4280-9BBE-B8A725620ACE}</ProjectGuid>
-			<MainSource>JavaParser.dpr</MainSource>
+			<ProjectGuid>{D069AD56-A682-42A9-A510-0BDB2FF0EA53}</ProjectGuid>
+			<MainSource>WSJavaAddIn.dpr</MainSource>
 			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
@@ -21,9 +21,9 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DCC_ExeOutput>..\..\deploy\staruml-java</DCC_ExeOutput>
-			<DCC_UnitSearchPath>..\..\..\staruml\src;..\..\..\eltree\Code\Source;..\..\..\staruml\components\plastic-components\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UnitSearchPath>..\..\..\staruml\src;..\..\..\staruml\components\plastic-components\src;..\java-parser;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_DependencyCheckOutputName>..\..\deploy\staruml-java\WSJavaAddIn.dll</DCC_DependencyCheckOutputName>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_DependencyCheckOutputName>..\..\deploy\staruml-java\JavaParser.dll</DCC_DependencyCheckOutputName>
 			<GenDll>true</GenDll>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_Platform>x86</DCC_Platform>
@@ -38,18 +38,31 @@
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>
-			<DelphiCompile Include="JavaParser.dpr">
+			<DelphiCompile Include="WSJavaAddIn.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="JavaParserObjAuto.pas">
-				<CoClasses>JavaParserObj</CoClasses>
+			<DCCReference Include="JavaAddInObj.pas"/>
+			<DCCReference Include="SelTreeFrame.pas">
+				<Form>SelectTreeFrame</Form>
+				<DesignClass>TFrame</DesignClass>
 			</DCCReference>
-			<DCCReference Include="JavaElements.pas"/>
-			<DCCReference Include="RevCore.pas"/>
-			<DCCReference Include="JavaElementsAuto.pas"/>
-			<DCCReference Include="JavaParserObj.pas"/>
-			<DCCReference Include="JavaParser_TLB.pas"/>
-			<RidlCompile Include="JavaParser.ridl"/>
+			<DCCReference Include="Symbols.pas"/>
+			<DCCReference Include="RevEngModelTranslate.pas"/>
+			<DCCReference Include="RevEngDiagramCreate.pas"/>
+			<DCCReference Include="RevEng.pas"/>
+			<DCCReference Include="CodeGenWizardFrm.pas">
+				<Form>CodeGenWizardForm</Form>
+			</DCCReference>
+			<DCCReference Include="RevEngWizardFrm.pas">
+				<Form>RevEngWizardForm</Form>
+			</DCCReference>
+			<DCCReference Include="JavaDoc.pas"/>
+			<DCCReference Include="NLS.pas"/>
+			<DCCReference Include="NLS_JavaAddIn.pas"/>
+			<DCCReference Include="CodeGenerator.pas"/>
+			<DCCReference Include="Utility.pas"/>
+			<DCCReference Include="WSJavaAddIn_TLB.pas"/>
+			<RidlCompile Include="JavaAddIn.ridl"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
@@ -69,10 +82,9 @@
 			<BorlandProject>
 				<Delphi.Personality>
 					<Source>
-						<Source Name="MainSource">JavaParser.dpr</Source>
+						<Source Name="MainSource">WSJavaAddIn.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="HostApplication">C:\PLASTIC 2003\PLASTIC.exe</Parameters>
 						<Parameters Name="UseLauncher">False</Parameters>
 						<Parameters Name="LoadAllSymbols">True</Parameters>
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
@@ -82,8 +94,8 @@
 						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
-						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">54</VersionInfo>
+						<VersionInfo Name="Release">1</VersionInfo>
+						<VersionInfo Name="Build">96</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -93,11 +105,11 @@
 						<VersionInfo Name="CodePage">949</VersionInfo>
 					</VersionInfo>
 					<VersionInfoKeys>
-						<VersionInfoKeys Name="CompanyName">Plastic Software, Inc.</VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">1.0.0.54</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.0.1.96</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
-						<VersionInfoKeys Name="LegalCopyright">Copyright (c) 2003. Plastic Software, Inc. All rights reserved.</VersionInfoKeys>
+						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename"/>
 						<VersionInfoKeys Name="ProductName"/>

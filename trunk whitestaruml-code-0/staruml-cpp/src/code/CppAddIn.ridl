@@ -6,29 +6,30 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 05/12/2011 08:15:17 (- $Rev: 12980 $, 1062819).
+// File generated on 1/1/2012 6:22:32 PM (- $Rev: 12980 $, 21354103).
 
 [
-  uuid(F536C296-897D-4FC0-9C94-B263A0B350F8),
+  uuid(D571B8DA-75B5-40D7-A52E-5184E479F6A1),
   version(1.0),
-  helpstring("CppAddIn Library")
+  helpstring("WSCppAddIn Library")
 
 ]
-library CppAddIn
+library WSCppAddIn
 {
 
   importlib("stdole2.tlb");
-  //importlib("StarUML.exe");
+  importlib("WhiteStarUML.exe");
 
   coclass CppAddInObj;
 
 
   [
-    uuid(34480074-9829-4543-B43D-FF0421F2C8DF),
+    uuid(13C97EB7-019B-451E-8F96-AFD898782208),
     helpstring("CppAddInObj")
   ]
   coclass CppAddInObj
   {
+    [default] interface IStarUMLAddIn;
   };
 
 };

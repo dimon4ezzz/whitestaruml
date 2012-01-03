@@ -22,8 +22,8 @@ object SelectTreeFrame: TSelectTreeFrame
     HeaderHeight = 22
     HeaderSections.Data = {F4FFFFFF00000000}
     HorzScrollBarStyles.ShowTrackHint = False
-    HorzScrollBarStyles.Width = 16
-    HorzScrollBarStyles.ButtonSize = 16
+    HorzScrollBarStyles.Width = 17
+    HorzScrollBarStyles.ButtonSize = 17
     HorzScrollBarStyles.DrawBars = False
     HorzScrollBarStyles.ThinFrames = True
     HorzScrollBarStyles.UseXPThemes = False
@@ -41,8 +41,8 @@ object SelectTreeFrame: TSelectTreeFrame
     UnderlineTracked = False
     VertScrollBarStyles.ShowTrackHint = False
     VertScrollBarStyles.ThumbSize = 16
-    VertScrollBarStyles.Width = 16
-    VertScrollBarStyles.ButtonSize = 16
+    VertScrollBarStyles.Width = 17
+    VertScrollBarStyles.ButtonSize = 17
     VertScrollBarStyles.DrawBars = False
     VertScrollBarStyles.ThinFrames = True
     VertScrollBarStyles.UseXPThemes = False

@@ -51,7 +51,7 @@ interface
 
 uses
   RevCore, JavaParserObj,
-  ComObj, ActiveX, AxCtrls, Classes, JavaParser_TLB, StdVcl;
+  ComObj, ActiveX, AxCtrls, Classes, WSJavaParser_TLB, StdVcl;
 
 type
   PJavaParserObjAuto = class(TAutoObject, IConnectionPointContainer, IJavaParserObj)

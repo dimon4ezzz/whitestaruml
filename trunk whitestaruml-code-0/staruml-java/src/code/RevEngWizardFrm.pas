@@ -50,7 +50,7 @@ unit RevEngWizardFrm;
 interface
 
 uses
-  RevEng, SelTreeFrame, StarUML_TLB,
+  RevEng, SelTreeFrame, WhiteStarUML_TLB,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, JvWizard, ComCtrls, ShellCtrls, ImgList, ExtCtrls, ElTree,
   JvExControls, JvComponent;

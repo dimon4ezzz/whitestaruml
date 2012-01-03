@@ -1,17 +1,17 @@
 inherited PatternAddInFormWithJvclInspector: TPatternAddInFormWithJvclInspector
-  ActiveControl = PatternMemo
   Caption = 'PatternAddInFormWithJvclInspector'
   ExplicitWidth = 469
   ExplicitHeight = 436
   PixelsPerInch = 96
   TextHeight = 13
   inherited PatternGenWizard: TJvWizard
-    ActivePage = PatternParameterPage
     inherited SelectPatternPage: TJvWizardInteriorPage
       ExplicitWidth = 463
       ExplicitHeight = 366
     end
     inherited PatternParameterPage: TJvWizardInteriorPage
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object PatternInspector: TJvInspector
         Left = 5
         Top = 97
@@ -31,7 +31,7 @@ inherited PatternAddInFormWithJvclInspector: TPatternAddInFormWithJvclInspector
   end
   inherited CategoryImageList: TImageList
     Bitmap = {
-      494C010103000400200010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000400240010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -172,7 +172,7 @@ inherited PatternAddInFormWithJvclInspector: TPatternAddInFormWithJvclInspector
   end
   inherited TreeImage: TImageList
     Bitmap = {
-      494C010108000900200010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010108000900240010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -49,7 +49,7 @@ interface
 
 uses
   RevCore,
-  Classes, ComObj, ActiveX, JavaParser_TLB;
+  Classes, ComObj, ActiveX, WSJavaParser_TLB;
   
 type
 	// forward declarations

@@ -51,7 +51,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, StdCtrls, ComCtrls, TreeViewEx, JvWizard, {dxExEdtr,
   dxCntner, dxInspct, dxInspRw,} ImgList, Generics.Collections,
-  StarUML_TLB, PatternDef, JvExControls, JvComponent;
+  WhiteStarUML_TLB, PatternDef, JvExControls, JvComponent;
 
 type
    // Forward declaration

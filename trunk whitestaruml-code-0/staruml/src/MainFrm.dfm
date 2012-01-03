@@ -22,20 +22,20 @@ object MainForm: TMainForm
   TextHeight = 13
   object DockSite: TdxDockSite
     Left = 0
-    Top = 76
+    Top = 77
     Width = 924
-    Height = 422
+    Height = 420
     ManagerFont = False
     ParentFont = True
     Align = alClient
     DockingType = 5
     OriginalWidth = 924
-    OriginalHeight = 422
+    OriginalHeight = 420
     object dxLayoutDockSite1: TdxLayoutDockSite
       Left = 0
       Top = 0
       Width = 656
-      Height = 422
+      Height = 420
       ManagerFont = False
       ParentFont = True
       DockingType = 0
@@ -45,7 +45,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 656
-        Height = 280
+        Height = 278
         ManagerFont = False
         ParentFont = True
         DockingType = 0
@@ -55,7 +55,7 @@ object MainForm: TMainForm
           Left = 167
           Top = 0
           Width = 489
-          Height = 280
+          Height = 278
           ManagerFont = False
           ParentFont = True
           DockingType = 0
@@ -65,7 +65,7 @@ object MainForm: TMainForm
             Left = 0
             Top = 0
             Width = 489
-            Height = 280
+            Height = 278
             ManagerFont = False
             ParentFont = True
             DockingType = 0
@@ -76,7 +76,7 @@ object MainForm: TMainForm
             Left = 0
             Top = 0
             Width = 489
-            Height = 280
+            Height = 278
             ManagerFont = False
             ParentFont = True
             AllowDock = [dtClient]
@@ -92,7 +92,7 @@ object MainForm: TMainForm
               Left = 0
               Top = 0
               Width = 485
-              Height = 256
+              Height = 254
               Align = alClient
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
@@ -102,17 +102,17 @@ object MainForm: TMainForm
               ParentFont = False
               TabOrder = 0
               ExplicitWidth = 485
-              ExplicitHeight = 256
+              ExplicitHeight = 254
               inherited ClientPanel: TFlatPanel
                 Width = 485
-                Height = 256
+                Height = 254
                 ExplicitWidth = 485
-                ExplicitHeight = 256
+                ExplicitHeight = 254
                 inherited DiagramPageControl: TPageControl
                   Width = 483
-                  Height = 254
+                  Height = 252
                   ExplicitWidth = 483
-                  ExplicitHeight = 254
+                  ExplicitHeight = 252
                 end
               end
               inherited DiagramTabPopupMenu: TPopupMenu
@@ -126,7 +126,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 167
-          Height = 280
+          Height = 278
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -140,12 +140,12 @@ object MainForm: TMainForm
             Left = 0
             Top = 0
             Width = 163
-            Height = 256
+            Height = 254
             Align = alClient
             TabOrder = 0
             inherited PaletteNavBar: TCategoryButtons
               Width = 157
-              Height = 250
+              Height = 248
               Categories = <
                 item
                   Caption = 'Annotation'
@@ -846,7 +846,7 @@ object MainForm: TMainForm
       end
       object dxTabContainerDockSite2: TdxTabContainerDockSite
         Left = 0
-        Top = 280
+        Top = 278
         Width = 656
         Height = 142
         ManagerFont = False
@@ -945,7 +945,7 @@ object MainForm: TMainForm
             end
             inherited MessageImageList: TImageList
               Bitmap = {
-                494C010103000400400210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                494C010103000400580210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                 0000000000003600000028000000400000001000000001002000000000000010
                 0000000000000000000000000000000000000000000000000000000000000000
                 0000000000000000000000000000000000000000000000000000000000000000
@@ -1095,7 +1095,7 @@ object MainForm: TMainForm
       Left = 656
       Top = 0
       Width = 268
-      Height = 422
+      Height = 420
       ManagerFont = False
       ParentFont = True
       ActiveChildIndex = -1
@@ -1108,7 +1108,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 268
-        Height = 217
+        Height = 215
         ManagerFont = False
         ParentFont = True
         ActiveChildIndex = 0
@@ -1116,12 +1116,12 @@ object MainForm: TMainForm
         AutoHide = False
         DockingType = 2
         OriginalWidth = 268
-        OriginalHeight = 217
+        OriginalHeight = 215
         object ModelExplorerDockPanel: TdxDockPanel
           Left = 0
           Top = 0
           Width = 264
-          Height = 168
+          Height = 166
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -1135,12 +1135,12 @@ object MainForm: TMainForm
           ImageIndex = 0
           DockingType = 0
           OriginalWidth = 268
-          OriginalHeight = 217
+          OriginalHeight = 215
           inline ModelExplorer: TModelExplorerPanel
             Left = 0
             Top = 0
             Width = 264
-            Height = 168
+            Height = 166
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1150,17 +1150,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 264
-            ExplicitHeight = 168
+            ExplicitHeight = 166
             inherited ClientPanel: TFlatPanel
               Width = 264
-              Height = 142
+              Height = 140
               ExplicitWidth = 264
-              ExplicitHeight = 142
+              ExplicitHeight = 140
               inherited ModelTree: TVirtualStringTree
                 Width = 262
-                Height = 140
+                Height = 138
                 ExplicitWidth = 262
-                ExplicitHeight = 140
+                ExplicitHeight = 138
               end
             end
             inherited ModelExplorerToolbar: TToolBar
@@ -1170,7 +1170,7 @@ object MainForm: TMainForm
             inherited ModelExplorerImageList: TImageList
               Top = 64
               Bitmap = {
-                494C010105000900440210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                494C0101050009005C0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                 0000000000003600000028000000400000002000000001002000000000000020
                 0000000000000000000000000000000000000000000000000000000000000000
                 0000000000000000000000000000000000000000000000000000000000000000
@@ -1447,7 +1447,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 264
-          Height = 168
+          Height = 166
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -1461,12 +1461,12 @@ object MainForm: TMainForm
           ImageIndex = 1
           DockingType = 0
           OriginalWidth = 268
-          OriginalHeight = 217
+          OriginalHeight = 215
           inline DiagramExplorer: TDiagramExplorerPanel
             Left = 0
             Top = 0
             Width = 264
-            Height = 168
+            Height = 166
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1476,17 +1476,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 264
-            ExplicitHeight = 168
+            ExplicitHeight = 166
             inherited ClientPanel: TFlatPanel
               Width = 264
-              Height = 168
+              Height = 166
               ExplicitWidth = 264
-              ExplicitHeight = 168
+              ExplicitHeight = 166
               inherited DiagramTree: TVirtualStringTree
                 Width = 262
-                Height = 166
+                Height = 164
                 ExplicitWidth = 262
-                ExplicitHeight = 166
+                ExplicitHeight = 164
               end
             end
           end
@@ -1494,7 +1494,7 @@ object MainForm: TMainForm
       end
       object dxTabContainerDockSite3: TdxTabContainerDockSite
         Left = 0
-        Top = 217
+        Top = 215
         Width = 268
         Height = 205
         ManagerFont = False
@@ -1573,7 +1573,7 @@ object MainForm: TMainForm
                 end
                 inherited RowImageList: TImageList
                   Bitmap = {
-                    494C010104000900200210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                    494C010104000900380210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                     0000000000003600000028000000400000002000000001002000000000000020
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
@@ -1846,7 +1846,7 @@ object MainForm: TMainForm
                 end
                 inherited AggregationImageList: TImageList
                   Bitmap = {
-                    494C010103000400200210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                    494C010103000400380210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                     0000000000003600000028000000400000001000000001002000000000000010
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
@@ -1987,7 +1987,7 @@ object MainForm: TMainForm
                 end
                 inherited VisibilityImageList: TImageList
                   Bitmap = {
-                    494C010104000900200210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                    494C010104000900380210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                     0000000000003600000028000000400000002000000001002000000000000020
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
@@ -2260,7 +2260,7 @@ object MainForm: TMainForm
                 end
                 inherited PsedostatsImageList: TImageList
                   Bitmap = {
-                    494C010107000900200210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                    494C010107000900380210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                     0000000000003600000028000000400000002000000001002000000000000020
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
@@ -2533,7 +2533,7 @@ object MainForm: TMainForm
                 end
                 inherited ActionKindImageList: TImageList
                   Bitmap = {
-                    494C010105000900200210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                    494C010105000900380210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                     0000000000003600000028000000400000002000000001002000000000000020
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
@@ -2816,7 +2816,7 @@ object MainForm: TMainForm
             end
             inherited PageControlImageList: TImageList
               Bitmap = {
-                494C0101030004001C0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                494C010103000400340210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                 0000000000003600000028000000400000001000000001002000000000000010
                 0000000000000000000000000000000000000000000000000000000000000000
                 0000000000000000000000000000000000000000000000000000000000000000
@@ -3049,7 +3049,7 @@ object MainForm: TMainForm
             end
             inherited AttachmentsImageList: TImageList
               Bitmap = {
-                494C010106000900680210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                494C010106000900800210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                 0000000000003600000028000000400000002000000001002000000000000020
                 0000000000000000000000000000000000000000000000000000000000000000
                 0000000000000000000000000000000000000000000000000000000000000000
@@ -3322,7 +3322,7 @@ object MainForm: TMainForm
             end
             inherited BasicFileIconImageList: TImageList
               Bitmap = {
-                494C010103000400680210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                494C010103000400800210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                 0000000000003600000028000000400000001000000001002000000000000010
                 0000000000000000000000000000000000000000000000000000000000000000
                 0000000000000000000000000000000000000000000000000000000000000000
@@ -3469,10 +3469,10 @@ object MainForm: TMainForm
   object BarManager: TdxBarManager
     AllowCallFromAnotherForm = True
     AutoHideEmptyBars = True
-    Font.Charset = ANSI_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
-    Font.Name = 'Tahoma'
+    Font.Name = 'Segoe UI'
     Font.Style = []
     CanCustomize = False
     Categories.Strings = (
@@ -3519,7 +3519,6 @@ object MainForm: TMainForm
     LookAndFeel.NativeStyle = False
     MenusShowRecentItemsFirst = False
     PopupMenuLinks = <>
-    Style = bmsOffice11
     UseFullReset = True
     UseSystemFont = False
     OnClickItem = BarManagerClickItem
@@ -3528,8 +3527,8 @@ object MainForm: TMainForm
     DockControlHeights = (
       0
       0
-      76
-      21)
+      77
+      22)
     object BarManagerBar1: TdxBar
       Caption = 'Main Menu'
       CaptionButtons = <>
@@ -3584,7 +3583,7 @@ object MainForm: TMainForm
       CaptionButtons = <>
       DockedDockingStyle = dsTop
       DockedLeft = 0
-      DockedTop = 24
+      DockedTop = 25
       DockingStyle = dsTop
       FloatLeft = 766
       FloatTop = 351
@@ -3671,7 +3670,7 @@ object MainForm: TMainForm
       CaptionButtons = <>
       DockedDockingStyle = dsTop
       DockedLeft = 0
-      DockedTop = 50
+      DockedTop = 51
       DockingStyle = dsTop
       FloatLeft = 404
       FloatTop = 344
@@ -3766,7 +3765,7 @@ object MainForm: TMainForm
       CaptionButtons = <>
       DockedDockingStyle = dsTop
       DockedLeft = 411
-      DockedTop = 24
+      DockedTop = 25
       DockingStyle = dsTop
       FloatLeft = 404
       FloatTop = 344
@@ -3806,7 +3805,7 @@ object MainForm: TMainForm
       CaptionButtons = <>
       DockedDockingStyle = dsTop
       DockedLeft = 630
-      DockedTop = 50
+      DockedTop = 51
       DockingStyle = dsTop
       FloatLeft = 404
       FloatTop = 344
@@ -5721,7 +5720,6 @@ object MainForm: TMainForm
       Hint = 'Zoom'
       Visible = ivAlways
       OnChange = ViewZoomComboChange
-      Width = 100
       Items.Strings = (
         '50%'
         '75%'
@@ -6566,7 +6564,7 @@ object MainForm: TMainForm
     Left = 452
     Top = 264
     Bitmap = {
-      494C0101B700B800100210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101B700B800280210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000E0020000010020000000000000E0
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -12976,7 +12974,7 @@ object MainForm: TMainForm
     Left = 544
     Top = 302
     Bitmap = {
-      494C010109000E00100210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010109000E00280210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -13388,7 +13386,7 @@ object MainForm: TMainForm
     Left = 524
     Top = 240
     Bitmap = {
-      494C010104000900100208001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104000900280208001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000200000002000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

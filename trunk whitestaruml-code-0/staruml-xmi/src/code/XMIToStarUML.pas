@@ -30,7 +30,7 @@ unit XMIToStarUML;
 interface
 
 uses
-  StarUML_TLB, Classes, XMLDoc, XMLIntf, SysUtils,
+  WhiteStarUML_TLB, Classes, XMLDoc, XMLIntf, SysUtils,
   Utilities;
 
 type

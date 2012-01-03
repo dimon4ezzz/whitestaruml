@@ -6,24 +6,24 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 03/12/2011 14:51:19 (- $Rev: 12980 $, 9452240).
+// File generated on 1/1/2012 7:09:20 PM (- $Rev: 12980 $, 2234948).
 
 [
-  uuid(4DDF767D-D515-44DA-B05E-1EA0FE73FBC7),
+  uuid(4D5F69B3-73FC-4C09-A1CE-73D1A677A0E7),
   version(1.0),
-  helpstring("StarUML Library"),
+  helpstring("WhiteStarUML Library"),
   custom(DE77BA64-517C-11D1-A2DA-0000F8773CE9, 100663657),
   custom(DE77BA63-517C-11D1-A2DA-0000F8773CE9, 1130132647),
   custom(DE77BA65-517C-11D1-A2DA-0000F8773CE9, "Created by MIDL version 6.00.0361 at Mon Oct 24 14:44:06 2005\n")
 
 ]
-library StarUML
+library WhiteStarUML
 {
 
   importlib("stdole2.tlb");
 
   interface IStarUMLApplication;
-  coclass StarUMLApplication;
+  coclass WhiteStarUMLApplication;
   interface IUMLFactory;
   interface IElement;
   interface IModel;
@@ -6752,11 +6752,11 @@ library StarUML
   };
 
   [
-    uuid(0F6753BD-9775-4011-90B2-594B2E71CC6D),
+    uuid(E155F938-9A1D-4555-9831-7E3C18B27F83),
     version(1.0),
-    helpstring("StarUMLApplication Object")
+    helpstring("WhiteStarUMLApplication Object")
   ]
-  coclass StarUMLApplication
+  coclass WhiteStarUMLApplication
   {
     [default] interface IStarUMLApplication;
   };

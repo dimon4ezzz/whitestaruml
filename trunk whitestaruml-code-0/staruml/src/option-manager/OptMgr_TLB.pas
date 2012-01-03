@@ -12,11 +12,11 @@ unit OptMgr_TLB;
 // ************************************************************************ //
 
 // $Rev: 17244 $
-// File generated on 29/11/2011 20:43:39 from Type Library described below.
+// File generated on 1/1/2012 3:42:58 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\StarUML\staruml\src\option-manager\OptMgr (1)
-// LIBID: {C5EF8E94-B2FE-4709-A92A-D9A50940AE9C}
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml\src\option-manager\OptMgr (1)
+// LIBID: {84BEB7B3-6221-43ED-B410-E83A5D83CED9}
 // LCID: 0
 // Helpfile:
 // HelpString: General Option Manager Library
@@ -45,14 +45,14 @@ const
   OptMgrMajorVersion = 1;
   OptMgrMinorVersion = 0;
 
-  LIBID_OptMgr: TGUID = '{C5EF8E94-B2FE-4709-A92A-D9A50940AE9C}';
+  LIBID_OptMgr: TGUID = '{84BEB7B3-6221-43ED-B410-E83A5D83CED9}';
 
   IID_IOptionItem: TGUID = '{C8E6BA96-EE0F-463E-B9BC-776C15167809}';
   IID_IOptionClassification: TGUID = '{A2FB7B59-01A9-4929-BC56-79A699A35E90}';
   IID_IOptionCategory: TGUID = '{C6C2AE66-AEE8-43C0-AA77-081646262CF2}';
   IID_IOptionSchema: TGUID = '{DA4FB79C-B8B5-4573-98E8-8CB2ECFA0406}';
   IID_IOptionManager: TGUID = '{D041BEEF-82ED-4A66-843A-4D08339C228D}';
-  CLASS_OptionManager: TGUID = '{E109632F-9B41-4FB9-89FE-DE416C0256AA}';
+  CLASS_OptionManager: TGUID = '{9890E665-379A-4DFD-A6B4-884A8D5AEAEF}';
 
 // *********************************************************************//
 // Declaration of Enumerations defined in Type Library

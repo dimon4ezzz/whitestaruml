@@ -1,4 +1,4 @@
-library CSharpAddIn;
+library WSCppAddIn;
 
 {******************************************************************************}
 {                                                                              }
@@ -47,18 +47,22 @@ library CSharpAddIn;
 
 uses
   ComServ,
-  CSharpAddInObj in 'CSharpAddInObj.pas',
-  CSharpAddIn_TLB in 'CSharpAddIn_TLB.pas',
-  CSharpRevWizardFrm in 'CSharpRevWizardFrm.pas' {CSharpRevWizardForm},
+  WSCppAddIn_TLB in 'WSCppAddIn_TLB.pas',
+  CppAddInObj in 'CppAddInObj.pas',
+  CppElements in 'CppElements.pas',
+  RevEngineFrm in 'RevEngineFrm.pas' {RevEngineForm},
   SelTreeFrame in 'SelTreeFrame.pas' {SelectTreeFrame: TFrame},
   Symbols in 'Symbols.pas',
-  CSharpElements in 'CSharpElements.pas',
-  CSharpReverseEngine in 'CSharpReverseEngine.pas',
-  Utility in 'Utility.pas',
   CodeGenFrm in 'CodeGenFrm.pas' {CodeGenForm},
+  RevEngine in 'RevEngine.pas',
+  CodeModelBuilder in 'CodeModelBuilder.pas',
+  Utility in 'Utility.pas',
+  ModelTranslator in 'ModelTranslator.pas',
   CodeGenerator in 'CodeGenerator.pas',
+  DirectiveRemover in 'DirectiveRemover.pas',
+  DiagramCreate in 'DiagramCreate.pas',
   NLS in 'NLS.pas',
-  NLS_CSharpAddIn in 'NLS_CSharpAddIn.pas';
+  NLS_CppAddIn in 'NLS_CppAddIn.pas';
 
 exports
   DllGetClassObject,

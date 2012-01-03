@@ -51,7 +51,7 @@ uses
   RevEngine, Symbols, CppElements, ModelTranslator,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, StdCtrls, ExtCtrls, SelTreeFrame, ShellCtrls,
-  ImgList, StarUML_TLB, ElTree, JvWizard, JvExControls, JvComponent;
+  ImgList, WhiteStarUML_TLB, ElTree, JvWizard, JvExControls, JvComponent;
 
 type
   // TRevEngineForm

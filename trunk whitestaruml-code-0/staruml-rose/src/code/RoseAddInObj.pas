@@ -51,11 +51,11 @@ interface
 
 uses
   Windows, ActiveX, Classes, ComObj,
-  StarUML_TLB;
+  WhiteStarUML_TLB, StdVcl;
 
 type
   // TRoseAddInObj
-  TRoseAddInObj = class(TComObject, IStarUMLAddIn)
+  TRoseAddInObj = class(TTypedComObject, IStarUMLAddIn)
   private
     StarUMLApp: IStarUMLApplication;
   protected
@@ -67,14 +67,13 @@ type
     destructor Destroy; override;
   end;
 
-const
-  Class_RoseAddInObj: TGUID = '{FB02F93C-D561-4A9E-A991-3013F2EB5FAD}';
+//const
+//  Class_RoseAddInObj: TGUID = '{FB02F93C-D561-4A9E-A991-3013F2EB5FAD}';
 
 implementation
 
 uses
-  ComServ, Forms,
-  RoseImportFrm;
+  ComServ, Forms, RoseImportFrm, WSRoseAddIn_TLB;
 
 ////////////////////////////////////////////////////////////////////////////////
 // TRoseAddInObj
@@ -82,8 +81,12 @@ uses
 procedure TRoseAddInObj.Initialize;
 begin
   inherited;
-  StarUMLApp := CreateOleObject('StarUML.StarUMLApplication') as IStarUMLApplication;
-  Application.Handle := StarUMLApp.Handle;
+  try
+    StarUMLApp := CreateOleObject('WhiteStarUML.WhiteStarUMLApplication') as IStarUMLApplication;
+    Application.Handle := StarUMLApp.Handle;
+  except
+    assert(False,'Could not instantiate Application Object')
+  end;
 end;
 
 destructor TRoseAddInObj.Destroy;
@@ -120,6 +123,8 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 
 initialization
-  TComObjectFactory.Create(ComServer, TRoseAddInObj, Class_RoseAddInObj,
-    'RoseAddInObj', '', ciMultiInstance, tmApartment);
+ // TComObjectFactory.Create(ComServer, TRoseAddInObj, Class_RoseAddInObj,
+ //   'RoseAddInObj', '', ciMultiInstance, tmApartment);
+  TTypedComObjectFactory.Create(ComServer, TRoseAddInObj, CLASS_RoseAddInObj,
+    ciMultiInstance, tmApartment);
 end.

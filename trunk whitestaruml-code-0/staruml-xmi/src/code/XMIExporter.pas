@@ -48,7 +48,7 @@ unit XMIExporter;
 interface
 
 uses
-  Classes, StarUML_TLB;
+  Classes, WhiteStarUML_TLB;
 
 const
   INDENT_SIZE = 2;

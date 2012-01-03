@@ -49,7 +49,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, StarUML_TLB, ComCtrls, ExtCtrls, Buttons;
+  Dialogs, StdCtrls, WhiteStarUML_TLB, ComCtrls, ExtCtrls, Buttons;
 
 type
   //Exceptions

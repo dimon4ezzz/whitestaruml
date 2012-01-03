@@ -50,7 +50,7 @@ interface
 uses
   CodeGenerator, SelTreeFrame, FlatPanel,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, JvWizard, ComCtrls, ShellCtrls, StdCtrls, StarUML_TLB,
+  Dialogs, JvWizard, ComCtrls, ShellCtrls, StdCtrls, WhiteStarUML_TLB,
   ImgList, ExtCtrls, OleServer, xmldom, XMLIntf, msxmldom, XMLDoc,
   ElXPThemedControl, ElTree, JvExControls, JvComponent;
 

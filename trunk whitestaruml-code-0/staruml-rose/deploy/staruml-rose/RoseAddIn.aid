@@ -2,8 +2,8 @@
 <ADDIN>
     <NAME>Rose AddIn</NAME>
     <DISPLAYNAME>Rose Add-In</DISPLAYNAME>
-    <COMOBJ>RoseAddIn.RoseAddInObj</COMOBJ>
-    <FILENAME>RoseAddIn.dll</FILENAME>
+    <COMOBJ>WSRoseAddIn.RoseAddInObj</COMOBJ>
+    <FILENAME>WSRoseAddIn.dll</FILENAME>
     <COMPANY>Plastic Software, Inc.</COMPANY>
     <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
     <HELPFILE>http://www.staruml.com</HELPFILE>

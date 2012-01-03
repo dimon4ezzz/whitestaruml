@@ -410,7 +410,7 @@ implementation
 
 uses
   Dialogs, LogMgr, UMLVerify, NLS_StarUML,
-  Windows, Jpeg, ShellAPI;
+  Windows, Jpeg, ShellAPI, MainFrm;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1918,6 +1918,7 @@ begin
   finally
     DiagramViews.Free;
   end;
+  SelectArea(1,1,1,1); // JS Select workspace after deleting elements
 end;
 
 procedure PStarUMLApplication.DeleteSelectedViewsWithModels;
@@ -1956,6 +1957,7 @@ begin
     Owners.Free;
     DiagramViews.Free;
   end;
+  SelectArea(1,1,1,1); // JS: Select workspace after deleting elements
 end;
 
 procedure PStarUMLApplication.SelectModel(AModel: PModel);

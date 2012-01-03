@@ -51,7 +51,7 @@ uses
   CodeGenerator,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ComCtrls, ExtCtrls, ShellCtrls, SelTreeFrame, JvWizard,
-  Spin, ElTree, StarUML_TLB, ImgList, FlatPanel, JvExControls, JvComponent;
+  Spin, ElTree, WhiteStarUML_TLB, ImgList, FlatPanel, JvExControls, JvComponent;
 
 const
   ERR_FORM_NOT_INITIALIZED = 'Dialog is not initialized.';

@@ -50,7 +50,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ComCtrls, xmldom, XMLIntf, msxmldom, XMLDoc,
-  StarUML_TLB, ExtCtrls,
+  WhiteStarUML_TLB, ExtCtrls,
   XMIToStarUML, Buttons;
 
 type

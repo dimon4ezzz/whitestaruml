@@ -55,6 +55,8 @@ type
   TAboutForm = class(TForm)
     VersionLabel: TfshVersionLabel;
     SplashImage: TImage;
+    AuthorLabel: TLabel;
+    AcknowledgeLabel: TLabel;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }

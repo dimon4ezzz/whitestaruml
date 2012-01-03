@@ -48,7 +48,7 @@ unit Utility;
 interface
 
 uses
-  StarUML_TLB,
+  WhiteStarUML_TLB,
   StdCtrls, Classes;
 
 function GetDllDirectory: string;

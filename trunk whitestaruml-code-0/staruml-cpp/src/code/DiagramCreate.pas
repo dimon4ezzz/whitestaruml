@@ -49,7 +49,7 @@ interface
 
 uses
   Utility,
-  Classes, StarUML_TLB;
+  Classes, WhiteStarUML_TLB;
 
 type
   // events

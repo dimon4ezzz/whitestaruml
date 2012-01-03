@@ -49,7 +49,7 @@ interface
 
 uses 
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ElXPThemedControl, ElTree, StarUML_TLB;
+  ElXPThemedControl, ElTree, WhiteStarUML_TLB;
 
 type
   // PElementImageKind

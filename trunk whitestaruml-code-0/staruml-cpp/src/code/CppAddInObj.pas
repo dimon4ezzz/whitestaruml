@@ -50,7 +50,7 @@ unit CppAddInObj;
 interface
 
 uses
-  Windows, ActiveX, Classes, ComObj, CppAddIn_TLB, StarUML_TLB, StdVcl;
+  Windows, ActiveX, Classes, ComObj, WhiteStarUML_TLB, StdVcl;
 
 type
   TCppAddInObj = class(TTypedComObject, IStarUMLAddIn)
@@ -77,12 +77,12 @@ implementation
 
 uses
   RevEngineFrm, CodeGenFrm, Symbols, NLS_CppAddIn,
-  ComServ, Forms, Dialogs, Variants;
+  ComServ, Forms, Dialogs, Variants, WSCppAddIn_TLB;
 
 procedure TCppAddInObj.Initialize;
 begin
   inherited;
-  StarUMLApp := CoStarUMLApplication.Create;
+  StarUMLApp := CoWhiteStarUMLApplication.Create;
   Application.Handle := StarUMLApp.Handle;
 end;
 

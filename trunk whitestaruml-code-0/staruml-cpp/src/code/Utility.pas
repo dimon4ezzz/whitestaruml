@@ -49,7 +49,7 @@ interface
 
 uses
   CppElements, Symbols,
-  Classes, SysUtils, StarUML_TLB, PGMR101Lib_TLB;
+  Classes, SysUtils, WhiteStarUML_TLB, PGMR101Lib_TLB;
 
 type
   // exceptions

@@ -48,7 +48,7 @@ unit ExtCoreAuto;
 interface
 
 uses
-  BasicClasses, Core, ExtCore, CoreAuto, StarUML_TLB;
+  BasicClasses, Core, ExtCore, CoreAuto, WhiteStarUML_TLB;
 
 type
   // PExtensibleModelAuto

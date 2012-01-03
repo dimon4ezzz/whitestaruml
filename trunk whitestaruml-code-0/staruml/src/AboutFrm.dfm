@@ -3474,8 +3474,8 @@ object AboutForm: TAboutForm
     ExplicitWidth = 420
   end
   object VersionLabel: TfshVersionLabel
-    Left = 226
-    Top = 148
+    Left = 264
+    Top = 180
     Width = 133
     Height = 11
     VersionResource = vrFileVersion
@@ -3493,5 +3493,25 @@ object AboutForm: TAboutForm
     Transparent = True
     DateTimeFormat = 'yyyy-MM-dd'
     FileSizeFormat = '#,#0" Bytes"'
+  end
+  object AuthorLabel: TLabel
+    Left = 192
+    Top = 150
+    Width = 175
+    Height = 13
+    Caption = 'Maintained by Janusz Szpilewski'
+  end
+  object AcknowledgeLabel: TLabel
+    Left = 119
+    Top = 112
+    Width = 291
+    Height = 16
+    Caption = 'Open Source Software derived from StarUML'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clLime
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
   end
 end

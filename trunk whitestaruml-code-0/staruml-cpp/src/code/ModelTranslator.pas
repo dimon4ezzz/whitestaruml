@@ -49,7 +49,7 @@ interface
 
 uses
   CppElements, Utility,
-  Classes, SysUtils, StarUML_TLB;
+  Classes, SysUtils, WhiteStarUML_TLB;
 
 type
   // forward declarations

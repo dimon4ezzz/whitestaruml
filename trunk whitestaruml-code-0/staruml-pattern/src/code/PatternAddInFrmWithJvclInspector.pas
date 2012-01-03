@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, PatternAddInFrm, ImgList, ComCtrls, StdCtrls, ExtCtrls, JvWizard,
-  JvExControls, JvInspector, JvclExtensions, StarUML_TLB, PatternDef,
+  JvExControls, JvInspector, JvclExtensions, WhiteStarUML_TLB, PatternDef,
   Generics.Collections;
 
 type

@@ -2,8 +2,8 @@
 <ADDIN>
     <NAME>XMI AddIn</NAME>
     <DISPLAYNAME>XMI Add-In</DISPLAYNAME>
-    <COMOBJ>XMIAddIn.XMIAddInObj</COMOBJ>
-    <FILENAME>XMIAddIn.dll</FILENAME>
+    <COMOBJ>WSXMIAddIn.XMIAddInObj</COMOBJ>
+    <FILENAME>WSXMIAddIn.dll</FILENAME>
     <COMPANY>Plastic Software, Inc.</COMPANY>
     <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
     <HELPFILE>http://www.staruml.com</HELPFILE>

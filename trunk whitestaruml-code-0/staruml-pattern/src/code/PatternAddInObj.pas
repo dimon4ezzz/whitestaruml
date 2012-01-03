@@ -51,11 +51,11 @@ interface
 
 uses
   Windows, ActiveX, Classes, ComObj,
-  StarUML_TLB;
+  WhiteStarUML_TLB, StdVcl;
 
 type
   // PPatternAddIn
-  PPatternAddIn = class(TComObject, IStarUMLAddIn)
+  PPatternAddIn = class(TTypedComObject, IStarUMLAddIn)
   private
     StarUMLApp: IStarUMLApplication;
     function CheckClassTypeDiagramActivated: Boolean;
@@ -68,14 +68,14 @@ type
     destructor Destroy; override;
   end;
 
-const
-  Class_PatternAddInObj: TGUID = '{42A422B0-1FE2-4B89-921C-4C26D754599F}';
+//const
+//  Class_PatternAddInObj: TGUID = '{42A422B0-1FE2-4B89-921C-4C26D754599F}';
 
 implementation
 
 uses
   ComServ, Dialogs, Forms, SysUtils, NLS_PatternAddIn, PatternAddInFrm,
-  PatternAddInFrmWithJvclInspector;
+  PatternAddInFrmWithJvclInspector, WSPatternAddIn_TLB;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PPatternAddIn
@@ -83,7 +83,7 @@ uses
 procedure PPatternAddIn.Initialize;
 begin
   inherited;
-  StarUMLApp := CoStarUMLApplication.Create;
+  StarUMLApp := CoWhiteStarUMLApplication.Create;
   Application.Handle := StarUMLApp.Handle;
   //PatternAddInForm := TPatternAddInFormWithTdxInspector.Create(Application);
   PatternAddInForm := TPatternAddInFormWithJvclInspector.Create(Application);
@@ -147,6 +147,10 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 
 initialization
-  TComObjectFactory.Create(ComServer, PPatternAddIn, Class_PatternAddInObj,
-    'PatternAddInObj', '', ciMultiInstance, tmApartment);
+  //TComObjectFactory.Create(ComServer, PPatternAddIn, Class_PatternAddInObj,
+  //  'PatternAddInObj', '', ciMultiInstance, tmApartment);
+
+  TTypedComObjectFactory.Create(ComServer, PPatternAddIn, CLASS_PatternAddInObj,
+    ciMultiInstance, tmApartment);
+
 end.
