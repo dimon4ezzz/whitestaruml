@@ -362,8 +362,8 @@ type
     ModelAddInteractionOperand: TdxBarButton;
     ModelAddFrame: TdxBarButton;
     DocumentStateImageList: TImageList;
-    PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     DesktopAlert: TJvDesktopAlert;
+    PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);
     procedure EditMenuClick(Sender: TObject);

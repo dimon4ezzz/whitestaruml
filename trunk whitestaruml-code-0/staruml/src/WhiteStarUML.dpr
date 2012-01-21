@@ -84,7 +84,6 @@ uses
   ImportFrameworkFrm in 'ImportFrameworkFrm.pas' {ImportFrameworkForm},
   OptionDeps in 'OptionDeps.pas',
   ExprParsers in 'ExprParsers.pas',
-  WhiteStarUML_TLB in 'WhiteStarUML_TLB.pas',
   CoreAuto in 'CoreAuto.pas',
   UMLModelsAuto in 'UMLModelsAuto.pas',
   ViewCoreAuto in 'ViewCoreAuto.pas',
@@ -140,7 +139,8 @@ uses
   MainFrm in 'MainFrm.pas' {MainForm},
   PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas',
   CategoryButtons in 'CategoryButtons.pas',
-  GraphVizInterface in 'GraphVizInterface.pas';
+  GraphVizInterface in 'GraphVizInterface.pas',
+  WhiteStarUML_TLB in 'WhiteStarUML_TLB.pas';
 
 {$R *.TLB}
 

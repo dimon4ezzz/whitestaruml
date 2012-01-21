@@ -66,8 +66,8 @@ type
     procedure SetFocusedTaggedValueAsDefault; override;
   end;
 
-  { var
-    TaggedValueEditorForm: TTaggedValueEditorFormWithJvclInspector; }
+  {var
+    TaggedValueEditorForm: TTaggedValueEditorFormWithJvclInspector;}
 
 implementation
 
