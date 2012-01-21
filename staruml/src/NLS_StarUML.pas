@@ -162,6 +162,7 @@ const
   C_QUERY_DELETE_UNIT = 'Delete the Unit?';
   C_QUERY_RELOAD_PROJECT = 'The file(s) has been changed outside of the program.' + #13#10 +
                          'Reload the Project?';
+  C_ERR_DIAGRAM = 'Diagram Error';
   C_ERR_DIAGRAM_NO_COLLECTIONS = 'Diagram do not have Collections.';
   C_ERR_DIAGRAM_NO_CONSTRAINTS = 'Diagram do not have Constraints.';
   C_ERR_DIAGRAM_NO_TAGGEDVALUES = 'Diagram do not have Tagged Values.';
