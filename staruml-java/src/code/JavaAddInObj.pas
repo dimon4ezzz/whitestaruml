@@ -86,7 +86,8 @@ uses
 procedure TJavaAddInObj.Initialize;
 begin
   inherited;
-  StarUMLApp := CreateOleObject('WhiteStarUML.WhiteStarUMLApplication') as IStarUMLApplication;
+  //StarUMLApp := CreateOleObject('WhiteStarUML.WhiteStarUMLApplication') as IStarUMLApplication;
+  StarUMLApp := CoWhiteStarUMLApplication.Create;
   Application.Handle := StarUMLApp.Handle;
 end;
 

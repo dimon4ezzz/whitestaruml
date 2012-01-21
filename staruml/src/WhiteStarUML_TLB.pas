@@ -12,7 +12,7 @@ unit WhiteStarUML_TLB;
 // ************************************************************************ //
 
 // $Rev: 17244 $
-// File generated on 1/1/2012 3:01:43 PM from Type Library described below.
+// File generated on 1/21/2012 4:13:12 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml\src\WhiteStarUML (1)

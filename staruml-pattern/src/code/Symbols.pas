@@ -67,7 +67,7 @@ const
   XOD_ATTRIBUTE_TYPE = 'type';
   XOD_ATTRIBUTE_ELEMENTKIND = 'elementKind';
 
-  JSCRIPT_HEADER = 'var app = new ActiveXObject("StarUML.StarUMLApplication");' + #13#10 +
+  JSCRIPT_HEADER = 'var app = new ActiveXObject("WhiteStarUML.WhiteStarUMLApplication");' + #13#10 +
                    'var factory = app.UMLFactory;' + #13#10 +
                    'var metaModel = app.MetaModel;' + #13#10 +
                    'var dgm = app.SelectionManager.ActiveDiagram;' + #13#10 +

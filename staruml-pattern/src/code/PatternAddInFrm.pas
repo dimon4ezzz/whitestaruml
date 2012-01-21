@@ -49,9 +49,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls, ComCtrls, TreeViewEx, JvWizard, {dxExEdtr,
-  dxCntner, dxInspct, dxInspRw,} ImgList, Generics.Collections,
-  WhiteStarUML_TLB, PatternDef, JvExControls, JvComponent;
+  Dialogs, ExtCtrls, StdCtrls, ComCtrls, TreeViewEx, JvWizard, ImgList,
+  Generics.Collections, WhiteStarUML_TLB, PatternDef, JvExControls, JvComponent;
 
 type
    // Forward declaration

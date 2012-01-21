@@ -1,7 +1,7 @@
 object PatternAddInForm: TPatternAddInForm
   Left = 400
   Top = 274
-  ActiveControl = PatternTreeView
+  ActiveControl = ResultInfoListView
   BorderStyle = bsDialog
   Caption = 'Apply pattern'
   ClientHeight = 408
@@ -25,7 +25,7 @@ object PatternAddInForm: TPatternAddInForm
     Top = 0
     Width = 463
     Height = 408
-    ActivePage = SelectPatternPage
+    ActivePage = PatternResultPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -76,8 +76,6 @@ object PatternAddInForm: TPatternAddInForm
       VisibleButtons = [bkNext, bkCancel]
       Caption = 'JvWizardInteriorPage1'
       OnCancelButtonClick = SelectPatternPageCancelButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         463
         366)
@@ -165,8 +163,6 @@ object PatternAddInForm: TPatternAddInForm
       Caption = 'PatternParameterPage'
       OnNextButtonClick = PatternParameterPageNextButtonClick
       OnCancelButtonClick = SelectPatternPageCancelButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ParameterDescriptionLabel: TLabel
         Left = 7
         Top = 280
@@ -230,8 +226,6 @@ object PatternAddInForm: TPatternAddInForm
       Caption = 'PatternResultPage'
       OnCancelButtonClick = SelectPatternPageCancelButtonClick
       OnFinishButtonClick = PatternResultPageFinishButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ResultInfoLabel: TLabel
         Left = 7
         Top = 80
@@ -301,7 +295,7 @@ object PatternAddInForm: TPatternAddInForm
     Left = 112
     Top = 356
     Bitmap = {
-      494C010103000400140010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000400180010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -444,7 +438,7 @@ object PatternAddInForm: TPatternAddInForm
     Left = 240
     Top = 64
     Bitmap = {
-      494C010108000900140010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010108000900180010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
