@@ -57,7 +57,8 @@ uses
   FlatPanel, CompactFontDlg, SaveDialogEx, DiagramExplorerFrame,
   dxDockControl, dxDockPanel, ModelExplorerFrame, VirtualTrees,
   MessageFrame, OutputFrame, AttachEdt, DocuEdt, PropEdtWithJvclInspector, XPMan,
-  cxClasses, NavBarFrameVclImpl, NavBarFrame, MenuManager, CategoryButtons, cxPC;
+  cxClasses, NavBarFrameVclImpl, NavBarFrame, MenuManager, CategoryButtons, cxPC,
+  JvBaseDlg, JvDesktopAlert;
 
 const
   FILE_EXT_BMP = '.BMP';
@@ -362,6 +363,7 @@ type
     ModelAddFrame: TdxBarButton;
     DocumentStateImageList: TImageList;
     PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
+    DesktopAlert: TJvDesktopAlert;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);
     procedure EditMenuClick(Sender: TObject);
@@ -568,7 +570,7 @@ type
     procedure LoadWindowPositionFromRegistry;
     procedure ShowQuickDialog(AView: PView; MousePoint: TPoint; Force: Boolean = False);
     procedure ShowQuickDialogByModelCreation(AView: PView; ArgModel: PModel);
-
+    procedure ShowAlertMsg(AHeaderText: string;AMessageText: string);
     procedure ActivateHandler(HanderName: string);
     procedure AddCreateHandler(HandlerName: string; ContainerCandidates: array of PClass; SkeletonPaintingKind: PSkeletonPaintingKind);
 
@@ -1351,6 +1353,13 @@ begin
     P := WorkingAreaFrame.ActiveDiagramEditor.PaintBox.ClientOrigin;
     QuickDialogManager.ShowQuickDialogByModelCreation(AView, ArgModel, P);
   end;
+end;
+
+procedure TMainForm.ShowAlertMsg(AHeaderText: string;AMessageText: string);
+begin
+  DesktopAlert.HeaderText := AHeaderText;
+  DesktopAlert.MessageText := AMessageText;
+  DesktopAlert.Execute;
 end;
 
 
