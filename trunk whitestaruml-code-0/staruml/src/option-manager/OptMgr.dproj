@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{D6C966B7-F1B1-4244-A002-3BCA52A77577}</ProjectGuid>
 			<MainSource>OptMgr.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
