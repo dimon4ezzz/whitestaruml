@@ -126,8 +126,8 @@ type
   end;
 
 
-  // PStack
-  PStack = class
+  // PStack not used, replaced with PShrinkingStack
+  PStack= class
   private
     FStackList: TList;
     FCapacity: Integer;
@@ -141,6 +141,29 @@ type
     function Pop: PObject;
     function Top: PObject;
     function PopBottom: PObject;
+    function IsEmpty: Boolean;
+    function IsFull: Boolean;
+    property Count: Integer read GetCount;
+    property Capacity: Integer read FCapacity write SetCapacity;
+  end;
+
+  // PShrinkingStack
+  // Cannot grow behind its capacity
+  // In such a case removing items from the bottom
+  PShrinkingStack<T: class> = class
+  private
+    FStackList: TList<T>;
+    FCapacity: Integer;
+    function GetCount: Integer;
+    procedure SetCapacity(Value: Integer);
+  public
+    constructor Create;
+    destructor Destroy; override;
+    procedure Clear;
+    procedure Push(Obj: T);
+    function Pop: T;
+    function Top: T;
+    function PopBottom: T;
     function IsEmpty: Boolean;
     function IsFull: Boolean;
     property Count: Integer read GetCount;
@@ -268,6 +291,8 @@ type
 
   // PEngine
   PEngine = class
+  private type
+  PCommandStack = PShrinkingStack<PCommand>;
   private
     // TEST
     GroupCommand: PGroupCommand;
@@ -275,7 +300,7 @@ type
     // TEST
 
 
-    FUnexecuteStack, FReexecuteStack: PStack;
+    FUnexecuteStack, FReexecuteStack: PCommandStack;
     FCapacity: Integer;
     FErrorMessage: string;
     FOnCommandExecuted: PCommandEvent;
@@ -285,8 +310,8 @@ type
     function GetUnexecuteCommandCount: Integer;
     function GetReexecuteCommandCount: Integer;
     procedure SetCapacity(Value: Integer);
-    procedure Empty(AStack: PStack);
-    procedure PushOut(AStack: PStack; ACmd: PCommand);
+    procedure Empty(AStack: PCommandStack);
+    procedure PushOut(AStack: PCommandStack; ACmd: PCommand);
   public
     constructor Create;
     destructor Destroy; override;
@@ -668,6 +693,89 @@ begin
 end;
 
 // PStack
+////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////
+// PShrinkingStack
+
+constructor PShrinkingStack<T>.Create;
+begin
+  inherited;
+  FCapacity := 100;
+  FStackList := TList<T>.Create;
+end;
+
+destructor PShrinkingStack<T>.Destroy;
+begin
+  FStackList.Free;
+  inherited;
+end;
+
+function PShrinkingStack<T>.GetCount: Integer;
+begin
+  Result := FStackList.Count;
+end;
+
+procedure PShrinkingStack<T>.SetCapacity(Value: Integer);
+var
+  I, C: Integer;
+begin
+  FCapacity := Value;
+  C := FStackList.Count - FCapacity;
+  if C > 0 then
+    for I := C - 1 downto 0 do FStackList.Delete(I);
+end;
+
+procedure PShrinkingStack<T>.Clear;
+begin
+  FStackList.Clear;
+end;
+
+procedure PShrinkingStack<T>.Push(Obj: T);
+begin
+  if FStackList.Count >= FCapacity then FStackList.Delete(0);
+  FStackList.Add(Obj);
+end;
+
+function PShrinkingStack<T>.Pop: T;
+var
+  Obj: T;
+begin
+  if not IsEmpty then begin
+    Obj := FStackList.Items[FStackList.Count - 1];
+    Result := Obj;
+    FStackList.Delete(FStackList.Count - 1);
+  end
+  else Result := nil;
+end;
+
+function PShrinkingStack<T>.Top: T;
+begin
+  Result := FStackList.Items[FStackList.Count - 1];
+end;
+
+function PShrinkingStack<T>.PopBottom: T;
+begin
+  if FStackList.Count > 0 then begin
+    Result := FStackList.Items[0];
+    FStackList.Delete(0);
+  end
+  else
+    Result := nil;
+end;
+
+function PShrinkingStack<T>.IsEmpty: Boolean;
+begin
+  Result := FStackList.Count <= 0;
+end;
+
+function PShrinkingStack<T>.IsFull: Boolean;
+begin
+  Result := (FStackList.Count >= FCapacity);
+end;
+
+// PShrinkingStack
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1075,8 +1183,8 @@ end;
 constructor PEngine.Create;
 begin
   FCapacity := 100;
-  FUnexecuteStack := PStack.Create;
-  FReexecuteStack := PStack.Create;
+  FUnexecuteStack := PCommandStack.Create;
+  FReexecuteStack := PCommandStack.Create;
 
   // TEST
   GroupCommand := nil;
@@ -1095,23 +1203,23 @@ begin
   inherited;
 end;
 
-procedure PEngine.Empty(AStack: PStack);
+procedure PEngine.Empty(AStack: PCommandStack);
 var
   Cmd: PCommand;
 begin
   while not AStack.IsEmpty do begin
-    Cmd := AStack.Pop as PCommand;
+    Cmd := AStack.Pop;
     Cmd.Free;
   end;
   AStack.Clear;
 end;
 
-procedure PEngine.PushOut(AStack: PStack; ACmd: PCommand);
+procedure PEngine.PushOut(AStack: PCommandStack; ACmd: PCommand);
 var
   Cmd: PCommand;
 begin
   if AStack.IsFull then begin
-    Cmd := AStack.PopBottom as PCommand;
+    Cmd := AStack.PopBottom;
     Cmd.Free;
   end;
   AStack.Push(ACmd);
@@ -1252,7 +1360,7 @@ begin
   if FUnexecuteStack.IsEmpty then
     Result := nil
   else
-    Result := FUnexecuteStack.Top as PCommand;
+    Result := FUnexecuteStack.Top;
 end;
 
 function PEngine.GetToReexecuteCommand: PCommand;
@@ -1260,7 +1368,7 @@ begin
   if FReexecuteStack.IsEmpty then
     Result := nil
   else
-    Result := FReexecuteStack.Top as PCommand;
+    Result := FReexecuteStack.Top;
 end;
 
 function PEngine.GetUnexecuteCommandCount: Integer;
