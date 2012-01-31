@@ -48,7 +48,8 @@ unit BasicClasses;
 interface
 
 uses
-  Types, Classes, SysUtils, IniFiles, ComObj, Generics.Collections;
+  Types, Classes, SysUtils, IniFiles, ComObj,
+  Generics.Defaults, Generics.Collections;
 
 type
   // Forward Declarations
@@ -90,7 +91,7 @@ type
   // PAutoObject
   // ---------------------------------------------------------------------------
   // PObject에 대한 Automation Object를 구현하려면 이 클래스로부터 상속 받을 것.
-  // if you want to implement Automation Object for PObject, Inherit from this class 
+  // if you want to implement Automation Object for PObject, Inherit from this class
   // ---------------------------------------------------------------------------
   PAutoObject = class(TAutoIntfObject)
   protected
@@ -98,12 +99,14 @@ type
   end;
 
    // POrderedSet
-  POrderedSet = class
+  POrderedSet = class (TEnumerable<PObject>)
   private
     FList: TList;
     function GetItem(Index: Integer): PObject;
     procedure SetItem(Index: Integer; Value: PObject);
     function GetCount: Integer;
+  protected
+    function DoGetEnumerator: TEnumerator<PObject>; override;
   public
     constructor Create;
     destructor Destroy; override;
@@ -123,10 +126,75 @@ type
     function FindByGuid(AGuid: string): PObject;
     property Items[Index: Integer]: PObject read GetItem write SetItem; default;
     property Count: Integer read GetCount;
-  end;
+
+  type
+    TEnumerator = class(TEnumerator<PObject>)
+    private
+      FOrderedSet: POrderedSet;
+      FIndex: Integer;
+      function GetCurrent: PObject;
+    protected
+      function DoGetCurrent: PObject; override;
+      function DoMoveNext: Boolean; override;
+    public
+      constructor Create(AOrderedSet: POrderedSet);
+      property Current: PObject read GetCurrent;
+      function MoveNext: Boolean;
+    end; // End of TEnumerator
+
+    end; // End of POrderedSet
+
+  //Version with Generics
+  POrderedSet<T: class> = class (TEnumerable<T>)
+  private
+    FList: TList<T>;
+    function GetItem(Index: Integer): T;
+    procedure SetItem(Index: Integer; Value: T);
+    function GetCount: Integer;
+  protected
+    function DoGetEnumerator: TEnumerator<T>; override;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    procedure Assign(OrderedSet: POrderedSet<T>);
+    procedure Add(Obj: T);
+    procedure Remove(Obj: T);
+    procedure Delete(Index: Integer);
+    procedure Insert(Index: Integer; Obj: T);
+    procedure Clear;
+    //procedure Sort(Compare: TListSortCompare);
+    procedure Sort(const AComparer: IComparer<T>);
+    procedure Move(CurIndex, NewIndex: Integer);
+    procedure Union(ASet: POrderedSet<T>);
+    procedure Subtract(ASet: POrderedSet<T>);
+    function IndexOf(Obj: T): Integer;
+    function Contains(Obj: T): Boolean;
+    function IsEmpty: Boolean;
+    //function FindByGuid(AGuid: string): T;
+    property Items[Index: Integer]: T read GetItem write SetItem; default;
+    property Count: Integer read GetCount;
+
+  type
+    TEnumerator = class(TEnumerator<T>)
+    private
+      FOrderedSet: POrderedSet<T>;
+      FIndex: Integer;
+      function GetCurrent: T;
+    protected
+      function DoGetCurrent: T; override;
+      function DoMoveNext: Boolean; override;
+    public
+      constructor Create(AOrderedSet: POrderedSet<T>);
+      property Current: T read GetCurrent;
+      function MoveNext: Boolean;
+    end; // End of TEnumerator
+
+    end; // End of POrderedSet
 
 
-  // PStack not used, replaced with PShrinkingStack
+
+
+    // PStack not used, replaced with PShrinkingStack
   PStack= class
   private
     FStackList: TList;
@@ -276,8 +344,10 @@ type
 
   // PGroupCommand
   PGroupCommand = class(PCommand)
+  private type
+  PCommandOrderedSet = POrderedSet<PCommand>;
   private
-    CommandSet: POrderedSet;
+    CommandSet: PCommandOrderedSet;
   protected
     procedure SetCommandPos(Value: PCommandPos); override;
   public
@@ -607,6 +677,210 @@ begin
   end;
   Result := nil;
 end;
+
+
+constructor POrderedSet.TEnumerator.Create(AOrderedSet: POrderedSet);
+begin
+  inherited Create;
+  FOrderedSet := AOrderedSet;
+  FIndex := -1;
+end;
+
+function POrderedSet.TEnumerator.DoGetCurrent: PObject;
+begin
+  Result := GetCurrent;
+end;
+
+function POrderedSet.TEnumerator.DoMoveNext: Boolean;
+begin
+  Result := MoveNext;
+end;
+
+function POrderedSet.TEnumerator.GetCurrent: PObject;
+begin
+  Result := FOrderedSet.GetItem(FIndex);
+end;
+
+function POrderedSet.TEnumerator.MoveNext: Boolean;
+begin
+  if FIndex >= FOrderedSet.Count then
+    Exit(False);
+  Inc(FIndex);
+  Result := FIndex < FOrderedSet.Count;
+end;
+
+function POrderedSet.DoGetEnumerator: TEnumerator<PObject>;
+begin
+  Result := GetEnumerator;
+end;
+
+// Version with Generics
+
+constructor POrderedSet<T>.Create;
+begin
+  inherited;
+  FList := TList<T>.Create;
+end;
+
+destructor POrderedSet<T>.Destroy;
+begin
+  FList.Free;
+  FList := nil;
+  inherited;
+end;
+
+procedure POrderedSet<T>.Assign(OrderedSet: POrderedSet<T>);
+begin
+  FList.AddRange(OrderedSet.FList);
+end;
+
+function POrderedSet<T>.GetItem(Index: Integer): T;
+var
+  C: Integer;
+begin
+  Result := nil;
+  C := FList.Count;
+  if (Index < 0) or (Index >= C) then Exit;
+  Result := FList[Index];
+end;
+
+procedure POrderedSet<T>.SetItem(Index: Integer; Value: T);
+var
+  C: Integer;
+begin
+  C := FList.Count;
+  if (Index < 0) or (Index >= C) then Exit;
+  if not (Contains(Value)) then
+    FList[Index] := Value;
+end;
+
+function POrderedSet<T>.GetCount: Integer;
+begin
+    Result := FList.Count;
+end;
+
+procedure POrderedSet<T>.Add(Obj: T);
+begin
+  if (Obj <> nil) and (not Contains(Obj)) then
+   FList.Add(Obj);
+end;
+
+procedure POrderedSet<T>.Remove(Obj: T);
+begin
+  if Obj <> nil then FList.Remove(Obj);
+end;
+
+procedure POrderedSet<T>.Delete(Index: Integer);
+begin
+  FList.Delete(Index);
+end;
+
+procedure POrderedSet<T>.Insert(Index: Integer; Obj: T);
+begin
+  if (Obj <> nil) and (not Contains(Obj)) then
+    FList.Insert(Index, Obj);
+end;
+
+procedure POrderedSet<T>.Clear;
+begin
+  FList.Clear;
+end;
+
+procedure POrderedSet<T>.Sort(const AComparer: IComparer<T>);
+begin
+  FList.Sort(AComparer);
+end;
+
+procedure POrderedSet<T>.Move(CurIndex, NewIndex: Integer);
+begin
+  FList.Move(CurIndex, NewIndex);
+end;
+
+procedure POrderedSet<T>.Union(ASet: POrderedSet<T>);
+var
+  I: Integer;
+begin
+  for I := 0 to ASet.Count - 1 do
+    if not Contains(ASet.Items[I]) then Add(ASet.Items[I]);
+end;
+
+procedure POrderedSet<T>.Subtract(ASet: POrderedSet<T>);
+var
+  I: Integer;
+begin
+  for I := 0 to ASet.Count - 1 do
+    if Contains(ASet.Items[I]) then Remove(ASet.Items[I]);
+end;
+
+function POrderedSet<T>.IndexOf(Obj: T): Integer;
+begin
+  Result := FList.IndexOf(Obj);
+end;
+
+function POrderedSet<T>.Contains(Obj: T): Boolean;
+begin
+  Result := (FList.IndexOf(Obj) > -1);
+end;
+
+function POrderedSet<T>.IsEmpty: Boolean;
+begin
+  Result := (FList.Count = 0);
+end;
+
+{function POrderedSet<T>.FindByGuid(AGuid: string): T;
+var
+  I: Integer;
+  O: T;
+begin
+  for I := 0 to FList.Count - 1 do
+  begin
+    O := FList[I];
+    if O.GUID = AGuid then
+    begin
+      Result := O;
+      Exit;
+    end;
+  end;
+  Result := nil;
+end;}
+
+
+constructor POrderedSet<T>.TEnumerator.Create(AOrderedSet: POrderedSet<T>);
+begin
+  inherited Create;
+  FOrderedSet := AOrderedSet;
+  FIndex := -1;
+end;
+
+function POrderedSet<T>.TEnumerator.DoGetCurrent: T;
+begin
+  Result := GetCurrent;
+end;
+
+function POrderedSet<T>.TEnumerator.DoMoveNext: Boolean;
+begin
+  Result := MoveNext;
+end;
+
+function POrderedSet<T>.TEnumerator.GetCurrent: T;
+begin
+  Result := FOrderedSet.GetItem(FIndex);
+end;
+
+function POrderedSet<T>.TEnumerator.MoveNext: Boolean;
+begin
+  if FIndex >= FOrderedSet.Count then
+    Exit(False);
+  Inc(FIndex);
+  Result := FIndex < FOrderedSet.Count;
+end;
+
+function POrderedSet<T>.DoGetEnumerator: TEnumerator<T>;
+begin
+  Result := GetEnumerator;
+end;
+
+
 
 // POrderedSet
 ////////////////////////////////////////////////////////////////////////////////
@@ -1110,34 +1384,26 @@ end;
 constructor PGroupCommand.Create;
 begin
   inherited;
-  CommandSet := POrderedSet.Create;
+  CommandSet := PCommandOrderedSet.Create;
 end;
 
 destructor PGroupCommand.Destroy;
 var
-  I: Integer;
   C: PCommand;
 begin
-  for I := CommandSet.Count - 1 downto 0 do
-  begin
-    C := CommandSet.Items[I] as PCommand;
+  for C in CommandSet do
     C.Free;
-  end;
   CommandSet.Free;
   inherited;
 end;
 
 procedure PGroupCommand.SetCommandPos(Value: PCommandPos);
 var
-  I: Integer;
   C: PCommand;
 begin
   inherited;
-  for I := 0 to CommandSet.Count - 1 do
-  begin
-    C := CommandSet.Items[I] as PCommand;
+  for C in CommandSet do
     C.CommandPos := Value;
-  end;
 end;
 
 procedure PGroupCommand.Execute;
@@ -1147,26 +1413,18 @@ end;
 
 procedure PGroupCommand.Reexecute;
 var
-  I: Integer;
   C: PCommand;
 begin
-  for I := 0 to CommandSet.Count - 1 do
-  begin
-    C := CommandSet.Items[I] as PCommand;
+  for C in CommandSet do
     C.Reexecute;
-  end;
 end;
 
 procedure PGroupCommand.Unexecute;
 var
-  I: Integer;
   C: PCommand;
 begin
-  for I := CommandSet.Count - 1 downto 0 do
-  begin
-    C := CommandSet.Items[I] as PCommand;
+  for C in CommandSet do
     C.Unexecute;
-  end;
 end;
 
 procedure PGroupCommand.AddCommand(ACommand: PCommand);
@@ -1503,4 +1761,3 @@ initialization
 finalization
   ClassRegistry.Free;
 end.
-
