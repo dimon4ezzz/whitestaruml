@@ -162,7 +162,6 @@ type
     procedure Delete(Index: Integer);
     procedure Insert(Index: Integer; Obj: T);
     procedure Clear;
-    //procedure Sort(Compare: TListSortCompare);
     procedure Sort(const AComparer: IComparer<T>);
     procedure Move(CurIndex, NewIndex: Integer);
     procedure Union(ASet: POrderedSet<T>);
@@ -189,12 +188,12 @@ type
       function MoveNext: Boolean;
     end; // End of TEnumerator
 
-    end; // End of POrderedSet
+    end; // End of POrderedSet<T>
 
 
 
 
-    // PStack not used, replaced with PShrinkingStack
+  // PStack not used, replaced with PShrinkingStack
   PStack= class
   private
     FStackList: TList;
@@ -239,27 +238,32 @@ type
   end;
 
   // PTableRow
-  PTableRow = class
+  PTableRow<T: class> = class
   private
     Values: array of string;
-    Objects: array of TObject;
+    Objects: array of T;
   public
     constructor Create(Size: Integer);
     destructor Destroy; override;
   end;
 
   // PTable
-  PTable = class
+  PTable<T: class> = class(TEnumerable<PTableRow<T>>)
+  private type
+    PTableRow = PTableRow<T>;
+    PTableRowList = TList<PTableRow>;
   private
     FColumns: array of string;
-    FRows: TList;
+    FRows: PTableRowList;
     function GetRowCount: Integer;
     function GetColumn(Index: Integer): string;
     function GetColumnCount: Integer;
     function GetValue(Row: Integer; Column: Integer): string;
     procedure SetValue(Row: Integer; Column: Integer; Value: string);
-    function GetObject(Row: Integer; Column: Integer): TObject;
-    procedure SetObject(Row: Integer; Column: Integer; Value: TObject);
+    function GetObject(Row: Integer; Column: Integer): T;
+    procedure SetObject(Row: Integer; Column: Integer; Value: T);
+  protected
+    function DoGetEnumerator: TEnumerator<PTableRow>; override;
   public
     constructor Create(ColumnArray: array of string);
     destructor Destroy; override;
@@ -267,21 +271,50 @@ type
     function ContainsColumn(Column: string): Boolean;
     function IndexOfColumn(Column: string): Integer;
     function AddRow(ValueArray: array of string): Integer; overload;
-    function AddRow(ValueArray: array of string; ObjectArray: array of TObject): Integer; overload;
+    function AddRow(ValueArray: array of string; ObjectArray: array of T): Integer; overload;
     procedure DeleteRow(Row: Integer);
     procedure SortByColumn(Column: string; TreatValueAsInteger: Boolean = False);
     function GetValueAt(Row: Integer; Column: string): string;
     function GetObjectAt(Row: Integer; Column: string): TObject;
     procedure PutValueAt(Row: Integer; Column: string; AValue: string);
-    procedure PutObjectAt(Row: Integer; Column: string; AObject: TObject);
+    procedure PutObjectAt(Row: Integer; Column: string; AObject: T);
     property RowCount: Integer read GetRowCount;
     property Columns[Index: Integer]: string read GetColumn;
     property ColumnCount: Integer read GetColumnCount;
     property Values[Row: Integer; Column: Integer]: string read GetValue write SetValue;
-    property Objects[Row: Integer; Column: Integer]: TObject read GetObject write SetObject;
-  end;
+    property Objects[Row: Integer; Column: Integer]: T read GetObject write SetObject;
 
-  // PReferenceTable
+  type
+    TEnumerator = class(TEnumerator<PTableRow>)
+    private
+      FTable: PTable<T>;
+      FIndex: Integer;
+      function GetCurrent: PTableRow;
+    protected
+      function DoGetCurrent: PTableRow; override;
+      function DoMoveNext: Boolean; override;
+    public
+      constructor Create(ATable: PTable<T>);
+      property Current: PTableRow read GetCurrent;
+      function MoveNext: Boolean;
+    end; // End of TEnumerator
+
+
+  private type
+    PComparer = class (TComparer<PTableRow>)
+      function Compare(const Left, Right: PTableRow): Integer; override;
+    private
+      CompareColumn: Integer;
+      CompareAsInteger: Boolean;
+    end;
+
+  end; // End of PTable
+
+  // For backward compatibility or if object type not relevant
+  PTable = PTable<PObject>;
+
+
+  // PReferenceTable (not used)
   PReferenceTable = class
   private
     ObjectList: THashedStringList;
@@ -1055,13 +1088,13 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 // PTableRow
 
-constructor PTableRow.Create(Size: Integer);
+constructor PTableRow<T>.Create(Size: Integer);
 begin
   SetLength(Values, Size);
   SetLength(Objects, Size);
 end;
 
-destructor PTableRow.Destroy;
+destructor PTableRow<T>.Destroy;
 begin
   Values := nil;
   Objects := nil;
@@ -1074,17 +1107,17 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 // PTable
 
-constructor PTable.Create(ColumnArray: array of string);
+constructor PTable<T>.Create(ColumnArray: array of string);
 var
   I: Integer;
 begin
   SetLength(FColumns, Length(ColumnArray));
   for I := 0 to High(ColumnArray) do
     FColumns[I] := ColumnArray[I];
-  FRows := TList.Create;
+  FRows := PTableRowList.Create;
 end;
 
-destructor PTable.Destroy;
+destructor PTable<T>.Destroy;
 begin
   SetLength(FColumns, 0);
   Clear;
@@ -1092,7 +1125,7 @@ begin
   inherited;
 end;
 
-procedure PTable.Clear;
+procedure PTable<T>.Clear;
 var
   I: Integer;
   R: PTableRow;
@@ -1105,22 +1138,22 @@ begin
   FRows.Clear;
 end;
 
-function PTable.GetRowCount: Integer;
+function PTable<T>.GetRowCount: Integer;
 begin
   Result := FRows.Count;
 end;
 
-function PTable.GetColumn(Index: Integer): string;
+function PTable<T>.GetColumn(Index: Integer): string;
 begin
   Result := FColumns[Index];
 end;
 
-function PTable.GetColumnCount: Integer;
+function PTable<T>.GetColumnCount: Integer;
 begin
   Result := Length(FColumns);
 end;
 
-function PTable.GetValue(Row: Integer; Column: Integer): string;
+function PTable<T>.GetValue(Row: Integer; Column: Integer): string;
 var
   R: PTableRow;
 begin
@@ -1128,7 +1161,7 @@ begin
   Result := R.Values[Column];
 end;
 
-procedure PTable.SetValue(Row: Integer; Column: Integer; Value: string);
+procedure PTable<T>.SetValue(Row: Integer; Column: Integer; Value: string);
 var
   R: PTableRow;
 begin
@@ -1136,7 +1169,7 @@ begin
   R.Values[Column] := Value;
 end;
 
-function PTable.GetObject(Row: Integer; Column: Integer): TObject;
+function PTable<T>.GetObject(Row: Integer; Column: Integer): T;
 var
   R: PTableRow;
 begin
@@ -1144,7 +1177,7 @@ begin
   Result := R.Objects[Column]
 end;
 
-procedure PTable.SetObject(Row: Integer; Column: Integer; Value: TObject);
+procedure PTable<T>.SetObject(Row: Integer; Column: Integer; Value: T);
 var
   R: PTableRow;
 begin
@@ -1152,7 +1185,7 @@ begin
   R.Objects[Column] := Value;
 end;
 
-function PTable.ContainsColumn(Column: string): Boolean;
+function PTable<T>.ContainsColumn(Column: string): Boolean;
 var
   I: Integer;
 begin
@@ -1165,7 +1198,7 @@ begin
     end;
 end;
 
-function PTable.IndexOfColumn(Column: string): Integer;
+function PTable<T>.IndexOfColumn(Column: string): Integer;
 var
   I: Integer;
 begin
@@ -1178,7 +1211,7 @@ begin
     end;
 end;
 
-function PTable.AddRow(ValueArray: array of string): Integer;
+function PTable<T>.AddRow(ValueArray: array of string): Integer;
 var
   R: PTableRow;
   I: Integer;
@@ -1192,7 +1225,7 @@ begin
   Result := FRows.Add(R);
 end;
 
-function PTable.AddRow(ValueArray: array of string; ObjectArray: array of TObject): Integer;
+function PTable<T>.AddRow(ValueArray: array of string; ObjectArray: array of T): Integer;
 var
   R: PTableRow;
   I: Integer;
@@ -1206,7 +1239,7 @@ begin
   Result := FRows.Add(R);
 end;
 
-procedure PTable.DeleteRow(Row: Integer);
+procedure PTable<T>.DeleteRow(Row: Integer);
 var
   R: PTableRow;
 begin
@@ -1215,19 +1248,18 @@ begin
   if R <> nil then R.Free;
 end;
 
-var
-  CompareColumn: Integer;
-  CompareAsInteger: Boolean;
 
-function CompareRowByColumn(Item1, Item2: Pointer): Integer;
+
+// CompareRowByColumn
+function PTable<T>.PComparer.Compare(const Left, Right: PTableRow): Integer;
 var
-  R1, R2: PTableRow;
+  //R1, R2: PTableRow;
   Val1, Val2: string;
   Int1, Int2: Integer;
 begin
-  R1 := Item1; R2 := Item2;
-  Val1 := R1.Values[CompareColumn];
-  Val2 := R2.Values[CompareColumn];
+  //R1 := Item1; R2 := Item2;
+  Val1 := Left.Values[CompareColumn];
+  Val2 := Right.Values[CompareColumn];
   if CompareAsInteger then
   begin
     Int1 := StrToInt(Val1);
@@ -1243,16 +1275,23 @@ begin
     Result := CompareStr(Val1, Val2);
 end;
 
-procedure PTable.SortByColumn(Column: string; TreatValueAsInteger: Boolean = False);
+procedure PTable<T>.SortByColumn(Column: string; TreatValueAsInteger: Boolean = False);
+var
+  Comparer: PComparer;
 begin
   if not ContainsColumn(Column) then
     EColumnNotExist.Create(Column);
-  CompareColumn := IndexOfColumn(Column);
-  CompareAsInteger := TreatValueAsInteger;
-  FRows.Sort(CompareRowByColumn);
+  Comparer := PComparer.Create;
+  try
+    Comparer.CompareColumn := IndexOfColumn(Column);
+    Comparer.CompareAsInteger := TreatValueAsInteger;
+    FRows.Sort(Comparer);
+  finally
+    Comparer.Free;
+ end;
 end;
 
-function PTable.GetValueAt(Row: Integer; Column: string): string;
+function PTable<T>.GetValueAt(Row: Integer; Column: string): string;
 var
   R: PTableRow;
 begin
@@ -1260,7 +1299,7 @@ begin
   Result := R.Values[IndexOfColumn(Column)];
 end;
 
-function PTable.GetObjectAt(Row: Integer; Column: string): TObject;
+function PTable<T>.GetObjectAt(Row: Integer; Column: string): TObject;
 var
   R: PTableRow;
 begin
@@ -1268,7 +1307,7 @@ begin
   Result := R.Objects[IndexOfColumn(Column)];
 end;
 
-procedure PTable.PutValueAt(Row: Integer; Column: string; AValue: string);
+procedure PTable<T>.PutValueAt(Row: Integer; Column: string; AValue: string);
 var
   R: PTableRow;
 begin
@@ -1276,12 +1315,48 @@ begin
   R.Values[IndexOfColumn(Column)] := AValue;
 end;
 
-procedure PTable.PutObjectAt(Row: Integer; Column: string; AObject: TObject);
+procedure PTable<T>.PutObjectAt(Row: Integer; Column: string; AObject: T);
 var
   R: PTableRow;
 begin
   R := FRows.Items[Row];
   R.Objects[IndexOfColumn(Column)] := AObject;
+end;
+
+
+constructor PTable<T>.TEnumerator.Create(ATable: PTable<T>);
+begin
+  inherited Create;
+  FTable := ATable;
+  FIndex := -1;
+end;
+
+function PTable<T>.TEnumerator.DoGetCurrent: PTableRow;
+begin
+  Result := GetCurrent;
+end;
+
+function PTable<T>.TEnumerator.DoMoveNext: Boolean;
+begin
+  Result := MoveNext;
+end;
+
+function PTable<T>.TEnumerator.GetCurrent: PTableRow;
+begin
+  Result := FTable.FRows[FIndex];
+end;
+
+function PTable<T>.TEnumerator.MoveNext: Boolean;
+begin
+  if FIndex >= FTable.FRows.Count then
+    Exit(False);
+  Inc(FIndex);
+  Result := FIndex < FTable.FRows.Count;
+end;
+
+function PTable<T>.DoGetEnumerator: TEnumerator<PTableRow>;
+begin
+  Result := GetEnumerator;
 end;
 
 // PTable
