@@ -1356,7 +1356,7 @@ end;
 
 function PTable<T>.DoGetEnumerator: TEnumerator<PTableRow>;
 begin
-  Result := GetEnumerator;
+  Result := TEnumerator.Create(Self);
 end;
 
 // PTable
