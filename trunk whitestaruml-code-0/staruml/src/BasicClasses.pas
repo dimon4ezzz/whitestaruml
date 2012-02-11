@@ -744,7 +744,7 @@ end;
 
 function POrderedSet.DoGetEnumerator: TEnumerator<PObject>;
 begin
-  Result := GetEnumerator;
+  Result := TEnumerator.Create(Self);
 end;
 
 // Version with Generics
@@ -910,7 +910,7 @@ end;
 
 function POrderedSet<T>.DoGetEnumerator: TEnumerator<T>;
 begin
-  Result := GetEnumerator;
+  Result := TEnumerator.Create(Self);;
 end;
 
 
