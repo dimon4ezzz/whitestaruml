@@ -56,7 +56,7 @@ uses
   AreaTitleBar, InspectorFrm, WorkingAreaFrm,
   FlatPanel, CompactFontDlg, SaveDialogEx, DiagramExplorerFrame,
   dxDockControl, dxDockPanel, ModelExplorerFrame, VirtualTrees,
-  MessageFrame, OutputFrame, AttachEdt, DocuEdt, PropEdtWithJvclInspector, XPMan,
+  MessageFrame, OutputFrame, AttachEdt, DocuEdt, PropEdtWithJvclInspector,
   cxClasses, NavBarFrameVclImpl, NavBarFrame, MenuManager, CategoryButtons, cxPC,
   JvBaseDlg, JvDesktopAlert;
 
@@ -326,7 +326,6 @@ type
     AttachmentsDockPanel: TdxDockPanel;
     DocumentationEditor: TDocumentationEditor;
     AttachmentEditor: TAttachmentEditor;
-    XPManifest: TXPManifest;
     ViewModelExplorer: TdxBarButton;
     ViewDiagramExplorer: TdxBarButton;
     ViewPropertyEditor: TdxBarButton;
