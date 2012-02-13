@@ -139,7 +139,6 @@ uses
   MainFrm in 'MainFrm.pas' {MainForm},
   PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas',
   CategoryButtons in 'CategoryButtons.pas',
-  GraphVizInterface in 'GraphVizInterface.pas',
   WhiteStarUML_TLB in 'WhiteStarUML_TLB.pas';
 
 {$R *.TLB}
@@ -157,6 +156,7 @@ var
 begin
   Application.Initialize;
   // Show Splash Form.
+  //if (False) then
   if (ComServer.StartMode = smStandalone) then
   begin
     SplashForm := TSplashForm.Create(Application);
@@ -171,7 +171,6 @@ begin
   Application.CreateForm(TStereotypeSelectorForm, StereotypeSelectorForm);
   Application.CreateForm(TConstraintEditorForm, ConstraintEditorForm);
   Application.CreateForm(TTaggedValueCollectionEditorForm, TaggedValueCollectionEditorForm);
-  Application.CreateForm(TTaggedValueEditorFormWithJvclInspector, TaggedValueEditorForm);
   Application.CreateForm(TElementSelectorForm, ElementSelectorForm);
   Application.CreateForm(TCollectionEditorForm, CollectionEditorForm);
   Application.CreateForm(TAttachmentItemEditForm, AttachmentItemEditForm);
@@ -188,6 +187,8 @@ begin
   Application.CreateForm(TDiagramMapForm, DiagramMapForm);
   Application.CreateForm(TPrintPreviewForm, PrintPreviewForm);
   Application.CreateForm(TPrintForm, PrintForm);
+  // User defined code goes here
+  Application.CreateForm(TTaggedValueEditorFormWithJvclInspector, TaggedValueEditorForm);
   if (ComServer.StartMode <> smStandalone) then
   begin
     MainForm.Visible := False;

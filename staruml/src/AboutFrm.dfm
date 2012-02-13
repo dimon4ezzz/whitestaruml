@@ -4,7 +4,7 @@ object AboutForm: TAboutForm
   BorderStyle = bsDialog
   Caption = 'About WhiteStarUML'
   ClientHeight = 260
-  ClientWidth = 418
+  ClientWidth = 420
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -19,7 +19,7 @@ object AboutForm: TAboutForm
   object SplashImage: TImage
     Left = 0
     Top = 0
-    Width = 418
+    Width = 420
     Height = 260
     Align = alClient
     AutoSize = True
@@ -3471,7 +3471,6 @@ object AboutForm: TAboutForm
       1010131010131010131010131010131010131010131010131010131010131010
       1310101310101310101310101310101310101310101310101310101310101310
       101310101310101310101310101310101310}
-    ExplicitWidth = 420
   end
   object VersionLabel: TfshVersionLabel
     Left = 264
@@ -3495,11 +3494,13 @@ object AboutForm: TAboutForm
     FileSizeFormat = '#,#0" Bytes"'
   end
   object AuthorLabel: TLabel
-    Left = 192
+    Left = 46
     Top = 150
-    Width = 175
+    Width = 351
     Height = 13
-    Caption = 'Maintained by Janusz Szpilewski'
+    Caption = 
+      'Maintained by Janusz Szpilewski <janszpilewski@users.sourceforge' +
+      '.net>'
   end
   object AcknowledgeLabel: TLabel
     Left = 119

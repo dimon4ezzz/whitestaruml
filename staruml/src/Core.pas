@@ -163,8 +163,10 @@ type
     // Class Types
     PElementClass = class of PElement;
 
-    // PMetaElement
-    PMetaElement = class(PObject)private FName: string;
+  // PMetaElement
+  PMetaElement = class(PObject)
+  private
+    FName: string;
   public
     constructor Create; override;
     property Name: string read FName write FName;
