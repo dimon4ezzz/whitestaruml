@@ -200,8 +200,10 @@ type
   // this class has the functionality of storing and restoring view's size.
   // ---------------------------------------------------------------------------
   PAbstractCommand = class(PCommand)
+  private type
+    POrderedViewSet = POrderedSet<PView>;
   private
-    FSizePreservingViews: POrderedSet;
+    FSizePreservingViews: POrderedViewSet;
     FWidthArray: TStringList;
     FHeightArray: TStringList;
   protected
@@ -214,7 +216,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    property SizePreservingViews: POrderedSet read FSizePreservingViews;
+    property SizePreservingViews: POrderedViewSet read FSizePreservingViews;
   end;
 
   // PAbstractCreateDeleteElementsCommand
@@ -2988,7 +2990,7 @@ end;
 constructor PAbstractCommand.Create;
 begin
   inherited;
-  FSizePreservingViews := POrderedSet.Create;
+  FSizePreservingViews := POrderedViewSet.Create;
   FWidthArray := TStringList.Create;
   FHeightArray := TStringList.Create;
 end;
@@ -3003,22 +3005,27 @@ end;
 
 procedure PAbstractCommand.StoreViewSizes;
 var
-  I: Integer;
+  //I: Integer;
   N: PNodeView;
+  View: PView;
 begin
   // Remove from list if the view is not NodeView or is a subview of something.
-  for I := FSizePreservingViews.Count - 1 downto 0 do
-    if (not (FSizePreservingViews.Items[I] is PNodeView)) or
-       ((FSizePreservingViews.Items[I] as PView).OwnerDiagramView = nil) then
-      FSizePreservingViews.Delete(I);
+  for View in FSizePreservingViews do
+  if (not (View is PNodeView)) or
+    (View.OwnerDiagramView = nil) then
+   FSizePreservingViews.Remove(View);
+
   // Store all sizes of size-preserving views.
   FWidthArray.Clear;
   FHeightArray.Clear;
-  for I := 0 to FSizePreservingViews.Count - 1 do
+  //for I := 0 to FSizePreservingViews.Count - 1 do
+  for View in FSizePreservingViews do
   begin
-    N := FSizePreservingViews.Items[I] as PNodeView;
-    FWidthArray.Add(IntToStr(N.Width));
-    FHeightArray.Add(IntToStr(N.Height));
+    if View is PNodeView then begin
+      N := View as PNodeView;
+      FWidthArray.Add(IntToStr(N.Width));
+      FHeightArray.Add(IntToStr(N.Height));
+    end;
   end;
 end;
 

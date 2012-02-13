@@ -3,7 +3,7 @@
   <assemblyIdentity
 	type="win32"
 	name="WhiteStarUML"
-	version="5.2.1.0"
+	version="5.2.3.0"
 	processorArchitecture="*"/>
   <dependency>
 	<dependentAssembly>

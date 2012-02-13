@@ -132,10 +132,23 @@ type
 
   // PDiagramLayout
   PDiagramLayout = class
+  private type
+  PLayoutGraphFunc = function ( const layoutType: PAnsiChar; inputGraph: PAnsiChar;
+   outputGraph: PPAnsiChar): Integer; cdecl;
+  PDeleteOutputGraphFunc = procedure ( outputGraph: PAnsiChar); cdecl;
+  const
+    GvcIntfDll = 'gvc_intf';
+    LayoutGraphFuncName = 'LayoutGraph';
+    DeleteOutputGraphFuncName = 'DeleteOutputGraph';
+
   private
     //DOT: TDOT;
     //NEATO: TNEATO;
+    FGvcIntfDllHandle : cardinal;
+    FLayoutGraphFunc: PLayoutGraphFunc;
+    FDeleteOutputGraphFunc: PDeleteOutputGraphFunc;
     GraphvizPlainOutputParser: PGraphvizPlainOutputParser;
+    function ValidateGvcIntfDllBindings: Boolean;
     procedure SmoothPoints(APoints: PPoints; Times: Integer = 1);
     procedure RoughPoints(APoints: PPoints; Epsilon: Real = 1.1);
     function GetNodeId(ANode: PNodeView): string;
@@ -156,7 +169,7 @@ var
 implementation
 
 uses
-  Types, SysUtils, Forms, GraphVizInterface;
+  Windows, Types, SysUtils, Forms, Dialogs {,GraphVizInterface};
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -373,7 +386,34 @@ begin
   //DOT := nil;
   //NEATO := nil;
   GraphvizPlainOutputParser.Free;
+  FreeLibrary(FGvcIntfDllHandle);
+  FGvcIntfDllHandle := 0;
   inherited;
+end;
+
+function PDiagramLayout.ValidateGvcIntfDllBindings: Boolean;
+begin
+  if FGvcIntfDllHandle = 0 then begin // Try to load the dll
+     Result := False;
+    FGvcIntfDllHandle := LoadLibrary('gvc_intf') ;
+    if FGvcIntfDllHandle <> 0 then
+    begin
+      @FLayoutGraphFunc := GetProcAddress(FGvcIntfDllHandle, LayoutGraphFuncName);
+      if Assigned (FLayoutGraphFunc) then begin
+        @FDeleteOutputGraphFunc := GetProcAddress(FGvcIntfDllHandle, DeleteOutputGraphFuncName);
+        if Assigned (FDeleteOutputGraphFunc) then
+          Result := True;
+      end;
+    end;
+
+ end // End of if
+ else
+  Result := True; // Dll already loaded
+
+  if (Result = False) and (FGvcIntfDllHandle <> 0) then// Unload dll if binding not successful
+    FreeLibrary(FGvcIntfDllHandle);
+
+
 end;
 
 procedure PDiagramLayout.SmoothPoints(APoints: PPoints; Times: Integer = 1);
@@ -595,16 +635,20 @@ begin
   else
     LayoutAlgorithm := 'neato';
 
-  ResultOp := LayoutGraph(PAnsiChar(LayoutAlgorithm),
-    PAnsiChar(AnsiString(Output.Text)),@OutputGraph);
-  assert(ResultOp = 0);
-  PlainOutput := string(OutputGraph);
-  DeleteOutputGraph(OutputGraph);
-  //PlainOutput := DOT.ToPlain(Output.Text)
+  if not ValidateGvcIntfDllBindings then
+     ShowMessage('Function not available: Could not initialize GraphViz DLL library')
+  else begin
+    ResultOp := FLayoutGraphFunc(PAnsiChar(LayoutAlgorithm),
+      PAnsiChar(AnsiString(Output.Text)), @outputGraph);
+    assert(ResultOp = 0);
+    PlainOutput := string(outputGraph);
+    FDeleteOutputGraphFunc(outputGraph);
+    // PlainOutput := DOT.ToPlain(Output.Text)
 
-  Graph := GraphvizPlainOutputParser.Parse(PlainOutput);
-  ApplyToDiagramView(Graph, ADiagramView);
-  Output.Free;
+    Graph := GraphvizPlainOutputParser.Parse(PlainOutput);
+    ApplyToDiagramView(Graph, ADiagramView);
+    Output.Free;
+  end;
 end;
 
 // PDiagramLayout
