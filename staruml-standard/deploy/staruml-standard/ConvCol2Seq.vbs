@@ -286,7 +286,7 @@ End Function
 ' Getting Application Object
 Dim App, Facto, Sel
 Dim SeqDgm, SeqRoleDgm
-Set App = CreateObject("StarUML.StarUMLApplication")
+Set App = CreateObject("WhiteStarUML.WhiteStarUMLApplication")
 Set Facto = App.UMLFactory
 If App.SelectionManager.GetSelectedModelCount = 1 Then
   Set Sel = App.SelectionManager.GetSelectedModelAt(0)
