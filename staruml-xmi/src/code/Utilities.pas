@@ -122,8 +122,9 @@ var
 implementation
 
 uses
-  SysUtils, Windows, HTTPApp, DateUtils,
+  SysUtils, Windows, HTTPUtil, DateUtils,
   Symbols, NLS_XMIAddIn;
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // PXMLUtil
@@ -310,7 +311,8 @@ class function PUtility.EncodeXMLAttributeValue(Value: string): string;
 var
   S: string;
 begin
-  S := HTMLEncode(UTF8Encode(Value));
+  //S := HTMLEscape(UTF8Encode(Value));
+  S := HTMLEscape(Value);
   S := StringReplace(S, #9, '&#x0009;', [rfReplaceAll]);
   S := StringReplace(S, #10, '&#x000a;', [rfReplaceAll]);
   S := StringReplace(S, #13, '&#x000d;', [rfReplaceAll]);

@@ -68,9 +68,9 @@ unit Core;
 interface
 
 uses
-  BasicClasses, GraphicClasses,
   Graphics, Types, Classes, SysUtils, xmldom, XMLIntf, msxmldom, XMLDoc, ComObj,
-  IniFiles;
+  IniFiles, Generics.Collections,
+  BasicClasses, GraphicClasses;
 
 const
   PATH_DELIMITER = '::';
@@ -433,11 +433,13 @@ type
 
   // PElement
   PElement = class(PObject)
+  private type
+    PExtendedAttributeList = TList<PExtendedAttribute>;
   private
     FTag: string;
     FMetaClass: PMetaClass;
     FDocument: PDocument;
-    FExtendedAttributeList: TList;
+    FExtendedAttributeList: PExtendedAttributeList;
     procedure SetTag(Value: string);
     function GetReadOnly: Boolean;
     procedure SetMetaClass(Value: PMetaClass);
@@ -1152,7 +1154,7 @@ var
 implementation
 
 uses
-  Windows, Variants, Forms, ComServ, HTTPApp, NLS_StarUML;
+  Windows, Variants, Forms, ComServ, {HTTPApp,} HTTPUtil, NLS_StarUML;
 
 // -----------------------------------------------------------------------------
 // IsCollectionKey
@@ -2252,7 +2254,7 @@ begin
   inherited;
   FMetaClass := nil;
   FDocument := nil;
-  FExtendedAttributeList := TList.Create;
+  FExtendedAttributeList := PExtendedAttributeList.Create;
 end;
 
 destructor PElement.Destroy;
@@ -2354,12 +2356,10 @@ end;
 
 function PElement.FindExtendedAttribute(Key: string): PExtendedAttribute;
 var
-  I: Integer;
   EA: PExtendedAttribute;
 begin
-  for I := 0 to FExtendedAttributeList.Count - 1 do
+  for EA in  FExtendedAttributeList do
   begin
-    EA := FExtendedAttributeList.Items[I];
     if Trim(EA.Key) = Trim(Key) then
     begin
       Result := EA;
@@ -2698,14 +2698,10 @@ end;
 
 procedure PElement.ClearExtendedAttributes;
 var
-  I: Integer;
   EA: PExtendedAttribute;
 begin
-  for I := FExtendedAttributeList.Count - 1 downto 0 do
-  begin
-    EA := FExtendedAttributeList.Items[I];
+  for EA in FExtendedAttributeList do
     EA.Free;
-  end;
   FExtendedAttributeList.Clear;
 end;
 
@@ -5892,7 +5888,8 @@ begin
   S := '<' + XPD_PREFIX + ':' + XPD_REFERENCE;
   S := S + ' ' + XPD_NAME + '="' + Name + '"';
   if Pathname <> '' then
-    S := S + ' ' + XPD_PATHNAME + '="' + HTMLEncode(UTF8Encode(Pathname)) + '"';
+    //S := S + ' ' + XPD_PATHNAME + '="' + HTMLEscape(UTF8Encode(Pathname)) + '"';
+   S := S + ' ' + XPD_PATHNAME + '="' + HTMLEscape(Pathname) + '"';
   S := S + '>';
   Result := S;
 end;
@@ -5969,8 +5966,11 @@ begin
   begin
     if Value <> Default then
     begin
-      Attr := GetAttrBeginNode(Key, XPD_STRING) + HTMLEncode(UTF8Encode(Value))
+      //Attr := GetAttrBeginNode(Key, XPD_STRING) + HTMLEscape(UTF8Encode(Value))
+      Attr := GetAttrBeginNode(Key, XPD_STRING) + HTMLEscape(Value)
         + GetAttrEndNode;
+
+
       XMLStrings.Add(Attr);
     end;
   end;
