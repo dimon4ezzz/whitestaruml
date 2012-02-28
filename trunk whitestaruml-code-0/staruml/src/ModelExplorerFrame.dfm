@@ -1,8 +1,9 @@
 object ModelExplorerPanel: TModelExplorerPanel
   Left = 0
   Top = 0
-  Width = 250
-  Height = 197
+  Width = 451
+  Height = 304
+  Align = alClient
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -13,15 +14,15 @@ object ModelExplorerPanel: TModelExplorerPanel
   object ClientPanel: TFlatPanel
     Left = 0
     Top = 26
-    Width = 250
-    Height = 171
+    Width = 451
+    Height = 278
     Align = alClient
     TabOrder = 0
     object ModelTree: TVirtualStringTree
       Left = 1
       Top = 1
-      Width = 248
-      Height = 169
+      Width = 449
+      Height = 276
       Align = alClient
       BorderStyle = bsNone
       ChangeDelay = 50
@@ -29,7 +30,6 @@ object ModelExplorerPanel: TModelExplorerPanel
       DragType = dtVCL
       EditDelay = 300
       Header.AutoSizeIndex = 0
-      Header.DefaultHeight = 17
       Header.Font.Charset = DEFAULT_CHARSET
       Header.Font.Color = clWindowText
       Header.Font.Height = -11
@@ -61,7 +61,7 @@ object ModelExplorerPanel: TModelExplorerPanel
   object ModelExplorerToolbar: TToolBar
     Left = 0
     Top = 0
-    Width = 250
+    Width = 451
     Height = 26
     ButtonWidth = 25
     Caption = 'ModelExplorerToolbar'
@@ -144,7 +144,7 @@ object ModelExplorerPanel: TModelExplorerPanel
     Left = 64
     Top = 88
     Bitmap = {
-      494C010106000800580010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010106000800640010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

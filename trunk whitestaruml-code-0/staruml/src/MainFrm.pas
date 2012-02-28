@@ -48,17 +48,17 @@
 interface
 
 uses
-  BasicClasses, Core, ViewCore, ExtCore, UMLModels, UMLViews, UMLAux, Handlers,
-  DiagramEditors, QuickDialogFrm,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls,
-  Forms, GraphicClasses, Dialogs, ExtCtrls, StdCtrls, ImgList, dxBar,
+  Forms, Dialogs, ExtCtrls, StdCtrls, ImgList, dxBar,
+  BasicClasses, GraphicClasses, Core, ViewCore, ExtCore, UMLModels, UMLViews,
+  UMLAux, Handlers, DiagramEditors, QuickDialogFrm,
   ComCtrls, ToolWin, Menus, dxBarExtItems, Registry, ExtDlgs,
   AreaTitleBar, InspectorFrm, WorkingAreaFrm,
   FlatPanel, CompactFontDlg, SaveDialogEx, DiagramExplorerFrame,
-  dxDockControl, dxDockPanel, ModelExplorerFrame, VirtualTrees,
-  MessageFrame, OutputFrame, AttachEdt, DocuEdt, PropEdtWithJvclInspector,
-  cxClasses, NavBarFrameVclImpl, NavBarFrame, MenuManager, CategoryButtons, cxPC,
-  JvBaseDlg, JvDesktopAlert;
+  JvBaseDlg, JvDesktopAlert, cxClasses, AttachEdt, DocuEdt,
+  ModelExplorerFrame, MessageFrame, OutputFrame, NavBarFrame,
+  NavBarFrameVclImpl, VirtualTrees, PropEdtWithJvclInspector, MenuManager,
+  dxDockPanel, dxDockControl, cxPC;
 
 const
   FILE_EXT_BMP = '.BMP';
@@ -307,7 +307,6 @@ type
     dxTabContainerDockSite1: TdxTabContainerDockSite;
     ModelExplorerDockPanel: TdxDockPanel;
     DiagramExplorerDockPanel: TdxDockPanel;
-    ModelExplorer: TModelExplorerPanel;
     DiagramExplorer: TDiagramExplorerPanel;
     PropertiesDockPanel: TdxDockPanel;
     WorkingAreaDockPanel: TdxDockPanel;
@@ -362,6 +361,7 @@ type
     ModelAddFrame: TdxBarButton;
     DocumentStateImageList: TImageList;
     DesktopAlert: TJvDesktopAlert;
+    ModelExplorer: TModelExplorerPanel;
     PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);

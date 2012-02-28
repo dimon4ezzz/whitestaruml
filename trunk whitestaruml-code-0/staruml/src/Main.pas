@@ -321,6 +321,7 @@ type
     procedure ProcessPropertyAction;
     procedure BrowseElement(AModel: PModel); overload;
     procedure BrowseElement(PathName: string); overload;
+    procedure SelectModelExplorerDockPanel(AModel: PModel);
   public
     constructor Create;
     destructor Destroy; override;
@@ -520,7 +521,7 @@ begin
     ExecuteFileNew;
     if MainForm.ModelExplorerDockPanel.Visible then
     begin
-      MainForm.ModelExplorer.SelectWithFocus(StarUMLApplication.Project);
+      SelectModelExplorerDockPanel(StarUMLApplication.Project);
       MainForm.ModelExplorer.Expand(StarUMLApplication.Project);
     end;
     if OptionDepository.ShowNewDialog then
@@ -2713,8 +2714,7 @@ begin
     MainForm.InspectorFrame.Project := StarUMLApplication.Project;
 
     //-- MainForm.BrowserFrame.SelectInModelExplorer(StarUMLApplication.Project);
-    if MainForm.ModelExplorerDockPanel.Visible then
-      MainForm.ModelExplorer.SelectWithFocus(StarUMLApplication.Project);
+    SelectModelExplorerDockPanel(StarUMLApplication.Project);
     if StarUMLApplication.DocumentElementCount <> 0 then begin
       Doc := (StarUMLApplication.DocumentElements[0]).Document;
       if (Doc <> nil) and Doc.ReadOnly then
@@ -3544,9 +3544,7 @@ begin
         MainForm.OpenUnitDialog.FileName);
         MainForm.ModelExplorer.Expand(StarUMLApplication.SelectedModels[0]);
         StarUMLApplication.SelectModel(AUnit.DocumentElement as PModel);
-        if MainForm.ModelExplorerDockPanel.Visible then
-          //--MainForm.BrowserFrame.SelectInModelExplorer(AUnit.DocumentElement as PModel);
-          MainForm.ModelExplorer.SelectWithFocus(AUnit.DocumentElement as PModel);
+        SelectModelExplorerDockPanel(AUnit.DocumentElement as PModel);
       end;
     except
       on EReadOnlyDocument do MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
@@ -4113,8 +4111,7 @@ begin
         MainForm.WorkingAreaFrame.OpenDiagram(AModel.Views[0].GetDiagramView.Diagram);
       end;
     end;
-    if MainForm.ModelExplorerDockPanel.Visible then
-      MainForm.ModelExplorer.SelectWithFocus(AModel);
+    SelectModelExplorerDockPanel(AModel);
   end;
 end;
 
@@ -4125,6 +4122,19 @@ begin
   M := StarUMLApplication.Project.FindByRelativePathname(PathName);
   if M <> nil then
     BrowseElement(M);
+end;
+
+procedure PMain.SelectModelExplorerDockPanel(AModel: PModel);
+begin
+  // Is ModelExplorerDockPanel inside tab panel?
+  if (MainForm.ModelExplorerDockPanel.TabContainer = nil)
+    // Is ModelExplorerDockPanel active panel?
+    or (MainForm.ModelExplorerDockPanel.TabContainer.ActiveChild =
+      MainForm.ModelExplorerDockPanel ) then
+
+     if MainForm.ModelExplorerDockPanel.Visible then
+        MainForm.ModelExplorer.SelectWithFocus(AModel);
+
 end;
 
 // Inner utility methods

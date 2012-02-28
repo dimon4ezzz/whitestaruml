@@ -137,9 +137,9 @@ uses
   MenuManagerTdxImpl in 'MenuManagerTdxImpl.pas',
   QuickDialogFrmTdxBase in 'QuickDialogFrmTdxBase.pas' {QuickDialogFormTdxBase},
   MainFrm in 'MainFrm.pas' {MainForm},
-  PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas',
   CategoryButtons in 'CategoryButtons.pas',
-  WhiteStarUML_TLB in 'WhiteStarUML_TLB.pas';
+  WhiteStarUML_TLB in 'WhiteStarUML_TLB.pas',
+  PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas';
 
 {$R *.TLB}
 
@@ -155,15 +155,15 @@ var
 
 begin
   Application.Initialize;
+{$IFDEF RELEASE}
   // Show Splash Form.
-  //if (False) then
   if (ComServer.StartMode = smStandalone) then
   begin
     SplashForm := TSplashForm.Create(Application);
     SplashForm.Show;
     SplashForm.Repaint;
   end;
-
+{$ENDIF RELEASE}
   Application.Title := 'WhiteStarUML';
   Application.HelpFile := 'StarUML.chm';
   Application.CreateForm(TMainForm, MainForm);

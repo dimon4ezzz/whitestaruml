@@ -20,11 +20,11 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_DebugInformation>false</DCC_DebugInformation>
 			<DCC_ExeOutput>..\deploy</DCC_ExeOutput>
 			<BRCC_Verbose>true</BRCC_Verbose>
 			<BRCC_CompilerToUse>rc</BRCC_CompilerToUse>
 			<DCC_UsePackage>dxCoreRS14;cxLibraryRS14;cxDataRS14;dxThemeRS14;cxEditorsRS14;cxSchedulerGridRS14;cxSchedulerRS14;cxExportRS14;dxComnRS14;dxDockingRS14;cxBarEditItemRS14;dxBarExtItemsRS14;dxBarRS14</DCC_UsePackage>
-			<DCC_DebugDCUs>true</DCC_DebugDCUs>
 			<DCC_UnitSearchPath>..\components\plastic-components\src;option-manager;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_UNSAFE_CODE>true</DCC_UNSAFE_CODE>
@@ -36,7 +36,7 @@
 			<DCC_F>false</DCC_F>
 			<DCC_S>false</DCC_S>
 			<DCC_N>true</DCC_N>
-			<DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
 			<DCC_UNSAFE_CAST>true</DCC_UNSAFE_CAST>
 			<DCC_E>false</DCC_E>
 			<DCC_AssertionsAtRuntime>false</DCC_AssertionsAtRuntime>
@@ -44,13 +44,14 @@
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
 			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
 			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
-			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_DebugDCUs>true</DCC_DebugDCUs>
+			<DCC_DebugInformation>true</DCC_DebugInformation>
+			<DCC_SymbolReferenceInfo>2</DCC_SymbolReferenceInfo>
 			<DCC_AssertionsAtRuntime>true</DCC_AssertionsAtRuntime>
 			<DCC_RunTimeTypeInfo>true</DCC_RunTimeTypeInfo>
-			<DCC_Optimize>false</DCC_Optimize>
 			<DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
@@ -233,10 +234,13 @@
 			<DCCReference Include="MainFrm.pas">
 				<Form>MainForm</Form>
 			</DCCReference>
-			<DCCReference Include="PGMR101Lib_TLB.pas"/>
 			<DCCReference Include="CategoryButtons.pas"/>
 			<DCCReference Include="WhiteStarUML_TLB.pas"/>
+			<DCCReference Include="PGMR101Lib_TLB.pas"/>
+			<None Include="ModelSupport_WhiteStarUML\MainFrm\default.txvpck"/>
+			<None Include="ModelSupport_WhiteStarUML\default.txvpck"/>
 			<RidlCompile Include="WhiteStarUML.ridl"/>
+			<None Include="WhiteStarUML.manifest"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
@@ -269,7 +273,7 @@
 						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
 						<VersionInfo Name="MajorVer">5</VersionInfo>
 						<VersionInfo Name="MinorVer">2</VersionInfo>
-						<VersionInfo Name="Release">3</VersionInfo>
+						<VersionInfo Name="Release">4</VersionInfo>
 						<VersionInfo Name="Build">0</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
@@ -282,7 +286,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">5.2.3.0</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">5.2.4.0</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>

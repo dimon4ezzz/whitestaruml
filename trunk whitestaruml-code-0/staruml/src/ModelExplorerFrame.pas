@@ -521,6 +521,7 @@ var
   Node: PVirtualNode;
   NodeData: PNodeData;
   MetaNode: PMetaNode;
+  AddNodeResult: Integer;
 begin
   Node := nil;
   MetaNode := FindMetaNode(Model);
@@ -540,7 +541,8 @@ begin
       NodeData.Model := Model;
       NodeData.MetaNode := MetaNode;
     end;
-    NodeHashTable.AddObject(Model.GUID, TObject(Node));
+
+    AddNodeResult := NodeHashTable.AddObject(Model.GUID, TObject(Node));
   end;
   Result := Node;
 end;
@@ -1251,6 +1253,7 @@ var
       vkPrivate:   Result := 48;
       vkProtected: Result := 47;
       vkPublic:    Result := 46;
+      else         Result := -1;
     end;
   end;
 
@@ -1261,6 +1264,7 @@ var
       vkPrivate:   Result := 52;
       vkProtected: Result := 51;
       vkPublic:    Result := 50;
+      else         Result := -1;
     end;
   end;
 
@@ -1274,6 +1278,7 @@ var
       pkChoice: Result := 40;
       pkJunction: Result := 39;
       pkDecision: Result := 36;
+      else  Result := -1;
     end;
   end;
 

@@ -51,7 +51,9 @@ uses
   Types, Classes, SysUtils, IniFiles, ComObj,
   Generics.Defaults, Generics.Collections;
 
-type
+  procedure DebugMsg(const Msg: String);
+
+  type
   // Forward Declarations
   PAutoObject = class;
   POrderedSet = class;
@@ -486,10 +488,15 @@ var
 implementation
 
 uses
-  StrUtils, Variants, Forms, ComServ;
+  Windows, StrUtils, Variants, Forms, ComServ;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Utility Functions
+
+procedure DebugMsg(const Msg: String);
+begin
+    OutputDebugString(PChar(Msg))
+end;
 
 function CreateGUIDBase64: string;
 var
