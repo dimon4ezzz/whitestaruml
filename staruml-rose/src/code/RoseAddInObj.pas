@@ -73,17 +73,31 @@ type
 implementation
 
 uses
-  ComServ, Forms, RoseImportFrm, WSRoseAddIn_TLB;
+  SysUtils, ComServ, Forms, RoseImportFrm, Dialogs, WSRoseAddIn_TLB;
 
 ////////////////////////////////////////////////////////////////////////////////
 // TRoseAddInObj
 
 procedure TRoseAddInObj.Initialize;
+var
+  NameInput: array [1 .. MAX_PATH] of WideChar;
+  FileName: string;
+  FileNameLength: Cardinal;
 begin
   inherited;
   try
-    StarUMLApp := CreateOleObject('WhiteStarUML.WhiteStarUMLApplication') as IStarUMLApplication;
+    FileNameLength := GetModuleFileName(0, @NameInput, MAX_PATH);
+    if FileNameLength > 0 then
+      FileName := ExtractFileName(WideCharToString(@NameInput));
+
+    if FileName = 'WhiteStarUML.exe' then
+      StarUMLApp := CoWhiteStarUMLApplication.Create
+    else
+      StarUMLApp := CreateOleObject('StarUML.StarUMLApplication')
+        as IStarUMLApplication;
+
     Application.Handle := StarUMLApp.Handle;
+
   except
     assert(False,'Could not instantiate Application Object')
   end;

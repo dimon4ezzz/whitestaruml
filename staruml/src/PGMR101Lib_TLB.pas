@@ -12,13 +12,13 @@ unit PGMR101Lib_TLB;
 // ************************************************************************ //
 
 // $Rev: 17244 $
-// File generated on 27/11/2011 14:07:44 from Type Library described below.
+// File generated on 2/25/2012 11:30:04 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\StarUMLexe\StarUML\Pgmr101.ocx (1)
+// Type Lib: C:\JS\Delphi\WhiteStarDevInstall\Pgmr101.ocx (1)
 // LIBID: {11D80594-533C-11D4-B97E-004005F9CBA4}
 // LCID: 0
-// Helpfile: C:\JS\Delphi\StarUMLexe\StarUML\Pgmr101.hlp
+// Helpfile: C:\JS\Delphi\WhiteStarDevInstall\Pgmr101.hlp
 // HelpString: Pgmr101 ActiveX Control module
 // DepndLst: 
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)

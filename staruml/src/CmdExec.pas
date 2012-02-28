@@ -6309,8 +6309,8 @@ begin
     if (R <> psNotIntialized) and (R <> psError) then begin
       try
         FNewStereotype := AParser.StereoType;
-        //FNewName := AParser.Name;
-        FNewName := Value;
+        FNewName := AParser.Name;
+        //FNewName := Value;
         if AParser.Visibility <> '' then
           FNewVisibility := SymbolToUMLVisibilityKind(AParser.Visibility)
         else FNewVisibility := FOldVisibility;
@@ -6385,8 +6385,8 @@ begin
     if (R <> psNotIntialized) and (R <> psError) then begin
       try
         FNewStereotype := AParser.StereoType;
-        //FNewName := AParser.RoleName;
-        FNewName :=  Value;
+        FNewName := AParser.RoleName;
+        //FNewName :=  Value;
         if AParser.Visibility <> '' then
           FNewVisibility := SymbolToUMLVisibilityKind(AParser.Visibility)
         else FNewVisibility := FOldVisibility;
@@ -6475,8 +6475,8 @@ begin
     R := AParser.Parse(Value);
     if (R <> psNotIntialized) and (R <> psError) then begin
       FNewStereotype := AParser.StereoType;
-      //FNewName := AParser.ObjectName;
-      FNewName := Value;
+      FNewName := AParser.ObjectName;
+      //FNewName := Value;
       if AParser.Visibility <> '' then
         FNewVisibility := SymbolToUMLVisibilityKind(AParser.Visibility)
       else FNewVisibility := FOldVisibility;
@@ -6580,8 +6580,8 @@ begin
     if (R <> psNotIntialized) and (R <> psError) then begin
       try
         FNewStereotype := AParser.Stereotype;
-        //FNewName := AParser.Name;
-        FNewName := Value;
+        FNewName := AParser.Name;
+        //FNewName := Value;
         if AParser.Visibility <> '' then
           FNewVisibility := SymbolToUMLVisibilityKind(AParser.Visibility)
         else FNewVisibility := FOldVisibility;
@@ -6851,8 +6851,8 @@ begin
         else if Aparser.Visibility = '' then FNewVisibility := FOldVisibility
         else Exception.Create(ERR_CMD_EXPRESSION_PARSING);
         FNewStereotype := AParser.StereoType;
-        //FNewName := AParser.Name;
-        FNewName := Value;
+        FNewName := AParser.Name;
+        //FNewName := Value;
         CheckNameValidity(FNewStereotype);
         if FNewStereotype <> FOldStereotype then
           FNewProfile := GetProfile(AModel as PExtensibleModel, FNewStereotype);
