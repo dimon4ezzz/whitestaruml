@@ -429,18 +429,21 @@ end;
 procedure TPropertyEditor.IntersectWithProperties(APropertySpecifier: PPropertySpecifier;
   IsDiffKind: Boolean);
 var
+  I: Integer;
   P: PProperty;
 begin
-  for P in PropertyList do
+  //for P in PropertyList do
+  for I := PropertyList.Count - 1 downto 0 do // Reverse iteration needed to remove items from the end
   begin
     // Remove property from PropertyList if:
     // is not present in the given property specifier list
     // or is unique
     // or is of a different MetaClass kind and only the same kind is accepted
+    P := PropertyList.Items[I];
     if (not APropertySpecifier.ContainsProperty(P.Key)) or P.IsUnique or
       (IsDiffKind and P.OnlyTheSameKind) then
     begin
-      PropertyList.Remove(P);
+      PropertyList.Delete(I);
       P.Free;
     end;
   end;
