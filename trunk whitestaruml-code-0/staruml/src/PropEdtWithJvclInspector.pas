@@ -13,9 +13,6 @@ type
     procedure InspectorItemEdit(Sender: TJvCustomInspector;
       Item: TJvCustomInspectorItem; var DisplayStr: string);
   private
-    { Private declarations }
-    //RowList: TRowList; // Cache of rows representing properties
-    //LastPropertyButtonClicked: string;
     FElemsHolder: TInspectorElemsHolder;
 private
     procedure ClearRows;
@@ -45,8 +42,6 @@ private
 
   end;
 
-//var
-  //PropertyEditorWithJvclInspector: TPropertyEditorWithJvclInspector;
 
 implementation
 
@@ -258,14 +253,8 @@ begin
   begin
     for Row in FElemsHolder do
     begin
-      //Row := RowList[I];
       E := FInspectingElements[0] as PElement;
       Val := PropertyAdaptor.GetPropertyValue(E, Row.Item.Name);
-      {if (Row.Item is TJvInspectorStringItemWithNameImage) or
-          (Row.Item is TJvInspectorTImageTextItem) then
-        Row.Item.Data.AsString := Val
-      else if Row.Item is TJvInspectorBooleanItemWithNameImage then
-        Row.Item.Data.AsOrdinal := Integer(StrToBool(Val))}
       Row.Item.DisplayValue := Val;
     end
   end
@@ -274,13 +263,11 @@ begin
   begin
     for Row in FElemsHolder do
     begin
-      Val := MixPropertyValue(Row.Item.Name);
-      {if (Row.Item is TJvInspectorStringItemWithNameImage) or
-          (Row.Item is TJvInspectorTImageTextItem) then
-        Row.Item.Data.AsString := Val
-      else if Row.Item is TJvInspectorBooleanItemWithNameImage then
-        Row.Item.Data.AsOrdinal := Integer(StrToBool(Val))}
-      Row.Item.DisplayValue := Val;
+      try
+        Val := MixPropertyValue(Row.Item.Name);
+        Row.Item.DisplayValue := Val;
+      except
+      end;
     end;
   end;
   Inspector.EndUpdate;
@@ -294,15 +281,6 @@ end;
 procedure TPropertyEditorWithJvclInspector.SetEnabled(Value: Boolean);
 begin
   inherited;
-  if Value then
-  {begin
-    Inspector.Painter.NameFont.Color := clWindow;
-    Inspector.Painter.ValueFont.Color := clWindow
-  end
-  else
-  begin
-    Inspector.Painter.NameFont.Color := clBtnFace;
-    Inspector.Painter.ValueFont.Color := clBtnFace;
-  end}
 end;
+
 end.
