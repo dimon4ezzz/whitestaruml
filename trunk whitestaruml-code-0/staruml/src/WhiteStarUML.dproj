@@ -21,7 +21,7 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DCC_DebugInformation>false</DCC_DebugInformation>
-			<DCC_ExeOutput>C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML</DCC_ExeOutput>
+			<DCC_ExeOutput>..\deploy</DCC_ExeOutput>
 			<BRCC_Verbose>true</BRCC_Verbose>
 			<BRCC_CompilerToUse>rc</BRCC_CompilerToUse>
 			<DCC_UsePackage>dxCoreRS14;cxLibraryRS14;cxDataRS14;dxThemeRS14;cxEditorsRS14;cxSchedulerGridRS14;cxSchedulerRS14;cxExportRS14;dxComnRS14;dxDockingRS14;cxBarEditItemRS14;dxBarExtItemsRS14;dxBarRS14</DCC_UsePackage>
@@ -31,7 +31,7 @@
 			<DCC_UNSAFE_TYPE>true</DCC_UNSAFE_TYPE>
 			<DCC_Platform>x86</DCC_Platform>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_DependencyCheckOutputName>..\..\..\WhiteStarDevInstall\WhiteStarUML\WhiteStarUML.exe</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>..\deploy\WhiteStarUML.exe</DCC_DependencyCheckOutputName>
 			<DCC_K>false</DCC_K>
 			<DCC_F>false</DCC_F>
 			<DCC_S>false</DCC_S>
@@ -237,8 +237,6 @@
 			<DCCReference Include="CategoryButtons.pas"/>
 			<DCCReference Include="WhiteStarUML_TLB.pas"/>
 			<DCCReference Include="PGMR101Lib_TLB.pas"/>
-			<None Include="ModelSupport_WhiteStarUML\MainFrm\default.txvpck"/>
-			<None Include="ModelSupport_WhiteStarUML\default.txvpck"/>
 			<RidlCompile Include="WhiteStarUML.ridl"/>
 			<None Include="WhiteStarUML.manifest"/>
 			<BuildConfiguration Include="Base">
