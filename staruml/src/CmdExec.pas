@@ -3005,15 +3005,18 @@ end;
 
 procedure PAbstractCommand.StoreViewSizes;
 var
-  //I: Integer;
+  I: Integer;
   N: PNodeView;
   View: PView;
 begin
   // Remove from list if the view is not NodeView or is a subview of something.
-  for View in FSizePreservingViews do
-  if (not (View is PNodeView)) or
-    (View.OwnerDiagramView = nil) then
-   FSizePreservingViews.Remove(View);
+  //for View in FSizePreservingViews do
+  for I := 0 to FSizePreservingViews.Count - 1 do begin
+    View := FSizePreservingViews[I];
+    if (not (View is PNodeView)) or
+      (View.OwnerDiagramView = nil) then
+     FSizePreservingViews.Remove(View);
+  end;
 
   // Store all sizes of size-preserving views.
   FWidthArray.Clear;

@@ -14,6 +14,7 @@ type
       Item: TJvCustomInspectorItem; var DisplayStr: string);
   private
     FElemsHolder: TInspectorElemsHolder;
+    FUpdating: Boolean;
 private
     procedure ClearRows;
     procedure ItemDataValueChanged(Sender: TObject);
@@ -84,8 +85,9 @@ var
 begin
   InspectorItem := Sender as TJvCustomInspectorItem;
 
-  PropertyAdaptor.SetPropertyValue(FInspectingElements, InspectorItem.Name,
-    InspectorItem.DisplayValue);
+  if not FUpdating then // If being updated programatically do not propagate event
+    PropertyAdaptor.SetPropertyValue(FInspectingElements, InspectorItem.Name,
+      InspectorItem.DisplayValue);
 end;
 
 
@@ -247,6 +249,7 @@ var
   Val: string;
 
 begin
+  FUpdating := True;
   Inspector.BeginUpdate;
   // Update PropertyEditor according to single element
   if FInspectingElements.Count = 1 then
@@ -271,6 +274,7 @@ begin
     end;
   end;
   Inspector.EndUpdate;
+  FUpdating := False;
 end;
 
 procedure TPropertyEditorWithJvclInspector.ApplyChanges;

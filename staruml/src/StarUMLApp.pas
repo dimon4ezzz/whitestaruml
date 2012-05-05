@@ -2550,9 +2550,16 @@ begin
 end;
 
 procedure PStarUMLApplication.ChangeTypeExpression(AModel: PModel; TypeExpr: string; TypeRef: PModel);
+var
+ CurrentTypeExpression: string;
+ CurrentTypeReference: PElement;
 begin
-  if (AModel.MOF_GetAttribute('TypeExpression') <> TypeExpr) or
-     (AModel.MOF_GetReference('Type_') <> TypeRef) then
+  CurrentTypeExpression := AModel.MOF_GetAttribute('TypeExpression');
+  CurrentTypeReference := AModel.MOF_GetReference('Type_');
+  //if (AModel.MOF_GetAttribute('TypeExpression') <> TypeExpr) or
+  //   (AModel.MOF_GetReference('Type_') <> TypeRef) then
+  if (CurrentTypeExpression <> TypeExpr)
+    or (CurrentTypeReference <> TypeRef) then
   begin
     CheckReadOnly(AModel);
     CommandExecutor.ChangeTypeExpression(AModel, TypeExpr, TypeRef);
