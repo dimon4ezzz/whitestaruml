@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XPD:UNIT xmlns:XPD="http://www.plasticsoftware.com/products/plastic" version="1">
+<XPD:HEADER>
+<XPD:SUBUNITS>
+<XPD:UNIT owner="76nh5M9pN0WFzpF0XUibSAAA" index="5">J2SE13 (javax.transaction).unt</XPD:UNIT>
+<XPD:UNIT owner="76nh5M9pN0WFzpF0XUibSAAA" index="4">J2SE13 (javax.sound).unt</XPD:UNIT>
+<XPD:UNIT owner="76nh5M9pN0WFzpF0XUibSAAA" index="3">J2SE13 (javax.rmi).unt</XPD:UNIT>
+<XPD:UNIT owner="76nh5M9pN0WFzpF0XUibSAAA" index="2">J2SE13 (javax.naming).unt</XPD:UNIT>
+<XPD:UNIT owner="76nh5M9pN0WFzpF0XUibSAAA" index="1">J2SE13 (javax.swing).unt</XPD:UNIT>
+<XPD:UNIT owner="76nh5M9pN0WFzpF0XUibSAAA" index="0">J2SE13 (javax.accessibility).unt</XPD:UNIT>
+</XPD:SUBUNITS>
+</XPD:HEADER>
+<XPD:BODY>
+<XPD:OBJ name="DocumentElement" type="UMLPackage" guid="76nh5M9pN0WFzpF0XUibSAAA">
+<XPD:ATTR name="Name" type="string">javax</XPD:ATTR>
+</XPD:OBJ>
+</XPD:BODY>
+</XPD:UNIT>

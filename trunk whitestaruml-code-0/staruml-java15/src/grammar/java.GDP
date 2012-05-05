@@ -1,0 +1,33 @@
+[Grammars]
+	java.GDL, Java
+
+[Output]
+	java.GMR, _java
+
+[Samples]
+	sample.TXT, NULL, compilation_unit
+	\, compilation_unit
+
+[Breakpoints]
+	Position=sample.TXT,756
+	Position=sample.TXT,640
+	Position=sample.TXT,788
+
+[Project Info]
+Version = 2
+
+
+[Project Settings]
+	ParseEntireInput = Y
+	InsertErrorNodes = Y
+	ReportParseTimes = N
+	StepIntoTerminals = Y
+	StepIntoSpaces = N
+	StepIntoTokens = N
+	StackShowBacktrackSymbols = N
+	BuildDebugTree = Y
+	ExpandNodesOption = 0
+	DataSourceOption = 0
+	SaveCache = Y
+	SaveTree = Y
+	SaveErrors = Y
