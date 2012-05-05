@@ -3298,13 +3298,16 @@ end;
 function PExtensionManager.FindIncludedProfile(AName: string): PProfile;
 var
   I: Integer;
+  Profile: PProfile;
 begin
   Result := nil;
-  for I := 0 to FIncludedProfiles.Count - 1 do
-    if GetIncludedProfile(I).Name = AName then begin
+  for I := 0 to FIncludedProfiles.Count - 1 do begin
+    Profile := GetIncludedProfile(I);
+    if Profile.Name = AName then begin
       Result := GetIncludedProfile(I);
       Exit;
     end;
+  end;
 end;
 
 function PExtensionManager.FindStereotype(AProfile, AName: string; BaseClass: string): PStereotype;
