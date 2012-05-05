@@ -4,7 +4,7 @@ object ProfileManagerForm: TProfileManagerForm
   BorderStyle = bsDialog
   Caption = 'Profile Manager'
   ClientHeight = 316
-  ClientWidth = 592
+  ClientWidth = 626
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object ProfileManagerForm: TProfileManagerForm
   OnCreate = FormCreate
   OnShow = FormShow
   DesignSize = (
-    592
+    626
     316)
   PixelsPerInch = 96
   TextHeight = 13
@@ -30,10 +30,10 @@ object ProfileManagerForm: TProfileManagerForm
     FocusControl = AllProfilesListView
   end
   object IncludedProfilesLabel: TLabel
-    Left = 340
+    Left = 363
     Top = 20
     Width = 83
-    Height = 13
+    Height = 10
     Caption = 'Included &profiles:'
     FocusControl = IncludedProfilesListView
   end
@@ -47,14 +47,15 @@ object ProfileManagerForm: TProfileManagerForm
   object SepBevel: TBevel
     Left = 8
     Top = 279
-    Width = 576
+    Width = 601
     Height = 4
     Anchors = [akLeft, akTop, akRight, akBottom]
     Shape = bsTopLine
+    ExplicitWidth = 599
   end
   object DefaultProfileIconImage: TImage
     Left = 8
-    Top = 279
+    Top = 263
     Width = 32
     Height = 32
     AutoSize = True
@@ -133,8 +134,8 @@ object ProfileManagerForm: TProfileManagerForm
     Visible = False
   end
   object CloseButton: TButton
-    Left = 400
-    Top = 287
+    Left = 428
+    Top = 285
     Width = 88
     Height = 23
     Anchors = [akRight, akBottom]
@@ -143,9 +144,10 @@ object ProfileManagerForm: TProfileManagerForm
     Default = True
     TabOrder = 4
     OnClick = CloseButtonClick
+    ExplicitLeft = 426
   end
   object ExcludeButton: TButton
-    Left = 260
+    Left = 263
     Top = 116
     Width = 73
     Height = 23
@@ -154,8 +156,8 @@ object ProfileManagerForm: TProfileManagerForm
     OnClick = ExcludeButtonClick
   end
   object IncludeButton: TButton
-    Left = 260
-    Top = 88
+    Left = 263
+    Top = 87
     Width = 73
     Height = 23
     Caption = '&Include >'
@@ -165,7 +167,7 @@ object ProfileManagerForm: TProfileManagerForm
   object AllProfilesListView: TListView
     Left = 8
     Top = 36
-    Width = 245
+    Width = 249
     Height = 153
     Columns = <
       item
@@ -183,9 +185,9 @@ object ProfileManagerForm: TProfileManagerForm
     OnDblClick = AllProfilesListViewDblClick
   end
   object IncludedProfilesListView: TListView
-    Left = 340
+    Left = 342
     Top = 36
-    Width = 245
+    Width = 267
     Height = 153
     Columns = <
       item
@@ -206,7 +208,7 @@ object ProfileManagerForm: TProfileManagerForm
     Left = 538
     Top = 8
     Width = 46
-    Height = 24
+    Height = 22
     Align = alNone
     AutoSize = True
     Caption = 'ToolBar'
@@ -216,7 +218,7 @@ object ProfileManagerForm: TProfileManagerForm
     TabOrder = 5
     object LargeIconButton: TToolButton
       Left = 0
-      Top = 2
+      Top = 0
       Hint = 'Large Icon'
       AutoSize = True
       Caption = 'Large Icon'
@@ -227,7 +229,7 @@ object ProfileManagerForm: TProfileManagerForm
     end
     object SmallIconButton: TToolButton
       Left = 23
-      Top = 2
+      Top = 0
       Hint = 'Small Icon'
       AutoSize = True
       Caption = 'Small Icon'
@@ -237,29 +239,31 @@ object ProfileManagerForm: TProfileManagerForm
     end
   end
   object HelpButton: TButton
-    Left = 493
-    Top = 287
+    Left = 521
+    Top = 285
     Width = 88
     Height = 23
     Anchors = [akRight, akBottom]
     Caption = '&Help'
     TabOrder = 6
     OnClick = HelpButtonClick
+    ExplicitLeft = 519
   end
   object DescPanel: TFlatPanel
     Left = 8
     Top = 214
-    Width = 577
+    Width = 602
     Height = 58
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 7
+    ExplicitWidth = 600
     DesignSize = (
-      577
+      602
       58)
     object DescMemo: TMemo
       Left = 5
       Top = 5
-      Width = 567
+      Width = 596
       Height = 48
       Anchors = [akLeft, akTop, akRight, akBottom]
       BevelInner = bvNone
@@ -268,17 +272,18 @@ object ProfileManagerForm: TProfileManagerForm
       ImeName = #54620#44397#50612'('#54620#44544') (MS-IME98)'
       ReadOnly = True
       TabOrder = 0
+      ExplicitWidth = 640
     end
   end
   object ProfilesSmallImageList: TImageList
-    Left = 76
-    Top = 288
+    Left = 132
+    Top = 264
   end
   object ToolBarImageList: TImageList
-    Left = 500
+    Left = 468
     Top = 4
     Bitmap = {
-      494C010102000400080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101020004000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -420,7 +425,7 @@ object ProfileManagerForm: TProfileManagerForm
   object ProfilesLargeImageList: TImageList
     Height = 32
     Width = 32
-    Left = 44
-    Top = 280
+    Left = 76
+    Top = 264
   end
 end

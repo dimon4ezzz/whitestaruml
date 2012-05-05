@@ -33,6 +33,12 @@
 			<Projects Include="..\staruml-xmi\src\code\WSXMIAddIn.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="..\staruml-java15\src\code\WSJavaAddIn15.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-java15\src\java-parser\WSJavaParser15.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -131,14 +137,32 @@
 		<Target Name="WSXMIAddIn:Make">
 			<MSBuild Targets="Make" Projects="..\staruml-xmi\src\code\WSXMIAddIn.dproj"/>
 		</Target>
+		<Target Name="WSJavaAddIn15">
+			<MSBuild Projects="..\staruml-java15\src\code\WSJavaAddIn15.dproj"/>
+		</Target>
+		<Target Name="WSJavaAddIn15:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-java15\src\code\WSJavaAddIn15.dproj"/>
+		</Target>
+		<Target Name="WSJavaAddIn15:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-java15\src\code\WSJavaAddIn15.dproj"/>
+		</Target>
+		<Target Name="WSJavaParser15">
+			<MSBuild Projects="..\staruml-java15\src\java-parser\WSJavaParser15.dproj"/>
+		</Target>
+		<Target Name="WSJavaParser15:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-java15\src\java-parser\WSJavaParser15.dproj"/>
+		</Target>
+		<Target Name="WSJavaParser15:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-java15\src\java-parser\WSJavaParser15.dproj"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="WhiteStarUML;PlasticComponents;OptMgr;WSCppAddIn;WSPatternAddIn;WSCSharpAddIn;WSJavaAddIn;WSJavaParser;WSRoseAddIn;WSXMIAddIn"/>
+			<CallTarget Targets="WhiteStarUML;PlasticComponents;OptMgr;WSCppAddIn;WSPatternAddIn;WSCSharpAddIn;WSJavaAddIn;WSJavaParser;WSRoseAddIn;WSXMIAddIn;WSJavaAddIn15;WSJavaParser15"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="WhiteStarUML:Clean;PlasticComponents:Clean;OptMgr:Clean;WSCppAddIn:Clean;WSPatternAddIn:Clean;WSCSharpAddIn:Clean;WSJavaAddIn:Clean;WSJavaParser:Clean;WSRoseAddIn:Clean;WSXMIAddIn:Clean"/>
+			<CallTarget Targets="WhiteStarUML:Clean;PlasticComponents:Clean;OptMgr:Clean;WSCppAddIn:Clean;WSPatternAddIn:Clean;WSCSharpAddIn:Clean;WSJavaAddIn:Clean;WSJavaParser:Clean;WSRoseAddIn:Clean;WSXMIAddIn:Clean;WSJavaAddIn15:Clean;WSJavaParser15:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="WhiteStarUML:Make;PlasticComponents:Make;OptMgr:Make;WSCppAddIn:Make;WSPatternAddIn:Make;WSCSharpAddIn:Make;WSJavaAddIn:Make;WSJavaParser:Make;WSRoseAddIn:Make;WSXMIAddIn:Make"/>
+			<CallTarget Targets="WhiteStarUML:Make;PlasticComponents:Make;OptMgr:Make;WSCppAddIn:Make;WSPatternAddIn:Make;WSCSharpAddIn:Make;WSJavaAddIn:Make;WSJavaParser:Make;WSRoseAddIn:Make;WSXMIAddIn:Make;WSJavaAddIn15:Make;WSJavaParser15:Make"/>
 		</Target>
 		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 	</Project>

@@ -1,0 +1,556 @@
+/*************************************************************************
+ *                                                                       *
+ *  THIS EXAMPLE IS INTENDED FOR DEMONSTRATION PURPOSES ONLY AND         *
+ *  IS PROVIDED "AS IS" WITHOUT WARRANTY EITHER EXPRESS OR IMPLIED.      *
+ *                                                                       *
+ *  Copyright (c) 1999 - 2002 NorKen Technologies, Inc.                  *
+ *  All rights reserved.                                                 *
+ *                                                                       *
+ *************************************************************************/
+  
+//  Java.GDL - a grammar for parsing the Java (version 1.1) language.
+//
+//  Start symbol(s):  
+//
+//    Java.compilation_unit
+//
+//  NOTES
+//  -----
+//  The source code for a working application that uses this grammar
+//  is located in subdirectory "JavaBrowser".  It's developed in 
+//  Visual C++/MFC.
+//
+//  REVISION DATE:  03/27/02
+//
+//  MODIFIED BY Kim.J.I (extended for Java 1.4)
+//  LAST MODIFIED:  03/12/08
+//
+//  MODIFIED BY Frank Hernandez (extended for Java 1.5)
+//  LAST MODIFIED:  07/29/11
+//  ADDED Support for:
+//  Generics
+//  Enums
+//  Annotations
+//  Enhanced for
+//  Static imports
+//
+
+
+grammar Java <SPACE = disregarded_symbol,
+              HIDELITERALS,
+              HIDEREPEATERS>
+{
+    compilation_unit ::= 
+        {[package_statement]
+         [{import_statement}]
+         [{annotation_clause}]
+         [{type_declaration}]} ;
+
+    package_statement ::= 
+        "package" package_name ";";
+
+    import_statement ::= 
+        "import" ["static"]
+        (package_name "." asterisk | qualified_name) ";" ;
+
+    asterisk ::= "*" ;
+
+    type_declaration ::= 
+        ( enum_declaration | class_declaration 
+         | interface_declaration) [";"] ;
+
+    class_declaration ::= 
+        [modifiers]
+        "class" class_name
+        //[generics_clause] 
+        [class_extends_clause]
+        [class_implements_clause]
+        "{" [field_declarations] "}";
+
+    interface_declaration ::= 
+        [modifiers] 
+        "interface" interface_name[generics_clause]
+        [interface_extends_clause] 
+        "{" [field_declarations]"}"    ;
+
+    class_extends_clause ::= 
+        "extends" [generics_clause]qualified_name[generics_clause];
+
+    class_implements_clause ::= 
+        "implements" {[generics_clause]qualified_name[generics_clause], ","};
+
+    interface_extends_clause ::=
+        ["extends" {[generics_clause]qualified_name[generics_clause], ","}] ;
+
+    field_declarations ::=
+        {field_declaration} ;
+        
+    field_declaration ::= 
+        //enum_declaration
+        type_declaration  
+        | variable_declaration 
+        | method_declaration 
+        | constructor_declaration 
+        //| type_declaration  
+        | classbody_declaration
+        | annotation_clause
+        | ";" 
+        ;
+
+    method_declaration ::= 
+        [modifiers] 
+        [generics_clause]
+        type 
+        [generics_clause]
+        method_name
+        "(" [parameter_list] ")" 
+        [{empty_subscripts}] 
+        [throws_clause]
+        (statement_block | ";")    ;
+
+    constructor_declaration ::= 
+        [modifiers]
+        [generics_clause]
+        ident 
+        "(" [parameter_list] ")" 
+        [throws_clause]
+        statement_block ;
+
+    statement_block ::= 
+        "{" [{statement}] "}" ;
+
+    variable_declaration ::= 
+        [modifiers] 
+        type
+        variable_declarators  
+        ";"
+        |
+        [modifiers] 
+        enum_type
+        variable_declarators
+        ;
+
+    variable_declarators ::=
+        {variable_declarator, ","} 
+        ;
+        
+    variable_declarator ::= 
+        ident 
+        [{empty_subscripts}]
+        ["=" variable_initializer]
+        [variable_initializer]
+        ;
+
+    variable_initializer ::= 
+        expression  
+        |  "{" [{variable_initializer, "," } [","]] "}" 
+        ;
+
+    classbody_declaration ::= 
+        ["static"] statement_block ;
+
+    throws_clause ::= 
+        "throws" 
+        {exception_name, ","} ;
+
+    parameter_list ::= 
+        {parameter, ","} ;
+
+    parameter ::= 
+        [final_modifier]
+        type 
+        ident 
+        [{empty_subscripts}] ;
+
+    final_modifier<TERMINAL> ::=
+        "final";
+
+    statement ::=    
+          statement_block
+          | if_statement
+          | do_statement
+          | while_statement
+          | for_statement
+          | foreach_statement
+          | try_statement
+          | switch_statement
+          | assert_statement
+          | "return" [expression] ";"
+          | "break" [ident] ";"
+          | "continue" [ident] ";"
+          | "synchronized" "(" expression ")" statement
+          | "throw" expression ";"
+          | type_declaration
+          | variable_declaration
+          | [expression] ";"
+          | ident ":" statement
+          ;
+
+    if_statement ::= 
+        "if" "(" expression ")" statement 
+        ["else" statement] ;
+
+    do_statement ::= 
+        "do" statement "while" 
+        "(" expression ")" ";" ;
+
+    while_statement ::= 
+        "while" 
+        "(" expression ")" 
+        statement ;
+
+    for_statement ::= 
+        "for" "(" for_init for_expr [for_incr] ")" 
+        statement ;
+
+    for_init ::=        
+          variable_declaration 
+        | expression_list ";" 
+        | ";"
+        ;
+        
+    for_expr ::=
+        [expression_list] ";" ;
+         
+    for_incr ::=
+        expression_list ;
+
+    try_statement ::= 
+        "try" statement 
+        [{"catch" "(" parameter ")" statement}]
+        ["finally" statement] ;
+
+    switch_statement ::= 
+        "switch" 
+        "(" expression ")"
+        "{" 
+          {("case" expression | "default") ":" [{statement}]}
+        "}" ;
+
+    assert_statement ::=
+        "assert" expression [ ":" expression ];
+
+    type ::= 
+        type_specifier     
+        [{empty_subscripts}] ;
+
+    primitive_type ::=
+          "boolean"     
+        | "byte"
+        | "char"
+        | "short"
+        | "int"
+        | "float"
+        | "long"
+        | "double"
+        | "void"
+        ;
+
+   type_specifier<TERMINAL> ::= 
+          primitive_type 
+        | enum_type
+        | qualified_name[generics_clause]
+        ;
+
+////////////////////////////////////////////////////////////////////
+//
+// MODIFIED SECTION
+// CODE MINION
+// DATE: July 29, 2011
+//
+////////////////////////////////////////////////////////////////////
+    generics_clause ::=
+      "<?>"
+    	| "<" ident[generics_clause]["[]"][{"," ident [generics_clause]["[]"]}]">"
+    	| ident;
+    
+    annotation_clause ::=
+    	"@" *("\n");
+
+    foreach_statement ::= 
+      "for" "(" foreach_init ":" expression ")" 
+      statement ;
+
+    foreach_init ::=
+    	type            
+      variable_declarators;
+    
+    enum_type ::= 
+    	"enum";
+    	
+    //enum_clause ::=
+	//enum_declaration;
+	//modifiers "enum" ident
+	//"{" [enum_ident [{"," enum_ident}]] ["," | ";"]
+	//"}"
+	//;  
+
+    enum_ident ::=
+    ident["(" string ")"];
+
+    enum_declaration ::= 
+        [modifiers]
+        "enum" class_name
+        "{" [enum_field_declarations] "}"
+        ;
+     
+    enum_field_declarations ::=
+        {enum_field_declaration} ;
+        
+    enum_field_declaration ::= 
+        constructor_declaration 
+        |enum_variable_declaration
+        | variable_declaration 
+        | method_declaration 
+        //| constructor_declaration 
+        //| type_declaration  
+        | classbody_declaration
+        | annotation_clause
+        | ";" 
+        ;
+
+    enum_variable_declaration ::= 
+        enum_variable_declarators  
+        [";" | "," | ""]
+        ;
+
+    enum_variable_declarators ::=
+        {enum_variable_declarator, ","} 
+        ;
+        
+    enum_variable_declarator ::= 
+        ident 
+        [{empty_subscripts}]
+        ["(" enum_conts ")"]
+        ;
+    enum_conts ::=
+    (string | numeric) [{","  (string | numeric)}]
+    ;
+////////////////////////////////////////////////////////////////////
+//
+// END MODIFIED SECTION
+// CODE MINION
+//
+////////////////////////////////////////////////////////////////////
+     
+    modifiers ::= 
+        {modifier} ;
+    
+    modifier<TERMINAL> ::= 
+          "abstract"
+        | "final"
+        | "native"
+        | "private"        
+        | "protected" 
+        | "public" 
+        | "static"
+        | "strictfp"
+        | "synchronized"
+        | "threadsafe"
+        | "transient"
+        | "volatile"
+	  //| "enum"
+        ;
+
+    qualified_name ::= 
+        {ident, "."};
+    
+    package_name   ::= qualified_name;
+    exception_name ::= qualified_name;
+    
+    method_name<TERMINAL>    ::= ident;
+    class_name<TERMINAL>     ::= ident [generics_clause];
+    interface_name<TERMINAL> ::= ident;
+
+    empty_subscripts ::= "[""]";
+
+    // -------------------------------------------------------------------
+    //
+    //                 EXPRESSIONS
+    //
+    // -------------------------------------------------------------------
+
+    // The following rules establish operator precedence
+    // (increasing precedence for each successive rule)
+    // Assignment (assign_term) is lowest precedence
+
+    expression_list ::=
+        {expression, ","};
+
+    expression<SHOWDELIMITERS> ::=
+                { expression1, assignment_operator };
+//        expression1 { assignment_operator  expression1 } ;
+
+    expression1 ::=
+        expression2 [ expression1_rest ];
+
+    expression2 ::=
+        expression3 [ { expression2_rest } ];
+
+    expression3 ::=
+        prefix_op expression3
+        |  "(" type ")" expression3
+        |  primary [{selector}] [{ postfix_op }]
+        ;
+
+    primary ::=
+         "(" expression ")"
+        |  "super" super_suffix
+        |  literal_expression
+        |  "new" creator
+        |  { ident, "."  }[ identifier_suffix ]
+        |  primitive_type [ brackets ] "." "class"
+        |  "void" "." "class"
+        | "this" [ arguments ]
+        ;
+
+    arguments ::=
+        "(" [ { expression, "," } ] ")";
+
+    super_suffix ::=
+        arguments
+        |  "." ident [ arguments ]
+        ;
+
+    creator ::=
+        qualified_name [generics_clause]( array_creator_rest | class_creator_rest );
+
+    array_creator_rest ::=
+        "[" ( "]" [ brackets ] array_initializer  | expression "]" [{ "[" expression "]" }] [ brackets ] );
+
+    array_initializer ::=
+        "{" [ { variable_initializer2, "," } [ "," ] ] "}";
+
+    variable_initializer2 ::=
+        array_initializer
+        |  expression
+        ;
+
+    class_creator_rest ::=
+        arguments [ class_body ];
+
+    class_body ::=
+        "{" [ field_declarations ] "}";
+
+    identifier_suffix ::=
+        "[" ( "]" [ brackets ] "." "class" | expression "]" )
+        |  arguments
+        |  "." ( "class" | "this" | "super" arguments | "new" inner_creator )
+        ;
+
+    selector ::=
+        "." [generics_clause] ident  [ arguments ]
+        |  "." "this"
+        |  "." "super" super_suffix
+        |  "." "new" inner_creator
+        |  "[" expression "]"
+        ;
+
+    inner_creator ::=
+        ident class_creator_rest;
+
+    expression2_rest ::=
+        infix_op expression3
+        | "instanceof" type 
+        ;
+
+    expression1_rest ::=
+        [ "?" expression ":" expression1 ];
+
+    brackets ::=
+        {"[" "]"};
+
+    assignment_operator ::= 
+        ("=" | "*=" | "/=" | "%=" | "+=" | "-="
+         | "<<=" | ">>=" | ">>>=" | "&=" | "^=" | "|=");
+
+    prefix_op ::=
+        ("++"  |  "--"  |  "!"  |  "~"
+        |  "+"  |  "-");
+
+    infix_op ::=
+        ("||"  |  "&&"  |  "|"  |  "^"
+        |  "&"  |  "=="  |  "!="  |  "<"
+        |  ">"  |  "<="  |  ">="  |  "<<"
+        |  ">>"  |  ">>>"  |  "+"  |  "-"
+        |  "*"  |  "/"  |  "%");
+
+    postfix_op ::=
+        ("++" | "--");
+
+    literal_expression ::=  
+          numeric_literal 
+        | string 
+        | character
+ //       | java_identifier
+        ;
+
+    ident<TERMINAL>::= 
+        java_identifier (? #value !::= keyword; );
+
+    java_identifier<TERMINAL, HIDDEN>::=
+        '([a-zA-Z_$\128-\255]|\\u[a-fA-F0-9]*)([a-zA-Z0-9_$\128-\255]|\\u[a-fA-F0-9]*)*';
+
+    keyword ::=	// plus primitive_type , assert
+         "abstract"     | "break"       | "case"
+        | "catch"       | "class"       | "continue"
+        | "default"     | "do"          | "else"
+        | "extends"     | "final"       | "finally"
+        | "for"         | "if"          | "implements"
+        | "import"      | "instanceof"  | "interface"
+        | "native"      | "new"         | "package"
+        | "private"     | "protected"   | "public"
+        | "return"      | "static"      | "strictfp"
+        | "switch"      | "synchronized"  | "threadsafe"
+        | "throw"       | "throws"      | "transient"
+        | "try"         | "volatile"       | "while"   
+    	  ;
+         
+    numeric_literal<TERMINAL> ::=
+           floating_type_literal
+        | integer_literal
+        ;
+
+   integer_literal ::=
+         '0[xX][0-9a-fA-F]+' [long_type_suffix]
+       | numeric [long_type_suffix]
+       ;
+
+   floating_type_literal ::=
+          numeric "." [numeric] [exponent_part] [float_type_suffix]
+       | "." numeric [exponent_part] [float_type_suffix]
+       | numeric exponent_part [float_type_suffix]
+       | numeric [exponent_part] float_type_suffix
+        ;
+
+    exponent_part     ::= ("e" | "E" ) [("+" | "-")] numeric;
+    float_type_suffix ::= "f" | "d" | "F" | "D";
+    long_type_suffix  ::= "l" | "L";
+
+    string ::= quotedstring;
+
+    character<TERMINAL,SPACE=""> ::= 
+           "\'\\\'\'"
+        | "\'"
+           '[^\']+'
+           "\'"
+         ;    
+
+    // this example uses the SPACE attribute to skip comments in 
+    // the Java file
+    disregarded_symbol <HIDDEN> ::=
+        { space_symbol 
+          | line_comment 
+          | block_comment, 0};
+    
+    space_symbol <TERMINAL, HIDDEN> ::= 
+        "\32" | "\r" | "\n" | "\t" | "\12";
+		
+    line_comment <TERMINAL, HIDDEN> ::=
+        "//" *("\n");
+		
+    block_comment <TERMINAL> ::=
+        "/*" *("*/") "*/";//'/\*[^*]*\*+(?:[^*/][^*]*\*+)*/'; //"/*" * "*/";
+
+
+}; // Java Grammar
