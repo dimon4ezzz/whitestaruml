@@ -476,6 +476,7 @@ begin
     if DiagramPageControl.ActivePage <> Tab then
     begin
       DiagramPageControl.ActivePage := Tab;
+      UpdateActiveDiagramEditor;
       DiagramOpen(ADiagram);
     end;
   end
