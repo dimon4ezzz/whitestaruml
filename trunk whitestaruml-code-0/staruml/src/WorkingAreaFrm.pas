@@ -175,7 +175,7 @@ type
 implementation
 
 uses
-  GraphicClasses;
+  GraphicClasses, StarUMLApp;
 
 {$R *.dfm}
 
@@ -626,7 +626,10 @@ begin
 
   else if Sender = ViewCloseAllDiagrams then begin
     CloseAllDiagrams;
-  end;
+  end
+
+  else if Sender = FormatLayoutDiagram then
+    StarUMLApplication.LayoutActiveDiagramWithValidation;
 
   if Assigned(FOnViewMenuClicked) then
     FOnViewMenuClicked(Sender);

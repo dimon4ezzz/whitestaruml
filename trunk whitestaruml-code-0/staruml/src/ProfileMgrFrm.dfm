@@ -4,7 +4,7 @@ object ProfileManagerForm: TProfileManagerForm
   BorderStyle = bsDialog
   Caption = 'Profile Manager'
   ClientHeight = 316
-  ClientWidth = 626
+  ClientWidth = 723
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object ProfileManagerForm: TProfileManagerForm
   OnCreate = FormCreate
   OnShow = FormShow
   DesignSize = (
-    626
+    723
     316)
   PixelsPerInch = 96
   TextHeight = 13
@@ -33,7 +33,7 @@ object ProfileManagerForm: TProfileManagerForm
     Left = 363
     Top = 20
     Width = 83
-    Height = 10
+    Height = 13
     Caption = 'Included &profiles:'
     FocusControl = IncludedProfilesListView
   end
@@ -47,7 +47,7 @@ object ProfileManagerForm: TProfileManagerForm
   object SepBevel: TBevel
     Left = 8
     Top = 279
-    Width = 601
+    Width = 698
     Height = 4
     Anchors = [akLeft, akTop, akRight, akBottom]
     Shape = bsTopLine
@@ -134,7 +134,7 @@ object ProfileManagerForm: TProfileManagerForm
     Visible = False
   end
   object CloseButton: TButton
-    Left = 428
+    Left = 525
     Top = 285
     Width = 88
     Height = 23
@@ -144,10 +144,10 @@ object ProfileManagerForm: TProfileManagerForm
     Default = True
     TabOrder = 4
     OnClick = CloseButtonClick
-    ExplicitLeft = 426
+    ExplicitLeft = 428
   end
   object ExcludeButton: TButton
-    Left = 263
+    Left = 325
     Top = 116
     Width = 73
     Height = 23
@@ -156,7 +156,7 @@ object ProfileManagerForm: TProfileManagerForm
     OnClick = ExcludeButtonClick
   end
   object IncludeButton: TButton
-    Left = 263
+    Left = 325
     Top = 87
     Width = 73
     Height = 23
@@ -167,7 +167,7 @@ object ProfileManagerForm: TProfileManagerForm
   object AllProfilesListView: TListView
     Left = 8
     Top = 36
-    Width = 249
+    Width = 297
     Height = 153
     Columns = <
       item
@@ -185,9 +185,9 @@ object ProfileManagerForm: TProfileManagerForm
     OnDblClick = AllProfilesListViewDblClick
   end
   object IncludedProfilesListView: TListView
-    Left = 342
+    Left = 412
     Top = 36
-    Width = 267
+    Width = 295
     Height = 153
     Columns = <
       item
@@ -205,7 +205,7 @@ object ProfileManagerForm: TProfileManagerForm
     OnDblClick = IncludedProfilesListViewDblClick
   end
   object ToolBar: TToolBar
-    Left = 538
+    Left = 660
     Top = 8
     Width = 46
     Height = 22
@@ -216,8 +216,19 @@ object ProfileManagerForm: TProfileManagerForm
     ParentShowHint = False
     ShowHint = True
     TabOrder = 5
-    object LargeIconButton: TToolButton
+    object SmallIconButton: TToolButton
       Left = 0
+      Top = 0
+      Hint = 'Small Icon'
+      AutoSize = True
+      Caption = 'Small Icon'
+      Down = True
+      Grouped = True
+      ImageIndex = 1
+      OnClick = IconButtonClick
+    end
+    object LargeIconButton: TToolButton
+      Left = 23
       Top = 0
       Hint = 'Large Icon'
       AutoSize = True
@@ -227,19 +238,9 @@ object ProfileManagerForm: TProfileManagerForm
       ImageIndex = 0
       OnClick = IconButtonClick
     end
-    object SmallIconButton: TToolButton
-      Left = 23
-      Top = 0
-      Hint = 'Small Icon'
-      AutoSize = True
-      Caption = 'Small Icon'
-      Grouped = True
-      ImageIndex = 1
-      OnClick = IconButtonClick
-    end
   end
   object HelpButton: TButton
-    Left = 521
+    Left = 618
     Top = 285
     Width = 88
     Height = 23
@@ -247,23 +248,23 @@ object ProfileManagerForm: TProfileManagerForm
     Caption = '&Help'
     TabOrder = 6
     OnClick = HelpButtonClick
-    ExplicitLeft = 519
+    ExplicitLeft = 521
   end
   object DescPanel: TFlatPanel
     Left = 8
     Top = 214
-    Width = 602
+    Width = 699
     Height = 58
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 7
-    ExplicitWidth = 600
+    ExplicitWidth = 602
     DesignSize = (
-      602
+      699
       58)
     object DescMemo: TMemo
       Left = 5
       Top = 5
-      Width = 596
+      Width = 693
       Height = 48
       Anchors = [akLeft, akTop, akRight, akBottom]
       BevelInner = bvNone
@@ -272,7 +273,7 @@ object ProfileManagerForm: TProfileManagerForm
       ImeName = #54620#44397#50612'('#54620#44544') (MS-IME98)'
       ReadOnly = True
       TabOrder = 0
-      ExplicitWidth = 640
+      ExplicitWidth = 596
     end
   end
   object ProfilesSmallImageList: TImageList
@@ -283,7 +284,7 @@ object ProfileManagerForm: TProfileManagerForm
     Left = 468
     Top = 4
     Bitmap = {
-      494C0101020004000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102000400100010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

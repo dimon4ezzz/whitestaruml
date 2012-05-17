@@ -295,6 +295,7 @@ type
     procedure AlignSpaceEvenlyVerticallySelectedViews;
     procedure LayoutDiagram(ADiagramView: PDiagramView);
     procedure LayoutActiveDiagram;
+    procedure LayoutActiveDiagramWithValidation;
     function SaveDiagramImageToBitmap(ADiagramView: PDiagramView; FileName: string): Boolean;
     function SaveDiagramImageToJPEG(ADiagramView: PDiagramView; FileName: string): Boolean;
     function SaveDiagramImageToMetafile(ADiagramView: PDiagramView; FileName: string; Enhanced: Boolean = False): Boolean;
@@ -539,7 +540,7 @@ begin
       FEventArgModels.Add(SelectionManager.SelectedModels[I]);
     FEventArgViews.Clear;
     for I := 0 to SelectionManager.SelectedViewCount - 1 do
-      FEventArgViews.Add(SelectionManager.SelectedViews[I]);    
+      FEventArgViews.Add(SelectionManager.SelectedViews[I]);
     FOnSelectionChanged(Self);
   end;
 end;
@@ -2367,7 +2368,20 @@ begin
   LayoutDiagram(SelectionManager.ActiveDiagram);
 end;
 
-function PStarUMLApplication.SaveDiagramImageToBitmap(ADiagramView: PDiagramView; FileName: string): Boolean;
+procedure PStarUMLApplication.LayoutActiveDiagramWithValidation;
+begin
+ if (ActiveDiagram is PUMLSequenceDiagramView) or
+   (ActiveDiagram is PUMLSequenceRoleDiagramView)
+   then
+   MessageDlg(ERR_SEQ_DGM_CMD_NOT_SUPPORT, mtError, [mbOK], 0)
+ else
+ begin
+   LayoutActiveDiagram;
+   MainForm.WorkingAreaFrame.RedrawActiveDiagram;
+ end;
+end;
+
+ function PStarUMLApplication.SaveDiagramImageToBitmap(ADiagramView: PDiagramView; FileName: string): Boolean;
 var
   ABitmap: Graphics.TBitmap;
 begin
@@ -2966,4 +2980,3 @@ initialization
 finalization
   StarUMLApplication.Free;
 end.
-
