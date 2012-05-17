@@ -835,16 +835,7 @@ begin
       else if Sender = FormatAlignmentSpaceEvenlyVertically then
         StarUMLApplication.AlignSpaceEvenlyVerticallySelectedViews
       else if Sender = FormatLayoutDiagram then
-      begin
-        if (StarUMLApplication.ActiveDiagram is PUMLSequenceDiagramView) or
-           (StarUMLApplication.ActiveDiagram is PUMLSequenceRoleDiagramView)
-        then
-          MessageDlg(ERR_SEQ_DGM_CMD_NOT_SUPPORT, mtError, [mbOK], 0)
-        else begin
-          StarUMLApplication.LayoutActiveDiagram;
-          MainForm.WorkingAreaFrame.RedrawActiveDiagram;
-        end;
-      end;
+        StarUMLApplication.LayoutActiveDiagramWithValidation
     end;
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
