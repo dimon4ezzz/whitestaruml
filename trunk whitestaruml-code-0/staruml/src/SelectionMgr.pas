@@ -70,7 +70,7 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-    procedure SelectModel(AModel: PModel);
+    procedure SelectModel(AModel: PModel; AContextMenuLaunched: Boolean=False);
     procedure DeselectModel(AModel: PModel);
     procedure DeselectModels(Models: POrderedSet);
     procedure SelectView(AView: PView);
@@ -171,21 +171,48 @@ begin
     FActiveDiagram.DeselectAll;
 end;
 
-procedure PSelectionManager.SelectModel(AModel: PModel);
+procedure PSelectionManager.SelectModel(AModel: PModel; AContextMenuLaunched: Boolean=False);
 var
   Changed: Boolean;
+  View: PView;
+  FirstViewSelected: Boolean;
 begin
   Changed := True;
   if (SelectedModelCount + SelectedViewCount = 0) and
      (AModel = nil) then
     Changed := False;
   if (SelectedModelCount = 1) and
-     (SelectedViewCount = 0) and
+     {(SelectedViewCount = 0) and}
      (SelectedModels[0] = AModel) then
-    Changed := False;
-  ClearSelectedModels;
-  ClearSelectedViews;
-  if AModel <> nil then FSelectedModels.Add(AModel);
+     Changed := False
+  else begin
+    ClearSelectedModels;
+    ClearSelectedViews;
+    if AModel <> nil then
+      FSelectedModels.Add(AModel);
+  end;
+
+  if AContextMenuLaunched and (SelectedViewCount > 0 ) then begin
+    ClearSelectedViews;
+    Changed := True
+  end
+  else
+  // Select corresponding view on the active diagram
+  //if (not AContextMenuLaunched) and (SelectedViewCount = 0)
+    if (AModel <> nil) then begin
+    FirstViewSelected := False;
+    for View in AModel.Views do begin
+      if View.OwnerDiagramView = ActiveDiagram then begin
+        if not FirstViewSelected then begin
+          SelectView(View);
+          FirstViewSelected := True;
+        end
+        else
+          SelectAdditionalView(View);
+      end;
+    end;
+
+  end;
   if Changed then SelectionChanged;
 end;
 

@@ -373,7 +373,7 @@ uses
   AddInMgrFrm, FindFrm, ElemSelFrm, PrintFrm, PageSetupFrm, ModelVerifierFrm,
   ElemLstFrm, DiagramMapFrm, EventPub, TagEdtFrm, TagColEdtFrm, NLS_StarUML,
   Dialogs, Math, ExtCtrls, SysUtils, Registry, Graphics, JPEG, CompactFontDlg,
-  ShellAPI, ComServ, NLS, SaveDialogEx, XMLDom, MenuManager,
+  ShellAPI, ComServ, NLS, SaveDialogEx, XMLDom, MenuManager, ModelExplorerFrame,
   // for test
   ExtDlgs, JVStrings;
 
@@ -1795,11 +1795,18 @@ end;
 procedure PMain.BrowserFormElementSelectedHandler(Sender: TObject; Element: PModel);
 var
   I: Integer;
+  ContextMenuLaunched: Boolean;
 begin
   try
-    StarUMLApplication.SelectModel(Element);
-    if (Element <> nil) and (Element.ViewCount > 0) then
-      StarUMLApplication.SelectView(Element.Views[0]);
+    ContextMenuLaunched := False;
+
+    if Sender is TModelExplorerPanel then
+      ContextMenuLaunched := (Sender as TModelExplorerPanel).ContextMenuLaunched;
+
+
+    StarUMLApplication.SelectModel(Element,ContextMenuLaunched);
+    //if (Element <> nil) and (Element.ViewCount > 0) then
+    //  StarUMLApplication.SelectView(Element.Views[0]);
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
@@ -4099,7 +4106,7 @@ begin
     else begin
       if AModel.ViewCount > 0 then
       begin
-        MainForm.WorkingAreaFrame.OpenDiagram(AModel.Views[0].GetDiagramView.Diagram);
+        MainForm.WorkingAreaFrame.OpenDiagram(AModel.View[0].GetDiagramView.Diagram);
       end;
     end;
     SelectModelExplorerDockPanel(AModel);
@@ -4310,14 +4317,14 @@ begin
       ckView: begin
         EditPaste.Enabled :=
           GeneralEditMenuEnabled and
-          MainForm.IsActivated and
+          {MainForm.IsActivated and}
           (AD <> nil) and
           AD.CanPasteViews(CBElemKind, CBCopyContext);
       end;
       ckModel: begin
         EditPaste.Enabled :=
           GeneralEditMenuEnabled and
-          MainForm.IsActivated and
+          {MainForm.IsActivated and}
           (MC = 1) and
           StarUMLApplication.SelectedModels[0].CanPaste(CBElemKind, CBCopyContext);
       end;
@@ -4331,14 +4338,14 @@ end;
 function PMainFormMenuStateHandler.IsEditDeleteFromModelEnabled: Boolean;
 begin
   with StarUMLApplication do
-    Result := MainForm.IsActivated and
+    Result := {MainForm.IsActivated and}
       ((SelectedModelCount > 0) and SelectedModels[0].CanDelete);
 end;
 
 function PMainFormMenuStateHandler.IsEditCutEnabled: Boolean;
 begin
   with StarUMLApplication do
-    Result := GeneralEditMenuEnabled and MainForm.IsActivated and
+    Result := GeneralEditMenuEnabled {and MainForm.IsActivated} and
       (((SelectedModelCount = 1) and (SelectedModels[0].CanCopy) and
           (SelectedModels[0].CanDelete)) or
         ((ActiveDiagram <> nil) and (ActiveDiagram.CanCopyViews)
@@ -4349,7 +4356,7 @@ begin
 function PMainFormMenuStateHandler.IsEditCopyEnabled: Boolean;
 begin
   with StarUMLApplication do
-    Result := GeneralEditMenuEnabled and MainForm.IsActivated and
+    Result := GeneralEditMenuEnabled {and MainForm.IsActivated} and
       (((SelectedModelCount = 1) and (SelectedModels[0].CanCopy)) or
         ((ActiveDiagram <> nil) and (ActiveDiagram.CanCopyViews)));
 

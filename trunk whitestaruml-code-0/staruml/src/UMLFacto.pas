@@ -327,7 +327,7 @@ implementation
 
 uses
   BasicClasses, GraphicClasses, NLS_StarUML, ContributorMgr,
-  Math;
+  Math, StarUMLApp;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PUMLFactory
@@ -2321,6 +2321,7 @@ function PUMLFactory.CreateElement(DiagramView: PDiagramView; X1, Y1, X2, Y2: In
   ElementKind: string; Argument: Integer = 0): PView;
 begin
   Result := CreateElement(DiagramView, X1, Y1, X2, Y2, ElementKind, ElementKind, Argument);
+  //StarUMLApplication.SelectView(Result);
 end;
 
 // -----------------------------------------------------------------------------

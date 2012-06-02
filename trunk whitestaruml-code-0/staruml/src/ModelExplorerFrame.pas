@@ -237,6 +237,7 @@ type
     FOnEnableGeneralEditMenu: TNotifyEvent;
     FOnDisableGeneralEditMenu: TNotifyEvent;
     FOnModelIndexChanging: PModelIndexChangingEvent;
+    FContextMenuLaunched: Boolean;
 
     function GetStereotypeText(AModel: PModel): string;
     procedure InitializeMetaNodes;
@@ -301,6 +302,7 @@ type
     property OnEnableGeneralEditMenu: TNotifyEvent read FOnEnableGeneralEditMenu write FOnEnableGeneralEditMenu;
     property OnDisableGeneralEditMenu: TNotifyEvent read FOnDisableGeneralEditMenu write FOnDisableGeneralEditMenu;
     property OnModelIndexChanging: PModelIndexChangingEvent read FOnModelIndexChanging write FOnModelIndexChanging;
+    property ContextMenuLaunched: Boolean read FContextMenuLaunched;
   end;
 
 implementation
@@ -1466,6 +1468,7 @@ begin
   begin
     if ModelTree.Selected[Node] then
     begin
+      FContextMenuLaunched := False;
       FDragSourceNode := nil;
       FDropTargetNode := nil;
       FAcceptStatus := False;
@@ -1476,6 +1479,7 @@ begin
   end
   else if Button = mbRight then begin
     if Node <> nil then begin
+      FContextMenuLaunched := True;
       if Assigned(FPopupMenu) then FPopupMenu.PopupFromCursorPos;
     end;
   end;
@@ -1513,6 +1517,7 @@ begin
     NodeData := ModelTree.GetNodeData(Node);
     if Assigned(NodeData) and Assigned(NodeData.Model) then
       SelectionChanged(NodeData.Model);
+    FContextMenuLaunched := False;
   end;
 end;
 

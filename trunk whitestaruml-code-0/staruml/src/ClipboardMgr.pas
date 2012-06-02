@@ -607,7 +607,7 @@ begin
       Clipboard.Open;
       EmptyClipboard;
       try
-        AHandle := GlobalAlloc(GMEM_MOVEABLE + GMEM_DDESHARE, Length(FClipboardDataBuffer) + 1);
+        AHandle := GlobalAlloc(GMEM_MOVEABLE + GMEM_DDESHARE, (Length(FClipboardDataBuffer)+1)*SizeOf(FClipboardDataBuffer[1]));
         TextPtr := GlobalLock(AHandle);
         StrPCopy(TextPtr, FClipboardDataBuffer);
         GlobalUnlock(AHandle);
@@ -647,7 +647,8 @@ var
   AView: PView;
   I: Integer;
   AHandle: THandle;
-  TextPtr: PChar;
+  //TextPtr: PChar;
+  TextPtr: PWideChar;
   AFormat: Word;
   AData: THandle;
   APalette: HPALETTE;
@@ -685,7 +686,7 @@ begin
       AMetafile.Free;
       // write Eencoded views data to clipboard
       if FClipboardDataBuffer <> '' then begin
-        AHandle := GlobalAlloc(GMEM_MOVEABLE + GMEM_DDESHARE, Length(FClipboardDataBuffer) + 1);
+        AHandle := GlobalAlloc(GMEM_MOVEABLE + GMEM_DDESHARE, (Length(FClipboardDataBuffer)+1)*SizeOf(FClipboardDataBuffer[1]));
         TextPtr := GlobalLock(AHandle);
         StrPCopy(TextPtr, FClipboardDataBuffer);
         GlobalUnlock(AHandle);

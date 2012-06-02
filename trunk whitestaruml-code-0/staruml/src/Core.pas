@@ -536,13 +536,17 @@ type
 
   // PModel
   PModel = class(PElement)
+  private type
+    PViewOrderedSet = POrderedSet<PView>;
+    PDiagramOrderedSet = POrderedSet<PDiagram>;
+    PModelOrderedSet = POrderedSet<PModel>;
   private
     FName: string;
     FDocumentation: string;
     FAttachments: TStringList;
-    FViews: POrderedSet;
-    FOwnedDiagrams: POrderedSet;
-    FVirtualOwnedModels: POrderedSet;
+    FViews: PViewOrderedSet;
+    FOwnedDiagrams: PDiagramOrderedSet;
+    FVirtualOwnedModels: PModelOrderedSet;
     FVirtualNamespace: PModel;
     procedure SetName(Value: string);
     procedure SetDocumentation(Value: string);
@@ -618,7 +622,8 @@ type
     property Attachments: TStringList read FAttachments;
     property Pathname: string read GetPathname;
     property RootModel: PModel read GetRootModel;
-    property Views[Index: Integer]: PView read GetView;
+    property View[Index: Integer]: PView read GetView;
+    property Views: PViewOrderedSet read FViews;
     property ViewCount: Integer read GetViewCount;
     property OwnedDiagrams[Index: Integer]: PDiagram read GetOwnedDiagram;
     property OwnedDiagramCount: Integer read GetOwnedDiagramCount;
@@ -3016,9 +3021,9 @@ end;
 constructor PModel.Create;
 begin
   inherited Create;
-  FViews := POrderedSet.Create;
-  FOwnedDiagrams := POrderedSet.Create;
-  FVirtualOwnedModels := POrderedSet.Create;
+  FViews := PViewOrderedSet.Create;
+  FOwnedDiagrams := PDiagramOrderedSet.Create;
+  FVirtualOwnedModels := PModelOrderedSet.Create;
   FVirtualNamespace := nil;
   FAttachments := TStringList.Create;
 end;
@@ -3080,7 +3085,7 @@ end;
 
 function PModel.GetView(Index: Integer): PView;
 begin
-  Result := FViews.Items[Index] as PView;
+  Result := FViews[Index];
 end;
 
 function PModel.GetViewCount: Integer;
@@ -3090,7 +3095,7 @@ end;
 
 function PModel.GetOwnedDiagram(Index: Integer): PDiagram;
 begin
-  Result := FOwnedDiagrams.Items[Index] as PDiagram;
+  Result := FOwnedDiagrams[Index];
 end;
 
 function PModel.GetOwnedDiagramCount: Integer;
@@ -3100,7 +3105,7 @@ end;
 
 function PModel.GetVirtualOwnedModel(Index: Integer): PModel;
 begin
-  Result := FVirtualOwnedModels.Items[Index] as PModel;
+  Result := FVirtualOwnedModels[Index];
 end;
 
 function PModel.GetVirtualOwnedModelCount: Integer;
@@ -3161,7 +3166,7 @@ end;
 
 procedure PModel.DeleteView(Index: Integer);
 begin
-  RemoveView(FViews.Items[Index] as PView);
+  RemoveView(FViews[Index]);
 end;
 
 function PModel.IndexOfView(AView: PView): Integer;
@@ -3171,12 +3176,17 @@ end;
 
 procedure PModel.UpdateViews;
 var
-  I: Integer;
+  View: PView;
+  //I: Integer;
 begin
-  for I := 0 to FViews.Count - 1 do
-  begin (FViews.Items[I] as PView)
-    .Update;
-  end;
+  //for I := 0 to FViews.Count - 1 do
+  //begin (FViews.Items[I])
+  //  .Update;
+  //end;
+
+  for View in FViews do
+    View.Update;
+
 end;
 
 procedure PModel.ClearOwnedDiagrams;
@@ -3232,7 +3242,7 @@ end;
 
 procedure PModel.DeleteOwnedDiagram(Index: Integer);
 begin
-  RemoveOwnedDiagram(FOwnedDiagrams.Items[Index] as PDiagram);
+  RemoveOwnedDiagram(FOwnedDiagrams[Index]);
 end;
 
 function PModel.IndexOfOwnedDiagram(ADiagram: PDiagram): Integer;
@@ -3390,10 +3400,10 @@ end;
 
 function PModel.FindByName(AName: string): PModel;
 var
-  I: Integer;
+  //I: Integer;
   M: PModel;
 begin
-  for I := 0 to FVirtualOwnedModels.Count - 1 do
+  {for I := 0 to FVirtualOwnedModels.Count - 1 do
   begin
     M := FVirtualOwnedModels.Items[I] as PModel;
     if M.Name = AName then
@@ -3401,8 +3411,17 @@ begin
       Result := M;
       Exit;
     end;
+  end;}
+
+  for M in FVirtualOwnedModels do begin
+    if M.Name = AName then begin
+      Result := M;
+      Exit;
+    end;
   end;
+
   Result := nil;
+
 end;
 
 function PModel.FindByRelativePathname(RelPath: string): PModel;
@@ -3623,7 +3642,7 @@ function PModel.MOF_GetCollectionItem(Name: string; Index: Integer): PElement;
 begin
   if Name = 'Views' then
   begin
-    Result := Views[Index];
+    Result := View[Index];
   end
   else if Name = 'OwnedDiagrams' then
   begin
