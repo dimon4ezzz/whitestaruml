@@ -1140,7 +1140,7 @@ function PModelAuto.GetViewAt(Index: Integer): IView;
 var
   E: PView;
 begin
-  E := (TheObject as PModel).Views[Index];
+  E := (TheObject as PModel).View[Index];
   if E = nil then Result := nil
   else Result := E.GetAutomationObject as PViewAuto;
 end;

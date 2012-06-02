@@ -248,7 +248,7 @@ type
     procedure DeleteSelectedViews;
     procedure DeleteSelectedViewsWithModels;
     // Selection Related
-    procedure SelectModel(AModel: PModel);
+    procedure SelectModel(AModel: PModel; AContextMenuLaunched: Boolean = False);
     procedure DeselectModel(AModel: PModel);
     procedure DeselectModels(Models: POrderedSet);
     procedure SelectView(AView: PView);
@@ -997,7 +997,7 @@ var
   begin
     C := ViewSet.Count;
     for I := 0 to AModel.ViewCount - 1 do
-      ViewSet.Add(AModel.Views[I]);
+      ViewSet.Add(AModel.View[I]);
     // 모델이 PDiagram인 경우 그것의 DiagramView와 모든 OwnedView들을 추가한다.
     if AModel is PDiagram then begin
       ViewSet.Add((AModel as PDiagram).DiagramView);
@@ -1487,6 +1487,7 @@ var
   AModel: PModel;
 begin
   Result := False;
+
   // (1) in case of copying view element
   if SelectedViewCount > 0 then
   begin
@@ -1777,6 +1778,8 @@ begin
   V := CommandExecutor.NewViewByDragDrop(DiagramView, Model, X, Y);
   ElementModified(DiagramView);
   if V <> nil then ElementModified(V.Model);
+  if Model <> nil then
+    SelectionManager.SelectModel(Model);
   Result := V;
 end;
 
@@ -1961,9 +1964,9 @@ begin
   SelectArea(1,1,1,1); // JS: Select workspace after deleting elements
 end;
 
-procedure PStarUMLApplication.SelectModel(AModel: PModel);
+procedure PStarUMLApplication.SelectModel(AModel: PModel; AContextMenuLaunched: Boolean = False);
 begin
-  SelectionManager.SelectModel(AModel);
+  SelectionManager.SelectModel(AModel,AContextMenuLaunched);
 end;
 
 procedure PStarUMLApplication.DeselectModel(AModel: PModel);

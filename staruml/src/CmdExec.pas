@@ -3056,12 +3056,12 @@ begin
   if AModel.ViewCount > 0 then
   begin
     for I := 0 to AModel.ViewCount - 1 do
-      CollectSizesFromView(AModel.Views[I]);
+      CollectSizesFromView(AModel.View[I]);
   end
   else if AModel.VirtualNamespace <> nil then
   begin
     for I := 0 to AModel.VirtualNamespace.ViewCount - 1 do
-      CollectSizesFromView(AModel.VirtualNamespace.Views[I]);
+      CollectSizesFromView(AModel.VirtualNamespace.View[I]);
   end;
 end;
 
@@ -4115,7 +4115,7 @@ procedure PNewViewByDragDropCommand.SetParameterEdgeTypeElem(DiagramView: PDiagr
           HeadView := HeadViewSet.Items[J] as PView;
           B := True;
           for K := 0 to Model.ViewCount - 1 do begin
-            AView := Model.Views[K];
+            AView := Model.View[K];
             if AView is ElemKind then begin
               TempTailView := (AView as PEdgeView).Tail;
               TempHeadView := (AView as PEdgeView).Head;
@@ -8715,7 +8715,7 @@ begin
       for I := 0 to (Edge.Model as PUMLAssociationRole).MessageCount - 1 do
         FChangingModels.Add((Edge.Model as PUMLAssociationRole).Messages[I]);
     for I := 0 to Edge.Model.ViewCount - 1 do begin
-      V := Edge.Model.Views[I];
+      V := Edge.Model.View[I];
       // if V.MetaClass <> Edge.MetaClass ?
       if (V.MetaClass = Edge.MetaClass) and (V <> Edge) then
         FViewSet.Add(V);

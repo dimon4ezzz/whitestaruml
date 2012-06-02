@@ -4369,7 +4369,7 @@ begin
   for I := 0 to SupplierDependencyViews.Count - 1 do begin
     V := SupplierDependencyViews.Items[I] as PUMLDependencyView;
     // ASSERTIONS
-    Assert(V.Tail = Self);
+    //Assert(V.Tail = Self);
     // ASSERTIONS
     B := Junction(R, V.Points.Points[V.Points.Count - 1]);
     if (B.X = R.Right) and (B.Y >= R.Top) and (B.Y <= R.Bottom) then begin
@@ -7170,7 +7170,7 @@ begin
   if SN <> SN2 then begin // if SequenceNumber is changed
     if Model is PUMLStimulus then begin
       // move at OwnerView's Indext to correspond to SequenceNumber
-      C := DgmView.IndexOfOwnedView(Sti.InteractionInstanceSet.ParticipatingStimuli[SN2].Views[0]);
+      C := DgmView.IndexOfOwnedView(Sti.InteractionInstanceSet.ParticipatingStimuli[SN2].View[0]);
       DgmView.RemoveOwnedView(Self);
       DgmView.InsertOwnedView(C, Self);
       // move at InteractionInstanceSet's Indext to correspond to SequenceNumber
@@ -7179,7 +7179,7 @@ begin
     end
     else if Model is PUMLMessage then begin
       // change by OwnedView's Indext to correspond to SequenceNumber
-      C := DgmView.IndexOfOwnedView(Msg.Interaction.Messages[SN2].Views[0]);
+      C := DgmView.IndexOfOwnedView(Msg.Interaction.Messages[SN2].View[0]);
       DgmView.RemoveOwnedView(Self);
       DgmView.InsertOwnedView(C, Self);
       // move at Interaction's Indext to correspond to SequenceNumber.
