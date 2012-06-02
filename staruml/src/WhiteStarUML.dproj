@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{6800C90C-8B49-4B15-8E46-9015DA5876D8}</ProjectGuid>
 			<MainSource>WhiteStarUML.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Config Condition="'$(Config)'==''">Release</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
@@ -21,7 +21,7 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DCC_DebugInformation>false</DCC_DebugInformation>
-			<DCC_ExeOutput>C:\JS\Delphi\WhiteStarDevInstall</DCC_ExeOutput>
+			<DCC_ExeOutput>..\deploy</DCC_ExeOutput>
 			<BRCC_Verbose>true</BRCC_Verbose>
 			<BRCC_CompilerToUse>rc</BRCC_CompilerToUse>
 			<DCC_UsePackage>dxCoreRS14;cxLibraryRS14;cxDataRS14;dxThemeRS14;cxEditorsRS14;cxSchedulerGridRS14;cxSchedulerRS14;cxExportRS14;dxComnRS14;dxDockingRS14;cxBarEditItemRS14;dxBarExtItemsRS14;dxBarRS14</DCC_UsePackage>
@@ -31,7 +31,7 @@
 			<DCC_UNSAFE_TYPE>true</DCC_UNSAFE_TYPE>
 			<DCC_Platform>x86</DCC_Platform>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_DependencyCheckOutputName>..\..\..\WhiteStarDevInstall\WhiteStarUML.exe</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>..\deploy\WhiteStarUML.exe</DCC_DependencyCheckOutputName>
 			<DCC_K>false</DCC_K>
 			<DCC_F>false</DCC_F>
 			<DCC_S>false</DCC_S>
