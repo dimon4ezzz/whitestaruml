@@ -1099,7 +1099,7 @@ begin
       AddPredefinedPaletteItemInteraction(EK_ASSOCIATIONROLE, 0, ASSOCIATION_ROLE_CREATE_HANDLER, GetPredefinedInteractionItem(ASSOCIATION_ROLE_CREATE_HANDLER));
       AddPredefinedPaletteItemInteraction(EK_ASSOCIATIONROLE, 0, SELF_ASSOCIATION_ROLE_CREATE_HANDLER, GetPredefinedInteractionItem(SELF_ASSOCIATION_ROLE_CREATE_HANDLER));
       AddPredefinedPaletteItemInteraction(EK_LINK, 0, LINK_CREATE_HANDLER, GetPredefinedInteractionItem(LINK_CREATE_HANDLER));
-      AddPredefinedPaletteItemInteraction(EK_LINK, 0, SELF_LINK_CREATE_HANDLER, GetPredefinedInteractionItem(TEXT_CREATE_HANDLER));
+      AddPredefinedPaletteItemInteraction(EK_LINK, 0, SELF_LINK_CREATE_HANDLER, GetPredefinedInteractionItem(SELF_LINK_CREATE_HANDLER));
       AddPredefinedPaletteItemInteraction(EK_MESSAGE, 0, MESSAGE_CREATE_HANDLER, GetPredefinedInteractionItem(MESSAGE_CREATE_HANDLER));
       AddPredefinedPaletteItemInteraction(EK_MESSAGE, 0, FORWARD_MESSAGE_CREATE_HANDLER, GetPredefinedInteractionItem(FORWARD_MESSAGE_CREATE_HANDLER));
       AddPredefinedPaletteItemInteraction(EK_MESSAGE, FA_REVERSE_MESSAGE_CALLACTION, REVERSE_MESSAGE_CREATE_HANDLER, GetPredefinedInteractionItem(REVERSE_MESSAGE_CREATE_HANDLER));

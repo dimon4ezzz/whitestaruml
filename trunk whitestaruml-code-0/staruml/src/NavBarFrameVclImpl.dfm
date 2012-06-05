@@ -558,19 +558,19 @@ inherited PaletteNavBarFrameVclImpl: TPaletteNavBarFrameVclImpl
             Action = SelectAction
           end
           item
-            Action = ClassifierRoleAction
+            Action = ObjectAction
           end
           item
-            Action = AssociationRoleAction
+            Action = LinkAction
           end
           item
-            Action = SelfAssociationRoleAction
+            Action = SelfLinkAction
           end
           item
-            Action = ForwardMessageAction
+            Action = ForwardStimulusAction
           end
           item
-            Action = ReverseMessageAction
+            Action = ReverseStimulusAction
           end
           item
             Action = FrameAction
@@ -702,7 +702,6 @@ inherited PaletteNavBarFrameVclImpl: TPaletteNavBarFrameVclImpl
             Action = ConnectorAction
           end>
       end>
-    Color = clBtnFace
     RegularButtonColor = clWhite
     SelectedButtonColor = clAqua
     TabOrder = 0
