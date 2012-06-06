@@ -2448,7 +2448,10 @@ begin
   if FNameCompartment <> Value then begin
     RemoveSubView(FNameCompartment);
     FNameCompartment := Value;
-    if FNameCompartment <> nil then InitializeNameCompartment(FNameCompartment);
+    if FNameCompartment <> nil then begin
+      InitializeNameCompartment(FNameCompartment);
+      FNameCompartment.WordWrap := FWordWrap;
+    end;
     AddSubView(FNameCompartment);
   end;
 end;
