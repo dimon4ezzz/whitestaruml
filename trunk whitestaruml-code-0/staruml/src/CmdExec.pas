@@ -6307,6 +6307,11 @@ var
 begin
   inherited;
   AParser := PGeneralNameExpressionParser.Create;
+  if not AParser.Initialized then begin
+    AParser.Free;
+    FNewName := Value
+  end
+  else
   try
     R := AParser.Parse(Value);
     if (R <> psNotIntialized) and (R <> psError) then begin
@@ -6383,6 +6388,11 @@ begin
   FOldBase := (FModel as PUMLClassifierRole).Base;
   // Parsing
   AParser := PClassifierRoleExpressionParser.Create;
+  if not AParser.Initialized then begin
+    AParser.Free;
+    FNewName := Value
+  end
+  else
   try
     R := AParser.Parse(Value);
     if (R <> psNotIntialized) and (R <> psError) then begin
@@ -6474,6 +6484,11 @@ begin
   FOldClassifier := (FModel as PUMLObject).Classifier;
   // Parsing
   AParser := PObjectExpressionParser.Create;
+  if not AParser.Initialized then begin
+    AParser.Free;
+    FNewName := Value
+  end
+  else
   try
     R := AParser.Parse(Value);
     if (R <> psNotIntialized) and (R <> psError) then begin
@@ -6578,6 +6593,11 @@ begin
   FOldInitialValue := (FModel as PUMLAttribute).InitialValue;
   // Parsing
   AParser := PAttributeExpressionParser.Create;
+  if not AParser.Initialized then begin
+    AParser.Free;
+    FNewName := Value
+  end
+  else
   try
     R := AParser.Parse(Value);
     if (R <> psNotIntialized) and (R <> psError) then begin
@@ -6842,6 +6862,11 @@ begin
 
   // Parsing
   AParser := POperationExpressionParser.Create;
+  if not AParser.Initialized then begin
+    AParser.Free;
+    FNewName := Value
+  end
+  else
   try
     R := AParser.Parse(Value);
     // Parsing completed: Fill the FNewParamters set

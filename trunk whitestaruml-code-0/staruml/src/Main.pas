@@ -1057,9 +1057,9 @@ begin
       if Sender = HelpContents then begin
         ShowStarUMLHelpPage;
       end
-      else if Sender = HelpStarUMLOnTheWeb then begin
+      {else if Sender = HelpStarUMLOnTheWeb then begin
         ShellExecute(0, 'open', 'http://www.staruml.com', '', '', SW_SHOWNORMAL);
-      end
+      end}
       else if Sender = HelpAbout then begin
         AboutForm.ShowModal;
       end

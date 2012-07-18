@@ -696,19 +696,19 @@ object MainForm: TMainForm
                       Action = PaletteNavBarFrame.SelectAction
                     end
                     item
-                      Action = PaletteNavBarFrame.ClassifierRoleAction
+                      Action = PaletteNavBarFrame.ObjectAction
                     end
                     item
-                      Action = PaletteNavBarFrame.AssociationRoleAction
+                      Action = PaletteNavBarFrame.LinkAction
                     end
                     item
-                      Action = PaletteNavBarFrame.SelfAssociationRoleAction
+                      Action = PaletteNavBarFrame.SelfLinkAction
                     end
                     item
-                      Action = PaletteNavBarFrame.ForwardMessageAction
+                      Action = PaletteNavBarFrame.ForwardStimulusAction
                     end
                     item
-                      Action = PaletteNavBarFrame.ReverseMessageAction
+                      Action = PaletteNavBarFrame.ReverseStimulusAction
                     end
                     item
                       Action = PaletteNavBarFrame.FrameAction
@@ -945,7 +945,7 @@ object MainForm: TMainForm
             end
             inherited MessageImageList: TImageList
               Bitmap = {
-                494C010103000400D80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                494C010103000400FC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                 0000000000003600000028000000400000001000000001002000000000000010
                 0000000000000000000000000000000000000000000000000000000000000000
                 0000000000000000000000000000000000000000000000000000000000000000
@@ -1169,7 +1169,7 @@ object MainForm: TMainForm
             end
             inherited ModelExplorerImageList: TImageList
               Bitmap = {
-                494C010106000800B80010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                494C010106000800DC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                 0000000000003600000028000000400000002000000001002000000000000020
                 0000000000000000000000000000000000000000000000000000000000000000
                 0000000000000000000000000000000000000000000000000000000000000000
@@ -1572,7 +1572,7 @@ object MainForm: TMainForm
                 end
                 inherited RowImageList: TImageList
                   Bitmap = {
-                    494C010104000900B80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                    494C010104000900DC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                     0000000000003600000028000000400000002000000001002000000000000020
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
@@ -1845,7 +1845,7 @@ object MainForm: TMainForm
                 end
                 inherited AggregationImageList: TImageList
                   Bitmap = {
-                    494C010103000400B80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                    494C010103000400DC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                     0000000000003600000028000000400000001000000001002000000000000010
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
@@ -1986,7 +1986,7 @@ object MainForm: TMainForm
                 end
                 inherited VisibilityImageList: TImageList
                   Bitmap = {
-                    494C010104000900B80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                    494C010104000900DC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                     0000000000003600000028000000400000002000000001002000000000000020
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
@@ -2259,7 +2259,7 @@ object MainForm: TMainForm
                 end
                 inherited PsedostatsImageList: TImageList
                   Bitmap = {
-                    494C010107000900B80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                    494C010107000900DC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                     0000000000003600000028000000400000002000000001002000000000000020
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
@@ -2532,7 +2532,7 @@ object MainForm: TMainForm
                 end
                 inherited ActionKindImageList: TImageList
                   Bitmap = {
-                    494C010105000900B80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                    494C010105000900DC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                     0000000000003600000028000000400000002000000001002000000000000020
                     0000000000000000000000000000000000000000000000000000000000000000
                     0000000000000000000000000000000000000000000000000000000000000000
@@ -2815,7 +2815,7 @@ object MainForm: TMainForm
             end
             inherited PageControlImageList: TImageList
               Bitmap = {
-                494C010103000400B40210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                494C010103000400D80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                 0000000000003600000028000000400000001000000001002000000000000010
                 0000000000000000000000000000000000000000000000000000000000000000
                 0000000000000000000000000000000000000000000000000000000000000000
@@ -3048,7 +3048,7 @@ object MainForm: TMainForm
             end
             inherited AttachmentsImageList: TImageList
               Bitmap = {
-                494C010106000900000310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                494C010106000900240310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                 0000000000003600000028000000400000002000000001002000000000000020
                 0000000000000000000000000000000000000000000000000000000000000000
                 0000000000000000000000000000000000000000000000000000000000000000
@@ -3321,7 +3321,7 @@ object MainForm: TMainForm
             end
             inherited BasicFileIconImageList: TImageList
               Bitmap = {
-                494C010103000400000310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+                494C010103000400240310001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
                 0000000000003600000028000000400000001000000001002000000000000010
                 0000000000000000000000000000000000000000000000000000000000000000
                 0000000000000000000000000000000000000000000000000000000000000000
@@ -3902,6 +3902,12 @@ object MainForm: TMainForm
       Visible = True
       WholeRow = True
     end
+    object dxBarSeparator1: TdxBarSeparator
+      Caption = 'New Separator'
+      Category = 0
+      Hint = 'New Separator'
+      Visible = ivAlways
+    end
     object FileMenu: TdxBarSubItem
       Caption = '&File'
       Category = 1
@@ -4240,11 +4246,6 @@ object MainForm: TMainForm
         item
           Visible = True
           ItemName = 'HelpContents'
-        end
-        item
-          BeginGroup = True
-          Visible = True
-          ItemName = 'HelpStarUMLOnTheWeb'
         end
         item
           Visible = True
@@ -5835,13 +5836,6 @@ object MainForm: TMainForm
       ShortCut = 112
       OnClick = HelpMenuClick
     end
-    object HelpStarUMLOnTheWeb: TdxBarButton
-      Caption = 'StarUML on the &Web'
-      Category = 7
-      Hint = 'StarUML on the Web'
-      Visible = ivAlways
-      OnClick = HelpMenuClick
-    end
     object HelpAbout: TdxBarButton
       Caption = '&About...'
       Category = 7
@@ -6480,7 +6474,6 @@ object MainForm: TMainForm
         'ToolsOptions'
         'ToolsAddInManager'
         'HelpContents'
-        'HelpStarUMLOnTheWeb'
         'HelpAbout'
         'FileCreate')
     end
@@ -6563,7 +6556,7 @@ object MainForm: TMainForm
     Left = 452
     Top = 264
     Bitmap = {
-      494C0101B700B800A80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101B700B800CC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000E0020000010020000000000000E0
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -12973,7 +12966,7 @@ object MainForm: TMainForm
     Left = 544
     Top = 302
     Bitmap = {
-      494C010109000E00A80210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010109000E00CC0210001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -13381,7 +13374,7 @@ object MainForm: TMainForm
     Left = 524
     Top = 240
     Bitmap = {
-      494C010104000900A80208001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104000900CC0208001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000200000002000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

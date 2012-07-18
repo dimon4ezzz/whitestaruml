@@ -652,7 +652,8 @@ begin
       dxItem.Enabled := False;
       dxItem.OnClick := HelpMenuItemClickedHandler;
       dxItem.ImageIndex := 143;
-      Idx := MainForm.HelpMenu.ItemLinks.IndexOf(MainForm.HelpStarUMLOnTheWeb.Links[0]);
+      //Idx := MainForm.HelpMenu.ItemLinks.IndexOf(MainForm.HelpStarUMLOnTheWeb.Links[0]);
+      Idx := MainForm.HelpMenu.ItemLinks.IndexOf(MainForm.HelpAbout.Links[0]);
       dxLink.Index := Idx;
       dxLink.Item := dxItem;
       AddMenuItemToList(dxItem, AT_AlWAYS);

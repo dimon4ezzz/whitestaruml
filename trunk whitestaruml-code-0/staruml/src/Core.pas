@@ -6488,7 +6488,7 @@ end;
 
 procedure PDocumentOutputStream.Close(ADocument: PDocument);
 begin
-  XMLStrings.SaveToFile(FFileName);
+  XMLStrings.SaveToFile(FFileName, TEncoding.UTF8);
   ADocument.FileSavedTime := FileDateToDateTime(FileAge(ADocument.FileName));
 end;
 
