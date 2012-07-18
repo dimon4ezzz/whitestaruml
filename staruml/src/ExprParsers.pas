@@ -48,40 +48,42 @@ unit ExprParsers;
 interface
 
 uses
-  PGMR101Lib_TLB,
-  Classes;
+  Classes, PGMR101Lib_TLB, ParserCore_TLB;
 
-const
+
+//const
   // Grammar file path
   // Grammar directory must be assigned as value specified in registry
-  GMR_FILE_NAME = 'NameExpr.GMR';
+  {GMR_FILE_NAME = 'NameExpr.GMR';
   GMR_FILE_ATTR = 'AttrExpr.GMR';
   GMR_FILE_OPER = 'OperExpr.GMR';
   GMR_FILE_OBJ = 'ObjExpr.GMR';
   GMR_FILE_ROLE = 'RoleExpr.GMR';
-  GMR_FILE_MSG = 'MsgExpr.GMR';
+  GMR_FILE_MSG = 'MsgExpr.GMR';}
 
 type
   // PParseStatus
   PParseStatus = (psNotIntialized, psError, psDefective, psRecovered ,psComplete);
 
+
   // PExpressionParser
   PExpressionParser = class
   private
-    FParser: TPgmr;
+    FParser: IParserCore;
     FInitialized: Boolean;
-    function PickoutValue(StartingNode: Integer; SearchPath: string): string;
+    function PickoutValue(SearchPath: string): string;
   protected
     procedure ClearProperties; virtual; abstract;
     procedure PickoutValues; virtual; abstract;
-    function ReparsePart(Source: string): Boolean;
+    //function ReparsePart(Source: string): Boolean;
   public
     constructor Create;
     destructor Destroy; override;
     function Parse(Source: string): PParseStatus;
-    property Initialzied: Boolean read FInitialized;
+    property Initialized: Boolean read FInitialized;
   end;
 
+ 
   // PGeneralNameExpressionParser
   PGeneralNameExpressionParser = class(PExpressionParser)
   private
@@ -97,6 +99,7 @@ type
     property Visibility: string read FVisibility;
     property Name: string read FName;
   end;
+
 
   // PAttributeExpressionParser
   PAttributeExpressionParser = class(PExpressionParser)
@@ -191,6 +194,7 @@ type
     property ClassifierName: string read FClassifierName;
   end;
 
+
   // PMessageExpressionParser
   PMessageExpressionParser = class(PExpressionParser)
   private
@@ -219,7 +223,7 @@ type
 implementation
 
 uses
-  Forms, SysUtils;
+  Forms, SysUtils, Dialogs;
 
 const
   // Error detail name
@@ -241,62 +245,29 @@ const
   ES_UNRECOVERABLE = '2';
   ES_RECOVERABLE = '3';
 
+
 ////////////////////////////////////////////////////////////////////////////////
 // PExpressionParser
 
 constructor PExpressionParser.Create;
 begin
   inherited;
-  FParser := TPgmr.Create(Application);
+  //FParser := TPgmr.Create(Application);
   FInitialized := False;
 end;
 
 destructor PExpressionParser.Destroy;
 begin
-  FParser.Free;
-  FParser := nil;
+  //FParser.Free;
+  //FParser := nil;
   inherited;
 end;
 
-function PExpressionParser.PickoutValue(StartingNode: Integer; SearchPath: string): string;
-var
-  SearchID: Integer;
-  NodeID: Integer;
+function PExpressionParser.PickoutValue(SearchPath: string): string;
 begin
-  Result := '';
-  SearchID := FParser.StartSearch(SearchPath, StartingNode);
-  NodeID := FParser.FindNext(SearchID);
-  if NodeID <> 0 then
-    Result := Trim(FParser.GetValue(NodeID));
-  FParser.EndSearch(SearchID);
+    Result := FParser.FindNodeValue(SearchPath);
 end;
 
-function PExpressionParser.ReparsePart(Source: string): Boolean;
-var
-  DefRemoved: Boolean;
-  P: Integer;
-  S: string;
-  I: Integer;
-begin
-  Result := False;
-  P := StrToIntDef(FParser.GetErrorDetail(0, ED_START_POS), -1);
-  if P > 0 then begin
-    S := Copy(Source, 1, P - 1);
-    FParser.SetInputString(S);
-
-    if FPArser.Parse <> pgStatusComplete then begin
-      Result := False;
-      Exit;
-    end;
-
-    DefRemoved := True;
-    for I := 0 to FParser.GetNumErrors - 1 do begin
-      if FParser.GetErrorDetail(I, ED_SEVERITY) <> ES_RECOVERABLE then
-        DefRemoved := False;
-    end;
-    Result := DefRemoved;
-  end;
-end;
 
 function PExpressionParser.Parse(Source: string): PParseStatus;
 var
@@ -315,37 +286,21 @@ begin
     Exit;
   end;
 
-  FParser.SetInputString(Source);
   Result := psComplete;
 
-  if FParser.Parse <> pgStatusComplete then begin
+  if not FParser.Parse(Source) then begin
     Result := psError;
-    Exit;
+    ShowMessage(FParser.GetFailMessage);
   end
-  else if FParser.GetNumErrors > 0 then begin
-    Recoverable := True;
-    for I := 0 to FParser.GetNumErrors - 1 do begin
-      if FParser.GetErrorDetail(I, ED_SEVERITY) <> ES_RECOVERABLE then
-        Recoverable := False;
-    end;
-
-    if Recoverable then
-      Result := psRecovered
-    else begin
-      if ReparsePart(Source) then
-        Result := psDefective
-      else begin
-        Result := psError;
-        Exit;
-      end;
-    end;
-
-  end;
-  PickoutValues;
+  else
+    PickoutValues;
 end;
 
 // PExpressionParser
 ////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // PGeneralNameExpressionParser
@@ -353,8 +308,15 @@ end;
 constructor PGeneralNameExpressionParser.Create;
 begin
   inherited;
-  FInitialized := FParser.SetGrammar(GetAppDir + GMR_FILE_NAME);
-  FParser.SetStartSymbol(FParser.GetSymbolID('general_name_expression'));
+  try
+    FParser := CoNameExprParserCoreImpl.Create;
+  except
+  end;
+  if FParser <> nil then
+    FInitialized := True
+
+  //FInitialized := FParser.SetGrammar(GetAppDir + GMR_FILE_NAME);
+  //FParser.SetStartSymbol(FParser.GetSymbolID('general_name_expression'));
 end;
 
 procedure PGeneralNameExpressionParser.ClearProperties;
@@ -365,17 +327,17 @@ begin
 end;
 
 procedure PGeneralNameExpressionParser.PickoutValues;
-var
-  RootNode: Integer;
 begin
-  RootNode := FParser.GetChild(FParser.GetRoot, 0);
-  FStereoType := PickoutValue(RootNode, '.stereotype_part.stereotype');
-  FVisibility := PickoutValue(RootNode, '.visibility');
-  FName := PickoutValue(RootNode, '.name');
+  //RootNode := FParser.GetChild(FParser.GetRoot, 0);
+  FName := PickoutValue('name');
+  FStereoType := PickoutValue('stereotype_part.stereotype');
+  FVisibility := PickoutValue('visibility');
+
 end;
 
 // PGeneralNameExpressionParser
 ////////////////////////////////////////////////////////////////////////////////
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // PAttributeExpressionParser
@@ -383,9 +345,13 @@ end;
 constructor PAttributeExpressionParser.Create;
 begin
   inherited;
-  FInitialized := FParser.SetGrammar(GetAppDir + GMR_FILE_ATTR);
-  FParser.SetStartSymbol(FParser.GetSymbolID('attribute_expression'));
-end;
+  try
+    FParser := CoAttrExprParserCoreImpl.Create;
+  except
+  end;
+  if FParser <> nil then
+    FInitialized := True
+ end;
 
 procedure PAttributeExpressionParser.ClearProperties;
 begin
@@ -399,17 +365,14 @@ begin
 end;
 
 procedure PAttributeExpressionParser.PickoutValues;
-var
-  RootNode: Integer;
 begin
-  RootNode := FParser.GetChild(FParser.GetRoot, 0);
-  FStereotype := PickoutValue(RootNode, '.stereotype_part.stereotype');
-  FVisibility := PickoutValue(RootNode, '.visibility');
-  FName := PickoutValue(RootNode, '.attribute_name');
-  FTypeExpression := PickoutValue(RootNode, '.type_expression_part.type_expression');
-  FMultiplicity := PickoutValue(RootNode, '.multiplicity_part.multiplicity_term');
-  FOrdering := PickoutValue(RootNode, '.multiplicity_part.ordering_term');
-  FInitialValue := PickoutValue(RootNode, '.initial_value_part.initial_value');
+  FStereotype := PickoutValue('stereotype_part.stereotype');
+  FVisibility := PickoutValue('visibility');
+  FName := PickoutValue('attribute_name');
+  FTypeExpression := PickoutValue('type_expression_part.type_expression');
+  FMultiplicity := PickoutValue('multiplicity_part.multiplicity_term');
+  FOrdering := PickoutValue('multiplicity_part.ordering_term');
+  FInitialValue := PickoutValue('initial_value_part.initial_value');
 end;
 
 // PAttributeExpressionParser
@@ -425,8 +388,13 @@ begin
   FParameterNames := TStringList.Create;
   FParameterTypeExpressions := TStringList.Create;
   FParameterDefaultValues := TStringList.Create;
-  FInitialized := FParser.SetGrammar(GetAppDir + GMR_FILE_OPER);
-  FParser.SetStartSymbol(FParser.GetSymbolID('operation_expression'));
+
+  try
+    FParser := CoOperExprParserCoreImpl.Create;
+  except
+  end;
+  if FParser <> nil then
+    FInitialized := True
 end;
 
 destructor POperationExpressionParser.Destroy;
@@ -488,28 +456,15 @@ begin
 end;
 
 procedure POperationExpressionParser.PickoutValues;
-var
-  RootNode: Integer;
-  SearchID: Integer;
-  NodeID: Integer;
 begin
-  RootNode := FParser.GetChild(FParser.GetRoot, 0);
-
-  FStereotype := PickoutValue(RootNode, '.stereotype_part.stereotype');
-  FVisibility := PickoutValue(RootNode, '.visibility');
-  FName := PickoutValue(RootNode, '.operation_name');
-  FReturnTypeExpression := PickoutValue(RootNode, '.return_type_expression_part.return_type_expression');
-  // Extract Parameters
-  SearchID := FParser.StartSearch('.parameter_list_part.*parameter', RootNode);
-  NodeID := FParser.FindNext(SearchID);
-  while (NodeID <> 0) do begin
-    FParameterKinds.Add(PickoutValue(NodeID, '.parameter_kind'));
-    FParameterNames.Add(PickoutValue(NodeID, '.parameter_name'));
-    FParameterTypeExpressions.Add(PickoutValue(NodeID, '.parameter_type_expression'));
-    FParameterDefaultValues.Add(PickoutValue(NodeID, '.parameter_default_value'));
-    NodeID := FParser.FindNext(SearchID);
-  end;
-  FParser.EndSearch(SearchID);
+  FStereotype := PickoutValue('stereotype_part.stereotype');
+  FVisibility := PickoutValue('visibility');
+  FName := PickoutValue('operation_name');
+  FReturnTypeExpression := PickoutValue('return_type_expression_part.return_type_expression');
+  FParameterKinds.Add(PickoutValue('parameter_list_part.parameter_kind'));
+  FParameterNames.Add(PickoutValue('parameter_list_part.parameter_name'));
+  FParameterTypeExpressions.Add(PickoutValue('parameter_list_part.parameter_type_expression'));
+  FParameterDefaultValues.Add(PickoutValue('parameter_list_part.parameter_default_value'));
 end;
 
 // POperationExpressionParser
@@ -521,8 +476,12 @@ end;
 constructor PClassifierRoleExpressionParser.Create;
 begin
   inherited;
-  FInitialized := FParser.SetGrammar(GetAppDir + GMR_FILE_ROLE);
-  FParser.SetStartSymbol(FParser.GetSymbolID('classifier_role_expression'));
+  try
+    FParser := CoRoleExprParserCoreImpl.Create;
+  except
+  end;
+  if FParser <> nil then
+    FInitialized := True
 end;
 
 procedure PClassifierRoleExpressionParser.ClearProperties;
@@ -534,14 +493,11 @@ begin
 end;
 
 procedure PClassifierRoleExpressionParser.PickoutValues;
-var
-  RootNode: Integer;
 begin
-  RootNode := FParser.GetChild(FParser.GetRoot, 0);
-  FStereotype := PickoutValue(RootNode, '.stereotype_part.stereotype');
-  FVisibility := PickoutValue(RootNode, '.classifier_role_name_part.visibility');
-  FRoleName := PickoutValue(RootNode, '.classifier_role_name_part.classifier_role_name');
-  FClassifierName := PickoutValue(RootNode, '.classifier_name_part.classifier_name');
+  FStereotype := PickoutValue('stereotype_part.stereotype');
+  FVisibility := PickoutValue('classifier_role_name_part.visibility');
+  FRoleName := PickoutValue('classifier_role_name_part.classifier_role_name');
+  FClassifierName := PickoutValue('classifier_name_part.classifier_name');
 end;
 
 // PClassifierRoleExpressionParser
@@ -553,8 +509,12 @@ end;
 constructor PObjectExpressionParser.Create;
 begin
   inherited;
-  FInitialized := FParser.SetGrammar(GetAppDir + GMR_FILE_OBJ);
-  FParser.SetStartSymbol(FParser.GetSymbolID('object_expression'));
+  try
+    FParser := CoObjExprParserCoreImpl.Create;
+  except
+  end;
+  if FParser <> nil then
+    FInitialized := True
 end;
 
 procedure PObjectExpressionParser.ClearProperties;
@@ -566,18 +526,17 @@ begin
 end;
 
 procedure PObjectExpressionParser.PickoutValues;
-var
-  RootNode: Integer;
 begin
-  RootNode := FParser.GetChild(FParser.GetRoot, 0);
-  FStereotype := PickoutValue(RootNode, '.stereotype_part.stereotype');
-  FVisibility := PickoutValue(RootNode, '.visibility');
-  FObjectName := PickoutValue(RootNode, '.object_name');
-  FClassifierName := PickoutValue(RootNode, '.classifier_name_part.classifier_name');
+  FStereotype := PickoutValue('stereotype_part.stereotype');
+  FVisibility := PickoutValue('visibility');
+  FObjectName := PickoutValue('object_name');
+  FClassifierName := PickoutValue('classifier_name_part.classifier_name');
 end;
 
 // PClassifierRoleExpressionParser
 ////////////////////////////////////////////////////////////////////////////////
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // PMessageExpressionParser
@@ -585,8 +544,12 @@ end;
 constructor PMessageExpressionParser.Create;
 begin
   inherited;
-  FInitialized := FParser.SetGrammar(GetAppDir + GMR_FILE_MSG);
-  FParser.SetStartSymbol(FParser.GetSymbolID('message_expression'));
+  try
+    FParser := CoMsgExprParserCoreImpl.Create;
+  except
+  end;
+  if FParser <> nil then
+    FInitialized := True
 end;
 
 procedure PMessageExpressionParser.ClearProperties;
@@ -600,16 +563,13 @@ begin
 end;
 
 procedure PMessageExpressionParser.PickoutValues;
-var
-  RootNode: Integer;
 begin
-  RootNode := FParser.GetChild(FParser.GetRoot, 0);
-  FStereotype := PickoutValue(RootNode, '.stereotype_part.stereotype');
-  FMessageName := PickoutValue(RootNode, '.message_name');
-  FArguments := PickoutValue(RootNode, '.argument_part.argument_string');
-  FIteration := PickoutValue(RootNode, '.recurrence_part.iteration_clause_part.iteration_clause');
-  FBranch := PickoutValue(RootNode, '.recurrence_part.branch_clause_part.branch_clause');
-  FReturn := PickoutValue(RootNode, '.return_part.return_id');
+  FStereotype := PickoutValue('stereotype_part.stereotype');
+  FMessageName := PickoutValue('message_name');
+  FArguments := PickoutValue('argument_part.argument_string');
+  FIteration := PickoutValue('recurrence_part.iteration_clause_part.iteration_clause');
+  FBranch := PickoutValue('recurrence_part.branch_clause_part.branch_clause');
+  FReturn := PickoutValue('return_part.return_id');
 end;
 
 // PMessageExpressionParser

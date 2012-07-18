@@ -247,7 +247,6 @@ type
     HelpMenu: TdxBarSubItem;
     HelpAbout: TdxBarButton;
     HelpContents: TdxBarButton;
-    HelpStarUMLOnTheWeb: TdxBarButton;
     AllModelsGroup: TdxBarGroup;
     NamespacesGroup: TdxBarGroup;
     ClassifiersGroup: TdxBarGroup;
@@ -362,6 +361,7 @@ type
     DocumentStateImageList: TImageList;
     DesktopAlert: TJvDesktopAlert;
     ModelExplorer: TModelExplorerPanel;
+    dxBarSeparator1: TdxBarSeparator;
     PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);
