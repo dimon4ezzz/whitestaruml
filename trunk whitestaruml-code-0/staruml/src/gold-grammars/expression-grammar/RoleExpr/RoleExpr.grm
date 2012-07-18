@@ -1,0 +1,49 @@
+"Start Symbol" = <Grammar Classifier Role>
+"Case Sensitive" = False                
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+
+{String Chars} = {All Letters} + {Number}
+
+
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+
+id =  {String Chars}+ ( '<'  {String Chars}*  '>' | '['  {String Chars}*  ']' )?  
+type_id = id
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<Grammar Classifier Role> ::= <classifier_role_expression> 
+
+<classifier_role_expression> ::= <stereotype_part> <classifier_role_name_part> <classifier_name_part>
+                                                
+<stereotype_part> ::= '<<' <stereotype> '>>'
+                   |  <>
+
+<stereotype> ::= id
+ 
+<classifier_role_name_part> ::= '/' <visibility> <classifier_role_name>
+                             | <visibility> <classifier_role_name>
+                             | <>
+
+<visibility> ::= '+' | '#' | '-' | '~'
+              | <> 
+
+<classifier_role_name> ::= id
+
+<classifier_name_part> ::= ':' <classifier_name>
+                            | <>
+
+<classifier_name> ::= type_id
+       
+
+
+        
+
