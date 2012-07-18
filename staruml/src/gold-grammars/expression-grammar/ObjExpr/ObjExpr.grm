@@ -1,0 +1,48 @@
+"Start Symbol" = <Grammar Object>
+"Case Sensitive" = False                
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+
+{String Chars} = {All Letters} + {Number}
+
+
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+
+id =  {String Chars}+ ( '<'  {String Chars}*  '>' | '['  {String Chars}*  ']' )?  
+type_id = id
+
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<Grammar Object> ::= <object_expression> 
+
+<object_expression> ::= <stereotype_part> <visibility> <object_name> <classifier_name_part>
+                                                
+<stereotype_part> ::= '<<' <stereotype> '>>'
+                   |  <>
+
+<stereotype> ::= id
+
+<visibility> ::= '+' | '#' | '-' | '~'
+              | <> 
+
+<object_name> ::= id
+               | <>
+
+
+<classifier_name_part> ::= ':' <classifier_name>
+                            | <>
+
+<classifier_name> ::= type_id
+       
+
+
+        
+

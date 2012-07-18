@@ -1,0 +1,49 @@
+"Start Symbol" = <Grammar Transition>
+"Case Sensitive" = False                
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+
+{String Chars} = {All Letters} + {Number}
+
+
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+
+id =  {String Chars}+ ( '<'  {String Chars}*  '>' | '['  {String Chars}*  ']' )?  
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<Grammar Transition> ::= <transition_expression> 
+
+<transition_expression> ::= <event_signature> <guard_condition> <action_expression>
+                                                
+<event_signature> ::= <event_name> 
+                   | <event_name> '(' <parameter_list> ')'
+                   | <>
+
+<event_name> ::= id
+             
+<parameter_list> ::= <parameter_list> ',' <parameter>
+                  | <parameter>
+
+<parameter> ::= <parameter_name> ':' <type_expression>
+             | <parameter_name>
+
+<parameter_name> ::= id
+
+
+<type_expression> ::= id
+
+<guard_condition> ::= '[' id ']' | <>
+                   
+<action_expression> ::= '/' id | <>
+                   
+
+        
+

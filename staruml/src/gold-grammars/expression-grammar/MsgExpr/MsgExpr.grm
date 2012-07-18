@@ -1,0 +1,54 @@
+"Start Symbol" = <Grammar Message>
+"Case Sensitive" = False                
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+
+{String Chars} = {All Letters} + {Number}
+{Iteration Clause Chars} =  {String Chars}
+
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+
+id =  {String Chars}+ ( '<'  {String Chars}*  '>' | '['  {String Chars}*  ']' )?  
+iteration__branch_clause = id 
+!type_id = ('::'{String Chars})+
+!initial_value = {String Chars}+ 
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<Grammar Message> ::= <message_expression> 
+<message_expression> ::= <stereotype_part> <recurrence_part> <return_part> <message_name> <argument_part>
+                           
+<stereotype_part> ::= '<<' <stereotype> '>>'
+                   |  <>
+
+<stereotype> ::= id
+
+
+<recurrence_part> ::= <iteration_clause_part>  <branch_clause_part>
+        | <branch_clause_part>  <iteration_clause_part>
+        | <iteration_clause_part>
+        | <branch_clause_part> 
+        | <>
+
+<iteration_clause_part> ::= '*' '[' iteration__branch_clause ']'
+
+<branch_clause_part> ::= '[' iteration__branch_clause ']'
+                      
+<return_part> ::= <return_id> ':=' 
+              |<>
+
+<return_id> ::= id
+                    
+<message_name> ::= id | <>
+                
+<argument_part> ::= '(' id ')'
+                 | <>
+                  
+

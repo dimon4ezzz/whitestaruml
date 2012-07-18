@@ -1,0 +1,35 @@
+"Start Symbol" = <Grammar General Name>
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+
+{String Chars} = {All Letters} +  {Number}
+
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+
+id =  {String Chars}+ ( '<'  {String Chars}*  '>' | '['  {String Chars}*  ']' )?  
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<Grammar General Name> ::= <general_name_expression> 
+<general_name_expression> ::= <stereotype_part> <visibility> <name>
+                           
+<stereotype_part> ::= '<<' <stereotype> '>>'
+                   |  <>
+
+<stereotype> ::= id
+
+<visibility> ::= '+' | '#' | '-' | '~'
+              | <> 
+
+<name> ::= id
+        
+       
+        
+
