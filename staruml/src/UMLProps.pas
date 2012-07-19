@@ -1329,7 +1329,10 @@ begin
   else if Key = 'IsSpecification' then begin
     Result := AElement.MOF_GetAttribute(Key);
   end
-  else if Key = 'IsAbstract' then begin
+  else if Key = 'IsSynch' then begin
+    Result := AElement.MOF_GetAttribute(Key);
+  end
+   else if Key = 'IsAbstract' then begin
     Result := AElement.MOF_GetAttribute(Key);
   end
   else if Key = 'IsRoot' then begin
