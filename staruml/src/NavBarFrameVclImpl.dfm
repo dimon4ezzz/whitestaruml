@@ -651,7 +651,7 @@ inherited PaletteNavBarFrameVclImpl: TPaletteNavBarFrameVclImpl
             Action = FlowFinalStateAction
           end
           item
-            Action = ObjectAction
+            Action = ObjectFlowStateAction
           end
           item
             Action = SignalAcceptStateAction
