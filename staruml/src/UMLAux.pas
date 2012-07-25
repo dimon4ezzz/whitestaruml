@@ -366,9 +366,15 @@ begin
     if (Key = 'FontStyle') and (Obj as PView).ParentFontStyle then CanFilter := True;
     if (Key = 'Left') and not (Obj as PView).Selectable then CanFilter := True;
     if (Key = 'Top') and not (Obj as PView).Selectable then CanFilter := True;
-    if (Key = 'Width') and not (Obj as PView).Selectable then CanFilter := True;
-    if (Key = 'Height') and not (Obj as PView).Selectable then CanFilter := True;
-    if (Key = 'OwnerDiagramView') then CanFilter := True;
+    if (Key = 'Width') or (Key = 'Height') then begin
+      if (Obj is PLabelView) then
+        CanFilter := not (Obj as PLabelView).WordWrap // Don't filter dims of a wrapped label
+      else
+        CanFilter := not (Obj as PView).Selectable;
+    end;
+    //if (Key = 'Width') and not (Obj as PView).Selectable then
+    //if (Key = 'Height') and not (Obj as PView).Selectable then CanFilter := True;
+     if (Key = 'OwnerDiagramView') then CanFilter := True;
   end;
   if Obj is PParasiticView then begin
     if Key = 'Left' then CanFilter := True;
