@@ -246,6 +246,7 @@ var
   //I: Integer;
   Row: TJvInspectorElemBase;
   E: PElement;
+  RowName: string;
   Val: string;
 
 begin
@@ -257,7 +258,8 @@ begin
     for Row in FElemsHolder do
     begin
       E := FInspectingElements[0] as PElement;
-      Val := PropertyAdaptor.GetPropertyValue(E, Row.Item.Name);
+      RowName := Row.Item.Name;
+      Val := PropertyAdaptor.GetPropertyValue(E, RowName);
       Row.Item.DisplayValue := Val;
     end
   end

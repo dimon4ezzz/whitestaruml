@@ -1414,6 +1414,7 @@ begin
     W := MinW;
     H := MinH;
   end;
+
   if FDirection = dkHorizontal then begin
     MinWidth := MinW;
     MinHeight := MinH;
