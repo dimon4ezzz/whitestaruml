@@ -4,13 +4,12 @@
 ! Character Sets
 ! -------------------------------------------------
 
-{String Chars} = {All Letters} +  {Number}
-
+{String Chars} = {All Letters} +  {Number} + [ '_' ',' ';' '/' ':' '.' '#' '&' '@' '$' '%' ]
+{String Chars No Spaces} = {String Chars}  - {All Space}
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
-
-id =  {String Chars}+ ( '<'  {String Chars}*  '>' | '['  {String Chars}*  ']' )?  
+id = {String Chars No Spaces}+ ( {All Space} {String Chars No Spaces}+ )* ( '<' {String Chars}* '>' | '[' {String Chars}* ']' )?  
 
 ! -------------------------------------------------
 ! Rules
@@ -29,6 +28,8 @@ id =  {String Chars}+ ( '<'  {String Chars}*  '>' | '['  {String Chars}*  ']' )?
               | <> 
 
 <name> ::= id
+        
+
         
        
         
