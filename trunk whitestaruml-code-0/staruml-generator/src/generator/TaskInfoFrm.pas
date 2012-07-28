@@ -51,7 +51,7 @@ uses
   DirectMDAObjects,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, dxInspRw, dxInspct, dxCntner, ExtCtrls, ImgList,
-  ComCtrls, STARUML_TLB, dxExEdtr;
+  ComCtrls, WhiteStarUML_TLB, dxExEdtr;
 
 const
   TXT_SELECT_DIR = 'Select Directory';

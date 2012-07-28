@@ -55,85 +55,58 @@ object BatchFrame: TBatchFrame
     HighlightedTextColor = clWindowText
     Options = [goDisableColumnMoving, goGrid, goHeader, goSelectFullRow]
     RowSize = 18
-    ParentColor = False
     TabOrder = 2
     TabStop = True
-    WantReturns = False
     OnCellClick = TasksGridCellClick
     OnChange = TasksGridChange
     OnDblClick = TasksGridDblClick
     object CheckColumn: TNxCheckBoxColumn
       Alignment = taCenter
-      Color = clWindow
       DefaultWidth = 23
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Footer.Color = clWindow
-      Footer.FormulaKind = fkNone
-      Header.Color = clBtnFace
       Header.DisplayMode = dmImageOnly
-      Options = [coCanClick, coEditing, coCanInput, coEditorAutoSelect, coFixedSize]
+      Options = [coCanClick, coCanInput, coEditing, coEditorAutoSelect, coFixedSize]
       ParentFont = False
       Position = 0
-      SlideBounds.Height = 16
-      SlideBounds.Left = 8
-      SlideBounds.Top = 8
-      SlideBounds.Width = 80
       SortKind = skDescending
       SortType = stBoolean
       Width = 23
     end
     object GroupColumn: TNxTextColumn
-      Color = clWindow
       DefaultWidth = 100
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Footer.Color = clWindow
-      Footer.FormulaKind = fkNone
-      Header.Color = clBtnFace
       Header.Caption = 'Group'
-      Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+      Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
       ParentFont = False
       Position = 1
-      SlideBounds.Height = 16
-      SlideBounds.Left = 8
-      SlideBounds.Top = 8
-      SlideBounds.Width = 80
       Sorted = True
       SortType = stAlphabetic
       Width = 100
     end
     object CategoryColumn: TNxTextColumn
-      Color = clWindow
       DefaultWidth = 100
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Footer.Color = clWindow
-      Footer.FormulaKind = fkNone
-      Header.Color = clBtnFace
       Header.Caption = 'Category'
-      Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+      Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
       ParentFont = False
       Position = 2
-      SlideBounds.Height = 16
-      SlideBounds.Left = 8
-      SlideBounds.Top = 8
-      SlideBounds.Width = 80
       SortKind = skDescending
       SortType = stAlphabetic
       Width = 100
     end
     object PreviewColumn: TNxImageColumn
-      Color = clWindow
       DefaultValue = '0'
       DefaultWidth = 22
       Font.Charset = DEFAULT_CHARSET
@@ -141,9 +114,6 @@ object BatchFrame: TBatchFrame
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Footer.Color = clWindow
-      Footer.FormulaKind = fkNone
-      Header.Color = clBtnFace
       Header.DisplayMode = dmImageOnly
       Header.Glyph.Data = {
         36030000424D3603000000000000360000002800000010000000100000000100
@@ -175,87 +145,57 @@ object BatchFrame: TBatchFrame
       Options = [coCanClick, coCanInput, coEditorAutoSelect, coFixedSize]
       ParentFont = False
       Position = 3
-      SlideBounds.Height = 16
-      SlideBounds.Left = 8
-      SlideBounds.Top = 8
-      SlideBounds.Width = 80
       SortType = stNumeric
       Visible = False
       Width = 22
       Images = CellValueImages
-      Transparent = True
     end
     object NameColumn: TNxTextColumn
-      Color = clWindow
       DefaultWidth = 270
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Footer.Color = clWindow
-      Footer.FormulaKind = fkNone
-      Header.Color = clBtnFace
       Header.Caption = 'Document Name'
-      Options = [coAutoSize, coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+      Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
       ParentFont = False
       Position = 4
-      SlideBounds.Height = 16
-      SlideBounds.Left = 8
-      SlideBounds.Top = 8
-      SlideBounds.Width = 80
       SortKind = skDescending
       SortType = stAlphabetic
       Width = 270
     end
     object DocTypeColumn: TNxTextColumn
-      Color = clWindow
       DefaultWidth = 100
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Footer.Color = clWindow
-      Footer.FormulaKind = fkNone
-      Header.Color = clBtnFace
       Header.Caption = 'Doc. Type'
-      Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+      Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
       ParentFont = False
       Position = 5
-      SlideBounds.Height = 16
-      SlideBounds.Left = 8
-      SlideBounds.Top = 8
-      SlideBounds.Width = 80
       SortType = stAlphabetic
       Width = 100
     end
     object FormatColumn: TNxTextColumn
       Alignment = taCenter
-      Color = clWindow
       DefaultWidth = 70
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Footer.Color = clWindow
-      Footer.FormulaKind = fkNone
-      Header.Color = clBtnFace
       Header.Caption = 'Format'
-      Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+      Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
       ParentFont = False
       Position = 6
-      SlideBounds.Height = 16
-      SlideBounds.Left = 8
-      SlideBounds.Top = 8
-      SlideBounds.Width = 80
       SortType = stAlphabetic
       Width = 70
     end
     object TutorialColumn: TNxImageColumn
       Alignment = taCenter
-      Color = clWindow
       DefaultValue = '0'
       DefaultWidth = 60
       Font.Charset = ANSI_CHARSET
@@ -263,26 +203,17 @@ object BatchFrame: TBatchFrame
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Footer.Color = clWindow
-      Footer.FormulaKind = fkNone
-      Header.Color = clBtnFace
       Header.Caption = 'Tutorial'
-      Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coFixedSize]
+      Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coFixedSize]
       ParentFont = False
       Position = 7
-      SlideBounds.Height = 16
-      SlideBounds.Left = 8
-      SlideBounds.Top = 8
-      SlideBounds.Width = 80
       SortType = stNumeric
       Visible = False
       Width = 60
       Images = CellValueImages
-      Transparent = True
     end
     object ParametersColumn: TNxImageColumn
       Alignment = taCenter
-      Color = clWindow
       DefaultValue = '0'
       DefaultWidth = 30
       Font.Charset = DEFAULT_CHARSET
@@ -290,28 +221,20 @@ object BatchFrame: TBatchFrame
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Footer.Color = clWindow
-      Footer.FormulaKind = fkNone
-      Header.Color = clBtnFace
       Header.Caption = 'Opt.'
       Options = [coCanClick, coCanInput, coEditorAutoSelect, coFixedSize]
       ParentFont = False
       Position = 8
-      SlideBounds.Height = 16
-      SlideBounds.Left = 8
-      SlideBounds.Top = 8
-      SlideBounds.Width = 80
       SortType = stNumeric
       Width = 30
       Images = CellValueImages
-      Transparent = True
     end
   end
   object CellValueImages: TImageList
     Left = 320
     Top = 13
     Bitmap = {
-      494C010103000400040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000400080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -50,7 +50,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, NxColumnClasses, NxColumns, NxScrollControl,
-  NxCustomGridControl, NxCustomGrid, NxGrid, ImgList, STARUML_TLB;
+  NxCustomGridControl, NxCustomGrid, NxGrid, ImgList, WhiteStarUML_TLB;
 
 type
   // TProfileSelectorForm

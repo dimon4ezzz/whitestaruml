@@ -48,7 +48,7 @@ unit NewTemplateDlg;
 interface
 
 uses Windows, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls, 
-  Buttons, ExtCtrls, TB2Item, TB2Dock, TB2Toolbar, FlatPanel, TBSkinPlus,
+  Buttons, ExtCtrls, {TB2Item, TB2Dock, TB2Toolbar,} FlatPanel, {TBSkinPlus,}
   ImgList, SsBase, StBrowsr;
 
 type

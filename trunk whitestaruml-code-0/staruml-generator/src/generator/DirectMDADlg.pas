@@ -50,7 +50,7 @@ unit DirectMDADlg;
 interface
 
 uses
-  ComObj, ActiveX, Generator_TLB, STARUML_TLB, StdVcl, SysUtils;
+  ComObj, ActiveX, Generator_TLB, WhiteStarUML_TLB, StdVcl, SysUtils;
 
 type
   TGeneratorApplication = class(TAutoObject, IGeneratorApplication, IStarUMLAddIn)
@@ -79,7 +79,7 @@ uses
 procedure TGeneratorApplication.Initialize;
 begin
   inherited;
-  StarUMLApp := CoStarUMLApplication.Create;
+  StarUMLApp := CoWhiteStarUMLApplication.Create;
   Application.Handle := StarUMLApp.Handle;
 end;
 

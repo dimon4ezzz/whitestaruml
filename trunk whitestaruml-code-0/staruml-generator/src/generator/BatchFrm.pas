@@ -52,7 +52,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, NxColumnClasses, NxColumns, NxScrollControl,
   NxCustomGridControl, NxCustomGrid, NxGrid, ImgList, ExtCtrls, FlatPanel,
-  STARUML_TLB;
+  WhiteStarUML_TLB;
 
 const
   QUERY_DELETE_SELECTED_TASKS = 'Do you delete the selected templates from current batch?';
