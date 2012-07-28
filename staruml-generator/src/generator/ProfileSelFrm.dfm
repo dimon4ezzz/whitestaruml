@@ -120,22 +120,16 @@ object ProfileSelectorForm: TProfileSelectorForm
     AutoScroll = True
     HighlightedTextColor = clWindowText
     Options = [goSelectFullRow]
-    ParentColor = False
     TabOrder = 0
     TabStop = True
-    WantReturns = False
     object CheckColumn: TNxCheckBoxColumn
       Alignment = taCenter
-      Color = clWindow
       DefaultWidth = 26
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Footer.Color = clWindow
-      Footer.FormulaKind = fkNone
-      Header.Color = clBtnFace
       Header.DisplayMode = dmImageOnly
       Header.Glyph.Data = {
         36030000424D3603000000000000360000002800000010000000100000000100
@@ -164,18 +158,13 @@ object ProfileSelectorForm: TProfileSelectorForm
         C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0
         D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8
         D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
-      Options = [coCanClick, coCanSort, coEditing, coCanInput, coEditorAutoSelect]
+      Options = [coCanClick, coCanInput, coCanSort, coEditing, coEditorAutoSelect]
       ParentFont = False
       Position = 0
-      SlideBounds.Height = 16
-      SlideBounds.Left = 8
-      SlideBounds.Top = 8
-      SlideBounds.Width = 80
       SortType = stBoolean
       Width = 26
     end
     object ProfileIconColumn: TNxImageColumn
-      Color = clWindow
       DefaultValue = '0'
       DefaultWidth = 22
       Font.Charset = ANSI_CHARSET
@@ -183,41 +172,25 @@ object ProfileSelectorForm: TProfileSelectorForm
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Footer.Color = clWindow
-      Footer.FormulaKind = fkNone
-      Header.Color = clBtnFace
-      Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect]
+      Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect]
       ParentFont = False
       Position = 1
-      SlideBounds.Height = 16
-      SlideBounds.Left = 8
-      SlideBounds.Top = 8
-      SlideBounds.Width = 80
       SortKind = skDescending
       SortType = stNumeric
       Width = 22
       Images = ProfileIconImageList
-      Transparent = True
     end
     object ProfileNameColumn: TNxTextColumn
-      Color = clWindow
       DefaultWidth = 199
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Footer.Color = clWindow
-      Footer.FormulaKind = fkNone
-      Header.Color = clBtnFace
       Header.Caption = #54532#47196#54028#51068#47749
-      Options = [coAutoSize, coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+      Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
       ParentFont = False
       Position = 2
-      SlideBounds.Height = 16
-      SlideBounds.Left = 8
-      SlideBounds.Top = 8
-      SlideBounds.Width = 80
       SortKind = skDescending
       SortType = stAlphabetic
       Width = 199

@@ -9,7 +9,7 @@ object PieForm: TPieForm
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -12
+  Font.Height = 12
   Font.Name = #44404#47548
   Font.Style = []
   FormStyle = fsStayOnTop
@@ -58,12 +58,13 @@ object PieForm: TPieForm
     object TemplateSelectionPage: TJvWizardInteriorPage
       Header.ImageIndex = 0
       Header.Height = 80
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Select templates for generation'
       Header.Title.Anchors = [akLeft, akTop, akRight]
       Header.Title.Font.Charset = DEFAULT_CHARSET
       Header.Title.Font.Color = clWindowText
-      Header.Title.Font.Height = -16
+      Header.Title.Font.Height = 16
       Header.Title.Font.Name = #44404#47548
       Header.Title.Font.Style = [fsBold]
       Header.Subtitle.Color = clNone
@@ -73,7 +74,7 @@ object PieForm: TPieForm
       Header.Subtitle.Anchors = [akLeft, akTop, akRight, akBottom]
       Header.Subtitle.Font.Charset = DEFAULT_CHARSET
       Header.Subtitle.Font.Color = clWindowText
-      Header.Subtitle.Font.Height = -12
+      Header.Subtitle.Font.Height = 12
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
       object Image1: TImage
@@ -428,25 +429,20 @@ object PieForm: TPieForm
           00002701FFFF030000000000}
         Stretch = True
       end
-      object BatchPageControl: TdxPageControl
+      object BatchPageControl: TcxPageControl
         Left = 4
         Top = 85
         Width = 717
         Height = 364
-        ActivePage = MainTabSheet
-        HideButtons = False
-        HotTrack = False
-        MultiLine = False
-        OwnerDraw = False
-        RaggedRight = False
-        ScrollOpposite = False
-        TabHeight = 0
         TabOrder = 0
-        TabPosition = dxtpTop
-        TabWidth = 0
+        Properties.ActivePage = MainTabSheet
         OnChange = BatchPageControlChange
         OnMouseDown = BatchPageControlMouseDown
-        object MainTabSheet: TdxTabSheet
+        ClientRectBottom = 360
+        ClientRectLeft = 4
+        ClientRectRight = 713
+        ClientRectTop = 24
+        object MainTabSheet: TcxTabSheet
           Caption = 'List of templates'
           object GenerationUnitDescLabel: TLabel
             Left = 8
@@ -489,99 +485,76 @@ object PieForm: TPieForm
             Height = 201
             AppearanceOptions = [aoAlphaBlendedSelection, aoIndicateSortedColumn]
             AutoScroll = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = #44404#47548
+            Font.Style = []
             HighlightedTextColor = clWindowText
             Options = [goDisableColumnMoving, goGrid, goHeader, goSelectFullRow]
             RowSize = 18
-            ParentColor = False
+            ParentFont = False
             PopupMenu = TemplatePopupMenu
             TabOrder = 3
             TabStop = True
-            WantReturns = False
             OnCellClick = TasksGridCellClick
             OnChange = TasksGridChange
             OnDblClick = TasksGridDblClick
+            OnMouseDown = TasksGridMouseDown
             object CheckColumn: TNxCheckBoxColumn
               Alignment = taCenter
-              Color = clWindow
               DefaultWidth = 23
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
-              Font.Height = -12
+              Font.Height = 12
               Font.Name = #44404#47548
               Font.Style = []
-              Footer.Color = clWindow
-              Footer.FormulaKind = fkNone
-              Header.Color = clBtnFace
               Header.DisplayMode = dmImageOnly
-              Options = [coCanClick, coEditing, coCanInput, coEditorAutoSelect, coFixedSize]
+              Options = [coCanClick, coCanInput, coEditing, coEditorAutoSelect, coFixedSize]
               ParentFont = False
               Position = 0
-              SlideBounds.Height = 16
-              SlideBounds.Left = 8
-              SlideBounds.Top = 8
-              SlideBounds.Width = 80
               SortKind = skDescending
               SortType = stBoolean
               Width = 23
             end
             object GroupColumn: TNxTextColumn
-              Color = clWindow
               DefaultWidth = 100
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
-              Font.Height = -12
+              Font.Height = 12
               Font.Name = #44404#47548
               Font.Style = []
-              Footer.Color = clWindow
-              Footer.FormulaKind = fkNone
-              Header.Color = clBtnFace
               Header.Caption = 'Group'
-              Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+              Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
               ParentFont = False
               Position = 1
-              SlideBounds.Height = 16
-              SlideBounds.Left = 8
-              SlideBounds.Top = 8
-              SlideBounds.Width = 80
               SortKind = skDescending
               SortType = stAlphabetic
               Width = 100
             end
             object CategoryColumn: TNxTextColumn
-              Color = clWindow
               DefaultWidth = 100
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
-              Font.Height = -12
+              Font.Height = 12
               Font.Name = #44404#47548
               Font.Style = []
-              Footer.Color = clWindow
-              Footer.FormulaKind = fkNone
-              Header.Color = clBtnFace
               Header.Caption = 'Category'
-              Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+              Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
               ParentFont = False
               Position = 2
-              SlideBounds.Height = 16
-              SlideBounds.Left = 8
-              SlideBounds.Top = 8
-              SlideBounds.Width = 80
               SortKind = skDescending
               SortType = stAlphabetic
               Width = 100
             end
             object PreviewColumn: TNxImageColumn
-              Color = clWindow
               DefaultValue = '0'
               DefaultWidth = 22
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
-              Font.Height = -12
+              Font.Height = 12
               Font.Name = #44404#47548
               Font.Style = []
-              Footer.Color = clWindow
-              Footer.FormulaKind = fkNone
-              Header.Color = clBtnFace
               Header.DisplayMode = dmImageOnly
               Header.Glyph.Data = {
                 36030000424D3603000000000000360000002800000010000000100000000100
@@ -613,137 +586,68 @@ object PieForm: TPieForm
               Options = [coCanClick, coCanInput, coEditorAutoSelect, coFixedSize]
               ParentFont = False
               Position = 3
-              SlideBounds.Height = 16
-              SlideBounds.Left = 8
-              SlideBounds.Top = 8
-              SlideBounds.Width = 80
               SortType = stNumeric
               Visible = False
               Width = 22
               Images = CellValueImages
-              Transparent = True
             end
             object NameColumn: TNxTextColumn
-              Color = clWindow
               DefaultWidth = 270
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
-              Font.Height = -12
+              Font.Height = 12
               Font.Name = #44404#47548
               Font.Style = []
-              Footer.Color = clWindow
-              Footer.FormulaKind = fkNone
-              Header.Color = clBtnFace
               Header.Caption = 'Document Name'
-              Options = [coAutoSize, coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+              Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
               ParentFont = False
               Position = 4
-              SlideBounds.Height = 16
-              SlideBounds.Left = 8
-              SlideBounds.Top = 8
-              SlideBounds.Width = 80
               Sorted = True
               SortKind = skDescending
               SortType = stAlphabetic
-              Width = 270
+              Width = 222
             end
             object DocTypeColumn: TNxTextColumn
-              Color = clWindow
               DefaultWidth = 100
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
-              Font.Height = -12
+              Font.Height = 12
               Font.Name = #44404#47548
               Font.Style = []
-              Footer.Color = clWindow
-              Footer.FormulaKind = fkNone
-              Header.Color = clBtnFace
               Header.Caption = 'Doc. Type'
-              Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+              Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
               ParentFont = False
               Position = 5
-              SlideBounds.Height = 16
-              SlideBounds.Left = 8
-              SlideBounds.Top = 8
-              SlideBounds.Width = 80
               SortType = stAlphabetic
               Width = 100
             end
             object FormatColumn: TNxTextColumn
               Alignment = taCenter
-              Color = clWindow
               DefaultWidth = 70
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
-              Font.Height = -12
+              Font.Height = 12
               Font.Name = #44404#47548
               Font.Style = []
-              Footer.Color = clWindow
-              Footer.FormulaKind = fkNone
-              Header.Color = clBtnFace
               Header.Caption = 'Format'
-              Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+              Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
               ParentFont = False
               Position = 6
-              SlideBounds.Height = 16
-              SlideBounds.Left = 8
-              SlideBounds.Top = 8
-              SlideBounds.Width = 80
               SortType = stAlphabetic
               Width = 70
             end
             object TutorialColumn: TNxImageColumn
-              Alignment = taCenter
-              Color = clWindow
               DefaultValue = '0'
-              DefaultWidth = 60
-              Font.Charset = ANSI_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -12
-              Font.Name = #44404#47548
-              Font.Style = []
-              Footer.Color = clWindow
-              Footer.FormulaKind = fkNone
-              Header.Color = clBtnFace
               Header.Caption = 'Tutorial'
-              Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coFixedSize]
-              ParentFont = False
               Position = 7
-              SlideBounds.Height = 16
-              SlideBounds.Left = 8
-              SlideBounds.Top = 8
-              SlideBounds.Width = 80
               SortType = stNumeric
               Visible = False
-              Width = 60
-              Images = CellValueImages
-              Transparent = True
             end
             object ParametersColumn: TNxImageColumn
-              Alignment = taCenter
-              Color = clWindow
               DefaultValue = '0'
-              DefaultWidth = 30
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = -12
-              Font.Name = #44404#47548
-              Font.Style = []
-              Footer.Color = clWindow
-              Footer.FormulaKind = fkNone
-              Header.Color = clBtnFace
               Header.Caption = 'Opt.'
-              Options = [coCanClick, coCanInput, coEditorAutoSelect, coFixedSize]
-              ParentFont = False
               Position = 8
-              SlideBounds.Height = 16
-              SlideBounds.Left = 8
-              SlideBounds.Top = 8
-              SlideBounds.Width = 80
               SortType = stNumeric
-              Width = 30
-              Images = CellValueImages
-              Transparent = True
             end
           end
           object GroupComboBox: TComboBox
@@ -754,7 +658,6 @@ object PieForm: TPieForm
             Style = csDropDownList
             Ctl3D = True
             ImeName = 'Microsoft IME 2003'
-            ItemHeight = 12
             ParentCtl3D = False
             TabOrder = 4
             OnChange = GroupComboBoxChange
@@ -766,7 +669,6 @@ object PieForm: TPieForm
             Height = 20
             Style = csDropDownList
             ImeName = 'Microsoft IME 2003'
-            ItemHeight = 12
             TabOrder = 5
             OnChange = CategoryComboBoxChange
           end
@@ -777,7 +679,6 @@ object PieForm: TPieForm
             Height = 20
             Style = csDropDownList
             ImeName = 'Microsoft IME 2003'
-            ItemHeight = 12
             TabOrder = 6
             OnChange = DocTypeComboBoxChange
           end
@@ -788,7 +689,6 @@ object PieForm: TPieForm
             Height = 20
             Style = csDropDownList
             ImeName = 'Microsoft IME 2003'
-            ItemHeight = 12
             TabOrder = 7
             OnChange = FormatComboBoxChange
           end
@@ -852,12 +752,13 @@ object PieForm: TPieForm
     object OutDirectorySelectionPage: TJvWizardInteriorPage
       Header.ImageIndex = 0
       Header.Height = 80
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Select target path'
       Header.Title.Anchors = [akLeft, akTop, akRight]
       Header.Title.Font.Charset = DEFAULT_CHARSET
       Header.Title.Font.Color = clWindowText
-      Header.Title.Font.Height = -16
+      Header.Title.Font.Height = 16
       Header.Title.Font.Name = #44404#47548
       Header.Title.Font.Style = [fsBold]
       Header.Subtitle.Color = clNone
@@ -865,7 +766,7 @@ object PieForm: TPieForm
       Header.Subtitle.Anchors = [akLeft, akTop, akRight, akBottom]
       Header.Subtitle.Font.Charset = DEFAULT_CHARSET
       Header.Subtitle.Font.Color = clWindowText
-      Header.Subtitle.Font.Height = -12
+      Header.Subtitle.Font.Height = 12
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
       OnNextButtonClick = OutDirectorySelectionPageNextButtonClick
@@ -1256,12 +1157,13 @@ object PieForm: TPieForm
     object ExecutionPage: TJvWizardInteriorPage
       Header.ImageIndex = 0
       Header.Height = 80
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Generating...'
       Header.Title.Anchors = [akLeft, akTop, akRight]
       Header.Title.Font.Charset = DEFAULT_CHARSET
       Header.Title.Font.Color = clWindowText
-      Header.Title.Font.Height = -16
+      Header.Title.Font.Height = 16
       Header.Title.Font.Name = #44404#47548
       Header.Title.Font.Style = [fsBold]
       Header.Subtitle.Color = clNone
@@ -1269,7 +1171,7 @@ object PieForm: TPieForm
       Header.Subtitle.Anchors = [akLeft, akTop, akRight, akBottom]
       Header.Subtitle.Font.Charset = DEFAULT_CHARSET
       Header.Subtitle.Font.Color = clWindowText
-      Header.Subtitle.Font.Height = -12
+      Header.Subtitle.Font.Height = 12
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
       VisibleButtons = [bkNext, bkFinish, bkCancel]
@@ -1662,165 +1564,105 @@ object PieForm: TPieForm
         Width = 705
         Height = 185
         Options = [goGrid, goHeader, goSelectFullRow]
-        ParentColor = False
         TabOrder = 0
         TabStop = True
-        WantReturns = False
         OnDblClick = ExecTasksGridDblClick
         object ExecStateColumn: TNxImageColumn
-          Color = clWindow
           DefaultValue = '0'
           DefaultWidth = 23
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
+          Font.Height = 12
           Font.Name = #44404#47548
           Font.Style = []
-          Footer.Color = clWindow
-          Footer.FormulaKind = fkNone
-          Header.Color = clBtnFace
           Header.DisplayMode = dmImageOnly
-          Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coFixedSize]
+          Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coFixedSize]
           ParentFont = False
           Position = 0
-          SlideBounds.Height = 16
-          SlideBounds.Left = 8
-          SlideBounds.Top = 8
-          SlideBounds.Width = 80
           SortType = stNumeric
           Width = 23
           Images = StateMarkImageList
-          Transparent = True
         end
         object ExecGroupColumn: TNxTextColumn
-          Color = clWindow
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
+          Font.Height = 12
           Font.Name = #44404#47548
           Font.Style = []
-          Footer.Color = clWindow
-          Footer.FormulaKind = fkNone
-          Header.Color = clBtnFace
           Header.Caption = 'Group'
-          Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+          Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
           ParentFont = False
           Position = 1
-          SlideBounds.Height = 16
-          SlideBounds.Left = 8
-          SlideBounds.Top = 8
-          SlideBounds.Width = 80
           SortType = stAlphabetic
         end
         object ExecCategoryColumn: TNxTextColumn
-          Color = clWindow
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
+          Font.Height = 12
           Font.Name = #44404#47548
           Font.Style = []
-          Footer.Color = clWindow
-          Footer.FormulaKind = fkNone
-          Header.Color = clBtnFace
           Header.Caption = 'Category'
-          Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+          Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
           ParentFont = False
           Position = 2
-          SlideBounds.Height = 16
-          SlideBounds.Left = 8
-          SlideBounds.Top = 8
-          SlideBounds.Width = 80
           SortType = stAlphabetic
         end
         object ExecDocNameColumn: TNxTextColumn
-          Color = clWindow
           DefaultWidth = 190
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
+          Font.Height = 12
           Font.Name = #44404#47548
           Font.Style = []
-          Footer.Color = clWindow
-          Footer.FormulaKind = fkNone
-          Header.Color = clBtnFace
           Header.Caption = 'Document Name'
-          Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+          Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
           ParentFont = False
           Position = 3
-          SlideBounds.Height = 16
-          SlideBounds.Left = 8
-          SlideBounds.Top = 8
-          SlideBounds.Width = 80
           SortType = stAlphabetic
           Width = 190
         end
         object ExecPathColumn: TNxTextColumn
-          Color = clWindow
           DefaultWidth = 190
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
+          Font.Height = 12
           Font.Name = #44404#47548
           Font.Style = []
-          Footer.Color = clWindow
-          Footer.FormulaKind = fkNone
-          Header.Color = clBtnFace
           Header.Caption = 'Target File'
-          Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+          Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
           ParentFont = False
           Position = 4
-          SlideBounds.Height = 16
-          SlideBounds.Left = 8
-          SlideBounds.Top = 8
-          SlideBounds.Width = 80
           SortType = stAlphabetic
           Width = 190
         end
         object ExecProgressColumn: TNxProgressColumn
-          Color = clWindow
           DefaultValue = '0'
           DefaultWidth = 138
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
+          Font.Height = 12
           Font.Name = #44404#47548
           Font.Style = []
-          Footer.Color = clWindow
-          Footer.FormulaKind = fkNone
-          Header.Color = clBtnFace
           Header.Caption = 'Status'
-          Options = [coAutoSize, coCanClick, coCanSort, coCanInput, coEditorAutoSelect]
+          Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect]
           ParentFont = False
           Position = 5
-          SlideBounds.Height = 16
-          SlideBounds.Left = 8
-          SlideBounds.Top = 8
-          SlideBounds.Width = 80
           SortType = stNumeric
           Width = 138
-          BorderColor = clGray
           HideWhenEmpty = False
           LowValueColor = clBlack
           ProgressStyle = psGradient
           ShowText = True
         end
         object ExecFullPathColumn: TNxTextColumn
-          Color = clWindow
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
+          Font.Height = 12
           Font.Name = #44404#47548
           Font.Style = []
-          Footer.Color = clWindow
-          Footer.FormulaKind = fkNone
-          Header.Color = clBtnFace
-          Options = [coCanClick, coCanSort, coCanInput, coEditorAutoSelect, coShowTextFitHint]
+          Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
           ParentFont = False
           Position = 6
-          SlideBounds.Height = 16
-          SlideBounds.Left = 8
-          SlideBounds.Top = 8
-          SlideBounds.Width = 80
           SortType = stAlphabetic
           Visible = False
         end
@@ -1852,7 +1694,7 @@ object PieForm: TPieForm
     Left = 64
     Top = 456
     Bitmap = {
-      494C010101000400040091004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010004000C0091004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000440200004C0000000100200000000000C0B0
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -7553,136 +7395,8 @@ object PieForm: TPieForm
     Left = 96
     Top = 456
     Bitmap = {
-      494C010104000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
-      0000000000003600000028000000400000003000000001002000000000000030
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      494C0101040009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -7940,12 +7654,8 @@ object PieForm: TPieForm
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000000000000000000000000000424D3E000000000000003E000000
-      2800000040000000300000000100010000000000800100000000000000000000
+      2800000040000000200000000100010000000000000100000000000000000000
       000000000000000000000000FFFFFF0000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -7960,7 +7670,7 @@ object PieForm: TPieForm
     Left = 128
     Top = 456
     Bitmap = {
-      494C010103000400040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101030004000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8107,12 +7817,11 @@ object PieForm: TPieForm
     Top = 456
   end
   object BarManager: TdxBarManager
-    Font.Charset = HANGEUL_CHARSET
+    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
-    Font.Name = #44404#47548
+    Font.Name = 'Segoe UI'
     Font.Style = []
-    Bars = <>
     Categories.Strings = (
       'BatchMenu')
     Categories.ItemsVisibles = (
@@ -8155,16 +7864,16 @@ object PieForm: TPieForm
     BarManager = BarManager
     ItemLinks = <
       item
-        Item = AddBatchMenu
         Visible = True
+        ItemName = 'AddBatchMenu'
       end
       item
-        Item = EditBatchMenu
         Visible = True
+        ItemName = 'EditBatchMenu'
       end
       item
-        Item = DeleteBatchMenu
         Visible = True
+        ItemName = 'DeleteBatchMenu'
       end>
     UseOwnFont = False
     Left = 304

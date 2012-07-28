@@ -51,7 +51,7 @@ uses
   DirectMDAProc, DirectMDAObjects,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, dxInspRw, dxInspct, dxCntner, ExtCtrls, StdCtrls,
-  STARUML_TLB, ImgList, Buttons, FlatPanel, dxExEdtr;
+  WhiteStarUML_TLB, ImgList, Buttons, FlatPanel, dxExEdtr;
 
 const
   TXT_PREVIEW = 'Preview';

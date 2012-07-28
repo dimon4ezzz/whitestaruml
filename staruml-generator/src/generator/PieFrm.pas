@@ -51,9 +51,10 @@ uses
   DirectMDAProc, DirectMDAObjects, BatchFrm, Generator_TLB,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComObj, NxColumnClasses, NxColumns, NxScrollControl,
-  NxCustomGridControl, NxCustomGrid, NxGrid, StdCtrls, dxPageControl,
-  JvWizard, ComCtrls, ShellCtrls, ImgList, ExtCtrls, STARUML_TLB, FlatPanel,
-  dxBar, Menus, ShellAPI, JvExControls, JvComponent;
+  NxCustomGridControl, NxCustomGrid, NxGrid, StdCtrls, cxPC,
+  JvWizard, ComCtrls, ShellCtrls, ImgList, ExtCtrls, WhiteStarUML_TLB, FlatPanel,
+  dxBar, Menus, ShellAPI, JvExControls, JvComponent, cxPCdxBarPopupMenu,
+  cxControls;
 
 const
   ERR_ERROR_ON_PROCESSOR = 'Error occurs for executing document translator.'
@@ -89,8 +90,8 @@ type
   TPieForm = class(TForm)
     DirectMDAWizard: TJvWizard;
     TemplateSelectionPage: TJvWizardInteriorPage;
-    BatchPageControl: TdxPageControl;
-    MainTabSheet: TdxTabSheet;
+    BatchPageControl: TcxPageControl;
+    MainTabSheet: TcxTabSheet;
     OutDirectorySelectionPage: TJvWizardInteriorPage;
     Label2: TLabel;
     OutputDirShellTreeView: TShellTreeView;
@@ -116,7 +117,6 @@ type
     CategoryColumn: TNxTextColumn;
     NameColumn: TNxTextColumn;
     DocTypeColumn: TNxTextColumn;
-    TutorialColumn: TNxImageColumn;
     GenerationUnitDescLabel: TLabel;
     GroupComboBox: TComboBox;
     CategoryComboBox: TComboBox;
@@ -130,7 +130,6 @@ type
     Image2: TImage;
     Image3: TImage;
     CellValueImages: TImageList;
-    ParametersColumn: TNxImageColumn;
     FormatColumn: TNxTextColumn;
     PreviewColumn: TNxImageColumn;
     HeartBeatTimer: TTimer;
@@ -154,6 +153,8 @@ type
     R1: TMenuItem;
     N1: TMenuItem;
     OpenTemplateButton: TButton;
+    TutorialColumn: TNxImageColumn;
+    ParametersColumn: TNxImageColumn;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TasksGridDblClick(Sender: TObject);
@@ -191,6 +192,8 @@ type
     procedure ModifyTemplatePopUpMenuItemClick(Sender: TObject);
     procedure DeleteTemplatePopUpMenuItemClick(Sender: TObject);
     procedure OpenTemplatePopUpMenuItemClick(Sender: TObject);
+    procedure TasksGridMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -204,14 +207,14 @@ type
     { page set up & finding methods - TemplateSelectionPage }
     function IsFiltered(AGenerationUnit: PGenerationUnit): Boolean;
     procedure AddTaskRow(ATask: PTask);
-    function AddBatchPage(ABatch: PBatch): TdxTabSheet;
+    function AddBatchPage(ABatch: PBatch): TcxTabSheet;
     procedure SetupBatches;
     procedure UpdateBatchPage(ABatch: PBatch);
     procedure UpdateTasksGrid;
     procedure UpdateDefaultBatchPage;
-    function FindBatchPage(ABatch: PBatch): TdxTabSheet;
-    function FindBatchFrame(ATabSheet: TdxTabSheet): TBatchFrame;
-    function FindBatchOfPage(ABatchPage: TdxTabSheet): PBatch;
+    function FindBatchPage(ABatch: PBatch): TcxTabSheet;
+    function FindBatchFrame(ATabSheet: TcxTabSheet): TBatchFrame;
+    function FindBatchOfPage(ABatchPage: TcxTabSheet): PBatch;
     procedure HandleBatchPageUpdateUIStates(Sender: TObject);
 
     procedure UpdateGroupComboBox;
@@ -356,7 +359,7 @@ begin
     ATask.Selected := False;
 end;
 
-function TPieForm.AddBatchPage(ABatch: PBatch): TdxTabSheet;
+function TPieForm.AddBatchPage(ABatch: PBatch): TcxTabSheet;
 
   function IssueFrameName: string;
   var
@@ -372,10 +375,10 @@ function TPieForm.AddBatchPage(ABatch: PBatch): TdxTabSheet;
   end;
 
 var
-  BatchTabSheet: TdxTabSheet;
+  BatchTabSheet: TcxTabSheet;
   BatchFrame: TBatchFrame;
 begin
-  BatchTabSheet := TdxTabSheet.Create(BatchPageControl);
+  BatchTabSheet := TcxTabSheet.Create(BatchPageControl);
   BatchTabSheet.PageControl := BatchPageControl;
   BatchTabSheet.Caption := ABatch.Name;
   BatchFrame := TBatchFrame.Create(BatchTabSheet);
@@ -389,7 +392,7 @@ end;
 
 procedure TPieForm.UpdateBatchPage(ABatch: PBatch);
 var
-  TabSheet: TdxTabSheet;
+  TabSheet: TcxTabSheet;
   Frame: TBatchFrame;
 begin
   TabSheet := FindBatchPage(ABatch);
@@ -428,7 +431,7 @@ begin
     AddBatchPage(DirectMDAProcessor.Batches[I]);
 end;
 
-function TPieForm.FindBatchPage(ABatch: PBatch): TdxTabSheet;
+function TPieForm.FindBatchPage(ABatch: PBatch): TcxTabSheet;
 var
   I: Integer;
 begin
@@ -440,7 +443,7 @@ begin
     end;
 end;
 
-function TPieForm.FindBatchFrame(ATabSheet: TdxTabSheet): TBatchFrame;
+function TPieForm.FindBatchFrame(ATabSheet: TcxTabSheet): TBatchFrame;
 var
   I: Integer;
 begin
@@ -452,7 +455,7 @@ begin
     end;
 end;
 
-function TPieForm.FindBatchOfPage(ABatchPage: TdxTabSheet): PBatch;
+function TPieForm.FindBatchOfPage(ABatchPage: TcxTabSheet): PBatch;
 var
   I: Integer;
 begin
@@ -587,7 +590,7 @@ var
   BatchRegForm: TBatchRegisterForm;
   Batch: PBatch;
   RefObj: TObject;
-  TabSheet: TdxTabSheet;
+  TabSheet: TcxTabSheet;
   T: PTask;
   I: Integer;
 begin
@@ -821,7 +824,7 @@ procedure TPieForm.CreateNewBatch;
 var
   BatchRegForm: TBatchRegisterForm;
   Batch: PBatch;
-  TabSheet: TdxTabSheet;
+  TabSheet: TcxTabSheet;
 begin
   BatchRegForm := TBatchRegisterForm.Create(Self);
   try
@@ -851,7 +854,7 @@ end;
 procedure TPieForm.EditBatch;
 var
   BatchRegForm: TBatchRegisterForm;
-  Page: TdxTabSheet;
+  Page: TcxTabSheet;
 begin
   if (SelectedBatch <> nil) and (SelectedBatch <> DirectMDAProcessor.DefaultBatch) then begin
     BatchRegForm := TBatchRegisterForm.Create(Self);
@@ -880,7 +883,7 @@ end;
 
 procedure TPieForm.DeleteBatch;
 var
-  Page: TdxTabSheet;
+  Page: TcxTabSheet;
   B: PBatch;
 begin
   B := SelectedBatch;
@@ -1300,6 +1303,12 @@ begin
   ShowTaskProperties;
 end;
 
+procedure TPieForm.TasksGridMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  TasksGrid.Refresh;
+end;
+
 procedure TPieForm.RegisterBatchButtonClick(Sender: TObject);
 begin
   RegisterBatch;
@@ -1367,6 +1376,12 @@ begin
   else if TasksGrid.Columns.Item[ACol] = ParametersColumn then begin
     EditTaskParameters;
   end;
+
+  //UpdateTasksGrid;
+  TasksGrid.Refresh;
+  //UpdateUIStates;
+  //if Sender is TNxCustomGridControl then
+  //  (Sender as TNxCustomGridControl).RefreshCell(ACol, ARow);
 end;
 
 procedure TPieForm.BatchPageControlChange(Sender: TObject);
