@@ -192,6 +192,9 @@ type
     procedure ModifyTemplatePopUpMenuItemClick(Sender: TObject);
     procedure DeleteTemplatePopUpMenuItemClick(Sender: TObject);
     procedure OpenTemplatePopUpMenuItemClick(Sender: TObject);
+    procedure FormHide(Sender: TObject);
+    procedure FormPaint(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
     procedure TasksGridMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
   private
@@ -1292,6 +1295,16 @@ begin
   Finalize;
 end;
 
+procedure TPieForm.FormHide(Sender: TObject);
+begin
+  //TasksGrid.Refresh;
+end;
+
+procedure TPieForm.FormPaint(Sender: TObject);
+begin
+   //TasksGrid.Refresh;
+end;
+
 procedure TPieForm.FormShow(Sender: TObject);
 begin
   SetupBatches;
@@ -1378,7 +1391,7 @@ begin
   end;
 
   //UpdateTasksGrid;
-  TasksGrid.Refresh;
+  //TasksGrid.Refresh;
   //UpdateUIStates;
   //if Sender is TNxCustomGridControl then
   //  (Sender as TNxCustomGridControl).RefreshCell(ACol, ARow);
@@ -1415,6 +1428,11 @@ procedure TPieForm.DocTypeComboBoxChange(Sender: TObject);
 begin
   UpdateTasksGrid;
   UpdateUIStates;
+end;
+
+procedure TPieForm.FormActivate(Sender: TObject);
+begin
+ //TasksGrid.Refresh;
 end;
 
 procedure TPieForm.FormatComboBoxChange(Sender: TObject);

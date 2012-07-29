@@ -69,7 +69,7 @@ const
   ERR_EXE_NOT_FOUND = 'The executable file for generating document is not found. (%s)';
   MSG_GENERATION_START2 = 'Generation %s starts.';
   MSG_GENERATION_COMPLETE2 = 'Generation %s is done.';
-  ERR_CANNOT_GENERATE = '%The following reason causes %s not to be created.' + #13#10 + 'Reason : %s';
+  ERR_CANNOT_GENERATE = 'The following reason causes %s not to be created.' + #13#10 + 'Reason : %s';
   MSG_GENERATION_START = 'Document creation starts.(%d)';
   MSG_GENERATION_COMPLETE = 'Document creation is done. (Elapsed time : %d sec)';
   MSG_GENERATION_ABORTED = 'Document creation is canceled by user request.';
