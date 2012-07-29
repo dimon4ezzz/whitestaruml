@@ -111,7 +111,7 @@ function main() {
   // initProperties();
   
   // 1. create StarUML Object
-  connectToStarUMLApplication();
+  connectToWhiteStarUMLApplication();
   
   // 2. create Powerpoint COM Object
   connectToPPTApplication();
@@ -149,7 +149,7 @@ function main() {
     disconnectToPPTApplication();
     
     // 9.release StarUML COM Object
-    disconnectToStarUMLApplication();
+    disconnectFromWhiteStarUMLApplication();
     
     inGenerating = false;
   }
@@ -170,10 +170,10 @@ function initProperties() {
 /////////////////////////////////////////////////
 // connectToStarUMLApplication : create StarUML COM Object
 //
-function connectToStarUMLApplication() {
-  app = new ActiveXObject("StarUML.StarUMLApplication");
+function connectToWhiteStarUMLApplication() {
+  app = new ActiveXObject("WhiteStarUML.WhiteStarUMLApplication");
   prj = app.GetProject();
-  log("Connected to StarUML.");
+  log("Connected to WhiteStarUML.");
 }
 
 /////////////////////////////////////////////////
@@ -986,11 +986,11 @@ function disconnectToPPTApplication() {
 }
 
 /////////////////////////////////////////////////
-// disconnectToStarUMLApplication : 플라스틱 객체를 해제한다
+// disconnectFromWhiteStarUMLApplication : 플라스틱 객체를 해제한다
 //
-function disconnectToStarUMLApplication() {
+function disconnectfromWhiteStarUMLApplication() {
   // to do
-  log("Released StarUML.");
+  log("Released WhiteStarUML.");
 }
 
 /////////////////////////////////////////////////

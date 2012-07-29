@@ -32,7 +32,7 @@
     </PARAMETER>
     <PARAMETER>
       <NAME>ShowGenerationProcess</NAME>
-      <TYPE>STRING</TYPE>
+      <TYPE>BOOLEAN</TYPE>
       <VALUE>false</VALUE>
     </PARAMETER>
   </PARAMETERS>
