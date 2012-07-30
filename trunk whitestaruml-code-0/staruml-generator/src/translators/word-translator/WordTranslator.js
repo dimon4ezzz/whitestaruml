@@ -116,7 +116,7 @@ function main() {
   // 0.set parameters used in program
   //    initProperties();
 
-  // 1.create StarUML COM Object
+  // 1.create WhiteStarUML COM Object
   connectToWhiteStarUMLApplication();
 
   // 2.create Word COM Object
@@ -157,7 +157,7 @@ function main() {
     // 7.release Word COM Object
     disconnectToWordApplication();
     
-    // 8.release StarUML COM Object
+    // 8.release WhiteStarUML COM Object
     disconnectFromWhiteStarUMLApplication();
     
     inGenerating = false;
@@ -995,7 +995,7 @@ function disconnectToWordApplication() {
 // disconnectFromWhiteStarUMLApplication : Release WhiteStarUML COM Object
 //
 function disconnectFromWhiteStarUMLApplication() {
-  log("Release StarUML COM");
+  log("Release WhiteStarUML COM");
 }
 
 /////////////////////////////////////////////////

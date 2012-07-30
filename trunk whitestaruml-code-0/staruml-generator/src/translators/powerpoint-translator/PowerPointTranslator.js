@@ -110,11 +110,13 @@ function Abort(){
 function main() {
   // initProperties();
   
-  // 1. create StarUML Object
+  // 1. create WhiteStarUML Object
   connectToWhiteStarUMLApplication();
   
   // 2. create Powerpoint COM Object
   connectToPPTApplication();
+  
+  progress(20, 100);
   
   inGenerating = true;
   
@@ -148,9 +150,10 @@ function main() {
     // 8. release Powerpoint COM Object
     disconnectToPPTApplication();
     
-    // 9.release StarUML COM Object
+    // 9.release WhiteStarUML COM Object
     disconnectFromWhiteStarUMLApplication();
     
+    progress(100, 100);
     inGenerating = false;
   }
 }
@@ -168,7 +171,7 @@ function initProperties() {
 }
 
 /////////////////////////////////////////////////
-// connectToStarUMLApplication : create StarUML COM Object
+// connectToWhiteStarUMLApplication : create StarUML COM Object
 //
 function connectToWhiteStarUMLApplication() {
   app = new ActiveXObject("WhiteStarUML.WhiteStarUMLApplication");
@@ -177,7 +180,7 @@ function connectToWhiteStarUMLApplication() {
 }
 
 /////////////////////////////////////////////////
-// connectToStarUMLApplication : create Powerpoint COM Object
+// connectToWhiteStarUMLApplication : create Powerpoint COM Object
 //
 function connectToPPTApplication() {
   pptApp = new ActiveXObject("PowerPoint.Application");
@@ -988,7 +991,7 @@ function disconnectToPPTApplication() {
 /////////////////////////////////////////////////
 // disconnectFromWhiteStarUMLApplication : 플라스틱 객체를 해제한다
 //
-function disconnectfromWhiteStarUMLApplication() {
+function disconnectFromWhiteStarUMLApplication() {
   // to do
   log("Released WhiteStarUML.");
 }

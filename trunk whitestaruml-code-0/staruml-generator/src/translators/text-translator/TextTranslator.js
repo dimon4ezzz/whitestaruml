@@ -134,7 +134,7 @@ function main() {
     // initialize variables
     initProperties();
     
-    // create StarUML COM Object
+    // create WhiteStarUML COM Object
     connectToWhiteStarUMLApplication();
     
     // generate document from template document
@@ -150,7 +150,7 @@ function main() {
   }
   finally
   {
-    // release StarUML COM Object
+    // release WhiteStarUML COM Object
     disconnectFromWhiteStarUMLApplication();
     inGenerating = false;
   }

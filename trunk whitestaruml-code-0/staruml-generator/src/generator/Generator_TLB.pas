@@ -1,63 +1,64 @@
 unit Generator_TLB;
 
 // ************************************************************************ //
-// WARNING                                                                    
-// -------                                                                    
-// The types declared in this file were generated from data read from a       
-// Type Library. If this type library is explicitly or indirectly (via        
-// another type library referring to this type library) re-imported, or the   
-// 'Refresh' command of the Type Library Editor activated while editing the   
-// Type Library, the contents of this file will be regenerated and all        
-// manual modifications will be lost.                                         
+// WARNING
+// -------
+// The types declared in this file were generated from data read from a
+// Type Library. If this type library is explicitly or indirectly (via
+// another type library referring to this type library) re-imported, or the
+// 'Refresh' command of the Type Library Editor activated while editing the
+// Type Library, the contents of this file will be regenerated and all
+// manual modifications will be lost.
 // ************************************************************************ //
 
-// PASTLWTR : 1.2
-// File generated on 2005-10-28 ¿ÀÈÄ 2:00:46 from Type Library described below.
+// $Rev: 17244 $
+// File generated on 7/30/2012 8:23:14 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: D:\PLASTIC_CVS\plastic\generator\src\generator\Generator.tlb (1)
-// LIBID: {F8FC212E-DE4B-4CE2-BB29-F5EB248F3946}
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml-generator\src\generator\Generator (1)
+// LIBID: {765EB911-BD2A-4E44-BA34-7284C4D265C3}
 // LCID: 0
-// Helpfile: 
+// Helpfile:
 // HelpString: StarUML Generator Library
-// DepndLst: 
-//   (1) v2.0 stdole, (C:\WINDOWS\system32\stdole2.tlb)
+// DepndLst:
+//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
 // ************************************************************************ //
-{$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers. 
+{$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
 {$WARN SYMBOL_PLATFORM OFF}
 {$WRITEABLECONST ON}
 {$VARPROPSETTER ON}
+{$ALIGN 4}
 interface
 
-uses Windows, ActiveX, Classes, Graphics, StdVCL, Variants;
-  
+uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
+
 
 // *********************************************************************//
-// GUIDS declared in the TypeLibrary. Following prefixes are used:        
-//   Type Libraries     : LIBID_xxxx                                      
-//   CoClasses          : CLASS_xxxx                                      
-//   DISPInterfaces     : DIID_xxxx                                       
-//   Non-DISP interfaces: IID_xxxx                                        
+// GUIDS declared in the TypeLibrary. Following prefixes are used:
+//   Type Libraries     : LIBID_xxxx
+//   CoClasses          : CLASS_xxxx
+//   DISPInterfaces     : DIID_xxxx
+//   Non-DISP interfaces: IID_xxxx
 // *********************************************************************//
 const
   // TypeLibrary Major and minor versions
   GeneratorMajorVersion = 1;
   GeneratorMinorVersion = 0;
 
-  LIBID_Generator: TGUID = '{F8FC212E-DE4B-4CE2-BB29-F5EB248F3946}';
+  LIBID_Generator: TGUID = '{765EB911-BD2A-4E44-BA34-7284C4D265C3}';
 
   IID_IGeneratorProcessor: TGUID = '{00C6167E-D50D-4851-B189-08E61E51F5A1}';
-  CLASS_GeneratorProcessor: TGUID = '{240D97F3-D51C-4D2D-B3B5-3D7196C132EE}';
+  CLASS_GeneratorProcessor: TGUID = '{144B4B1E-FBE1-44DE-A354-16F450FF7D8E}';
   IID_ITranslator: TGUID = '{AE6B46B5-83DC-4DF3-8287-2D50A36F5244}';
   IID_ILogger: TGUID = '{9E624710-F63D-4B1A-828D-90A2A2018E41}';
   IID_IHashTable: TGUID = '{43A0E95F-CB27-4D2E-9702-6476C19C9B1D}';
-  CLASS_HashTable: TGUID = '{C559E4F4-11A3-4474-BC89-710B840BACC8}';
+  CLASS_HashTable: TGUID = '{0076C4C5-1528-4060-B8D2-883D5EF68998}';
   IID_IGeneratorApplication: TGUID = '{0DFD8452-B67D-47DA-BB3D-1E285F48AD86}';
-  CLASS_GeneratorApplication: TGUID = '{B6D17E11-A166-4F6C-AA6F-32CEC2968BA4}';
-  CLASS_LogAdaptor: TGUID = '{347C57B6-FF56-4578-8568-D5B55F53857D}';
+  CLASS_GeneratorApplication: TGUID = '{6492BAC0-7973-4BE8-BB1F-D6D975077F5F}';
+  CLASS_LogAdaptor: TGUID = '{E7364994-73B0-4837-B663-A1BA567CF906}';
 
 // *********************************************************************//
-// Declaration of Enumerations defined in Type Library                    
+// Declaration of Enumerations defined in Type Library
 // *********************************************************************//
 // Constants for enum LogMessageKind
 type
@@ -71,7 +72,7 @@ const
 type
 
 // *********************************************************************//
-// Forward declaration of types defined in TypeLibrary                    
+// Forward declaration of types defined in TypeLibrary
 // *********************************************************************//
   IGeneratorProcessor = interface;
   IGeneratorProcessorDisp = dispinterface;
@@ -85,8 +86,8 @@ type
   IGeneratorApplicationDisp = dispinterface;
 
 // *********************************************************************//
-// Declaration of CoClasses defined in Type Library                       
-// (NOTE: Here we map each CoClass to its Default Interface)              
+// Declaration of CoClasses defined in Type Library
+// (NOTE: Here we map each CoClass to its Default Interface)
 // *********************************************************************//
   GeneratorProcessor = IGeneratorProcessor;
   HashTable = IHashTable;
@@ -209,11 +210,11 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoGeneratorProcessor provides a Create and CreateRemote method to          
-// create instances of the default interface IGeneratorProcessor exposed by              
-// the CoClass GeneratorProcessor. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// The Class CoGeneratorProcessor provides a Create and CreateRemote method to
+// create instances of the default interface IGeneratorProcessor exposed by
+// the CoClass GeneratorProcessor. The functions are intended to be used by
+// clients wishing to automate the CoClass objects exposed by the
+// server of this typelibrary.
 // *********************************************************************//
   CoGeneratorProcessor = class
     class function Create: IGeneratorProcessor;
@@ -221,11 +222,11 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoHashTable provides a Create and CreateRemote method to          
-// create instances of the default interface IHashTable exposed by              
-// the CoClass HashTable. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// The Class CoHashTable provides a Create and CreateRemote method to
+// create instances of the default interface IHashTable exposed by
+// the CoClass HashTable. The functions are intended to be used by
+// clients wishing to automate the CoClass objects exposed by the
+// server of this typelibrary.
 // *********************************************************************//
   CoHashTable = class
     class function Create: IHashTable;
@@ -233,11 +234,11 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoGeneratorApplication provides a Create and CreateRemote method to          
-// create instances of the default interface IGeneratorApplication exposed by              
-// the CoClass GeneratorApplication. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// The Class CoGeneratorApplication provides a Create and CreateRemote method to
+// create instances of the default interface IGeneratorApplication exposed by
+// the CoClass GeneratorApplication. The functions are intended to be used by
+// clients wishing to automate the CoClass objects exposed by the
+// server of this typelibrary.
 // *********************************************************************//
   CoGeneratorApplication = class
     class function Create: IGeneratorApplication;
@@ -245,11 +246,11 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoLogAdaptor provides a Create and CreateRemote method to          
-// create instances of the default interface ILogger exposed by              
-// the CoClass LogAdaptor. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// The Class CoLogAdaptor provides a Create and CreateRemote method to
+// create instances of the default interface ILogger exposed by
+// the CoClass LogAdaptor. The functions are intended to be used by
+// clients wishing to automate the CoClass objects exposed by the
+// server of this typelibrary.
 // *********************************************************************//
   CoLogAdaptor = class
     class function Create: ILogger;
@@ -301,3 +302,4 @@ begin
 end;
 
 end.
+

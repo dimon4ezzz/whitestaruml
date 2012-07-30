@@ -1,64 +1,65 @@
 unit WordTranslator_TLB;
 
 // ************************************************************************ //
-// WARNING                                                                    
-// -------                                                                    
-// The types declared in this file were generated from data read from a       
-// Type Library. If this type library is explicitly or indirectly (via        
-// another type library referring to this type library) re-imported, or the   
-// 'Refresh' command of the Type Library Editor activated while editing the   
-// Type Library, the contents of this file will be regenerated and all        
-// manual modifications will be lost.                                         
+// WARNING
+// -------
+// The types declared in this file were generated from data read from a
+// Type Library. If this type library is explicitly or indirectly (via
+// another type library referring to this type library) re-imported, or the
+// 'Refresh' command of the Type Library Editor activated while editing the
+// Type Library, the contents of this file will be regenerated and all
+// manual modifications will be lost.
 // ************************************************************************ //
 
-// PASTLWTR : 1.2
-// File generated on 2005-10-25 ¿ÀÀü 11:34:02 from Type Library described below.
+// $Rev: 17244 $
+// File generated on 7/30/2012 8:22:48 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: D:\PLASTIC_CVS\plastic\generator\src\translators\word-translator\WordTranslator.tlb (1)
-// LIBID: {4D324ECE-F049-40C9-8054-CAB2615BF716}
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml-generator\src\translators\word-translator\WordTranslator (1)
+// LIBID: {B50752CF-E0EC-445E-BB82-B32E94A9C878}
 // LCID: 0
-// Helpfile: 
+// Helpfile:
 // HelpString: WordTranslator Library
-// DepndLst: 
-//   (1) v2.0 stdole, (C:\WINDOWS\system32\stdole2.tlb)
+// DepndLst:
+//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
 // ************************************************************************ //
-{$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers. 
+{$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
 {$WARN SYMBOL_PLATFORM OFF}
 {$WRITEABLECONST ON}
 {$VARPROPSETTER ON}
+{$ALIGN 4}
 interface
 
-uses Windows, ActiveX, Classes, Graphics, StdVCL, Variants;
-  
+uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
+
 
 // *********************************************************************//
-// GUIDS declared in the TypeLibrary. Following prefixes are used:        
-//   Type Libraries     : LIBID_xxxx                                      
-//   CoClasses          : CLASS_xxxx                                      
-//   DISPInterfaces     : DIID_xxxx                                       
-//   Non-DISP interfaces: IID_xxxx                                        
+// GUIDS declared in the TypeLibrary. Following prefixes are used:
+//   Type Libraries     : LIBID_xxxx
+//   CoClasses          : CLASS_xxxx
+//   DISPInterfaces     : DIID_xxxx
+//   Non-DISP interfaces: IID_xxxx
 // *********************************************************************//
 const
   // TypeLibrary Major and minor versions
   WordTranslatorMajorVersion = 1;
   WordTranslatorMinorVersion = 0;
 
-  LIBID_WordTranslator: TGUID = '{4D324ECE-F049-40C9-8054-CAB2615BF716}';
+  LIBID_WordTranslator: TGUID = '{B50752CF-E0EC-445E-BB82-B32E94A9C878}';
 
   IID_IWordTranslatorObj: TGUID = '{64F82205-5A1A-482D-A643-1E6A0BAA11FC}';
-  CLASS_WordTranslatorObj: TGUID = '{C98DDB62-E8E2-4F50-9C90-BB39ED2AA301}';
+  CLASS_WordTranslatorObj: TGUID = '{15EDB416-C580-42FF-925B-D7960AF693A3}';
 type
 
 // *********************************************************************//
-// Forward declaration of types defined in TypeLibrary                    
+// Forward declaration of types defined in TypeLibrary
 // *********************************************************************//
   IWordTranslatorObj = interface;
   IWordTranslatorObjDisp = dispinterface;
 
 // *********************************************************************//
-// Declaration of CoClasses defined in Type Library                       
-// (NOTE: Here we map each CoClass to its Default Interface)              
+// Declaration of CoClasses defined in Type Library
+// (NOTE: Here we map each CoClass to its Default Interface)
 // *********************************************************************//
   WordTranslatorObj = IWordTranslatorObj;
 
@@ -82,11 +83,11 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoWordTranslatorObj provides a Create and CreateRemote method to          
-// create instances of the default interface IWordTranslatorObj exposed by              
-// the CoClass WordTranslatorObj. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// The Class CoWordTranslatorObj provides a Create and CreateRemote method to
+// create instances of the default interface IWordTranslatorObj exposed by
+// the CoClass WordTranslatorObj. The functions are intended to be used by
+// clients wishing to automate the CoClass objects exposed by the
+// server of this typelibrary.
 // *********************************************************************//
   CoWordTranslatorObj = class
     class function Create: IWordTranslatorObj;
@@ -108,3 +109,4 @@ begin
 end;
 
 end.
+
