@@ -10,7 +10,7 @@
   </HEADER>
   <BODY>
     <MAINMENU>
-      <MAINITEM base="TOOLS" caption="StarUML Generator ..." beginGroup="TRUE" actionId="1" 
+      <MAINITEM base="TOOLS" caption="Documentation Generator ..." beginGroup="TRUE" actionId="1" 
                 availableWhen="ALWAYS" />
     </MAINMENU>                
   </BODY>
