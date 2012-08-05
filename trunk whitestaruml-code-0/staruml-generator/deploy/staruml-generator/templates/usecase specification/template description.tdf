@@ -30,12 +30,12 @@
     </PARAMETER>
     <PARAMETER>
       <NAME>Keep Comments</NAME>
-      <TYPE>STRING</TYPE>
+      <TYPE>BOOLEAN</TYPE>
       <VALUE>false</VALUE>
     </PARAMETER>
     <PARAMETER>
       <NAME>ShowGenerationProcess</NAME>
-      <TYPE>STRING</TYPE>
+      <TYPE>BOOLEAN</TYPE>
       <VALUE>false</VALUE>
     </PARAMETER>
     <PARAMETER>
