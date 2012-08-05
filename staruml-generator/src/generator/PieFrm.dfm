@@ -1,7 +1,7 @@
 object PieForm: TPieForm
   Left = 285
   Top = 142
-  ActiveControl = BatchPageControl
+  ActiveControl = ExecTasksGrid
   BorderStyle = bsDialog
   Caption = 'WhiteStarUML Generator'
   ClientHeight = 498
@@ -9,26 +9,23 @@ object PieForm: TPieForm
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = 12
-  Font.Name = #44404#47548
+  Font.Height = 14
+  Font.Name = 'Tahoma'
   Font.Style = []
   FormStyle = fsStayOnTop
   OldCreateOrder = False
   Position = poDesktopCenter
-  OnActivate = FormActivate
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  OnHide = FormHide
-  OnPaint = FormPaint
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 12
+  TextHeight = 14
   object DirectMDAWizard: TJvWizard
     Left = 0
     Top = 0
     Width = 721
     Height = 498
-    ActivePage = TemplateSelectionPage
+    ActivePage = ExecutionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = '<< &Start page'
     ButtonStart.NumGlyphs = 1
@@ -444,14 +441,16 @@ object PieForm: TPieForm
         ClientRectBottom = 360
         ClientRectLeft = 4
         ClientRectRight = 713
-        ClientRectTop = 24
+        ClientRectTop = 25
         object MainTabSheet: TcxTabSheet
           Caption = 'List of templates'
+          ExplicitTop = 24
+          ExplicitHeight = 336
           object GenerationUnitDescLabel: TLabel
             Left = 8
             Top = 274
-            Width = 74
-            Height = 12
+            Width = 69
+            Height = 14
             Caption = 'Descriptions:'
           end
           object RegisterBatchButton: TButton
@@ -482,8 +481,8 @@ object PieForm: TPieForm
             OnClick = RegisterTemplateButtonClick
           end
           object TasksGrid: TNextGrid
-            Left = 8
-            Top = 64
+            Left = 9
+            Top = 65
             Width = 697
             Height = 201
             AppearanceOptions = [aoAlphaBlendedSelection, aoIndicateSortedColumn]
@@ -491,7 +490,7 @@ object PieForm: TPieForm
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
-            Font.Name = #44404#47548
+            Font.Name = 'Tahoma'
             Font.Style = []
             HighlightedTextColor = clWindowText
             Options = [goDisableColumnMoving, goGrid, goHeader, goSelectFullRow]
@@ -510,7 +509,7 @@ object PieForm: TPieForm
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
               Font.Height = 12
-              Font.Name = #44404#47548
+              Font.Name = 'Tahoma'
               Font.Style = []
               Header.DisplayMode = dmImageOnly
               Options = [coCanClick, coCanInput, coEditing, coEditorAutoSelect, coFixedSize]
@@ -524,8 +523,8 @@ object PieForm: TPieForm
               DefaultWidth = 100
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
-              Font.Height = 12
-              Font.Name = #44404#47548
+              Font.Height = 14
+              Font.Name = 'Tahoma'
               Font.Style = []
               Header.Caption = 'Group'
               Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
@@ -539,8 +538,8 @@ object PieForm: TPieForm
               DefaultWidth = 100
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
-              Font.Height = 12
-              Font.Name = #44404#47548
+              Font.Height = 14
+              Font.Name = 'Tahoma'
               Font.Style = []
               Header.Caption = 'Category'
               Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
@@ -555,8 +554,8 @@ object PieForm: TPieForm
               DefaultWidth = 22
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
-              Font.Height = 12
-              Font.Name = #44404#47548
+              Font.Height = 14
+              Font.Name = 'Tahoma'
               Font.Style = []
               Header.DisplayMode = dmImageOnly
               Header.Glyph.Data = {
@@ -598,8 +597,8 @@ object PieForm: TPieForm
               DefaultWidth = 222
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
-              Font.Height = 12
-              Font.Name = #44404#47548
+              Font.Height = 14
+              Font.Name = 'Tahoma'
               Font.Style = []
               Header.Caption = 'Document Name'
               Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
@@ -614,8 +613,8 @@ object PieForm: TPieForm
               DefaultWidth = 100
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
-              Font.Height = 12
-              Font.Name = #44404#47548
+              Font.Height = 14
+              Font.Name = 'Tahoma'
               Font.Style = []
               Header.Caption = 'Doc. Type'
               Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
@@ -629,8 +628,8 @@ object PieForm: TPieForm
               DefaultWidth = 70
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
-              Font.Height = 12
-              Font.Name = #44404#47548
+              Font.Height = 14
+              Font.Name = 'Tahoma'
               Font.Style = []
               Header.Caption = 'Format'
               Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
@@ -641,14 +640,26 @@ object PieForm: TPieForm
             end
             object TutorialColumn: TNxImageColumn
               DefaultValue = '0'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = 14
+              Font.Name = 'Tahoma'
+              Font.Style = []
               Header.Caption = 'Tutorial'
+              ParentFont = False
               Position = 7
               SortType = stNumeric
               Visible = False
             end
             object ParametersColumn: TNxImageColumn
               DefaultValue = '0'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = 14
+              Font.Name = 'Tahoma'
+              Font.Style = []
               Header.Caption = 'Opt.'
+              ParentFont = False
               Position = 8
               SortType = stNumeric
               Images = CellValueImages
@@ -658,7 +669,7 @@ object PieForm: TPieForm
             Left = 31
             Top = 41
             Width = 98
-            Height = 20
+            Height = 22
             Style = csDropDownList
             Ctl3D = True
             ImeName = 'Microsoft IME 2003'
@@ -670,27 +681,27 @@ object PieForm: TPieForm
             Left = 134
             Top = 41
             Width = 99
-            Height = 20
+            Height = 22
             Style = csDropDownList
             ImeName = 'Microsoft IME 2003'
             TabOrder = 5
             OnChange = CategoryComboBoxChange
           end
           object DocTypeComboBox: TComboBox
-            Left = 502
-            Top = 41
-            Width = 99
-            Height = 20
+            Left = 454
+            Top = 37
+            Width = 108
+            Height = 22
             Style = csDropDownList
             ImeName = 'Microsoft IME 2003'
             TabOrder = 6
             OnChange = DocTypeComboBoxChange
           end
           object FormatComboBox: TComboBox
-            Left = 601
-            Top = 41
-            Width = 72
-            Height = 20
+            Left = 568
+            Top = 37
+            Width = 89
+            Height = 22
             Style = csDropDownList
             ImeName = 'Microsoft IME 2003'
             TabOrder = 7
@@ -774,13 +785,11 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
       OnNextButtonClick = OutDirectorySelectionPageNextButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label2: TLabel
         Left = 8
         Top = 88
-        Width = 69
-        Height = 12
+        Width = 70
+        Height = 14
         Caption = 'Target Path:'
       end
       object Image2: TImage
@@ -1184,27 +1193,25 @@ object PieForm: TPieForm
       OnPage = ExecutionPagePage
       OnNextButtonClick = ExecutionPageNextButtonClick
       OnFinishButtonClick = ExecutionPageFinishButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object GenerationItemsLabel: TLabel
         Left = 8
         Top = 88
-        Width = 93
-        Height = 12
+        Width = 90
+        Height = 14
         Caption = 'Generation List: '
       end
       object MainMessageLabel: TLabel
         Left = 8
         Top = 405
-        Width = 97
-        Height = 12
+        Width = 93
+        Height = 14
         Caption = 'Whole Progress: '
       end
       object LogLabel: TLabel
         Left = 8
         Top = 299
-        Width = 32
-        Height = 12
+        Width = 29
+        Height = 14
         Caption = 'Logs:'
       end
       object Image3: TImage
@@ -1563,7 +1570,7 @@ object PieForm: TPieForm
         Left = 8
         Top = 384
         Width = 247
-        Height = 12
+        Height = 14
         Caption = 'Press [Generate] button to start generation.'
       end
       object ExecTasksGrid: TNextGrid
@@ -1580,8 +1587,8 @@ object PieForm: TPieForm
           DefaultWidth = 23
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = 12
-          Font.Name = #44404#47548
+          Font.Height = 14
+          Font.Name = 'Tahoma'
           Font.Style = []
           Header.DisplayMode = dmImageOnly
           Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coFixedSize]
@@ -1594,8 +1601,8 @@ object PieForm: TPieForm
         object ExecGroupColumn: TNxTextColumn
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = 12
-          Font.Name = #44404#47548
+          Font.Height = 14
+          Font.Name = 'Tahoma'
           Font.Style = []
           Header.Caption = 'Group'
           Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
@@ -1606,8 +1613,8 @@ object PieForm: TPieForm
         object ExecCategoryColumn: TNxTextColumn
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = 12
-          Font.Name = #44404#47548
+          Font.Height = 14
+          Font.Name = 'Tahoma'
           Font.Style = []
           Header.Caption = 'Category'
           Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
@@ -1619,8 +1626,8 @@ object PieForm: TPieForm
           DefaultWidth = 190
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = 12
-          Font.Name = #44404#47548
+          Font.Height = 14
+          Font.Name = 'Tahoma'
           Font.Style = []
           Header.Caption = 'Document Name'
           Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
@@ -1633,8 +1640,8 @@ object PieForm: TPieForm
           DefaultWidth = 190
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = 12
-          Font.Name = #44404#47548
+          Font.Height = 14
+          Font.Name = 'Tahoma'
           Font.Style = []
           Header.Caption = 'Target File'
           Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
@@ -1648,8 +1655,8 @@ object PieForm: TPieForm
           DefaultWidth = 138
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = 12
-          Font.Name = #44404#47548
+          Font.Height = 14
+          Font.Name = 'Tahoma'
           Font.Style = []
           Header.Caption = 'Status'
           Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect]
@@ -1665,8 +1672,8 @@ object PieForm: TPieForm
         object ExecFullPathColumn: TNxTextColumn
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = 12
-          Font.Name = #44404#47548
+          Font.Height = 14
+          Font.Name = 'Tahoma'
           Font.Style = []
           Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
           ParentFont = False
@@ -1702,7 +1709,7 @@ object PieForm: TPieForm
     Left = 64
     Top = 456
     Bitmap = {
-      494C010101000400180091004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000400200091004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000440200004C0000000100200000000000C0B0
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -7403,7 +7410,7 @@ object PieForm: TPieForm
     Left = 96
     Top = 456
     Bitmap = {
-      494C010104000900180010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104000900200010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -7678,7 +7685,7 @@ object PieForm: TPieForm
     Left = 128
     Top = 456
     Bitmap = {
-      494C010103000400180010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000400200010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

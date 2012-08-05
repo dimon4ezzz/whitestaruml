@@ -111,12 +111,6 @@ type
     RegisterBatchButton: TButton;
     AppendToBatchButton: TButton;
     RegisterTemplateButton: TButton;
-    TasksGrid: TNextGrid;
-    CheckColumn: TNxCheckBoxColumn;
-    GroupColumn: TNxTextColumn;
-    CategoryColumn: TNxTextColumn;
-    NameColumn: TNxTextColumn;
-    DocTypeColumn: TNxTextColumn;
     GenerationUnitDescLabel: TLabel;
     GroupComboBox: TComboBox;
     CategoryComboBox: TComboBox;
@@ -130,8 +124,6 @@ type
     Image2: TImage;
     Image3: TImage;
     CellValueImages: TImageList;
-    FormatColumn: TNxTextColumn;
-    PreviewColumn: TNxImageColumn;
     HeartBeatTimer: TTimer;
     GenerationUnitDescPanel: TFlatPanel;
     GenerationUnitDescMemo: TMemo;
@@ -153,6 +145,14 @@ type
     R1: TMenuItem;
     N1: TMenuItem;
     OpenTemplateButton: TButton;
+    TasksGrid: TNextGrid;
+    CheckColumn: TNxCheckBoxColumn;
+    GroupColumn: TNxTextColumn;
+    CategoryColumn: TNxTextColumn;
+    PreviewColumn: TNxImageColumn;
+    NameColumn: TNxTextColumn;
+    DocTypeColumn: TNxTextColumn;
+    FormatColumn: TNxTextColumn;
     TutorialColumn: TNxImageColumn;
     ParametersColumn: TNxImageColumn;
     procedure FormCreate(Sender: TObject);
@@ -192,9 +192,6 @@ type
     procedure ModifyTemplatePopUpMenuItemClick(Sender: TObject);
     procedure DeleteTemplatePopUpMenuItemClick(Sender: TObject);
     procedure OpenTemplatePopUpMenuItemClick(Sender: TObject);
-    procedure FormHide(Sender: TObject);
-    procedure FormPaint(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
     procedure TasksGridMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
   private
@@ -1295,16 +1292,6 @@ begin
   Finalize;
 end;
 
-procedure TPieForm.FormHide(Sender: TObject);
-begin
-  //TasksGrid.Refresh;
-end;
-
-procedure TPieForm.FormPaint(Sender: TObject);
-begin
-   //TasksGrid.Refresh;
-end;
-
 procedure TPieForm.FormShow(Sender: TObject);
 begin
   SetupBatches;
@@ -1319,7 +1306,7 @@ end;
 procedure TPieForm.TasksGridMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  TasksGrid.Refresh;
+  //TasksGrid.Refresh;
 end;
 
 procedure TPieForm.RegisterBatchButtonClick(Sender: TObject);
@@ -1428,11 +1415,6 @@ procedure TPieForm.DocTypeComboBoxChange(Sender: TObject);
 begin
   UpdateTasksGrid;
   UpdateUIStates;
-end;
-
-procedure TPieForm.FormActivate(Sender: TObject);
-begin
- //TasksGrid.Refresh;
 end;
 
 procedure TPieForm.FormatComboBoxChange(Sender: TObject);
