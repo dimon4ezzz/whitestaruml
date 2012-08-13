@@ -1,4 +1,4 @@
-unit PowerPointTranslator_TLB;
+unit WSExcelTranslator_TLB;
 
 // ************************************************************************ //
 // WARNING
@@ -12,14 +12,14 @@ unit PowerPointTranslator_TLB;
 // ************************************************************************ //
 
 // $Rev: 17244 $
-// File generated on 7/30/2012 8:25:03 PM from Type Library described below.
+// File generated on 8/11/2012 9:30:34 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml-generator\src\translators\powerpoint-translator\PowerPointTranslator (1)
-// LIBID: {AC9DE618-78D1-483A-B543-5C25D203F893}
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml-generator\src\translators\excel-translator\ExcelTranslator (1)
+// LIBID: {B2C6F7DF-3DD2-4D6B-9951-F608DC6360BD}
 // LCID: 0
 // Helpfile:
-// HelpString: PowerPointTranslator Library
+// HelpString: ExcelTranslator Library
 // DepndLst:
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
 // ************************************************************************ //
@@ -42,70 +42,70 @@ uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
 // *********************************************************************//
 const
   // TypeLibrary Major and minor versions
-  PowerPointTranslatorMajorVersion = 1;
-  PowerPointTranslatorMinorVersion = 0;
+  WSExcelTranslatorMajorVersion = 1;
+  WSExcelTranslatorMinorVersion = 0;
 
-  LIBID_PowerPointTranslator: TGUID = '{AC9DE618-78D1-483A-B543-5C25D203F893}';
+  LIBID_WSExcelTranslator: TGUID = '{B2C6F7DF-3DD2-4D6B-9951-F608DC6360BD}';
 
-  IID_IPowerPointTranslatorObj: TGUID = '{3AD006D8-8E12-4440-A3DC-BB722EDE5BB2}';
-  CLASS_PowerPointTranslatorObj: TGUID = '{14E57C1D-24CA-4013-87E4-B5FA373A976D}';
+  IID_IExcelTranslatorObj: TGUID = '{D518D1E5-2AB5-46AD-9E39-3BA61C47C8A8}';
+  CLASS_ExcelTranslatorObj: TGUID = '{36DA5BA0-B37E-49A0-8C59-6DACAD880BDE}';
 type
 
 // *********************************************************************//
 // Forward declaration of types defined in TypeLibrary
 // *********************************************************************//
-  IPowerPointTranslatorObj = interface;
-  IPowerPointTranslatorObjDisp = dispinterface;
+  IExcelTranslatorObj = interface;
+  IExcelTranslatorObjDisp = dispinterface;
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library
 // (NOTE: Here we map each CoClass to its Default Interface)
 // *********************************************************************//
-  PowerPointTranslatorObj = IPowerPointTranslatorObj;
+  ExcelTranslatorObj = IExcelTranslatorObj;
 
 
 // *********************************************************************//
-// Interface: IPowerPointTranslatorObj
+// Interface: IExcelTranslatorObj
 // Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {3AD006D8-8E12-4440-A3DC-BB722EDE5BB2}
+// GUID:      {D518D1E5-2AB5-46AD-9E39-3BA61C47C8A8}
 // *********************************************************************//
-  IPowerPointTranslatorObj = interface(IDispatch)
-    ['{3AD006D8-8E12-4440-A3DC-BB722EDE5BB2}']
+  IExcelTranslatorObj = interface(IDispatch)
+    ['{D518D1E5-2AB5-46AD-9E39-3BA61C47C8A8}']
   end;
 
 // *********************************************************************//
-// DispIntf:  IPowerPointTranslatorObjDisp
+// DispIntf:  IExcelTranslatorObjDisp
 // Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {3AD006D8-8E12-4440-A3DC-BB722EDE5BB2}
+// GUID:      {D518D1E5-2AB5-46AD-9E39-3BA61C47C8A8}
 // *********************************************************************//
-  IPowerPointTranslatorObjDisp = dispinterface
-    ['{3AD006D8-8E12-4440-A3DC-BB722EDE5BB2}']
+  IExcelTranslatorObjDisp = dispinterface
+    ['{D518D1E5-2AB5-46AD-9E39-3BA61C47C8A8}']
   end;
 
 // *********************************************************************//
-// The Class CoPowerPointTranslatorObj provides a Create and CreateRemote method to
-// create instances of the default interface IPowerPointTranslatorObj exposed by
-// the CoClass PowerPointTranslatorObj. The functions are intended to be used by
+// The Class CoExcelTranslatorObj provides a Create and CreateRemote method to
+// create instances of the default interface IExcelTranslatorObj exposed by
+// the CoClass ExcelTranslatorObj. The functions are intended to be used by
 // clients wishing to automate the CoClass objects exposed by the
 // server of this typelibrary.
 // *********************************************************************//
-  CoPowerPointTranslatorObj = class
-    class function Create: IPowerPointTranslatorObj;
-    class function CreateRemote(const MachineName: string): IPowerPointTranslatorObj;
+  CoExcelTranslatorObj = class
+    class function Create: IExcelTranslatorObj;
+    class function CreateRemote(const MachineName: string): IExcelTranslatorObj;
   end;
 
 implementation
 
 uses ComObj;
 
-class function CoPowerPointTranslatorObj.Create: IPowerPointTranslatorObj;
+class function CoExcelTranslatorObj.Create: IExcelTranslatorObj;
 begin
-  Result := CreateComObject(CLASS_PowerPointTranslatorObj) as IPowerPointTranslatorObj;
+  Result := CreateComObject(CLASS_ExcelTranslatorObj) as IExcelTranslatorObj;
 end;
 
-class function CoPowerPointTranslatorObj.CreateRemote(const MachineName: string): IPowerPointTranslatorObj;
+class function CoExcelTranslatorObj.CreateRemote(const MachineName: string): IExcelTranslatorObj;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_PowerPointTranslatorObj) as IPowerPointTranslatorObj;
+  Result := CreateRemoteComObject(MachineName, CLASS_ExcelTranslatorObj) as IExcelTranslatorObj;
 end;
 
 end.
