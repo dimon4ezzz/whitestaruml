@@ -155,10 +155,10 @@ const
   COL_EXEC_FULL_PATH = 'ExecFullPathColumn';
 
   // COM name of predefined generators
-  GEN_WORD = 'WordTranslator.WordTranslatorObj';
-  GEN_EXCEL = 'ExcelTranslator.ExcelTranslatorObj';
-  GEN_POWERPOINT = 'PowerPointTranslator.PowerPointTranslatorObj';
-  GEN_TEXT = 'TextTranslator.TextTranslatorObj';
+  GEN_WORD = 'WSWordTranslator.WordTranslatorObj';
+  GEN_EXCEL = 'WSExcelTranslator.ExcelTranslatorObj';
+  GEN_POWERPOINT = 'WSPowerPointTranslator.PowerPointTranslatorObj';
+  GEN_TEXT = 'WSTextTranslator.TextTranslatorObj';
 
   // Misc
   ENCODING_EUC_KR = 'EUC-KR';

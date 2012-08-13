@@ -50,7 +50,7 @@ unit ExcelTranslatorObj;
 interface
 
 uses
-  ComObj, ActiveX, ExcelTranslator_TLB, StdVcl, Generator_TLB, ExcelTranslatorEngine;
+  ComObj, ActiveX, WSExcelTranslator_TLB, StdVcl, WSGenerator_TLB, ExcelTranslatorEngine;
 
 type
 

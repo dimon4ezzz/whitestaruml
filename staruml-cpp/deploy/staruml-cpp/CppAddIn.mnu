@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ADDINMENU addInID="StarUML.CppAddIn">
+<ADDINMENU addInID="WhiteStarUML.CppAddIn">
   <HEADER>
     <NAME>C++ Add-In</NAME>
     <VERSION>1.0</VERSION>

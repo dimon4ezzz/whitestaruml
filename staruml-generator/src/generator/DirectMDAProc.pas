@@ -51,7 +51,7 @@ interface
 
 uses
   DirectMDAObjects,
-  Classes, ComObj, ActiveX, Generator_TLB, StdVcl, ExtCtrls, MSScriptControl_TLB;
+  Classes, ComObj, ActiveX, WSGenerator_TLB, StdVcl, ExtCtrls, MSScriptControl_TLB;
 
 const
   FILE_EXT_JS = '.JS';

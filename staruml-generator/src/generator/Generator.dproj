@@ -37,15 +37,13 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
-			<DCC_ExeOutput>C:\JS\Delphi\WhiteStarDevInstall\modules\staruml-generator</DCC_ExeOutput>
-			<DCC_DependencyCheckOutputName>..\..\..\..\WhiteStarDevInstall\modules\staruml-generator\Generator.dll</DCC_DependencyCheckOutputName>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>
 			<DelphiCompile Include="Generator.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="Generator_TLB.pas"/>
+			<DCCReference Include="WSGenerator_TLB.pas"/>
 			<DCCReference Include="DirectMDAProc.pas">
 				<CoClasses>GeneratorProcessor</CoClasses>
 			</DCCReference>

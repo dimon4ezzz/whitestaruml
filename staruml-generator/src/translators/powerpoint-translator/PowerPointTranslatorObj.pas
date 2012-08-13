@@ -50,8 +50,8 @@ unit PowerPointTranslatorObj;
 interface
 
 uses
-  ComObj, ActiveX, PowerPointTranslator_TLB,
-  StdVcl, Generator_TLB, PowerPointTranslatorEngine;
+  ComObj, ActiveX, WSPowerPointTranslator_TLB,
+  StdVcl, WSGenerator_TLB, PowerPointTranslatorEngine;
 
 type
   TPowerPointTranslatorObj = class(TAutoObject, ITranslator, IPowerPointTranslatorObj)

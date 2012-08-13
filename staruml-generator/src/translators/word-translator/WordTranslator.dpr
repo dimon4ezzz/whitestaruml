@@ -47,7 +47,7 @@ library WordTranslator;
 
 uses
   ComServ,
-  WordTranslator_TLB in 'WordTranslator_TLB.pas',
+  WSWordTranslator_TLB in 'WSWordTranslator_TLB.pas',
   WordTranslatorObj in 'WordTranslatorObj.pas' {WordTranslatorObj: CoClass},
   WordTranslatorEngine in 'WordTranslatorEngine.pas',
   Symbols in 'Symbols.pas',

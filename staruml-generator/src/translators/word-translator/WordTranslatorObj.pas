@@ -51,7 +51,7 @@ interface
 
 uses
   Dialogs, WordTranslatorEngine,
-  ComObj, ActiveX, StdVcl, Generator_TLB, WordTranslator_TLB;
+  ComObj, ActiveX, StdVcl, WSGenerator_TLB, WSWordTranslator_TLB;
 
 type
 
