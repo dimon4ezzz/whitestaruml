@@ -47,7 +47,7 @@ library Generator;
 
 uses
   ComServ,
-  Generator_TLB in 'Generator_TLB.pas',
+  WSGenerator_TLB in 'WSGenerator_TLB.pas',
   DirectMDAProc in 'DirectMDAProc.pas' {GeneratorProcessor: CoClass},
   HashTable in 'HashTable.pas' {HashTable: CoClass},
   DirectMDAObjects in 'DirectMDAObjects.pas',

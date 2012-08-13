@@ -2,7 +2,7 @@
 <ADDIN>
     <NAME>Generator AddIn</NAME>
     <DISPLAYNAME>Generator Add-In</DISPLAYNAME>
-    <COMOBJ>Generator.GeneratorApplication</COMOBJ>
+    <COMOBJ>WSGenerator.GeneratorApplication</COMOBJ>
     <FILENAME>Generator.dll</FILENAME>
     <COMPANY>Plastic Software, Inc.</COMPANY>
     <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>

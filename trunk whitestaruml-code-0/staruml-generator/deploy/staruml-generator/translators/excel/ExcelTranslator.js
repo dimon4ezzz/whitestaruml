@@ -122,8 +122,8 @@ function Abort(){
 function main() {
   // initProperties();
   
-  // 1.create StarUML COM Object
-  connectToStarUMLApplication();
+  // 1.create WhiteStarUML COM Object
+  connectToWhiteStarUMLApplication();
   
   // 2.create Word COM Object
   connectToExcelApplication();
@@ -161,8 +161,8 @@ function main() {
     
     disconnectToExcelApplication();
     
-    // 8.release StarUML COM Object
-    disconnectToStarUMLApplication();
+    // 8.release WhiteStarUML COM Object
+    disconnectFromWhiteStarUMLApplication();
     if(inGenerating)
     progress(100, 100);
     inGenerating = false;
@@ -181,12 +181,12 @@ function initProperties() {
 }
 
 /////////////////////////////////////////////////
-// connectToStarUMLApplication : create StarUML COM Object
+// connectToWhiteStarUMLApplication : create StarUML COM Object
 //
-function connectToStarUMLApplication() {
-  app = new ActiveXObject("StarUML.StarUMLApplication");
+function connectToWhiteStarUMLApplication() {
+  app = new ActiveXObject("WhiteStarUML.WhiteStarUMLApplication");
   prj = app.GetProject();
-  log("Connected to StarUML.");
+  log("Connected to WhiteStarUML.");
 }
 
 /////////////////////////////////////////////////
@@ -868,11 +868,11 @@ function disconnectToExcelApplication() {
 }
 
 /////////////////////////////////////////////////
-// disconnectToStarUMLApplication : release StarUML COM Object
+// disconnectFromWhiteStarUMLApplication : release StarUML COM Object
 //
-function disconnectToStarUMLApplication() {
+function disconnectFromWhiteStarUMLApplication() {
   // to do
-  log("Release StarUML.");
+  log("Release WhiteStarUML.");
 }
 
 /////////////////////////////////////////////////

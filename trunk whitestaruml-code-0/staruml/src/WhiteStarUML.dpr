@@ -137,10 +137,8 @@ uses
   MenuManagerTdxImpl in 'MenuManagerTdxImpl.pas',
   QuickDialogFrmTdxBase in 'QuickDialogFrmTdxBase.pas' {QuickDialogFormTdxBase},
   MainFrm in 'MainFrm.pas' {MainForm},
-  CategoryButtons in 'CategoryButtons.pas',
   WhiteStarUML_TLB in 'WhiteStarUML_TLB.pas',
   PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas',
-  GoldCOMWrapper_TLB in 'GoldCOMWrapper_TLB.pas',
   ParserCore_TLB in 'ParserCore_TLB.pas';
 
 {$R *.TLB}

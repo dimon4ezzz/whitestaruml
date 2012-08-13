@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ADDINMENU addInID="StarUML.JavaAddIn">
+<ADDINMENU addInID="WhiteStarUML.JavaAddIn">
   <HEADER>
     <NAME>Java Add-In</NAME>
     <VERSION>1.0</VERSION>

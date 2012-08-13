@@ -50,7 +50,7 @@ unit HashTable;
 interface
 
 uses
-  Classes, ComObj, ActiveX, Generator_TLB, StdVcl, SysUtils;
+  Classes, ComObj, ActiveX, WSGenerator_TLB, StdVcl, SysUtils;
 
 const
   ERR_CANNOT_FIND_KEY = 'Key Value doesn''t exist.(%s)';

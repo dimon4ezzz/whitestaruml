@@ -49,7 +49,7 @@ interface
 
 uses
   Dialogs,
-  Classes, MSScriptControl_TLB, SysUtils, Generator_TLB, ExcelTranslator_TLB;
+  Classes, MSScriptControl_TLB, SysUtils, WSGenerator_TLB, WSExcelTranslator_TLB;
 type
 
   PExcelTranslatorEngine = class

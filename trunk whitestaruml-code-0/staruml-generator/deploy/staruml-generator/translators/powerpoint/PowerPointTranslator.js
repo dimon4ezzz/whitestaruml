@@ -110,11 +110,13 @@ function Abort(){
 function main() {
   // initProperties();
   
-  // 1. create StarUML Object
-  connectToStarUMLApplication();
+  // 1. create WhiteStarUML Object
+  connectToWhiteStarUMLApplication();
   
   // 2. create Powerpoint COM Object
   connectToPPTApplication();
+  
+  progress(20, 100);
   
   inGenerating = true;
   
@@ -148,9 +150,10 @@ function main() {
     // 8. release Powerpoint COM Object
     disconnectToPPTApplication();
     
-    // 9.release StarUML COM Object
-    disconnectToStarUMLApplication();
+    // 9.release WhiteStarUML COM Object
+    disconnectFromWhiteStarUMLApplication();
     
+    progress(100, 100);
     inGenerating = false;
   }
 }
@@ -168,16 +171,16 @@ function initProperties() {
 }
 
 /////////////////////////////////////////////////
-// connectToStarUMLApplication : create StarUML COM Object
+// connectToWhiteStarUMLApplication : create StarUML COM Object
 //
-function connectToStarUMLApplication() {
-  app = new ActiveXObject("StarUML.StarUMLApplication");
+function connectToWhiteStarUMLApplication() {
+  app = new ActiveXObject("WhiteStarUML.WhiteStarUMLApplication");
   prj = app.GetProject();
-  log("Connected to StarUML.");
+  log("Connected to WhiteStarUML.");
 }
 
 /////////////////////////////////////////////////
-// connectToStarUMLApplication : create Powerpoint COM Object
+// connectToWhiteStarUMLApplication : create Powerpoint COM Object
 //
 function connectToPPTApplication() {
   pptApp = new ActiveXObject("PowerPoint.Application");
@@ -211,7 +214,7 @@ function openClonedPPTDocument() {
 // generateDocument : 
 //
 function generateDocument() {
-  log("Start to generate.");
+  log("Starting document generation.");
   // 1. get all memos in template document
   var commentArray = getAllComments(1, pptPresentation.slides.count);
   
@@ -528,13 +531,23 @@ function traverseRepeatTemplate(rootElem, commentArray) {
 // getAllRecursiveElements :
 //
 function getAllRecursiveElements(isRecursive, rootElem, filterType) {
+  
+  var elemArray = new Array();
+  
+  if (rootElem == null)
+  {
+  	return elemArray;
+  }
+		
+	
   // 1. elem's type
+  
   var rootElemPathname = rootElem.pathname;
   
   // 2.get all elements whose type is same as filterType in MetaClass
   var metaClass = app.MetaModel.FindMetaClass(filterType);
   var count = metaClass.getInclusiveInstanceCount();
-  var elemArray = new Array();
+  //var elemArray = new Array();
   
   var rc = rootElemPathname.split("::").length;
   
@@ -986,11 +999,11 @@ function disconnectToPPTApplication() {
 }
 
 /////////////////////////////////////////////////
-// disconnectToStarUMLApplication : 플라스틱 객체를 해제한다
+// disconnectFromWhiteStarUMLApplication : 플라스틱 객체를 해제한다
 //
-function disconnectToStarUMLApplication() {
+function disconnectFromWhiteStarUMLApplication() {
   // to do
-  log("Released StarUML.");
+  log("Released WhiteStarUML.");
 }
 
 /////////////////////////////////////////////////

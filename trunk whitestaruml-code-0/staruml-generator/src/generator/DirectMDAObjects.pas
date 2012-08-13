@@ -621,6 +621,8 @@ begin
     Result := ttScript
   else if Value = VALUE_TRANSTYPE_EXE then
     Result := ttEXE
+  //else if Value = '' then // Value not set yet
+  //  Result := ttWord
   else
     raise EConversionException.Create(ERR_UNEXPECTED_TRANSLATOR_TYPE);
 end;

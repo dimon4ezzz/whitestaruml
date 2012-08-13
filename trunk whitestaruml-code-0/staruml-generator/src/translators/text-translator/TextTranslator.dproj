@@ -20,10 +20,10 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_ExeOutput>C:\JS\Delphi\WhiteStarDevInstall\modules\staruml-generator\translators\text</DCC_ExeOutput>
+			<DCC_ExeOutput>..\..\..\deploy\staruml-generator\translators\text</DCC_ExeOutput>
 			<DCC_UnitSearchPath>..\..\generator;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_DependencyCheckOutputName>..\..\..\..\..\WhiteStarDevInstall\modules\staruml-generator\translators\text\TextTranslator.dll</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>..\..\..\deploy\staruml-generator\translators\text\TextTranslator.dll</DCC_DependencyCheckOutputName>
 			<GenDll>true</GenDll>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_Platform>x86</DCC_Platform>
@@ -41,7 +41,7 @@
 			<DelphiCompile Include="TextTranslator.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="TextTranslator_TLB.pas"/>
+			<DCCReference Include="WSTextTranslator_TLB.pas"/>
 			<DCCReference Include="TextTranslatorObj.pas">
 				<CoClasses>TextTranslatorObj</CoClasses>
 			</DCCReference>

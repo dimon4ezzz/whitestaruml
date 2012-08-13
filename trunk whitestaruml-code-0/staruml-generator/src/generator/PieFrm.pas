@@ -48,7 +48,7 @@ unit PieFrm;
 interface
 
 uses
-  DirectMDAProc, DirectMDAObjects, BatchFrm, Generator_TLB,
+  DirectMDAProc, DirectMDAObjects, BatchFrm, WSGenerator_TLB,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComObj, NxColumnClasses, NxColumns, NxScrollControl,
   NxCustomGridControl, NxCustomGrid, NxGrid, StdCtrls, cxPC,
@@ -192,8 +192,10 @@ type
     procedure ModifyTemplatePopUpMenuItemClick(Sender: TObject);
     procedure DeleteTemplatePopUpMenuItemClick(Sender: TObject);
     procedure OpenTemplatePopUpMenuItemClick(Sender: TObject);
-    procedure TasksGridMouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
+    procedure TemplateSelectionPagePaintPage(Sender: TObject; ACanvas: TCanvas;
+      var ARect: TRect);
+    procedure ExecutionPagePaintPage(Sender: TObject; ACanvas: TCanvas;
+      var ARect: TRect);
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -1303,10 +1305,10 @@ begin
   ShowTaskProperties;
 end;
 
-procedure TPieForm.TasksGridMouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
+procedure TPieForm.TemplateSelectionPagePaintPage(Sender: TObject;
+  ACanvas: TCanvas; var ARect: TRect);
 begin
-  //TasksGrid.Refresh;
+  TasksGrid.Refresh;
 end;
 
 procedure TPieForm.RegisterBatchButtonClick(Sender: TObject);
@@ -1352,6 +1354,12 @@ begin
   ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons - [bkFinish];
   SetupExecTasks;
   UpdateUIStates;
+end;
+
+procedure TPieForm.ExecutionPagePaintPage(Sender: TObject; ACanvas: TCanvas;
+  var ARect: TRect);
+begin
+  ExecTasksGrid.Refresh;
 end;
 
 procedure TPieForm.ExecutionPageNextButtonClick(Sender: TObject; var Stop: Boolean);

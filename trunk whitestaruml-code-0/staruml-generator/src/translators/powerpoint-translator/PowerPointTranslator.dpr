@@ -47,7 +47,7 @@ library PowerPointTranslator;
 
 uses
   ComServ,
-  PowerPointTranslator_TLB in 'PowerPointTranslator_TLB.pas',
+  WSPowerPointTranslator_TLB in 'WSPowerPointTranslator_TLB.pas',
   PowerPointTranslatorObj in 'PowerPointTranslatorObj.pas' {PowerPointTranslatorObj: CoClass},
   Symbols in 'Symbols.pas',
   PowerPointTranslatorEngine in 'PowerPointTranslatorEngine.pas',

@@ -214,7 +214,7 @@ function openClonedPPTDocument() {
 // generateDocument : 
 //
 function generateDocument() {
-  log("Start to generate.");
+  log("Starting document generation.");
   // 1. get all memos in template document
   var commentArray = getAllComments(1, pptPresentation.slides.count);
   
@@ -531,13 +531,23 @@ function traverseRepeatTemplate(rootElem, commentArray) {
 // getAllRecursiveElements :
 //
 function getAllRecursiveElements(isRecursive, rootElem, filterType) {
+  
+  var elemArray = new Array();
+  
+  if (rootElem == null)
+  {
+  	return elemArray;
+  }
+		
+	
   // 1. elem's type
+  
   var rootElemPathname = rootElem.pathname;
   
   // 2.get all elements whose type is same as filterType in MetaClass
   var metaClass = app.MetaModel.FindMetaClass(filterType);
   var count = metaClass.getInclusiveInstanceCount();
-  var elemArray = new Array();
+  //var elemArray = new Array();
   
   var rc = rootElemPathname.split("::").length;
   

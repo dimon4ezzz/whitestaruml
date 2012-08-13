@@ -223,7 +223,7 @@ function println(str) {
 function generateDocument() {
   if (inGenerating) {
     notify("Analyzing template file...");
-    log("Start to generate document...");
+    log("Starting document generation");
 
     // initialize variables
     is = fileObject.OpenTextFile(templateFilename, 1, 0, 0);

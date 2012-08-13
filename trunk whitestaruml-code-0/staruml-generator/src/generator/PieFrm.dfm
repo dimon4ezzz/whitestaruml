@@ -1,7 +1,7 @@
 object PieForm: TPieForm
   Left = 285
   Top = 142
-  ActiveControl = ExecTasksGrid
+  ActiveControl = BatchPageControl
   BorderStyle = bsDialog
   Caption = 'WhiteStarUML Generator'
   ClientHeight = 498
@@ -25,7 +25,7 @@ object PieForm: TPieForm
     Top = 0
     Width = 721
     Height = 498
-    ActivePage = ExecutionPage
+    ActivePage = TemplateSelectionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = '<< &Start page'
     ButtonStart.NumGlyphs = 1
@@ -77,6 +77,9 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Height = 12
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
+      OnPaintPage = TemplateSelectionPagePaintPage
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Image1: TImage
         Left = 0
         Top = 70
@@ -444,8 +447,10 @@ object PieForm: TPieForm
         ClientRectTop = 25
         object MainTabSheet: TcxTabSheet
           Caption = 'List of templates'
-          ExplicitTop = 24
-          ExplicitHeight = 336
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object GenerationUnitDescLabel: TLabel
             Left = 8
             Top = 274
@@ -502,7 +507,6 @@ object PieForm: TPieForm
             OnCellClick = TasksGridCellClick
             OnChange = TasksGridChange
             OnDblClick = TasksGridDblClick
-            OnMouseDown = TasksGridMouseDown
             object CheckColumn: TNxCheckBoxColumn
               Alignment = taCenter
               DefaultWidth = 23
@@ -785,6 +789,8 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
       OnNextButtonClick = OutDirectorySelectionPageNextButtonClick
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label2: TLabel
         Left = 8
         Top = 88
@@ -1191,8 +1197,11 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Style = []
       VisibleButtons = [bkNext, bkFinish, bkCancel]
       OnPage = ExecutionPagePage
+      OnPaintPage = ExecutionPagePaintPage
       OnNextButtonClick = ExecutionPageNextButtonClick
       OnFinishButtonClick = ExecutionPageFinishButtonClick
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GenerationItemsLabel: TLabel
         Left = 8
         Top = 88
@@ -1709,7 +1718,7 @@ object PieForm: TPieForm
     Left = 64
     Top = 456
     Bitmap = {
-      494C010101000400200091004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000400280091004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000440200004C0000000100200000000000C0B0
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -7410,7 +7419,7 @@ object PieForm: TPieForm
     Left = 96
     Top = 456
     Bitmap = {
-      494C010104000900200010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104000900280010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -7685,7 +7694,7 @@ object PieForm: TPieForm
     Left = 128
     Top = 456
     Bitmap = {
-      494C010103000400200010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000400280010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ADDINMENU addInID="StarUML.PatternAddIn">
+<ADDINMENU addInID="WhiteStarUML.PatternAddIn">
   <HEADER>
     <NAME>Pattern Add-In</NAME>
     <VERSION>1.0</VERSION>

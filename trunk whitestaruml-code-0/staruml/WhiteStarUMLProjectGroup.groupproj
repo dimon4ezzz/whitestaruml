@@ -39,6 +39,21 @@
 			<Projects Include="..\staruml-java15\src\java-parser\WSJavaParser15.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="..\staruml-generator\src\generator\Generator.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-generator\src\translators\excel-translator\ExcelTranslator.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-generator\src\translators\powerpoint-translator\PowerPointTranslator.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-generator\src\translators\text-translator\TextTranslator.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\staruml-generator\src\translators\word-translator\WordTranslator.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -155,14 +170,59 @@
 		<Target Name="WSJavaParser15:Make">
 			<MSBuild Targets="Make" Projects="..\staruml-java15\src\java-parser\WSJavaParser15.dproj"/>
 		</Target>
+		<Target Name="Generator">
+			<MSBuild Projects="..\staruml-generator\src\generator\Generator.dproj"/>
+		</Target>
+		<Target Name="Generator:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-generator\src\generator\Generator.dproj"/>
+		</Target>
+		<Target Name="Generator:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-generator\src\generator\Generator.dproj"/>
+		</Target>
+		<Target Name="ExcelTranslator">
+			<MSBuild Projects="..\staruml-generator\src\translators\excel-translator\ExcelTranslator.dproj"/>
+		</Target>
+		<Target Name="ExcelTranslator:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-generator\src\translators\excel-translator\ExcelTranslator.dproj"/>
+		</Target>
+		<Target Name="ExcelTranslator:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-generator\src\translators\excel-translator\ExcelTranslator.dproj"/>
+		</Target>
+		<Target Name="PowerPointTranslator">
+			<MSBuild Projects="..\staruml-generator\src\translators\powerpoint-translator\PowerPointTranslator.dproj"/>
+		</Target>
+		<Target Name="PowerPointTranslator:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-generator\src\translators\powerpoint-translator\PowerPointTranslator.dproj"/>
+		</Target>
+		<Target Name="PowerPointTranslator:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-generator\src\translators\powerpoint-translator\PowerPointTranslator.dproj"/>
+		</Target>
+		<Target Name="TextTranslator">
+			<MSBuild Projects="..\staruml-generator\src\translators\text-translator\TextTranslator.dproj"/>
+		</Target>
+		<Target Name="TextTranslator:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-generator\src\translators\text-translator\TextTranslator.dproj"/>
+		</Target>
+		<Target Name="TextTranslator:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-generator\src\translators\text-translator\TextTranslator.dproj"/>
+		</Target>
+		<Target Name="WordTranslator">
+			<MSBuild Projects="..\staruml-generator\src\translators\word-translator\WordTranslator.dproj"/>
+		</Target>
+		<Target Name="WordTranslator:Clean">
+			<MSBuild Targets="Clean" Projects="..\staruml-generator\src\translators\word-translator\WordTranslator.dproj"/>
+		</Target>
+		<Target Name="WordTranslator:Make">
+			<MSBuild Targets="Make" Projects="..\staruml-generator\src\translators\word-translator\WordTranslator.dproj"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="WhiteStarUML;PlasticComponents;OptMgr;WSCppAddIn;WSPatternAddIn;WSCSharpAddIn;WSJavaAddIn;WSJavaParser;WSRoseAddIn;WSXMIAddIn;WSJavaAddIn15;WSJavaParser15"/>
+			<CallTarget Targets="WhiteStarUML;PlasticComponents;OptMgr;WSCppAddIn;WSPatternAddIn;WSCSharpAddIn;WSJavaAddIn;WSJavaParser;WSRoseAddIn;WSXMIAddIn;WSJavaAddIn15;WSJavaParser15;Generator;ExcelTranslator;PowerPointTranslator;TextTranslator;WordTranslator"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="WhiteStarUML:Clean;PlasticComponents:Clean;OptMgr:Clean;WSCppAddIn:Clean;WSPatternAddIn:Clean;WSCSharpAddIn:Clean;WSJavaAddIn:Clean;WSJavaParser:Clean;WSRoseAddIn:Clean;WSXMIAddIn:Clean;WSJavaAddIn15:Clean;WSJavaParser15:Clean"/>
+			<CallTarget Targets="WhiteStarUML:Clean;PlasticComponents:Clean;OptMgr:Clean;WSCppAddIn:Clean;WSPatternAddIn:Clean;WSCSharpAddIn:Clean;WSJavaAddIn:Clean;WSJavaParser:Clean;WSRoseAddIn:Clean;WSXMIAddIn:Clean;WSJavaAddIn15:Clean;WSJavaParser15:Clean;Generator:Clean;ExcelTranslator:Clean;PowerPointTranslator:Clean;TextTranslator:Clean;WordTranslator:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="WhiteStarUML:Make;PlasticComponents:Make;OptMgr:Make;WSCppAddIn:Make;WSPatternAddIn:Make;WSCSharpAddIn:Make;WSJavaAddIn:Make;WSJavaParser:Make;WSRoseAddIn:Make;WSXMIAddIn:Make;WSJavaAddIn15:Make;WSJavaParser15:Make"/>
+			<CallTarget Targets="WhiteStarUML:Make;PlasticComponents:Make;OptMgr:Make;WSCppAddIn:Make;WSPatternAddIn:Make;WSCSharpAddIn:Make;WSJavaAddIn:Make;WSJavaParser:Make;WSRoseAddIn:Make;WSXMIAddIn:Make;WSJavaAddIn15:Make;WSJavaParser15:Make;Generator:Make;ExcelTranslator:Make;PowerPointTranslator:Make;TextTranslator:Make;WordTranslator:Make"/>
 		</Target>
 		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 	</Project>

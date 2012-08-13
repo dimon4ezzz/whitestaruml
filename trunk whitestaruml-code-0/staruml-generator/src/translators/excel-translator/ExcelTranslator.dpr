@@ -47,7 +47,7 @@ library ExcelTranslator;
 
 uses
   ComServ,
-  ExcelTranslator_TLB in 'ExcelTranslator_TLB.pas',
+  WSExcelTranslator_TLB in 'WSExcelTranslator_TLB.pas',
   ExcelTranslatorObj in 'ExcelTranslatorObj.pas' {ExcelTranslatorObj: CoClass},
   Symbols in 'Symbols.pas',
   ExcelTranslatorEngine in 'ExcelTranslatorEngine.pas',

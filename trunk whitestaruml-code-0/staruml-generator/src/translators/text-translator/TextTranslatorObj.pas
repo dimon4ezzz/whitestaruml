@@ -50,7 +50,7 @@ unit TextTranslatorObj;
 interface
 
 uses
-  ComObj, ActiveX, TextTranslator_TLB, StdVcl, Generator_TLB, TextTranslatorEngine;
+  ComObj, ActiveX, WSTextTranslator_TLB, StdVcl, WSGenerator_TLB, TextTranslatorEngine;
 
 type
   TTextTranslatorObj = class(TAutoObject, ITextTranslatorObj, ITranslator)

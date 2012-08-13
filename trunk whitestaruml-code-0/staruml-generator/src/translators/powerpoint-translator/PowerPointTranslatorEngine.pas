@@ -49,7 +49,7 @@ interface
 
 uses
   Dialogs,
-  Classes, MSScriptControl_TLB, SysUtils, Generator_TLB;
+  Classes, MSScriptControl_TLB, SysUtils, WSGenerator_TLB;
 type
 
   PPowerPointTranslatorEngine = class

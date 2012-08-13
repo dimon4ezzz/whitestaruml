@@ -8,8 +8,8 @@ object TemplateRegisterForm: TTemplateRegisterForm
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -12
-  Font.Name = #44404#47548
+  Font.Height = 14
+  Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
@@ -17,12 +17,12 @@ object TemplateRegisterForm: TTemplateRegisterForm
   OnDestroy = FormDestroy
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 12
+  TextHeight = 14
   object TitleLabel: TLabel
     Left = 8
     Top = 40
-    Width = 61
-    Height = 12
+    Width = 59
+    Height = 14
     Caption = 'Properties:'
   end
   object Bevel: TBevel
@@ -35,8 +35,8 @@ object TemplateRegisterForm: TTemplateRegisterForm
   object PathLabel: TLabel
     Left = 8
     Top = 16
-    Width = 62
-    Height = 12
+    Width = 56
+    Height = 14
     Caption = 'File Name:'
   end
   object PathButton: TSpeedButton
@@ -69,173 +69,9 @@ object TemplateRegisterForm: TTemplateRegisterForm
   object Label1: TLabel
     Left = 8
     Top = 296
-    Width = 70
-    Height = 12
+    Width = 65
+    Height = 14
     Caption = 'Descriptions'
-  end
-  object PropertyInspector: TdxInspector
-    Left = 8
-    Top = 56
-    Width = 361
-    Height = 233
-    Color = clWindow
-    TabOrder = 0
-    DividerPos = 159
-    GridColor = clBtnFace
-    PaintStyle = ipsNET
-    OnChangeNode = PropertyInspectorChangeNode
-    OnEdited = PropertyInspectorEdited
-    Data = {
-      BE0100000200000008000000040000000F0000005374616E64617264496E666F
-      526F770800000000000000070000004E616D65526F7708000000000000000800
-      000047726F7570526F7708000000000000000B00000043617465676F7279526F
-      7708000000000000000E0000004465736372697074696F6E526F77080000000A
-      0000000D00000044657461696C496E666F526F7708000000000000000F000000
-      446F63756D656E7454797065526F77080000000000000009000000466F726D61
-      74526F7708000000000000000A00000056657273696F6E526F77080000000000
-      00000B00000050726F66696C6573526F7708000000000000000B000000417070
-      726F616368526F770800000000000000110000005472616E736C61746F725479
-      7065526F770800000000000000110000005472616E736C61746F724E616D6552
-      6F7708000000000000000900000053616D706C65526F7708000000000000000D
-      000000506172616D6574657273526F7708000000000000000E00000041747461
-      636846696C6573526F7702000000080000001890C00D0F0000005374616E6461
-      7264496E666F526F77080000001890C00D0D00000044657461696C496E666F52
-      6F77}
-    object NameRow: TdxInspectorTextRow
-      Caption = 'Template Name'
-    end
-    object GroupRow: TdxInspectorTextPickRow
-      Caption = 'Group'
-    end
-    object CategoryRow: TdxInspectorTextPickRow
-      Caption = 'Category'
-    end
-    object VersionRow: TdxInspectorTextRow
-      Caption = 'Version'
-    end
-    object DescriptionRow: TdxInspectorTextPopupRow
-      Caption = 'Description'
-      ReadOnly = True
-      PopupControl = DescMemo
-      OnCloseUp = DescriptionRowCloseUp
-      OnPopup = DescriptionRowPopup
-    end
-    object DocumentTypeRow: TdxInspectorTextPickRow
-      Caption = 'Document Type'
-      DropDownListStyle = True
-      Items.Strings = (
-        'DOCUMENT'
-        'REPORT'
-        'CODE')
-      ImmediateDropDown = False
-      Text = 'DOCUMENT'
-    end
-    object FormatRow: TdxInspectorTextPickRow
-      Caption = 'Format'
-      ImmediateDropDown = False
-    end
-    object TranslatorTypeRow: TdxInspectorTextPickRow
-      Caption = 'Translator Type'
-      DropDownListStyle = True
-      Items.Strings = (
-        'WORD'
-        'EXCEL'
-        'POWERPOINT'
-        'TEXT'
-        'COM'
-        'SCRIPT'
-        'EXE')
-      ImmediateDropDown = False
-      OnCloseUp = TranslatorTypeRowCloseUp
-      Text = 'WORD'
-    end
-    object TranslatorNameRow: TdxInspectorTextButtonRow
-      Caption = 'Translator'
-      Buttons = <
-        item
-          Default = True
-        end>
-      OnButtonClick = TranslatorNameRowButtonClick
-    end
-    object SampleRow: TdxInspectorTextButtonRow
-      Caption = 'Example'
-      Buttons = <
-        item
-          Default = True
-        end>
-      OnButtonClick = SampleRowButtonClick
-    end
-    object TutorialRow: TdxInspectorTextButtonRow
-      Caption = #53916#53664#47532#50620
-      Visible = False
-      Buttons = <
-        item
-          Default = True
-        end>
-      OnButtonClick = TutorialRowButtonClick
-    end
-    object ValidatorRow: TdxInspectorTextButtonRow
-      Caption = 'Model Validator'
-      Visible = False
-      Buttons = <
-        item
-          Default = True
-        end>
-      OnButtonClick = ValidatorRowButtonClick
-    end
-    object PreviewsRow: TdxInspectorTextButtonRow
-      Caption = 'Preview'
-      ReadOnly = True
-      Visible = False
-      Buttons = <
-        item
-          Default = True
-        end>
-      OnButtonClick = PreviewsRowButtonClick
-      Text = '(Collection)[0]'
-    end
-    object ParametersRow: TdxInspectorTextButtonRow
-      Caption = 'Parameters'
-      ReadOnly = True
-      Buttons = <
-        item
-          Default = True
-        end>
-      OnButtonClick = ParametersRowButtonClick
-      Text = '(Collection)[0]'
-    end
-    object AttachFilesRow: TdxInspectorTextButtonRow
-      Caption = 'Related files'
-      ReadOnly = True
-      Buttons = <
-        item
-          Default = True
-        end>
-      OnButtonClick = AttachFilesRowButtonClick
-      Text = '(Collection)[0]'
-    end
-    object DetailInfoRow: TdxInspectorTextRow
-      Caption = 'Detail'
-      IsCategory = True
-    end
-    object StandardInfoRow: TdxInspectorTextRow
-      Caption = 'Basic'
-      IsCategory = True
-    end
-    object ApproachRow: TdxInspectorTextPickRow
-      Caption = 'Related Approach'
-      ImmediateDropDown = False
-    end
-    object ProfilesRow: TdxInspectorTextButtonRow
-      Caption = 'Related Profile'
-      ReadOnly = True
-      Buttons = <
-        item
-          Default = True
-        end>
-      OnButtonClick = ProfilesRowButtonClick
-      Text = '(Collection)[0]'
-    end
   end
   object AcceptButton: TButton
     Left = 180
@@ -245,7 +81,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
     Caption = '&OK'
     Default = True
     ModalResult = 1
-    TabOrder = 1
+    TabOrder = 0
   end
   object CancelButton: TButton
     Left = 276
@@ -255,7 +91,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
     Cancel = True
     Caption = '&Cancel'
     ModalResult = 2
-    TabOrder = 2
+    TabOrder = 1
   end
   object DescMemo: TMemo
     Left = -56
@@ -263,7 +99,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
     Width = 225
     Height = 161
     ImeName = 'Microsoft IME 2003'
-    TabOrder = 3
+    TabOrder = 2
     Visible = False
     WantTabs = True
   end
@@ -271,7 +107,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
     Left = 80
     Top = 13
     Width = 265
-    Height = 20
+    Height = 22
     ImeName = 'Microsoft IME 2003'
     TabOrder = 4
   end
@@ -280,7 +116,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
     Top = 313
     Width = 362
     Height = 49
-    TabOrder = 5
+    TabOrder = 3
     object GenerationUnitDescMemo: TMemo
       Left = 7
       Top = 5
@@ -292,6 +128,143 @@ object TemplateRegisterForm: TTemplateRegisterForm
       ImeName = 'Microsoft IME 2003'
       ParentCtl3D = False
       TabOrder = 0
+    end
+  end
+  object PropertyInspector: TNextInspector
+    Left = 8
+    Top = 57
+    Width = 361
+    Height = 233
+    TabOrder = 5
+    OnSelectItem = PropertyInspectorSelectItem
+    object StandardInfoRow: TNxTextItem
+      Caption = 'Basic'
+      ReadOnly = True
+      ParentIndex = -1
+      object NameRow: TNxTextItem
+        Caption = 'Template Name'
+        ReadOnly = True
+        ParentIndex = 0
+      end
+      object GroupRow: TNxComboBoxItem
+        Caption = 'Group'
+        ReadOnly = True
+        ParentIndex = 0
+      end
+      object CategoryRow: TNxComboBoxItem
+        Caption = 'Category'
+        ReadOnly = True
+        ParentIndex = 0
+      end
+      object DescriptionRow: TNxMemoItem
+        Caption = 'Description'
+        ItemHeight = 48
+        ReadOnly = True
+        TransparentColor = clNone
+        ParentIndex = 0
+      end
+    end
+    object DetailInfoRow: TNxTextItem
+      Caption = 'Detail'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ReadOnly = True
+      ValueFont.Charset = ANSI_CHARSET
+      ValueFont.Color = clWindowText
+      ValueFont.Height = -12
+      ValueFont.Name = #44404#47548
+      ValueFont.Style = []
+      ParentIndex = -1
+      object DocumentTypeRow: TNxComboBoxItem
+        Caption = 'Document Type'
+        Value = 'DOCUMENT'
+        Lines.Strings = (
+          'DOCUMENT'
+          'REPORT'
+          'CODE')
+        ParentIndex = 5
+      end
+      object FormatRow: TNxComboBoxItem
+        Caption = 'Format'
+        ParentIndex = 5
+      end
+      object VersionRow: TNxTextItem
+        Caption = 'Version'
+        ReadOnly = True
+        ParentIndex = 5
+      end
+      object ProfilesRow: TNxButtonItem
+        Caption = 'Related Profile'
+        TransparentColor = clNone
+        OnButtonClick = ProfilesRowButtonClick
+        ParentIndex = 5
+      end
+      object ApproachRow: TNxComboBoxItem
+        Caption = 'Related Approach'
+        ParentIndex = 5
+      end
+      object TranslatorTypeRow: TNxComboBoxItem
+        Caption = 'Translator Type'
+        Lines.Strings = (
+          'WORD'
+          'EXCEL'
+          'POWERPOINT'
+          'TEXT'
+          'COM'
+          'SCRIPT'
+          'EXE')
+        ParentIndex = 5
+      end
+      object TranslatorNameRow: TNxButtonItem
+        Caption = 'Translator'
+        TransparentColor = clNone
+        ParentIndex = 5
+      end
+      object SampleRow: TNxButtonItem
+        Caption = 'Example'
+        TransparentColor = clNone
+        OnButtonClick = SampleRowButtonClick
+        ParentIndex = 5
+      end
+      object TutorialRow: TNxButtonItem
+        Caption = 'Tutorial'
+        Visible = False
+        TransparentColor = clNone
+        OnButtonClick = TutorialRowButtonClick
+        ParentIndex = 5
+      end
+      object ValidatorRow: TNxButtonItem
+        Caption = 'Model Validator'
+        Visible = False
+        TransparentColor = clNone
+        ParentIndex = 5
+      end
+      object PreviewsRow: TNxButtonItem
+        Caption = 'Preview'
+        ReadOnly = True
+        Visible = False
+        TransparentColor = clNone
+        OnButtonClick = PreviewsRowButtonClick
+        ParentIndex = 5
+      end
+      object ParametersRow: TNxButtonItem
+        Caption = 'Parameters'
+        ReadOnly = True
+        Value = '(Collection)[0]'
+        TransparentColor = clNone
+        OnButtonClick = ParametersRowButtonClick
+        ParentIndex = 5
+      end
+      object AttachFilesRow: TNxButtonItem
+        Caption = 'Related files'
+        Value = '(Collection)[0]'
+        TransparentColor = clNone
+        OnButtonClick = AttachFilesRowButtonClick
+        ParentIndex = 5
+      end
     end
   end
   object OpenDialog: TOpenDialog

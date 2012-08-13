@@ -133,7 +133,7 @@ function main() {
     openClonedWordDocument();
     
     // 5.start generating
-    log('Start to generate.');
+    log('Starting document generation.');
     
     generateDocument();
   }
@@ -261,7 +261,7 @@ function generateDocument() {
   if (inGenerating) {
     var log_string = '';
   
-    notify("Start to update field.");
+    notify("Starting field update.");
     for (var i=1; i<=wordDoc.Fields.Count; i++) {
       notify("Updating fields...");
       var item = wordDoc.Fields.item(i);
