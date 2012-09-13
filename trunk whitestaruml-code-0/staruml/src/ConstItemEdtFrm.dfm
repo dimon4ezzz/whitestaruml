@@ -70,7 +70,6 @@ object ConstraintItemEditForm: TConstraintItemEditForm
     Top = 72
     Width = 429
     Height = 125
-    ImeName = 'Microsoft Korean IME 2002'
     TabOrder = 1
     OnChange = BodyMemoChange
   end
@@ -79,7 +78,6 @@ object ConstraintItemEditForm: TConstraintItemEditForm
     Top = 28
     Width = 429
     Height = 21
-    ImeName = 'Microsoft Korean IME 2002'
     TabOrder = 0
     OnChange = NameEditChange
   end

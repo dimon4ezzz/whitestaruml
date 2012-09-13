@@ -115,10 +115,10 @@ type
     TutorialRow: TNxButtonItem;
     ValidatorRow: TNxButtonItem;
     PreviewsRow: TNxButtonItem;
-    ParametersRow: TNxButtonItem;
     AttachFilesRow: TNxButtonItem;
     TranslatorTypeRow: TNxComboBoxItem;
     ProfilesRow: TNxButtonItem;
+    ParametersRow: TNxButtonItem;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ValidatorRowButtonClick(Sender: TObject; AbsoluteIndex: Integer);

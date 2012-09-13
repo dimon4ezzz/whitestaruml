@@ -1,7 +1,7 @@
 object RevEngWizardForm: TRevEngWizardForm
   Left = 346
   Top = 200
-  ActiveControl = ShellTreeView
+  ActiveControl = ReverseJavaDocCheckBox
   BorderStyle = bsDialog
   Caption = 'Java Reverse Engineering'
   ClientHeight = 420
@@ -95,7 +95,7 @@ object RevEngWizardForm: TRevEngWizardForm
     Top = 0
     Width = 585
     Height = 420
-    ActivePage = SelectSourceFilePage
+    ActivePage = SetupOptionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start page'
     ButtonStart.NumGlyphs = 1
@@ -145,8 +145,6 @@ object RevEngWizardForm: TRevEngWizardForm
       Header.Subtitle.Font.Style = []
       OnEnterPage = SelectSourceFilePageEnterPage
       OnCancelButtonClick = SelectSourceFilePageCancelButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SourceFileListLabel: TLabel
         Left = 8
         Top = 248
@@ -251,7 +249,7 @@ object RevEngWizardForm: TRevEngWizardForm
         AutoNavigate = False
         ObjectTypes = [otNonFolders]
         Root = 'rfDesktop'
-        ShellTreeView = ShellTreeView
+        ShellTreeView = RevEngWizardForm.ShellTreeView
         Sorted = True
         OnAddFolder = ShellListViewAddFolder
         OnDblClick = ShellListViewDblClick
@@ -342,8 +340,6 @@ object RevEngWizardForm: TRevEngWizardForm
       OnEnterPage = SetupOptionPageEnterPage
       OnExitPage = SetupOptionPageExitPage
       OnCancelButtonClick = SetupOptionPageCancelButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DiagramGroupBox: TGroupBox
         Left = 264
         Top = 168
@@ -381,7 +377,6 @@ object RevEngWizardForm: TRevEngWizardForm
           Top = 72
           Width = 273
           Height = 21
-          ImeName = 'Microsoft Korean IME 2002'
           TabOrder = 1
           Text = 'Overview of %s'
         end
@@ -554,8 +549,6 @@ object RevEngWizardForm: TRevEngWizardForm
       VisibleButtons = [bkFinish]
       OnPage = RunPagePage
       OnFinishButtonClick = RunPageFinishButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object MessageLabel: TLabel
         Left = 16
         Top = 296
@@ -631,7 +624,7 @@ object RevEngWizardForm: TRevEngWizardForm
     Left = 92
     Top = 384
     Bitmap = {
-      494C010106000900080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101060009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -906,7 +899,7 @@ object RevEngWizardForm: TRevEngWizardForm
     Left = 144
     Top = 384
     Bitmap = {
-      494C010104000900080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101040009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

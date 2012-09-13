@@ -1,7 +1,7 @@
 object PatternAddInForm: TPatternAddInForm
   Left = 400
   Top = 274
-  ActiveControl = ResultInfoListView
+  ActiveControl = PatternMemo
   BorderStyle = bsDialog
   Caption = 'Apply pattern'
   ClientHeight = 408
@@ -25,7 +25,7 @@ object PatternAddInForm: TPatternAddInForm
     Top = 0
     Width = 463
     Height = 408
-    ActivePage = PatternResultPage
+    ActivePage = PatternParameterPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -136,7 +136,6 @@ object PatternAddInForm: TPatternAddInForm
         Anchors = [akLeft, akTop, akRight]
         BorderStyle = bsNone
         Color = clBtnFace
-        ImeName = 'Microsoft Korean IME 2002'
         ReadOnly = True
         TabOrder = 3
       end
@@ -197,7 +196,6 @@ object PatternAddInForm: TPatternAddInForm
           Anchors = [akLeft, akTop, akRight]
           BorderStyle = bsNone
           Color = clBtnFace
-          ImeName = 'Microsoft Korean IME 2002'
           ReadOnly = True
           TabOrder = 0
         end
@@ -295,7 +293,7 @@ object PatternAddInForm: TPatternAddInForm
     Left = 112
     Top = 356
     Bitmap = {
-      494C010103000400180010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101030004001C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -438,7 +436,7 @@ object PatternAddInForm: TPatternAddInForm
     Left = 240
     Top = 64
     Bitmap = {
-      494C010108000900180010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101080009001C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

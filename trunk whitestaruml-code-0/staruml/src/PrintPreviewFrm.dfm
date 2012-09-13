@@ -1,9 +1,9 @@
 object PrintPreviewForm: TPrintPreviewForm
   Left = 265
   Top = 118
-  Width = 938
-  Height = 650
   Caption = 'Print Preview'
+  ClientHeight = 562
+  ClientWidth = 784
   Color = clBtnFace
   Constraints.MinHeight = 600
   Constraints.MinWidth = 800
@@ -24,8 +24,8 @@ object PrintPreviewForm: TPrintPreviewForm
   object PreviewScrollBox: TScrollBox
     Left = 0
     Top = 27
-    Width = 930
-    Height = 596
+    Width = 784
+    Height = 535
     Align = alClient
     Color = clAppWorkSpace
     ParentColor = False
@@ -58,7 +58,7 @@ object PrintPreviewForm: TPrintPreviewForm
   object MenusPanel: TPanel
     Left = 0
     Top = 0
-    Width = 930
+    Width = 784
     Height = 27
     Align = alTop
     BevelOuter = bvNone
@@ -116,8 +116,6 @@ object PrintPreviewForm: TPrintPreviewForm
       Top = 4
       Width = 51
       Height = 21
-      ImeName = 'Microsoft Korean IME 2002'
-      ItemHeight = 13
       TabOrder = 7
       OnChange = PageNumberComboChange
       OnKeyDown = FormKeyDown

@@ -109,7 +109,6 @@ object StereotypeSelectorForm: TStereotypeSelectorForm
       BevelInner = bvNone
       BorderStyle = bsNone
       Color = clBtnFace
-      ImeName = 'Microsoft Korean IME 2002'
       ReadOnly = True
       TabOrder = 0
     end
@@ -121,7 +120,6 @@ object StereotypeSelectorForm: TStereotypeSelectorForm
     Height = 21
     BevelInner = bvNone
     BevelOuter = bvRaised
-    ImeName = 'Microsoft Korean IME 2002'
     TabOrder = 4
     OnChange = StereotypeEditChange
     OnKeyDown = StereotypeEditKeyDown

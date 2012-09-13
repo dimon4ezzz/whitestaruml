@@ -135,6 +135,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
     Top = 57
     Width = 361
     Height = 233
+    SplitterPosition = 150
     TabOrder = 5
     OnSelectItem = PropertyInspectorSelectItem
     object StandardInfoRow: TNxTextItem
@@ -143,23 +144,19 @@ object TemplateRegisterForm: TTemplateRegisterForm
       ParentIndex = -1
       object NameRow: TNxTextItem
         Caption = 'Template Name'
-        ReadOnly = True
         ParentIndex = 0
       end
       object GroupRow: TNxComboBoxItem
         Caption = 'Group'
-        ReadOnly = True
         ParentIndex = 0
       end
       object CategoryRow: TNxComboBoxItem
         Caption = 'Category'
-        ReadOnly = True
         ParentIndex = 0
       end
       object DescriptionRow: TNxMemoItem
         Caption = 'Description'
         ItemHeight = 48
-        ReadOnly = True
         TransparentColor = clNone
         ParentIndex = 0
       end
@@ -193,11 +190,11 @@ object TemplateRegisterForm: TTemplateRegisterForm
       end
       object VersionRow: TNxTextItem
         Caption = 'Version'
-        ReadOnly = True
         ParentIndex = 5
       end
       object ProfilesRow: TNxButtonItem
         Caption = 'Related Profile'
+        EditOptions = [epDisablePaste, epDisableTyping]
         TransparentColor = clNone
         OnButtonClick = ProfilesRowButtonClick
         ParentIndex = 5
@@ -246,14 +243,15 @@ object TemplateRegisterForm: TTemplateRegisterForm
         Caption = 'Preview'
         ReadOnly = True
         Visible = False
+        EditOptions = [epDisablePaste, epDisableTyping]
         TransparentColor = clNone
         OnButtonClick = PreviewsRowButtonClick
         ParentIndex = 5
       end
       object ParametersRow: TNxButtonItem
         Caption = 'Parameters'
-        ReadOnly = True
         Value = '(Collection)[0]'
+        EditOptions = [epDisablePaste, epDisableTyping]
         TransparentColor = clNone
         OnButtonClick = ParametersRowButtonClick
         ParentIndex = 5
@@ -261,6 +259,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
       object AttachFilesRow: TNxButtonItem
         Caption = 'Related files'
         Value = '(Collection)[0]'
+        EditOptions = [epDisablePaste, epDisableTyping]
         TransparentColor = clNone
         OnButtonClick = AttachFilesRowButtonClick
         ParentIndex = 5

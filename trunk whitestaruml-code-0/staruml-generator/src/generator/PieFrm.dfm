@@ -78,8 +78,6 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
       OnPaintPage = TemplateSelectionPagePaintPage
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Image1: TImage
         Left = 0
         Top = 70
@@ -439,6 +437,7 @@ object PieForm: TPieForm
         Height = 364
         TabOrder = 0
         Properties.ActivePage = MainTabSheet
+        Properties.CustomButtons.Buttons = <>
         OnChange = BatchPageControlChange
         OnMouseDown = BatchPageControlMouseDown
         ClientRectBottom = 360
@@ -447,10 +446,6 @@ object PieForm: TPieForm
         ClientRectTop = 25
         object MainTabSheet: TcxTabSheet
           Caption = 'List of templates'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object GenerationUnitDescLabel: TLabel
             Left = 8
             Top = 274
@@ -789,8 +784,6 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
       OnNextButtonClick = OutDirectorySelectionPageNextButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label2: TLabel
         Left = 8
         Top = 88
@@ -1200,8 +1193,6 @@ object PieForm: TPieForm
       OnPaintPage = ExecutionPagePaintPage
       OnNextButtonClick = ExecutionPageNextButtonClick
       OnFinishButtonClick = ExecutionPageFinishButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object GenerationItemsLabel: TLabel
         Left = 8
         Top = 88
@@ -1718,7 +1709,7 @@ object PieForm: TPieForm
     Left = 64
     Top = 456
     Bitmap = {
-      494C010101000400280091004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101010004002C0091004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000440200004C0000000100200000000000C0B0
       0200000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -7419,7 +7410,7 @@ object PieForm: TPieForm
     Left = 96
     Top = 456
     Bitmap = {
-      494C010104000900280010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101040009002C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -7694,7 +7685,7 @@ object PieForm: TPieForm
     Left = 128
     Top = 456
     Bitmap = {
-      494C010103000400280010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101030004002C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -7855,7 +7846,7 @@ object PieForm: TPieForm
     PopupMenuLinks = <>
     Style = bmsFlat
     UseSystemFont = True
-    Left = 272
+    Left = 240
     Top = 24
     DockControlHeights = (
       0
@@ -7900,7 +7891,7 @@ object PieForm: TPieForm
         ItemName = 'DeleteBatchMenu'
       end>
     UseOwnFont = False
-    Left = 304
+    Left = 344
     Top = 24
   end
   object TemplatePopupMenu: TPopupMenu

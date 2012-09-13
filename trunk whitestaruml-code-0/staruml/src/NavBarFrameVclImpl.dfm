@@ -501,9 +501,6 @@ inherited PaletteNavBarFrameVclImpl: TPaletteNavBarFrameVclImpl
             Action = SelectAction
           end
           item
-            Action = ObjectAction
-          end
-          item
             Action = ClassifierRoleAction
           end
           item

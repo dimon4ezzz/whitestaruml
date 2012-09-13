@@ -8,20 +8,20 @@ object ProfileSelectorForm: TProfileSelectorForm
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -12
-  Font.Name = #44404#47548
+  Font.Height = 14
+  Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   PixelsPerInch = 96
-  TextHeight = 12
+  TextHeight = 14
   object HeaderLabel: TLabel
     Left = 8
     Top = 8
-    Width = 99
-    Height = 12
+    Width = 94
+    Height = 14
     Caption = 'Selected &Profiles:'
   end
   object Bevel: TBevel

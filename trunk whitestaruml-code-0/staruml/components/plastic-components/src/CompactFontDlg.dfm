@@ -44,7 +44,6 @@ object CompactFontDialogForm: TCompactFontDialogForm
     Top = 22
     Width = 114
     Height = 21
-    ImeName = 'Microsoft Korean IME 2002'
     TabOrder = 1
   end
   object FontSizeEdit: TEdit
@@ -52,7 +51,6 @@ object CompactFontDialogForm: TCompactFontDialogForm
     Top = 22
     Width = 52
     Height = 21
-    ImeName = 'Microsoft Korean IME 2002'
     TabOrder = 2
   end
   object FontEffectGoupBox: TGroupBox
@@ -91,7 +89,6 @@ object CompactFontDialogForm: TCompactFontDialogForm
       Width = 97
       Height = 22
       Style = [cbStandardColors, cbIncludeNone, cbIncludeDefault, cbCustomColor, cbPrettyNames]
-      ItemHeight = 16
       TabOrder = 2
     end
   end
@@ -147,7 +144,6 @@ object CompactFontDialogForm: TCompactFontDialogForm
     Top = 43
     Width = 52
     Height = 86
-    ImeName = 'Microsoft Korean IME 2002'
     ItemHeight = 13
     Items.Strings = (
       '8'
@@ -172,7 +168,6 @@ object CompactFontDialogForm: TCompactFontDialogForm
     Top = 43
     Width = 114
     Height = 86
-    ImeName = 'Microsoft Korean IME 2002'
     ItemHeight = 13
     Items.Strings = (
       'Regular'
@@ -186,7 +181,6 @@ object CompactFontDialogForm: TCompactFontDialogForm
     Top = 22
     Width = 153
     Height = 21
-    ImeName = 'Microsoft Korean IME 2002'
     TabOrder = 0
   end
   object ApplyButton: TButton
@@ -202,7 +196,6 @@ object CompactFontDialogForm: TCompactFontDialogForm
     Top = 43
     Width = 153
     Height = 86
-    ImeName = 'Microsoft Korean IME 2002'
     ItemHeight = 13
     TabOrder = 10
   end

@@ -19,9 +19,15 @@ object BatchSelectionForm: TBatchSelectionForm
   object TitleLabel: TLabel
     Left = 8
     Top = 8
-    Width = 223
-    Height = 12
+    Width = 225
+    Height = 14
     Caption = 'Select the Batch for item to be inserted.'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = 14
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object Bevel: TBevel
     Left = 8

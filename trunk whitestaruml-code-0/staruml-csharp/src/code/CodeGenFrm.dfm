@@ -1,7 +1,7 @@
 object CodeGenForm: TCodeGenForm
   Left = 243
   Top = 194
-  ActiveControl = SelectRootElemFrame.SelectTree
+  ActiveControl = NoNameAssocChkBox
   BorderStyle = bsDialog
   Caption = 'C# Code Generation'
   ClientHeight = 419
@@ -24,7 +24,7 @@ object CodeGenForm: TCodeGenForm
     Top = 0
     Width = 588
     Height = 419
-    ActivePage = SelectRootElemPage
+    ActivePage = SetOptionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -207,8 +207,6 @@ object CodeGenForm: TCodeGenForm
       OnEnterPage = SelectTargetDirPageEnterPage
       OnNextButtonClick = SelectTargetDirPageNextButtonClick
       OnCancelButtonClick = SelectTargetDirPageCancelButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SelectTargetLabel: TLabel
         Left = 8
         Top = 80
@@ -258,8 +256,6 @@ object CodeGenForm: TCodeGenForm
       Header.Subtitle.Font.Style = []
       OnNextButtonClick = SetOptionPageNextButtonClick
       OnCancelButtonClick = SetOptionPageCancelButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object HeaderCommentLabel: TLabel
         Left = 8
         Top = 218
@@ -386,7 +382,6 @@ object CodeGenForm: TCodeGenForm
         Font.Height = -12
         Font.Name = #44404#47548#52404
         Font.Style = []
-        ImeName = 'Microsoft Korean IME 2002'
         ParentFont = False
         ScrollBars = ssBoth
         TabOrder = 2
@@ -405,7 +400,6 @@ object CodeGenForm: TCodeGenForm
           Height = 116
           BorderStyle = bsNone
           Color = clBtnFace
-          ImeName = 'Microsoft Korean IME 2002'
           Lines.Strings = (
             '@p : Title'
             '@d : Date'
@@ -442,8 +436,6 @@ object CodeGenForm: TCodeGenForm
       VisibleButtons = [bkFinish]
       OnPage = ExecuteActionPagePage
       OnCancelButtonClick = ExecuteActionPageCancelButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object CodeGenElemLabel: TLabel
         Left = 8
         Top = 80
@@ -519,7 +511,7 @@ object CodeGenForm: TCodeGenForm
     Left = 104
     Top = 384
     Bitmap = {
-      494C010104000900080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101040009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -794,7 +786,7 @@ object CodeGenForm: TCodeGenForm
     Left = 72
     Top = 384
     Bitmap = {
-      494C010107000900080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101070009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

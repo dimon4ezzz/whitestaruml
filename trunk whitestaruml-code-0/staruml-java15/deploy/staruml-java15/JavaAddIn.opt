@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<OPTIONSCHEMA id="StarUML.Java">
+<OPTIONSCHEMA id="StarUML.Java15">
   <HEADER>
-    <CAPTION>Java</CAPTION>
-    <DESCRIPTION>Java Code generation &amp; Reverse engineering Option</DESCRIPTION>
+    <CAPTION>Java 1.5</CAPTION>
+    <DESCRIPTION>Java 1.5 Code generation &amp; Reverse engineering Option</DESCRIPTION>
   </HEADER>
 
   <BODY>
     <OPTIONCATEGORY>
       <CAPTION>Code Generation</CAPTION>
-      <DESCRIPTION>Contains options for generating Java code from modeling elements.</DESCRIPTION>
+      <DESCRIPTION>Contains options for generating Java 1.5 code from modeling elements.</DESCRIPTION>
 
       <OPTIONCLASSIFICATION>
         <CAPTION>General</CAPTION>
@@ -86,7 +86,7 @@
 
     <OPTIONCATEGORY>
       <CAPTION>Reverse Engineering</CAPTION>
-      <DESCRIPTION>Contains options for reverse engineering Java code into model information.</DESCRIPTION>
+      <DESCRIPTION>Contains options for reverse engineering Java 1.5 code into model information.</DESCRIPTION>
 
       <OPTIONCLASSIFICATION>
         <CAPTION>Model Generation</CAPTION>

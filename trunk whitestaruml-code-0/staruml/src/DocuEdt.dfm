@@ -25,7 +25,6 @@ object DocumentationEditor: TDocumentationEditor
       Align = alClient
       BorderStyle = bsNone
       Ctl3D = False
-      ImeName = 'Microsoft Korean IME 2002'
       ParentCtl3D = False
       TabOrder = 0
       WantTabs = True
