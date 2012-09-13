@@ -117,7 +117,6 @@ object PageSetupForm: TPageSetupForm
       EditLabel.Width = 23
       EditLabel.Height = 13
       EditLabel.Caption = '&Left:'
-      ImeName = 'Microsoft Korean IME 2002'
       LabelPosition = lpLeft
       TabOrder = 2
     end
@@ -129,7 +128,6 @@ object PageSetupForm: TPageSetupForm
       EditLabel.Width = 29
       EditLabel.Height = 13
       EditLabel.Caption = '&Right:'
-      ImeName = 'Microsoft Korean IME 2002'
       LabelPosition = lpLeft
       TabOrder = 3
     end
@@ -141,7 +139,6 @@ object PageSetupForm: TPageSetupForm
       EditLabel.Width = 22
       EditLabel.Height = 13
       EditLabel.Caption = '&Top:'
-      ImeName = 'Microsoft Korean IME 2002'
       LabelPosition = lpLeft
       TabOrder = 0
     end
@@ -153,7 +150,6 @@ object PageSetupForm: TPageSetupForm
       EditLabel.Width = 38
       EditLabel.Height = 13
       EditLabel.Caption = '&Bottom:'
-      ImeName = 'Microsoft Korean IME 2002'
       LabelPosition = lpLeft
       TabOrder = 1
     end
@@ -225,8 +221,6 @@ object PageSetupForm: TPageSetupForm
       Width = 62
       Height = 21
       Style = csDropDownList
-      ImeName = 'Microsoft Korean IME 2002'
-      ItemHeight = 13
       TabOrder = 4
       Items.Strings = (
         '1'

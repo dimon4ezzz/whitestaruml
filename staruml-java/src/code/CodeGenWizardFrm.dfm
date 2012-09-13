@@ -1,7 +1,7 @@
 object CodeGenWizardForm: TCodeGenWizardForm
   Left = 260
   Top = 208
-  ActiveControl = SelectRootElemFrame.SelectTree
+  ActiveControl = AssocEndCheckBox
   BorderStyle = bsDialog
   Caption = 'Java Code Generation'
   ClientHeight = 416
@@ -24,7 +24,7 @@ object CodeGenWizardForm: TCodeGenWizardForm
     Top = 0
     Width = 585
     Height = 416
-    ActivePage = SelectRootElemPage
+    ActivePage = SetOptionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -101,46 +101,9 @@ object CodeGenWizardForm: TCodeGenWizardForm
         ExplicitWidth = 568
         ExplicitHeight = 271
         inherited SelectTree: TElTree
-          Left = 0
-          Top = 0
           Width = 568
           Height = 271
-          Align = alClient
-          AlwaysKeepFocus = True
-          CheckBoxGlyph.Data = {00000000}
-          FullRowSelect = False
-          HeaderHeight = 22
           HeaderSections.Data = {F4FFFFFF00000000}
-          HorzScrollBarStyles.ShowTrackHint = False
-          HorzScrollBarStyles.Width = 17
-          HorzScrollBarStyles.ButtonSize = 17
-          HorzScrollBarStyles.DrawBars = False
-          HorzScrollBarStyles.ThinFrames = True
-          HorzScrollBarStyles.UseXPThemes = False
-          LeafPicture.Data = {00000000}
-          LineHeight = 17
-          MinusPicture.Data = {00000000}
-          MultiSelect = False
-          ParentShowHint = False
-          PlusPicture.Data = {00000000}
-          RadioButtonGlyph.Data = {00000000}
-          RightClickSelect = False
-          RowSelect = False
-          ShowHint = True
-          ShowLeafButton = False
-          ShowRoot = True
-          TabOrder = 0
-          TabStop = True
-          Tracking = False
-          UnderlineTracked = False
-          VertScrollBarStyles.ShowTrackHint = False
-          VertScrollBarStyles.ThumbSize = 16
-          VertScrollBarStyles.Width = 17
-          VertScrollBarStyles.ButtonSize = 17
-          VertScrollBarStyles.DrawBars = False
-          VertScrollBarStyles.ThinFrames = True
-          VertScrollBarStyles.UseXPThemes = False
-          UseXPThemes = False
           ExplicitWidth = 568
           ExplicitHeight = 271
         end
@@ -193,46 +156,9 @@ object CodeGenWizardForm: TCodeGenWizardForm
         ExplicitWidth = 568
         ExplicitHeight = 242
         inherited SelectTree: TElTree
-          Left = 0
-          Top = 0
           Width = 568
           Height = 242
-          Align = alClient
-          AlwaysKeepFocus = True
-          CheckBoxGlyph.Data = {00000000}
-          FullRowSelect = False
-          HeaderHeight = 22
           HeaderSections.Data = {F4FFFFFF00000000}
-          HorzScrollBarStyles.ShowTrackHint = False
-          HorzScrollBarStyles.Width = 17
-          HorzScrollBarStyles.ButtonSize = 17
-          HorzScrollBarStyles.DrawBars = False
-          HorzScrollBarStyles.ThinFrames = True
-          HorzScrollBarStyles.UseXPThemes = False
-          LeafPicture.Data = {00000000}
-          LineHeight = 17
-          MinusPicture.Data = {00000000}
-          MultiSelect = False
-          ParentShowHint = False
-          PlusPicture.Data = {00000000}
-          RadioButtonGlyph.Data = {00000000}
-          RightClickSelect = False
-          RowSelect = False
-          ShowHint = True
-          ShowLeafButton = False
-          ShowRoot = True
-          TabOrder = 0
-          TabStop = True
-          Tracking = False
-          UnderlineTracked = False
-          VertScrollBarStyles.ShowTrackHint = False
-          VertScrollBarStyles.ThumbSize = 16
-          VertScrollBarStyles.Width = 17
-          VertScrollBarStyles.ButtonSize = 17
-          VertScrollBarStyles.DrawBars = False
-          VertScrollBarStyles.ThinFrames = True
-          VertScrollBarStyles.UseXPThemes = False
-          UseXPThemes = False
           ExplicitWidth = 568
           ExplicitHeight = 242
         end
@@ -278,8 +204,6 @@ object CodeGenWizardForm: TCodeGenWizardForm
       OnEnterPage = SelectTargetDirPageEnterPage
       OnNextButtonClick = SelectTargetDirPageNextButtonClick
       OnCancelButtonClick = WizardPageCancelButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SelectTargetLabel: TLabel
         Left = 8
         Top = 80
@@ -330,8 +254,6 @@ object CodeGenWizardForm: TCodeGenWizardForm
       OnEnterPage = SetOptionPageEnterPage
       OnNextButtonClick = SetOptionPageNextButtonClick
       OnCancelButtonClick = WizardPageCancelButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object HeaderCommentLabel: TLabel
         Left = 8
         Top = 218
@@ -412,14 +334,13 @@ object CodeGenWizardForm: TCodeGenWizardForm
           EditLabel.Width = 51
           EditLabel.Height = 13
           EditLabel.Caption = 'Tab width:'
-          ImeName = 'Microsoft Korean IME 2002'
           LabelPosition = lpLeft
           ReadOnly = True
           TabOrder = 2
           Text = '4'
         end
         object SpaceMagEditSpin: TUpDown
-          Left = 130
+          Left = 132
           Top = 86
           Width = 15
           Height = 21
@@ -440,7 +361,6 @@ object CodeGenWizardForm: TCodeGenWizardForm
         Font.Height = -12
         Font.Name = #44404#47548#52404
         Font.Style = []
-        ImeName = 'Microsoft Korean IME 2002'
         ParentFont = False
         ScrollBars = ssBoth
         TabOrder = 2
@@ -459,7 +379,6 @@ object CodeGenWizardForm: TCodeGenWizardForm
           Height = 116
           BorderStyle = bsNone
           Color = clBtnFace
-          ImeName = 'Microsoft Korean IME 2002'
           Lines.Strings = (
             '@p : Title'
             '@d : Date'
@@ -497,8 +416,6 @@ object CodeGenWizardForm: TCodeGenWizardForm
       OnPage = ExecuteActionPagePage
       OnCancelButtonClick = WizardPageCancelButtonClick
       OnFinishButtonClick = ExecuteActionPageFinishButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object CodeGenElemLabel: TLabel
         Left = 8
         Top = 80
@@ -579,7 +496,7 @@ object CodeGenWizardForm: TCodeGenWizardForm
     Left = 72
     Top = 384
     Bitmap = {
-      494C010106000900080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101060009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -854,7 +771,7 @@ object CodeGenWizardForm: TCodeGenWizardForm
     Left = 168
     Top = 384
     Bitmap = {
-      494C010104000900080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101040009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

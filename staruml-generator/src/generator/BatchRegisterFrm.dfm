@@ -8,33 +8,33 @@ object BatchRegisterForm: TBatchRegisterForm
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -12
-  Font.Name = #44404#47548
+  Font.Height = 14
+  Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 12
+  TextHeight = 14
   object HeaderLabel: TLabel
     Left = 8
     Top = 8
     Width = 200
-    Height = 12
+    Height = 14
     Caption = 'Input Registering Batch Infromation.'
   end
   object NameLabel: TLabel
     Left = 8
     Top = 35
-    Width = 81
-    Height = 12
-    Caption = 'Batcch Name:'
+    Width = 70
+    Height = 14
+    Caption = 'Batch Name:'
   end
   object DescLabel: TLabel
     Left = 8
     Top = 73
-    Width = 67
-    Height = 12
+    Width = 64
+    Height = 14
     Caption = 'Description:'
   end
   object Bevel: TBevel
@@ -48,7 +48,7 @@ object BatchRegisterForm: TBatchRegisterForm
     Left = 8
     Top = 48
     Width = 289
-    Height = 20
+    Height = 22
     ImeName = 'Microsoft IME 2003'
     TabOrder = 0
     OnChange = NameEditChange

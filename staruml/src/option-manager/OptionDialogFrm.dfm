@@ -15,7 +15,6 @@ object OptionDialogForm: TOptionDialogForm
   OldCreateOrder = False
   Position = poScreenCenter
   OnCreate = FormCreate
-  ExplicitHeight = 240
   DesignSize = (
     563
     367)
@@ -152,7 +151,6 @@ object OptionDialogForm: TOptionDialogForm
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      ImeName = 'Microsoft Korean IME 2002'
       ParentFont = False
       ReadOnly = True
       TabOrder = 0
@@ -162,7 +160,7 @@ object OptionDialogForm: TOptionDialogForm
     Left = 312
     Top = 244
     Bitmap = {
-      494C010103000400380010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101030004003C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

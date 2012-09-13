@@ -5,16 +5,16 @@ object BatchFrame: TBatchFrame
   Height = 340
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -12
-  Font.Name = #44404#47548
+  Font.Height = 14
+  Font.Name = 'Tahoma'
   Font.Style = []
   ParentFont = False
   TabOrder = 0
   object BatchGenUnitDescLabel: TLabel
     Left = 8
     Top = 274
-    Width = 67
-    Height = 12
+    Width = 64
+    Height = 14
     Caption = 'Description:'
   end
   object DeleteTasksButton: TButton
@@ -46,8 +46,8 @@ object BatchFrame: TBatchFrame
     end
   end
   object TasksGrid: TNextGrid
-    Left = 8
-    Top = 48
+    Left = 3
+    Top = 51
     Width = 697
     Height = 217
     AppearanceOptions = [aoAlphaBlendedSelection, aoIndicateSortedColumn]
@@ -234,7 +234,7 @@ object BatchFrame: TBatchFrame
     Left = 320
     Top = 13
     Bitmap = {
-      494C010103000400080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101030004000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

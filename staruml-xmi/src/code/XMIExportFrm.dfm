@@ -142,7 +142,6 @@ object XMIExportForm: TXMIExportForm
     Top = 12
     Width = 255
     Height = 21
-    ImeName = 'Microsoft Korean IME 2002'
     TabOrder = 5
     OnChange = FileNameEditChange
   end

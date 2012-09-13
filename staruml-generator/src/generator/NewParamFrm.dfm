@@ -8,33 +8,33 @@ object NewParameterForm: TNewParameterForm
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -12
-  Font.Name = #44404#47548
+  Font.Height = 14
+  Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 12
+  TextHeight = 14
   object ParameterLabel: TLabel
     Left = 16
     Top = 20
-    Width = 38
-    Height = 12
+    Width = 35
+    Height = 14
     Caption = 'Name:'
   end
   object TypeLabel: TLabel
     Left = 16
     Top = 44
-    Width = 33
-    Height = 12
+    Width = 32
+    Height = 14
     Caption = 'Type:'
   end
   object ValueLabel: TLabel
     Left = 16
     Top = 68
-    Width = 78
-    Height = 12
+    Width = 77
+    Height = 14
     Caption = 'Default Value:'
   end
   object Bevel: TBevel
@@ -48,7 +48,7 @@ object NewParameterForm: TNewParameterForm
     Left = 96
     Top = 16
     Width = 137
-    Height = 20
+    Height = 22
     ImeName = 'Microsoft IME 2003'
     TabOrder = 0
     OnChange = NameEditChange
@@ -57,7 +57,7 @@ object NewParameterForm: TNewParameterForm
     Left = 96
     Top = 64
     Width = 137
-    Height = 20
+    Height = 22
     ImeName = 'Microsoft IME 2003'
     TabOrder = 1
   end
@@ -65,10 +65,9 @@ object NewParameterForm: TNewParameterForm
     Left = 96
     Top = 40
     Width = 137
-    Height = 20
+    Height = 22
     Style = csDropDownList
     ImeName = 'Microsoft IME 2003'
-    ItemHeight = 12
     ItemIndex = 0
     TabOrder = 2
     Text = 'STRING'

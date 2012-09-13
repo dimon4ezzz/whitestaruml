@@ -1,7 +1,7 @@
 object CodeGenForm: TCodeGenForm
   Left = 384
   Top = 210
-  ActiveControl = SelectRootElemFrame.SelectTree
+  ActiveControl = OptionPageControl
   BorderStyle = bsDialog
   Caption = 'C++ Code Generation'
   ClientHeight = 419
@@ -24,7 +24,7 @@ object CodeGenForm: TCodeGenForm
     Top = 0
     Width = 585
     Height = 419
-    ActivePage = SelectRootElemPage
+    ActivePage = SetOptionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -203,8 +203,6 @@ object CodeGenForm: TCodeGenForm
       OnEnterPage = SelectTargetDirPageEnterPage
       OnNextButtonClick = SelectTargetDirPageNextButtonClick
       OnCancelButtonClick = WizardPageCancelButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SelectTargetLabel: TLabel
         Left = 8
         Top = 80
@@ -255,23 +253,17 @@ object CodeGenForm: TCodeGenForm
       OnEnterPage = SetOptionPageEnterPage
       OnNextButtonClick = SetOptionPageNextButtonClick
       OnCancelButtonClick = WizardPageCancelButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object OptionPageControl: TPageControl
         Left = 0
         Top = 70
         Width = 585
         Height = 307
-        ActivePage = OptionTabSheet
+        ActivePage = CommentTabSheet
         Align = alClient
         TabOrder = 0
         TabPosition = tpBottom
         object OptionTabSheet: TTabSheet
           Caption = 'Code Generation Options'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object CodingStyleGroupBox: TGroupBox
             Left = 3
             Top = 128
@@ -327,7 +319,6 @@ object CodeGenForm: TCodeGenForm
               Width = 133
               Height = 21
               Style = csDropDownList
-              ImeName = 'Microsoft Korean IME 2002'
               ItemIndex = 0
               TabOrder = 3
               Text = 'Replace with '#39'_'#39' symbol'
@@ -371,7 +362,6 @@ object CodeGenForm: TCodeGenForm
               Top = 22
               Width = 101
               Height = 21
-              ImeName = 'Microsoft Korean IME 2002'
               TabOrder = 0
               Text = '.h'
               Items.Strings = (
@@ -385,7 +375,6 @@ object CodeGenForm: TCodeGenForm
               Top = 54
               Width = 101
               Height = 21
-              ImeName = 'Microsoft Korean IME 2002'
               ItemIndex = 0
               TabOrder = 1
               Text = '.cpp'
@@ -400,7 +389,6 @@ object CodeGenForm: TCodeGenForm
               Top = 22
               Width = 121
               Height = 21
-              ImeName = 'Microsoft Korean IME 2002'
               TabOrder = 2
             end
             object BodyDirEdit: TEdit
@@ -408,7 +396,6 @@ object CodeGenForm: TCodeGenForm
               Top = 54
               Width = 121
               Height = 21
-              ImeName = 'Microsoft Korean IME 2002'
               TabOrder = 3
             end
             object FileNameFormatComboBox: TComboBox
@@ -417,7 +404,6 @@ object CodeGenForm: TCodeGenForm
               Width = 101
               Height = 21
               Style = csDropDownList
-              ImeName = 'Microsoft Korean IME 2002'
               ItemIndex = 0
               TabOrder = 4
               Text = 'Same as Model'
@@ -482,7 +468,6 @@ object CodeGenForm: TCodeGenForm
               Width = 153
               Height = 21
               Style = csDropDownList
-              ImeName = 'Microsoft Korean IME 2002'
               ItemIndex = 0
               TabOrder = 1
               Text = 'Public member first'
@@ -521,10 +506,6 @@ object CodeGenForm: TCodeGenForm
         object CommentTabSheet: TTabSheet
           Caption = 'File Header Comment and Default Include'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object HeaderCommentLabel: TLabel
             Left = 8
             Top = 8
@@ -567,7 +548,6 @@ object CodeGenForm: TCodeGenForm
             Font.Height = -12
             Font.Name = #44404#47548#52404
             Font.Style = []
-            ImeName = 'Microsoft Korean IME 2002'
             ParentFont = False
             ScrollBars = ssBoth
             TabOrder = 0
@@ -583,7 +563,6 @@ object CodeGenForm: TCodeGenForm
             Font.Height = -12
             Font.Name = #44404#47548#52404
             Font.Style = []
-            ImeName = 'Microsoft Korean IME 2002'
             ParentFont = False
             TabOrder = 1
             WantTabs = True
@@ -598,7 +577,6 @@ object CodeGenForm: TCodeGenForm
             Font.Height = -12
             Font.Name = #44404#47548#52404
             Font.Style = []
-            ImeName = 'Microsoft Korean IME 2002'
             ParentFont = False
             TabOrder = 2
             WantTabs = True
@@ -616,7 +594,6 @@ object CodeGenForm: TCodeGenForm
               Height = 137
               BorderStyle = bsNone
               Color = clBtnFace
-              ImeName = 'Microsoft Korean IME 2002'
               Lines.Strings = (
                 '@p : Title'
                 '@d : Date'
@@ -656,8 +633,6 @@ object CodeGenForm: TCodeGenForm
       OnPage = ExecuteActionPagePage
       OnCancelButtonClick = WizardPageCancelButtonClick
       OnFinishButtonClick = ExecuteActionPageFinishButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object CodeGenElemLabel: TLabel
         Left = 8
         Top = 80
@@ -733,7 +708,7 @@ object CodeGenForm: TCodeGenForm
     Left = 104
     Top = 384
     Bitmap = {
-      494C010104000900080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101040009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1008,7 +983,7 @@ object CodeGenForm: TCodeGenForm
     Left = 72
     Top = 384
     Bitmap = {
-      494C010107000900080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101070009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

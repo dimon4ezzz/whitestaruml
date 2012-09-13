@@ -100,7 +100,6 @@ object XMIImportForm: TXMIImportForm
       BevelOuter = bvNone
       BorderStyle = bsNone
       Color = clBtnFace
-      ImeName = 'Microsoft Korean IME 2002'
       Lines.Strings = (
         '')
       ReadOnly = True
@@ -187,7 +186,6 @@ object XMIImportForm: TXMIImportForm
     Top = 12
     Width = 232
     Height = 21
-    ImeName = 'Microsoft Korean IME 2002'
     TabOrder = 0
     OnChange = FileLocationEditChange
   end

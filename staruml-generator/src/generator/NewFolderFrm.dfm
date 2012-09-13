@@ -8,26 +8,26 @@ object NewFolderForm: TNewFolderForm
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -12
-  Font.Name = #44404#47548
+  Font.Height = 14
+  Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 12
+  TextHeight = 14
   object HeaderLabel: TLabel
     Left = 8
     Top = 16
-    Width = 77
-    Height = 12
+    Width = 72
+    Height = 14
     Caption = '&Folder Name:'
   end
   object FolderNameEdit: TEdit
     Left = 88
     Top = 12
     Width = 177
-    Height = 20
+    Height = 22
     ImeName = 'Microsoft IME 2003'
     TabOrder = 0
     OnChange = FolderNameEditChange

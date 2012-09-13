@@ -98,7 +98,6 @@ object AttachmentItemEditForm: TAttachmentItemEditForm
     Top = 28
     Width = 413
     Height = 21
-    ImeName = 'Microsoft Korean IME 2002'
     TabOrder = 0
     OnChange = LocationEditChange
   end

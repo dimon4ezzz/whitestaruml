@@ -1,7 +1,5 @@
 inherited OptionDialogFormWithJvclInspector: TOptionDialogFormWithJvclInspector
   Caption = 'OptionDialogFormWithJvclInspector'
-  ExplicitWidth = 569
-  ExplicitHeight = 395
   PixelsPerInch = 96
   TextHeight = 13
   object OptionInspector: TJvInspector [11]
@@ -16,7 +14,7 @@ inherited OptionDialogFormWithJvclInspector: TOptionDialogFormWithJvclInspector
   end
   inherited CategoryImageList: TImageList
     Bitmap = {
-      494C010103000400780010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101030004007C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

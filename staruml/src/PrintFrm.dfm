@@ -93,8 +93,6 @@ object PrintForm: TPrintForm
       Width = 329
       Height = 21
       Style = csDropDownList
-      ImeName = 'Microsoft Korean IME 2002'
-      ItemHeight = 13
       TabOrder = 0
       OnChange = PrinterComboBoxChange
     end
@@ -175,8 +173,6 @@ object PrintForm: TPrintForm
       Width = 49
       Height = 21
       Style = csDropDownList
-      ImeName = 'Microsoft Korean IME 2002'
-      ItemHeight = 13
       ItemIndex = 0
       TabOrder = 3
       Text = '1'
@@ -193,8 +189,6 @@ object PrintForm: TPrintForm
       Width = 49
       Height = 21
       Style = csDropDownList
-      ImeName = 'Microsoft Korean IME 2002'
-      ItemHeight = 13
       ItemIndex = 0
       TabOrder = 4
       Text = '1'

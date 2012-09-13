@@ -109,7 +109,6 @@ object RoseImportForm: TRoseImportForm
     Top = 10
     Width = 289
     Height = 21
-    ImeName = 'Microsoft Korean IME 2002'
     TabOrder = 0
     OnChange = FileLocationEditChange
   end
