@@ -118,7 +118,14 @@ namespace ParserCore
                 currentNodeFound = false;
                 for (int j = 0; j < currentNode.Count() && !currentNodeFound; j++)
                 {
-                    GOLD.Reduction iteratedReduction = (GOLD.Reduction)currentNode[j].Data;
+                    //GOLD.Reduction iteratedReduction = (GOLD.Reduction)currentNode[j].Data;
+                    GOLD.Reduction iteratedReduction = currentNode[j].Data as GOLD.Reduction;
+
+                    if (iteratedReduction == null)
+                    {
+                        string str = (string)currentNode[j].Data;
+                        continue; // skip literal tokens
+                    }
 
                     // Check tokens contained in the given reduction
                     for (token = 0; token < iteratedReduction.Count(); token++)
@@ -135,20 +142,24 @@ namespace ParserCore
                 }
                 //Debug.Assert(currentNodeFound); // Each iteration must find a corresponding reduction node
                 if (!currentNodeFound)
-                    return "";
+                    return null;
             }
 
             if (currentNodeFound)
             {
                 GOLD.Reduction leafReduction = (GOLD.Reduction)currentNode[token].Data;
+
+                //while ( (leafReduction.Count() > 0) && (leafReduction[0].Data as GOLD.Reduction != null) )// skip embedded reductions 
+                //    leafReduction = (GOLD.Reduction)leafReduction[0].Data;
+
                 if (leafReduction.Count() > 0)
                     value = (string)leafReduction[0].Data;
                 else
-                    value = "";
+                    value = null;
 
             }
             else
-                value = "";
+                value = null;
 
 
             return value;

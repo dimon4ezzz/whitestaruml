@@ -369,7 +369,7 @@ begin
   FStereotype := PickoutValue('stereotype_part.stereotype');
   FVisibility := PickoutValue('visibility');
   FName := PickoutValue('attribute_name');
-  FTypeExpression := PickoutValue('type_expression_part.type_expression');
+  FTypeExpression := PickoutValue('type_expression_part.type_expression.type_id');
   FMultiplicity := PickoutValue('multiplicity_part.multiplicity_term');
   FOrdering := PickoutValue('multiplicity_part.ordering_term');
   FInitialValue := PickoutValue('initial_value_part.initial_value');
@@ -456,15 +456,60 @@ begin
 end;
 
 procedure POperationExpressionParser.PickoutValues;
+const
+  ParamPrefixInit = 'parameter_list_part.parameter_list';
+  ParameterNameSuffix = '.parameter_name';
+  ParameterKindSuffix = '.parameter_kind';
+  ParameterTypeSuffix = '.parameter_type_expression.type_expression.type_id';
+  ParameterDefaultValueSuffix = 'parameter_default_value.parameter_default_value_literal';
+
+var
+  DataValue: string;
+  DataPath: string;
+  ParamPrefix: string;
+  ParamCounter: Integer;
+  I : Integer;
 begin
   FStereotype := PickoutValue('stereotype_part.stereotype');
   FVisibility := PickoutValue('visibility');
   FName := PickoutValue('operation_name');
-  FReturnTypeExpression := PickoutValue('return_type_expression_part.return_type_expression');
-  FParameterKinds.Add(PickoutValue('parameter_list_part.parameter_kind'));
-  FParameterNames.Add(PickoutValue('parameter_list_part.parameter_name'));
-  FParameterTypeExpressions.Add(PickoutValue('parameter_list_part.parameter_type_expression'));
-  FParameterDefaultValues.Add(PickoutValue('parameter_list_part.parameter_default_value'));
+  FReturnTypeExpression := PickoutValue('return_type_expression_part.return_type_expression.type_expression.type_id');
+
+  ParamPrefix := ParamPrefixInit + '.parameter';
+  DataPath := ParamPrefix + ParameterNameSuffix;
+  DataValue := PickoutValue(DataPath);
+  ParamCounter := 1;
+  while DataValue <> '' do
+  begin
+    FParameterNames.Insert(0,DataValue);
+
+    DataPath := ParamPrefix + ParameterKindSuffix;
+    DataValue := PickoutValue(DataPath);
+    FParameterKinds.Insert(0,DataValue);
+
+    DataPath := ParamPrefix + ParameterTypeSuffix;
+    DataValue := PickoutValue(DataPath);
+    FParameterTypeExpressions.Insert(0,DataValue);
+
+    DataPath := ParamPrefix + ParameterDefaultValueSuffix;
+    DataValue := PickoutValue(DataPath);
+    FParameterDefaultValues.Insert(0,DataValue);
+
+    ParamPrefix := ParamPrefixInit;
+    for I := 1 to ParamCounter do
+      ParamPrefix := ParamPrefix + '.parameter_list'; // Append .parameter_list for every param
+    ParamPrefix := ParamPrefix + '.parameter';
+    Inc(ParamCounter);
+
+    DataPath := ParamPrefix + ParameterNameSuffix;
+    DataValue := PickoutValue(DataPath);
+
+  end;
+
+
+
+
+
 end;
 
 // POperationExpressionParser
@@ -530,7 +575,7 @@ begin
   FStereotype := PickoutValue('stereotype_part.stereotype');
   FVisibility := PickoutValue('visibility');
   FObjectName := PickoutValue('object_name');
-  FClassifierName := PickoutValue('classifier_name_part.classifier_name');
+  FClassifierName := PickoutValue('classifier_name_part.classifier_name.type_id');
 end;
 
 // PClassifierRoleExpressionParser
@@ -565,11 +610,11 @@ end;
 procedure PMessageExpressionParser.PickoutValues;
 begin
   FStereotype := PickoutValue('stereotype_part.stereotype');
-  FMessageName := PickoutValue('message_name');
+  FMessageName := PickoutValue('message_name_clause.message_name');
   FArguments := PickoutValue('argument_part.argument_string');
-  FIteration := PickoutValue('recurrence_part.iteration_clause_part.iteration_clause');
-  FBranch := PickoutValue('recurrence_part.branch_clause_part.branch_clause');
-  FReturn := PickoutValue('return_part.return_id');
+  FIteration := PickoutValue('recurrence_part.iteration_clause_part.iteration_branch_clause');
+  FBranch := PickoutValue('recurrence_part.branch_clause_part.iteration_branch_clause');
+  FReturn := PickoutValue('message_name_clause.return_id');
 end;
 
 // PMessageExpressionParser

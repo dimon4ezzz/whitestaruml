@@ -5,12 +5,12 @@
 ! Character Sets
 ! -------------------------------------------------
 
-{String Chars} = {All Letters} +  {Number} + [ '_' ',' ';' '/' ':' '.' '#' '&' '@' '$' '%' ]
+{String Chars} = {All Letters} +  {Number} + [ '_' ';' '/' '.' '#' '&' '@' '$' '%' ]
 {String Chars No Spaces} = {String Chars}  - {All Space}
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
-id = {String Chars No Spaces}+ ( {All Space} {String Chars No Spaces}+ )* ( '<' {String Chars}* '>' | '[' {String Chars}* ']' )?  
+id = {String Chars No Spaces}+ ( {All Space} {String Chars No Spaces}+ )* ( '<' {String Chars}* '>' )?  
 
 ! -------------------------------------------------
 ! Rules
@@ -35,12 +35,15 @@ id = {String Chars No Spaces}+ ( {All Space} {String Chars No Spaces}+ )* ( '<' 
 
 <parameter_name> ::= id
 
-
 <type_expression> ::= id
 
-<guard_condition> ::= '[' id ']' | <>
+<guard_condition> ::= '[' <id_expr> ']' 
+                   | <>
                    
-<action_expression> ::= '/' id | <>
+<action_expression> ::= '/' <id_expr> 
+                     | <>
+                     
+<id_expr> ::= id
                    
 
         

@@ -5,15 +5,14 @@
 ! Character Sets
 ! -------------------------------------------------
 
-{String Chars} = {All Letters} +  {Number} + [ '_' ',' ';' '/' ':' '.' '#' '&' '@' '$' '%' ]
+{String Chars} = {All Letters} +  {Number} + [ '_' '/' ',' ';' '.' '#' '&' '@' '$' '%' ]
 {String Chars No Spaces} = {String Chars}  - {All Space}
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
-id = {String Chars No Spaces}+ ( {All Space} {String Chars No Spaces}+ )* ( '<' {String Chars}* '>' | '[' {String Chars}* ']' )?  
-iteration__branch_clause = id 
-!type_id = ('::'{String Chars})+
-!initial_value = {String Chars}+ 
+id = {String Chars No Spaces}+ ( '<' {String Chars No Spaces}* '>' | '[' {String Chars No Spaces}* ']' )?
+
+
 
 ! -------------------------------------------------
 ! Rules
@@ -21,7 +20,7 @@ iteration__branch_clause = id
 
 ! The grammar starts below
 <Grammar Message> ::= <message_expression> 
-<message_expression> ::= <stereotype_part> <recurrence_part> <return_part> <message_name> <argument_part>
+<message_expression> ::= <stereotype_part> <recurrence_part>  <message_name_clause> <argument_part>
                            
 <stereotype_part> ::= '<<' <stereotype> '>>'
                    |  <>
@@ -35,18 +34,27 @@ iteration__branch_clause = id
         | <branch_clause_part> 
         | <>
 
-<iteration_clause_part> ::= '*' '[' iteration__branch_clause ']'
+<iteration_clause_part> ::= '*' '[' <iteration__branch_clause> ']'
 
-<branch_clause_part> ::= '[' iteration__branch_clause ']'
+<branch_clause_part> ::= '[' <iteration__branch_clause> ']'
                       
-<return_part> ::= <return_id> ':=' 
-              |<>
+!<return_part> ::= <return_id> ':=' 
+!               | <>
+
+                    
+<message_name_clause> ::= <message_name> 
+                | <return_id> ':=' <message_name>                
+                | <>
+                
+<message_name> ::= id
 
 <return_id> ::= id
-                    
-<message_name> ::= id | <>
-                
-<argument_part> ::= '(' id ')'
-                 | <>
-                  
 
+
+<argument_part> ::= '()' 
+                 | '(' <argument_string> ')'
+                 |  <>
+                 
+<argument_string> ::= id
+                  
+<iteration__branch_clause> ::= id 

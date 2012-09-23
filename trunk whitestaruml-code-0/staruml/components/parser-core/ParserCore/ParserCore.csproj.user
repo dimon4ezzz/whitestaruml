@@ -2,5 +2,10 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <StartAction>Program</StartAction>
     <StartProgram>C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML.exe</StartProgram>
+    <StartWorkingDirectory>C:\JS\Delphi\WhiteStarDevInstall\</StartWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML.exe</StartProgram>
   </PropertyGroup>
 </Project>
