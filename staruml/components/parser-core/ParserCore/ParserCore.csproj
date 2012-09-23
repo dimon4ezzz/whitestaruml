@@ -25,7 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RegisterForComInterop>true</RegisterForComInterop>
+    <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -64,6 +64,12 @@
     <None Include="dependencies\RoleExpr.egt" />
     <None Include="dependencies\TransExpr.egt" />
     <None Include="ParserCore.snk" />
+    <None Include="Resources\AttrExpr.egt" />
+    <None Include="Resources\MsgExpr.egt" />
+    <None Include="Resources\ObjExpr.egt" />
+    <None Include="Resources\OperExpr.egt" />
+    <None Include="Resources\RoleExpr.egt" />
+    <None Include="Resources\TransExpr.egt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

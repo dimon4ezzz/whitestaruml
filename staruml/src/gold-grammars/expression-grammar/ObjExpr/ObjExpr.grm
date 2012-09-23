@@ -5,13 +5,13 @@
 ! Character Sets
 ! -------------------------------------------------
 
-{String Chars} = {All Letters} +  {Number} + [ '_' ',' ';' '/' ':' '.' '#' '&' '@' '$' '%' ]
+{String Chars} = {All Letters} +  {Number} + [ '_' ',' ';' '/' '.' '#' '&' '@' '$' '%' ]
 {String Chars No Spaces} = {String Chars}  - {All Space}
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
 id = {String Chars No Spaces}+ ( {All Space} {String Chars No Spaces}+ )* ( '<' {String Chars}* '>' | '[' {String Chars}* ']' )?  
-type_id = id
+!type_id = id
 
 
 ! -------------------------------------------------
@@ -38,8 +38,9 @@ type_id = id
 <classifier_name_part> ::= ':' <classifier_name>
                             | <>
 
-<classifier_name> ::= type_id
-       
+<classifier_name> ::= <type_id>
+
+<type_id> ::= id       
 
 
         

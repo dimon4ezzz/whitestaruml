@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{6800C90C-8B49-4B15-8E46-9015DA5876D8}</ProjectGuid>
 			<MainSource>WhiteStarUML.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
@@ -42,11 +42,15 @@
 			<DCC_AssertionsAtRuntime>false</DCC_AssertionsAtRuntime>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_ExeOutput>C:\JS\Delphi\WhiteStarDevInstall</DCC_ExeOutput>
+			<DCC_DependencyCheckOutputName>..\..\..\WhiteStarDevInstall\WhiteStarUML.exe</DCC_DependencyCheckOutputName>
 			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
 			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_DependencyCheckOutputName>..\..\..\WhiteStarDevInstall\WhiteStarUML.exe</DCC_DependencyCheckOutputName>
+			<DCC_ExeOutput>C:\JS\Delphi\WhiteStarDevInstall</DCC_ExeOutput>
 			<DCC_DebugDCUs>true</DCC_DebugDCUs>
 			<DCC_DebugInformation>true</DCC_DebugInformation>
 			<DCC_SymbolReferenceInfo>2</DCC_SymbolReferenceInfo>
