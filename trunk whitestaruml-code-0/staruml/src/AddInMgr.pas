@@ -351,7 +351,7 @@ var
   I: Integer;
   Base, Msg: string;
 begin
-  MainMenu := MainForm.BarManager.Bars[0];
+  MainMenu := MainForm.BarManager.Bars[MENU_BAR];
   XMLNodeList := XMLNode.ChildNodes;
   for I := 0 to XMLNodeList.Count - 1 do begin
     XMLNode := XMLNodeList.Nodes[I];

@@ -505,7 +505,7 @@ begin
   MenuStateHandler.UpdateFormatMenus;
   MenuStateHandler.UpdateModelMenus;
   MenuStateHandler.UpdateStatusBar;
-  MenuStateHandler.UpdateViewMenus;
+  //MenuStateHandler.UpdateViewMenus;
   MenuStateHandler.EndUpdate;
 
   if (ComServer.StartMode = smStandalone) then
@@ -4152,8 +4152,8 @@ begin
   BeginUpdate;
   MainForm.AlwaysGroup.Visible := ivAlways;
   MainForm.AlwaysGroup.Enabled := True;
-  UpdateTopLevelMenus;
-  UpdateViewMenus;
+  //UpdateTopLevelMenus;
+  //UpdateViewMenus;
   EndUpdate;
 end;
 
@@ -4852,10 +4852,11 @@ begin
     ViewOutputWindow.Down := OutputDockPanel.Visible or OutputDockPanel.AutoHide;
     ViewMessageWindow.Down := MessageDockPanel.Visible or MessageDockPanel.AutoHide;
     ViewToolbox.Down := ToolboxDockPanel.Visible or ToolboxDockPanel.AutoHide;
-    ViewToolbarsStandard.Down := BarManager.Bars[1].Visible;
-    ViewToolbarsFormat.Down := BarManager.Bars[3].Visible;
-    ViewToolbarsView.Down := BarManager.Bars[4].Visible;
-    ViewToolbarsAlignment.Down := BarManager.Bars[5].Visible;
+    ViewToolbarsStandard.Down := BarManager.Bars[STANDARD_BAR].Visible;
+    ViewToolbarsFormat.Down := BarManager.Bars[FORMAT_BAR].Visible;
+    ViewToolbarsView.Down := BarManager.Bars[VIEW_BAR].Visible;
+    ViewToolbarsAlignment.Down := BarManager.Bars[ALIGNMENT_BAR].Visible;
+    ViewToolbarsStatusBar.Down := BarManager.Bars[STATUS_BAR].Visible;
     if WorkingAreaFrame.ActiveDiagramEditor <> nil then
       ZoomComboText := IntToStr(WorkingAreaFrame.ActiveDiagramEditor.ZoomPercent) + '%'
     else
