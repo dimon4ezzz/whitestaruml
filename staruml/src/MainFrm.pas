@@ -63,6 +63,13 @@ uses
 const
   FILE_EXT_BMP = '.BMP';
 
+  MENU_BAR = 0;
+  STANDARD_BAR = 1;
+  FORMAT_BAR = 2;
+  VIEW_BAR = 3;
+  ALIGNMENT_BAR = 4;
+  STATUS_BAR = 5;
+
 type
   // Enumeration types
   PFrameWindowKind = (fwNone, fwBrowser, fwInspector, fwInformation, fwWorkingArea);
@@ -363,6 +370,7 @@ type
     ModelExplorer: TModelExplorerPanel;
     dxBarSeparator1: TdxBarSeparator;
     PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
+    ViewToolbarsStatusBar: TdxBarButton;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);
     procedure EditMenuClick(Sender: TObject);
@@ -400,6 +408,7 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure BarManagerBarVisibleChange(Sender: TdxBarManager; ABar: TdxBar);
   private
     AllowToTriggerFontFaceChangedEvent: Boolean;
     AllowToTriggerFontSizeChangedEvent: Boolean;
@@ -1032,7 +1041,7 @@ end;
 
 procedure TMainForm.QuickDlgElementDeletingHandler(AModel: PModel);
 begin
-  if Assigned(FOnQuickDlgElementDeleting) then FOnQuickDlgElementDeleting(AModel); 
+  if Assigned(FOnQuickDlgElementDeleting) then FOnQuickDlgElementDeleting(AModel);
 end;
 
 procedure TMainForm.QuickDlgVisibilityChangingHandler(AModel: PModel; Kind: PUMLVisibilityKind);
@@ -1437,10 +1446,11 @@ end;
 
 procedure TMainForm.ViewCheckTypeMenuMainFormOnlyClick(Sender: TObject);
 begin
-  if Sender = ViewToolbarsStandard then BarManager.Bars[1].Visible := (Sender as TdxBarButton).Down
-  else if Sender = ViewToolbarsFormat then BarManager.Bars[3].Visible := (Sender as TdxBarButton).Down
-  else if Sender = ViewToolbarsView then BarManager.Bars[4].Visible := (Sender as TdxBarButton).Down
-  else if Sender = ViewToolbarsAlignment then BarManager.Bars[5].Visible := (Sender as TdxBarButton).Down;
+  if Sender = ViewToolbarsStandard then BarManager.Bars[STANDARD_BAR].Visible := (Sender as TdxBarButton).Down
+  else if Sender = ViewToolbarsFormat then BarManager.Bars[FORMAT_BAR].Visible := (Sender as TdxBarButton).Down
+  else if Sender = ViewToolbarsView then BarManager.Bars[VIEW_BAR].Visible := (Sender as TdxBarButton).Down
+  else if Sender = ViewToolbarsAlignment then BarManager.Bars[ALIGNMENT_BAR].Visible := (Sender as TdxBarButton).Down
+  else if Sender = ViewToolbarsStatusBar then BarManager.Bars[STATUS_BAR].Visible := (Sender as TdxBarButton).Down
 end;
 
 procedure TMainForm.ViewMenuClick(Sender: TObject);
@@ -1506,6 +1516,19 @@ begin
   if Assigned(FOnInformationMessagesButtonClicked) then FOnInformationMessagesButtonClicked(Sender);
 end;
 
+procedure TMainForm.BarManagerBarVisibleChange(Sender: TdxBarManager;
+  ABar: TdxBar);
+begin
+  if ABar = BarManager.Bars[STANDARD_BAR] then
+    ViewToolbarsStandard.Down := ABar.Visible
+  else if ABar = BarManager.Bars[FORMAT_BAR] then
+    ViewToolbarsFormat.Down := ABar.Visible
+  else if ABar = BarManager.Bars[VIEW_BAR] then
+    ViewToolbarsView.Down := ABar.Visible
+  else if ABar = BarManager.Bars[ALIGNMENT_BAR] then
+    ViewToolbarsAlignment.Down := ABar.Visible
+end;
+
 procedure TMainForm.BarManagerClickItem(Sender: TdxBarManager;
   ClickedItem: TdxBarItem);
 begin
@@ -1561,7 +1584,7 @@ begin
   if Key = VK_ESCAPE then begin
     if LockHandlerButton.Down then LockHandlerButton.Down := False;
   end;
-}  
+}
   if dxDockingController.ActiveDockControl = WorkingAreaDockPanel then begin
     DgmEditor := WorkingAreaFrame.ActiveDiagramEditor;
     if DgmEditor <> nil then
@@ -1571,7 +1594,3 @@ end;
 
 
 end.
-
-
-
-
