@@ -258,8 +258,11 @@ begin
 end;
 
 function PGraphvizPlainOutputParser.InchStrToPixel(Inch: string): Integer;
+var
+  FormatSettings: TFormatSettings;
 begin
-  Result := InchToPixel(StrToFloat(Inch));
+  FormatSettings.DecimalSeparator := '.';
+  Result := InchToPixel(StrToFloat(Inch,FormatSettings));
 end;
 
 procedure PGraphvizPlainOutputParser.ParseLine(Line: string; Output: TStrings);
