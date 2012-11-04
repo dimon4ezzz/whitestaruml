@@ -46,7 +46,7 @@
         <OPTIONITEM-STRING key="HELP_URL">
           <CAPTION>URL of Help Document</CAPTION>
           <DESCRIPTION>Specifies the url of Help Document in StarUML</DESCRIPTION>
-          <DEFAULTVALUE>http://staruml.tigris.org/documentations/doc.html</DEFAULTVALUE>
+          <DEFAULTVALUE>http://staruml.sourceforge.net/en/documentations.php</DEFAULTVALUE>
         </OPTIONITEM-STRING>
       </OPTIONCLASSIFICATION>
       
