@@ -48,7 +48,8 @@ unit HtmlHlp;
 interface
 
 const
-  HELP_STARUML_INDEX = 'http://staruml.tigris.org/documentations/doc.html';
+  //HELP_STARUML_INDEX = 'http://staruml.tigris.org/documentations/doc.html';
+  HELP_STARUML_INDEX = 'http://staruml.sourceforge.net/en/documentations.php';
 
 procedure ShowHtmlHelp(Url: string);
 procedure ShowStarUMLHelpPage;

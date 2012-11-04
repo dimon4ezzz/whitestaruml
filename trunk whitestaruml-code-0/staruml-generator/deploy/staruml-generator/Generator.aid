@@ -6,7 +6,7 @@
     <FILENAME>Generator.dll</FILENAME>
     <COMPANY>Plastic Software, Inc.</COMPANY>
     <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
-    <HELPFILE>http://www.staruml.com</HELPFILE>
+    <HELPFILE>http://staruml.sourceforge.net/en/documentations.php</HELPFILE>
     <ICONFILE>Generator.ico</ICONFILE>
     <ISACTIVE>True</ISACTIVE>
     <MENUFILE>Generator.mnu</MENUFILE>
