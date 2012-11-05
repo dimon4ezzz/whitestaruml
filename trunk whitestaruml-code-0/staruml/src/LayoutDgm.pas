@@ -639,7 +639,8 @@ begin
     LayoutAlgorithm := 'neato';
 
   if not ValidateGvcIntfDllBindings then
-     ShowMessage('Function not available: Could not initialize GraphViz DLL library')
+     ShowMessage('Function not available: Could not initialize GraphViz DLL library (Have you installed VC++ 2008 SP1 Redistribuable?)')
+
   else begin
     ResultOp := FLayoutGraphFunc(PAnsiChar(LayoutAlgorithm),
       PAnsiChar(AnsiString(Output.Text)), @outputGraph);
