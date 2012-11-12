@@ -1,0 +1,910 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>WhiteStarUML User Guide &gt; Modeling &gt; Editing Elements in Diagrams</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="">
+   <meta name="description" content="Editing Elements in Diagrams">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?editing_elements_in_diagrams.htm"; }
+  else { parent.quicksync('a1.4.2'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="toc.htm">WhiteStarUML User Guide</a> &gt; <a href="ch04.htm">Modeling</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Editing Elements in Diagrams</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="creating_diagrams.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="ch04.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="editing_elements_in_the_model.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p><span style="font-weight: bold; color: #000080;">Creating Element in Diagram</span></p>
+<p><span style="font-size: 9pt;">In order to create a new element in a diagram, a diagram must be opened first. The pallet contains the different types of elements available for creation depending on the diagram type. The list of available elements varies from one diagram type to another.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Creating Element from Pallet:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select an element type to create from the pallet.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Click a location in the diagram area to create the element. (Drag the mouse to select an area to specify the size of the new element. If creating an element that connects two elements together, ensure that the connection is made accurately.)</span></td></tr></table></div><p><span style="font-size: 9pt; font-weight: bold;">Procedure for Creating Multiple Elements in One Go:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select an element type to create from the pallet.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Click the </span><span style="font-size: 9pt; font-weight: bold;">[Lock]</span><span style="font-size: 9pt;"> item in the pallet or click the element to create once again.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Create multiple elements.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">4.</span></td><td><span style="font-size: 9pt;">Click the  </span><img src="ch04_h74.jpg" width="67" height="20" border="0" alt="ch04_h74"><span style="font-size: 9pt;"> &nbsp;item in the pallet when creating elements is complete.</span></td></tr></table></div><p><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Creating an element in the diagram from the pallet actually involves creating a model element and its view element.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Creating View Element in Diagram</span></p>
+<p><span style="font-size: 9pt;">Besides creating a new element in the diagram from the pallet, view elements can also be created for existing model elements.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Creating New View Element (Drag-and-Drop Method):</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the model explorer a model to be represented by the new view element.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Drag the model element and drop it in the diagram area to create a view element (In this case, the connections to all the related elements are automatically displayed).</span></td></tr></table></div><p><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">This drag-and-drop method may not work when creating view elements for certain model element types and diagram types.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"> Model elements can also be created for not existing view elements. For detailed descriptions on creating model element, see the creating model element.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Editing Element in Diagram</span></p>
+<p><span style="font-size: 9pt;">Elements can directly be edited in the diagram area.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Editing Elements:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Double-click a view element to click in the diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">At the quick dialog, edit the element name, visibility, etc., or click the button to create elements under the selected element.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Hit </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;"> or click another location in the diagram to apply the changes.</span></td></tr></table></div><p><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">For detailed descriptions on element to Quick dialogs, see the Quick dialogs.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Resize and Move</span></p>
+<p><span style="font-size: 9pt;">You can optimize the view size or position from the diagram area, and you can modify view position or size little by little by Special+Cursor Key.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Resizing View:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click a view to click in the diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Modifies a size as dragging the point for direction where you want among points on select mark after selecting a view.</span></td></tr></table></div><p><span style="font-size: 9pt; font-weight: bold;">Procedure for Resizing View by using &nbsp;the keyboard:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click a view to click in the diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">The user can specify for view resizing by using Shift+Cusor key. &nbsp;The Shift+Cursor Key can move to the present configured gird unit, and you can modify view position little by little by Shift+Alt+Cursor Key.</span></td></tr></table></div><p><span style="font-size: 9pt; font-weight: bold;">Procedure for moving View:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Selects the view to move in diagram as clicking mouse. If there are several views, select the views by Ctrl+Click or an area for including views as dragging.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Move views to where you want to go by using mouse.</span></td></tr></table></div><p><span style="font-size: 9pt; font-weight: bold;">Procedure for moving View by using the keyboard:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Selects the view to move in diagram as clicking mouse. If there are several views, select the views by Ctrl+Click or an area for including views as dragging.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Move views to where you want to go by using Ctrl+Cursor Key. The Ctrl+Cursor Key can move to the present configured gird unit, and you can modify view position little by little by Ctrl+Alt+Cursor Key.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Creating Element by using ShortCut Generation Syntax</span></p>
+<p><span style="font-size: 9pt;">Elements can also be created without being mouse by using the shortcut Generation Syntax.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure creating element by using the ShortCut Generation Syntax:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area the view.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Run Quick Dialog as selecting </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;">.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Enter a syntax that is element in the quick dialog.  </span></td></tr></table></div><p><span style="font-size: 9pt; font-weight: bold;">ShortCut Generation Syntax</span></p>
+<p><span style="font-size: 9pt;">Shortcut generation syntax can generate a target model and relationship with it by writing simple text. The basic rule of the shortcut generation syntax is as follows. Describe the target model names to make a relationship with notations to generate relationship. If there is no target model name, generate new appropriate model elements and the relationship. The relationship-notation of shortcut generation syntax to be used in each diagram is as follows:</span></p>
+<p><span style="font-size: 9pt;">　</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 0px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="139" bgcolor="#cccccc" style="width:139px; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-family: 'Times New Roman'; font-weight: bold;">Diagram Type</span></p>
+</td>
+<td valign="bottom" width="57" bgcolor="#cccccc" style="width:57px; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Notation</span></p>
+</td>
+<td valign="bottom" width="127" bgcolor="#cccccc" style="width:127px; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-family: 'Times New Roman'; font-weight: bold;">Current Element</span></p>
+</td>
+<td valign="bottom" width="315" bgcolor="#cccccc" style="width:315px; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-family: 'Times New Roman'; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td rowspan="15" valign="top" width="139" bgcolor="#ffffff" style="width:139px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Class Diagram</span></p>
+<p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Component Diagram</span></p>
+<p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Deployment Diagram</span></p>
+<p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Composite Structure Diagram</span></p>
+<p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">　</span></p>
+</td>
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;=</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of specialization.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">=&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of generalization.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">--</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of association.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;-</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes navigable association relationship from target element to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of navigable association.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;&gt;-</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of aggregate.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-&lt;&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes aggregate relationship from target element to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;*&gt;-</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of compose.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-&lt;*&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes compose relationship from target element to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;--</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes dependency relationship from target element to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">--&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of dependency.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">)-</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes requirement relationship from target element to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-(</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of requirement.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; height:39px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">@-</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; height:39px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; height:39px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes realization relationship from target element to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-@</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Classifier</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of realization.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td rowspan="6" valign="top" width="139" bgcolor="#ffffff" style="width:139px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Usecase Diagram</span></p>
+</td>
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">()-</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">UseCase</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target model(Actor) linking with the current element makes a link of communication.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-()</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Actor</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target model(UseCase) linking with the current element makes a link of communication.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;i-</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">UseCase</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes include relationship from target element to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-i&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">UseCase</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of include.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;e-</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">UseCase</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes include relationship from target element to the current extend.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-e&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">UseCase</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of extend.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td rowspan="10" valign="top" width="139" bgcolor="#ffffff" style="width:139px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Sequence Diagram</span></p>
+<p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Seqeunce Diagram(Role)</span></p>
+</td>
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;-</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Object, ClassifierRole</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of stimulus.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Object, ClassifierRole</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes include relationship from target element to the current stimulus.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;-&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Object, ClassifierRole</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes stimulus that has a return relationship from target element to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;-</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes sub-stimulus(comes from target element) in current stimulus.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes sub-stimulus(goes from target element) in current stimulus. </span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;-&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes sub-stimulus(with return goes from target element) in current stimulus.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;~</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes stimulus(comes from target element) in front of current stimulus.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">~&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes stimulus(goes from target element) in front of current stimulus.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;_</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes stimulus(comes from target element) in the rear of current stimulus.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">_&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes stimulus(goes from target element) in the rear of current stimulus.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td rowspan="3" valign="top" width="139" bgcolor="#ffffff" style="width:139px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Collaboration Diagram</span></p>
+<p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Collaboration Diagram(Role)</span></p>
+</td>
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;-</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Object, ClassifierRole</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of stimulus.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Object, ClassifierRole</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes stimulus relationship from target element to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;-&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Object, ClassifierRole</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes stimulus that has a return</span><span style="font-size: 9pt; font-family: 'Times New Roman';"> </span><span style="font-size: 9pt;">relationship from target element to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td rowspan="10" valign="top" width="139" bgcolor="#ffffff" style="width:139px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Statechart Diagram/</span></p>
+<p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Activity Diagram</span></p>
+</td>
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;-</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">State, ActionState</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes transition relationship from target element to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">State, ActionState</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element linking with the current element makes a link of transition.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-*</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">State, ActionState</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes transition relationship from target element(Initial State) to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-@</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">State, ActionState</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element(Final State) linking with the current element makes a link of transition.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;-&lt;&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">State, ActionState</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes transition relationship from target element(Decision) to the current element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-&gt;&lt;&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">State, ActionState</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element(Decision) linking with the current element makes a link of transition.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-(H) -(h)</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">State, ActionState</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element(History) linking with the current element makes a link of transition.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">-(H*) -(h*)</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">State, ActionState</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element(Deep History) linking with the current element makes a link of transition.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">&lt;-|</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">State, ActionState</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes transition relationship from target element to the current element(with Join).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="57" bgcolor="#ffffff" style="width:57px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">|-&gt;</span></p>
+</td>
+<td valign="top" width="127" bgcolor="#ffffff" style="width:127px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">State, ActionState</span></p>
+</td>
+<td valign="top" width="315" bgcolor="#ffffff" style="width:315px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The target element(with Fork) linking with the current element makes a link of transition.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p><span style="font-weight: bold; color: #000080;">Copy and Paste</span></p>
+<p><span style="font-size: 9pt;">When copying or cutting elements for pasting, a clear distinction has to be made between model elements and view elements. If a model element is copied, it has to be pasted under a model element. In this case, all the sub-elements contained in the selected element are copied together. View elements can be copied within the same diagram or to different diagrams. Copied view elements can be pasted in diagrams only; they cannot be pasted to model elements. Copying and pasting may also be restricted depending on the view element types and diagram types.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Copying and Pasting Model Elements:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select a model element to copy from the model explorer.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Copy]</span><span style="font-size: 9pt;"> menu. The model element is copied to the clipboard.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Select from the model explorer a model element where the copied element will be pasted. &nbsp; </span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">4.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Paste]</span><span style="font-size: 9pt;"> menu. The copied model element will be recalled from the clipboard and pasted under the selected element.</span></td></tr></table></div><p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Copied model elements can be pasted only to the elements that can contain them.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Copying and Pasting View Elements in Diagram:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area the view elements to copy. (You may select multiple elements by dragging the mouse over an area. Click the view elements while holding down the </span><span style="font-size: 9pt; font-weight: bold;">[Shift] </span><span style="font-size: 9pt;">key to add the elements to the selection.)</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Copy]</span><span style="font-size: 9pt;"> menu. The view elements are copied to the clipboard.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Open the diagram where the copied view elements will be pasted. (Double-click a view element from the model explorer or the diagram explorer, or select a view element from the diagram tab.)</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">4.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Paste]</span><span style="font-size: 9pt;"> menu. The copied view elements will be pasted to the active diagram.</span></td></tr></table></div><p><span style="font-size: 9pt; font-weight: bold;">Copy/Paste for Different Diagram Types</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 19px 0px 0px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Diagram Type</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Copy/Paste</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Class Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Elements can be copied or pasted freely between Class, UseCase, Component, CompositeStructure, and Deployment diagrams.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">UseCase Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Elements can be copied or pasted freely between Class, UseCase, Component, CompositeStructure, &nbsp;and Deployment diagrams.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Sequence Diagrams</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Elements cannot be copied or pasted</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Collaboration Diagrams</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Elements cannot be copied or pasted</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Statechart Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Elements can be copied or pasted only between diagrams within the same StateMachine</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Activity Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Elements can be copied or pasted only between diagrams within the same ActivityGraph</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Component Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Elements can be copied or pasted freely between Class, UseCase, Component, CompositeStructure, and Deployment diagrams</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Deployment Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Elements can be copied or pasted freely between Class, UseCase, Component, &nbsp;CompositeStructure, and Deployment diagrams.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">CompositeStructure Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Elements can be copied or pasted freely between Class, UseCase, Component, CompositeStructure and Deployment diagrams.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p><span style="font-weight: bold; color: #000080;">Configuring Property</span></p>
+<p><span style="font-size: 9pt;">Model elements contain various properties. The user can change models in various ways by editing these property values. The following properties are available.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Property Types</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 19px 0px 0px 0px;"><table cellspacing="0" cellpadding="1" border="0" style="border: none; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" bgcolor="#cccccc" style="height:19px; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Property Type</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="height:19px; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Name</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Indicates the name of the model element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Stereotype</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Indicates the stereotype for the model element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">TypeExpression</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Indicates the expression for special type.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">String</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Indicates string.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Boolean</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Indicates True or False.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:20px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Enumeration</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:20px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Selects one of the various literals.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Reference</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Indicates a specific element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Collection</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:21px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Indicates multiple elements (editable through the collection editor).</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p><span style="font-size: 9pt; font-weight: bold;">　</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Editing the Name Property</span></p>
+<p><span style="font-size: 9pt;">Enter the element name in the “</span><span style="font-size: 9pt; font-weight: bold;">Name</span><span style="font-size: 9pt;">” item in the property editor. Names cannot contain these special characters "</span><span style="font-size: 9pt; font-weight: bold;">:</span><span style="font-size: 9pt;">". Names must also be unique within the namespace. For example, names of the classes within a package must all be unique. A warning message will appear if the name conflicts with another element.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Editing the Stereotype Property</span></p>
+<p><span style="font-size: 9pt;">Enter the stereotype name in the “</span><span style="font-size: 9pt; font-weight: bold;">Stereotype</span><span style="font-size: 9pt;">” item in the property editor. The stereotype name can be a stereotype defined in the UML profile or can be a simple name that is not pre-defined. The following methods can be used to edit the stereotype property.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Entering Defined Stereotype</span><span style="font-size: 9pt;">: Enter a stereotype name that is defined in a profile included in the current project. The stereotype is directly referenced.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Entering Undefined Stereotype</span><span style="font-size: 9pt;">: Enter a stereotype name that is not defined in the profiles included in the current project. This value is just a simple string value.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Selecting from the Stereotype Dialog Box</span><span style="font-size: 9pt;">: Open the Stereotype dialog box and select a stereotype from the defined stereotype list.</span></td></tr></table></div><p><span style="font-size: 9pt; font-weight: bold;">Editing the TypeExpression Property</span></p>
+<p><span style="font-size: 9pt;">The TypeExpression property is included in Attribute, Parameter, etc. Enter the type expression in the “</span><span style="font-size: 9pt; font-weight: bold;">Type</span><span style="font-size: 9pt;">” item in the property editor. The following methods can be used to edit the type expression property.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Entering Defined Type Name</span><span style="font-size: 9pt;">: Enter the name of a classifier element (classes, interfaces, signals, exceptions, components, nodes, subsystems, etc.) included in the current project. Elements are directly referenced.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Entering Defined Type Pathname</span><span style="font-size: 9pt;">: Directly enter the pathname of a classifier element included in the current project (e.g. “::Logical View::Package1::Class1”)</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Entering Undefined Type Name</span><span style="font-size: 9pt;">: Enter a name that is not related to any of the classifiers included in the current project. This value is just a simple string value.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Selecting from the Select Element Dialog Box</span><span style="font-size: 9pt;">: Open the Select Element dialog box and directly select a defined type or select a data type defined in the profile.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Documenting Model Element</span></p>
+<p><span style="font-size: 9pt;">Detailed descriptions can be recorded for model elements.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Documenting Model Element:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the model explorer or the diagram area an element to include a description.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">At the inspector area in the main window, select the </span><span style="font-size: 9pt; font-weight: bold;">[Documentation]</span><span style="font-size: 9pt;"> tab.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Enter description in the editable area.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Attaching File or URL</span></p>
+<p><span style="font-size: 9pt;">Related files or web page URLs can be attached to elements. The attached files or web pages can be easily accessed through the associated applications or the web browser.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Attaching File or URL:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select an element from the model explorer or the diagram area.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">At the inspector area in the main window, select the </span><span style="font-size: 9pt; font-weight: bold;">[Attachments]</span><span style="font-size: 9pt;"> tab.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Add]</span><span style="font-size: 9pt;"> menu or click the </span><span style="font-size: 9pt; font-weight: bold;">[Add]</span><span style="font-size: 9pt;"> button on the toolbar.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">4.</span></td><td><span style="font-size: 9pt;">At the Attachment dialog box, enter the full pathname and filename of the attachment file or the web page URL (or click the browse button on the right to select from the browse window), and click the </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 10px 35px;"><img src="ch04_h76.jpg" width="438" height="133" border="0" alt="ch04_h76"></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Removing Attached Item:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select an element from the model explorer or the diagram area.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">At the inspector area in the main window, select the </span><span style="font-size: 9pt; font-weight: bold;">[Attachments]</span><span style="font-size: 9pt;"> tab.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Select an attached item to delete from the list. Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Delete]</span><span style="font-size: 9pt;"> menu or click the  </span><img src="ch04_h57.jpg" width="19" height="16" border="0" alt="ch04_h57"><span style="font-size: 9pt; font-weight: bold;"> </span><span style="font-size: 9pt;">button on the toolbar.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Recording Constraints</span></p>
+<p><span style="font-size: 9pt;">Multiple constraints can be recorded for elements. Constraints are regulations applied to elements. They can be written in easy-to-understand normal language, or be can be written to comply with the OCL (Object Constraint Language) grammar defined by UML.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Adding Constraints:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select an element to add constraints to.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Constraint Editor…]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">At the Constraint Editor, click the </span><span style="font-size: 9pt; font-weight: bold;">[Add]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch04_h78.jpg" width="515" height="284" border="0" alt="ch04_h78"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">4.</span></td><td><span style="font-size: 9pt;">At the Constraint dialog box, enter the name and contents and then click the </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 10px 35px;"><img src="ch04_h79.jpg" width="451" height="278" border="0" alt="ch04_h79"></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Deleting Constraints:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select an element to delete constraints from.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Constraint Editor…]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">At the Constraint Editor, select constraints to delete from the list and then click the </span><span style="font-size: 9pt; font-weight: bold;">[Delete]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p><span style="font-size: 9pt; font-weight: bold;">Procedure for Editing Constraints:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select an element to edit constraints for.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Constraint Editor…]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">At the Constraint Editor, select constraints to edit from the list and then click the </span><span style="font-size: 9pt; font-weight: bold;">[Edit]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">4.</span></td><td><span style="font-size: 9pt;">At the Constraint dialog box, edit the name and contents. Click the </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Editing Tagged Values</span></p>
+<p><span style="font-size: 9pt;">Besides the basic properties, the tagged values of elements, which are added by UML profiles, can be edited.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Editing Tagged Value:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the model explorer or the diagram area an element for which to edit the tagged value.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Tagged Values…]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">At the Tagged Value Editor, select the tab that corresponds to the profile that contains the tagged value to edit.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch04_h80.jpg" width="415" height="415" border="0" alt="ch04_h80"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">4.</span></td><td><span style="font-size: 9pt;">Select from the </span><span style="font-size: 9pt; font-weight: bold;">[Tag Definition Set] </span><span style="font-size: 9pt;">combo box the set that contains the tagged value. Select a tagged value from the </span><span style="font-size: 9pt; font-weight: bold;">[Tagged Values]</span><span style="font-size: 9pt;"> list and edit the value.</span></td></tr></table></div><p><span style="font-size: 9pt; font-weight: bold;">Procedure for Reverting Edited Tagged Values to Default Values:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the model explorer or the diagram area the element that contains the tagged value.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Tagged Values…]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">At the tagged value editor, select the tab that corresponds to the profile that contains the tagged value.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">4.</span></td><td><span style="font-size: 9pt;">Select from the </span><span style="font-size: 9pt; font-weight: bold;">[Tag Definition Set]</span><span style="font-size: 9pt;"> combo box the set that contains the tagged value. Select a tagged value from the </span><span style="font-size: 9pt; font-weight: bold;">[Tagged Values]</span><span style="font-size: 9pt;"> list and click the </span><span style="font-size: 9pt; font-weight: bold;">[Set to Default]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Deleting View Element</span></p>
+<p><span style="font-size: 9pt;">Deleting a view element means deleting only the view element that represents a model element on the screen, without deleting the model element itself.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Deleting View Element:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In order to delete a view element, select the view element shown in the diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Hit the </span><span style="font-size: 9pt; font-weight: bold;">[Del] </span><span style="font-size: 9pt;">key or select the </span><span style="font-size: 9pt; font-weight: bold;">[Edit] -&gt; [Delete] </span><span style="font-size: 9pt;">menu.</span></td></tr></table></div><p><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Deleting a view element does not delete its model element.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Applying Line Color</span></p>
+<p><span style="font-size: 9pt;">Colors for the view element outlines or connecting lines can be changed.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Applying Line Color:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area an element for which to change the line color.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Line Color…]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">At the Color dialog box, select a color to apply and click the </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 10px 35px;"><img src="ch04_h81.jpg" width="222" height="331" border="0" alt="ch04_h81"></p>
+<p><span style="font-weight: bold; color: #000080;">Applying Fill Color</span></p>
+<p><span style="font-size: 9pt;">Fill colors for view elements can be changed.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Applying Fill Color:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area an element for which to change the fill color.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Fill Color…]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">At the Color dialog box, select a color to apply and click the </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 10px 35px;"><img src="ch04_h82.jpg" width="222" height="331" border="0" alt="ch04_h82"></p>
+<p><span style="font-weight: bold; color: #000080;">Applying Font</span></p>
+<p><span style="font-size: 9pt;">Text font shape, color, size, etc. for view elements can be changed.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Applying Font:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area an element for which to change font.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Font…]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">At the Font dialog box, select font shape, size, color, etc. and click the </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 10px 35px;"><img src="ch04_h83.jpg" width="470" height="261" border="0" alt="ch04_h83"></p>
+<p><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">[Font style]</span><span style="font-size: 9pt;"> for some UML-related view elements are not editable. This is because the font styles are defined by the UML conventions and cannot be changed.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Showing Stereotype</span></p>
+<p><span style="font-size: 9pt;">View elements can be expressed as different shapes depending on the stereotypes. The following expression formats are available.</span></p>
+<p>&nbsp;</p>
+<p><img src="ch04_h84.jpg" width="393" height="136" border="0" alt="ch04_h84"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Hide [Shift+Ctrl+N]</span><span style="font-size: 9pt;">: Hides the stereotype.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Show with Text [Shift+Ctrl+T]</span><span style="font-size: 9pt;">: Stereotype name is shown inside “&lt;&lt;” and “&gt;&gt;”.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Show with Icon [Shift+Ctrl+I]</span><span style="font-size: 9pt;">: View element is expressed with the stereotype icon. The stereotype must be registered with an icon to use this option. Otherwise the stereotype is shown in text.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Show with Decoration[Shift+Ctrl+I]</span><span style="font-size: 9pt;"> : View elements is described as text and small-sized stereotype icon. In this case, icons in the stereotype have to be registered, and it is described as text if it is not. The some elements like Actor, Interface, Component, Node and Artifact are showed as decoration type as the default icon if they are not registered in stereotype.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Configuring Line Style</span></p>
+<p><span style="font-size: 9pt;">Line type view elements such as Association, Dependency and Generalization are expressed by either of the following two line styles.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Rectilinear</span><span style="font-size: 9pt;">: Line always changes in 90 degree angles.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Oblique</span><span style="font-size: 9pt;">: Line changes at any angle.</span></td></tr></table></div><p style="margin: 14px 0px 0px 0px;"><img src="ch04_h85.jpg" width="405" height="186" border="0" alt="ch04_h85"></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Changing Line Style:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area a view element that has a Line Style.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Line Style]</span><span style="font-size: 9pt;"> menu. Select rectilinear or oblique.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Configuring Automatic Resize</span></p>
+<p><span style="font-size: 9pt;">Although the user can change the view element sizes at any time, view elements can also be configured to resize automatically.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Configuring Automatic Resize for View Element:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area a view element to configure automatic resize.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and check the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Auto Resize]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">To remove the automatic resize setting, select the checked menu item once again to uncheck it.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Suppressing Attribute</span></p>
+<p><span style="font-size: 9pt;">Elements that contain attributes such as Class, Exception and UseCase show these attributes in their attribute compartment areas. The user can configure these attributes to be shown or suppressed.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Suppressing Attributes:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area an element for which to hide the attributes.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Suppress Attributes]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Perform the steps above once again to show the attributes.</span></p>
+<p><span style="font-weight: bold; color: #000080;">Suppressing Operation</span></p>
+<p><span style="font-size: 9pt;">Elements that contain operations such as class, exception, usecase and subsystem show these operations in their operation compartment areas. The user can configure these operations to be shown or suppressed.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Suppressing Operations:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area an element for which to hide the operations.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Suppress Operations]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Perform the steps above once again to show the operations.</span></p>
+<p><span style="font-weight: bold; color: #000080;">Suppressing Literal</span></p>
+<p><span style="font-size: 9pt;">Enumerations have literals, which are shown in the literal compartment areas of enumerations in the diagram. The user can configure these literals to be shown or suppressed.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Suppressing Literals:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area an enumeration type element for which to hide the literals.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Suppress Literals]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Perform the steps above once again to show the literals.</span></p>
+<p><span style="font-weight: bold; color: #000080;">Applying Word Wrap</span></p>
+<p><span style="font-size: 9pt;">When an element name is defined as more over a word, visibility of diagram is decreased since the size of the view is being over extension. If you use Word Wrap, you can optimize the view size as expressing the long name of elements to several lines.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for applying Word Wrap:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area an element for which to apply Word Wrap.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Word Wrap Name]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Perform the steps above once again to removed Word Wrap.</span></p>
+<p><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Some elements such as relative elements, unexpressed elements on a diagram and Swimlane cannot apply Word Wrap.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Showing Parent Name:</span></p>
+<p><span style="font-size: 9pt;">In general, view elements show their own names only. However, a project containing multiple packages may have elements with the same names in different packages, and there may be cases where these elements need to be displayed in the same diagram. In such a case, the elements need to show their parent names in order to be distinguished from one another. The names are in the format “ParentName::OwnName.”</span></p>
+<p>&nbsp;</p>
+<p><img src="ch04_h86.jpg" width="242" height="80" border="0" alt="ch04_h86"></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Showing Parent Name:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area an element for which to show the parent name.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Show Parent Name]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Perform the steps above once again to hide the parent name.</span></p>
+<p><span style="font-weight: bold; color: #000080;">Showing Property</span></p>
+<p><span style="font-size: 9pt;">Among the element tag definitions, element tagged values and changeability attributes are shown in the view elements property section. The user can configure this property section to be shown or hidden.</span></p>
+<p style="margin: 14px 0px 0px 0px;"><img src="ch04_h87.jpg" width="270" height="108" border="0" alt="ch04_h87"></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Showing Properties:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area an element for which to show the properties.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Show Properties]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Perform the steps above once again to hide the properties.</span></p>
+<p><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">In the case of Changeability property value of AssociationEnd element is changeable or Ordering property value is UNORDERED, the relative property value is not be showed in the property part of diagram view element.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Showing Operation Signature</span></p>
+<p><span style="font-size: 9pt;">When displaying elements that contain operations such as class and subsystem, the parameter names and types for operations can be configured to be shown or hidden.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Showing Operation Signature:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area an element to show the operation signature.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Show Operation Signature]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Perform the steps above once again to hide the operation signature.</span></p>
+<p><span style="font-weight: bold; color: #000080;">Showing Compartment Visibility</span></p>
+<p><span style="font-size: 9pt;">Elements like classes, usecases, and subsystems that contain attributes, operations, literals, etc. have compartments to show their attributes and operations in diagram. Class has attribute and operation compartments, subsystem has an operation compartment, and enumeration has literal and operation compartments. Visibility of the elements displayed in these compartments can be configured to be shown or hidden.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Showing Compartment Visibility:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area an element for which to show the compartment visibility.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Show Compartment Visibility]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Perform the steps above once again to hide the compartment visibility.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Showing Compartment Stereotype</span></p>
+<p><span style="font-size: 9pt;">Elements like classes, usecases, and subsystems that contain attributes, operations, literals, etc. have compartments to show their attributes and operations in diagram. Class has attribute and operation compartments, subsystem has an operation compartment, and enumeration has literal and operation compartments. Stereotypes of the elements (attributes, operations, etc.) displayed in these compartments can be configured to be shown or hidden.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Showing Compartment Stereotype:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the diagram area an element for which to show the compartment stereotype.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Show Compartment Stereotypes]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Perform the steps above once again to hide the compartment stereotype.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Opening Diagram</span></p>
+<p><span style="font-size: 9pt;">In order to edit a diagram, the diagram must be opened. Once a diagram is opened, the tabs for the diagram are displayed. Select a tab to make the diagram active for editing.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Opening Diagram:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Search for the diagram to open in the model explorer or the diagram explorer.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Double-click the diagram to open it. The diagram automatically becomes active.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Activates Diagram</span></p>
+<p><span style="font-size: 9pt;">In order to edit the specific diagram, you have to activate the diagram when you open several diagrams. If you want to activate the opened diagram, click the diagram on tab. In the case of having a lot of opened diagrams, you can activate the diagram as you selecting it in diagram list on pop-up menu.</span></p>
+<p><span style="font-size: 9pt;">　</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for the diagram activity with selected in menu:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Right-click on the diagram tab and select the </span><span style="font-size: 9pt; font-weight: bold;">[Pages]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Selects a diagram name to activate among diagram lists as submenu.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Closing Diagram</span></p>
+<p><span style="font-size: 9pt;">Close a diagram if it no longer needs to be edited. Closing a diagram does not delete it. A closed diagram can be opened again at any time.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Closing Diagram:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select the tab of the diagram to close to make the diagram active.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click on the tab and select the </span><span style="font-size: 9pt; font-weight: bold;">[Close Diagram]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><p><span style="font-size: 9pt; font-weight: bold;">Procedure for Closing All Open Diagrams:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select the </span><span style="font-size: 9pt; font-weight: bold;">[View] -&gt; [Close All Diagrams]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Deleting Diagram</span></p>
+<p><span style="font-size: 9pt;">A diagram can be deleted if it is no longer needed. Please be careful, because deleting a diagram also deletes all information related to the diagram.</span></p>
+<p style="margin: 14px 0px 0px 0px;"><span style="font-size: 9pt;">Procedure for Deleting Diagram:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select a diagram to delete, from the model explorer or the diagram explorer.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Delete Model] </span><span style="font-size: 9pt;">menu.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Finding Element</span></p>
+<p><span style="font-size: 9pt;">Software models usually contain a large number of elements. Sometimes it becomes very difficult to locate wanted elements from among the many elements in a software model. The Find Element function can be used to search the wanted elements quickly.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Finding Element:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select the </span><span style="font-size: 9pt; font-weight: bold;">[Edit] -&gt; [Find…]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">At the Find dialog box, enter in the </span><span style="font-size: 9pt; font-weight: bold;">[Find what]</span><span style="font-size: 9pt;"> field the full or partial name of the element to find. To limit the element types to find, select the element type from the </span><span style="font-size: 9pt; font-weight: bold;">[Options-Element type]</span><span style="font-size: 9pt;"> menu. To match cases, check the </span><span style="font-size: 9pt; font-weight: bold;">[Options-Match case]</span><span style="font-size: 9pt;"> item. Click the </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch04_h88.jpg" width="460" height="174" border="0" alt="ch04_h88"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">The find results are added in the </span><span style="font-size: 9pt; font-weight: bold;">[Messages]</span><span style="font-size: 9pt;"> section of the information area. Double-click a message to find the related element.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Aligning Element</span></p>
+<p><span style="font-size: 9pt;">Elements laid out in diagram can be aligned in certain directions or with certain spacing.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Align Element Function</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 19px 0px 0px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="256" bgcolor="#cccccc" style="width:256px; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Align Function</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="256" bgcolor="#ffffff" style="width:256px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h89.jpg" width="16" height="16" border="0" alt="ch04_h89"><span style="font-size: 9pt;"> Align Left</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Align the selected elements to the left.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="256" bgcolor="#ffffff" style="width:256px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h90.jpg" width="16" height="16" border="0" alt="ch04_h90"><span style="font-size: 9pt;"> Align Right</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Align the selected elements to the right.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="256" bgcolor="#ffffff" style="width:256px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h91.jpg" width="16" height="16" border="0" alt="ch04_h91"><span style="font-size: 9pt;"> Align Middle</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Center the selected elements horizontally.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="256" bgcolor="#ffffff" style="width:256px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h92.jpg" width="16" height="16" border="0" alt="ch04_h92"><span style="font-size: 9pt;"> Align Top</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Align the selected elements to the top.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="256" bgcolor="#ffffff" style="width:256px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h93.jpg" width="16" height="16" border="0" alt="ch04_h93"><span style="font-size: 9pt;"> Align Bottom</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Align the selected elements to the bottom.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="256" bgcolor="#ffffff" style="width:256px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h94.jpg" width="16" height="16" border="0" alt="ch04_h94"><span style="font-size: 9pt;"> Align Center</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Center the selected elements vertically.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="256" bgcolor="#ffffff" style="width:256px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h95.jpg" width="16" height="16" border="0" alt="ch04_h95"><span style="font-size: 9pt;"> Space Equally, Horizontally</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Evenly distribute the selected elements horizontally.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="256" bgcolor="#ffffff" style="width:256px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h96.jpg" width="16" height="16" border="0" alt="ch04_h96"><span style="font-size: 9pt;"> Space Equally, Vertically</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Evenly distribute the selected elements vertically.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="256" bgcolor="#ffffff" style="width:256px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h97.jpg" width="16" height="16" border="0" alt="ch04_h97"><span style="font-size: 9pt;"> Bring to Front</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Bring the selected elements to the front.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="256" bgcolor="#ffffff" style="width:256px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h98.jpg" width="16" height="16" border="0" alt="ch04_h98"><span style="font-size: 9pt;"> Send to Back</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Send the selected elements to the back.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Aligning Elements:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select the elements to align in the diagram area (two or more elements must be selected for aligning, except for “Bring to Front” and “Send to Back”).</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Align]</span><span style="font-size: 9pt;"> menu. Select the menu for the aligning method wanted.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Layout Diagram</span></p>
+<p><span style="font-size: 9pt;">In cases where the diagram elements are laid out in a disordered way, the elements can be automatically laid out for tidier display.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Laying Out Diagram Elements:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Make a diagram to layout the active diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Right-click and select the </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Layout Diagram]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><p><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">The layout diagram function is not available for Sequence Diagram.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Configuring Zoom-In/Zoom-Out</span></p>
+<p><span style="font-size: 9pt;">If there are too many elements in the diagram area or if the element texts are too small, the diagram can be zoomed in or zoomed out for better view.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Zooming In/Zooming Out Diagram:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select the </span><span style="font-size: 9pt; font-weight: bold;">[View] -&gt; [Zoom]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Select the </span><span style="font-size: 9pt; font-weight: bold;">[Zoom-In]</span><span style="font-size: 9pt;"> menu to zoom-in the diagram by one level (5%), or select the </span><span style="font-size: 9pt; font-weight: bold;">[Zoom-Out]</span><span style="font-size: 9pt;"> menu to zoom-out by one level. To display the whole diagram in one screen, select the </span><span style="font-size: 9pt; font-weight: bold;">[Fit to Window]</span><span style="font-size: 9pt;"> menu. You may also select a zooming ratio (50%, 75%, 100%, 125%, 150%, 175%, and 200%).</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Saving Diagram as Image File</span></p>
+<p><span style="font-size: 9pt;">Diagrams can be saved as image files. WhiteStarUML supports these image formats: JPEG (.jpg, .jpeg), bitmap (.bmp), metafile (.wmf), and extended metafile (.emf).</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Saving Diagram as Image:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Times New Roman'; color: #000000;">1.</span></td><td><span style="font-size: 9pt; font-family: 'Times New Roman';">Make a diagram to save as image the active diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Times New Roman'; color: #000000;">2.</span></td><td><span style="font-size: 9pt; font-family: 'Times New Roman';">Select </span><span style="font-size: 9pt; font-family: 'Times New Roman'; font-weight: bold;">[File] -&gt; [Export Diagram…]</span><span style="font-size: 9pt; font-family: 'Times New Roman';"> from the main menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Times New Roman'; color: #000000;">3.</span></td><td><span style="font-size: 9pt; font-family: 'Times New Roman';">At the Save dialog box, enter the file name, select the file format, and then click the </span><span style="font-size: 9pt; font-family: 'Times New Roman'; font-weight: bold;">[Save]</span><span style="font-size: 9pt; font-family: 'Times New Roman';"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 10px 35px;"><img src="ch04_h99.jpg" width="563" height="419" border="0" alt="ch04_h99"></p>
+<p><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-family: 'Times New Roman';">In the case of metafile(.wmf) images, some viewer may not display. It is recommended to used to the extended metafile(.emf).</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Copying Diagram as bitmap</span></p>
+<p><span style="font-size: 9pt;">In order to insert a editing diagram to other document, the diagram image can be copied as bitmap. The diagram can be inserted to a document as editing image itself if copying it as bitmap, but it could have image distortion in the case of zoom in/out.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for copying diagram as bitmap:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Make a diagram to copy as bitmap the active diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Select </span><span style="font-size: 9pt; font-weight: bold;">[Edit] -&gt; [Copy Diagram As Bitmap]</span><span style="font-size: 9pt;"> from the main menu.</span></td></tr></table></div><p><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Diagram information is copied to meta image if copying by Ctrl+C after selecting View. The meta image has no image distortion as zoon in/out in a document, but it could have difference with real image of the diagram in text editor program.</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Navigating Diagram</span></p>
+<p><span style="font-size: 9pt;">If a diagram contains a lot of information, the diagram may become very large. In this case, only a limited section of the diagram can be shown on the screen. Agora Plastic provides various methods to effectively navigate the diagram area, allowing the user to move to specific diagram locations quickly. The following methods can be used for navigating diagram.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Navigating with ScrollBar and Wheel</span></p>
+<p><span style="font-size: 9pt;">Moves for diagram domain what you want as using scroll bar. If you use wheel mouse, you can move to up and down by using mouse wheel.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Navigating with Bir’s Eye View</span></p>
+<p><span style="font-size: 9pt;">There is a small icon </span><img src="ch04_h1.jpg" width="15" height="15" border="0" alt="ch04_h1"><span style="font-size: 9pt;"> at the lower right-hand corner of the diagram area. Click this icon to see the entire diagram in a small area. Move to a diagram location while holding down the mouse button and then release the mouse button. This function is useful for navigating over a long distance.</span></p>
+<p style="margin: 14px 0px 0px 0px;"><img src="ch04_h2.jpg" width="206" height="133" border="0" alt="ch04_h2"></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Navigating with Ctrl + Mouse</span></p>
+<p><span style="font-size: 9pt;">Hold down the Ctrl key and move the mouse to move the diagram. This function is useful for navigating over a short distance.</span></p>
+<p><span style="font-weight: bold; color: #000080;">Configuring Default Diagram</span></p>
+<p><span style="font-size: 9pt;">A project can contain many diagrams. Among the many diagrams, there can be more than one default diagram, which is the most basic diagram of all. For instance, a diagram that expresses the overall structure of the project can be configured as the default diagram. Only Class Diagram, UseCase Diagram, Component Diagram or Deployment Diagram can be set as the default diagram. The default diagram is automatically opened when opening the project.</span></p>
+<p><span style="font-size: 9pt; font-weight: bold;">Procedure for Configuring Default Diagram:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select from the model explorer or the diagram explorer a diagram to configure as the default diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Select the </span><span style="font-size: 9pt; font-weight: bold;">[Properties] </span><span style="font-size: 9pt;">tab in the inspector area.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">At the property editor, check the “</span><span style="font-size: 9pt; font-weight: bold;">DefaultDiagram</span><span style="font-size: 9pt;">” property.</span></td></tr></table></div>
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

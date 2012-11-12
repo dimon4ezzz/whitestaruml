@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Model, View and Diagram</title>
+  <keywords>
+    <keyword translate="true">Concept<keyword translate="true">diagram</keyword><keyword translate="true">model</keyword><keyword translate="true">view</keyword></keyword>
+    <keyword translate="true">Diagram<keyword translate="true">concept</keyword></keyword>
+    <keyword translate="true">Model<keyword translate="true">concept</keyword></keyword>
+    <keyword translate="true">View<keyword translate="true">concept</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Model, View and Diagram</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; margin-bottom:14px; line-height:1.0; tabstops:none;"><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> makes a clear conceptual distinction between models, views and diagrams. A </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Model</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> is an element that contains information for a software model. A </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">View</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> is a visual expression of the information contained in a model, and a </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Diagram </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">is a collection of view elements that represent the user’s specific design thoughts.</text></para>
+    <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><image src="ch02_h1.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+  </body>
+</topic>
