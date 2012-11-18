@@ -706,7 +706,7 @@ function PClipboardManager.CopyDiagramAsBitmap(ADiagramView: PDiagramView; Selec
 var
   Bitmap: TBitmap;
   Format: Word;
-  Data: Cardinal;
+  Data: THandle;
   Palette: HPalette;
 begin
   Bitmap := BitmapFromDiagram(ADiagramView, SelectedViewsOnly);

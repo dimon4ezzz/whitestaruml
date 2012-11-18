@@ -6,7 +6,7 @@
     <FILENAME>WSPatternAddIn.dll</FILENAME>
     <COMPANY>Plastic Software, Inc.</COMPANY>
     <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
-    <HELPFILE>http://staruml.sourceforge.net/en/documentations.php</HELPFILE>
+    <HELPFILE>WhiteStarUML.chm</HELPFILE>
     <ICONFILE>PatternAddIn.ico</ICONFILE>
     <ISACTIVE>True</ISACTIVE>
     <MENUFILE>PatternAddIn.mnu</MENUFILE>
