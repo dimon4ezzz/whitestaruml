@@ -48,9 +48,8 @@ unit AddInMgr;
 interface
 
 uses
-  Classes, ActiveX, XMLDoc, XMLIntf, ComObj, ComCtrls, Windows, Registry, dxBar, SysUtils,
-  Graphics, Core,
-  WhiteStarUML_TLB {dxPageControl} {cxPC};
+  Classes, ActiveX, XMLDoc, XMLIntf, ComObj, ComCtrls, Windows, Registry, dxBar,
+  SysUtils, Graphics, Core, WhiteStarUML_TLB;
 
 const
   EXT_DIR = 'modules';

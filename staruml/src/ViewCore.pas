@@ -48,8 +48,7 @@ unit ViewCore;
 interface
 
 uses
-  BasicClasses, Core, GraphicClasses,
-  Types, Classes, Graphics;
+  Types, Classes, Graphics, BasicClasses, Core, GraphicClasses;
 
 const
   SELECTION_COLOR = clBlack;

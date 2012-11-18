@@ -49,7 +49,8 @@ interface
 
 const
   //HELP_STARUML_INDEX = 'http://staruml.tigris.org/documentations/doc.html';
-  HELP_STARUML_INDEX = 'http://staruml.sourceforge.net/en/documentations.php';
+  //HELP_STARUML_INDEX = 'http://staruml.sourceforge.net/en/documentations.php';
+  HELP_STARUML_INDEX = 'WhiteStarUML.chm';
 
 procedure ShowHtmlHelp(Url: string);
 procedure ShowStarUMLHelpPage;
@@ -60,11 +61,16 @@ var
 implementation
 
 uses
-  Windows, ShellAPI;
+  Windows, SysUtils, ShellAPI, Forms;
 
 procedure ShowHtmlHelp(Url: string);
+var
+  AppPath: String;
+  HelpPath: String;
 begin
-  ShellExecute(0, 'open', PChar(Url), '', '', SW_SHOWNORMAL);
+  AppPath := ExtractFilePath(Application.ExeName);
+  HelpPath := AppPath + Url;
+  ShellExecute(0, 'open', PChar(HelpPath), '', '', SW_SHOWNORMAL);
 end;
 
 procedure ShowStarUMLHelpPage;

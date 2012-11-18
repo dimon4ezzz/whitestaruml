@@ -48,8 +48,8 @@ unit Handlers;
 interface
 
 uses
-  BasicClasses, GraphicClasses, Core, ViewCore, UMLModels, UMLViews, DiagramEditors,
-  Types, Classes, Controls;
+  Types, Classes, Controls,
+  BasicClasses, GraphicClasses, Core, ViewCore, UMLModels, UMLViews, DiagramEditors;
 
   const
 
