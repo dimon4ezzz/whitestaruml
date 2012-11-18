@@ -48,9 +48,9 @@ unit PrintFrm;
 interface
 
 uses
-  Core, GraphicClasses, UMLModels,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, ComCtrls, Printers;
+  Dialogs, StdCtrls, ExtCtrls, ComCtrls, Printers,
+  Core, GraphicClasses, UMLModels;
 
 type
   // Enumeration type
@@ -512,7 +512,7 @@ begin
   // calculate the number of page(image) to need
   ZoomRate := GetZoomRate(PageSetupForm.PrintingZoom);
   ARect := ADiagramView.GetBoundingBox(ADiagramView.Canvas);
-  with ARect do NormalizeRect(Left, Top, Right, Bottom);
+  with ARect do GraphicClasses.NormalizeRect(Left, Top, Right, Bottom);
   PrintingNumX := 1;
   PrintingNumY := 1;
   case FSizeType of
@@ -790,7 +790,7 @@ begin
   ARect := ADiagramView.GetBoundingBox(ADiagramView.Canvas);
   PrintingNumX := 1;
   PrintingNumY := 1;
-  with ARect do NormalizeRect(Left, Top, Right, Bottom);
+  with ARect do GraphicClasses.NormalizeRect(Left, Top, Right, Bottom);
   case FSizeType of
     stDiagram: begin
       PrintingNumX := Trunc(ARect.Right / WidthVal) + 1;

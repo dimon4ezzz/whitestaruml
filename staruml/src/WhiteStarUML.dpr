@@ -141,9 +141,8 @@ uses
   PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas',
   ParserCore_TLB in 'ParserCore_TLB.pas';
 
-{$R *.TLB}
-
-{$R *.res}
+  {$R *.RES}
+  {$R *.TLB}
 
 const
   PERSONAL_EDITION = 'Personal';
@@ -155,6 +154,7 @@ var
 
 begin
   Application.Initialize;
+
 {$IFDEF RELEASE}
   // Show Splash Form.
   if (ComServer.StartMode = smStandalone) then
@@ -164,8 +164,9 @@ begin
     SplashForm.Repaint;
   end;
 {$ENDIF RELEASE}
+
   Application.Title := 'WhiteStarUML';
-  Application.HelpFile := 'StarUML.chm';
+  Application.HelpFile := '..\..\Docs\chm\WhiteStarUML.chm';
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TAboutForm, AboutForm);
   Application.CreateForm(TStereotypeSelectorForm, StereotypeSelectorForm);

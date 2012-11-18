@@ -90,8 +90,9 @@ unit UMLViews;
 interface
 
 uses
-  BasicClasses, GraphicClasses, Core, ExtCore, ViewCore, UMLModels,
-  Classes, Types, Windows, Graphics;
+  Classes, Types, Windows, SysUtils, Graphics,
+  BasicClasses, GraphicClasses, Core, ExtCore, ViewCore, UMLModels;
+
 
 const
   // Compartment Margin(Use this in CompartmentView)
@@ -1961,7 +1962,7 @@ type
 implementation
 
 uses
-  Math, SysUtils, Dialogs, JvStrings;
+  Math, Dialogs, JvStrings;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Procedures and Functions
@@ -10032,7 +10033,7 @@ begin
     Result := CP[Idx];
   end
   else begin
-    NormalizeRect(C.X, C.Y, P.X, P.Y);
+    GraphicClasses.NormalizeRect(C.X, C.Y, P.X, P.Y);
     I := -1;
     repeat
       Inc(I);
@@ -10773,7 +10774,7 @@ begin
   Y1 := FPoints.Points[0].Y;
   X2 := FPoints.Points[1].X;
   Y2 := FPoints.Points[1].Y;
-  NormalizeRect(X1, Y1, X2, Y2);
+  GraphicClasses.NormalizeRect(X1, Y1, X2, Y2);
   Left := X1;
   Top := Y1;
   Right := X2;
@@ -12139,7 +12140,7 @@ begin
     else ARect := ADiagramView.GetBoundingBox(ADiagramView.Canvas);
 
     with ARect do begin
-      NormalizeRect(Left, Top, Right, Bottom);
+      GraphicClasses.NormalizeRect(Left, Top, Right, Bottom);
       ARect := Rect(Left - 20, ARect.Top - 20, ARect.Right + 20, ARect.Bottom + 20);
       AMetafile.Width := Right - Left;
       AMetafile.Height := Bottom - Top;
@@ -12187,7 +12188,7 @@ begin
     else ARect := ADiagramView.GetBoundingBox(ADiagramView.Canvas);
 
     with ARect do begin
-      NormalizeRect(Left, Top, Right, Bottom);
+      GraphicClasses.NormalizeRect(Left, Top, Right, Bottom);
       ARect := Rect(Left - 20, ARect.Top - 20, ARect.Right + 20, ARect.Bottom + 20);
       ABitmap.Width := Right - Left;
       ABitmap.Height := Bottom - Top;
