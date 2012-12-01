@@ -1017,6 +1017,7 @@ begin
       varLongWord: R := true;
       varInt64: R := true;
       varString: R := true;
+      varUString: R := true;
       varBoolean : R := true;
       else  R := false;
     end;
@@ -1033,6 +1034,7 @@ begin
         varLongWord: R := true;
         varInt64: R := true;
         varString: R := true;
+        varUString: R := true;
         varBoolean : R := true;
         else  R := false;
       end;
@@ -1917,7 +1919,7 @@ begin
     if Exprs[0].IsValueType = Exprs[1].IsValueType then
       if Exprs[0].IsValueType then begin
         if SimilarType(Exprs[0].GetValue, Exprs[1].GetValue) then
-          if VarType(Exprs[0].GetValue) <> varString then
+         if not VarIsStr(Exprs[0].GetValue) then
             ResultValue := (VarCompareValue(Exprs[0].GetValue, Exprs[1].GetValue) = vrEqual)
           else
             ResultValue := (VarCompareValue(Exprs[1].GetValue, Exprs[0].GetValue) = vrEqual)
@@ -1944,7 +1946,7 @@ begin
     if Exprs[0].IsValueType = Exprs[1].IsValueType then
       if Exprs[0].IsValueType then begin
         if SimilarType(Exprs[0].GetValue, Exprs[1].GetValue) then
-          if VarType(Exprs[0].GetValue) <> varString then
+          if not VarIsStr(Exprs[0].GetValue) then
             ResultValue := not (VarCompareValue(Exprs[0].GetValue, Exprs[1].GetValue) = vrEqual)
           else
             ResultValue := not (VarCompareValue(Exprs[1].GetValue, Exprs[0].GetValue) = vrEqual)
@@ -1970,7 +1972,7 @@ begin
     ResultValue := false;
     if Exprs[0].IsValueType and Exprs[1].IsValueType then
       if SimilarType(Exprs[0].GetValue, Exprs[1].GetValue) then
-        if VarType(Exprs[0].GetValue) <> varString then
+        if not VarIsStr(Exprs[0].GetValue) then
           ResultValue := (VarCompareValue(Exprs[0].GetValue, Exprs[1].GetValue) = vrGreaterThan)
         else
           ResultValue := (VarCompareValue(Exprs[1].GetValue, Exprs[0].GetValue) = vrGreaterThan)
@@ -1994,7 +1996,7 @@ begin
     ResultValue := false;
     if Exprs[0].IsValueType and Exprs[1].IsValueType then begin
       if SimilarType(Exprs[0].GetValue, Exprs[1].GetValue) then begin
-        if VarType(Exprs[0].GetValue) <> varString then
+        if not VarIsStr(Exprs[0].GetValue) then
           V := VarCompareValue(Exprs[0].GetValue, Exprs[1].GetValue)
         else
           V := VarCompareValue(Exprs[1].GetValue, Exprs[0].GetValue);
@@ -2019,7 +2021,7 @@ begin
     ResultValue := false;
     if Exprs[0].IsValueType and Exprs[1].IsValueType then begin
       if SimilarType(Exprs[0].GetValue, Exprs[1].GetValue) then
-        if VarType(Exprs[0].GetValue) <> varString then
+        if not VarIsStr(Exprs[0].GetValue) then
           ResultValue := (VarCompareValue(Exprs[0].GetValue, Exprs[1].GetValue) = vrLessThan)
         else
           ResultValue := (VarCompareValue(Exprs[0].GetValue, Exprs[1].GetValue) = vrLessThan)
@@ -2045,7 +2047,7 @@ begin
     ResultValue := false;
     if Exprs[0].IsValueType and Exprs[1].IsValueType then begin
       if SimilarType(Exprs[0].GetValue, Exprs[1].GetValue) then begin
-        if VarType(Exprs[0].GetValue) <> varString then
+        if not VarIsStr(Exprs[0].GetValue) then
           V := VarCompareValue(Exprs[0].GetValue, Exprs[1].GetValue)
         else
           V := VarCompareValue(Exprs[1].GetValue, Exprs[0].GetValue);
