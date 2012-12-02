@@ -4,12 +4,14 @@
 ! Character Sets
 ! -------------------------------------------------
 
-{String Chars} = {All Letters} +  {Number} + [ '_' ',' ';' '/' ':' '.' '#' '&' '@' '$' '%' ]
-{String Chars No Spaces} = {String Chars}  - {All Space}
+{String Chars} = {All Letters} +  {Number} + {Euro Sign} + [ '_' ',' ';' '/' '\' ':' '.' '&' '@' '$' '%' '+' '#' '-' '~' '"' '`' '' ] 
+{Boundary String Chars} = {String Chars} - {All Space} - [ '+' '#' '-' '~' ]
+{Inner String Chars} = {String Chars} - {All Space}  
+
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
-id = {String Chars No Spaces}+ ( {All Space} {String Chars No Spaces}+ )* ( '<' {String Chars}* '>' | '[' {String Chars}* ']' )?  
+id = {Boundary String Chars}+ ( {All Space} {Inner String Chars}+ )* ( '<' {String Chars}* '>' | '[' {String Chars}* ']' )?  
 
 ! -------------------------------------------------
 ! Rules
