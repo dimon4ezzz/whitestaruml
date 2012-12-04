@@ -11,7 +11,7 @@
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
-id = {Boundary String Chars}+ ( {All Space} {Inner String Chars}+ )* ( '<' {String Chars}* '>' | '[' {String Chars}* ']' )?  
+id = {Boundary String Chars}+ ( {All Space} {Inner String Chars}+ )* ( '<' {String Chars}* '>' | '[' {String Chars}* ']'  | '(' {String Chars}* ')' )?  
 
 ! -------------------------------------------------
 ! Rules
