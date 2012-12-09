@@ -196,6 +196,9 @@ type
       var ARect: TRect);
     procedure ExecutionPagePaintPage(Sender: TObject; ACanvas: TCanvas;
       var ARect: TRect);
+    procedure TasksGridEnter(Sender: TObject);
+    procedure TasksGridExit(Sender: TObject);
+    procedure TasksGridSelectCell(Sender: TObject; ACol, ARow: Integer);
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -1303,6 +1306,21 @@ end;
 procedure TPieForm.TasksGridDblClick(Sender: TObject);
 begin
   ShowTaskProperties;
+end;
+
+procedure TPieForm.TasksGridEnter(Sender: TObject);
+begin
+  TasksGrid.Refresh;
+end;
+
+procedure TPieForm.TasksGridExit(Sender: TObject);
+begin
+  TasksGrid.Refresh;
+end;
+
+procedure TPieForm.TasksGridSelectCell(Sender: TObject; ACol, ARow: Integer);
+begin
+  TasksGrid.Refresh;
 end;
 
 procedure TPieForm.TemplateSelectionPagePaintPage(Sender: TObject;

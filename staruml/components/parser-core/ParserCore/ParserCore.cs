@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 // Registration for 32 bit Deplhi access
-//c:\windows\Microsoft.NET\Framework\v2.0.50727\regasm ParserCore.dll /tlb:ParserCore.tlb
+//c:\windows\Microsoft.NET\Framework\v2.0.50727\regasm /codebase ParserCore.dll /tlb:ParserCore.tlb
 
 namespace ParserCore
 {

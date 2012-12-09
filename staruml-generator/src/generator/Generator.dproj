@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{22D746AE-94D0-4F01-B1FA-AF8DD923FB25}</ProjectGuid>
 			<MainSource>Generator.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
@@ -37,6 +37,8 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_ExeOutput>C:\JS\Delphi\WhiteStarDevInstall\modules\staruml-generator</DCC_ExeOutput>
+			<DCC_DependencyCheckOutputName>..\..\..\..\WhiteStarDevInstall\modules\staruml-generator\Generator.dll</DCC_DependencyCheckOutputName>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>
