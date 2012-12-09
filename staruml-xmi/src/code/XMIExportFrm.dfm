@@ -156,7 +156,7 @@ object XMIExportForm: TXMIExportForm
   end
   object FileSaveDialog: TSaveDialog
     DefaultExt = 'xml'
-    Filter = 'XMI '#54028#51068'(*.xml;*.xmi)|*.xml;*.xmi|'#47784#46304' '#54028#51068' (*.*)|*.*'
+    Filter = 'XMI Files (*.xml;*.xmi)|*.xml;*.xmi|'#47784#46304' '#54028#51068' (*.*)|*.*'
     Left = 8
     Top = 240
   end
