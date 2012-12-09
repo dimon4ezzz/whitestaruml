@@ -571,7 +571,8 @@ begin
     if MCollection.Aggregate = makComposite then
       for J := 0 to Element.MOF_GetCollectionCount(MCollection.Name) - 1 do begin
         SubElem := Element.MOF_GetCollectionItem(MCollection.Name, J);
-        VisitStarUMLModels(SubElem, Proc);
+        if SubElem <> nil then
+          VisitStarUMLModels(SubElem, Proc);
       end;
   end;
 end;

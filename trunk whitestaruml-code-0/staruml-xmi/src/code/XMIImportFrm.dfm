@@ -199,7 +199,7 @@ object XMIImportForm: TXMIImportForm
     OnClick = FileOpenButtonClick
   end
   object OpenDialog: TOpenDialog
-    Filter = 'XMI '#54028#51068'(*.xml;*.xmi)|*.xml;*.xmi'
+    Filter = 'XMI Files (*.xml;*.xmi)|*.xml;*.xmi'
     Title = 'XMI '#54028#51068' '#49440#53469
     Left = 8
     Top = 304
