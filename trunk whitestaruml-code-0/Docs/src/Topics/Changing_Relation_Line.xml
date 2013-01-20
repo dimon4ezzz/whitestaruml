@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Changing Relationships and Line Styles</title>
+  <keywords>
+    <keyword translate="true">Line style</keyword>
+    <keyword translate="true">Oblique</keyword>
+    <keyword translate="true">Rectilinear</keyword>
+    <keyword translate="true">Relationship<keyword translate="true">Line color</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Changing Relationships and Line Styles</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">You can change the line style of relationships (associations, dependencies and generalization etc.) to keep your diagram clean. Sometimes a diagram may get crowded and changing and arranging the lines may help to avoid confusion.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">When you create a relationship, the line will have one segment and will appear to go straight from the center of one classifier to the other. To create a new segment, click on the relationship and drag the line. A line with multiple segments will have square-shaped tabs where two segments meet and on each endpoint of the relationship.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><image src="LineNewSegment.jpg" scale="100.00%" styleclass="Image Caption"><title translate="true">Create new segment</title><caption translate="true"><![CDATA[Drag to Create New Segment]]></caption></image></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To remove a segment, select the relationship and then drag the square-shaped tab to the point that makes the dashed line straight.</text></para>
+    <para styleclass="Normal"><image src="LineRemoveSegment.jpg" scale="100.00%" styleclass="Image Caption"><title translate="true">Remove Line Segment</title><caption translate="true"><![CDATA[Drag to Remove Line Segment]]></caption></image></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">You can show relationships in the following line styles:</text></para>
+    <list id="3" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="Emphasis" translate="true">Rectilinear</text><text styleclass="ListB" translate="true">, ine segments meet in perpendicular angles.</text></li>
+      <li styleclass="ListBLast"><text styleclass="Emphasis" translate="true">Oblique</text><text styleclass="ListBLast" translate="true">, line segments meet in any angle.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><image src="ch04_h85.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To change the line style from oblique to rectilinear</text></para>
+    <list id="4" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the diagram, select a relationship.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Format</text><text styleclass="List1" translate="true"> menu, point to </text><text styleclass="MenuCommand" translate="true">Line Style</text><text styleclass="List1" translate="true"> and click </text><text styleclass="MenuCommand" translate="true">Rectilinear</text><text styleclass="List1" translate="true">. </text><text styleclass="MenuCommand" translate="true">Rectilinear</text><text styleclass="Normal" translate="true"> will now be checked.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><anchor id="relationship_route" styleclass="Normal"><keywords><keyword translate="true">Route</keyword></keywords></anchor><text styleclass="Normal" translate="true">To change the route of the relationship, select the relationship and drag the square-shaped tab at the end points or between the line segments to a better place.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" translate="true">You can also change the relationship in the diagram. To change the relationship, drag the endpoint from one classifier to another classifier. The new classifier must be of a type that the can part in the changed relationship. In the image below, the relationship is changed from a relationship between Class1 and Class2 to a relationship between Class3 and Class2.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><image src="RelationshipChange.jpg" scale="100.00%" styleclass="Image Caption"><title translate="true">Relationship Change</title><caption translate="true"><![CDATA[Changing Relationship]]></caption></image></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To change the line color of a relationship</text></para>
+    <list id="5" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the diagram, select a relationship.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Format</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">Line Color.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Color</text><text styleclass="List1Last" translate="true"> dialog, select a color and click </text><text styleclass="MenuCommand" translate="true">OK.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:48px;"><image src="ch04_h81.jpg" scale="80.00%" width="178" height="265" styleclass="Image Caption"><title translate="true">Color Dialog</title><caption translate="true"><![CDATA[Color Dialog]]></caption></image></para>
+  </body>
+</topic>

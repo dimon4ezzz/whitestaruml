@@ -72,19 +72,70 @@
       <caption translate="true">Excluding Profiles</caption>
     </topicref>
   </topicref>
-  <topicref type="topic" id="412188139175178" build="ALL" modified="2012-11-06T20:42:56.828Z" icon="0" href="ch04">
+  <topicref type="topic" id="412188139175178" build="ALL" modified="2012-12-14T19:35:41.296Z" icon="0" href="Modeling">
     <caption translate="true">Modeling</caption>
-    <topicref type="topic" id="41219344272914" build="ALL" modified="2012-11-07T18:10:05.394Z" icon="0" href="Creating_Diagrams">
-      <caption translate="true">Creating Diagrams</caption>
+    <topicref type="topic" id="412604918723995" build="ALL" modified="2012-12-17T15:16:08.437Z" icon="0" href="Managing_Diagrams">
+      <caption translate="true">Managing Diagrams</caption>
+      <topicref type="topic" id="41219344272914" build="ALL" modified="2012-12-22T08:53:39.343Z" icon="0" href="Basic_Tasks_Diagrams">
+        <caption translate="true">Basic Tasks with Diagrams</caption>
+      </topicref>
+      <topicref type="topic" id="412606677698329" build="ALL" modified="2012-12-17T14:40:24.578Z" icon="0" href="Navigating_Diagrams">
+        <caption translate="true">Navigating Diagrams</caption>
+      </topicref>
+      <topicref type="topic" id="412608266900843" build="ALL" modified="2012-12-17T14:52:27.828Z" icon="0" href="Finding_Elements">
+        <caption translate="true">Finding Elements</caption>
+      </topicref>
+      <topicref type="topic" id="412605159415333" build="ALL" modified="2012-12-17T14:43:16.390Z" icon="0" href="Diagrams_as_Image_Files">
+        <caption translate="true">Diagrams as Image Files</caption>
+      </topicref>
+      <topicref type="topic" id="412607067733576" build="ALL" modified="2012-12-17T14:47:35.015Z" icon="0" href="Setting_the_Default_Diagram">
+        <caption translate="true">Setting the Default Diagram</caption>
+      </topicref>
     </topicref>
-    <topicref type="topic" id="412197847144243" build="ALL" modified="2012-11-06T20:44:59.296Z" icon="0" href="Editing_Elements_in_Diagrams">
-      <caption translate="true">Editing Elements in Diagrams</caption>
-    </topicref>
-    <topicref type="topic" id="412200162272420" build="ALL" modified="2012-11-06T20:46:52.218Z" icon="0" href="Editing_Elements_in_the_Model">
-      <caption translate="true">Editing Elements in the Model</caption>
-    </topicref>
-    <topicref type="topic" id="412199136901508" build="ALL" modified="2012-11-06T21:32:19.218Z" icon="0" href="Organizing_Elements_in_the_Mod">
-      <caption translate="true">Organizing Elements in the Model</caption>
+    <topicref type="topic" id="412197847144243" build="ALL" modified="2013-01-04T13:46:10.281Z" icon="0" href="Managing_Elements">
+      <caption translate="true">Managing Elements</caption>
+      <topicref type="topic" id="412200162272420" build="ALL" modified="2013-01-04T14:52:52.531Z" icon="0" href="Editing_Elements_in_the_Model">
+        <caption translate="true">Elements in Models</caption>
+        <topicref type="topic" id="412604812924359" build="ALL" modified="2013-01-05T08:33:06.843Z" icon="0" href="Changing_Properties">
+          <caption translate="true">Changing Properties</caption>
+        </topicref>
+        <topicref type="topic" id="412792683200385" build="ALL" modified="2013-01-05T08:27:54.937Z" icon="0" href="Documenting_Elements">
+          <caption translate="true">Documenting Elements</caption>
+        </topicref>
+        <topicref type="topic" id="412792960469201" build="ALL" modified="2013-01-05T08:28:13.531Z" icon="0" href="Adding_Attachments_to_Elements">
+          <caption translate="true">Adding Attachments to Elements</caption>
+        </topicref>
+        <topicref type="topic" id="412791870057835" build="ALL" modified="2013-01-05T08:31:00.828Z" icon="0" href="Editing_Constraints">
+          <caption translate="true">Editing Constraints</caption>
+        </topicref>
+        <topicref type="topic" id="41280017042367" build="ALL" modified="2013-01-05T08:32:06.500Z" icon="0" href="Editing_Tagged_Values">
+          <caption translate="true">Editing Tagged Values</caption>
+        </topicref>
+        <topicref type="topic" id="412199136901508" build="ALL" modified="2012-11-06T21:32:19.218Z" icon="0" href="Organizing_Elements_in_the_Mod">
+          <caption translate="true">Organizing Elements in the Model</caption>
+        </topicref>
+      </topicref>
+      <topicref type="topic" id="41260011054191" build="ALL" modified="2013-01-04T14:51:15.000Z" icon="0" href="Basic_Tasks_Elements">
+        <caption translate="true">Elements in Diagrams</caption>
+        <topicref type="topic" id="412604713807058" build="ALL" modified="2012-12-17T14:58:57.375Z" icon="0" href="Resizing_and_Moving_Elements">
+          <caption translate="true">Resizing and Moving Elements</caption>
+        </topicref>
+        <topicref type="topic" id="412606287550158" build="ALL" modified="2012-12-17T14:42:46.859Z" icon="0" href="Copy_and_Paste_Elements">
+          <caption translate="true">Copy and Paste Elements</caption>
+        </topicref>
+        <topicref type="topic" id="412605667838589" build="ALL" modified="2013-01-13T10:34:50.781Z" icon="0" href="Compartments_View_Elements">
+          <caption translate="true">Formatting View Elements Compartments</caption>
+        </topicref>
+        <topicref type="topic" id="412785831304452" build="ALL" modified="2013-01-13T10:38:30.078Z" icon="0" href="Appearance_View_Element">
+          <caption translate="true">Formatting View Element Appearance</caption>
+        </topicref>
+        <topicref type="topic" id="412604856709545" build="ALL" modified="2013-01-18T19:01:21.671Z" icon="0" href="Changing_Relation_Line">
+          <caption translate="true">Changing Relationships and Line Styles</caption>
+        </topicref>
+        <topicref type="topic" id="412605042821410" build="ALL" modified="2012-12-17T14:50:12.406Z" icon="0" href="Laying_Out_Elements_in_a_Diagr">
+          <caption translate="true">Laying Out Elements in a Diagram</caption>
+        </topicref>
+      </topicref>
     </topicref>
   </topicref>
   <topicref type="topic" id="412197089972053" build="ALL" modified="2012-11-06T21:49:00.343Z" icon="0" href="Working_with_Diagrams">
@@ -187,6 +238,9 @@
     </topicref>
     <topicref type="topic" id="412218302426697" build="ALL" modified="2012-11-08T19:32:39.218Z" icon="0" href="Quick_Dialogs">
       <caption translate="true">Quick Dialogs</caption>
+      <topicref type="topic" id="412584580387181" build="ALL" modified="2012-12-15T08:16:11.468Z" icon="0" href="Element_Creation_Shorthand">
+        <caption translate="true">Element Creation Shorthand</caption>
+      </topicref>
     </topicref>
   </topicref>
   <topicref type="topic" id="412187032328289" build="ALL" modified="2012-11-05T15:37:39.984Z" icon="0" href="Appendices">

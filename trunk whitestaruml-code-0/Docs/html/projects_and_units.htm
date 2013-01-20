@@ -4,7 +4,7 @@
 <head>
    <title>Basic Concepts &gt; Projects and Units</title>
    <meta name="generator" content="Help & Manual">
-   <meta name="keywords" content="Concept,Concept project,Concept unit,Project,Project concept,Unit,Unit concept">
+   <meta name="keywords" content="Concept,Concept project,Concept unit,Model,Model fragment,Package,Project,Project concept,Subsystem,Unit,Unit concept">
    <meta name="description" content="Projects and Units">
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -133,47 +133,22 @@ if (location.search.lastIndexOf("toc=0")<=0) {
 
 <div id="idcontent"><div id="innerdiv"> 
 <!--ZOOMRESTART-->
-<p><span style="font-weight: bold; color: #000080;">Project</span></p>
-<p><span style="font-size: 9pt;">A project is the basic element to organize your work in WhiteStarUml. A project contains one or more software models. It is the top-level package that always exists in any software model. In general, one project is saved in one file.</span></p>
-<p><span style="font-weight: bold; color: #000080;">Project Structure</span></p>
-<p><span style="font-size: 9pt;">A project contains and manages the following sub-elements.</span></p>
-<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 0px 0px;"><table cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
-<tr style="text-align:left;vertical-align:top;">
-<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Project Sub-Element</span></p>
-</td>
-<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
-</td>
-</tr>
-<tr style="text-align:left;vertical-align:top;">
-<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Model</span></p>
-</td>
-<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Element that manages one software model.</span></p>
-</td>
-</tr>
-<tr style="text-align:left;vertical-align:top;">
-<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Subsystem</span></p>
-</td>
-<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Element that manages models that express one subsystem.</span></p>
-</td>
-</tr>
-<tr style="text-align:left;vertical-align:top;">
-<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Package</span></p>
-</td>
-<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">The most general element for managing elements.</span></p>
-</td>
-</tr>
-</table>
-</div>
-<p><span style="font-weight: bold; color: #000080;">Project File</span></p>
-<p><span style="font-size: 9pt;">Project files are saved in the XML format with the extension name “.UML”. All models, views and diagrams created in WhiteStarUml are saved in one project file. A project may also be divided up and saved in multiple units. A project file contains the following information.</span></p>
-<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">UML profiles used in the project</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Unit files referenced by the project</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Information for all models contained in the project</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Information for all diagrams and views contained in the project</span></td></tr></table></div><p><span style="font-weight: bold; color: #000080;">Units</span></p>
-<p><span style="font-size: 9pt;">While a project is generally saved in one file, there are cases where one project needs to be saved in many smaller files so that a number of developers can work on the project together. In this case, the project can be managed as multiple units. A unit can have a hierarchical structure; it may contain many sub-units under it. Units are saved as .UML files and are referenced by project files (.UML) or other unit files (.UNT).</span></p>
-<p><span style="font-weight: bold; color: #000080;">Unit Composition</span></p>
-<p><span style="font-size: 9pt;">Only package, subsystem and model elements can constitute one unit. All elements under these package type elements are saved in the respective unit file (.UNT).</span></p>
-<p><span style="font-weight: bold; color: #000080;">Unit Hierarchical Structure</span></p>
-<p><span style="font-size: 9pt;">Just as a project can manage many units under it, a unit also can manage many sub-units. Since a parent unit has reference to its child units, all units have a hierarchical structure.</span></p>
-<p><span style="font-weight: bold; color: #000080;">Model Fragments</span></p>
-<p><span style="font-size: 9pt;">A model fragment is a part of a project saved as a separate file. Only model, subsystem or package items can constitute model fragments. Model fragment files are saved with the extension name “.MFG”. Model fragment files can be easily included in any project at any time. Model fragments are essentially different from units in that once included in a project, they merge completely with the rest of the project.</span></p>
+<p class="p_SubHead"><span class="f_SubHead">Project</span></p>
+<p>A project is the basic element to organize your work in WhiteStarUml. Your project contains one or more models, subsystems or packages, each of which can contain subsystems and packages. The project is a representation of the system you are developing and contains all the artifacts used to document that system.</p>
+<p>A model is a representation of structure of your system. The most direct way to show the model is a class diagram. However, a class diagram is not <span style="font-style: italic;">the</span> model. Nor should one class diagram show the whole model of your system.</p>
+<p>A subsystem is a larger, more or less independent part of the system. In general a subsystem is a self-contained set of functionality, but larger than a simple component.</p>
+<p>A package is a way to group related UML elements. The package provides a boundary for naming the elements. As such, the package provides a namespace. Package names are often used as a prefix for the elements it contains.</p>
+<p>In general, one project is saved in one project file.</p>
+<p>Project files are saved in the XML format with the extension name “.UML”. All models, views and diagrams created in WhiteStarUml are saved in one project file. A project file contains the following information.</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">UML profiles used in the project</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">Unit files referenced by the project</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">The models, subsystems and packages contained in the project</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListBLast">Diagrams contained in the project</span></td></tr></table></div><p>A project may be divided into and saved in multiple units.</p>
+<p class="p_SubHead"><span class="f_SubHead">Units</span></p>
+<p>While a project is generally saved in one file, there are cases where one project needs to be separated into smaller files so that multiple developers can work on the project simultaneously. In this case, the project can be managed as multiple units. A unit can have a hierarchical structure; it may contain many sub-units under it. Units are saved in XML format, with the extension ".UNT".</p>
+<p>A unit represents one model, subsystem or package. All elements under the model, subsystem or package are saved in the respective unit file.</p>
+<p>A unit file is referenced by project files or other unit files.</p>
+<p>Just as a project can reference many units, a unit also can reference many sub-units. Given this parent-child relation, you can build a hierarchical unit structure.</p>
+<p class="p_SubHead"><span class="f_SubHead">Model Fragments</span></p>
+<p>A model fragment is a part of a project saved as a separate file. Only model, subsystem or package items can be saved as model fragments. Model fragments are saved in XML format, with the extension “.MFG”.</p>
+<p>Model fragment files allow the easy reuse of part of a model. Model fragments are essentially different from units in that once included in a project, they merge completely with the rest of the project.</p>
 
 <!--ZOOMSTOP-->
 </div></div>

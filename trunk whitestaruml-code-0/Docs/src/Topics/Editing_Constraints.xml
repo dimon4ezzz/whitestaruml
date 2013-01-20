@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Editing Constraints</title>
+  <keywords>
+    <keyword translate="true">Constraints</keyword>
+    <keyword translate="true">Edit constraints</keyword>
+    <keyword translate="true">OCL</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Editing Constraints</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Constraints are rules applied to an element. You can create multiple constraints for an element. You use either informal language, or you use a formal language such as OCL (Object Constraint Language) defined in the UML.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To add a constraint to a model element</text></para>
+    <list id="14" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Model Explorer</text><text styleclass="List1" translate="true"> or in the diagram, select an element.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Model</text><text styleclass="List1" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Constraints</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Constraint Editor</text><text styleclass="List1" translate="true">, click the </text><text styleclass="MenuCommand" translate="true">Add</text><text styleclass="List1" translate="true">.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:48px;"><image src="ch04_h78.jpg" scale="80.00%" width="412" height="227" styleclass="Image Caption"><title translate="true">Constraints Dialog</title><caption translate="true"><![CDATA[Constraints Editor]]></caption></image></para>
+    <list id="14" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">Enter the name and the body of the constraint.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:48px;"><image src="ch04_h79.jpg" scale="80.00%" width="361" height="222" styleclass="Image Caption"><title translate="true">Constraint Dialog</title><caption translate="true"><![CDATA[Constraint Dialog]]></caption></image></para>
+    <list id="14" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1Last" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1Last"><text styleclass="List1Last" style="font-family:Verdana; font-size:10pt; color:#000000;" translate="true">When finished, click </text><text styleclass="MenuCommand" translate="true">OK</text><text styleclass="List1Last" style="font-family:Verdana; font-size:10pt; color:#000000;" translate="true">.</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To edit a constraint</text></para>
+    <list id="15" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Model Explorer</text><text styleclass="List1" translate="true"> or the diagram, select an element.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Model</text><text styleclass="List1" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Constraints</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Constraints Editor</text><text styleclass="List1" translate="true">, select the constraint to edit and click </text><text styleclass="MenuCommand" translate="true">Edit</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Constraint</text><text styleclass="List1" translate="true"> dialog, edit the name and body of the constraint.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">When finished, click </text><text styleclass="MenuCommand" translate="true">OK</text><text styleclass="List1" translate="true">.</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To remove a constraint</text></para>
+    <list id="16" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Model Explorer</text><text styleclass="List1" translate="true"> or the diagram, select an element.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Model</text><text styleclass="List1" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Constraints</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Constraints Editor</text><text styleclass="List1" translate="true">, select the constraint to delete and click </text><text styleclass="MenuCommand" translate="true">Delete</text><text styleclass="List1" translate="true">.</text></li>
+    </list>
+  </body>
+</topic>

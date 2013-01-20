@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Editing Tagged Values</title>
+  <keywords>
+    <keyword translate="true">Tagged values</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Editing Tagged Values</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Besides the basic properties, elements can have tagged values. The UML profiles that are loaded in the project determine which tagged values are available. Not all tagged values can be modified, some maybe used for integrations or reversed engineering.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To show tagged values in the diagram, see </text><link displaytype="text" defaultstyle="true" type="topiclink" href="Compartments_View_Elements" anchor="tagged_values" styleclass="Normal" translate="true">Showing Properties</link><text styleclass="Normal" translate="true">.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To edit a tagged value</text></para>
+    <list id="2" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Model Explorer</text><text styleclass="List1" translate="true"> or the diagram, select an element.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Model</text><text styleclass="List1" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Tagged Values</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Tagged Value Editor</text><text styleclass="List1" translate="true"> dialog, select the tab that corresponds to the profile that contains the tagged value to edit.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:48px;"><image src="ch04_h80.jpg" scale="80.00%" width="332" height="332" styleclass="Image Caption"><title translate="true">Tagged Value Editor</title><caption translate="true"><![CDATA[Tagged Value Editor]]></caption></image></para>
+    <list id="2" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="Normal"><text styleclass="Normal" translate="true">From the </text><text styleclass="MenuCommand" translate="true">Tag Definition Set</text><text styleclass="Normal" translate="true"> select the set that contains the tagged value.</text></li>
+      <li styleclass="Normal"><text styleclass="Normal" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Tagged Values</text><text styleclass="Normal" translate="true"> list, select a value. If the value can be edited the editor for the value will be enabled.</text></li>
+      <li styleclass="Normal"><text styleclass="Normal" translate="true">When finished, press </text><text styleclass="MenuCommand" translate="true">Tab</text><text styleclass="Normal" translate="true"> to move to the next value.</text></li>
+    </list>
+    <para styleclass="Emphasis"><image src="note.bmp" scale="100.00%" styleclass="Notes"></image><text styleclass="Emphasis" translate="true">Notes:</text></para>
+    <list id="3" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">All elements, including relationships, attributes, operations and literals, have tagged values.</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">To edit the tagged values of elements that are edited through a collection editor, you first select the element in the collection editor. For example, to edit the tagged value of attributes, open the attributes collection editor, select an attribute and then on the </text><text styleclass="MenuCommand" translate="true">Model</text><text styleclass="ListB" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Tagged Values</text><text styleclass="ListB" translate="true">.</text></li>
+    </list>
+  </body>
+</topic>

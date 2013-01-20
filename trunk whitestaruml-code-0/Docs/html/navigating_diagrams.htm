@@ -1,0 +1,163 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Modeling &gt; Managing Diagrams &gt; Navigating Diagrams</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Diagram navigation,Navigation,Toolbar,Toolbar view,Zoom">
+   <meta name="description" content="Navigating Diagrams">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?navigating_diagrams.htm"; }
+  else { parent.quicksync('a5.1.2'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="modeling.htm">Modeling</a> &gt; <a href="managing_diagrams.htm">Managing Diagrams</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Navigating Diagrams</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="basic_tasks_diagrams.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="managing_diagrams.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="finding_elements.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p><span style="font-size: 9pt;">When a diagram contains a lot of information, the diagram may become very large. Only a limited section of the diagram may be shown in the diagram area or you may not be able to see the details of the diagram. To find a specific part of you model quickly various ways of navigating the diagram are available.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">First of all you can move the diagram around with the horizontal and vertical scrollbars. If your mouse has one, you can use the mouse wheel to scroll up and down. Hold down the Ctrl key and then click and hold in the diagram, then move the mouse to scroll horizontal and vertical through the diagram.</span></p>
+<p>The <span class="f_MenuCommand">Overview</span> window contains the entire diagram in a small dialog. To open the <span class="f_MenuCommand">Overview</span> window, click and hold the Overview icon (<img src="ch04_h1.jpg" width="15" height="15" border="0" alt="ch04_h1">) in the lower right-hand corner of the diagram area. While holding the mouse button down, move the mouse around to move the screen to a specific part of the diagram.</p>
+<p class="p_ImageCaption"><img src="ch04_h2.jpg" width="206" height="133" border="0" alt="ch04_h2"></p>
+<p>To gain more overview of your diagram, you can zoom out. To see more detail or larger text, you can zoom in. The standard zoom level is 100%. At 100% zoom, the text is usually readable. If you increase the zoom level, the text will become bigger, but you will have less overview on the diagram.</p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">To zoom in, on the </span><span class="f_MenuCommand">View</span><span style="font-size: 9pt;"> menu point at </span><span class="f_MenuCommand">Zoom</span><span style="font-size: 9pt;"> and then click </span><span class="f_MenuCommand">Zoom In</span><span style="font-size: 9pt;">. This will increase the zoom level by five percent.</span></p>
+<p><span style="font-size: 9pt;">To zoom out, on the </span><span class="f_MenuCommand">View</span><span style="font-size: 9pt;"> menu point at </span><span class="f_MenuCommand">Zoom</span><span style="font-size: 9pt;"> and then click </span><span class="f_MenuCommand">Zoom Out</span><span style="font-size: 9pt;">. This will decrease the zoom level by five percent.</span></p>
+<p>To zoom to a specific zoom level, on the View menu point at Zoom and then click the zoom percentage (50%, 75%, 100%, 125%, 150%, 175%, and 200%.)</p>
+<p>To gain an overview of the complete diagram, on the View menu point at Zoom and then click Fit to Window. The zoom level will depend on the size of you diagram and the size of the diagram area, however the zoom level will no go below 100%.</p>
+<p>Use the <span class="f_MenuCommand">View</span> toolbar to navigate. To open the view toolbar, on the <span class="f_MenuCommand">View</span> menu point at <span class="f_MenuCommand">Toolbars</span> and then click <span class="f_MenuCommand">View</span>. The <span class="f_MenuCommand">View</span> toolbar is available when the View command is checked.</p>
+<div><div style="width:323px;padding:0px"><img src="navigationviewtoolbar.zoom80.png" width="323" height="212" border="0" alt="Navigation with the View toolbar" title="View Toolbar"><p style="text-align:center"><span class="f_ImageCaption">Navigation with the View toolbar</span></p></div></div>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

@@ -21,17 +21,27 @@
         <style-set media="screen" type="para">white-space:nowrap; page-break-inside:avoid;</style-set>
         <style-set media="screen" type="text">font-family:'Courier New'; font-size:8pt;</style-set>
       </styleclass>
-      <styleclass name="Normal" shortcut="0">
-        <style-set media="screen" type="para">margin-top:19px;</style-set>
+      <styleclass name="MenuCommand" shortcut="24643">
+        <style-set media="screen" type="text">font-family:Verdana; font-size:10pt; font-weight:bold; font-style:normal; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;</style-set>
+      </styleclass>
+      <styleclass name="Normal" shortcut="24664">
+        <style-set media="screen" type="para">margin-top:10px; margin-bottom:10px;</style-set>
         <style-set media="screen" type="text">font-family:Verdana; font-size:10pt;</style-set>
       </styleclass>
       <styleclass name="Comment" parentclass="Normal" shortcut="0"/>
+      <styleclass name="Emphasis" parentclass="Normal" shortcut="0">
+        <style-set media="screen" type="text">font-family:Verdana; font-size:10pt; font-weight:bold; font-style:normal; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;</style-set>
+      </styleclass>
       <styleclass name="Heading1" parentclass="Normal" shortcut="0">
         <style-set media="screen" type="para">border-color:#000080; border-style:single; border-width:1px; border-top:none; border-right:none; border-left:none;</style-set>
         <style-set media="screen" type="text">font-size:16pt; font-weight:bold; color:#000080;</style-set>
       </styleclass>
       <styleclass name="Heading2" parentclass="Heading1" shortcut="0">
         <style-set media="screen" type="text">font-size:12pt;</style-set>
+      </styleclass>
+      <styleclass name="Heading3" parentclass="Heading2" shortcut="0">
+        <style-set media="screen" type="para">border-top:none; border-right:none; border-bottom:none; border-left:none;</style-set>
+        <style-set media="screen" type="text">font-size:11pt; color:#000000;</style-set>
       </styleclass>
       <styleclass name="Image Caption" parentclass="Normal" shortcut="0">
         <style-set media="screen" type="text">font-size:8pt; font-weight:bold;</style-set>
@@ -46,22 +56,33 @@
         <style-set media="screen" type="para">margin-top:5px;</style-set>
       </styleclass>
       <styleclass name="ListB" parentclass="Normal" shortcut="0">
-        <style-set media="screen" type="para">text-indent:-13px; margin-top:10px; margin-left:35px;</style-set>
+        <style-set media="screen" type="para">text-indent:-13px; margin-top:5px; margin-bottom:5px; margin-left:35px;</style-set>
       </styleclass>
       <styleclass name="ListBLast" parentclass="ListB" shortcut="0">
-        <style-set media="screen" type="para">margin-bottom:5px;</style-set>
+        <style-set media="screen" type="para">margin-bottom:10px;</style-set>
       </styleclass>
       <styleclass name="Notes" parentclass="Normal" shortcut="0"/>
       <styleclass name="SubHead" parentclass="Normal" shortcut="0">
         <style-set media="screen" type="text">font-weight:bold; color:#000080;</style-set>
       </styleclass>
+      <styleclass name="Table Content" parentclass="Normal" shortcut="0">
+        <style-set media="screen" type="para">margin-top:0px; margin-bottom:0px;</style-set>
+        <style-set media="screen" type="text">font-size:9pt;</style-set>
+      </styleclass>
+      <styleclass name="Table Heading" parentclass="Table Content" shortcut="0">
+        <style-set media="screen" type="text">font-weight:bold;</style-set>
+      </styleclass>
+      <styleclass name="TableContent" parentclass="Normal" shortcut="0">
+        <style-set media="screen" type="para">margin-top:0px; border:none;</style-set>
+        <style-set media="screen" type="text">font-size:9pt;</style-set>
+      </styleclass>
       <tablestyleclass name="Default">
-        <style-set media="screen">width:auto; cell-padding:0px; cell-spacing:0px; page-break-inside:auto; border-width:0px; border-spacing:0px; cell-border-width:0px; border-style:none; background-color:none; head-row-background-color:none; alt-row-background-color:none;</style-set>
+        <style-set media="screen">width:auto; cell-padding:2px; cell-spacing:0px; page-break-inside:avoid; border-width:1px; border-spacing:0px; border-collapse:collapse; cell-border-width:1px; border-color:#c0c0c0; border-style:solid; background-color:#ffffff; head-row-background-color:#c0c0c0; alt-row-background-color:none;</style-set>
       </tablestyleclass>
     </styleclasses>
     <config-group name="project">
       <config-value name="title" translate="true">WhiteStarUML</config-value>
-      <config-value name="author" translate="true">Janusz Pilewski, Albert Zuurbier</config-value>
+      <config-value name="author" translate="true">Janusz Szpilewski, Albert Zuurbier</config-value>
       <config-value name="copyright" translate="true">© &lt;%YEAR%&gt; &lt;%AUTHOR%&gt;</config-value>
       <config-value name="versionmajor">1</config-value>
       <config-value name="versionminor">0</config-value>
@@ -95,7 +116,7 @@
       <config-value name="make5status">*</config-value>
     </config-group>
     <config-group name="user">
-      <config-value name="project.lastexport">4</config-value>
+      <config-value name="project.lastexport">0</config-value>
       <config-value name="report.type">3</config-value>
       <config-value name="report.sort">0</config-value>
       <config-value name="report.include">ALL</config-value>

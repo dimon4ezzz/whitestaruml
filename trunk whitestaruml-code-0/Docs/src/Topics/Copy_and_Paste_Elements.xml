@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Copy and Paste Elements</title>
+  <keywords>
+    <keyword translate="true">Copy and Paste</keyword>
+    <keyword translate="true">View elements<keyword translate="true">copy and paste</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Copy and Paste Elements</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">You can copy and paste view elements within the same diagram or to a different diagram. Copied view elements can be pasted in diagrams only; they cannot be pasted to model elements.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">If you copy and past a view element within the same diagram, then the pasted view element will be related to the same model element as the original view element. This means that if you change the attributes of the model element, the changes will be reflected in both the original view element and in the copy.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To copy and past a view element</text></para>
+    <list id="1" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the diagram select a view element</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Edit</text><text styleclass="List1" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Copy</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><link displaytype="text" defaultstyle="true" type="topiclink" href="Basic_Tasks_Diagrams" anchor="open_diagram" styleclass="List1" translate="true">Open or activate a diagram</link><text styleclass="List1" translate="true"> where you want to paste the view element.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Edit</text><text styleclass="List1Last" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Paste</text><text styleclass="List1Last" translate="true">.</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">If you copy a view element to another diagram of the same type, then the copy will be the same type of element. Depending on the type of diagram and the model element behind the original, the copy may have a different notation.You can copy view elements to diagrams of another type. The following table describes the possibilites of copy and pasting between diagram types.</text></para>
+    <para styleclass="Table Content"><table styleclass="Default" rowcount="10" colcount="2">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:198px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Diagram Type</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:448px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Copy and Paste</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:198px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Class Diagram</text></para>
+        </td>
+        <td rowspan="5" style="vertical-align:middle; width:448px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Elements can be copied or pasted freely between Class, UseCase, Component, CompositeStructure, and Deployment diagrams.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:198px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">UseCase Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:198px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Component Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:198px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">CompositeStructure Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:198px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Deployment Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:198px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Statechart Diagram</text></para>
+        </td>
+        <td style="width:448px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Elements can be copied between diagrams of the same StateMachine</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:198px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Activity Diagram</text></para>
+        </td>
+        <td style="width:448px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Elements can be copied between diagrams of the same ActivityGraph</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:198px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Sequence Diagrams</text></para>
+        </td>
+        <td rowspan="2" style="vertical-align:middle; width:448px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Elements cannot be copied or pasted</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:198px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Collaboration Diagrams</text></para>
+        </td>
+      </tr>
+    </table></para>
+  </body>
+</topic>

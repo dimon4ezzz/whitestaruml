@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Managing Diagrams</title>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Managing Diagrams</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Managing diagrams works the same for all diagram types. As with many other tasks in </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> you can perform these basic tasks in different ways. You can find instruction on specific diagrams in the chapter </text><link displaytype="text" defaultstyle="true" type="topiclink" href="Working_with_Diagrams" styleclass="Normal" translate="true">Working with Diagrams</link><text styleclass="Normal" translate="true">.</text></para>
+  </body>
+</topic>

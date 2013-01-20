@@ -1,0 +1,161 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Modeling &gt; Managing Elements &gt; Elements in Diagrams &gt; Formatting View Element Appearance</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Fill color,Font,Formatting,Line style,Text style">
+   <meta name="description" content="Formatting View Element Appearance">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?appearance_view_element.htm"; }
+  else { parent.quicksync('a5.2.2.4'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="modeling.htm">Modeling</a> &gt; <a href="managing_elements.htm">Managing Elements</a> &gt; <a href="basic_tasks_elements.htm">Elements in Diagrams</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Formatting View Element Appearance</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="compartments_view_elements.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="basic_tasks_elements.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="changing_relation_line.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p>The color used in UML diagrams can convey extra information. For example, Peter Coad, Eric Lefebvre, and Jeff De Luca in their book Java Modeling In Color With UML: Enterprise Components and Process proposed to use color to identify archetypes. They defined four archetypes that roughly model similar things across domains. Each of the archetypes has a specific color.</p>
+<p>Other common use of color in UML diagrams are to identify the participants in a design pattern, or to identify the classes from different packages, or to simply emphasize a few classes in an illustration used in documentation.</p>
+<p>In this topic the appearance of individual elements and relationships is discussed. To change the default appearance of new elements in diagrams, see <a href="general_view_configuration.htm">General View Configuration</a>.</p>
+<p>To change the line color of a classifier</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span class="f_List1">In the diagram, select an element.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span class="f_List1">On the </span><span class="f_MenuCommand">Format</span><span class="f_List1"> menu, click </span><span class="f_MenuCommand">Line Color.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span class="f_List1Last">In the </span><span class="f_MenuCommand">Color</span><span class="f_List1Last"> dialog, select a color and click </span><span class="f_MenuCommand">OK.</span></td></tr></table></div><div class="p_ImageCaption" style="margin: 10px 0px 10px 48px;"><div style="width:178px;padding:0px"><img src="ch04_h81.zoom80.png" width="178" height="265" border="0" alt="Color Dialog" title="Color Dialog"><p style="text-align:center"><span class="f_ImageCaption">Color Dialog</span></p></div></div>
+<p>To change the fill color of a classifier</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span class="f_List1">In the diagram, select an element.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span class="f_List1">On the </span><span class="f_MenuCommand">Format</span><span class="f_List1"> menu, click </span><span class="f_MenuCommand">Fill Color.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span class="f_List1Last">In the </span><span class="f_MenuCommand">Color</span><span class="f_List1Last"> dialog, select a color and click </span><span class="f_MenuCommand">OK.</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">To change the font style and color</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span class="f_List1">In the diagram, select an element.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span class="f_List1">On the </span><span class="f_MenuCommand">Format</span><span class="f_List1"> menu, click </span><span class="f_MenuCommand">Font</span><span class="f_List1">.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span class="f_List1">In the </span><span class="f_MenuCommand">Font</span><span class="f_List1"> dialog, select style and color for the element and click </span><span class="f_MenuCommand">OK</span><span class="f_List1">.</span></td></tr></table></div><div class="p_ImageCaption" style="margin: 10px 0px 10px 48px;"><div style="width:376px;padding:0px"><img src="ch04_h83.zoom80.png" width="376" height="209" border="0" alt="Font Dialog" title="Font Dialog"><p style="text-align:center"><span class="f_ImageCaption">Font Dialog</span></p></div></div>
+<p style="margin: 19px 0px 10px 0px;"><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">The font style for some view elements cannot be changed because some the font styles are defined by the UML conventions.</span></td></tr></table></div>
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

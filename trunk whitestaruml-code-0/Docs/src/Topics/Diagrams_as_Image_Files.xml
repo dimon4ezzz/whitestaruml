@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Diagrams as Image Files</title>
+  <keywords>
+    <keyword translate="true">Clipboard</keyword>
+    <keyword translate="true">Copy and Paste</keyword>
+    <keyword translate="true">Diagrams<keyword translate="true">as image files</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Diagrams as Image Files</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Diagrams are part of documentation. You can use a diagram in documentation by creating an image from the diagram and importing the diagram in the document. In </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> you can save diagrams in bitmap formats (JPEG (.jpg, .jpeg) and Windows bitmap (.bmp)), and in vector graphics formats (Windows Metafile Format (.wmf), and Enhanced Metfile Format (.emf).</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To save a diagram as image file</text></para>
+    <list id="5" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><link displaytype="text" defaultstyle="true" type="topiclink" href="Basic_Tasks_Diagrams" anchor="activate_diagram" styleclass="List1" translate="true">Activate</link><text styleclass="List1" translate="true"> the diagram you want to save.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Export Diagram</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Export Diagram</text><text styleclass="List1" translate="true"> dialog, enter the file name and select the file format, then click </text><text styleclass="MenuCommand" translate="true">Save</text><text styleclass="List1" translate="true">.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:24px;"><image src="ch04_h99.jpg" scale="80.00%" width="450" height="335" styleclass="Image Caption"><title translate="true">Diagram as JPEG</title><caption translate="true"><![CDATA[Saving the Diagram as Image]]></caption></image></para>
+    <para styleclass="Notes"><image src="note.bmp" scale="100.00%" styleclass="Notes"></image><text styleclass="Notes" translate="true">&#32;</text><text styleclass="Emphasis" translate="true">Note:</text><text styleclass="Notes" translate="true"> Some viewers may not correctly display the Windows Metafile Format (.wmf) files. It is recommended to use the Enhanced &#160;Metafile Format(.emf).</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">You can also copy the diagram to the clipboard to use the diagram in another application. You can copy the diagram to the clipboard as a vector graphic or as bitmap. If you copy the diagram to the clipboard as a vector graphic, you can copy a part of the diagram.</text></para>
+    <para styleclass="Notes"><image src="note.bmp" scale="100.00%" styleclass="Notes"></image><text styleclass="Notes" translate="true">&#32;</text><text styleclass="Emphasis" translate="true">Notes:</text><text styleclass="Notes" translate="true">&#32;</text></para>
+    <list id="6" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">If you copy the diagram to the clipboard as a bitmap, the whole diagram is copied. To edit the image to the right size you should first save the diagram to an image file.</text></li>
+    </list>
+    <list id="7" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">The paste function depends on the application in which you want to paste the image. To past an image in an application that complies to Windows standards, on the </text><text styleclass="MenuCommand" translate="true">Edit</text><text styleclass="ListB" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Paste</text><text styleclass="ListB" translate="true"> or press CTRL+V on the keyboard.</text></li>
+      <li styleclass="ListB"><text styleclass="Normal" translate="true">Applications only accept file formats from the clipboard that they can process. For example, bitmap editors may not accept vector graphics.</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To copy the whole diagram to another application through the clipboard</text></para>
+    <list id="8" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">Activate the diagram you want to copy.</text></li>
+      <li styleclass="List1"><text styleclass="Normal" translate="true">To copy the diagram as a bitmap, on the </text><text styleclass="MenuCommand" translate="true">Edit</text><text styleclass="Normal" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Copy Diagram as Bitmap</text><text styleclass="Normal" translate="true">.</text><br/><text styleclass="Normal" translate="true">To copy the diagram as a vector graphic, on the </text><text styleclass="MenuCommand" translate="true">Edit</text><text styleclass="Normal" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Copy Diagram</text><text styleclass="Normal" translate="true">.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">Open the other application and paste the image. </text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To copy the a part of the diagram as a vector graphic through the clipboard</text></para>
+    <list id="9" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">Activate the diagram you wan to copy.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">Select the elements you want to copy.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Edit</text><text styleclass="List1" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Copy</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">Open the other application and paste the image.</text></li>
+    </list>
+  </body>
+</topic>

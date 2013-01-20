@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
-<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd" status="Out Of Date">
   <title translate="true">Toolbars</title>
   <keywords>
     <keyword translate="true">Toolbars</keyword>
@@ -10,7 +10,7 @@
       <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Toolbars</text></para>
     </header>
     <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">This section describes in detail all of the toolbar items in </text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">.</text></para>
-    <list id="1" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none; font-family:Symbol; font-size:9pt; color:#000000;">
+    <list id="1" type="ul" listtype="bullet" formatstring="·" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none; font-family:Symbol; font-size:9pt; color:#000000;">
       <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Standard Toolbar</text></li>
       <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Format Toolbar</text></li>
       <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">View Toolbar</text></li>
@@ -516,7 +516,7 @@
           <para><image src="ch11_h99.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Rectangle</text></para>
         </td>
         <td style="width:69%; background-color:#ffffff;">
-          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Create a figure of &#160;rectangle in the current diagram.</text></para>
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Create a figure of  rectangle in the current diagram.</text></para>
         </td>
       </tr>
       <tr style="vertical-align:top">
@@ -524,7 +524,7 @@
           <para><image src="ch11_h100.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Ellipse</text></para>
         </td>
         <td style="width:69%; background-color:#ffffff;">
-          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a figure of &#160;ellipse in the current diagram.</text></para>
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a figure of  ellipse in the current diagram.</text></para>
         </td>
       </tr>
       <tr style="vertical-align:top">
@@ -532,7 +532,7 @@
           <para><image src="ch11_h101.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Rounded Rectangle</text></para>
         </td>
         <td style="width:69%; background-color:#ffffff;">
-          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a figure of &#160;rounded rectangle in the current diagram.</text></para>
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a figure of  rounded rectangle in the current diagram.</text></para>
         </td>
       </tr>
     </table></para>
@@ -742,7 +742,7 @@
           <para><image src="ch11_h118.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Part</text></para>
         </td>
         <td style="width:51%; height:31px; background-color:#ffffff;">
-          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a &#160;Part element with a Classifier in the current diagram.</text></para>
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a  Part element with a Classifier in the current diagram.</text></para>
         </td>
         <td style="width:31%; height:31px; background-color:#ffffff;">
           <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Component Diagram, Deployment Diagram, Composite Diagram</text></para>
@@ -753,7 +753,7 @@
           <para><image src="ch11_h119.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Port</text></para>
         </td>
         <td style="width:51%; height:31px; background-color:#ffffff;">
-          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a &#160;Port element with a Classifier in the current diagram.</text></para>
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a  Port element with a Classifier in the current diagram.</text></para>
         </td>
         <td style="width:31%; height:31px; background-color:#ffffff;">
           <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Component Diagram, Deployment Diagram, Composite Diagram</text></para>
@@ -786,7 +786,7 @@
           <para><image src="ch11_h122.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Interaction Operand</text></para>
         </td>
         <td style="width:51%; height:31px; background-color:#ffffff;">
-          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a &#160;Interaction Operand element with a Combined Fragment in the current diagram.</text></para>
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a  Interaction Operand element with a Combined Fragment in the current diagram.</text></para>
         </td>
         <td style="width:31%; height:31px; background-color:#ffffff;">
           <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Diagram, Sequence Role Diagram, Collaboration Diagram, Collaboration Role Diagram</text></para>

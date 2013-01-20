@@ -1,0 +1,574 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>User-Interface Reference &gt; Quick Dialogs &gt; Element Creation Shorthand</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Element Creation Shorthand,Shorthand">
+   <meta name="description" content="Element Creation Shorthand">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?element_creation_shorthand.htm"; }
+  else { parent.quicksync('a12.6.1'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="ch11.htm">User-Interface Reference</a> &gt; <a href="quick_dialogs.htm">Quick Dialogs</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Element Creation Shorthand</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="quick_dialogs.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="quick_dialogs.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="appendices.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The QuickDialog of a number of elements, allow Element Creation Shorthand. You can quickly create the relationships of an element using the element creation shorthand. Shorthand consists of flat text that you enter in the QuickDialog of an element.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">You start the shorthand with relationship notation followed by the name of a target element. The shorthand &nbsp;will create a relationship between the current element and the target element. If the name is already used for an element in the model, then a relation is created to the existing element. If the name is not already used, then a new element is created as appropriate for the diagram type and related to the current element.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">To create the relations of an element</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span class="f_List1" style="font-size: 9pt;">In the diagram, select an element.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span class="f_List1" style="font-size: 9pt;">Press </span><span class="f_MenuCommand">Enter</span><span class="f_List1" style="font-size: 9pt;"> and type the element creation shorthand in the name box. The shorthand will not overwrite the name of the element.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span class="f_List1" style="font-size: 9pt;">Finish the shorthand by pressing the </span><span class="f_MenuCommand">Enter</span><span class="f_List1" style="font-size: 9pt;"> key.</span></td></tr></table></div><p><span style="font-size: 9pt;">For example, for a class Automobile as the current element:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB" style="font-size: 9pt;">"&lt;=Car" creates a class Car as a specialization of the current Automobile class.</span></td></tr></table></div><p class="p_ImageCaption" style="margin: 10px 0px 10px 48px;"><img src="shorthandcar.jpg" width="369" height="178" border="0" alt="ShorthandCar"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB" style="font-size: 9pt;">"&lt;*&gt;-Tire" relates a class Tire as a composition to the current Automobile class.</span></td></tr></table></div><p class="p_ImageCaption" style="margin: 10px 0px 10px 48px;"><img src="shorthandtire.jpg" width="519" height="178" border="0" alt="Shorthand for composition" title="Shorthand for composition"></p>
+<p>The following tables describe the relationship notation for the various diagram types and element types.</p>
+<p class="p_SubHead"><span class="f_SubHead">Class Diagram, Component Diagram, Deployment Diagram andComposite Structure Diagram</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table cellspacing="0" cellpadding="2" bgcolor="#ffffff" border="1" style="background-color: #ffffff; border: solid 2px #c0c0c0; border-spacing:0px; border-collapse: collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<th valign="top" width="82" bgcolor="#c0c0c0" style="width:82px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Relationship Notation</span></p>
+</th>
+<th valign="top" width="92" bgcolor="#c0c0c0" style="width:92px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Current Element</span></p>
+</th>
+<th valign="top" width="462" bgcolor="#c0c0c0" style="width:462px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Created relation</span></p>
+</th>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;=</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Specialization of the target element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">=&gt;</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Generalization of the target element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">--</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Association between current element and target element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;-</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Association navigable from the target element to the current element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-&gt;</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Association navigable from the current element to the target element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;&gt;-</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Aggregation of the target element in the current element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-&lt;&gt;</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Aggregation of the current element in the target element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;*&gt;-</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Composition of the target element in the current element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-&lt;*&gt;</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Composition of the current element in the target element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;--</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Dependency of the target element to the current element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">--&gt;</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Dependency of the current element to the target element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">)-</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Requirement of the current element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-(</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Requirement of the target element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">@-</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Realization of the target element from the current element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="82" style="width:82px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-@</span></p>
+</td>
+<td valign="top" width="92" style="width:92px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Classifier</span></p>
+</td>
+<td valign="top" width="462" style="width:462px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Realization of the current element from the target element</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_SubHead"><span class="f_SubHead">Use Case Diagram</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table cellspacing="0" cellpadding="2" bgcolor="#ffffff" border="1" style="background-color: #ffffff; border: solid 2px #c0c0c0; border-spacing:0px; border-collapse: collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<th valign="top" width="84" bgcolor="#c0c0c0" style="width:84px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Relationship Notation</span></p>
+</th>
+<th valign="top" width="91" bgcolor="#c0c0c0" style="width:91px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Current Element</span></p>
+</th>
+<th valign="top" width="461" bgcolor="#c0c0c0" style="width:461px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Created Relation</span></p>
+</th>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="84" style="width:84px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">()-</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">UseCase</span></p>
+</td>
+<td valign="top" width="461" style="width:461px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Communication between the current element (Use Case) and the target element (Actor)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="84" style="width:84px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-()</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Actor</span></p>
+</td>
+<td valign="top" width="461" style="width:461px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Communication between the current element (Actor) and the target element (Use Case)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="84" style="width:84px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;i-</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">UseCase</span></p>
+</td>
+<td valign="top" width="461" style="width:461px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Include the target element (Use Case) in the current element (Use Case)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="84" style="width:84px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-i&gt;</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">UseCase</span></p>
+</td>
+<td valign="top" width="461" style="width:461px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Include the current element (Use Case) in the target element (Use Case)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="84" style="width:84px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;e-</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">UseCase</span></p>
+</td>
+<td valign="top" width="461" style="width:461px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Extends the target element (Use Case) from the current element (Use Case)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="84" style="width:84px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-e&gt;</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">UseCase</span></p>
+</td>
+<td valign="top" width="461" style="width:461px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Extends the current element (Use Case) from the target element (Use Case)</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_SubHead"><span class="f_SubHead">Sequence Diagram and Sequence Diagram (Role)</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 0px;"><table cellspacing="0" cellpadding="2" bgcolor="#ffffff" border="1" style="background-color: #ffffff; border: solid 2px #c0c0c0; border-spacing:0px; border-collapse: collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<th valign="top" width="85" bgcolor="#c0c0c0" style="width:85px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Relationship Notation</span></p>
+</th>
+<th valign="top" width="91" bgcolor="#c0c0c0" style="width:91px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Current Element</span></p>
+</th>
+<th valign="top" width="460" bgcolor="#c0c0c0" style="width:460px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Created Relation</span></p>
+</th>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="85" style="width:85px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;-</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Object, ClassifierRole</span></p>
+</td>
+<td valign="top" width="460" style="width:460px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus from the target element to the current element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="85" style="width:85px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-&gt;</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Object, ClassifierRole</span></p>
+</td>
+<td valign="top" width="460" style="width:460px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus from the current element to the target element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="85" style="width:85px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;-&gt;</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Object, ClassifierRole</span></p>
+</td>
+<td valign="top" width="460" style="width:460px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus with return from the target element to the current element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="85" style="width:85px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;-</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="460" style="width:460px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Sub-stimulus coming from the target element to current stimulus</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="85" style="width:85px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-&gt;</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="460" style="width:460px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Sub-stimulus coming from the current stimulus to the target element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="85" style="width:85px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;-&gt;</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="460" style="width:460px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Sub-stimulus with return coming from target element to the current stimulus.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="85" style="width:85px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;~</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="460" style="width:460px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus coming from the target element (Object) before the current stimulus</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="85" style="width:85px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">~&gt;</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="460" style="width:460px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus going to the target element (Object) before the current stimulus</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="85" style="width:85px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;_</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="460" style="width:460px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus coming from the target element (Object) after the current stimulus</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="85" style="width:85px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">_&gt;</span></p>
+</td>
+<td valign="top" width="91" style="width:91px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus, Message</span></p>
+</td>
+<td valign="top" width="460" style="width:460px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus going to the target element (Object) after the current stimulus</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_SubHead"><span class="f_SubHead">Collaboration Diagram and Collaboration Diagram(Role)</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 0px;"><table cellspacing="0" cellpadding="2" bgcolor="#ffffff" border="1" style="background-color: #ffffff; border: solid 2px #c0c0c0; border-spacing:0px; border-collapse: collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="87" bgcolor="#c0c0c0" style="width:87px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Relationship Notation</span></p>
+</td>
+<td valign="top" width="90" bgcolor="#c0c0c0" style="width:90px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Current Element</span></p>
+</td>
+<td valign="top" width="458" bgcolor="#c0c0c0" style="width:458px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Created Relation</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="87" style="width:87px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;-</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Object, ClassifierRole</span></p>
+</td>
+<td valign="top" width="458" style="width:458px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus from the target element to the current element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="87" style="width:87px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-&gt;</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Object, ClassifierRole</span></p>
+</td>
+<td valign="top" width="458" style="width:458px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Stimulus from the current element to the target element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="87" style="width:87px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span style="text-decoration: line-through;">&lt;-&gt;</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span style="text-decoration: line-through;">Object, ClassifierRole</span></p>
+</td>
+<td valign="top" width="458" style="width:458px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span style="text-decoration: line-through;">Stimulus with return relationship from target element to the current element.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p><span class="f_SubHead">Statechart and Activity Diagram</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table cellspacing="0" cellpadding="2" bgcolor="#ffffff" border="1" style="background-color: #ffffff; border: solid 2px #c0c0c0; border-spacing:0px; border-collapse: collapse;">
+<tr style="text-align:left;vertical-align:top;">
+<th valign="top" width="88" bgcolor="#c0c0c0" style="width:88px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Relationship Notation</span></p>
+</th>
+<th valign="top" width="90" bgcolor="#c0c0c0" style="width:90px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Current Element</span></p>
+</th>
+<th valign="top" width="456" bgcolor="#c0c0c0" style="width:456px; background-color:#c0c0c0; border: solid 1px #c0c0c0;"><p class="p_TableHeading"><span class="f_TableHeading">Created Relation</span></p>
+</th>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="88" style="width:88px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;-</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">State, ActionState</span></p>
+</td>
+<td valign="top" width="456" style="width:456px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Transition from the target element(Action State) to the current element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="88" style="width:88px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-&gt;</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">State, ActionState</span></p>
+</td>
+<td valign="top" width="456" style="width:456px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Transition from the current element to the target element(Action State)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="88" style="width:88px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-*</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">State, ActionState</span></p>
+</td>
+<td valign="top" width="456" style="width:456px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Transition from current element to target element (Initial State)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="88" style="width:88px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-@</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">State, ActionState</span></p>
+</td>
+<td valign="top" width="456" style="width:456px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Transition from current element to the target element (Final State)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="88" style="width:88px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;-&lt;&gt;</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">State, ActionState</span></p>
+</td>
+<td valign="top" width="456" style="width:456px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Transition from the target element(Decision) to the current element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="88" style="width:88px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-&gt;&lt;&gt;</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">State, ActionState</span></p>
+</td>
+<td valign="top" width="456" style="width:456px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Transition from the current element to the target element (Decision)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="88" style="width:88px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-(H)</span><br>
+<span class="f_TableContent">-(h)</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">State, ActionState</span></p>
+</td>
+<td valign="top" width="456" style="width:456px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Transition from the current element to the target element (Shallow History)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="88" style="width:88px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-(H*) </span><br>
+<span class="f_TableContent">-(h*)</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">State, ActionState</span></p>
+</td>
+<td valign="top" width="456" style="width:456px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Transition from the current element to the target element (Deep History)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="88" style="width:88px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">&lt;-|</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">State, ActionState</span></p>
+</td>
+<td valign="top" width="456" style="width:456px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Transition from the target element to the current element with a new Synchronization in between</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="88" style="width:88px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">-&gt;|</span></p>
+</td>
+<td valign="top" width="90" style="width:90px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">State, ActionState</span></p>
+</td>
+<td valign="top" width="456" style="width:456px; border: solid 1px #c0c0c0;"><p class="p_TableContent"><span class="f_TableContent">Transition from the current element to the target element with a new Synchronization in between</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 14px 0px 10px 0px;">&nbsp;</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

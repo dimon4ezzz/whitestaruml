@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Changing Properties</title>
+  <keywords>
+    <keyword translate="true">Collections<keyword translate="true">editor</keyword></keyword>
+    <keyword translate="true">Name property</keyword>
+    <keyword translate="true">Properties</keyword>
+    <keyword translate="true">Property editor</keyword>
+    <keyword translate="true">Stereotype<keyword translate="true">property</keyword></keyword>
+    <keyword translate="true">Visibility</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Changing Properties</text></para>
+    </header>
+    <para styleclass="Heading2"><text styleclass="Heading2" translate="true">Setting Properties</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Model elements contain various properties. You edit the properties in the properties editor. Although each element type can have different properties, there are four basic property types: String, Editor dialog, Drop down list box and Collection editor properties.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">The following table describes the most general properties. For specific properties, see also </text><link displaytype="text" defaultstyle="true" type="topiclink" href="Working_with_Diagrams" styleclass="Normal" translate="true">Working with Diagrams</link></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><table styleclass="Default" rowcount="5" colcount="3">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:216px; height:19px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Property</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:136px; height:19px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Type</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:552px; height:19px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:216px; height:21px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Name</text></para>
+        </td>
+        <td style="width:136px; height:21px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">String</text></para>
+        </td>
+        <td style="width:552px; height:21px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Indicates the name of the model element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:216px; height:21px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stereotype</text></para>
+        </td>
+        <td style="width:136px; height:21px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Editor dialog</text></para>
+        </td>
+        <td style="width:552px; height:21px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Indicates the stereotype of the model element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:216px; height:21px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Visibility</text></para>
+        </td>
+        <td style="width:136px; height:21px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Drop down list box</text></para>
+        </td>
+        <td style="width:552px; height:21px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Indicates the visibility to the outside world of the model element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:216px; height:21px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Attributes, Operations, Relations and other collections</text></para>
+        </td>
+        <td style="width:136px; height:21px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Collection editor</text></para>
+        </td>
+        <td style="width:552px; height:21px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Indicates multiple elements, these are editable through the collection editor</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline;" translate="true">Editing the Name</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">String type properties allow entering alphanumeric text, although restrictions on the characters you can use may exist.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To edit the name of a model element, in the property editor, enter a string value in the </text><text styleclass="MenuCommand" translate="true">Name</text><text styleclass="Normal" translate="true"> box. Names cannot contain colon characters (&apos;</text><text styleclass="Normal" style="font-weight:bold;" translate="true">:</text><text styleclass="Normal" translate="true">&apos;). Names must be unique within the namespace. For example, names of the classes within a package must all be unique.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline;" translate="true">Editing the Stereotype</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Editor dialogs help you enter a value for the property. Many different editor dialogs exist, you open the editor dialog by clicking </text><image src="EllipsisButton.jpg" scale="100.00%" styleclass="Normal"></image><text styleclass="Normal" translate="true"> in the property box.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To edit the stereotype of a model element, in the property editor, click </text><image src="EllipsisButton.jpg" scale="100.00%" styleclass="Normal"></image><text styleclass="Normal" translate="true"> in the </text><text styleclass="MenuCommand" translate="true">Stereotype</text><text styleclass="Normal" translate="true"> box. In the </text><text styleclass="MenuCommand" translate="true">Select Stereotype</text><text styleclass="Normal" translate="true"> dialog do one of the following</text></para>
+    <list id="14" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Select an existing name from the </text><text styleclass="MenuCommand" translate="true">Stereotype</text><text styleclass="ListB" translate="true"> list.</text></li>
+      <li styleclass="ListBLast"><text styleclass="ListBLast" translate="true">Type a name in the </text><text styleclass="MenuCommand" translate="true">Stereotypes</text><text styleclass="ListBLast" translate="true"> box. The name can contain any alphanumeric character. The autocomplete function will suggest a matching stereotype that is pre-defined in one of the profiles used in the project. If the name exists in one of the profiles, then a reference will be created to the existing stereotype. An undefined stereotype will be saved only with the current model element.</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">When you completed the stereotype name, click </text><text styleclass="MenuCommand" translate="true">OK</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline;" translate="true">Editing Visibility</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:normal; vertical-align:baseline;" translate="true">A drop down list box presents the available value from which you can choose.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:normal; vertical-align:baseline;" translate="true">The UML defines four values for visibility: Private, Protected, Package and Public. The default value, if you select no specific visibility, is Public.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:normal; vertical-align:baseline;" translate="true">To edit visibility, in the property editor, open the list in the </text><text styleclass="MenuCommand" translate="true">Visibility</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:normal; vertical-align:baseline;" translate="true"> box and select a value. Scroll through the list to find a value if necessary.</text></para>
+    <para styleclass="Normal"><image src="PropertyEditorDropDown.jpg" scale="80.00%" width="208" height="180" styleclass="Image Caption"><title translate="true">Visibility property</title><caption translate="true"><![CDATA[Drop Down List for Visibillity Property]]></caption></image></para>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline;" translate="true">Editing Collections</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">The collections editor is a specialized editor dialog. In the collections editor you will find all collections pertaining to the model element you selected. For example, if you edit the Attributes of a class element, you will also see the Operations and Relations of the element too. The collections editor is also different in that you edit the values of the collection element in the properties editor.</text></para>
+    <para styleclass="Normal"><image src="CollectionEditor.jpg" scale="100.00%" styleclass="Image Caption"><title translate="true">Collection Editor</title><caption translate="true"><![CDATA[Collection Editor for an Interface Element]]></caption></image></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To edit the collection of an element, in the property editor, click </text><image src="EllipsisButton.jpg" scale="100.00%" styleclass="Normal"></image><text styleclass="Normal" translate="true"> in the collection&apos;s box. Alternatively, you can select the element in the diagram and then on the </text><text styleclass="MenuCommand" translate="true">Model</text><text styleclass="Normal" translate="true"> menu select </text><text styleclass="MenuCommand" translate="true">Collection Editor</text><text styleclass="Normal" translate="true">.</text></para>
+  </body>
+</topic>
