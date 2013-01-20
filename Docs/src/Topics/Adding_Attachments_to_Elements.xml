@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Adding Attachments to Elements</title>
+  <keywords>
+    <keyword translate="true">Attachments</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Adding Attachments to Elements</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Attach related files or web page URLs to elements for extra documentation. You can easily access the attached files or web pages from &#160;within </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true">.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To attach a file</text></para>
+    <list id="10" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the Model Explorer, select an element.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the inspector area, open the </text><text styleclass="MenuCommand" translate="true">Attachments</text><text styleclass="List1" translate="true"> tab.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:48px;"><image src="Attachments.jpg" scale="80.00%" width="178" height="238" styleclass="Image Caption"><title translate="true">Attachments Inspector</title><caption translate="true"><![CDATA[Attachments]]></caption></image></para>
+    <list id="10" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">Click </text><image src="AttachmentsAdd.jpg" scale="100.00%" styleclass="List1"></image><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">In the Attachment dialog, enter the full pathname and filename of the attachment file or the web page URL (or click the browse button on the right to select from the browse window), and click the [OK] button.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:48px;"><image src="AttachmentsDialog.jpg" scale="80.00%" width="363" height="119" styleclass="Image Caption"><title translate="true">Attachment Dialog</title><caption translate="true"><![CDATA[Attachment Dialog]]></caption></image></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To open the attachment, select the attachment and click </text><image src="AttachmentsOpen.jpg" scale="100.00%" styleclass="Normal"></image><text styleclass="Normal" translate="true">.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To modify the attachment, select the attachment and click </text><image src="AttachmentsModify.jpg" scale="100.00%" styleclass="Normal"></image><text styleclass="Normal" translate="true">.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To delete the attachment, select the attachment and click </text><image src="AttachmentsRemove.jpg" scale="100.00%" styleclass="Normal"></image><text styleclass="Normal" translate="true">.</text></para>
+  </body>
+</topic>

@@ -1,0 +1,167 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Modeling &gt; Managing Elements &gt; Elements in Diagrams</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Creating view elements,Deleting view elements,Editing view elements,View elements">
+   <meta name="description" content="Elements in Diagrams">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?basic_tasks_elements.htm"; }
+  else { parent.quicksync('a5.2.2'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="modeling.htm">Modeling</a> &gt; <a href="managing_elements.htm">Managing Elements</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Elements in Diagrams</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="organizing_elements_in_the_mod.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="managing_elements.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="resizing_and_moving_elements.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p class="p_Heading2" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading2">Creating View Elements</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">View elements may represent classifiers from the model or details of the classifiers such as relationships. You can create a view element in two ways.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB" style="font-size: 9pt;">From the toolbox. </span><span style="font-size: 9pt;">The toolbox contains all elements specifically available for the open diagram. The types of available elements vary from one diagram type to another. However, you may be able to use more model elements in the diagram. For example, an actor can be used in a sequence diagram but is not shown in the toolbox. From the toolbox you can create classifier elements and relationships. </span><span class="f_Notes">When you create</span><span style="font-size: 9pt;"> a new element from the toolbox, the application creates a model element in the model and a corresponding view element in the diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">From the Model Explorer. Model elements may have different meaning in different types of diagrams, but you can use many elements in different diagrams. For example, you can use an actor in a use case diagram, a sequence diagram or a class diagram. However you can use a use case in a use case diagram only.</span></td></tr></table></div><p class="p_Notes"><img src="note.png" width="12" height="12" border="0" alt="note"><span class="f_Emphasis"> Note:</span><span class="f_Notes"> To learn more about how model elements can be used in different diagrams, see <a href="copy_and_paste_elements.htm">Copy and Paste Elements</a>.</span></p>
+<p>To create an new classifier element from the toolbox</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span class="f_List1">Select a classifier element type in the toolbox.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span class="f_List1Last">Click at a location in the diagram or drag the mouse to specify the size of the new element.</span></td></tr></table></div><p>To create a relationship between two classifiers</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span class="f_List1" style="font-size: 9pt;">Select a relationship type from the pallet</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span class="f_List1" style="font-size: 9pt;">Drag from one classifier to the classifier that must be related.</span></td></tr></table></div><p class="p_Notes"><img src="note.png" width="12" height="12" border="0" alt="note"><span class="f_Emphasis"> Note:</span><span class="f_Notes"> The choice of the classifier you use to start the relationship and the classifier to end the relationship is important. For example in a class diagram, when you create a generalization you drag from the generalized class to the specialized class.</span></p>
+<p>To create multiple elements of the same type</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span class="f_List1">Double-click the element type in the toolbox. The element type is shown on a green background.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span class="f_List1">Create multiple elements.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span class="f_List1Last">Select another element type in the toolbox when finished.</span></td></tr></table></div><p>Besides creating a new element in the diagram from the toolbox, you can also create view elements from &nbsp;the model. You can only drag elements to the diagram if that element type is appropriate for the diagram. For example, you can drag a class element to a class diagram or a sequence diagram but not to an activity diagram.</p>
+<p>To add a classifier element to the diagram from the model</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In the </span><span class="f_MenuCommand">Model Explorer</span><span style="font-size: 9pt;"> select the classifier element you want to place on the diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Drag the classifier element to the diagram. If the classifier element has relationships to other classifiers already available on the diagram, then the diagram will show those relationships.</span></td></tr></table></div><p class="p_Heading2" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading2">Editing Elements in the Diagram</span></p>
+<p>Elements can directly be edited in the diagram area using the quick dialog. In the quick dialog you can edit more than just the name of the of the element. To learn more about the possibilities of quick dialogs, see <a href="quick_dialogs.htm">Quick dialogs</a>.</p>
+<p>To open the quick dialog of a view element, double click the view element. Press Enter to finish editing and close the quick dialog.</p>
+<p class="p_Heading2" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading2">Deleting View Element</span></p>
+<p>When you delete a view element from a diagram, you do not delete the model element it represents.</p>
+<p>To delete a view element, select the view element and then press the <span class="f_MenuCommand">Delete</span> key on the keyboard, or on the <span class="f_MenuCommand">Edit</span> menu select <span class="f_MenuCommand">Delete</span>.</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

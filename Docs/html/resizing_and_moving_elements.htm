@@ -1,0 +1,163 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Modeling &gt; Managing Elements &gt; Elements in Diagrams &gt; Resizing and Moving Elements</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Automatic resize,View elements,View elements resize and move">
+   <meta name="description" content="Resizing and Moving Elements">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?resizing_and_moving_elements.htm"; }
+  else { parent.quicksync('a5.2.2.1'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="modeling.htm">Modeling</a> &gt; <a href="managing_elements.htm">Managing Elements</a> &gt; <a href="basic_tasks_elements.htm">Elements in Diagrams</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Resizing and Moving Elements</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="basic_tasks_elements.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="basic_tasks_elements.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="copy_and_paste_elements.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">You can change the view element's size or position in the diagram. Using the keyboard you can change the size and position in very small steps.</span></p>
+<p>To resize a view element</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select a view element in the diagram. A guide box will appear around the view element.</span></td></tr></table></div><div style="text-indent: -13px; margin: 10px 0px 10px 59px;"><div style="width:196px;padding:0px"><img src="viewelementresize.jpg" width="196" height="116" border="0" alt="Resizing a View Element" title="Resize View Element"><p style="text-align:center"><span class="f_ImageCaption">Resizing a View Element</span></p></div></div>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Drag a square-shaped tab on the guide box.</span></td></tr></table></div><p>To move a view element</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select a view element in the diagram. A guide box will appear around the view element</span><span class="f_List1">.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span class="f_List1Last">Position the mouse in the center of the guide box and drag the view element.</span></td></tr></table></div><p>To move an element using the keyboard, select a view element then hold down the Shift key and press an arrow key in the direction you want to move the view element. Using the Shift key with the arrow keys, you move the view element one grid unit at the time. To move the view element one pixel, select a view element then hold down Shift+Alt and press an arrow key in the direction you want to move the view element.</p>
+<p>To move multiple view elements you first select the individual view elements and then move the guide box. To select multiple view elements, first select one element then hold down the Shift key and select additional view elements.</p>
+<p class="p_Heading2" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading2">Automatic Resize</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">A view element can also resize automatically to the size of its content. Auto resize will change the size of the view element each time you change the element's name, stereotype, attribute definition or operation definition. You can set auto resize for each individual view element.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">To turn on auto resize of a view element, select the view element and then on the </span><span class="f_MenuCommand">Format</span><span style="font-size: 9pt;"> menu click </span><span class="f_MenuCommand">Auto Resize</span><span style="font-size: 9pt;">. </span><span class="f_MenuCommand">Auto Resize</span><span style="font-size: 9pt;"> will now be checked.</span></p>
+<div style="margin: 19px 0px 10px 24px;"><div style="width:255px;padding:0px"><img src="viewelementautoresize.jpg" width="255" height="30" border="0" alt="Auto Resize Turned On" title="Auto Resize On"><p style="text-align:center"><span class="f_ImageCaption">Auto Resize Turned On</span></p></div></div>
+<p>To turn auto resize off, select the view element and uncheck <span class="f_MenuCommand">Auto Resize</span>.</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>
