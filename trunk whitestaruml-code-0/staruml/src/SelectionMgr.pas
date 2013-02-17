@@ -192,28 +192,26 @@ begin
       FSelectedModels.Add(AModel);
   end;
 
-  if AContextMenuLaunched and (SelectedViewCount > 0 ) then begin
-    ClearSelectedViews;
-    Changed := True
-  end
-  else
   // Select corresponding view on the active diagram
   //if (not AContextMenuLaunched) and (SelectedViewCount = 0)
     if (AModel <> nil) then begin
-    FirstViewSelected := False;
-    for View in AModel.Views do begin
-      if View.OwnerDiagramView = ActiveDiagram then begin
-        if not FirstViewSelected then begin
-          SelectView(View);
-          FirstViewSelected := True;
-        end
-        else
-          SelectAdditionalView(View);
-      end;
-    end;
+      FirstViewSelected := False;
 
-  end;
-  if Changed then SelectionChanged;
+      for View in AModel.Views do begin
+        if View.OwnerDiagramView = ActiveDiagram then begin
+          if not FirstViewSelected then begin
+            SelectView(View);
+            FirstViewSelected := True;
+          end
+          else
+            SelectAdditionalView(View);
+        end;
+      end; // End of for
+
+    end; // End of if
+
+  if Changed then
+    SelectionChanged;
 end;
 
 procedure PSelectionManager.DeselectModel(AModel: PModel);

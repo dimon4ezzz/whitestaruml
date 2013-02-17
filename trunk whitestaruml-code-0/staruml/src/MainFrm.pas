@@ -369,8 +369,8 @@ type
     DesktopAlert: TJvDesktopAlert;
     ModelExplorer: TModelExplorerPanel;
     dxBarSeparator1: TdxBarSeparator;
-    PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     ViewToolbarsStatusBar: TdxBarButton;
+    PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);
     procedure EditMenuClick(Sender: TObject);
@@ -581,6 +581,7 @@ type
     procedure ShowAlertMsg(AHeaderText: string;AMessageText: string);
     procedure ActivateHandler(HanderName: string);
     procedure AddCreateHandler(HandlerName: string; ContainerCandidates: array of PClass; SkeletonPaintingKind: PSkeletonPaintingKind);
+    function IsModelExplorerActive: Boolean;
 
     property FileName: string read FFileName write SetFileName;
     property FontFaceComboText: string read GetFontFaceComboText write SetFontFaceComboText;
@@ -1382,8 +1383,12 @@ begin
   ActionProcessor.AddCreateHandler(HandlerName, ContainerCandidates, SkeletonPaintingKind);
 end;
 
-// TMainForm
-////////////////////////////////////////////////////////////////////////////////
+
+function TMainForm.IsModelExplorerActive: Boolean;
+begin
+  Result := dxDockingController.ActiveDockControl = ModelExplorerDockPanel;
+end;
+
 
 procedure TMainForm.FileMenuClick(Sender: TObject);
 begin
@@ -1591,6 +1596,9 @@ begin
       ActionProcessor.KeyUp(DgmEditor, DgmEditor.Canvas, Key, Shift);
   end;
 end;
+
+// TMainForm
+////////////////////////////////////////////////////////////////////////////////
 
 
 end.

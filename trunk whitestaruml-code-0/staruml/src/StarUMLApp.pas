@@ -1488,8 +1488,10 @@ var
 begin
   Result := False;
 
+
   // (1) in case of copying view element
-  if SelectedViewCount > 0 then
+  // if ModelExplorer is active prefer copying a model
+  if (SelectedViewCount > 0) and not MainForm.IsModelExplorerActive then
   begin
     if (ActiveDiagram <> nil) and (ActiveDiagram.SelectedViewCount > 0) then
       // write view data to clipboard
