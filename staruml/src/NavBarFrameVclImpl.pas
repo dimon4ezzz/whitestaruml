@@ -459,7 +459,8 @@ begin
   //NewGroup.FNavBarGroup.GradientColor := clBlue;
   Painter := MainForm.BarManager.LookAndFeel.Painter;
   NewGroup.FNavBarGroup.Color := Painter.DefaultTabsBackgroundColor;
-  NewGroup.FNavBarGroup.GradientColor := Painter.DefaultSelectionColor;
+  //NewGroup.FNavBarGroup.GradientColor := Painter.DefaultSelectionColor;
+  NewGroup.FNavBarGroup.GradientColor := Painter.DefaultFilterBoxColor;
 
   FInteractionGroups.Add(NewGroup);
   if GroupKeyDefined then
