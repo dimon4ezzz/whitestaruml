@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{6800C90C-8B49-4B15-8E46-9015DA5876D8}</ProjectGuid>
 			<MainSource>WhiteStarUML.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Config Condition="'$(Config)'==''">Release</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
@@ -47,8 +47,6 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
-			<DCC_DependencyCheckOutputName>..\..\..\WhiteStarDevInstall\WhiteStarUML.exe</DCC_DependencyCheckOutputName>
-			<DCC_ExeOutput>C:\JS\Delphi\WhiteStarDevInstall</DCC_ExeOutput>
 			<DCC_DebugDCUs>true</DCC_DebugDCUs>
 			<DCC_DebugInformation>true</DCC_DebugInformation>
 			<DCC_SymbolReferenceInfo>2</DCC_SymbolReferenceInfo>
@@ -239,15 +237,16 @@
 			<DCCReference Include="WhiteStarUML_TLB.pas"/>
 			<DCCReference Include="PGMR101Lib_TLB.pas"/>
 			<DCCReference Include="ParserCore_TLB.pas"/>
+			<RidlCompile Include="WhiteStarUML.ridl"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
-			<BuildConfiguration Include="Debug">
-				<Key>Cfg_2</Key>
-				<CfgParent>Base</CfgParent>
-			</BuildConfiguration>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
 			</BuildConfiguration>
 		</ItemGroup>
@@ -271,7 +270,7 @@
 						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
 						<VersionInfo Name="MajorVer">5</VersionInfo>
 						<VersionInfo Name="MinorVer">3</VersionInfo>
-						<VersionInfo Name="Release">5</VersionInfo>
+						<VersionInfo Name="Release">7</VersionInfo>
 						<VersionInfo Name="Build">0</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
@@ -284,13 +283,13 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">5.3.5.0</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">5.3.7.0</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
 						<VersionInfoKeys Name="OriginalFilename"/>
 						<VersionInfoKeys Name="ProductName">WhiteStarUML</VersionInfoKeys>
-						<VersionInfoKeys Name="ProductVersion">5.3.4</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">5.3.7</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Excluded_Packages>
