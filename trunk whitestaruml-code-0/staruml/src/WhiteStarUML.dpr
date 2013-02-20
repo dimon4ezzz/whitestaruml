@@ -141,7 +141,7 @@ uses
   PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas',
   ParserCore_TLB in 'ParserCore_TLB.pas';
 
-  {$R *.RES}
+{$R *.RES}
   {$R *.TLB}
 
 const

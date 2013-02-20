@@ -58,9 +58,9 @@ type
   private
     StarUMLApp: IStarUMLApplication;
     procedure ReverseCSharpCode;
-    procedure ForwareCSharpCode;
+    procedure ForwardCSharpCode;
     function CheckReverseProfile: Boolean;
-    function CheckProfeilIncluded: Boolean;
+    function CheckProfileIncluded: Boolean;
     function CheckProfileAvailable: Boolean;
     function NoProfileChecked: Boolean;
   protected
@@ -95,7 +95,7 @@ begin
    Result := S_OK;
   if ActionID = 1 then { reserved for CSharp syntax checking }
   else if ActionID = 2 then begin
-    ForwareCSharpCode;
+    ForwardCSharpCode;
   end
   else if ActionID = 3 then begin
     ReverseCSharpCode;
@@ -136,12 +136,12 @@ begin
         MB_OK + MB_ICONINFORMATION);
 end;
 
-procedure TCSharpAddInObj.ForwareCSharpCode;
+procedure TCSharpAddInObj.ForwardCSharpCode;
 var
-  CodeGenForm:TCodeGenForm;
+  CodeGenForm: TCodeGenForm;
 begin
 
-  if CheckProfeilIncluded or NoProfileChecked then
+  if CheckProfileIncluded or NoProfileChecked then
   begin
     CodeGenForm := TCodeGenForm.Create(Application);
     try
@@ -158,17 +158,16 @@ end;
 
 function TCSharpAddInObj.NoProfileChecked: Boolean;
 begin
-  Result := False;
   try
-    if StarUMLApp.GetOptionValue(OPTION_SCHEMA, OPTION_CREATE_WITH_NO_PROFILE)
-    then Result := True;
+    Result := StarUMLApp.GetOptionValue(OPTION_SCHEMA, OPTION_CREATE_WITH_NO_PROFILE);
   except
+    Result := False;
   end;
 end;
 
 function TCSharpAddInObj.CheckReverseProfile: Boolean;
 begin   
-  if CheckProfeilIncluded then
+  if CheckProfileIncluded then
     Result := True
   else if CheckProfileAvailable then
     if Application.MessageBox(PChar(QUERY_REVERSE_PROFILE_LOAD), PChar(Application.Title),MB_YESNO + MB_ICONQUESTION) = IDYES then
@@ -177,11 +176,13 @@ begin
         StarUMLApp.ExtensionManager.IncludeProfile(CSHARP_PROFILE_NAME);
       except
         Result := False;
+        // Should be error msg/exit here?
       end;
       Result := True;
     end
     else
       Result := False
+      // Should be error msg/exit here?
   else
   begin
     Application.MessageBox(PChar(ERR_PROFILE_NOT_DEFINED), PChar(Application.Title), MB_OK + MB_ICONWARNING);
@@ -191,25 +192,19 @@ end;
 
 function TCSharpAddInObj.CheckProfileAvailable: Boolean;
 begin
-  Result := False;
   try
-    if StarUMLApp.ExtensionManager.FindAvailableProfile(CSHARP_PROFILE_NAME) = nil then
-      Result := False
-    else
-      Result := True;
+    Result := StarUMLApp.ExtensionManager.FindAvailableProfile(CSHARP_PROFILE_NAME) <> nil
   except
+    Result := False;
   end;
 end;
 
-function TCSharpAddInObj.CheckProfeilIncluded: Boolean;
+function TCSharpAddInObj.CheckProfileIncluded: Boolean;
 begin
-  Result := False;
   try
-    if StarUMLApp.ExtensionManager.FindIncludedProfile(CSHARP_PROFILE_NAME) = nil then
-      Result := False
-    else
-      Result := True;
+    Result := StarUMLApp.ExtensionManager.FindIncludedProfile(CSHARP_PROFILE_NAME) <> nil
   except
+    Result := False;
   end;
 end;
 
