@@ -12,7 +12,7 @@
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
-id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* ( {Restricted Chars}+ '<' {String Chars}* '>' | {Restricted Chars}+ '[' {String Chars}* ']'  | {Restricted Chars}+ '(' {String Chars}* ')' )? 
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* ( {Restricted Chars}* '<' {String Chars}* '>' | {Restricted Chars}* '[' {String Chars}* ']'  | {Restricted Chars}* '(' {String Chars}* ')' )? 
 
 
 
