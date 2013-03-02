@@ -5,13 +5,14 @@
 ! Character Sets
 ! -------------------------------------------------
 
-{String Chars} = {All Letters} +  {Number} + [ '_' '/' ',' ';' '.' '#' '&' '@' '$' '%' ]
-{String Chars No Spaces} = {String Chars}  - {All Space}
+{String Chars} = {All Letters} +  {Number} + {Euro Sign} + [ '_' ',' ';' '/' '\' '.' '&' '@' '$' '%' '+' '#' '-' '~' '"' '`' '' ] 
+! Restricted Chars should not start or end an indentifier as they may collide with other symbols 
+{Restricted Chars} = {All Space} + [ '+' '#' '-' '~' ]
+{Boundary String Chars} = {String Chars} - {Restricted Chars}
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
-id = {String Chars No Spaces}+ ( '<' {String Chars No Spaces}* '>' | '[' {String Chars No Spaces}* ']' )?
-
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* ( {Restricted Chars}+ '<' {String Chars}* '>'  )? 
 
 
 ! -------------------------------------------------
@@ -51,10 +52,10 @@ id = {String Chars No Spaces}+ ( '<' {String Chars No Spaces}* '>' | '[' {String
 <return_id> ::= id
 
 
-<argument_part> ::= '()' 
-                 | '(' <argument_string> ')'
+<argument_part> ::=  '(' <argument_string> ')'
                  |  <>
                  
 <argument_string> ::= id
+                    |  <>
                   
 <iteration__branch_clause> ::= id 
