@@ -3,15 +3,15 @@
 ! -------------------------------------------------
 ! Character Sets
 ! -------------------------------------------------
-
-{String Chars} = {All Letters} +  {Number} + {Euro Sign} + [ '_' ',' ';' '/' '\' ':' '.' '&' '@' '$' '%' '+' '#' '-' '~' '"' '`' '' ] 
-{Boundary String Chars} = {String Chars} - {All Space} - [ '+' '#' '-' '~' ]
-{Inner String Chars} = {String Chars} - {All Space}  
+{String Chars} = {All Letters} +  {Number} + {Euro Sign} + [ '_' ',' ';' ':' '/' '\' '.' '&' '@' '$' '%' '+' '*' '#' '-' '~' '"' '`' '' ] 
+! Restricted Chars should not start or end an indentifier as they may collide with other symbols 
+{Restricted Chars} = {All Space} + [ '+' '#' '-' '~' ]
+{Boundary String Chars} = {String Chars} - {Restricted Chars}
 
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
-id = {Boundary String Chars}+ ( {All Space} {Inner String Chars}+ )* ( '<' {String Chars}* '>' | '[' {String Chars}* ']'  | '(' {String Chars}* ')' )?  
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* ( {Restricted Chars}+ '<' {String Chars}* '>' | {Restricted Chars}+ '[' {String Chars}* ']'  | {Restricted Chars}+ '(' {String Chars}* ')' )? 
 
 ! -------------------------------------------------
 ! Rules
