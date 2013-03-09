@@ -71,6 +71,7 @@ type
   private
     FParser: IParserCore;
     FInitialized: Boolean;
+    FLastErrorMsg: string;
     function PickoutValue(SearchPath: string): string;
   protected
     procedure ClearProperties; virtual; abstract;
@@ -81,6 +82,7 @@ type
     destructor Destroy; override;
     function Parse(Source: string): PParseStatus;
     property Initialized: Boolean read FInitialized;
+    property LastErrorMsg: string read FLastErrorMsg;
   end;
 
  
@@ -290,7 +292,8 @@ begin
 
   if not FParser.Parse(Source) then begin
     Result := psError;
-    ShowMessage(FParser.GetFailMessage);
+    //ShowMessage(FParser.GetFailMessage);
+    FLastErrorMsg := FParser.GetFailMessage;
   end
   else
     PickoutValues;
