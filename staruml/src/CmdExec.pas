@@ -6334,7 +6334,7 @@ begin
       end;
     end else begin
       ModelSet.Clear;
-      FErrorMessage := ERR_CMD_EXPRESSION_PARSING;
+      FErrorMessage := ERR_CMD_EXPRESSION_PARSING + ' ' + AParser.LastErrorMsg;
     end;
   finally
     AParser.Free;
