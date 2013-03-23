@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PROFILE version="1.0">
+	<HEADER>
+		<NAME>Cpp</NAME>
+		<DISPLAYNAME>C++ Profile</DISPLAYNAME>
+		<DESCRIPTION>C++ Language Profile</DESCRIPTION>
+	</HEADER>
+	<BODY>
+		<STEREOTYPELIST>
+			<STEREOTYPE>
+				<NAME>CppSourceFile</NAME>
+				<DESCRIPTION>Source file with C++ code</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLComponent</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>CppHeaderFile</NAME>
+				<DESCRIPTION>C++ header file</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLComponent</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>CppStruct</NAME>
+				<DESCRIPTION>Indicates struct, that is a compound type similar to class.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>CppUnion</NAME>
+				<DESCRIPTION>Indicates union, that can substitute value for only one member at a time.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>CppOperator</NAME>
+				<DESCRIPTION>Indicates operator function that overrides operator.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLOperation</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>CppMacro</NAME>
+				<DESCRIPTION>Used for expressing a macro that defines a part of member definition such as class as a UML operation element.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLOperation</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+			
+			<STEREOTYPE>
+				<NAME>CppUsing</NAME>
+				<DESCRIPTION>Used for referencing other namespace with the using syntax.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+			
+			<STEREOTYPE>
+				<NAME>CppFriend</NAME>
+				<DESCRIPTION>Used for expressing friend of class as dependency element or expressing friend function.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+					<BASECLASS>UMLOperation</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>CppTypedef</NAME>
+				<DESCRIPTION>Used for expressing typedef, which defines the type, as class element.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>CppSynonym</NAME>
+				<DESCRIPTION>Indicates the dependency between the typedef class and the original type when defining a type with a typedef of a different name.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>CppDelegate</NAME>
+				<DESCRIPTION>ndicates delegate function defined in .NET managed C++.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+		</STEREOTYPELIST>
+
+		<TAGDEFINITIONSETLIST>
+			<TAGDEFINITIONSET>
+				<NAME>CppVirtual</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLGeneralization</BASECLASS>
+					<BASECLASS>UMLRealization</BASECLASS>
+					<BASECLASS>UMLOperation</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>CppVirtual</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+			
+			<TAGDEFINITIONSET>
+				<NAME>CppStatic</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLAssociationEnd</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>CppStatic</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>CppMemberData</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLAttribute</BASECLASS>
+					<BASECLASS>UMLAssociationEnd</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>CppMutable</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>CppVolatile</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>CppCollection</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+			
+			<TAGDEFINITIONSET>
+				<NAME>CppConst</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLOperation</BASECLASS>
+					<BASECLASS>UMLParameter</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>CppConst</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>CppMemberFunction</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLOperation</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>CppInline</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>CppFunctionTemplate</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>CppThrow</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>CppDimension</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLAttribute</BASECLASS>
+					<BASECLASS>UMLAssociationEnd</BASECLASS>
+					<BASECLASS>UMLOperation</BASECLASS>
+					<BASECLASS>UMLParameter</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>CppDimension</NAME>
+						<TAGTYPE>Integer</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>CppBitField</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLAttribute</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>CppBitField</NAME>
+						<TAGTYPE>Integer</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>CppPointer</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLAttribute</BASECLASS>
+					<BASECLASS>UMLParameter</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>CppPointer</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>CppEnumLiteral</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLEnumerationLiteral</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>CppEnumLiteralValue</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+			
+			<TAGDEFINITIONSET>
+				<NAME>CppTypedef</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>CppTypedefPointer</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>CppTypedefDefinition</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>VCppDeclspec</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+					<BASECLASS>UMLInterface</BASECLASS>
+					<BASECLASS>UMLEnumeration</BASECLASS>
+					<BASECLASS>UMLAttribute</BASECLASS>
+					<BASECLASS>UMLAssociationEnd</BASECLASS>
+					<BASECLASS>UMLOperation</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>Cpp__Declspec</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+			
+			<TAGDEFINITIONSET>
+				<NAME>VCppGc</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+					<BASECLASS>UMLInterface</BASECLASS>
+					<BASECLASS>UMLAttribute</BASECLASS>
+					<BASECLASS>UMLAssociationEnd</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>Cpp__Gc</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>Cpp__Nogc</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>VCppValue</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>Cpp__Value</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>VCppEvent</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLInterface</BASECLASS>
+					<BASECLASS>UMLAttribute</BASECLASS>
+					<BASECLASS>UMLOperation</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>Cpp__Event</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>VCppMemberFunction</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLOperation</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>Cpp__Cdecl</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>Cpp__Stdcall</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>Cpp__Fastcall</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>Cpp__Inline</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>Cpp__ForceInline</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+					<TAGDEFINITION>
+						<NAME>Cpp__Property</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+			
+			<TAGDEFINITIONSET>
+				<NAME>VCppW64</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLAttribute</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>Cpp__W64</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>VCppBased</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLAttribute</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+					<TAGDEFINITION>
+						<NAME>Cpp__Based</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+		</TAGDEFINITIONSETLIST>
+
+		<DATATYPELIST>
+			<DATATYPE>
+				<NAME>int</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>unsigned int</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>bool</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>char</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>unsigned char</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>short</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>unsigned short</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>long</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>long long</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>unsigned long</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>void</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>float</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>double</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>long double</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>wchar_t</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>__int8</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>__int16</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>__int32</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>__int64</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>__m64</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>__m128</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>__m128d</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>__m128i</NAME>
+			</DATATYPE>
+		</DATATYPELIST>
+	</BODY>
+</PROFILE>

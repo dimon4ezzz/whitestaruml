@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Closing a Project</title>
+  <keywords>
+    <keyword translate="true">Closing<keyword translate="true">project</keyword></keyword>
+    <keyword translate="true">Project</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Closing a Project</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To close a project, for example to work on another project, do the following.</text></para>
+    <list id="19" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">Close</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">If the project was not saved since changes were made, a message will ask you to save the changes. Click </text><text styleclass="MenuCommand" translate="true">Yes</text><text styleclass="List1" translate="true"> if you want to save the changes.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:48px;"><image src="ch03_h3.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="19" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1Last" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">The project is closed and the panes in the main window will be empty.</text></li>
+    </list>
+  </body>
+</topic>

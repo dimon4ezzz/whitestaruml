@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd" status="Out Of Date">
+  <title translate="true">Uninstalling Modules</title>
+  <keywords>
+    <keyword translate="true">Uninstalling<keyword translate="true">add ins</keyword><keyword translate="true">modules</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Uninstalling Modules</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><anchor id="UninstallingaModuleincludinginAddIn" styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#0000ff;"><keywords><keyword translate="true">Module<keyword translate="true">uninstalling</keyword></keyword><keyword translate="true">Add ins<keyword translate="true">uninstalling</keyword></keyword></keywords></anchor><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#0000ff;" translate="true">Uninstalling a Module including in Add In</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">In the case of a module including in AddIn, the directory in the module has .aid file, and there is stating a path of the AddIn in AID file. These modules provide their uninstall methods. In case of Core Module in </text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">, unreg.bat file is existed in under the relative module directory to remove installed addin. The user can remove the installed AddIn as executing unreg.bat. And the relative module.</text></para>
+    <list id="3" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Move to Uninstalling a Module</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch07_h3.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="3" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Run unreg.bat in under the module directory</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch07_h4.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="3" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Removing the relative module directory.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#0000ff;" translate="true">Uninstalling a Module exclude in AddIn</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">In the case of a module exclude in AddIn, the user can uninstall for the installed module by removing the relative module directory.　</text></para>
+  </body>
+</topic>

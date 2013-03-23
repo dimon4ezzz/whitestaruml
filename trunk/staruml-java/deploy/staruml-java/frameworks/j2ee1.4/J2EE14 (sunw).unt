@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XPD:UNIT xmlns:XPD="http://www.plasticsoftware.com/products/plastic" version="1">
+<XPD:HEADER>
+<XPD:SUBUNITS>
+</XPD:SUBUNITS>
+</XPD:HEADER>
+<XPD:BODY>
+<XPD:OBJ name="DocumentElement" type="UMLPackage" guid="tPYvnKiqQ0GjxEirQPpA9AAA">
+<XPD:ATTR name="Name" type="string">sunw</XPD:ATTR>
+<XPD:ATTR name="#OwnedElements" type="integer">2</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLPackage" guid="loIAfljgHkWbWos1p0um9AAA">
+<XPD:ATTR name="Name" type="string">io</XPD:ATTR>
+<XPD:REF name="Namespace">tPYvnKiqQ0GjxEirQPpA9AAA</XPD:REF>
+<XPD:ATTR name="#OwnedElements" type="integer">2</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLInterface" guid="K0R9unQ8Y0+fc2p4BkFiIwAA">
+<XPD:ATTR name="Name" type="string">Serializable</XPD:ATTR>
+<XPD:REF name="Namespace">loIAfljgHkWbWos1p0um9AAA</XPD:REF>
+<XPD:ATTR name="#Generalizations" type="integer">1</XPD:ATTR>
+<XPD:REF name="Generalizations[0]">Q4LwbFNbhES7gRNDwllaxQAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[1]" type="UMLGeneralization" guid="Q4LwbFNbhES7gRNDwllaxQAA">
+<XPD:REF name="Namespace">loIAfljgHkWbWos1p0um9AAA</XPD:REF>
+<XPD:REF name="Child">K0R9unQ8Y0+fc2p4BkFiIwAA</XPD:REF>
+<XPD:REF name="Parent" pathname="::Logical View::java::io::Serializable">/GgBqJb7Y0a2+9WcMqeSdAAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[1]" type="UMLPackage" guid="hbFXOmTJDkG9qrJ6kmW6wgAA">
+<XPD:ATTR name="Name" type="string">util</XPD:ATTR>
+<XPD:REF name="Namespace">tPYvnKiqQ0GjxEirQPpA9AAA</XPD:REF>
+<XPD:ATTR name="#OwnedElements" type="integer">4</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLInterface" guid="JRRxA+Mm10uNhJGKSzIzGgAA">
+<XPD:ATTR name="Name" type="string">EventListener</XPD:ATTR>
+<XPD:REF name="Namespace">hbFXOmTJDkG9qrJ6kmW6wgAA</XPD:REF>
+<XPD:ATTR name="#Generalizations" type="integer">1</XPD:ATTR>
+<XPD:REF name="Generalizations[0]">fujB1WcYbk6yhI2qJftvkQAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[1]" type="UMLClass" guid="zn92OBQm6UmAOCcQsij6mAAA">
+<XPD:ATTR name="Name" type="string">EventObject</XPD:ATTR>
+<XPD:REF name="Namespace">hbFXOmTJDkG9qrJ6kmW6wgAA</XPD:REF>
+<XPD:ATTR name="#Generalizations" type="integer">1</XPD:ATTR>
+<XPD:REF name="Generalizations[0]">ugUneDwsd0CKALFXyQXGVwAA</XPD:REF>
+<XPD:ATTR name="#Operations" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="Operations[0]" type="UMLOperation" guid="w7qPrWujw0muUhMmU+cKVwAA">
+<XPD:ATTR name="Name" type="string">EventObject</XPD:ATTR>
+<XPD:ATTR name="StereotypeProfile" type="string">UMLStandard</XPD:ATTR>
+<XPD:ATTR name="StereotypeName" type="string">create</XPD:ATTR>
+<XPD:REF name="Owner">zn92OBQm6UmAOCcQsij6mAAA</XPD:REF>
+<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="K5Gjmd9uXEm4Mqehm53upgAA">
+<XPD:ATTR name="Name" type="string">source</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">Object</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">w7qPrWujw0muUhMmU+cKVwAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[2]" type="UMLGeneralization" guid="fujB1WcYbk6yhI2qJftvkQAA">
+<XPD:REF name="Namespace">hbFXOmTJDkG9qrJ6kmW6wgAA</XPD:REF>
+<XPD:REF name="Child">JRRxA+Mm10uNhJGKSzIzGgAA</XPD:REF>
+<XPD:REF name="Parent" pathname="::Logical View::java::util::EventListener">Mcc+DXsVI0yUtJF01WGfuQAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[3]" type="UMLGeneralization" guid="ugUneDwsd0CKALFXyQXGVwAA">
+<XPD:REF name="Namespace">hbFXOmTJDkG9qrJ6kmW6wgAA</XPD:REF>
+<XPD:REF name="Child">zn92OBQm6UmAOCcQsij6mAAA</XPD:REF>
+<XPD:REF name="Parent" pathname="::Logical View::java::util::EventObject">HEwhJN0JJ0W7t2bhuIIEvAAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:BODY>
+</XPD:UNIT>

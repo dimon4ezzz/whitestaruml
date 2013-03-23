@@ -1,0 +1,52 @@
+"Start Symbol" = <Grammar Transition>
+"Case Sensitive" = False                
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+
+{String Chars} = {All Letters} +  {Number} + {Euro Sign} + [ '_' ';' '\' '.' '&' '@' '$' '%' '+' '*' '#' '-' '~' '"' '`' '' ] 
+! Restricted Chars should not start or end an indentifier as they may collide with other symbols 
+{Restricted Chars} = {All Space} + [ '+' '#' '-' '~' ]
+{Boundary String Chars} = {String Chars} - {Restricted Chars}
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* ( {Restricted Chars}* '<' {String Chars}* '>' )? 
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<Grammar Transition> ::= <transition_expression> 
+
+<transition_expression> ::= <event_signature> <guard_condition> <action_expression>
+                                                
+<event_signature> ::= <event_name> 
+                   | <event_name> '(' <parameter_list> ')'
+                   | <>
+
+<event_name> ::= id
+             
+<parameter_list> ::= <parameter_list> ',' <parameter>
+                  | <parameter>
+
+<parameter> ::= <parameter_name> ':' <type_expression>
+             | <parameter_name>
+
+<parameter_name> ::= id
+
+<type_expression> ::= id
+
+<guard_condition> ::= '[' <id_expr> ']' 
+                   | <>
+                   
+<action_expression> ::= '/' <id_expr> 
+                     | <>
+                     
+<id_expr> ::= id
+                   
+
+        
+

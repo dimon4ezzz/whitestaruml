@@ -1,0 +1,65 @@
+"Start Symbol" = <Grammar Operation>
+"Case Sensitive" = False                
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+{String Chars} = {All Letters} +  {Number} + {Euro Sign} + [ '_' ',' ';' '/' '\' '.' '&' '@' '$' '%' '+' '*' '#' '-' '~' '"' '`' '' ] 
+! Restricted Chars should not start or end an indentifier as they may collide with other symbols 
+{Restricted Chars} = {All Space} + [ '+' '#' '-' '~' ]
+{Boundary String Chars} = {String Chars} - {Restricted Chars}
+
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* ( {Restricted Chars}* '<' {String Chars}* '>' | {Restricted Chars}* '[' {String Chars}* ']' )? 
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<Grammar Operation> ::= <operation_expression> 
+
+<operation_expression> ::= <stereotype_part> <visibility> <operation_name> <parameter_list_part> <return_type_expression_part>
+                                                
+<stereotype_part> ::= '<<' <stereotype> '>>'
+                   |  <>
+
+<stereotype> ::= id
+
+<visibility> ::= '+' | '#' | '-' | '~'
+              | <> 
+
+<operation_name> ::= id
+                  
+
+<parameter_list_part> ::= '(' <parameter_list> ')'
+                        | <>
+
+<parameter_list> ::= <parameter_list> ',' <parameter>
+                  | <parameter>
+                  | <>
+
+<parameter> ::= <parameter_kind> <parameter_name> <parameter_type_expression> <parameter_default_value>
+
+<parameter_kind> ::= 'in' | 'out' | 'inout' | <>
+
+
+<parameter_name> ::= id
+
+<parameter_type_expression> ::= <type_expression>
+
+<parameter_default_value> ::= '=' <parameter_default_value_literal> | <>
+                           
+
+<return_type_expression_part> ::= <return_type_expression>
+
+<return_type_expression> ::= <type_expression>
+<type_expression> ::=  ':' <type_id> | <>
+
+<type_id> ::= id
+<parameter_default_value_literal> ::= id
+
+        
+

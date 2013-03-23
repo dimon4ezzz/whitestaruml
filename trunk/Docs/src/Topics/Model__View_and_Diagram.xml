@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Model, View and Diagram</title>
+  <keywords>
+    <keyword translate="true">Concept<keyword translate="true">diagram</keyword><keyword translate="true">model</keyword><keyword translate="true">view</keyword></keyword>
+    <keyword translate="true">Diagram<keyword translate="true">concept</keyword></keyword>
+    <keyword translate="true">Model<keyword translate="true">concept</keyword></keyword>
+    <keyword translate="true">View in diagram<keyword translate="true">concept</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Model, View and Diagram</text></para>
+    </header>
+    <para styleclass="Normal"><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> makes a clear conceptual distinction between models, views and diagrams.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A </text><text styleclass="Emphasis" translate="true">Model</text><text styleclass="Normal" translate="true"> represents the structure of the system under development. The model contains </text><text styleclass="Emphasis" translate="true">Model Elements</text><text styleclass="Normal" translate="true">. The model elements represent concepts from the system under development.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A </text><text styleclass="Normal" style="font-weight:bold;" translate="true">Diagram</text><text styleclass="Normal" translate="true"> is a visualization of (part of) the model and represent the user’s specific design thoughts. The diagram contains </text><text styleclass="Normal" style="font-weight:bold;" translate="true">View Elements</text><text styleclass="Normal" translate="true">. The view element is the visualization of a model element. One model element can have different view elements in different diagrams. What a view element looks like depends on the defined notation for the diagram type. </text></para>
+    <para styleclass="Image Caption"><image src="ch02_h1.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Notes"><image src="note.bmp" scale="100.00%" styleclass="Notes"></image><text styleclass="Notes" translate="true">&#32;</text><text styleclass="Emphasis" translate="true">Note:</text><text styleclass="Normal" translate="true"> The above View Element is not related to the View in an approach.</text></para>
+  </body>
+</topic>

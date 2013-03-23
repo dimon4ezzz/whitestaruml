@@ -1,0 +1,81 @@
+<html>
+
+<head>
+<title>Builder Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Builder</h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Interaction">Interaction</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Separate the construction of a complex object from its representation so 
+	that the same construction process can create different representations.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp; <img border="0" src="Builder_Model1.gif" width="540" height="217"></p>
+<ul type="square">
+  <li><b>Builder</b> : specifies an abstract interface for creating parts of a 
+	Product object.</li>
+  <li><b>ConcreteBuilder</b> : Constructs and assembles parts of the product by 
+	implementing the Builder interface. Defines and keeps track of the 
+	representation it creates. Provides an interface for retrieving the product 
+	(e.g., GetASCIIText, GetTextWidget).</li>
+  <li><b>Director</b> : Constructs an object using the Builder interface.</li>
+  <li><b>Product</b> : Represents the complex object under construction. 
+	ConcreteBuilder builds the product's internal representation and defines the 
+	process by which it's assembled.</li>
+</ul>
+<h2><a name="Interaction">Interaction</a></h2>
+<p>
+<img border="0" src="Build_Model_Seq1.gif" width="439" height="356"></p>
+<ul type="square">
+  <li>The client creates the Director object and configures it with the desired 
+	Builder object.</li>
+  <li>Director notifies the builder whenever a part of the product should be 
+	built.</li>
+  <li>Builder handles requests from the director and adds parts to the product.</li>
+  <li>The client retrieves the product from the builder.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>The algorithm for creating a complex object should be independent of the 
+	parts that make up the object and how they're assembled.</li>
+  <li>The construction process must allow different representations for the 
+	object that's constructed.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>It lets you vary a product's internal representation. </b>The Builder 
+	object provides the director with an abstract interface for constructing the 
+	product. The interface lets the builder hide the representation and internal 
+	structure of the product. It also hides how the product gets assembled. 
+	Because the product is constructed through an abstract interface, all you 
+	have to do to change the product's internal representation<b> </b>is define 
+	a new kind of builder<b>.</b></li>
+  <li><b>t isolates code for construction and representation. </b>I The Builder 
+	pattern improves modularity by encapsulating the way a complex object is 
+	constructed and represented. Clients needn't know anything about the classes 
+	that define the product's internal structure; such classes don't appear in 
+	Builder's interface.</li>
+  <li><b>It gives you finer control over the construction process.&nbsp; </b>
+	Unlike creational patterns that construct products in one shot, the Builder 
+	pattern constructs the product step by step under the director's control. 
+	Only when the product is finished does the director retrieve it from the 
+	builder. Hence the Builder interface reflects the process of constructing 
+	the product more than other creational patterns. This gives you finer 
+	control over the construction process and consequently the internal 
+	structure of the resulting product.</li>
+</ul>
+
+</body>
+
+</html>

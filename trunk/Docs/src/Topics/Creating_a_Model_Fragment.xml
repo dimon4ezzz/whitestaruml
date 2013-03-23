@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Creating Model Fragments</title>
+  <keywords>
+    <keyword translate="true">Creating<keyword translate="true">model fragments</keyword></keyword>
+    <keyword translate="true">Fragments</keyword>
+    <keyword translate="true">Model fragment</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Creating Model Fragments</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Parts of a project can be saved as separate model fragment files for access by other users or future reuse. Unlike units, model fragments are not referenced by other files and do not reference other files. They are independent entities. Model fragments can be imported in a project at any time.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Use fragments to reuse part of a model in a project. For example, if you use the same authorization model in different projects you can reuse the authorization model by saving that part of the model as a model fragment.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">You can create a model fragment from a package, subsystem or model. Fragments are saved in a file with the extension *.mfg.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To create a model fragment</text></para>
+    <list id="1" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Model Explorer</text><text styleclass="List1" translate="true"> select the element from which you want to create a model fragment.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, point to </text><text styleclass="MenuCommand" translate="true">Export</text><text styleclass="List1" translate="true"> and choose </text><text styleclass="MenuCommand" translate="true">Model Fragment</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Save Model Fragment</text><text styleclass="Normal" translate="true"> dialog box, enter the model fragment file name and click </text><text styleclass="MenuCommand" translate="true">Save</text><text styleclass="Normal" translate="true">.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:24px;"><image src="ch03_h10.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+  </body>
+</topic>

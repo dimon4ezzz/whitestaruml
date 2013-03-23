@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Managing Elements</title>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Managing Elements</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">There are two parts to an element in a diagram: the element in the model (model element) and the representation in the diagram (view element). Although you can create a model element without a view element, you cannot create a view element without a model element. What a model element looks like in a diagram is determined by the diagram the settings of the diagram and the use of the element in the diagram. For example, a classifier may be represented as a class in a class diagram or an object in a sequence diagram. An actor is also a classifier and can be shown in a sequence diagram, it is typically represented by a stick figure but can be represented by the box of an object. Those specifics are described in </text><link displaytype="text" defaultstyle="true" type="topiclink" href="Working_with_Diagrams" styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Working with Diagrams</link><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> in the context of the diagram types.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">This section discusses the tasks that apply to all view elements in a similar way.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">There is no one correct way of creating elements. Which way you choose depends on your preference and the task at hand. If you start out with concepts, for example when analyzing a project initiation paper or an email that describes a project idea, then you may want to create the concepts as model elements first and figure out the details using diagrams later. On the other hand, if you have a sketch of a diagram on a napkin you may first want to create the diagram and later document the concepts.</text></para>
+  </body>
+</topic>

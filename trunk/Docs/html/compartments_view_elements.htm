@@ -1,0 +1,197 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Modeling &gt; Managing Elements &gt; Elements in Diagrams &gt; Formatting View Elements Compartments</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Changeability,Compartments formatting,Ordering,Parent name,Showing parts of elements,Signatures,Stereotypes,Visibility,Word wrap">
+   <meta name="description" content="Formatting View Elements Compartments">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?compartments_view_elements.htm"; }
+  else { parent.quicksync('a5.2.2.3'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="modeling.htm">Modeling</a> &gt; <a href="managing_elements.htm">Managing Elements</a> &gt; <a href="basic_tasks_elements.htm">Elements in Diagrams</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none; margin: 10px 0px 10px 24px;"><span class="f_Heading1">Formatting View Elements Compartments</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="copy_and_paste_elements.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="basic_tasks_elements.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="appearance_view_element.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p>The definition of how elements are shown in a diagram is called the notation in UML. The notation of diagrams may be different from UML tool to UML tool and even within the UML tool different notation may be defined. For example, the UML 1.1 notation is different from the UML 2.5 notation. In WhiteStarUml the notation is applied is defined in the profile. The profile may define special notations for stereotypes defined in the profile.</p>
+<p>The generic notation of a class is a box. However, UML diagrams are intended to be very flexible and can provide different notations for elements to allow for personal preferences. WhiteStarUml supports this flexibility. You can change the appearance of a view element in detail.</p>
+<p class="p_Heading2" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading2">Compartments</span></p>
+<p>The notation of a classifier (Class, Actor, UseCase Exception etc.) consists of compartments. Classifiers have a name compartment, an attributes compartment and an operations compartment. Actors and Use Cases have the same compartments but are often not shown.</p>
+<div><div style="width:416px;padding:0px"><img src="viewelementnotation.jpg" width="416" height="166" border="0" alt="Classifier Compartments" title="View Element Notation"><p style="text-align:center"><span class="f_ImageCaption">Classifier Compartments</span></p></div></div>
+<p>Enumerations are data types you can define in the model. Enumeration defined the values that a variable of the enumeration's type can have as literals. In a class diagram, enumerations look like classes with an enumeration stereotype. However, enumeration have a literals compartment and no attributes compartment.</p>
+<div><div style="width:318px;padding:0px"><img src="viewelementenumnotation.jpg" width="318" height="174" border="0" alt="Enumeration Compartments" title="Enumeration Notation"><p style="text-align:center"><span class="f_ImageCaption">Enumeration Compartments</span></p></div></div>
+<p>You can hide the different compartments to focus the attention to the overall structure in the diagram. </p>
+<p>To suppress (hide) the attributes compartment, select the view element and on the <span class="f_MenuCommand">Format</span> menu click <span class="f_MenuCommand">Suppress Attributes</span>. <span class="f_MenuCommand">Suppress Attributes</span> will now be checked. <span style="font-size: 9pt;">To show the attributes compartment again, uncheck </span><span class="f_MenuCommand">Suppress Attributes</span><span style="font-size: 9pt;">.</span></p>
+<div><div style="width:266px;padding:0px"><img src="viewelementsuppattr.jpg" width="266" height="166" border="0" alt="Suppressed Attributes" title="Suppressed Attributes"><p style="text-align:center"><span class="f_ImageCaption">Suppressed Attributes</span></p></div></div>
+<div style="margin: 19px 0px 10px 0px;"><div style="width:249px;padding:0px"><img src="viewelementsuppattrchkd.jpg" width="249" height="24" border="0" alt="Suppress Attributes Checked" title="Suppress Attributes Checked"><p style="text-align:center"><span class="f_ImageCaption">Suppress Attributes Checked</span></p></div></div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">To suppress (hide) the operations compartment, select the view element and on the </span><span class="f_MenuCommand">Format</span><span style="font-size: 9pt;"> menu click </span><span class="f_MenuCommand">Suppress Operations</span><span style="font-size: 9pt;">. </span><span class="f_MenuCommand">Suppress Operations</span><span style="font-size: 9pt;"> will now be checked. </span>To show the operations compartment again, uncheck <span class="f_MenuCommand">Suppress Operations</span>.</p>
+<div style="margin: 19px 0px 10px 0px;"><div style="width:266px;padding:0px"><img src="viewelementsuppoper.jpg" width="266" height="166" border="0" alt="Suppressed Operations" title="Suppressed Operations"><p style="text-align:center"><span class="f_ImageCaption">Suppressed Operations</span></p></div></div>
+<div class="p_ImageCaption"><div style="width:249px;padding:0px"><img src="viewelementsuppoperchkd.jpg" width="249" height="24" border="0" alt="Suppress Operations Checked" title="Suppress Operations Checked"><p style="text-align:center"><span class="f_ImageCaption">Suppress Operations Checked</span></p></div></div>
+<p>To suppress (hide) the literals compartment of an enumeration, select the enumeration and on the <span class="f_MenuCommand">Format</span> menu click <span class="f_MenuCommand">Suppress Literals</span>. <span class="f_MenuCommand">Suppress Literals</span> will now be checked. To show the literals compartment again, uncheck <span class="f_MenuCommand">Suppress Literals</span>.</p>
+<div><div style="width:143px;padding:0px"><img src="viewelementenumsupp.jpg" width="143" height="64" border="0" alt="Suppressed Literals and Suppressed Operations" title="Enumeration with Suppressed Compartments"><p style="text-align:center"><span class="f_ImageCaption">Suppressed Literals and Suppressed Operations</span></p></div></div>
+<div><div style="width:250px;padding:0px"><img src="viewelementenumsuppchkd.jpg" width="250" height="48" border="0" alt="Suppress Operations and Suppress Literals Checked" title="Enumeration Suppress Checked"><p style="text-align:center"><span class="f_ImageCaption">Suppress Operations and Suppress Literals Checked</span></p></div></div>
+<p class="p_Heading2" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading2">Formatting the Name Compartment</span></p>
+<p class="p_Heading3" style="border-top: none; border-right: none; border-bottom: none; border-left: none;"><span class="f_Heading3">Stereotype</span></p>
+<p>The stereotype of a classifier gives a general idea of what the element represents. Often the stereotype provides implementation details. The icon notation of a stereotype is defined in the profile that is loaded in the project. The default display format for a classifier's view element is the textual display format.</p>
+<p>To change the display of the stereotype select an element, on the <span class="f_MenuCommand">Format</span> menu point at <span class="f_MenuCommand">Stereotype Display</span> and then select a format.</p>
+<div style="margin: 10px 0px 10px 24px;"><div style="width:130px;padding:0px"><img src="viewelementstereonone.jpg" width="130" height="102" border="0" alt="None" title="Stereotype Display None"><p style="text-align:center"><span class="f_ImageCaption">None</span></p></div><div style="width:130px;padding:0px"><img src="viewelementstereotext.jpg" width="130" height="102" border="0" alt="Textual" title="Stereotype Display Textual"><p style="text-align:center"><span class="f_ImageCaption">Textual</span></p></div><div style="width:130px;padding:0px"><img src="viewelementstereoicon.jpg" width="130" height="102" border="0" alt="Iconic" title="Stereotype Display Iconic"><p style="text-align:center"><span class="f_ImageCaption">Iconic</span></p></div><div style="width:130px;padding:0px"><img src="viewelementstereodeco.jpg" width="130" height="102" border="0" alt="Decoration" title="Stereotype Display Decoration"><p style="text-align:center"><span class="f_ImageCaption">Decoration</span></p></div></div>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_Emphasis">None:</span><span class="f_ListB"> Hides the stereotype from the name compartment.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_Emphasis">Textual:</span><span class="f_ListB"> Stereotype name is shown between double angle quotation marks ( “&lt;&lt;boundary&gt;&gt;”).</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_Emphasis">Iconic:</span><span class="f_ListB"> The notation of the view element is changed to the stereotype icon. An icon must be defined for the stereotype in one of the loaded profiles for an icon to show. If no icon is defined, the textual format is displayed. S</span><span class="f_ListBLast">ome classifiers (such as Actor, Interface, Component, Node and Artifact) are shown in decoration type format if no icon is defined for the stereotype.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_Emphasis">Decoration:</span><span class="f_ListBLast"> The stereotype is shown in textual format together with a small. </span><span class="f_ListB">An icon must be defined for the stereotype in one of the loaded profiles for an icon to show. If no icon is defined, the textual format is displayed.</span><span class="f_ListBLast"> </span></td></tr></table></div><p class="p_Heading3" style="border-top: none; border-right: none; border-bottom: none; border-left: none;"><span class="f_Heading3">Applying Word Wrap</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">When an element name consists of two or more words, the name may become too wide compared to the attributes and operations. You can use word wrap to improve the element's appearance.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">To turn on word wrap, select the element, on the Format menu click Word Wrap Name. Word Wrap Name will now be checked. To turn off word wrap, uncheck Word Wrap Name.</span></p>
+<div style="margin: 19px 0px 10px 0px;"><div style="width:141px;padding:0px"><img src="wordwrapon.jpg" width="141" height="91" border="0" alt="Word Wrap Name On" title="Word Wrap On"><p style="text-align:center"><span class="f_ImageCaption">Word Wrap Name On</span></p></div><span class="f_ImageCaption"> <div style="width:141px;padding:0px"><img src="wordwrapoff.jpg" width="141" height="91" border="0" alt="Word Wrap Name Off" title="WordWrapOff"><p style="text-align:center"><span class="f_ImageCaption">Word Wrap Name Off</span></p></div></span></div>
+<p class="p_Notes"><img src="note.png" width="12" height="12" border="0" alt="note"><span class="f_Emphasis"> Note:</span><span class="f_Notes"> Some elements such as relative elements, unexpressed elements on a diagram and Swimlane cannot apply Word Wrap.</span></p>
+<p class="p_Heading3" style="border-top: none; border-right: none; border-bottom: none; border-left: none;"><span class="f_Heading3">Showing the Parent Name</span></p>
+<p>In general, view elements show their own names only. However, a project containing multiple packages may have elements with the same names in different packages. You may need to show elements with the same name in one diagram. In such a case, you can show the element's &nbsp;parent names in order to distinguish one from the other. The names are in the format “ParentName::OwnName.”</p>
+<p class="p_ImageCaption"><img src="ch04_h86.jpg" width="242" height="80" border="0" alt="ch04_h86"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">To show the parent name, select the view element and on the </span><span class="f_MenuCommand">Format</span><span style="font-size: 9pt;"> menu click </span><span class="f_MenuCommand">Show Parent Name</span><span style="font-size: 9pt;">. </span><span class="f_MenuCommand">Show Parent Name</span><span style="font-size: 9pt;"> will now be checked. To hide the parent name, select the view element and uncheck </span><span class="f_MenuCommand">Show Parent Name</span><span style="font-size: 9pt;">.</span></p>
+<p class="p_Heading2" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading2">Formatting the Attributes, Operations and Literals Compartments</span></p>
+<p class="p_Heading3" style="border-top: none; border-right: none; border-bottom: none; border-left: none;"><a name="tagged_values"></a><span class="f_Heading3">Detail Properties</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Some properties are in text between curly braces ("{...}"), they are not expressed graphically. For attributes these detail properties are the tagged values and the changeability properties. For relationships these detail properties are the tagged values, changeability and ordering properties.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch04_h87.jpg" width="270" height="108" border="0" alt="ch04_h87"></p>
+<p>To show the tagged values and changeability properties of attributes, select an element in the <span class="f_MenuCommand">Model Explorer</span> or in the diagram, then on the <span class="f_MenuCommand">Format</span> menu click <span class="f_MenuCommand">Show Properties</span>. <span class="f_MenuCommand">Show Properties</span> will now be checked. To hide the properties, select the element and uncheck <span class="f_MenuCommand">Show Properties</span>.</p>
+<p>To show the tagged values, changeability and ordering properties of relationships, select a relationship in the diagram, then on the <span class="f_MenuCommand">Format</span> menu click <span class="f_MenuCommand">Show Properties</span>. <span class="f_MenuCommand">Show Properties</span> will now be checked. To hide the properties, select the relationship and uncheck <span class="f_MenuCommand">Show Properties</span>.</p>
+<p class="p_Notes"><img src="note.png" width="12" height="12" border="0" alt="note"><span class="f_Notes"> </span><span class="f_Emphasis">Notes:</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">The default value of the changeability property (CHANGEABLE) is never shown.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">The default value of the ordering property (UNORDERED) is never shown.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">Tagged values are only shown when the tagged values are initialized. To initialize the tagged values of an element, select the element and then on the </span><span class="f_MenuCommand">Model</span><span class="f_ListB"> menu click </span><span class="f_MenuCommand">Tagged Values</span><span class="f_ListB">.</span></td></tr></table></div><p class="p_Heading3" style="border-top: none; border-right: none; border-bottom: none; border-left: none;"><a name="operation_signature"></a><span class="f_Heading3">Operation Signature</span></p>
+<p>You can show or hide the parameters and parameter types of operations. The parameter details of an operation form the signature of that operation.</p>
+<p>To show operation signatures, select an element in the <span class="f_MenuCommand">Model Explorer</span> or in the diagram, then on the <span class="f_MenuCommand">Format</span> menu click <span class="f_MenuCommand">Show Operation Signature</span>. <span class="f_MenuCommand">Show Signature</span> will now be checked. To hide the operation signatures, select the element and uncheck <span class="f_MenuCommand">Show Signatures</span>.</p>
+<p class="p_Heading3" style="border-top: none; border-right: none; border-bottom: none; border-left: none;"><a name="compartment_visibility"></a><span class="f_Heading3">Visibility of Compartment Elements</span></p>
+<p>To show the visibility symbols of attributes, operations and literals, select an element in the <span class="f_MenuCommand">Model Explorer</span> or in the diagram and then on the <span class="f_MenuCommand">Format</span> menu click <span class="f_MenuCommand">Show Compartment Visibility</span>. <span class="f_MenuCommand">Show Compartment Visibility</span> is now checked. To hide the visibility symbols of attributes, operations and literals, select the element and uncheck <span class="f_MenuCommand">Show Compartment Visibility</span>.</p>
+<p class="p_Heading3" style="border-top: none; border-right: none; border-bottom: none; border-left: none;"><a name="compartment_stereotype"></a><span class="f_Heading3">Stereotypes of Compartment Elements</span></p>
+<p>To show the stereotypes of attributes, operations and literals, select a view element and on the <span class="f_MenuCommand">Format</span> menu click <span class="f_MenuCommand">Show Compartment Stereotypes</span>. <span class="f_MenuCommand">Show Compartment Stereotypes</span> will now be checked. To hide the stereotypes, select the view element and uncheck <span class="f_MenuCommand">Show Compartment Stereotypes</span>.</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

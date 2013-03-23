@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Setting the Default Diagram</title>
+  <keywords>
+    <keyword translate="true">Default diagram</keyword>
+    <keyword translate="true">Diagrams<keyword translate="true">default</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Setting the Default Diagram</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A project can contain many diagrams. The default diagram is automatically opened when opening the project. For instance, you may want to set the diagram that expresses the overall structure of the project as the default diagram. Alternatively you may set the diagram that you want to continue with next time as the default diagram. Only Class Diagram, UseCase Diagram, Component Diagram or Deployment Diagram can be set as the default diagram.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To set a diagram as the default diagram</text></para>
+    <list id="1" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><link displaytype="text" defaultstyle="true" type="topiclink" href="Basic_Tasks_Diagrams" anchor="activate_diagram" styleclass="List1" translate="true">Activate</link><text styleclass="List1" translate="true"> the diagram you want to set as the default diagram.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">Open the </text><text styleclass="MenuCommand" translate="true">Properties</text><text styleclass="List1" translate="true"> sheet in the </text><text styleclass="MenuCommand" translate="true">Inspector</text><text styleclass="List1" translate="true"> area.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the property sheet, select the </text><text styleclass="MenuCommand" translate="true">DefaultDiagram</text><text styleclass="List1" translate="true"> chekbox.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:24px;"><image src="DiagramDefault.jpg" scale="80.00%" width="191" height="129" styleclass="Image Caption"><title translate="true">Default Diagram</title><caption translate="true"><![CDATA[Set the Default Diagram]]></caption></image></para>
+  </body>
+</topic>

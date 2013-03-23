@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ADDIN>
+    <NAME>Java15 AddIn</NAME>
+    <DISPLAYNAME>Java 1.5 by Frank Hernandez Add-In</DISPLAYNAME>
+    <COMOBJ>WSJavaAddIn15.JavaAddInObj</COMOBJ>
+    <FILENAME>WSJavaAddIn15.dll</FILENAME>
+    <COMPANY>Plastic Software, Inc.</COMPANY>
+    <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
+    <HELPFILE>WhiteStarUML.chm</HELPFILE>
+    <ICONFILE>JavaAddIn.ico</ICONFILE>
+    <ISACTIVE>True</ISACTIVE>
+    <MENUFILE>JavaAddIn.mnu</MENUFILE>
+    <VERSION>1.0.1.96</VERSION>
+    <MODULES>
+        <MODULEFILENAME>WSJavaParser15.dll</MODULEFILENAME>
+    </MODULES>
+</ADDIN>

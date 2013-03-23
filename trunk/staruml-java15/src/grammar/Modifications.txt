@@ -1,0 +1,170 @@
+MODIFIED GRAMAR
+
+ADDED
+    generics_clause ::=
+    	"<" ident[generics_clause][{"," ident [generics_clause]}]">"
+    	| ident;
+    
+    annotation_clause ::=
+    	"@" *("\n");
+
+    foreach_statement ::= 
+      "for" "(" foreach_init ":" expression ")" 
+      statement ;
+
+    foreach_init ::=
+    	type            
+      variable_declarators;
+    
+    enum_clause ::=
+		modifiers "enum" ident
+		"{" [ident [{"," ident}][","]] "}";    
+
+BEFORE
+
+type_specifier<TERMINAL> ::= 
+          primitive_type 
+        | qualified_name;
+
+creator ::=
+        qualified_name( array_creator_rest | class_creator_rest );
+
+class_declaration ::= 
+        [modifiers]
+        "class" class_name 
+        [class_extends_clause]
+        [class_implements_clause]
+        "{" [field_declarations] "}";
+
+constructor_declaration ::= 
+        [modifiers]
+        ident 
+        "(" [parameter_list] ")" 
+        [throws_clause]
+        statement_block ;
+
+
+compilation_unit ::= 
+        {[package_statement]
+         [{import_statement}]
+         [{type_declaration}]} ;
+
+
+
+field_declaration ::= 
+          variable_declaration 
+        | method_declaration 
+        | constructor_declaration 
+        | type_declaration  
+        | classbody_declaration
+		| enum_clause
+        | ";" 
+        ;
+		
+import_statement ::= 
+        "import" 
+        (package_name "." asterisk | qualified_name) ";" ;
+
+
+method_declaration ::= 
+        [modifiers] 
+        type 
+        method_name
+        "(" [parameter_list] ")" 
+        [{empty_subscripts}] 
+        [throws_clause]
+        (statement_block | ";")    ;
+
+
+selector ::=
+        "." ident  [ arguments ]
+        |  "." "this"
+        |  "." "super" super_suffix
+        |  "." "new" inner_creator
+        |  "[" expression "]"
+        ;
+
+variable_declaration ::= 
+        [modifiers] 
+        type
+        variable_declarators  
+        ";"
+        ;		
+		
+AFTER
+type_specifier<TERMINAL> ::= 
+          primitive_type 
+        | qualified_name
+        [generics_clause] ;
+
+creator ::=
+        qualified_name [generics_clause]( array_creator_rest | class_creator_rest );
+
+     
+class_declaration ::= 
+        [modifiers]
+        "class" class_name
+        [generics_clause] 
+        [class_extends_clause]
+        [class_implements_clause]
+        "{" [field_declarations] "}";
+
+constructor_declaration ::= 
+        [modifiers]
+        [generics_clause]
+        ident 
+        "(" [parameter_list] ")" 
+        [throws_clause]
+        statement_block ;
+
+compilation_unit ::= 
+        {[package_statement]
+         [{import_statement}]
+         [{annotation_clause}]
+         [{type_declaration}]} ;
+
+
+field_declaration ::= 
+          variable_declaration 
+        | method_declaration 
+        | constructor_declaration 
+        | type_declaration  
+        | classbody_declaration
+        | annotation_clause
+        | enum_clause
+        | ";" 
+        ;
+		
+import_statement ::= 
+        "import" ["static"]
+        (package_name "." asterisk | qualified_name) ";" ;
+
+
+method_declaration ::= 
+        [modifiers] 
+        type 
+        [generics_clause]
+        method_name
+        "(" [parameter_list] ")" 
+        [{empty_subscripts}] 
+        [throws_clause]
+        (statement_block | ";")    ;
+
+selector ::=
+        "." [generics_clause] ident  [ arguments ]
+        |  "." "this"
+        |  "." "super" super_suffix
+        |  "." "new" inner_creator
+        |  "[" expression "]"
+        ;
+
+variable_declaration ::= 
+        [modifiers] 
+        type
+        variable_declarators  
+        ";"
+        |
+        [modifiers] 
+        enum_type
+        variable_declarators
+        ;

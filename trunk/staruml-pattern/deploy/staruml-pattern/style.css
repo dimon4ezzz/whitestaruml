@@ -1,0 +1,41 @@
+
+body, table, p { font-family: Verdana ; font-size:9pt; line-height:150%; }
+h1             {
+                 background-color: #99CCFF;
+                 border-style: ridge;
+                 border-width: 1;
+                 padding: 10;
+                 padding-left: 3;
+                 border-left-style: Solid;
+                 border-right-style: Solid;
+                 border-top-style: Solid;
+                 border-bottom-style: Solid;
+                 border-left-width: 1px;
+                 border-right-width: 1px;
+                 border-top-width: 1px;
+                 border-bottom-width: 1px;
+                 border-left-color: #808080;
+                 border-right-color: #808080;
+                 border-top-color: #808080;
+                 border-bottom-color: #808080;
+                 font-size: 12pt;
+               }
+h2             {
+                 background-color: #ccccff;
+                 border-style: ridge;
+                 border-width: 1;
+                 padding: 1;
+                 border-left-style: Solid;
+                 border-right-style: Solid;
+                 border-top-style: Solid;
+                 border-bottom-style: Solid;
+                 border-left-width: 1px;
+                 border-right-width: 1px;
+                 border-top-width: 1px;
+                 border-bottom-width: 1px;
+                 border-left-color: #808080;
+                 border-right-color: #808080;
+                 border-top-color: #808080;
+                 border-bottom-color: #808080;
+                 font-size: 10pt;
+               }

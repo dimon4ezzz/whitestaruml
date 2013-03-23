@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Importing Model Fragments</title>
+  <keywords>
+    <keyword translate="true">Fragments</keyword>
+    <keyword translate="true">Importing<keyword translate="true">model fragments</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Importing Model Fragments</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">You can import elements saved in a model fragment file into your project. Importing a model fragment copies the elements contained in the model fragment into the project. Your project will not store a reference to the imported fragment file.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To import a model fragment</text></para>
+    <list id="1" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, point to </text><text styleclass="MenuCommand" translate="true">Import</text><text styleclass="List1" translate="true">, and then click </text><text styleclass="MenuCommand" translate="true">Model Fragment</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Open Model Fragment</text><text styleclass="List1Last" translate="true"> dialog box, select a model fragment file and click </text><text styleclass="MenuCommand" translate="true">Open</text><text styleclass="List1Last" translate="true">.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:24px;"><image src="ch03_h11.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="1" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="Normal"><text styleclass="Normal" translate="true">In the </text><text styleclass="Normal" style="font-style:italic;" translate="true">Select a Package where the Model Fragment will be imported to</text><text styleclass="Normal" translate="true"> dialog, choose a package and click </text><text styleclass="MenuCommand" translate="true">OK</text><text styleclass="Normal" translate="true">.</text></li>
+    </list>
+  </body>
+</topic>

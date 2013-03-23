@@ -1,0 +1,252 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Working with Diagrams &gt; UseCase Diagrams</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Use case diagram">
+   <meta name="description" content="UseCase Diagrams">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?ch05_1.htm"; }
+  else { parent.quicksync('a6.1'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="working_with_diagrams.htm">Working with Diagrams</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">UseCase Diagrams</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="working_with_diagrams.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="working_with_diagrams.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="ch05_2.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The following elements are available in a usecase diagram.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_1.htm#actor">Actor</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_1.htm#usecase">UseCase</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_1.htm#associationderectedassociation">Association</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_1.htm#associationderectedassociation">Derected Association</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_1.htm#generalization">Generalization</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_1.htm#dependency">Dependency</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_1.htm#include">Include</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_1.htm#extend">Extend</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_1.htm#systemboundary">System Boundary</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_1.htm#package">Package</a></span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><a name="actor"></a><span style="font-weight: bold; color: #000080;">Actor</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">An actor defines a coherent set of roles that users of an entity can play when interacting with the entity. An actor may be considered to play a separate role with regard to each use case with which it communicates.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating Actor</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create Actor, click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [UseCase] -&gt; [Actor] </span><span style="font-size: 9pt;">button and click the position where to place Actor. Actor is shown in the form of stick man or rectangle with icon, that is decoration view. To display actor in decoration view, select </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Stereotype Display] -&gt; [Decoration]</span><span style="font-size: 9pt;"> menu item or select </span><span style="font-size: 9pt; font-weight: bold;">[Decoration]</span><span style="font-size: 9pt;"> item in [</span><img src="ch05_110.jpg" width="29" height="20" border="0" alt="ch05_110"><span style="font-size: 9pt;">] combo button on toolbar.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_111.jpg" width="200" height="128" border="0" alt="ch05_111"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating multiple UseCases used by Actor at once</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create multiple UseCases related to Actor at once, use shortcut creation syntax of Actor.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">At the Actor's quick dialog, enter UseCase's name after "-()" string. To create multiple UseCases, enter same but separate UseCase's name by "," character.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_112.jpg" width="294" height="104" border="0" alt="ch05_112"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And press </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;"> key. Several UseCases associated with the Actor are created and arranged vertically.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_113.jpg" width="271" height="280" border="0" alt="ch05_113"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="usecase"></a><span style="font-weight: bold; color: #000080;">UseCase</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The use case construct is used to define the behavior of a system or other semantic entity without revealing the entity’s internal structure. Each use case specifies a sequence of actions, including variants, that the entity can perform, interacting with actors of the entity.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating UseCase</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create UseCase, click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox]</span><span style="font-size: 9pt;"> -&gt; </span><span style="font-size: 9pt; font-weight: bold;">[UseCase]</span><span style="font-size: 9pt;"> button and click the position where to place UseCase on the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">UseCase is expressed in the forms of textual, decoration, iconic. To change UseCase's view style, select menu item under </span><span style="font-size: 9pt; font-weight: bold;">[Format] -&gt; [Stereotype Display]</span><span style="font-size: 9pt;"> or select [</span><img src="ch05_114.jpg" width="29" height="20" border="0" alt="ch05_114"><span style="font-size: 9pt;"> ]button's combo item.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_115.jpg" width="378" height="113" border="0" alt="ch05_115"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for adding Extension</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">An extension point references one or a collection of locations in a use case where the use case may be extended.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_116.jpg" width="142" height="118" border="0" alt="ch05_116"></p>
+<p><span style="font-size: 9pt;">To edit ExtensionPoints of UseCase, click UseCase's </span><span style="font-size: 9pt; font-weight: bold;">[Collection Editor...]</span><span style="font-size: 9pt;"> popup menu or click </span><img src="ch05_117.jpg" width="17" height="16" border="0" alt="ch05_117"><span style="font-size: 9pt;"> button of </span><span style="font-size: 9pt; font-weight: bold;">[ExtensionPoints]</span><span style="font-size: 9pt;"> collection property.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_118.jpg" width="504" height="301" border="0" alt="ch05_118"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for entering UseCase specification</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">To enter basic flow, alternative flow properties of usecase, select </span><span style="font-size: 9pt; font-weight: bold;">[Tagged Values...]</span><span style="font-size: 9pt;"> popup menu or click </span><span style="font-size: 9pt; font-weight: bold;">[Ctrl+F7]</span><span style="font-size: 9pt;"> button. At tagged value editor, select</span><span style="font-size: 9pt; font-weight: bold;"> [UseCaseSpecification] </span><span style="font-size: 9pt;">item and enter the properties.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_119.jpg" width="504" height="301" border="0" alt="ch05_119"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating Actor from UseCase</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create multiple Actors related to UseCase at once, use shortcut creation syntax.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Double-click UseCase, or select UseCase and press </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;"> key. At quick dialog, enter Actor's name after "()-" string and separate Actor names by "," character.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_120.jpg" width="208" height="76" border="0" alt="ch05_120"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And press </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;"> key. Several Actors associated with the UseCase are created and arranged vertically.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_121.jpg" width="227" height="217" border="0" alt="ch05_121"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="associationderectedassociation"></a><span style="font-weight: bold; color: #000080;">Association / Derected Association</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">A association is an association among exactly two classifiers (including the possibility of an association from a classifier to itself).</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating association</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create association, click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [UseCase] -&gt; [Association]</span><span style="font-size: 9pt;"> button, drag from first element, and drop to second element in the</span><span style="font-size: 9pt; font-weight: bold;"> [main window]</span><span style="font-size: 9pt;">.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_122.jpg" width="231" height="90" border="0" alt="ch05_122"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating directed association</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The procedure is equal to the association's, drag and drop in the arrow direction.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_123.jpg" width="223" height="101" border="0" alt="ch05_123"></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">Or create association, click the actor-side association end. At the quick dialog, uncheck navigable and association becomes directed.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_124.jpg" width="274" height="181" border="0" alt="ch05_124"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating element related to association/directed assocition</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create element associated with current element, use shortcut creation syntax.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Double-click element and enter element's names associated after "--" or "-&gt;" string at the quick dialog. Separate element names with "," character to relate multiple elements.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_125.jpg" width="289" height="88" border="0" alt="ch05_125"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Press </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;"> key and several elements associated with selected element are created and arranged automatically.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_126.jpg" width="363" height="236" border="0" alt="ch05_126"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="generalization"></a><span style="font-weight: bold; color: #000080;">Generalization</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Generalization is the taxonomic relationship between a more general element (the parent) and a more specific element (the child) that is fully consistent with the first element and that adds additional information.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating generalization</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to make generalization, click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [UseCase] -&gt;[Generalization]</span><span style="font-size: 9pt;"> button, drag from child element and drop to parent element in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_127.jpg" width="360" height="156" border="0" alt="ch05_127"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating multiple child actors inherited from actor</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">To create multiple elements inherited from some element,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Enter with "&lt;=" string as following at the quick dialog, and several elements inherited from selected element are created at once.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_128.jpg" width="277" height="111" border="0" alt="ch05_128"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Child elements are generated below selected element and arranged automatically.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_129.jpg" width="261" height="217" border="0" alt="ch05_129"></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">If you want to create multiple parent element at once, enter "=&gt;" string instead of "&lt;=" in the quick dialog.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="dependency"></a><span style="font-weight: bold; color: #000080;">Dependency</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">A </span><span style="font-size: 9pt; font-style: italic;">dependency</span><span style="font-size: 9pt;"> is a type of relationship that signifies that one element, or group of elements, acting as the client depends on another element or group of elements that act as a supplier. It is a weak relationship that denotes that if the supplier is changed the client may be affected. It is a unidirectional relationship.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating dependency</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create dependency, click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [UseCase] -&gt; [Dependency] </span><span style="font-size: 9pt;">button, drag element and drop to other element depended.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating other usecase depended by current usecase</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Enter with "--&gt;" string at the quick dialog as following.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_130.jpg" width="186" height="77" border="0" alt="ch05_130"></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">So dependency relationship is created between two elements.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_131.jpg" width="269" height="77" border="0" alt="ch05_131"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="include"></a><span style="font-weight: bold; color: #000080;">Include</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">An include relationship defines that a use case contains the behavior defined in another use case.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating include</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create include relationship, click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [UseCase] -&gt; [Include]</span><span style="font-size: 9pt;"> button, drag from element including and drop to element included in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_132.jpg" width="418" height="156" border="0" alt="ch05_132"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating other usecase included by current usecase</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Enter with "-i&gt;" string at the quick dialog as following.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_133.jpg" width="294" height="71" border="0" alt="ch05_133"></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">So include relationship is created between two elements.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_134.jpg" width="294" height="76" border="0" alt="ch05_134"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="extend"></a><span style="font-weight: bold; color: #000080;">Extend</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">An extend relationship defines that instances of a use case may be augmented with some additional behavior defined in an extending use case.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating extend</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create extend, click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [UseCase] -&gt; [Extend]</span><span style="font-size: 9pt;"> button, drag from element extending and drop to element extended in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_135.jpg" width="511" height="132" border="0" alt="ch05_135"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating other usecase extending current usecase</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Enter with "&lt;e-" string at the quick dialog as following.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_136.jpg" width="327" height="75" border="0" alt="ch05_136"></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">So extend relationship is created between two elements.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_137.jpg" width="273" height="78" border="0" alt="ch05_137"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="systemboundary"></a><span style="font-weight: bold; color: #000080;">System Boundary</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">A </span><span style="font-size: 9pt; font-style: italic;">System Boundary</span><span style="font-size: 9pt;"> is a type of partition that represents the boundary between the thing you are representing with the use cases (inside the boundary) and the actors (outside the boundary). Its most typical usage is the boundary of an entire system. Use cases can be used to represent subsystems and classes and so the boundary may be more specific than an entire system. A package with a stereotype </span><span style="font-size: 9pt; font-style: italic;">topLevel</span><span style="font-size: 9pt;"> can be used as a boundary and name space within the use case model to denote the same thing as the </span><span style="font-size: 9pt; font-style: italic;">use case boundary</span><span style="font-size: 9pt;">.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating system boundary</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create system boundary, click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [UseCase] -&gt; [System Boundary]</span><span style="font-size: 9pt;"> button, drag from the starting point of system boundary and drag to right-bottom point of system boundary.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch05_138.jpg" width="603" height="345" border="0" alt="ch05_138"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="package"></a><span style="font-weight: bold; color: #000080;">Package</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">A package is a grouping of model elements. Packages themselves may be nested within other packages. A package may contain subordinate packages as well as other kinds of model elements. All kinds of UML model elements can be organized into packages.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating package</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create package, click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [UseCase] -&gt; [Package]</span><span style="font-size: 9pt;"> button and click at the location where package will be placed in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">.</span></p>
+<p style="margin: 14px 0px 14px 0px;"><img src="ch05_139.jpg" width="308" height="198" border="0" alt="ch05_139"></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Managing Projects</title>
+  <keywords>
+    <keyword translate="true">Managing projects</keyword>
+    <keyword translate="true">Projects</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1" style="margin-top:19px; line-height:1.0; border-style:single; border-width:1px; border-top:none; border-right:none; border-left:none; tabstops:none;"><text styleclass="Heading1" style="font-family:Verdana; font-size:18pt; vertical-align:baseline; color:#000080;" translate="true">Managing Projects</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Although a project can be managed as one file, it may be convenient to divide the project into units and manage them separately. Model fragments can be used for saving and reusing parts of a project. Frameworks make the libraries of a programming environment available for modeling. Profiles provide the implementation details of a programming language to your project.</text></para>
+  </body>
+</topic>

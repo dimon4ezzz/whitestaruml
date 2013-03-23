@@ -1,0 +1,11 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML.exe</StartProgram>
+    <StartWorkingDirectory>C:\JS\Delphi\WhiteStarDevInstall\</StartWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML.exe</StartProgram>
+  </PropertyGroup>
+</Project>

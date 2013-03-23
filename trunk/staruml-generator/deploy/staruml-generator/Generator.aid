@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ADDIN>
+    <NAME>Generator AddIn</NAME>
+    <DISPLAYNAME>Generator Add-In</DISPLAYNAME>
+    <COMOBJ>WSGenerator.GeneratorApplication</COMOBJ>
+    <FILENAME>Generator.dll</FILENAME>
+    <COMPANY>Plastic Software, Inc.</COMPANY>
+    <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
+    <HELPFILE>WhiteStarUML.chm</HELPFILE>
+    <ICONFILE>Generator.ico</ICONFILE>
+    <ISACTIVE>True</ISACTIVE>
+    <MENUFILE>Generator.mnu</MENUFILE>
+    <VERSION>1.0.1.71</VERSION>
+    <MODULES>
+        <MODULEFILENAME>Translators\Word\WordTranslator.dll</MODULEFILENAME>
+        <MODULEFILENAME>Translators\Excel\ExcelTranslator.dll</MODULEFILENAME>
+        <MODULEFILENAME>Translators\PowerPoint\PowerPointTranslator.dll</MODULEFILENAME>
+        <MODULEFILENAME>Translators\Text\TextTranslator.dll</MODULEFILENAME>
+    </MODULES>
+</ADDIN>

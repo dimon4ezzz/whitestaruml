@@ -1,0 +1,177 @@
+/* Text Styles */
+hr { color: #000000}
+body, table, tr, th /* Normal */
+{
+ font-size: 10pt;
+ font-family: 'Verdana';
+ font-style: normal;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+span.f_CodeExample /* Code Example */
+{
+ font-size: 8pt;
+ font-family: 'Courier New';
+}
+span.f_Comment /* Comment */
+{
+}
+span.f_Emphasis /* Emphasis */
+{
+ font-weight: bold;
+}
+span.f_Heading1 /* Heading1 */
+{
+ font-size: 16pt;
+ font-weight: bold;
+ color: #000080;
+}
+span.f_Heading2 /* Heading2 */
+{
+ font-size: 12pt;
+ font-weight: bold;
+ color: #000080;
+}
+span.f_Heading3 /* Heading3 */
+{
+ font-size: 11pt;
+ font-weight: bold;
+}
+span.f_ImageCaption /* Image Caption */
+{
+ font-size: 8pt;
+ font-weight: bold;
+}
+span.f_List1 /* List1 */
+{
+}
+span.f_List1Last /* List1Last */
+{
+}
+span.f_ListA /* ListA */
+{
+}
+span.f_ListB /* ListB */
+{
+}
+span.f_ListBLast /* ListBLast */
+{
+}
+span.f_MenuCommand /* MenuCommand */
+{
+ font-weight: bold;
+}
+span.f_Notes /* Notes */
+{
+}
+span.f_SubHead /* SubHead */
+{
+ font-weight: bold;
+ color: #000080;
+}
+span.f_TableContent /* Table Content */
+{
+ font-size: 9pt;
+}
+span.f_TableHeading /* Table Heading */
+{
+ font-size: 9pt;
+ font-weight: bold;
+}
+span.f_TableContent /* TableContent */
+{
+ font-size: 9pt;
+}
+/* Paragraph styles */
+p /* Normal */
+{
+ text-align: left;
+ text-indent: 0px;
+ padding: 0px 0px 0px 0px;
+ margin: 10px 0px 10px 0px;
+}
+.p_CodeExample /* Code Example */
+{
+ white-space: nowrap;
+ margin: 0px 0px 0px 0px;
+}
+.p_Comment /* Comment */
+{
+}
+.p_Emphasis /* Emphasis */
+{
+}
+.p_Heading1 /* Heading1 */
+{
+ border-color: #000080;
+ border-style: solid;
+ border-width: 1px;
+ border-top: none;
+ border-right: none;
+ border-left: none;
+}
+.p_Heading2 /* Heading2 */
+{
+ border-color: #000080;
+ border-style: solid;
+ border-width: 1px;
+ border-top: none;
+ border-right: none;
+ border-left: none;
+}
+.p_Heading3 /* Heading3 */
+{
+ border-color: #000080;
+ border-style: solid;
+ border-width: 1px;
+ border-top: none;
+ border-right: none;
+ border-bottom: none;
+ border-left: none;
+}
+.p_ImageCaption /* Image Caption */
+{
+}
+.p_List1 /* List1 */
+{
+ text-indent: -13px;
+ margin: 10px 0px 10px 35px;
+}
+.p_List1Last /* List1Last */
+{
+ text-indent: -13px;
+ margin: 10px 0px 5px 35px;
+}
+.p_ListA /* ListA */
+{
+ margin: 5px 0px 10px 0px;
+}
+.p_ListB /* ListB */
+{
+ text-indent: -13px;
+ margin: 5px 0px 5px 35px;
+}
+.p_ListBLast /* ListBLast */
+{
+ text-indent: -13px;
+ margin: 5px 0px 10px 35px;
+}
+.p_Notes /* Notes */
+{
+}
+.p_SubHead /* SubHead */
+{
+}
+.p_TableContent /* Table Content */
+{
+ margin: 0px 0px 0px 0px;
+}
+.p_TableHeading /* Table Heading */
+{
+ margin: 0px 0px 0px 0px;
+}
+.p_TableContent /* TableContent */
+{
+ margin: 0px 0px 10px 0px;
+}

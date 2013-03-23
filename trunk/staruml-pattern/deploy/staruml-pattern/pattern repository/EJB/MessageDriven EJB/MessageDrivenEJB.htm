@@ -1,0 +1,42 @@
+<html>
+
+<head>
+<title>MessageDriven EJB</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>MessageDriven EJB</h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>To enable application of asynchronous message passing that allows the sender to send a message and terminate execution regardless of the receiver's status.
+  </li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp;
+<img border="0" src="MessageDrivenEJB.gif"></p>
+<ul type="square">
+  <li><b>MessageDrivenBean :</b> EJB for receiving and processing JMS (Java Message Service) messages</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>Can be used for implementing asynchronous message passing using JMS.</li>
+  <li>Can be used when specific information needs to be updated asynchronously, and such information needs to be obtained by multiple objects.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li>The logic that processes messages exists in one location, removing any code redundancies.</li>
+  <li>Using JMS ensures clear logic division for message management.</li>
+  <li>Possibility of message abuse is reduced by defining a standard for message management.</li>
+</ul>
+
+</body>
+
+</html>

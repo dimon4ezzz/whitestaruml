@@ -1,0 +1,169 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{22D746AE-94D0-4F01-B1FA-AF8DD923FB25}</ProjectGuid>
+			<MainSource>Generator.dpr</MainSource>
+			<Config Condition="'$(Config)'==''">Release</Config>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<ProjectVersion>12.0</ProjectVersion>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_DebugDCUs>true</DCC_DebugDCUs>
+			<DCC_UnitSearchPath>..\..\..\staruml\components\plastic-components\src;..\..\..\staruml\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UsePackage>vclx;vcl;vclimg;dbrtl;Rave77VCL;bdertl;rtl;vclactnband;xmlrtl;vcldb;vcldbx;vcltouch;dsnap;dsnapcon;TeeUI;TeeDB;Tee;vclib;ibxpress;adortl;IndyCore;IndySystem;IndyProtocols;inet;intrawebdb_100_140;Intraweb_100_140;VclSmp;vclie;inetdb;webdsnap;websnap;inetdbbde;inetdbxpress;soaprtl;vclribbon;DbxCommonDriver;DbxClientDriver;DBXInterBaseDriver;DBXMySQLDriver;dbexpress;dbxcds;TMSSmoothControlsPackPkgD2010;tb2k_d12;elpackD7;adgrm2010;JclDeveloperTools;Jcl;JclVcl;JclContainers;JvDocking;JvCore;JvRuntimeDesign;JvSystem;JvStdCtrls;JvControls;JvBands;JvDB;JvDlgs;JvBDE;JvCmp;JvCrypt;JvCustom;JvMM;JvNet;JvPascalInterpreter;JvPageComps;JvWizards;vclshlctrls;SynEdit_R2010;PlasticComponents;VirtualTreesR;dacvcl140;dac140;crcontrols140;unidacvcl140;unidac140;DSPackR;DirectX9_;dxCoreRS14;cxLibraryRS14;dxGDIPlusRS14;dxThemeRS14;cxPageControlRS14;dxBarRS14;dxComnRS14;dxBarExtDBItemsRS14;dxBarExtItemsRS14;dxBarDBNavRS14;dxRibbonRS14;dxTabbedMDIRS14;dxmdsRS14;dxDockingRS14;cxPageControldxBarPopupMenuRS14;NxCollectionDsgn_d2010;NxCollectionRun_d2010;NxCommonRun_d2010;NxCommonDsgn_d2010;NxDBGridDsgn_d2010;NxDBGridRun_d2010;NxGridDsgn_d2010;NxGridRun_d2010;NxInspectorDsgn_d2010;NxInspectorRun_d2010;NxAddonsRun_d2010</DCC_UsePackage>
+			<DCC_ExeOutput>..\..\deploy\staruml-generator</DCC_ExeOutput>
+			<DCC_DependencyCheckOutputName>..\..\deploy\staruml-generator\Generator.dll</DCC_DependencyCheckOutputName>
+			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
+			<GenDll>true</GenDll>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_Platform>x86</DCC_Platform>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="Generator.dpr">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="WSGenerator_TLB.pas"/>
+			<DCCReference Include="DirectMDAProc.pas">
+				<CoClasses>GeneratorProcessor</CoClasses>
+			</DCCReference>
+			<DCCReference Include="HashTable.pas">
+				<CoClasses>HashTable</CoClasses>
+			</DCCReference>
+			<DCCReference Include="DirectMDAObjects.pas"/>
+			<DCCReference Include="Serializers.pas"/>
+			<DCCReference Include="Symbols.pas"/>
+			<DCCReference Include="Utilities.pas"/>
+			<DCCReference Include="PieFrm.pas">
+				<Form>PieForm</Form>
+			</DCCReference>
+			<DCCReference Include="DirectMDADlg.pas">
+				<CoClasses>GeneratorApplication</CoClasses>
+			</DCCReference>
+			<DCCReference Include="TaskInfoFrm.pas">
+				<Form>TaskInformationForm</Form>
+			</DCCReference>
+			<DCCReference Include="BatchFrm.pas">
+				<Form>BatchFrame</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="PreviewFrm.pas">
+				<Form>PreviewForm</Form>
+			</DCCReference>
+			<DCCReference Include="BatchRegisterFrm.pas">
+				<Form>BatchRegisterForm</Form>
+			</DCCReference>
+			<DCCReference Include="BatchSelFrm.pas">
+				<Form>BatchSelectionForm</Form>
+			</DCCReference>
+			<DCCReference Include="TemplateRegFrm.pas">
+				<Form>TemplateRegisterForm</Form>
+			</DCCReference>
+			<DCCReference Include="ProfileSelFrm.pas">
+				<Form>ProfileSelectorForm</Form>
+			</DCCReference>
+			<DCCReference Include="ColEdtFrm.pas">
+				<Form>CollectionEditorForm</Form>
+			</DCCReference>
+			<DCCReference Include="ParamDefFrm.pas">
+				<Form>ParameterDefinitionForm</Form>
+			</DCCReference>
+			<DCCReference Include="NewFolderFrm.pas">
+				<Form>NewFolderForm</Form>
+			</DCCReference>
+			<DCCReference Include="NewParamFrm.pas">
+				<Form>NewParameterForm</Form>
+			</DCCReference>
+			<DCCReference Include="NewTemplateDlg.pas">
+				<Form>NewTemplateDialog</Form>
+			</DCCReference>
+			<RidlCompile Include="Generator.ridl"/>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType>VCLApplication</Borland.ProjectType>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Source>
+						<Source Name="MainSource">Generator.dpr</Source>
+					</Source>
+					<Parameters>
+						<Parameters Name="UseLauncher">False</Parameters>
+						<Parameters Name="LoadAllSymbols">True</Parameters>
+						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+					</Parameters>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">2</VersionInfo>
+						<VersionInfo Name="Build">45</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1033</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.0.2.45</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName">Documentation  Generator</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">1.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="C:\Users\Public\Documents\RAD Studio\7.0\Bpl\JclDeveloperTools140.bpl">JEDI Code Library Developer Tools package</Excluded_Packages>
+						<Excluded_Packages Name="C:\Users\Public\Documents\RAD Studio\7.0\Bpl\JclContainers140.bpl">JEDI Code Library Containers package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\bcboffice2k140.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\bcbofficexp140.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcloffice2k140.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclofficexp140.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+				</Delphi.Personality>
+				<ActiveXProjectInfo>
+					<version>1</version>
+				</ActiveXProjectInfo>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>

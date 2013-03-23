@@ -1,0 +1,259 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Managing Modules &gt; Installing Modules</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Installing,Installing modules,Module,Module installation of">
+   <meta name="description" content="Installing Modules">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?installing_modules.htm"; }
+  else { parent.quicksync('a8.1'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="ch07.htm">Managing Modules</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Installing Modules</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="ch07.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="ch07.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="uninstalling_modules.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The method to install the module in WhiteStarUml is very simple. The user copy a module directory which wants the install at the WhiteStarUml Module directory beneath. WhiteStarUml is running.</span></p>
+<p><span style="font-size: 9pt;">　</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Download the module to install from the WhiteStarUml site.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Copys downloaded module file under {Installed path of WhiteStarUml}\modules directory. If it is zip fie, unzip it in a folder as creating a folder as zip file name. If installed path of WhiteStarUml is “C:\Program Files\WhiteStarUml”, copys the folder under C:\Program Files\WhiteStarUml\modules.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch07_h1.jpg" width="245" height="185" border="0" alt="ch07_h1"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">When WhiteStarUml is running, stop the running and rerun it.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">4.</span></td><td><span style="font-size: 9pt;">Log about Module install at Output window is marked if Module was installed accurately.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch07_h2.jpg" width="728" height="151" border="0" alt="ch07_h2"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #0000ff;">Logs of module</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Log as Loading of Module show the Output window as follows. For detailed descriptions of module, see <a href="moduleapproachframework.htm">Module, Approach, Framework and Profile</a>. </span></p>
+<p><span style="font-size: 9pt;">　</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="97%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="89" bgcolor="#cccccc" style="width:89px; background-color:#cccccc; border: solid 1px #aca899;"><p style="text-align: center; margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Component</span></p>
+</td>
+<td valign="bottom" width="500" bgcolor="#cccccc" style="width:500px; background-color:#cccccc; border: solid 1px #aca899;"><p style="text-align: center; margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">State</span></p>
+</td>
+<td valign="bottom" width="500" bgcolor="#cccccc" style="width:500px; background-color:#cccccc; border: solid 1px #aca899;"><p style="text-align: center; margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Log</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td rowspan="2" valign="top" width="89" bgcolor="#ffffff" style="width:89px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">　</span></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">Profiles(.prf)</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Successed reading profile file.</span></p>
+</td>
+<td valign="top" width="566" bgcolor="#ffffff" style="width:566px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">The Profile "..." is loaded successfully.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Failed to load the profile file.</span></p>
+</td>
+<td valign="top" width="566" bgcolor="#ffffff" style="width:566px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Failed to load the Profile "...".</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td rowspan="2" valign="top" width="89" bgcolor="#ffffff" style="width:89px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Approaches(.apr)</span></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">　</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Successed reading approach file.</span></p>
+</td>
+<td valign="top" width="566" bgcolor="#ffffff" style="width:566px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">The Approach "..." is loaded successfully.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Failed to load the approach file.</span></p>
+</td>
+<td valign="top" width="566" bgcolor="#ffffff" style="width:566px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Failed to load the Approach "...".</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td rowspan="2" valign="top" width="89" bgcolor="#ffffff" style="width:89px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Framework(.frw)</span></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">　</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Successed reading framework file.</span></p>
+</td>
+<td valign="top" width="566" bgcolor="#ffffff" style="width:566px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">The Framework "..." is loaded successfully.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Failed to load the framework file.</span></p>
+</td>
+<td valign="top" width="566" bgcolor="#ffffff" style="width:566px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Failed to load the Framework "...".</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td rowspan="4" valign="top" width="89" bgcolor="#ffffff" style="width:89px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">AddIn(.aid)</span></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">　</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:27px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Registered in AddIn successfully.</span></p>
+</td>
+<td valign="top" width="566" bgcolor="#ffffff" style="width:566px; height:27px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">AddIn "... AddIn" is registered successfully.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:32px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Registered other DLLs in AddIn successfully.</span></p>
+</td>
+<td valign="top" width="566" bgcolor="#ffffff" style="width:566px; height:32px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">AddIn sub module "....dll" is registered successfully.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Successed reading add-in file.</span></p>
+</td>
+<td valign="top" width="566" bgcolor="#ffffff" style="width:566px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Add-In "..." is loaded successfully.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Failed to load error in the add-in file.</span></p>
+</td>
+<td valign="top" width="566" bgcolor="#ffffff" style="width:566px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Failed to load the Add-In "...".</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td rowspan="2" valign="top" width="89" bgcolor="#ffffff" style="width:89px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Menu(.mnu)</span></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">　</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Successed reading menu file.</span></p>
+</td>
+<td valign="top" width="566" bgcolor="#ffffff" style="width:566px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Add-In "... AddIn" menu is registered successfully.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Failed to load error in the menu file.</span></p>
+</td>
+<td valign="top" width="566" bgcolor="#ffffff" style="width:566px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Failed to load the menu "...".</span></p>
+</td>
+</tr>
+</table>
+</div>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

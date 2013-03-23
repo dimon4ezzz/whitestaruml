@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd" status="Out Of Date">
+  <title translate="true">Generating with Templates</title>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Generating with Templates</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; border-style:single; border-width:1px; border-top:none; border-right:none; border-left:none; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:14pt; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Generating by Template</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Generating Artifacts</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">To generate artifacts by template, it must be applicable to current working UML model.</text></para>
+    <list id="9" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Select </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Tools]-&gt;[</text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true"> Generator...]</text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true"> Menu</text></li>
+    </list>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"></para>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><image src="ch08_h58.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="9" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">In the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Select templates for generation]</text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true"> Page, Check templates to generate in the ListBox and Click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Next]</text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true"> Button.</text></li>
+    </list>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"></para>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><image src="ch08_h59.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="9" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">To bind values with parameters, Click </text><image src="ch08_h60.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true"> Button of each template item in the ListBox, and set values of parameter as you want. (Refer to </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Registering Template</text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true"> for more information about template parameters)</text></li>
+    </list>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"></para>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><image src="ch08_h61.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="9" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">In the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Select target path]</text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true"> Page, Select a folder that generated artifacts will be placed and click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Next]</text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true"> button.</text></li>
+    </list>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"></para>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><image src="ch08_h62.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"></para>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">If you want to create a new folder, click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[New Folder...]</text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true"> button and input name of the new folder.</text></para>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"></para>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><image src="ch08_h63.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="9" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">In the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Generating...]</text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true"> Page, click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Generate]</text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true"> button. You can check the progress of generation and it will be logged on </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Logs</text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">. If you want to cancel the generation process, click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Cancel] </text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">button. When all artifacts are successfully generated, </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Finish]</text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true"> will be enabled and clicking it will finish the artifact generation. To see generated artifacts, double-click the item that want to see in the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Generation List]</text><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true"> then the generated artifact will be opened.</text></li>
+    </list>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"></para>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:10px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><image src="ch08_h64.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Registering a Template</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Your own templates can be registered in </text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Generator.</text></para>
+    <list id="10" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">In the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Select templates for generation]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Page, click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Register Template]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> button.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch08_h65.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="10" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">In the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Register Template]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Dialog, click </text><image src="ch08_h66.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#ff0000;" translate="true"> </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">button and select a folder that the template files will be placed.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch08_h67.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="10" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Input template information on </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Properties:]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> and click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[OK]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> button to complete registering a template.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-top:19px; margin-bottom:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline;" translate="true">[Basic] property section</text></para>
+    <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Basic properties for template registration.</text></para>
+    <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> </text></para>
+    <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><table rowcount="5" colcount="2" style="width:684px; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:32%; background-color:#c0c0c0;">
+          <para><text styleclass="element66" style="font-family:Verdana; font-size:9pt; font-weight:bold; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Property</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:68%; background-color:#c0c0c0;">
+          <para><text styleclass="element66" style="font-family:Verdana; font-size:9pt; font-weight:bold; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:32%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Template Name</text></para>
+        </td>
+        <td style="width:68%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Name for the template to register.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:32%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Group</text></para>
+        </td>
+        <td style="width:68%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Group name for the template. There is no restriction to name a group but to group a set of template, give the same group name for the set of templates. (it is used for horizontal classification like as RUP, CBD, &lt;ModuleName&gt;, &lt;CompanyName&gt;, ...)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:32%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Category</text></para>
+        </td>
+        <td style="width:68%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Category name for the template. There is no restriction to name a category but to categorize a set of template, give the same category name for the set of templates. (it is used for vertical classification like as Requirements, Design, Code, Analysis, ...)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:32%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Description</text></para>
+        </td>
+        <td style="width:68%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Brief description of the template.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; margin-bottom:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline;" translate="true">[Detail] property section</text></para>
+    <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Detailed properties for template registration.</text></para>
+    <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">　</text></para>
+    <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><table rowcount="11" colcount="2" style="width:687px; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:31%; background-color:#c0c0c0;">
+          <para><text styleclass="element66" style="font-family:Verdana; font-size:9pt; font-weight:bold; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Property</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:67%; background-color:#c0c0c0;">
+          <para><text styleclass="element66" style="font-family:Verdana; font-size:9pt; font-weight:bold; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Document Type</text></para>
+        </td>
+        <td style="width:67%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Type of the template. Select DOCUMENT or CODE.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Format</text></para>
+        </td>
+        <td style="width:67%; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Type of generated artifact. Input the format name or select one of the already defined formats (TXT, DOC, PPT, XLS)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Version</text></para>
+        </td>
+        <td style="width:67%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Version of the template</text></para>
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">(e.g) 1.0</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Related Profile</text></para>
+        </td>
+        <td style="width:67%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Profiles related to the template.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Related Approach</text></para>
+        </td>
+        <td style="width:67%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Approach related to the template. (it is a declarative property, so it will not effect anything)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Translator Type</text></para>
+        </td>
+        <td style="width:67%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Kind of translator for the template. Select one of the following: WORD, EXCEL, POWERPOINT, TEXT, COM(user-defined COM-based generator), SCRIPT(user-defined scripts like as JScript, VBScript, ...), EXE(user-defined .EXE-based generator).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Translator</text></para>
+        </td>
+        <td style="width:67%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Specify filename of user-defined translator. It is used only for user want to use his/her own translator not built-in translators(WORD, EXCEL, POWERPOINT, TEXT)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Example</text></para>
+        </td>
+        <td style="width:67%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">If any, specify an example model for the template.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Parameters</text></para>
+        </td>
+        <td style="width:67%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Parameters required for the template.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Related files</text></para>
+        </td>
+        <td style="width:67%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">If any, specify all related files to the template.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline;" translate="true">[Parameters] property</text></para>
+    <list id="11" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Click </text><image src="ch08_h68.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> button in Parameters property.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch08_h69.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="11" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">In the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Parameters]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Dialog, click </text><image src="ch08_h70.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> button to create a new parameter and click </text><image src="ch08_h71.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> button to delete a existing parameter.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch08_h72.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="11" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">In the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[New Parameter]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Dialog, specify Name, Type and Default Value for the parameter and click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[OK]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> button.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch08_h73.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Default parameters are different according to the Translator Type. Following are the default parameters for each Translator Types.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="9" colcount="4" style="width:687px; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:154px; background-color:#c0c0c0;">
+          <para><text styleclass="element66" style="font-family:Verdana; font-size:9pt; font-weight:bold; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Property</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:64px; background-color:#c0c0c0;">
+          <para><text styleclass="element66" style="font-family:Verdana; font-size:9pt; font-weight:bold; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Type</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:122px; background-color:#c0c0c0;">
+          <para><text styleclass="element66" style="font-family:Verdana; font-size:9pt; font-weight:bold; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Translator Type</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:317px; background-color:#c0c0c0;">
+          <para><text styleclass="element66" style="font-family:Verdana; font-size:9pt; font-weight:bold; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:154px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">TemplateFile</text></para>
+        </td>
+        <td style="width:64px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">FILENAME or STRING</text></para>
+        </td>
+        <td style="width:122px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">WORD,EXCEL,</text></para>
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">POWERPOINT</text></para>
+        </td>
+        <td style="width:317px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Specify file name of the template document.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:154px; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">OutputFile</text></para>
+        </td>
+        <td style="width:64px; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">FILENAME or STRING</text></para>
+        </td>
+        <td style="width:122px; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">WORD,EXCEL,</text></para>
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">POWERPOINT,</text></para>
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">TEXT</text></para>
+        </td>
+        <td style="width:317px; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specify file name of the generated artifact.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:154px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Keep Comment</text></para>
+        </td>
+        <td style="width:64px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">BOOLEAN</text></para>
+        </td>
+        <td style="width:122px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">WORD,EXCEL,</text></para>
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">POWERPOINT</text></para>
+        </td>
+        <td style="width:317px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Specify whether to remain the comment used for generation or to delete it.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:154px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">ShowGenerationProcess</text></para>
+        </td>
+        <td style="width:64px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">BOOLEAN</text></para>
+        </td>
+        <td style="width:122px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">WORD,EXCEL,</text></para>
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">POWERPOINT</text></para>
+        </td>
+        <td style="width:317px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Specify whether to show the progress of generation or not. It may affect the performance of the generation.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:154px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Normal Generation</text></para>
+        </td>
+        <td style="width:64px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">BOOLEAN</text></para>
+        </td>
+        <td style="width:122px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">WORD</text></para>
+        </td>
+        <td style="width:317px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">If true, the template is applied to top-level package (Project). if false, the template is applied to the package (or element) that is currently selected in </text><var styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;">&lt;%PROGNAME%&gt;</var><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:154px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Generate Index</text></para>
+        </td>
+        <td style="width:64px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">BOOLEAN</text></para>
+        </td>
+        <td style="width:122px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">WORD</text></para>
+        </td>
+        <td style="width:317px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Specify whether to generate Index or not.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:154px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">intermediate</text></para>
+        </td>
+        <td style="width:64px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">STRING</text></para>
+        </td>
+        <td style="width:122px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">TEXT</text></para>
+        </td>
+        <td style="width:317px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Specify file name of intermediate file used for generation.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:154px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">target</text></para>
+        </td>
+        <td style="width:64px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">STRING</text></para>
+        </td>
+        <td style="width:122px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">TEXT</text></para>
+        </td>
+        <td style="width:317px; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">If more than two artifacts are generated, specify the pathname the artifacts are placed.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline;" translate="true">Note:</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">To specify file name in the parameters, environment variables is required of </text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Generator. The variable is as follow.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="6" colcount="2" style="width:686px; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:35%; background-color:#c0c0c0;">
+          <para styleclass="Normal" style="text-align:center; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Variable</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:65%; background-color:#c0c0c0;">
+          <para styleclass="Normal" style="text-align:center; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:35%; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">$PATH$</text></para>
+        </td>
+        <td style="width:65%; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The path that the template files are placed.</text></para>
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">(e.g.) $PATH$\BusinessActorReport.doc</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:35%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">$GROUP$</text></para>
+        </td>
+        <td style="width:65%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Group name of the template.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:35%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">$CATEGORY$</text></para>
+        </td>
+        <td style="width:65%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Category name of the template.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:35%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">$NAME$</text></para>
+        </td>
+        <td style="width:65%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Name of the template.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:35%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">$TARGET$</text></para>
+        </td>
+        <td style="width:65%; background-color:#ffffff;">
+          <para><text styleclass="element68" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Output path that the user selected.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Cloning a Template</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">You can start to define a template by cloning an existing template without defining from the scratch.</text></para>
+    <list id="12" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">In the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Select templates for generation]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Dialog, select a template to clone and click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Clone Template] </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">button, or click mouse right button on the template to clone and then click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Clone Template]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> menu on the popup menu.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch08_h74.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="12" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specify the name of cloned template and click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[OK]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> button.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch08_h75.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="12" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">You can find the cloned template in the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[List of templates]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">. You can edit more information of the cloned template (click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Template Properties]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> button).</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Template Properties</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">You can edit properties of a registered template.</text></para>
+    <list id="13" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">In the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Select templates for generation]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Dialog, select a template want to edit properties and click  </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Template properties]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> button, or click mouse right button on the template to edit properties and then click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Show Template Properties]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> menu on the popup menu.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch08_h76.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="13" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Edit properties in the[Modify Template]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Dialog and click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[OK]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> button. (Please refer to </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Registering Template &gt; Basic/Detail Parameters</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> for detailed information of each property)</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch08_h77.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Opening a Template</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">You can open and edit a registered template.</text></para>
+    <list id="14" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">In the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Select templates for generation]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Dialog, select a template to open and click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Open Template] </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">button, or click mouse right button on the template to open and then click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Open Template]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> menu on the popup menu.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch08_h78.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="14" type="ol" listtype="decimal" formatstring="%0:s." format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">And then, the default application associated with each file extension (.cot, .doc, .xls, .ppt) will be executed and you can edit in the application. (Please refer to </text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true"> </text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;">&lt;%PROGVERSION%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true"> Developer Guides &gt;Writing Templates</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> for how to write template)</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Deleing a Template</text></para>
+    <list id="15" type="ul" listtype="bullet" formatstring="·" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Symbol; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">In the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Select templates for generation]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Dialog, select a template to delete and click mouse right button and click </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Delete Template]</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> menu in the popup menu.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"></para>
+    <para styleclass="Normal" style="margin-left:35px; line-height:1.0; tabstops:none;"><image src="ch08_h79.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="15" type="ul" listtype="bullet" formatstring="·" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Symbol; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Deleting a template causes deletion of the template folder and all files in the folder, so you must take care about deleting template.</text></li>
+    </list>
+  </body>
+</topic>

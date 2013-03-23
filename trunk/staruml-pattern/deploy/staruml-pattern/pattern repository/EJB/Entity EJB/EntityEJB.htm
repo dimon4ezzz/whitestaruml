@@ -1,0 +1,45 @@
+<html>
+
+<head>
+<title>Entity EJB</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Entity EJB</h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>To express/save business domain data and configure relationships with databases.</li>
+  <li>To enable data synchronization and transaction services.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp;
+<img border="0" src="EntityEJB.gif"></p>
+<ul type="square">
+  <li><b>EntityBean :</b> EJB for expressing business-related data.</li>
+  <li><b>Entity :</b> Remote Interface for EntityBean.</li>
+  <li><b>EntityHome :</b> Home Interface for EntityBean.</li>
+  <li><b>EntityPK :</b> Class for identifying EntityBean.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>Can be used for applying Object-Relation Mapping to business domain data.</li>
+  <li>Can be used for assuring the synchronization, transaction and integrity of the data.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li>Data Access layer expresses persistent objects.</li>
+  <li>Data synchronization and transaction integrity can be guaranteed by delegating to containers.</li>
+  <li>In case of data structure change, only the related EntityBeans need to be modified.</li>
+</ul>
+
+</body>
+
+</html>

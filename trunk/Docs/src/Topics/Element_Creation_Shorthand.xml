@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Element Creation Shorthand</title>
+  <keywords>
+    <keyword translate="true">Element Creation Shorthand</keyword>
+    <keyword translate="true">Shorthand</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Element Creation Shorthand</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The QuickDialog of a number of elements, allow Element Creation Shorthand. You can quickly create the relationships of an element using the element creation shorthand. Shorthand consists of flat text that you enter in the QuickDialog of an element.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">You start the shorthand with relationship notation followed by the name of a target element. The shorthand &#160;will create a relationship between the current element and the target element. If the name is already used for an element in the model, then a relation is created to the existing element. If the name is not already used, then a new element is created as appropriate for the diagram type and related to the current element.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">To create the relations of an element</text></para>
+    <list id="2" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">In the diagram, select an element.</text></li>
+      <li styleclass="List1"><text styleclass="List1" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Press </text><text styleclass="MenuCommand" translate="true">Enter</text><text styleclass="List1" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> and type the element creation shorthand in the name box. The shorthand will not overwrite the name of the element.</text></li>
+      <li styleclass="List1"><text styleclass="List1" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Finish the shorthand by pressing the </text><text styleclass="MenuCommand" translate="true">Enter</text><text styleclass="List1" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> key.</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">For example, for a class Automobile as the current element:</text></para>
+    <list id="3" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:9pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="ListB" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">&quot;&lt;=Car&quot; creates a class Car as a specialization of the current Automobile class.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:48px;"><image src="ShorthandCar.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="3" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:9pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="ListB" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">&quot;&lt;*&gt;-Tire&quot; relates a class Tire as a composition to the current Automobile class.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:48px;"><image src="ShorthandTire.jpg" scale="100.00%" styleclass="Image Caption"><title translate="true">Shorthand for composition</title></image></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">The following tables describe the relationship notation for the various diagram types and element types.</text></para>
+    <para styleclass="SubHead"><text styleclass="SubHead" translate="true">Class Diagram, Component Diagram, Deployment Diagram andComposite Structure Diagram</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table styleclass="Default" rowcount="16" colcount="3">
+      <thead style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Relationship Notation</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Current Element</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Created relation</text></para>
+        </td>
+      </thead>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;=</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Specialization of the target element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">=&gt;</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Generalization of the target element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">--</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Association between current element and target element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;-</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Association navigable from the target element to the current element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-&gt;</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Association navigable from the current element to the target element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;&gt;-</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Aggregation of the target element in the current element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-&lt;&gt;</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Aggregation of the current element in the target element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;*&gt;-</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Composition of the target element in the current element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-&lt;*&gt;</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Composition of the current element in the target element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;--</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Dependency of the target element to the current element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">--&gt;</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Dependency of the current element to the target element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">)-</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Requirement of the current element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-(</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Requirement of the target element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">@-</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Realization of the target element from the current element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:82px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-@</text></para>
+        </td>
+        <td style="width:92px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Classifier</text></para>
+        </td>
+        <td style="width:462px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Realization of the current element from the target element</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="SubHead"><text styleclass="SubHead" translate="true">Use Case Diagram</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table styleclass="Default" rowcount="7" colcount="3">
+      <thead style="vertical-align:top">
+        <td style="width:84px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Relationship Notation</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Current Element</text></para>
+        </td>
+        <td style="width:461px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Created Relation</text></para>
+        </td>
+      </thead>
+      <tr style="vertical-align:top">
+        <td style="width:84px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">()-</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">UseCase</text></para>
+        </td>
+        <td style="width:461px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Communication between the current element (Use Case) and the target element (Actor)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:84px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-()</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Actor</text></para>
+        </td>
+        <td style="width:461px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Communication between the current element (Actor) and the target element (Use Case)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:84px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;i-</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">UseCase</text></para>
+        </td>
+        <td style="width:461px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Include the target element (Use Case) in the current element (Use Case)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:84px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-i&gt;</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">UseCase</text></para>
+        </td>
+        <td style="width:461px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Include the current element (Use Case) in the target element (Use Case)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:84px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;e-</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">UseCase</text></para>
+        </td>
+        <td style="width:461px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Extends the target element (Use Case) from the current element (Use Case)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:84px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-e&gt;</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">UseCase</text></para>
+        </td>
+        <td style="width:461px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Extends the current element (Use Case) from the target element (Use Case)</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="SubHead"><text styleclass="SubHead" translate="true">Sequence Diagram and Sequence Diagram (Role)</text></para>
+    <para styleclass="SubHead"><table styleclass="Default" rowcount="11" colcount="3" style="page-break-inside:avoid;">
+      <thead style="vertical-align:top">
+        <td style="width:85px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Relationship Notation</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Current Element</text></para>
+        </td>
+        <td style="width:460px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Created Relation</text></para>
+        </td>
+      </thead>
+      <tr style="vertical-align:top">
+        <td style="width:85px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;-</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Object, ClassifierRole</text></para>
+        </td>
+        <td style="width:460px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus from the target element to the current element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:85px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-&gt;</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Object, ClassifierRole</text></para>
+        </td>
+        <td style="width:460px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus from the current element to the target element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:85px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;-&gt;</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Object, ClassifierRole</text></para>
+        </td>
+        <td style="width:460px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus with return from the target element to the current element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:85px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;-</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus, Message</text></para>
+        </td>
+        <td style="width:460px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Sub-stimulus coming from the target element to current stimulus</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:85px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-&gt;</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus, Message</text></para>
+        </td>
+        <td style="width:460px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Sub-stimulus coming from the current stimulus to the target element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:85px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;-&gt;</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus, Message</text></para>
+        </td>
+        <td style="width:460px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Sub-stimulus with return coming from target element to the current stimulus.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:85px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;~</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus, Message</text></para>
+        </td>
+        <td style="width:460px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus coming from the target element (Object) before the current stimulus</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:85px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">~&gt;</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus, Message</text></para>
+        </td>
+        <td style="width:460px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus going to the target element (Object) before the current stimulus</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:85px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;_</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus, Message</text></para>
+        </td>
+        <td style="width:460px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus coming from the target element (Object) after the current stimulus</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:85px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">_&gt;</text></para>
+        </td>
+        <td style="width:91px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus, Message</text></para>
+        </td>
+        <td style="width:460px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus going to the target element (Object) after the current stimulus</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="SubHead"><text styleclass="SubHead" translate="true">Collaboration Diagram and Collaboration Diagram(Role)</text></para>
+    <para styleclass="Normal"><table styleclass="Default" rowcount="4" colcount="3">
+      <tr style="vertical-align:top">
+        <td style="width:87px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Relationship Notation</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Current Element</text></para>
+        </td>
+        <td style="width:458px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Created Relation</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:87px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;-</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Object, ClassifierRole</text></para>
+        </td>
+        <td style="width:458px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus from the target element to the current element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:87px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-&gt;</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Object, ClassifierRole</text></para>
+        </td>
+        <td style="width:458px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stimulus from the current element to the target element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:87px;">
+          <para styleclass="Table Content"><text style="font-family:Verdana; font-size:10pt; text-decoration:line-through; color:#000000;" translate="true">&lt;-&gt;</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text style="font-family:Verdana; font-size:10pt; text-decoration:line-through; color:#000000;" translate="true">Object, ClassifierRole</text></para>
+        </td>
+        <td style="width:458px;">
+          <para styleclass="Table Content"><text style="font-family:Verdana; font-size:10pt; text-decoration:line-through; color:#000000;" translate="true">Stimulus with return relationship from target element to the current element.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal"><text styleclass="SubHead" translate="true">Statechart and Activity Diagram</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table styleclass="Default" rowcount="11" colcount="3">
+      <thead style="vertical-align:top">
+        <td style="width:88px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Relationship Notation</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Current Element</text></para>
+        </td>
+        <td style="width:456px;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Created Relation</text></para>
+        </td>
+      </thead>
+      <tr style="vertical-align:top">
+        <td style="width:88px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;-</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">State, ActionState</text></para>
+        </td>
+        <td style="width:456px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Transition from the target element(Action State) to the current element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:88px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-&gt;</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">State, ActionState</text></para>
+        </td>
+        <td style="width:456px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Transition from the current element to the target element(Action State)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:88px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-*</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">State, ActionState</text></para>
+        </td>
+        <td style="width:456px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Transition from current element to target element (Initial State)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:88px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-@</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">State, ActionState</text></para>
+        </td>
+        <td style="width:456px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Transition from current element to the target element (Final State)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:88px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;-&lt;&gt;</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">State, ActionState</text></para>
+        </td>
+        <td style="width:456px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Transition from the target element(Decision) to the current element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:88px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-&gt;&lt;&gt;</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">State, ActionState</text></para>
+        </td>
+        <td style="width:456px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Transition from the current element to the target element (Decision)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:88px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-(H)</text><br/><text styleclass="Table Content" translate="true">-(h)</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">State, ActionState</text></para>
+        </td>
+        <td style="width:456px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Transition from the current element to the target element (Shallow History)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:88px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-(H*) </text><br/><text styleclass="Table Content" translate="true">-(h*)</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">State, ActionState</text></para>
+        </td>
+        <td style="width:456px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Transition from the current element to the target element (Deep History)</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:88px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">&lt;-|</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">State, ActionState</text></para>
+        </td>
+        <td style="width:456px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Transition from the target element to the current element with a new Synchronization in between</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:88px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">-&gt;|</text></para>
+        </td>
+        <td style="width:90px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">State, ActionState</text></para>
+        </td>
+        <td style="width:456px;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Transition from the current element to the target element with a new Synchronization in between</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"></para>
+  </body>
+</topic>

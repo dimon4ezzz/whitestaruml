@@ -1,0 +1,109 @@
+<html>
+
+<head>
+<title>Visitor Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Visitor </h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Interaction">Interaction</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Represent an operation to be performed on the elements of an object 
+	structure. </li>
+  <li>Visitor lets you define a new operation without changing the classes of 
+	the elements on which it operates.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp; <img border="0" src="Visitor_Model1.gif" width="578" height="236"></p>
+<ul type="square">
+  <li><font face="Verdana"><b>Visitor</b> : declares a Visit operation for each 
+	class of ConcreteElement in the object structure. The operation's name and 
+	signature identifies the class that sends the Visit request to the visitor. 
+	That lets the visitor determine the concrete class of the element being 
+	visited. Then the visitor can access the element directly through its 
+	particular interface.</font></li>
+  <li><font face="Verdana"><b>ConcreteVisitor</b> : implements each operation 
+	declared by Visitor. Each operation implements a fragment of the algorithm 
+	defined for the corresponding class of object in the structure. 
+	ConcreteVisitor provides the context for the algorithm and stores its local 
+	state. This state often accumulates results during the traversal of the 
+	structure.</font></li>
+  <li><font face="Verdana"><b>Element</b>: defines an Accept operation that 
+	takes a visitor as an argument.</font></li>
+  <li><font face="Verdana"><b>ConcreteElement</b> : </font>implements an Accept 
+	operation that takes a visitor as an argument.</li>
+  <li><font face="Verdana"><b>ObjectStructure</b> : </font>can enumerate its 
+	elements. may provide a high-level interface to allow the visitor to visit 
+	its elements. may either be a composite or a collection such as a list or a 
+	set.</li>
+</ul>
+<h2><a name="Interaction">Interaction</a></h2>
+<p>
+<img border="0" src="Visitor_Model_Seq1.gif" width="672" height="332"></p>
+<ul type="square">
+  <li>A client that uses the Visitor pattern must create a ConcreteVisitor 
+	object and then traverse the object structure, visiting each element with 
+	the visitor.</li>
+  <li>When an element is visited, it calls the Visitor operation that 
+	corresponds to its class. </li>
+  <li>The element supplies itself as an argument to this operation to let the 
+	visitor access its state, if necessary.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>an object structure contains many classes of objects with differing 
+	interfaces, and you want to perform operations on these objects that depend 
+	on their concrete classes.</li>
+  <li>many distinct and unrelated operations need to be performed on objects in 
+	an object structure, and you want to avoid &quot;polluting&quot; their classes with 
+	these operations. Visitor lets you keep related operations together by 
+	defining them in one class. When the object structure is shared by many 
+	applications, use Visitor to put operations in just those applications that 
+	need them.</li>
+  <li>the classes defining the object structure rarely change, but you often 
+	want to define new operations over the structure. Changing the object 
+	structure classes requires redefining the interface to all visitors, which 
+	is potentially costly. If the object structure classes change often, then 
+	it's probably better to define the operations in those classes.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>Visitor makes adding new operations easy.</b> Visitors make it easy to 
+	add operations that depend on the components of complex objects. You can 
+	define a new operation over an object structure simply by adding a new 
+	visitor. In contrast, if you spread functionality over many classes, then 
+	you must change each class to define a new operation.</li>
+  <li><b>A visitor gathers related operations and separates unrelated ones. </b>
+	Related behavior isn't spread over the classes defining the object 
+	structure; it's localized in a visitor. Unrelated sets of behavior are 
+	partitioned in their own visitor subclasses. That simplifies both the 
+	classes defining the elements and the algorithms defined in the visitors. 
+	Any algorithm-specific data structures can be hidden in the visitor.</li>
+  <li><b>Adding new ConcreteElement classes is hard. </b> The Visitor pattern 
+	makes it hard to add new subclasses of Element. Each new ConcreteElement 
+	gives rise to a new abstract operation on Visitor and a corresponding 
+	implementation in every ConcreteVisitor class. Sometimes a default 
+	implementation can be provided in Visitor that can be inherited by most of 
+	the ConcreteVisitors, but this is the exception rather than the rule.</li>
+  <li><b>Accumulating state. </b>Visitors can accumulate state as they visit 
+	each element in the object structure. Without a visitor, this state would be 
+	passed as extra arguments to the operations that perform the traversal, or 
+	they might appear as global variables.</li>
+  <li><b>Breaking encapsulation. </b> Visitor's approach assumes that the 
+	ConcreteElement interface is powerful enough to let visitors do their job. 
+	As a result, the pattern often forces you to provide public operations that 
+	access an element's internal state, which may compromise its encapsulation.</li>
+</ul>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+[Grammars]
+	Preprocess.GDL, Preprocess
+
+[Output]
+	Preprocess.GMR, _Preprocess
+
+[Samples]
+	sample1.cpp, compilation_unit
+	sample2.cpp, NULL
+	sample3.cpp, NULL
+	Sample4.cpp, NULL
+	_test.cpp, NULL
+	\, compilation_unit
+
+[Breakpoints]
+
+[Project Info]
+Version = 2
+
+
+[Project Settings]
+	ParseEntireInput = Y
+	InsertErrorNodes = Y
+	ReportParseTimes = N
+	StepIntoTerminals = Y
+	StepIntoSpaces = N
+	StepIntoTokens = N
+	StackShowBacktrackSymbols = N
+	BuildDebugTree = Y
+	ExpandNodesOption = 0
+	DataSourceOption = 0
+	SaveCache = Y
+	SaveTree = Y
+	SaveErrors = Y

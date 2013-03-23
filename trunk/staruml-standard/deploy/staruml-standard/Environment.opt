@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OPTIONSCHEMA id="ENVIRONMENT">
+  <HEADER>
+    <CAPTION>Environment</CAPTION>
+    <DESCRIPTION> </DESCRIPTION>
+  </HEADER>
+  <BODY>
+   	<OPTIONCATEGORY>
+      <CAPTION>General</CAPTION>
+      <DESCRIPTION>General Configuration is a group of the basic and general option items for the program. This category includes the [General], [Browser], [Collection Editor] and [Web] subcategories.</DESCRIPTION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>General</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+
+        <OPTIONITEM-RANGE key="UNDO_LEVEL">
+           <CAPTION>Max. number of undo actions</CAPTION>
+           <DESCRIPTION>Specifies the maximum number of actions for undo and redo.</DESCRIPTION>
+           <DEFAULTVALUE>30</DEFAULTVALUE>
+           <MINVALUE>1</MINVALUE>
+           <MAXVALUE>100</MAXVALUE>
+           <STEP>1</STEP>
+        </OPTIONITEM-RANGE>
+
+        <OPTIONITEM-RANGE key="NUM_RECENT_PRJ">
+           <CAPTION>Recent project files</CAPTION>
+           <DESCRIPTION>Specifies the maximum number of project files to be kept under the recent project menu item.</DESCRIPTION>
+           <DEFAULTVALUE>10</DEFAULTVALUE>
+           <MINVALUE>1</MINVALUE>
+           <MAXVALUE>20</MAXVALUE>
+           <STEP>1</STEP>
+        </OPTIONITEM-RANGE>
+        
+        <OPTIONITEM-BOOLEAN key="CREATE_BACKUP">
+           <CAPTION>Create backup files</CAPTION>
+           <DESCRIPTION>Specifies whether to create backup files when saving changes.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        
+        <OPTIONITEM-BOOLEAN key="SHOW_NEWDIALOG">
+           <CAPTION>Open the New Project dialog box at startup</CAPTION>
+           <DESCRIPTION>Specifies whether to open the new Project dialog box at startup.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        
+        <OPTIONITEM-STRING key="HELP_URL">
+          <CAPTION>URL of Help Document</CAPTION>
+          <DESCRIPTION>Specifies the url of Help Document in StarUML</DESCRIPTION>
+          <DEFAULTVALUE>WhiteStarUML.chm</DEFAULTVALUE>
+        </OPTIONITEM-STRING>
+      </OPTIONCLASSIFICATION>
+      
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Browser</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+
+        <OPTIONITEM-BOOLEAN key="BROWSER_SHOW_STEREOTYPE">
+           <CAPTION>Show stereotypes</CAPTION>
+           <DESCRIPTION>Specifies whether to show the stereotype name for each element in the model explorer.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Collection Editor</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+
+        <OPTIONITEM-BOOLEAN key="COLEDT_SHOW_STEREOTYPE">
+           <CAPTION>Show stereotypes</CAPTION>
+           <DESCRIPTION>Specifies whether to show the stereotype name for each element in the collection editor.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+        <OPTIONITEM-BOOLEAN key="COLEDT_SHOW_VISIBILITYICON">
+           <CAPTION>Show visibility with icons</CAPTION>
+           <DESCRIPTION>Specifies whether to show visibility for each element in the collection editor.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        
+        <OPTIONITEM-BOOLEAN key="COLEDT_SHOW_NAMEONLY">
+           <CAPTION>Show names only</CAPTION>
+           <DESCRIPTION>Specifies whether to show the full expression or the name only for each element item in the collection editor (e.g. name or the full signature for an operation).</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+      
+   	</OPTIONCATEGORY>
+
+   	<OPTIONCATEGORY>
+      <CAPTION>Diagram</CAPTION>
+      <DESCRIPTION>Diagram Configuration is a group of the general option items related to diagrams. This category includes the [Diagram Size], [Grid] and [Interaction Diagram] subcategories.</DESCRIPTION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Diagram Size</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+
+        <OPTIONITEM-RANGE key="DIAGRAM_WIDTH">
+           <CAPTION>Default diagram width</CAPTION>
+           <DESCRIPTION>Specifies the maximum diagram width. Adjust this value if the diagram area is not large enough.</DESCRIPTION>
+           <DEFAULTVALUE>5000</DEFAULTVALUE>
+           <MINVALUE>100</MINVALUE>
+           <MAXVALUE>50000</MAXVALUE>
+           <STEP>100</STEP>
+        </OPTIONITEM-RANGE>
+
+        <OPTIONITEM-RANGE key="DIAGRAM_HEIGHT">
+           <CAPTION>Default diagram height</CAPTION>
+           <DESCRIPTION>Specifies the maximum diagram height. Adjust this value if the diagram area is not large enough.</DESCRIPTION>
+           <DEFAULTVALUE>5000</DEFAULTVALUE>
+           <MINVALUE>100</MINVALUE>
+           <MAXVALUE>50000</MAXVALUE>
+           <STEP>100</STEP>
+        </OPTIONITEM-RANGE>
+      </OPTIONCLASSIFICATION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Grid</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+
+        <OPTIONITEM-RANGE key="GRID_WIDTH">
+           <CAPTION>Grid width</CAPTION>
+           <DESCRIPTION>Specifies the width of the grid used for editing diagrams.</DESCRIPTION>
+           <DEFAULTVALUE>4</DEFAULTVALUE>
+           <MINVALUE>1</MINVALUE>
+           <MAXVALUE>20</MAXVALUE>
+           <STEP>1</STEP>
+        </OPTIONITEM-RANGE>
+
+        <OPTIONITEM-RANGE key="GRID_HEIGHT">
+           <CAPTION>Grid height</CAPTION>
+           <DESCRIPTION>Specifies the height of the grid used for editing diagrams.</DESCRIPTION>
+           <DEFAULTVALUE>4</DEFAULTVALUE>
+           <MINVALUE>1</MINVALUE>
+           <MAXVALUE>20</MAXVALUE>
+           <STEP>1</STEP>
+        </OPTIONITEM-RANGE>
+
+        <OPTIONITEM-BOOLEAN key="SHOW_GRID">
+           <CAPTION>Show grid</CAPTION>
+           <DESCRIPTION>Specifies whether to show the grid in diagrams.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Interaction Diagram</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+
+        <OPTIONITEM-ENUMERATION key="MESSAGE_SIGNATURE">
+           <CAPTION>Message signature</CAPTION>
+           <DESCRIPTION>Specifies how the message/stimulus will be indicated in sequence or collaboration diagrams (hide, show type only, show name only, and show name and type).</DESCRIPTION>
+           <DEFAULTVALUE>0</DEFAULTVALUE>
+           <ENUMERATIONITEM>hide</ENUMERATIONITEM>
+           <ENUMERATIONITEM>show type only</ENUMERATIONITEM>
+           <ENUMERATIONITEM>show name only</ENUMERATIONITEM>
+           <ENUMERATIONITEM>show name and type</ENUMERATIONITEM>
+        </OPTIONITEM-ENUMERATION>
+
+        <OPTIONITEM-BOOLEAN key="SHOW_SEQ_NUMBER">
+           <CAPTION>Show sequence number</CAPTION>
+           <DESCRIPTION>Specifies whether the message/stimulus sequence number is shown in sequence or collaboration diagrams.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        
+        <OPTIONITEM-BOOLEAN key="SHOW_ACTIVATION">
+           <CAPTION>Show Activation</CAPTION>
+           <DESCRIPTION>Specifies whether to show activation by message/stimulus in sequence diagrams.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+        
+      </OPTIONCLASSIFICATION>
+   	</OPTIONCATEGORY>
+   	
+   	<OPTIONCATEGORY>
+      <CAPTION>General View</CAPTION>
+      <DESCRIPTION>General View Configuration is a group of the basic and general option items related to view elements. This category includes the [Default View Style] and [Default View Format] subcategories.</DESCRIPTION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Default View Style</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+
+        <OPTIONITEM-COLOR key="FILL_COLOR">
+           <CAPTION>Default fill color</CAPTION>
+           <DESCRIPTION>Specifies the default fill color for view elements (default is light yellow).</DESCRIPTION>
+           <DEFAULTVALUE>$00B9FFFF</DEFAULTVALUE>
+        </OPTIONITEM-COLOR>
+
+        <OPTIONITEM-COLOR key="LINE_COLOR">
+           <CAPTION>Default line color</CAPTION>
+           <DESCRIPTION>Specifies the default line color for view elements (default is maroon).</DESCRIPTION>
+           <DEFAULTVALUE>$00000080</DEFAULTVALUE>
+        </OPTIONITEM-COLOR>
+        
+        <OPTIONITEM-FONTNAME key="FONT_FACE">
+           <CAPTION>Default font name</CAPTION>
+           <DESCRIPTION>Specifies the default font face for view elements.</DESCRIPTION>
+           <DEFAULTVALUE>Tahoma</DEFAULTVALUE>
+        </OPTIONITEM-FONTNAME>
+        
+        <OPTIONITEM-RANGE key="FONT_SIZE">
+           <CAPTION>Default font size</CAPTION>
+           <DESCRIPTION>Specifies the default font size for view elements.</DESCRIPTION>
+           <DEFAULTVALUE>8</DEFAULTVALUE>
+           <MINVALUE>1</MINVALUE>
+           <MAXVALUE>50</MAXVALUE>
+           <STEP>1</STEP>
+        </OPTIONITEM-RANGE>
+        
+        <OPTIONITEM-COLOR key="FONT_COLOR">
+           <CAPTION>Default font color</CAPTION>
+           <DESCRIPTION>Specifies the default font color for view elements (default is black).</DESCRIPTION>
+           <DEFAULTVALUE>$00000000</DEFAULTVALUE>
+        </OPTIONITEM-COLOR>
+      </OPTIONCLASSIFICATION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Default View Format</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+        
+        <OPTIONITEM-ENUMERATION key="LINE_STYLE">
+           <CAPTION>Line style</CAPTION>
+           <DESCRIPTION>Specifies the line style for connection elements (either rectilinear or oblique).</DESCRIPTION>
+           <DEFAULTVALUE>1</DEFAULTVALUE>
+           <ENUMERATIONITEM>Oblique</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Rectilinear</ENUMERATIONITEM>
+        </OPTIONITEM-ENUMERATION>
+        
+        <OPTIONITEM-ENUMERATION key="STEREOTYPE_DISPLAY">
+           <CAPTION>Show stereotype</CAPTION>
+           <DESCRIPTION>Specifies the default stereotype indication method (Text, Icon, None, Decoration).</DESCRIPTION>
+           <DEFAULTVALUE>0</DEFAULTVALUE>
+           <ENUMERATIONITEM>Text</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Icon</ENUMERATIONITEM>
+           <ENUMERATIONITEM>None</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Decoration</ENUMERATIONITEM>
+        </OPTIONITEM-ENUMERATION>
+
+        <OPTIONITEM-BOOLEAN key="SHOW_PARENT_NAME">
+           <CAPTION>Show parent name</CAPTION>
+           <DESCRIPTION>Specifies whether to show the name of the parent element that contains the model element represented by the view element.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+        <OPTIONITEM-BOOLEAN key="AUTO_RESIZE">
+           <CAPTION>Automatic Resize</CAPTION>
+           <DESCRIPTION>Specifies whether to automatically resize view elements.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+        <OPTIONITEM-BOOLEAN key="SHOW_COMP_VISIBILITY">
+           <CAPTION>Show compartment visibility</CAPTION>
+           <DESCRIPTION>Specifies whether to show compartment visibility for view elements (e.g., attribute compartment, operation compartment, etc.).</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+        <OPTIONITEM-BOOLEAN key="SHOW_COMP_STEREOTYPE">
+           <CAPTION>Show compartment stereotype</CAPTION>
+           <DESCRIPTION>Specifies whether to show compartment stereotype for view elements (e.g., attribute compartment, operation compartment, etc.).</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+        <OPTIONITEM-BOOLEAN key="SHOW_OPER_SIGNATURE">
+           <CAPTION>Show operation signature</CAPTION>
+           <DESCRIPTION>Specifies whether to show signature when expressing operation elements.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+        <OPTIONITEM-BOOLEAN key="SHOW_PROPERTY">
+           <CAPTION>Show property</CAPTION>
+           <DESCRIPTION>Specifies whether to show the property items(e.g. tagged values, changeability attributes, etc.) included in view elements.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+        <OPTIONITEM-BOOLEAN key="SUPPRESS_ATTR">
+           <CAPTION>Suppress attribute</CAPTION>
+           <DESCRIPTION>Specifies whether to suppress the attributes for class type view elements.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+        <OPTIONITEM-BOOLEAN key="SUPPRESS_OPER">
+           <CAPTION>Suppress operation</CAPTION>
+           <DESCRIPTION>Specifies whether to suppress the operations for class type view elements.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+      </OPTIONCLASSIFICATION>
+    </OPTIONCATEGORY>    
+    
+    
+   	<OPTIONCATEGORY>
+      <CAPTION>Specific View</CAPTION>
+      <DESCRIPTION>Specific View Configuration is a group of the option items related to specific views. This category includes the [UseCase View], [Actor View], [Enumeration View] and [Interface View] subcategories.</DESCRIPTION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>UseCase View</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+        
+        <OPTIONITEM-ENUMERATION key="USECASE_STEREOTYPE_DISPLAY">
+           <CAPTION>Show stereotype</CAPTION>
+           <DESCRIPTION>Specifies the default stereotype indication method for usecase view elements (Text, Icon, None or Decoration).</DESCRIPTION>
+           <DEFAULTVALUE>0</DEFAULTVALUE>
+           <ENUMERATIONITEM>Text</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Icon</ENUMERATIONITEM>
+           <ENUMERATIONITEM>None</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Decoration</ENUMERATIONITEM>
+        </OPTIONITEM-ENUMERATION>
+        
+        <OPTIONITEM-BOOLEAN key="USECASE_SUPPRESS_ATTR">
+           <CAPTION>Suppress attribute</CAPTION>
+           <DESCRIPTION>Specifies whether to suppress the attributes for UseCase view elements.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+        <OPTIONITEM-BOOLEAN key="USECASE_SUPPRESS_OPER">
+           <CAPTION>Suppress operation</CAPTION>
+           <DESCRIPTION>Specifies whether to suppress the operations for UseCase view elements.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+        
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Actor View</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+        
+        <OPTIONITEM-ENUMERATION key="ACTOR_STEREOTYPE_DISPLAY">
+           <CAPTION>Show stereotype</CAPTION>
+           <DESCRIPTION>Specifies the default stereotype indication method for actor view elements (Text, Icon, None or Decoration).</DESCRIPTION>
+           <DEFAULTVALUE>0</DEFAULTVALUE>
+           <ENUMERATIONITEM>Text</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Icon</ENUMERATIONITEM>
+           <ENUMERATIONITEM>None</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Decoration</ENUMERATIONITEM>
+        </OPTIONITEM-ENUMERATION>
+        
+        <OPTIONITEM-BOOLEAN key="ACTOR_SUPPRESS_ATTR">
+           <CAPTION>Suppress attribute</CAPTION>
+           <DESCRIPTION>Specifies whether to suppress the attributes for Actor view elements.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+        <OPTIONITEM-BOOLEAN key="ACTOR_SUPPRESS_OPER">
+           <CAPTION>Suppress operation</CAPTION>
+           <DESCRIPTION>Specifies whether to suppress the operations for Actor view elements.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+        
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Enumeration View</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+        
+        <OPTIONITEM-BOOLEAN key="ENUMERATION_SUPPRESS_LIT">
+           <CAPTION>Suppress literal</CAPTION>
+           <DESCRIPTION>Specifies whether to suppress the literals for enumeration view elements.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+      
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Interface View</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+        
+        <OPTIONITEM-ENUMERATION key="INTERFACE_STEREOTYPE_DISPLAY">
+           <CAPTION>Show stereotype</CAPTION>
+           <DESCRIPTION>Specifies the default stereotype indication method for interface view elements (Text, Icon, None or Decoration).</DESCRIPTION>
+           <DEFAULTVALUE>1</DEFAULTVALUE>
+           <ENUMERATIONITEM>Text</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Icon</ENUMERATIONITEM>
+           <ENUMERATIONITEM>None</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Decoration</ENUMERATIONITEM>
+        </OPTIONITEM-ENUMERATION>
+        
+        <OPTIONITEM-BOOLEAN key="INTERFACE_SUPPRESS_ATTR">
+           <CAPTION>Suppress attribute</CAPTION>
+           <DESCRIPTION>Specifies whether to suppress the attributes for interface view elements.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+        <OPTIONITEM-BOOLEAN key="INTERFACE_SUPPRESS_OPER">
+           <CAPTION>Suppress operation</CAPTION>
+           <DESCRIPTION>Specifies whether to suppress the operations for interface view elements.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+      
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Artifact View</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+        
+        <OPTIONITEM-ENUMERATION key="ARTIFACT_STEREOTYPE_DISPLAY">
+           <CAPTION>Show stereotype</CAPTION>
+           <DESCRIPTION>Specifies the default stereotype indication method for artifact view elements (Text, Icon, None or Decoration).</DESCRIPTION>
+           <DEFAULTVALUE>3</DEFAULTVALUE>
+           <ENUMERATIONITEM>Text</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Icon</ENUMERATIONITEM>
+           <ENUMERATIONITEM>None</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Decoration</ENUMERATIONITEM>
+        </OPTIONITEM-ENUMERATION>
+        
+        <OPTIONITEM-BOOLEAN key="ARTIFACT_SUPPRESS_ATTR">
+           <CAPTION>Suppress attribute</CAPTION>
+           <DESCRIPTION>Specifies whether to suppress the attributes for artifact view elements.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+
+        <OPTIONITEM-BOOLEAN key="ARTIFACT_SUPPRESS_OPER">
+           <CAPTION>Suppress operation</CAPTION>
+           <DESCRIPTION>Specifies whether to suppress the operations for artifact view elements.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
+      </OPTIONCLASSIFICATION>
+      
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Component View/ComponentInstance View</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+        
+        <OPTIONITEM-ENUMERATION key="COMPONENT_STEREOTYPE_DISPLAY">
+           <CAPTION>Show stereotype</CAPTION>
+           <DESCRIPTION>Specifies the default stereotype indication method for component view elements (Text, Icon, None or Decoration).</DESCRIPTION>
+           <DEFAULTVALUE>0</DEFAULTVALUE>
+           <ENUMERATIONITEM>Text</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Icon</ENUMERATIONITEM>
+           <ENUMERATIONITEM>None</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Decoration</ENUMERATIONITEM>
+        </OPTIONITEM-ENUMERATION>
+      </OPTIONCLASSIFICATION>
+
+      <OPTIONCLASSIFICATION>
+        <CAPTION>Node View/NodeInstance View</CAPTION>
+        <DESCRIPTION></DESCRIPTION>
+        
+        <OPTIONITEM-ENUMERATION key="NODE_STEREOTYPE_DISPLAY">
+           <CAPTION>Show stereotype</CAPTION>
+           <DESCRIPTION>Specifies the default stereotype indication method for node view elements (Text, Icon, None or Decoration).</DESCRIPTION>
+           <DEFAULTVALUE>0</DEFAULTVALUE>
+           <ENUMERATIONITEM>Text</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Icon</ENUMERATIONITEM>
+           <ENUMERATIONITEM>None</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Decoration</ENUMERATIONITEM>
+        </OPTIONITEM-ENUMERATION>
+     
+      </OPTIONCLASSIFICATION>
+            
+		</OPTIONCATEGORY>      
+      
+  </BODY>
+</OPTIONSCHEMA>

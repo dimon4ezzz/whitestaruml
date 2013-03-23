@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Excluding Profiles</title>
+  <keywords>
+    <keyword translate="true">Exclude a profile</keyword>
+    <keyword translate="true">Profile<keyword translate="true">exclude</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Excluding Profiles</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">The UML profiles used in a project can be excluded. If you exclude a UML profile from a project, the stereotypes, tag definitions and data types defined in the profile cannot be used anymore. If you used any of the elements from the excluded profile, then the element may shown incorrectly in the diagram</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To exclude a UML Profile</text></para>
+    <list id="2" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Model</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">Profiles</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">in the </text><text styleclass="MenuCommand" translate="true">Profile Manager</text><text styleclass="List1" translate="true"> dialog, select a profile from the </text><text styleclass="MenuCommand" translate="true">Included Profiles</text><text styleclass="List1" translate="true"> list, and then click </text><text styleclass="MenuCommand" translate="true">Exclude</text><text styleclass="List1" translate="true">. The excluded profile will appear in the </text><text styleclass="MenuCommand" translate="true">Available Profiles</text><text styleclass="List1" translate="true"> list.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:24px;"><image src="ch03_h15.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="2" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="Normal"><text styleclass="Normal" translate="true">Click </text><text styleclass="MenuCommand" translate="true">Close</text><text styleclass="Normal" translate="true">.</text></li>
+    </list>
+    <para styleclass="Notes"><image src="note.bmp" scale="100.00%" styleclass="Notes"></image><text styleclass="Notes" translate="true">&#32;</text><text styleclass="Emphasis" translate="true">Notes</text></para>
+    <list id="3" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="Normal" translate="true">Excluding a profile while its stereotypes and tag definitions are in use may result in loss of information for the related elements. Please exercise caution when </text><text styleclass="ListB" translate="true">excluding profiles.</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">The profiles shown in the </text><text styleclass="MenuCommand" translate="true">Available Profile</text><text styleclass="ListB" translate="true"> list in the </text><text styleclass="MenuCommand" translate="true">Profile Manager</text><text styleclass="Normal" translate="true"> dialog depend on what modules are installed.</text></li>
+    </list>
+  </body>
+</topic>

@@ -1,0 +1,276 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Basic Concepts &gt; Module, Approach, Framework and Profile</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Approach,Approach concept,Concept,Concept approach,Concept framework,Concept module,Concept profile,Framework,Framework concept,Module,Module concept,Profile,Profile concept">
+   <meta name="description" content="Module, Approach, Framework and Profile">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?moduleapproachframework.htm"; }
+  else { parent.quicksync('a3.3'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="ch02.htm">Basic Concepts</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Module, Approach, Framework and Profile</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="model__view_and_diagram.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="ch02.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="ch03.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p class="p_SubHead"><span class="f_SubHead">Module</span></p>
+<p>The module is the main way of extending WhiteStarUml functionality. The module can be created as a combination of several extension elements. Not only can you combine extension elements into an independent module for a specific purpose, but you can also modify the behavior of elements of another module or the main platform to meet your needs.</p>
+<p class="p_ImageCaption"><img src="ch02_h2.jpg" width="594" height="185" border="0" alt="ch02_h2"></p>
+<p>WhiteStarUml modules provide the following functions.</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">Addition of new approach</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">Addition of frameworks</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">Expansion of the main menu or popup menu.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">Addition of new profile</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">Addition of new element through stereotype or expansion of notation</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">Implementation of new function (through COM Server or simple script file)</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">Integration with other applications</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListBLast">Other Add-In functions</span></td></tr></table></div><p class="p_SubHead"><span class="f_SubHead">Approaches</span></p>
+<p>There are countless methodologies for software development, and each company or organization has its own, or uses an existing one that is modified to meet the requirements of its development team or projects. Application domains, programming languages, and platforms are also different for each piece of software developed. Consequently, many items have to be configured in the initial phase of software modeling. WhiteStarUml provides the concept of approaches to facilitate easier configuration of such items.</p>
+<p>An approach consists of the following items.</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="184" bgcolor="#cccccc" style="width:184px; background-color:#cccccc; border: solid 1px #aca899;"><p class="p_TableHeading"><span class="f_TableHeading">Approach Component</span></p>
+</td>
+<td valign="bottom" width="716" bgcolor="#cccccc" style="width:716px; background-color:#cccccc; border: solid 1px #aca899;"><p class="p_TableHeading"><span class="f_TableHeading">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Project Structure</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Specifies the basic structure of the project. The basic structure can be designed with package, subsystem and model elements. The diagram can also be given a default layout.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; height:25px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Import Profiles</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; height:25px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Automatically includes the default UML profiles in the project.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Import Frameworks</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Automatically loads and includes the default frameworks in the project.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Import Model fragments</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Automatically loads and i nclude the default model fragments in the project.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_SubHead"><span class="f_SubHead">Frameworks</span></p>
+<p>Frameworks in WhiteStarUml refer to software models that express class libraries or application frameworks like MFC, VCL, and JFC. Including and using frameworks in projects makes it much easier for the user to model software that depends on specific class libraries or application frameworks.</p>
+<p>A framework consists of one framework file (.FRW) and one or more unit files (.UNT).</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="184" bgcolor="#cccccc" style="width:184px; background-color:#cccccc; border: solid 1px #aca899;"><p class="p_TableHeading"><span class="f_TableHeading">Component</span></p>
+</td>
+<td valign="bottom" width="716" bgcolor="#cccccc" style="width:716px; background-color:#cccccc; border: solid 1px #aca899;"><p class="p_TableHeading"><span class="f_TableHeading">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Framework File(.FRW)</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Framework files contain information for the units included and the UML profiles used.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Unit File(.UNT)</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Unit files contain actual model information for the framework.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_SubHead"><span class="f_SubHead"> UML Profile</span></p>
+<p>The Unified Modeling Language (UML) is so general that it can be used to express many thoughts or concepts. This can also be the source of its weakness, as concepts of specific domains cannot be expressed in fine detail. To overcome such weakness, WhiteStarUml provides UML profiles that expand UML. WhiteStarUml supports easy expansion of UML by directly accommodating the concepts in UML profiles.</p>
+<p>A UML profile consists of the following components.</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="184" bgcolor="#cccccc" style="width:184px; background-color:#cccccc; border: solid 1px #aca899;"><p class="p_TableHeading"><span class="f_TableHeading">Component</span></p>
+</td>
+<td valign="bottom" width="716" bgcolor="#cccccc" style="width:716px; background-color:#cccccc; border: solid 1px #aca899;"><p class="p_TableHeading"><span class="f_TableHeading">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; height:53px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Stereotype</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; height:53px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">The Stereotypes are attached to specific UML elements to further clarify their semantics and provide extension attributes, making more accurate modeling possible.The stereotype specifies not only icon file to express graphic notation but also defines notation schema method as using extension notation defined file(.PNX).For more detail about extension notation, refer to developer’s guide.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">TagDefinition</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">When the default UML element properties are inadequate for accurate modeling, tag definition provide additional information for the elements. In WhiteStarUml, tag definitions can either be included in specific stereotypes or exist independently.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">DataType</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">The datatype that is contained in the profile by default.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">DiagramType</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">The DiagramType is extension element suggested by WhiteStarUml to define new diagram types.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; height:39px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">ElementPrototype</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; height:39px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">The element prototype is an extension element suggested by WhiteStarUml to define a sample for creating element as configuring attributes in the present defined element. These defined element prototypes can create elements as linked to a palette or create elements through an external API.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">ModelPrototype</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">The model prototype is an extension element suggested by WhiteStarUml similar to element prototype, but &nbsp;it applies only to a model. An element defined as model prototype shows up on the model addition menu.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="184" bgcolor="#ffffff" style="width:184px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">Palette</span></p>
+</td>
+<td valign="top" width="716" bgcolor="#ffffff" style="width:716px; background-color:#ffffff; border: solid 1px #aca899;"><p class="p_TableContent"><span class="f_TableContent">The Palette is an extension element suggested by WhiteStarUml to add palettes.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p>For detailed descriptions on writing profiles, see the WhiteStarUml Developer guide.</p>
+<p>The OMG (Object Management Group) specifies UML profile standards for specific purposes. UML Profiles that adhere to the standard can be processed by other tools than WhiteStarUml. As an example, UML Profiles are used for the following.</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">Specific programming languages (C/C++, Java, C#, Python, etc.)</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">Specific development methodologies (RUP, Catalysis, UML Components, etc.)</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListBLast">Specific domains (EAI, CRM, SCM, ERP, etc.)</span></td></tr></table></div><p>WhiteStarUml contains several modules out of the box.</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">WhiteStarUml basically provides UML standard profile, a few approaches and standard functionality to provide transformations between sequence &amp; collaboration diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">A Generator module to generation for document and code.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">A Java module to support Java profile, J2SE/J2EE Framework, code generation, reverse engineering.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">A C++ module to support C++ profile, MFC Framework, code generation, reverse engineering.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">A C# module to support C# profile, .NET BCL framework, code generation, reverse engineering.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">An XMI module to support XMI import &amp; export for model exchange.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListB">A Rational Rose module to read Rational Rose Files.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 5px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 10pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span class="f_ListBLast">A Pattern module to support design patterns.</span></td></tr></table></div><p class="p_SubHead"><span class="f_SubHead">Addition of Module</span></p>
+<p>If you install modules that are developed by users or distributed by third party vendors, you can use the extension functions in WhiteStarUml. In order to install new additional modules in a system, complicated authentication is not needed.</p>
+<p>For more information about working with modules, see <a href="ch07.htm">Managing Modules</a>.</p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

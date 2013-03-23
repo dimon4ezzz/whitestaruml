@@ -1,0 +1,309 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{6800C90C-8B49-4B15-8E46-9015DA5876D8}</ProjectGuid>
+			<MainSource>WhiteStarUML.dpr</MainSource>
+			<Config Condition="'$(Config)'==''">Release</Config>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<ProjectVersion>12.0</ProjectVersion>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+			<DCC_ExeOutput>..\deploy</DCC_ExeOutput>
+			<BRCC_Verbose>true</BRCC_Verbose>
+			<BRCC_CompilerToUse>rc</BRCC_CompilerToUse>
+			<DCC_UsePackage>dxCoreRS14;cxLibraryRS14;cxDataRS14;dxThemeRS14;cxEditorsRS14;cxSchedulerGridRS14;cxSchedulerRS14;cxExportRS14;dxComnRS14;dxDockingRS14;cxBarEditItemRS14;dxBarExtItemsRS14;dxBarRS14</DCC_UsePackage>
+			<DCC_UnitSearchPath>..\components\plastic-components\src;option-manager;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_UNSAFE_CODE>true</DCC_UNSAFE_CODE>
+			<DCC_UNSAFE_TYPE>true</DCC_UNSAFE_TYPE>
+			<DCC_Platform>x86</DCC_Platform>
+			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
+			<DCC_DependencyCheckOutputName>..\deploy\WhiteStarUML.exe</DCC_DependencyCheckOutputName>
+			<DCC_K>false</DCC_K>
+			<DCC_F>false</DCC_F>
+			<DCC_S>false</DCC_S>
+			<DCC_N>true</DCC_N>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_UNSAFE_CAST>true</DCC_UNSAFE_CAST>
+			<DCC_E>false</DCC_E>
+			<DCC_AssertionsAtRuntime>false</DCC_AssertionsAtRuntime>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_DebugDCUs>true</DCC_DebugDCUs>
+			<DCC_DebugInformation>true</DCC_DebugInformation>
+			<DCC_SymbolReferenceInfo>2</DCC_SymbolReferenceInfo>
+			<DCC_AssertionsAtRuntime>true</DCC_AssertionsAtRuntime>
+			<DCC_RunTimeTypeInfo>true</DCC_RunTimeTypeInfo>
+			<DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="WhiteStarUML.dpr">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<RcCompile Include="WhiteStarUMLManifest.rc">
+				<ContainerId>RC</ContainerId>
+				<ContainerId>RC</ContainerId>
+				<Form>WhiteStarUMLManifest.res</Form>
+			</RcCompile>
+			<DCCReference Include="BasicClasses.pas"/>
+			<DCCReference Include="Core.pas"/>
+			<DCCReference Include="GraphicClasses.pas"/>
+			<DCCReference Include="ViewCore.pas"/>
+			<DCCReference Include="UMLViews.pas"/>
+			<DCCReference Include="ProjectMgr.pas"/>
+			<DCCReference Include="StarUMLApp.pas"/>
+			<DCCReference Include="Main.pas"/>
+			<DCCReference Include="Handlers.pas"/>
+			<DCCReference Include="ColEdtFrm.pas">
+				<Form>CollectionEditorForm</Form>
+			</DCCReference>
+			<DCCReference Include="UMLVerify.pas"/>
+			<DCCReference Include="AboutFrm.pas">
+				<Form>AboutForm</Form>
+			</DCCReference>
+			<DCCReference Include="ElemSelFrm.pas">
+				<Form>ElementSelectorForm</Form>
+			</DCCReference>
+			<DCCReference Include="ClipboardMgr.pas"/>
+			<DCCReference Include="UMLFacto.pas"/>
+			<DCCReference Include="UMLAux.pas"/>
+			<DCCReference Include="DiagramEditors.pas"/>
+			<DCCReference Include="SelectionMgr.pas"/>
+			<DCCReference Include="CmdExec.pas"/>
+			<DCCReference Include="LogMgr.pas"/>
+			<DCCReference Include="UMLModels.pas"/>
+			<DCCReference Include="UMLProps.pas"/>
+			<DCCReference Include="StereoSelFrm.pas">
+				<Form>StereotypeSelectorForm</Form>
+			</DCCReference>
+			<DCCReference Include="ConstEdtFrm.pas">
+				<Form>ConstraintEditorForm</Form>
+			</DCCReference>
+			<DCCReference Include="AttachItemEdtFrm.pas">
+				<Form>AttachmentItemEditForm</Form>
+			</DCCReference>
+			<DCCReference Include="ConstItemEdtFrm.pas">
+				<Form>ConstraintItemEditForm</Form>
+			</DCCReference>
+			<DCCReference Include="ProfileMgrFrm.pas">
+				<Form>ProfileManagerForm</Form>
+			</DCCReference>
+			<DCCReference Include="ElemLstFrm.pas">
+				<Form>ElementListForm</Form>
+			</DCCReference>
+			<DCCReference Include="ImportFrameworkFrm.pas">
+				<Form>ImportFrameworkForm</Form>
+			</DCCReference>
+			<DCCReference Include="OptionDeps.pas"/>
+			<DCCReference Include="ExprParsers.pas"/>
+			<DCCReference Include="CoreAuto.pas"/>
+			<DCCReference Include="UMLModelsAuto.pas"/>
+			<DCCReference Include="ViewCoreAuto.pas"/>
+			<DCCReference Include="UMLViewsAuto.pas"/>
+			<DCCReference Include="StarUMLAppAuto.pas"/>
+			<DCCReference Include="FrwMgr.pas"/>
+			<DCCReference Include="ApprMgr.pas"/>
+			<DCCReference Include="FindFrm.pas">
+				<Form>FindForm</Form>
+			</DCCReference>
+			<DCCReference Include="AddInMgrFrm.pas">
+				<Form>AddInMgrForm</Form>
+			</DCCReference>
+			<DCCReference Include="ModelVerifierFrm.pas">
+				<Form>ModelVerifierForm</Form>
+			</DCCReference>
+			<DCCReference Include="AddInMgr.pas"/>
+			<DCCReference Include="ModelExpFilterFrm.pas">
+				<Form>ModelExplorerFilterForm</Form>
+			</DCCReference>
+			<DCCReference Include="NewProjFrm.pas">
+				<Form>NewProjFrm</Form>
+			</DCCReference>
+			<DCCReference Include="PrintFrm.pas">
+				<Form>PrintForm</Form>
+			</DCCReference>
+			<DCCReference Include="PrintPreviewFrm.pas">
+				<Form>PrintPreviewForm</Form>
+			</DCCReference>
+			<DCCReference Include="PageSetupFrm.pas">
+				<Form>PageSetupForm</Form>
+			</DCCReference>
+			<DCCReference Include="SplashFrm.pas">
+				<Form>SplashForm</Form>
+			</DCCReference>
+			<DCCReference Include="LayoutDgm.pas"/>
+			<DCCReference Include="DocuEdt.pas">
+				<Form>DocumentationEditor</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="AttachEdt.pas">
+				<Form>AttachmentEditor</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="PropEdt.pas">
+				<Form>PropertyEditor</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="OutputFrame.pas">
+				<Form>OutputPanel</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="MessageFrame.pas">
+				<Form>MessagePanel</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="ExtCore.pas"/>
+			<DCCReference Include="ExtCoreAuto.pas"/>
+			<DCCReference Include="UMLAuxAuto.pas"/>
+			<DCCReference Include="QuickDialogFrm.pas">
+				<Form>QuickDialogForm</Form>
+			</DCCReference>
+			<DCCReference Include="DiagramMapFrm.pas">
+				<Form>DiagramMapForm</Form>
+			</DCCReference>
+			<DCCReference Include="EventPub.pas"/>
+			<DCCReference Include="HtmlHlp.pas"/>
+			<DCCReference Include="TagColEdtFrm.pas">
+				<Form>TaggedValueCollectionEditorForm</Form>
+			</DCCReference>
+			<DCCReference Include="NLS_StarUML.pas"/>
+			<DCCReference Include="NLS.pas"/>
+			<DCCReference Include="DiagramExplorerFrame.pas">
+				<Form>DiagramExplorerPanel</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="ModelExplorerFrame.pas">
+				<Form>ModelExplorerPanel</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="ShortenSyntaxMgr.pas"/>
+			<DCCReference Include="InteractionMgr.pas"/>
+			<DCCReference Include="NXMgr.pas"/>
+			<DCCReference Include="ContributorMgr.pas"/>
+			<DCCReference Include="WorkingAreaFrm.pas">
+				<Form>WorkingAreaFrame</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="InspectorFrm.pas">
+				<Form>InspectorFrame</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="JvclExtensions.pas"/>
+			<DCCReference Include="TagEdtFrm.pas">
+				<Form>TaggedValueEditorForm</Form>
+			</DCCReference>
+			<DCCReference Include="TagEdtFrmWithJvclInspector.pas">
+				<Form>TaggedValueEditorFormWithJvclInspector</Form>
+			</DCCReference>
+			<DCCReference Include="PropEdtWithJvclInspector.pas">
+				<Form>PropertyEditorWithJvclInspector</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="NavBarFrame.pas">
+				<Form>PaletteNavBarFrame</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="NavBarFrameVclImpl.pas">
+				<Form>PaletteNavBarFrameVclImpl</Form>
+				<DesignClass>TFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="MenuManager.pas"/>
+			<DCCReference Include="MenuManagerTdxImpl.pas"/>
+			<DCCReference Include="QuickDialogFrmTdxBase.pas">
+				<Form>QuickDialogFormTdxBase</Form>
+			</DCCReference>
+			<DCCReference Include="MainFrm.pas">
+				<Form>MainForm</Form>
+			</DCCReference>
+			<DCCReference Include="WhiteStarUML_TLB.pas"/>
+			<DCCReference Include="PGMR101Lib_TLB.pas"/>
+			<DCCReference Include="ParserCore_TLB.pas"/>
+			<RidlCompile Include="WhiteStarUML.ridl"/>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType>VCLApplication</Borland.ProjectType>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Source>
+						<Source Name="MainSource">WhiteStarUML.dpr</Source>
+					</Source>
+					<Parameters>
+						<Parameters Name="UseLauncher">False</Parameters>
+						<Parameters Name="LoadAllSymbols">True</Parameters>
+						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+						<Parameters Name="DebugSourceDirs">C:\JS\Delphi\VT-build\VT-devel\Source;C:\JS\Delphi\tb2k-2.2.2\Source\</Parameters>
+					</Parameters>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
+						<VersionInfo Name="MajorVer">5</VersionInfo>
+						<VersionInfo Name="MinorVer">3</VersionInfo>
+						<VersionInfo Name="Release">7</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1033</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">5.3.7.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName">WhiteStarUML</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">5.3.7</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\bcboffice2k140.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\bcbofficexp140.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dcloffice2k140.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDS)\bin\dclofficexp140.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+				</Delphi.Personality>
+				<ActiveXProjectInfo>
+					<version>1</version>
+				</ActiveXProjectInfo>
+				<ModelSupport>False</ModelSupport>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>

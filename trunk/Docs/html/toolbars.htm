@@ -1,0 +1,1078 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>User-Interface Reference &gt; Toolbars</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Toolbars">
+   <meta name="description" content="Toolbars">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?toolbars.htm"; }
+  else { parent.quicksync('a12.3'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="ch11.htm">User-Interface Reference</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Toolbars</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="shortcut_keys.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="ch11.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="viewers.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">This section describes in detail all of the toolbar items in WhiteStarUml.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Standard Toolbar</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Format Toolbar</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">View Toolbar</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Align Toolbar</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Pallet Toolbar</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Standard Toolbar</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Standard toolbar contains the following functions.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Toolbar</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h49.jpg" width="16" height="16" border="0" alt="ch11_h49"><span style="font-size: 9pt;"> New Project[Ctrl+N]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Creates a new project.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h50.jpg" width="16" height="16" border="0" alt="ch11_h50"><span style="font-size: 9pt;"> Open[Ctrl+O]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Opens a project file.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h51.jpg" width="16" height="16" border="0" alt="ch11_h51"><span style="font-size: 9pt;"> Save[Ctrl+S]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Saves the project file</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h52.jpg" width="16" height="16" border="0" alt="ch11_h52"><span style="font-size: 9pt;"> Print[Ctrl+P]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Prints the diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h53.jpg" width="16" height="16" border="0" alt="ch11_h53"><span style="font-size: 9pt;"> Cut[Ctrl+X]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Copies the selected elements to clipboard and removes them from the current location.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h54.jpg" width="16" height="16" border="0" alt="ch11_h54"><span style="font-size: 9pt;"> Copy[Ctrl+C]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Copies the selected elements to clipboard.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h55.jpg" width="16" height="16" border="0" alt="ch11_h55"><span style="font-size: 9pt;"> Paste[Ctrl+V]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Pastes the clipboard contents into the currently selected element (or diagram).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h56.jpg" width="16" height="16" border="0" alt="ch11_h56"><span style="font-size: 9pt;"> Delete[Del]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Deletes the selected view elements in the diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h57.jpg" width="16" height="16" border="0" alt="ch11_h57"><span style="font-size: 9pt;"> Undo[Ctrl+Z]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Cancels the most recent action performed by the user.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h58.jpg" width="16" height="16" border="0" alt="ch11_h58"><span style="font-size: 9pt;"> Redo[Ctrl+Y]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Repeats the most recent action performed by the user.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h59.jpg" width="16" height="16" border="0" alt="ch11_h59"><span style="font-size: 9pt;"> Find[Ctrl+F]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Finds an element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h60.jpg" width="16" height="16" border="0" alt="ch11_h60"><span style="font-size: 9pt;"> Collection Editor[Ctrl+F5]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Opens the collection editor that can be used to edit the child elements of the currently selected model element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h61.jpg" width="16" height="16" border="0" alt="ch11_h61"><span style="font-size: 9pt;"> Constraints[Ctrl+F6]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Opens the constraint editor that can be used to edit the constraints of the currently selected model element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h62.jpg" width="16" height="16" border="0" alt="ch11_h62"><span style="font-size: 9pt;"> TaggedValues[Ctrl+F7]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Opens the tagged value editor that can be used to edit the tag definitions of the currently selected model element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h63.jpg" width="16" height="16" border="0" alt="ch11_h63"><span style="font-size: 9pt;"> Profiles[Ctrl+F8]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Opens the profile manager.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:60px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h64.jpg" width="16" height="16" border="0" alt="ch11_h64"><span style="font-size: 9pt;"> Verify Model[F9]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:60px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Opens the Verify Model dialog box that can be used to inspect the model elements in the current project.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Format Toolbar</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Format toolbar contains the following functions.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Tool</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">(Combo) Font Name</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies the font name for the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">(Combo) Font Size</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies the font size for the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:27px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h65.jpg" width="16" height="16" border="0" alt="ch11_h65"><span style="font-size: 9pt;"> Font...</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:27px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies the font for the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h66.jpg" width="16" height="16" border="0" alt="ch11_h66"><span style="font-size: 9pt;"> Line Color...</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies the line color for the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h67.jpg" width="16" height="16" border="0" alt="ch11_h67"><span style="font-size: 9pt;"> Fill Color...</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies the fill color for the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:28px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h68.jpg" width="16" height="16" border="0" alt="ch11_h68"><span style="font-size: 9pt;"> Auto Resize</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:28px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Automatically resizes the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h69.jpg" width="16" height="16" border="0" alt="ch11_h69"><span style="font-size: 9pt;"> Stereotype Display</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies how the stereotypes will be shown for the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h70.jpg" width="20" height="18" border="0" alt="ch11_h70"><span style="font-size: 9pt;">Show As Extended Notation</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies how the extended notation will be shown for the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h71.jpg" width="16" height="16" border="0" alt="ch11_h71"><span style="font-size: 9pt;"> Line Style</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies the line style for the selected connection view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h72.jpg" width="16" height="16" border="0" alt="ch11_h72"><span style="font-size: 9pt;"> Suppress Attributes[Shift+Ctrl+A]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Suppresses the section that displays the attributes for the selected view elements (e.g. class, usecase, etc.).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h73.jpg" width="16" height="16" border="0" alt="ch11_h73"><span style="font-size: 9pt;"> Suppress Operations[Shift+Ctrl+O]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Suppresses the section that displays the operations for the selected view elements (e.g. class, subsystem, etc.).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h74.jpg" width="16" height="16" border="0" alt="ch11_h74"><span style="font-size: 9pt;"> Suppress Literals[Shift+Ctrl+L]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Suppresses the section that displays the attributes for the selected enumerations.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h21.jpg" width="21" height="21" border="0" alt="ch11_h21"><span style="font-size: 9pt;"> Word Wrap Name</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the word wrap of the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h75.jpg" width="16" height="16" border="0" alt="ch11_h75"><span style="font-size: 9pt;"> Show Parent Name</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the parent name of the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h76.jpg" width="16" height="16" border="0" alt="ch11_h76"><span style="font-size: 9pt;"> Show Operation Signature</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the operation signature of the selected view elements (e.g. class, subsystem, etc.).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h77.jpg" width="16" height="16" border="0" alt="ch11_h77"><span style="font-size: 9pt;"> Show Properties</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the property items (e.g. tagged values, changeability attribute, etc.) included in view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h78.jpg" width="16" height="16" border="0" alt="ch11_h78"><span style="font-size: 9pt;"> Show Compartment Visibility</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the visibility of the compartments of the selected view elements (e.g. attribute compartment, operation compartment, etc.).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h79.jpg" width="16" height="16" border="0" alt="ch11_h79"><span style="font-size: 9pt;"> Show Compartment Stereotype</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the stereotype of the compartments of the selected view elements (e.g. attribute compartment, operation compartment, etc.).</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">　</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">View Toolbar</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The View toolbar contains the following functions.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="31%" bgcolor="#cccccc" style="width:31%; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Tool</span></p>
+</td>
+<td valign="bottom" width="69%" bgcolor="#cccccc" style="width:69%; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">(Combo) Zoom</span></p>
+</td>
+<td valign="top" width="69%" bgcolor="#ffffff" style="width:69%; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Selects the zoom ratio for the current diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h80.jpg" width="16" height="16" border="0" alt="ch11_h80"><span style="font-size: 9pt;"> Zoom In</span></p>
+</td>
+<td valign="top" width="69%" bgcolor="#ffffff" style="width:69%; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes the diagram look larger.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h81.jpg" width="16" height="16" border="0" alt="ch11_h81"><span style="font-size: 9pt;"> Zoom Out</span></p>
+</td>
+<td valign="top" width="69%" bgcolor="#ffffff" style="width:69%; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Makes the diagram look smaller.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h82.jpg" width="16" height="16" border="0" alt="ch11_h82"><span style="font-size: 9pt;"> Fit To Window</span></p>
+</td>
+<td valign="top" width="69%" bgcolor="#ffffff" style="width:69%; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Automatically adjusts the zoom ratio to fit the whole diagram in the window.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h83.jpg" width="16" height="16" border="0" alt="ch11_h83"><span style="font-size: 9pt;"> Refersh[F5]</span></p>
+</td>
+<td valign="top" width="69%" bgcolor="#ffffff" style="width:69%; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Refreshes the current diagram.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Align Toolbar</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Align toolbar contains the following functions.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="227" bgcolor="#cccccc" style="width:227px; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Tool</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="227" bgcolor="#ffffff" style="width:227px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h84.jpg" width="16" height="16" border="0" alt="ch11_h84"><span style="font-size: 9pt;"> Layout Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Lays out the view elements in the current diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="227" bgcolor="#ffffff" style="width:227px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h85.jpg" width="16" height="16" border="0" alt="ch11_h85"><span style="font-size: 9pt;"> Bring to Front</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Brings the selected elements to front.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="227" bgcolor="#ffffff" style="width:227px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h86.jpg" width="16" height="16" border="0" alt="ch11_h86"><span style="font-size: 9pt;"> Send to Back</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sends the selected elements to back.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="227" bgcolor="#ffffff" style="width:227px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h87.jpg" width="16" height="16" border="0" alt="ch11_h87"><span style="font-size: 9pt;"> Align Left</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Aligns the selected elements to left.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="227" bgcolor="#ffffff" style="width:227px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h88.jpg" width="16" height="16" border="0" alt="ch11_h88"><span style="font-size: 9pt;"> Align Right</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Aligns the selected elements to right.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="227" bgcolor="#ffffff" style="width:227px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h89.jpg" width="16" height="16" border="0" alt="ch11_h89"><span style="font-size: 9pt;"> Align Middle</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Centers the selected elements horizontally.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="227" bgcolor="#ffffff" style="width:227px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h90.jpg" width="16" height="16" border="0" alt="ch11_h90"><span style="font-size: 9pt;"> Align Top</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Aligns the selected elements to top.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="227" bgcolor="#ffffff" style="width:227px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h91.jpg" width="16" height="16" border="0" alt="ch11_h91"><span style="font-size: 9pt;"> Align Bottom</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Aligns the selected elements to bottom.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="227" bgcolor="#ffffff" style="width:227px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h92.jpg" width="16" height="16" border="0" alt="ch11_h92"><span style="font-size: 9pt;"> Align Center</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Centers the selected elements vertically.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="227" bgcolor="#ffffff" style="width:227px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h93.jpg" width="16" height="16" border="0" alt="ch11_h93"><span style="font-size: 9pt;"> Space Equally, Horizontally</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Evenly distributes the selected elements horizontally.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="227" bgcolor="#ffffff" style="width:227px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h94.jpg" width="16" height="16" border="0" alt="ch11_h94"><span style="font-size: 9pt;"> Space Equally, Vertically</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Evenly distributes the selected elements vertically.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Pallet Toolbar</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Pallet toolbar contains the following functions for selecting and creating elements in the diagram. </span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Common Pallet Tool</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The following functions are always available in the Pallet toolbar regardless of the diagram types.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="31%" bgcolor="#cccccc" style="width:31%; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Tool</span></p>
+</td>
+<td valign="bottom" width="69%" bgcolor="#cccccc" style="width:69%; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h95.jpg" width="16" height="16" border="0" alt="ch11_h95"><span style="font-size: 9pt;"> Select</span></p>
+</td>
+<td valign="top" width="69%" bgcolor="#ffffff" style="width:69%; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The most basic tool that selects, moves or resizes an element in the diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h96.jpg" width="16" height="16" border="0" alt="ch11_h96"><span style="font-size: 9pt;"> Note</span></p>
+</td>
+<td valign="top" width="69%" bgcolor="#ffffff" style="width:69%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Creates a note element in the current diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h97.jpg" width="16" height="16" border="0" alt="ch11_h97"><span style="font-size: 9pt;"> Note Link</span></p>
+</td>
+<td valign="top" width="69%" bgcolor="#ffffff" style="width:69%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Links a note in the current diagram to another element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h98.jpg" width="16" height="16" border="0" alt="ch11_h98"><span style="font-size: 9pt;"> Text</span></p>
+</td>
+<td valign="top" width="69%" bgcolor="#ffffff" style="width:69%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Creates a string element in the current diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h99.jpg" width="18" height="15" border="0" alt="ch11_h99"><span style="font-size: 9pt;"> Rectangle</span></p>
+</td>
+<td valign="top" width="69%" bgcolor="#ffffff" style="width:69%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Create a figure of &nbsp;rectangle in the current diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h100.jpg" width="16" height="13" border="0" alt="ch11_h100"><span style="font-size: 9pt;"> Ellipse</span></p>
+</td>
+<td valign="top" width="69%" bgcolor="#ffffff" style="width:69%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Creates a figure of &nbsp;ellipse in the current diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h101.jpg" width="16" height="12" border="0" alt="ch11_h101"><span style="font-size: 9pt;"> Rounded Rectangle</span></p>
+</td>
+<td valign="top" width="69%" bgcolor="#ffffff" style="width:69%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Creates a figure of &nbsp;rounded rectangle in the current diagram.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Pallet Tool by Diagram Types</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;"> The following functions create elements by diagram types.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="18%" bgcolor="#cccccc" style="width:18%; height:17px; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Tool</span></p>
+</td>
+<td valign="bottom" width="51%" bgcolor="#cccccc" style="width:51%; height:17px; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+<td valign="bottom" width="31%" bgcolor="#cccccc" style="width:31%; height:17px; background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h95.jpg" width="16" height="16" border="0" alt="ch11_h95"><span style="font-size: 9pt;"> Select</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">The most basic tool that selects, moves or resizes an element in the diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">All diagrams</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h102.jpg" width="16" height="16" border="0" alt="ch11_h102"><span style="font-size: 9pt;"> Subsystem</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a subsystem element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h103.jpg" width="16" height="16" border="0" alt="ch11_h103"><span style="font-size: 9pt;"> Package</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a package element in the current diagram..</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Component Diagram, Deployment Diagram, UseCase Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h104.jpg" width="16" height="16" border="0" alt="ch11_h104"><span style="font-size: 9pt;"> Class</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a class element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Composite Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h105.jpg" width="16" height="16" border="0" alt="ch11_h105"><span style="font-size: 9pt;"> Interface</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates an interface element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Component Diagram, Composite Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h106.jpg" width="16" height="16" border="0" alt="ch11_h106"><span style="font-size: 9pt;"> Enumeration</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates an enumeration element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h107.jpg" width="16" height="16" border="0" alt="ch11_h107"><span style="font-size: 9pt;"> Signal</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a signal element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h108.jpg" width="16" height="16" border="0" alt="ch11_h108"><span style="font-size: 9pt;"> Except</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates an exception element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h109.jpg" width="16" height="16" border="0" alt="ch11_h109"><span style="font-size: 9pt;"> Component</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a component element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Component Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h110.jpg" width="16" height="16" border="0" alt="ch11_h110"><span style="font-size: 9pt;"> ComponentInstance</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a component instance element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Component Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h111.jpg" width="16" height="16" border="0" alt="ch11_h111"><span style="font-size: 9pt;"> Node</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a node element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Deployment Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h112.jpg" width="16" height="16" border="0" alt="ch11_h112"><span style="font-size: 9pt;"> NodeInstance</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a node instance element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Component Diagram, Deployment Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h113.jpg" width="13" height="15" border="0" alt="ch11_h113"><span style="font-size: 9pt;"> Artifact</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a artifact in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">UseCase Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h114.jpg" width="16" height="16" border="0" alt="ch11_h114"><span style="font-size: 9pt;"> UseCase</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a usecase element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">UseCase Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h115.jpg" width="16" height="16" border="0" alt="ch11_h115"><span style="font-size: 9pt;"> Actor</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates an actor element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">UseCase Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h116.jpg" width="19" height="17" border="0" alt="ch11_h116"><span style="font-size: 9pt;"> SystemBoundary</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates an system boundary in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">UseCase Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h117.jpg" width="16" height="16" border="0" alt="ch11_h117"><span style="font-size: 9pt;"> Object</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates an object element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Sequence Diagram, Collaboration Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h118.jpg" width="20" height="17" border="0" alt="ch11_h118"><span style="font-size: 9pt;"> Part</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a &nbsp;Part element with a Classifier in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Component Diagram, Deployment Diagram, Composite Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h119.jpg" width="17" height="16" border="0" alt="ch11_h119"><span style="font-size: 9pt;"> Port</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a &nbsp;Port element with a Classifier in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Component Diagram, Deployment Diagram, Composite Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h120.jpg" width="16" height="16" border="0" alt="ch11_h120"><span style="font-size: 9pt;"> ClassifierRole</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a ClassifierRole element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sequence Role Diagram, Collaboration Role Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h121.jpg" width="18" height="17" border="0" alt="ch11_h121"><span style="font-size: 9pt;"> Combined Fragment</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a Combined Fragment element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sequence Diagram, Sequence Role Diagram, Collaboration Diagram, Collaboration Role Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h122.jpg" width="20" height="16" border="0" alt="ch11_h122"><span style="font-size: 9pt;"> Interaction Operand</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a &nbsp;Interaction Operand element with a Combined Fragment in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sequence Diagram, Sequence Role Diagram, Collaboration Diagram, Collaboration Role Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h123.jpg" width="21" height="17" border="0" alt="ch11_h123"><span style="font-size: 9pt;"> Frame</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a Frame element in the current diagram</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sequence Diagram, Sequence Role Diagram, Collaboration Diagram, Collaboration Role Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h124.jpg" width="16" height="16" border="0" alt="ch11_h124"><span style="font-size: 9pt;"> CompositeState</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a CompositeState element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h125.jpg" width="16" height="16" border="0" alt="ch11_h125"><span style="font-size: 9pt;"> SubmachineState</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a SubmachineState element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h126.jpg" width="16" height="16" border="0" alt="ch11_h126"><span style="font-size: 9pt;"> InitialState</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates an InitialState (Pseudostate) element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram, Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h127.jpg" width="16" height="16" border="0" alt="ch11_h127"><span style="font-size: 9pt;"> FinalState</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a FinalState element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:23px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram, Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h128.jpg" width="14" height="15" border="0" alt="ch11_h128"><span style="font-size: 9pt;"> Flow Final</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a DeepHistory(FlowFinalState) element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram, Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h129.jpg" width="16" height="16" border="0" alt="ch11_h129"><span style="font-size: 9pt;"> ChoicePoint</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a Choice (Pseudostate) element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h130.jpg" width="16" height="16" border="0" alt="ch11_h130"><span style="font-size: 9pt;"> JunctionPoint</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a Junction (Pseudostate) element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:24px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h131.jpg" width="16" height="16" border="0" alt="ch11_h131"><span style="font-size: 9pt;"> ShallowHistory</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:24px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a ShallowHistory (Pseudostate) element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:24px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h132.jpg" width="16" height="16" border="0" alt="ch11_h132"><span style="font-size: 9pt;"> DeepHistory</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a DeepHistory (Pseudostate) element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h133.jpg" width="16" height="16" border="0" alt="ch11_h133"><span style="font-size: 9pt;"> Synchronization</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a Synchronization (Pseudostate) element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:33px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram, Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h134.jpg" width="16" height="16" border="0" alt="ch11_h134"><span style="font-size: 9pt;"> ActionState</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates an ActionState element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h135.jpg" width="16" height="16" border="0" alt="ch11_h135"><span style="font-size: 9pt;"> SubactivityState</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a Subactivity State element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h136.jpg" width="16" height="16" border="0" alt="ch11_h136"><span style="font-size: 9pt;"> Decision</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a Decision (Pseudostate) element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h137.jpg" width="18" height="15" border="0" alt="ch11_h137"><span style="font-size: 9pt;"> ObjectFlow</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a ObjectFlowState element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h138.jpg" width="19" height="15" border="0" alt="ch11_h138"><span style="font-size: 9pt;"> Signal Accept State</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a SignalAcceptState element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h139.jpg" width="22" height="13" border="0" alt="ch11_h139"><span style="font-size: 9pt;"> Signal Send State</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a SignalSendState element in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h140.jpg" width="20" height="17" border="0" alt="ch11_h140"><span style="font-size: 9pt;"> Swimlane(Vertical)</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a Swimlane by vertical solid lines in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h141.jpg" width="21" height="19" border="0" alt="ch11_h141"><span style="font-size: 9pt;"> Swimlane(Horizontal)</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a Swimlane by horizontal solid lines in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h142.jpg" width="16" height="16" border="0" alt="ch11_h142"><span style="font-size: 9pt;"> Association</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links a semantic association between two classes in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Component Diagram, Deployment Diagram, UseCase Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h143.jpg" width="16" height="16" border="0" alt="ch11_h143"><span style="font-size: 9pt;"> DirectedAssociation</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links a semantic association between two classes in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Deployment Diagram, UseCase Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h144.jpg" width="16" height="16" border="0" alt="ch11_h144"><span style="font-size: 9pt;"> Aggregation</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links a semantic association between two classes in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h145.jpg" width="16" height="16" border="0" alt="ch11_h145"><span style="font-size: 9pt;"> Composition</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links a semantic association between two classes in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h146.jpg" width="16" height="16" border="0" alt="ch11_h146"><span style="font-size: 9pt;"> Generalization</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links a generalized element and a specialized element with a generalization relation in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, UseCase Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h147.jpg" width="16" height="16" border="0" alt="ch11_h147"><span style="font-size: 9pt;"> Dependency</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links two elements with a dependency relation in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Component Diagram, Deployment Diagram, UseCase Diagram, Composite Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h148.jpg" width="16" height="16" border="0" alt="ch11_h148"><span style="font-size: 9pt;"> Realization</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links a specification element and its implementation element with a realization relation in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Component Diagram, Composite Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h149.jpg" width="16" height="16" border="0" alt="ch11_h149"><span style="font-size: 9pt;"> AssociationClass</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links a class and an association in the current diagram so that the association itself can have the significance of a class.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h150.jpg" width="16" height="16" border="0" alt="ch11_h150"><span style="font-size: 9pt;"> Include</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links two UseCases with an Include relation in the current diagram so that one UseCase includes the other UseCase behaviors.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">UseCase Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h151.jpg" width="16" height="16" border="0" alt="ch11_h151"><span style="font-size: 9pt;"> Extend</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links two UseCases with an Extend relation in the current diagram so that one UseCase can be extended with the behaviors defined in the other UseCase.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">UseCase Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h152.jpg" width="16" height="16" border="0" alt="ch11_h152"><span style="font-size: 9pt;"> AssociationRole</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links two roles with an AssociationRole in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Collaboration Role Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h153.jpg" width="16" height="16" border="0" alt="ch11_h153"><span style="font-size: 9pt;"> SelfAssociationRole</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates an AssociationRole from one role to the same role in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Collaboration Role Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h154.jpg" width="16" height="16" border="0" alt="ch11_h154"><span style="font-size: 9pt;"> Link</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links two objects in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Collaboration Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h155.jpg" width="16" height="16" border="0" alt="ch11_h155"><span style="font-size: 9pt;"> SelfLink</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links an object with itself in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Collaboration Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h156.jpg" width="16" height="16" border="0" alt="ch11_h156"><span style="font-size: 9pt;"> ForwardMessage</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Defines a message between two roles in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sequence Role Diagram, Collaboration Role Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h157.jpg" width="16" height="16" border="0" alt="ch11_h157"><span style="font-size: 9pt;"> ReverseMessage</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Defines a message between two roles in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sequence Role Diagram, Collaboration Role Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h158.jpg" width="16" height="16" border="0" alt="ch11_h158"><span style="font-size: 9pt;"> SelfMessage</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a message from a role to the same role in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sequence Role Diagram, Collaboration Role Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h159.jpg" width="16" height="16" border="0" alt="ch11_h159"><span style="font-size: 9pt;"> ForwardStimulus</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Defines a stimulus between two objects in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sequence Diagram, Collaboration Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h160.jpg" width="16" height="16" border="0" alt="ch11_h160"><span style="font-size: 9pt;"> ReverseStimulus</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Defines a stimulus between two objects in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sequence Diagram, Collaboration Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h161.jpg" width="16" height="16" border="0" alt="ch11_h161"><span style="font-size: 9pt;"> SelfStimulus</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Creates a stimulus from an object to the same object in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sequence Diagram, Collaboration Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h162.jpg" width="16" height="16" border="0" alt="ch11_h162"><span style="font-size: 9pt;"> Transition</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links a source state and a target state with a transition in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram, Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h163.jpg" width="16" height="16" border="0" alt="ch11_h163"><span style="font-size: 9pt;"> SelfTransition</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links an original state and a target state with a transition in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:19px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram, Activity Diagram</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="18%" bgcolor="#ffffff" style="width:18%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h164.jpg" width="19" height="19" border="0" alt="ch11_h164"><span style="font-size: 9pt;"> Connector</span></p>
+</td>
+<td valign="top" width="51%" bgcolor="#ffffff" style="width:51%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Links a original feature and a target feature with a connector in the current diagram.</span></p>
+</td>
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; height:31px; background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram, Component Diagram, Deployment Diagram, Composite Diagram</span></p>
+</td>
+</tr>
+</table>
+</div>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

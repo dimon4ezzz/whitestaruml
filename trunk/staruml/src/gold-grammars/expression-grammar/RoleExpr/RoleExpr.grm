@@ -1,0 +1,47 @@
+"Start Symbol" = <Grammar Classifier Role>
+"Case Sensitive" = False                
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+
+{String Chars} = {All Letters} +  {Number} + {Euro Sign} + [ '_' ',' ';' '\' '.' '&' '@' '$' '%' '+' '*' '#' '-' '~' '"' '`' '' ] 
+! Restricted Chars should not start or end an indentifier as they may collide with other symbols 
+{Restricted Chars} = {All Space} + [ '+' '#' '-' '~' ]
+{Boundary String Chars} = {String Chars} - {Restricted Chars}
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* ( {Restricted Chars}+ '<' {String Chars}* '>' | {Restricted Chars}* '[' {String Chars}* ']'  | {Restricted Chars}* '(' {String Chars}* ')' )? 
+
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<Grammar Classifier Role> ::= <classifier_role_expression> 
+
+<classifier_role_expression> ::= <stereotype_part> <classifier_role_name_part> <classifier_name_part>
+                                                
+<stereotype_part> ::= '<<' <stereotype> '>>'
+                   |  <>
+
+<stereotype> ::= id
+ 
+<classifier_role_name_part> ::= '/' <visibility> <classifier_role_name>
+                             | <visibility> <classifier_role_name>
+                             | <>
+
+<visibility> ::= '+' | '#' | '-' | '~'
+              | <> 
+
+<classifier_role_name> ::= id
+
+<classifier_name_part> ::= ':' <classifier_name>
+                            | <>
+
+<classifier_name> ::= id
+       
+        
+

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd" status="Out Of Date">
+  <title translate="true">Appendices</title>
+  <body>
+    <header>
+      <para styleclass="Heading1" style="margin-top:19px; line-height:1.0; border-style:single; border-width:1px; border-top:none; border-right:none; border-left:none; tabstops:none;"><text styleclass="Heading1" style="font-family:Verdana; font-size:18pt; vertical-align:baseline; color:#000080;" translate="true">Appendices</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">In these appendices you will find</text></para>
+    <list id="1" type="ul" listtype="bullet" formatstring="·" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Symbol; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">GNU General Public License</text></li>
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">GNU Free Documentation License</text></li>
+    </list>
+  </body>
+</topic>

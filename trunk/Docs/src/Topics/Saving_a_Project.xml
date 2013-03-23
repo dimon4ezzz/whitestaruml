@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Saving a Project</title>
+  <keywords>
+    <keyword translate="true">Project</keyword>
+    <keyword translate="true">Saving<keyword translate="true">project</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Saving a Project</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To save any changes made to a project, you can either save your changes over the existing project file or save the project as a new file. When a project file is saved, the related units will be saved too.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">When you save a new project, you must first give the project a name. Do the following.</text></para>
+    <list id="82" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">Save</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Save As</text><text styleclass="List1" translate="true"> dialog box, navigate to the folder where you want to save the project.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">File name</text><text styleclass="List1" translate="true"> box enter a name for your project</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">Click </text><text styleclass="MenuCommand" translate="true">Save</text><text styleclass="List1Last" translate="true">.</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To save a project that has been saved before, click </text><text styleclass="MenuCommand" translate="true">Save</text><text styleclass="Normal" translate="true"> on the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="Normal" translate="true"> menu or press CTRL+S.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To save a project with a new file name, do the following.</text></para>
+    <list id="83" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">Save As</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Save As</text><text styleclass="List1" translate="true"> dialog box, navigate to the folder where you want to save the project.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">File name</text><text styleclass="List1" translate="true"> box enter a new name for the project.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">Click </text><text styleclass="MenuCommand" translate="true">Save</text><text styleclass="List1Last" translate="true">.</text></li>
+    </list>
+    <para styleclass="Notes"><image src="note.bmp" scale="100.00%" styleclass="Notes"></image><text styleclass="Notes" translate="true">&#32;</text><text styleclass="Emphasis" translate="true">Note:</text><text styleclass="Notes" translate="true">&#32;</text><text styleclass="Notes" translate="true">If the project contains one or more units and the units have been changed, a dialog box will appear asking whether you want to save the changed units. Click </text><text styleclass="MenuCommand" translate="true">Yes</text><text styleclass="Notes" translate="true"> to save all changed units with the project.</text></para>
+  </body>
+</topic>

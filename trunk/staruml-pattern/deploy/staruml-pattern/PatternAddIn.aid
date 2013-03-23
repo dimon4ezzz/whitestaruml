@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ADDIN>
+    <NAME>Pattern AddIn</NAME>
+    <DISPLAYNAME>Pattern Add-In</DISPLAYNAME>
+    <COMOBJ>WSPatternAddIn.PatternAddInObj</COMOBJ>
+    <FILENAME>WSPatternAddIn.dll</FILENAME>
+    <COMPANY>Plastic Software, Inc.</COMPANY>
+    <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
+    <HELPFILE>WhiteStarUML.chm</HELPFILE>
+    <ICONFILE>PatternAddIn.ico</ICONFILE>
+    <ISACTIVE>True</ISACTIVE>
+    <MENUFILE>PatternAddIn.mnu</MENUFILE>
+    <VERSION>1.0.1.64</VERSION>
+</ADDIN>

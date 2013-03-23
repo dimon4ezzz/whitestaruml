@@ -1,0 +1,248 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Working with Diagrams &gt; Activity Diagrams</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Activity diagram">
+   <meta name="description" content="Activity Diagrams">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?ch05_6.htm"; }
+  else { parent.quicksync('a6.6'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="working_with_diagrams.htm">Working with Diagrams</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Activity Diagrams</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="ch05_5.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="working_with_diagrams.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="ch05_7.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The following elements are available in a activity diagram.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#actionstate">Action State</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#subactivitystate">Subactivity State</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#initialstate">Initial State</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#finalstate">Final State</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#synchronization">Synchronization</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#decision">Decision</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#flowfinal">Flow Final</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#objectflow">Object Flow</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#signalacceptstate">Signal Accept State</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#signalsendstate">Signal Send State</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#transition">Transition</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#selftransition">Self Transition</a></span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;"><a href="ch05_6.htm#swimlane">Swim lane</a></span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><a name="actionstate"></a><span style="font-weight: bold; color: #000080;">Action State</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">An action state represents the execution of an atomic action, typically the invocation of an operation. An action state is a simple state with an entry action whose only exit transition is triggered by the implicit event of completing the execution of the entry action. The state therefore corresponds to the execution of the entry action itself and the outgoing transition is activated as soon as the action has completed its execution.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating action state</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create ActionState,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [ActionState]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_619.jpg" width="132" height="144" border="0" alt="ch05_619"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And click at the position where ActionState will be placed in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_620.jpg" width="361" height="174" border="0" alt="ch05_620"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">A action state is created on the diagram and the quick dialog is shown.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_621.jpg" width="139" height="68" border="0" alt="ch05_621"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">4.</span></td><td><span style="font-size: 9pt;">Enter the action state name at the quick dialog and press </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;"> key. The result is as follows.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_622.jpg" width="117" height="72" border="0" alt="ch05_622"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="subactivitystate"></a><span style="font-weight: bold; color: #000080;">Subactivity State</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">A subactivity state represents the execution of a non-atomic sequence of steps that has some duration; that is, internally it consists of a set of actions and possibly waiting for</span></p>
+<p><span style="font-size: 9pt;">events. That is, a subactivity state is a “hierarchical action,” where an associated subactivity graph is executed.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating subactivity state</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create SubactivityState,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [SubactivityState]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_623.jpg" width="134" height="145" border="0" alt="ch05_623"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And click at the position where SubactivityState will be placed in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">. A subactivity state is created and the quick dialog is shown. At the quick dialog, enter the subactivity state name and press </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;"> key. The result is as follows.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_624.jpg" width="172" height="85" border="0" alt="ch05_624"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="initialstate"></a><span style="font-weight: bold; color: #000080;">Initial State</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating initial state</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create InitialState,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [InitialState]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_625.jpg" width="131" height="171" border="0" alt="ch05_625"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And click at the position where InitialState will be placed in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">. Then a initial state is created.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_626.jpg" width="61" height="62" border="0" alt="ch05_626"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="finalstate"></a><span style="font-weight: bold; color: #000080;">Final State</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating final state</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create FinalState,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [FinalState]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_627.jpg" width="137" height="196" border="0" alt="ch05_627"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And click at the position where FinalState will be placed in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_628.jpg" width="64" height="65" border="0" alt="ch05_628"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="decision"></a><span style="font-weight: bold; color: #000080;">Decision</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">A state diagram (and by derivation an activity diagram) expresses a decision when guard conditions are used to indicate different possible transitions that depend on Boolean conditions of the owning object.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating decision</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create Decision,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [Decision]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_629.jpg" width="135" height="147" border="0" alt="ch05_629"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And click at the position where Decision will be placed in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">. The decision is created on the diagram.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_630.jpg" width="96" height="60" border="0" alt="ch05_630"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating decision from state</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create decision with incoming transition from selected object, use shortcut creation syntax.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Double-click state. At the quick dialog, enter "-&gt;&lt;&gt;"("&lt;-&lt;&gt;" for incoming from decision) string.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_631.jpg" width="156" height="76" border="0" alt="ch05_631"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Press </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;"> key and decision with outgoing transition from selected state is created.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_632.jpg" width="126" height="148" border="0" alt="ch05_632"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="flowfinal"></a><span style="font-weight: bold; color: #000080;">Flow Final</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating flow final</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create Flow Final,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [Flow Final] </span><span style="font-size: 9pt;">button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_633.jpg" width="131" height="151" border="0" alt="ch05_633"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And click at the position where Flow Final will be placed in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_634.jpg" width="66" height="61" border="0" alt="ch05_634"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="objectflow"></a><span style="font-weight: bold; color: #000080;">Object Flow</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">An object flow is one of two types of activity edges, which are directed connection (flows) between activity nodes, the other being a control flow. As soon as the activity node at the source (tail) end of the flow is finished it presents tokens to the object flow at the target (arrowhead) end of the flow. An object flow can only carry object (data) tokens; it cannot carry control tokens. There are rules that specify whether tokens can flow along the object flow and these are determined by the type of activity node at the source and target of the flow. In the case of complete activities an object flow may define a weight, which specifies the minimum number of tokens that must flow along the object flow as a group.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating object flow</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create Object Flow,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [Object Flow]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_635.jpg" width="132" height="175" border="0" alt="ch05_635"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And click at the position where Object Flow will be placed in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">. Then the quick dialog of object flow state is shown as follows.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_636.jpg" width="158" height="68" border="0" alt="ch05_636"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">At the quick dialog, enter the object flow state name and press </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;"> key.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_637.jpg" width="137" height="71" border="0" alt="ch05_637"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="synchronization"></a><span style="font-weight: bold; color: #000080;">Synchronization</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating synchronization bar</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create Synchronization,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [Synchronization]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_638.jpg" width="133" height="109" border="0" alt="ch05_638"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And click at the position where Synchronization will be placed in the</span><span style="font-size: 9pt; font-weight: bold;"> [main window]</span><span style="font-size: 9pt;"> and drag as size as you want.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_639.jpg" width="185" height="65" border="0" alt="ch05_639"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">The following figure shows the result of this procedure.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_640.jpg" width="197" height="79" border="0" alt="ch05_640"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="signalacceptstate"></a><span style="font-weight: bold; color: #000080;">Signal Accept State</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The signal accept may be shown as a concave pentagon that looks like a rectangle with a triangular notch in its side (either side). The signature of the signal is shown inside the symbol. An unlabeled transition arrow is drawn from the previous action state to the pentagon and another unlabeled transition arrow is drawn from the pentagon to the next action state. A dashed arrow may be drawn from an object symbol to the notch on the pentagon to show the sender of the signal; this is optional.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating signal accept state</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create Signal Accept State,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [Signal Accept State]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_641.jpg" width="133" height="194" border="0" alt="ch05_641"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And click at the position where Signal Accept State will be placed in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_642.jpg" width="178" height="74" border="0" alt="ch05_642"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">At the quick dialog, enter signal accept state name and press</span><span style="font-size: 9pt; font-weight: bold;"> [Enter] </span><span style="font-size: 9pt;">key.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_643.jpg" width="159" height="63" border="0" alt="ch05_643"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="signalsendstate"></a><span style="font-weight: bold; color: #000080;">Signal Send State</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The sending of a signal may be shown as a convex pentagon that looks like a rectangle with a triangular point on one side (either side). The signature of the signal is shown inside the symbol. An unlabeled transition arrow is drawn from the previous action state to the pentagon and another unlabeled transition arrow is drawn from the pentagon to the next action state. A dashed arrow may be drawn from the point on the pentagon to an object symbol to show the receiver of the signal, this is optional.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating signal send state</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create Signal Send State,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [Signal Send State]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_644.jpg" width="134" height="143" border="0" alt="ch05_644"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And click at the position where Signal Send State will be placed in the [main window]. A signal send state is created and the quick dialog is shown. Enter signal send state name and press </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;"> key.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_645.jpg" width="147" height="71" border="0" alt="ch05_645"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="transition"></a><span style="font-weight: bold; color: #000080;">Transition</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating transition</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create Transition,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [Transition] </span><span style="font-size: 9pt;">button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_646.jpg" width="133" height="173" border="0" alt="ch05_646"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Drag and drop between states in transition direction in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_647.jpg" width="273" height="78" border="0" alt="ch05_647"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Then the transition is created.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_648.jpg" width="263" height="65" border="0" alt="ch05_648"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="selftransition"></a><span style="font-weight: bold; color: #000080;">Self Transition</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating self-transition</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create self-transition,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click</span><span style="font-size: 9pt; font-weight: bold;"> [Toolbox] -&gt; [Activity] -&gt; [SelfTransition] </span><span style="font-size: 9pt;">button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_649.jpg" width="133" height="153" border="0" alt="ch05_649"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Click state to have self-transition in the</span><span style="font-size: 9pt; font-weight: bold;"> [main window]</span><span style="font-size: 9pt;">. Then a self-transition is created.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_650.jpg" width="142" height="84" border="0" alt="ch05_650"></p>
+<p style="margin: 19px 0px 10px 0px;"><a name="swimlane"></a><span style="font-weight: bold; color: #000080;">Swim lane</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Semantics</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Actions and subactivities may be organized into swimlanes. Swimlanes are used to organize responsibility for actions and subactivities. They often correspond to organizational units in a business model.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating horizontal swimlane</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create Horizontal Swimlane,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [Horizontal Swimlane]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_651.jpg" width="133" height="164" border="0" alt="ch05_651"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And drag the boundary where Horizontal Swimlane will be placed in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_652.jpg" width="429" height="140" border="0" alt="ch05_652"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Then a horizontal swimlane is created on the diagram. And enter the swimlane name at the quick dialog and press </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;"> key.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_653.jpg" width="286" height="224" border="0" alt="ch05_653"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Procedure for creating vertical swimlane</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In order to create Vertical Swimlane,</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><span style="font-size: 9pt; font-weight: bold;">[Toolbox] -&gt; [Activity] -&gt; [Vertical Swimlane]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_654.jpg" width="133" height="150" border="0" alt="ch05_654"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And drag the boundary where Vertical Swimlane will be placed in the </span><span style="font-size: 9pt; font-weight: bold;">[main window]</span><span style="font-size: 9pt;">.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_655.jpg" width="185" height="250" border="0" alt="ch05_655"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">A swimlane is created and quick dialog is shown. At the quick dialog, enter the swimlane name and press </span><span style="font-size: 9pt; font-weight: bold;">[Enter]</span><span style="font-size: 9pt;"> to have done this procedure.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;"><img src="ch05_656.jpg" width="240" height="213" border="0" alt="ch05_656"></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

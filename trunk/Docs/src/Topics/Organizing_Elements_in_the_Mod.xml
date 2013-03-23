@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Organizing Elements in the Model</title>
+  <keywords>
+    <keyword translate="true">Moving model elements</keyword>
+    <keyword translate="true">Organizing models</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Organizing Elements in the Model</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">A model consists of model elements and diagrams. Grouping elements and diagrams for efficient management is very important. </text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> supports three types of grouping elements (models, subsystems and packages).</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The following table describes the grouping elements available in a model.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><table styleclass="Default" rowcount="4" colcount="2">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:163px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Grouping Element</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:742px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:163px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch03_h4.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Model</text></para>
+        </td>
+        <td style="width:742px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">A model provides a view of the system for a specific purpose. For example, a model can express a specific aspect of the system (e.g. analysis aspect, design aspect, user aspect, etc.). The use of models is often prescribed by the development methodology.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:163px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch03_h5.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Subsystem</text></para>
+        </td>
+        <td style="width:742px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">A subsystem groups the elements that specify a part of the complete system.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:163px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch03_h6.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Package</text></para>
+        </td>
+        <td style="width:742px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Package logically groups and manages model elements. It is an extremely generalized element that can be used in any way for organizing elements.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Heading2"><text styleclass="Heading2" translate="true">Moving Model Element</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">You can move model elements to improve the organization of the model. Model elements can be moved to other elements that can contain the selected model element. For example, a class can be moved from one package to another or to another model or subsystem. You cannot move a class to an interface.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To move a model element</text></para>
+    <list id="1" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the Model Explorer, select a model element.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">Drag and drop the element on the destination element.</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">When the pointer changes to </text><image src="DragDropable.jpg" scale="80.00%" width="26" height="26" styleclass="Normal"></image><text styleclass="Normal" translate="true">, you can drop the element. When the pointer changes to </text><image src="DragNoDrop.jpg" scale="80.00%" width="26" height="26" styleclass="Normal"></image><text styleclass="Normal" translate="true">, you cannot drop the element.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To change the order of elements of the same kind, see </text><link displaytype="text" defaultstyle="true" type="topiclink" href="Editing_Elements_in_the_Model" anchor="change-storage-order" styleclass="Normal" translate="true">Changing the Storage Order</link><text styleclass="Normal" translate="true">.</text></para>
+  </body>
+</topic>

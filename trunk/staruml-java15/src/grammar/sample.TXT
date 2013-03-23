@@ -1,0 +1,153 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import static java.io.IOException;
+
+@Deprecated
+public class ScriptCreatorManager <T> implements ScriptCreatorManager <T>
+{
+	private Queue<String[]> commadsToSend = null;
+	private UCM_M_Facade ucm_Entry = null;
+	private Map <String, ArrayList<String>> m_hmCallUpdateMap;
+	private Map <String, String> m_hmCallUpdateMap;
+	
+	public ScriptCreatorManager()
+	{
+	
+	}
+	private static ScriptCreatorManager instance = null;
+/*
+	public enum TOKEN_ACTION
+	{}
+*/	
+	public enum TOKEN_ACTION
+	{
+		 RECEIVED(12344, "dddd"), RECEIVED(12344, "dddd"); //Comment
+		TOKEN_ACTION(String s){}
+		
+	}
+
+	public class test
+	{
+		int test;
+	}
+
+	int [] arr = {444, 44, 44};
+	
+	@Dreprecated{}
+	private <T> ScriptCreatorManager()
+	{
+	
+	}
+	@Dreprecated{}
+	@Dreprecated{}
+	public void <?>generateCommunicationScripts(ControlSchema oldSchema, ControlSchema newSchema)
+	{
+		MatchModel match;
+					match = MatchService.doMatch(newModel, oldModel, Collections
+					.<String, Object>emptyMap()
+							);
+				//.<String, Object> emptyMap()
+		//////////////////////////////////////////////////////
+		// MODIFICATION TYPE: REMOVAL
+		// DATE: July 18, 2011
+		// DESCRIPTION: Removed to replace the old 
+		//				model checking with the EMFCompare.
+		/////////////////////////////////////////////////////
+		//PerformAddRemoveParticipant(oldSchema,newSchema);
+		ControlSchemaComparator comparator = new ControlSchemaComparator();
+		// Get EObjects 
+		EObject newModel;
+		EObject oldModel;
+		
+		if(newSchema == null)
+			newModel = null;
+		else
+			newModel = newSchema.getEcoreModel();
+		
+		if(oldSchema == null)
+			oldModel = null;
+		else
+			oldModel = oldSchema.getEcoreModel();
+		// Compare and get the model changes.
+		List<ModelChange> modelChanges = comparator.getModelTransformations(newModel, oldModel);
+		ModelChange tempChange;
+		// Execute all model changes needed.
+		for(int i = 0; i < modelChanges.size(); i++ )
+		{
+			
+			// Get the model change.
+			tempChange = modelChanges.get(i);
+			// Apply the model change.
+			tempChange.applyModelChange();
+		}
+		
+		////PerformMediaEnableDisable(oldSchema, newSchema);
+	}
+	private Map<String, ArrayList<String>> createInfromationMapValues(Map<String, ArrayList<String>> callUpdateMap, String sInfoLine)
+	{
+		String[] tempData = sInfoLine.split("#");
+		if(tempData.length == 0)
+			return null;
+		
+		String sSessId = tempData[0];
+		String sTemp = tempData[1];
+		tempData = sTemp.split(",");
+		
+		if(tempData.length == 0)
+			return null;
+		
+		ArrayList m_cList = m_cList = callUpdateMap.get(sSessId);
+		 
+		for(int i =0; i<tempData.length; i++)
+		{
+			
+			if(m_cList == null)
+			{
+				m_cList = new ArrayList<String>();
+				m_cList.add(tempData[i]);
+				callUpdateMap.put(sSessId, m_cList);
+			}
+			else
+			{
+				m_cList.add(tempData[i]);			
+					
+			}
+			
+		}
+		callUpdateMap.put(sSessId, m_cList);
+		
+		return callUpdateMap;
+	}
+	public static boolean isMemberInMemberList(String userName, List members) 
+	{
+		
+		for (Object object : members) 
+		{
+			
+			if(object instanceof Member) 
+			{
+				
+				Member mem = (Member)object;
+				
+				if(mem.getUserName().equalsIgnoreCase(userName)) 
+				{
+					
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+    public boolean canConvert(Class clazz) {
+        for (Constructor c : clazz.getConstructors()) {
+            if (c.getParameterTypes().length == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+	
+}
