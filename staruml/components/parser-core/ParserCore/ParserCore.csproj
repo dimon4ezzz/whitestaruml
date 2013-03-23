@@ -56,16 +56,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="dependencies\AttrExpr.egt" />
-    <None Include="dependencies\MsgExpr.egt" />
-    <None Include="dependencies\NameExpr.egt" />
-    <None Include="dependencies\ObjExpr.egt" />
-    <None Include="dependencies\OperExpr.egt" />
-    <None Include="dependencies\RoleExpr.egt" />
-    <None Include="dependencies\TransExpr.egt" />
     <None Include="ParserCore.snk" />
     <None Include="Resources\AttrExpr.egt" />
     <None Include="Resources\MsgExpr.egt" />
+    <None Include="Resources\NameExpr.egt" />
     <None Include="Resources\ObjExpr.egt" />
     <None Include="Resources\OperExpr.egt" />
     <None Include="Resources\RoleExpr.egt" />
