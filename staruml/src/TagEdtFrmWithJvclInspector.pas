@@ -58,6 +58,7 @@ type
     function GetFocusedTagDefinition: PTagDefinition; override;
     procedure ClearRows; override;
     procedure SetupRows; override;
+    procedure FinalizeEditingCurrentModel; override;
 
   public
     constructor Create(AOwner: TTaggedValueEditorFormWithJvclInspector);
@@ -88,8 +89,7 @@ end;
 
 destructor PTagDefinitionSetJvclInspector.Destroy;
 begin
-  FElemsHolder.Free;
-  FElemsHolder := nil;
+  FreeAndNil(FElemsHolder);
   inherited;
 end;
 
@@ -189,6 +189,15 @@ begin
   if (FModel <> nil) and (FTagDefinitionSet <> nil) then
     SetupTagDefintionSetCategory(FTagDefinitionSet);
   Form.Inspector.EndUpdate;
+end;
+
+procedure PTagDefinitionSetJvclInspector.FinalizeEditingCurrentModel;
+var
+  CurrentRow: TJvCustomInspectorItem;
+begin
+    CurrentRow := Form.Inspector.FocusedItem;
+    if (CurrentRow <> nil) and (CurrentRow.Editing) then
+      CurrentRow.DoneEdit;
 end;
 
 procedure PTagDefinitionSetJvclInspector.SetupTagDefintionSetCategory
@@ -411,6 +420,7 @@ end;
 procedure PTagDefinitionSetJvclInspector.ClearRows;
 begin
   Form.Inspector.Clear;
+  FElemsHolder.EmptyElemList;
 end;
 
 /// /////////////////////////////////////////////////////////////////////////////
