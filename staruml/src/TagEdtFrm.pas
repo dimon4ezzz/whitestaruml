@@ -89,7 +89,9 @@ type
     function GetFocusedTagDefinition: PTagDefinition; virtual; abstract;
     procedure ClearRows; virtual; abstract;
     procedure SetupRows; virtual; abstract;
+    procedure FinalizeEditingCurrentModel; virtual; abstract;
     function IsDefaultValue(ATagDefinition: PTagDefinition): Boolean;
+    procedure SetModel(Value: PExtensibleModel);
 
     // event handlers
     procedure HandleAddCollectionTaggedValue(Sender: TObject; AModel: PExtensibleModel; AProfileName: string;
@@ -111,7 +113,7 @@ type
     procedure UpdateTaggedValues; virtual; abstract;
     procedure SetFocusedTaggedValueAsDefault; virtual; abstract;
 
-    property Model: PExtensibleModel read FModel write FModel;
+    property Model: PExtensibleModel read FModel write SetModel;
     property TagDefinitionSet: PTagDefinitionSet read FTagDefinitionSet write FTagDefinitionSet;
     property Profile: PProfile read GetProfile;
     property FocusedTagDefinition: PTagDefinition read GetFocusedTagDefinition;
@@ -265,7 +267,12 @@ begin
   Result := (FModel.FindTaggedValue(Profile.Name, ATagDefinition.TagDefinitionSet.Name, ATagDefinition.Name) = nil);
 end;
 
-
+ procedure PTagDefinitionSetInspector.SetModel(Value: PExtensibleModel);
+ begin
+  if FModel <> nil then
+    FinalizeEditingCurrentModel;
+  FModel := Value;
+ end;
 
 procedure PTagDefinitionSetInspector.HandleAddCollectionTaggedValue(Sender: TObject; AModel: PExtensibleModel; AProfileName: string;
   ATagDefinitionSetName: string; AName: string; Value: PExtensibleModel);
@@ -322,8 +329,8 @@ end;
 
 procedure TTaggedValueEditorForm.SetModel(Value: PExtensibleModel);
 begin
-  FModel := Value;
   TagDefinitionSetInspector.Model := Value;
+  FModel := Value;
 end;
 
 procedure TTaggedValueEditorForm.SetReadOnly(Value: Boolean);
@@ -432,7 +439,8 @@ var
 begin
   FD := TagDefinitionSetInspector.FocusedTagDefinition;
   DefaultButton.Enabled := (FModel <> nil) and (not FReadOnly) and (FD <> nil)
-    and (not FD.Lock) and (FModel.FindTaggedValue(CurrentProfile.Name, FD.TagDefinitionSet.Name, FD.Name) <> nil);
+    and (not FD.Lock) and (CurrentProfile <> nil)
+    and (FModel.FindTaggedValue(CurrentProfile.Name, FD.TagDefinitionSet.Name, FD.Name) <> nil);
 end;
 
 procedure TTaggedValueEditorForm.HandleDataTaggedValueChange(Sender: TObject; AModel: PExtensibleModel; AProfileName: string;
