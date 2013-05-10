@@ -142,7 +142,6 @@ begin
     Value := Row.Data.AsString
   else if T.TagType in [tkBoolean] then
     Value := BoolToStr(Boolean(Row.Data.AsOrdinal),True)
-    //sValue := BoolToStr(Boolean(Row.Data.AsOrdinal))
   else
     Exit;
 
