@@ -141,7 +141,8 @@ begin
   if T.TagType in [tkInteger, tkReal, tkString, tkEnumeration] then
     Value := Row.Data.AsString
   else if T.TagType in [tkBoolean] then
-    Value := BoolToStr(Boolean(Row.Data.AsOrdinal))
+    Value := BoolToStr(Boolean(Row.Data.AsOrdinal),True)
+    //sValue := BoolToStr(Boolean(Row.Data.AsOrdinal))
   else
     Exit;
 
