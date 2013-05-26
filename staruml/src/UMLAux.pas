@@ -339,7 +339,7 @@ type
   procedure CollectAllInheritedItems(AModel: PUMLGeneralizableElement; CollectionName: string; ResultItems: POrderedSet);
   procedure CheckNameConflict(Model: PModel; Name: string);
   procedure PreinspectClassifierNameConflict(Owner: PUMLNamespace; Name: string);
-  function IncludeRelationsOf(AModel: PModel; ModelSet: POrderedSet): Boolean;
+  function IncludeRelationsOf(AModel: PModel; ModelSet: PModelOrderedSet): Boolean;
   function GetOwnerPackage(M: PModel): PUMLPackage;
   function GetOwnerDiagramView(AView: PView): PDiagramView;
   function SearchElement(SearchFrom: PUMLElement; Name: string; TypeName: string = 'UMLClassifier'): PUMLElement;
@@ -1082,7 +1082,7 @@ end;
 // ---------------------------------------------------------------------------
 // add relation models connected to model into set
 // ---------------------------------------------------------------------------
-function IncludeRelationsOf(AModel: PModel; ModelSet: POrderedSet): Boolean;
+function IncludeRelationsOf(AModel: PModel; ModelSet: PModelOrderedSet): Boolean;
 var
   C, I: Integer;
 begin

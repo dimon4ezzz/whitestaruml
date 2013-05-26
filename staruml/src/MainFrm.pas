@@ -58,7 +58,7 @@ uses
   JvBaseDlg, JvDesktopAlert, cxClasses, AttachEdt, DocuEdt,
   ModelExplorerFrame, MessageFrame, OutputFrame, NavBarFrame,
   NavBarFrameVclImpl, VirtualTrees, PropEdtWithJvclInspector, MenuManager,
-  dxDockPanel, dxDockControl, cxPC;
+  dxDockPanel, dxDockControl, cxLookAndFeelPainters, cxPC, PropEdt;
 
 const
   FILE_EXT_BMP = '.BMP';
@@ -250,7 +250,6 @@ type
     ToolsMenu: TdxBarSubItem;
     ToolsOptions: TdxBarButton;
     ToolsAddInManager: TdxBarButton;
-    { Help Menu Items }
     HelpMenu: TdxBarSubItem;
     HelpAbout: TdxBarButton;
     HelpContents: TdxBarButton;
@@ -368,8 +367,12 @@ type
     DocumentStateImageList: TImageList;
     DesktopAlert: TJvDesktopAlert;
     ModelExplorer: TModelExplorerPanel;
-    dxBarSeparator1: TdxBarSeparator;
     ViewToolbarsStatusBar: TdxBarButton;
+    ViewUIThemeModern: TdxBarButton;
+    ViewUIThemeClassic: TdxBarButton;
+    ViewUIThemeNative: TdxBarButton;
+    ViewUIThemeGroup: TdxBarGroup;
+    ViewUITheme: TdxBarSubItem;
     PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);
@@ -409,6 +412,10 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BarManagerBarVisibleChange(Sender: TdxBarManager; ABar: TdxBar);
+    procedure ViewUIThemeModernClick(Sender: TObject);
+    procedure ViewUIThemeNativeClick(Sender: TObject);
+    procedure ViewUIThemeClassicClick(Sender: TObject);
+    procedure WorkingAreaFrameDiagramPageControlChange(Sender: TObject);
   private
     AllowToTriggerFontFaceChangedEvent: Boolean;
     AllowToTriggerFontSizeChangedEvent: Boolean;
@@ -424,6 +431,7 @@ type
     FNumberOfRecentProjects: Integer;
 
     FMenuManager: TMenuHandlesManager;
+    FLookAndFeelManager: TLookAndFeelManager;
 
     // Event Fields (On MainForm's events)
     FOnFileMenuClicked: TNotifyEvent;
@@ -500,7 +508,7 @@ type
     FOnQuickDlgObjectClassCreating: PQuickDlgObjectClassCreatingEvent;
     FOnQuickDlgCallActionOperationCreating: PQuickDlgCallActionOperationCreatingEvent;
     // Event Handlers (On DiagramEditor's events)
-    procedure WorkingAreaMouseUpHandler(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    //procedure WorkingAreaMouseUpHandler(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure WorkingAreaMouseDownHandler(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure WorkingAreaMouseMoveHandler(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure WorkingAreaDragOverHandler(Sender, Source: TObject; var Accept: Boolean; var Msg: string);
@@ -564,6 +572,8 @@ type
     procedure FontSizeChanged(FontSize: Integer);
     procedure ZoomChanged(Zoom: Integer);
     function GetActiveHandlerName: string;
+    procedure ApplyLookAndFeelStyle(LookAndFeelStyle: TcxLookAndFeelStyle);
+
   protected
     procedure Activate; override;
     procedure Deactivate; override;
@@ -579,9 +589,14 @@ type
     procedure ShowQuickDialog(AView: PView; MousePoint: TPoint; Force: Boolean = False);
     procedure ShowQuickDialogByModelCreation(AView: PView; ArgModel: PModel);
     procedure ShowAlertMsg(AHeaderText: string;AMessageText: string);
+    procedure SetAlertLookAndFeel;
     procedure ActivateHandler(HanderName: string);
     procedure AddCreateHandler(HandlerName: string; ContainerCandidates: array of PClass; SkeletonPaintingKind: PSkeletonPaintingKind);
     function IsModelExplorerActive: Boolean;
+    procedure ActivateWorkingAreaPanel;
+    procedure ActivateModelExplorerPanel;
+
+    procedure WorkingAreaMouseUpHandler(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 
     property FileName: string read FFileName write SetFileName;
     property FontFaceComboText: string read GetFontFaceComboText write SetFontFaceComboText;
@@ -593,6 +608,7 @@ type
 
     property ActionProcessor: PActionProcessor read FActionProcessor;
     property MenuManager: TMenuHandlesManager read FMenuManager write FMenuManager;
+    property LookAndFeelManager: TLookAndFeelManager read FLookAndFeelManager;
 
     // Events (On MainForm's Menu Item Clicked)
     property OnFileMenuClicked: TNotifyEvent write FOnFileMenuClicked;
@@ -682,6 +698,7 @@ const
   RK_BARS = 'Bars';
   RK_DOCK = 'Dock';
   RK_COLORDIALOG = 'Color Dialog';
+  RK_LOOK_AND_FEEL_MANAGER = 'Look And Feel';
   POSTFIX_HANDLER = 'Handler';
 
 implementation
@@ -733,6 +750,7 @@ begin
   InitializeQuickDialogManager;
 
   FMenuManager := TMenuHandlesManagerTdxImpl.Create;
+  FLookAndFeelManager := TLookAndFeelManagerTdxImpl.Create(BarManager.LookAndFeel.Painter);
 end;
 
 destructor TMainForm.Destroy;
@@ -741,6 +759,7 @@ begin
   ColorDialog.Free;
   ActionProcessor.Free;
   FMenuManager.Free;
+  FLookAndFeelManager.Free;
   inherited;
 end;
 
@@ -765,6 +784,12 @@ end;
 procedure TMainForm.WorkingAreaDragOverHandler(Sender, Source: TObject; var Accept: Boolean; var Msg: string);
 begin
   if Assigned(FOnDiagramViewDragOver) then FOnDiagramViewDragOver(Sender, Source, Accept, Msg);
+end;
+
+procedure TMainForm.WorkingAreaFrameDiagramPageControlChange(Sender: TObject);
+begin
+  WorkingAreaFrame.DiagramPageControlChange(Sender);
+
 end;
 
 procedure TMainForm.WorkingAreaDragDropHandler(X, Y: Integer);
@@ -1261,6 +1286,10 @@ begin
     BarManager.SaveToRegistry(RK_LOCATION + RK_BARS);
     // DockingManager
     DockingManager.SaveLayoutToRegistry(RK_LOCATION + RK_DOCK);
+
+     // Look and Feel Manager
+    LookAndFeelManager.SaveToRegistry(RK_LOCATION + RK_LOOK_AND_FEEL_MANAGER);
+
   finally
     Reg.Free;
   end;
@@ -1313,6 +1342,9 @@ begin
     // DockingManager
     if Reg.KeyExists(RK_LOCATION + RK_DOCK) then
       DockingManager.LoadLayoutFromRegistry(RK_LOCATION + RK_DOCK);
+
+    // Look and Feel Manager
+    LookAndFeelManager.LoadFromRegistry(RK_LOCATION + RK_LOOK_AND_FEEL_MANAGER);
   finally
     Reg.Free;
   end;
@@ -1371,6 +1403,14 @@ begin
   DesktopAlert.Execute;
 end;
 
+procedure TMainForm.SetAlertLookAndFeel;
+begin
+  DesktopAlert.Colors.CaptionFrom := LookAndFeelManager.CaptionLightColor;
+  DesktopAlert.Colors.CaptionTo := LookAndFeelManager.CaptionDarkColor;
+  DesktopAlert.Colors.WindowFrom := LookAndFeelManager.WindowLightColor;
+  DesktopAlert.Colors.WindowTo := LookAndFeelManager.WindowDarkColor;
+end;
+
 
 procedure TMainForm.ActivateHandler(HanderName: string);
 begin
@@ -1387,6 +1427,16 @@ end;
 function TMainForm.IsModelExplorerActive: Boolean;
 begin
   Result := dxDockingController.ActiveDockControl = ModelExplorerDockPanel;
+end;
+
+procedure TMainForm.ActivateWorkingAreaPanel;
+begin
+    dxDockingController.ActiveDockControl := WorkingAreaDockPanel;
+end;
+
+procedure TMainForm.ActivateModelExplorerPanel;
+begin
+    dxDockingController.ActiveDockControl := ModelExplorerDockPanel;
 end;
 
 
@@ -1461,6 +1511,32 @@ end;
 procedure TMainForm.ViewMenuClick(Sender: TObject);
 begin
   if Assigned(FOnViewMenuClicked) then FOnViewMenuClicked(Sender);
+end;
+
+procedure TMainForm.ViewUIThemeClassicClick(Sender: TObject);
+begin
+  ApplyLookAndFeelStyle(lfsUltraFlat);
+end;
+
+procedure TMainForm.ViewUIThemeModernClick(Sender: TObject);
+begin
+  ApplyLookAndFeelStyle(lfsOffice11);
+end;
+
+procedure TMainForm.ViewUIThemeNativeClick(Sender: TObject);
+begin
+  ApplyLookAndFeelStyle(lfsNative);
+end;
+
+procedure TMainForm.ApplyLookAndFeelStyle(LookAndFeelStyle: TcxLookAndFeelStyle);
+begin
+  if LookAndFeelStyle <> BarManager.LookAndFeel.ActiveStyle then
+  begin
+    BarManager.LookAndFeel.SetStyle(LookAndFeelStyle);
+    DockingManager.LookAndFeel.SetStyle(LookAndFeelStyle);
+    LookAndFeelManager.NotifyLookAndFeelChanged;
+    SetAlertLookAndFeel;
+  end;
 end;
 
 procedure TMainForm.ViewZoomMenuClick(Sender: TObject);

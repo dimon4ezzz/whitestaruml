@@ -97,7 +97,7 @@ type
     function GetStrDataBuffer(Kind: PClipboardDataKind): string;
     procedure ExtractClipboardElementKind;
     function RegulateGUID(AnElement: PElement; AResolver: PReferenceResolver): Boolean; overload;
-    function RegulateGUID(Views: POrderedSet; AResolver: PReferenceResolver): Boolean; overload;
+    function RegulateGUID(Views: PViewOrderedSet; AResolver: PReferenceResolver): Boolean; overload;
     procedure DrawClipboardProc;
   public
     procedure SetHandle(AHandle: THandle);
@@ -109,7 +109,7 @@ type
     function CopyDiagramAsBitmap(ADiagramView: PDiagramView; SelectedViewsOnly: Boolean): Boolean;
     // Get data from clipboard
     function GetModelData: PModel;
-    function GetViewsData: POrderedSet;
+    function GetViewsData: PViewOrderedSet;
     // Windows Clipboard-related message handling procedures
     procedure WMDrawClipboardHandler(var Msg: TMessage);
     procedure WMChangeCBChainHandler(var Msg: TMessage);
@@ -539,7 +539,7 @@ begin
   end;
 end;
 
-function PClipboardManager.RegulateGUID(Views: POrderedSet; AResolver: PReferenceResolver): Boolean;
+function PClipboardManager.RegulateGUID(Views: PViewOrderedSet; AResolver: PReferenceResolver): Boolean;
 var
   AVisitor: PReferenceCollectionVisitor;
   AView: PView;
@@ -764,12 +764,12 @@ begin
   end;
 end;
 
-function PClipboardManager.GetViewsData: POrderedSet;
+function PClipboardManager.GetViewsData: PViewOrderedSet;
 var
   AReader: PXMLObjectReader;
   AResolver: PReferenceResolver;
   HeaderNode, BodyNode: IXMLNode;
-  Views: POrderedSet;
+  Views: PViewOrderedSet;
   AView: PView;
   Key: string;
   I: Integer;
@@ -791,7 +791,7 @@ begin
       BodyNode := XMLDoc.DocumentElement.ChildNodes.Nodes[XPD_BODY];
       if HeaderNode.ChildNodes.Nodes[CB_XN_DATAKIND].NodeValue <> CB_XN_VAL_VIEW then Exit;
       if BodyNode = nil then Exit;
-      Views := POrderedSet.Create;
+      Views := PViewOrderedSet.Create;
       AResolver := PReferenceResolver.Create;
       AReader := PXMLObjectReader.Create(BodyNode, AResolver);
       try

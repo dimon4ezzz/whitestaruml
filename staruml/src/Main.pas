@@ -229,13 +229,13 @@ type
     procedure SavingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
     procedure LoadingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
     procedure ResolvingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
-    procedure ElementsCreatedHandler(Sender: TObject; Models: POrderedSet; Views: POrderedSet);
-    procedure ElementsDeletingHandler(Sender: TObject; Models: POrderedSet; Views: POrderedSet);
+    procedure ElementsCreatedHandler(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
+    procedure ElementsDeletingHandler(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
     procedure ElementsDeletedHandler(Sender: TObject);
     procedure SelectionChangedHandler(Sender: TObject);
     procedure DiagramActivatedHandler(Sender: TObject);
-    procedure ViewsChangedHandler(Sender: TObject; Views: POrderedSet);
-    procedure ModelsChangedHandler(Sender: TObject; Models: POrderedSet);
+    procedure ViewsChangedHandler(Sender: TObject; Views: PViewOrderedSet);
+    procedure ModelsChangedHandler(Sender: TObject; Models: PModelOrderedSet);
     procedure BrowseDiagramHandler(Sender: TObject; Diagram: PDiagram);
     procedure SelectModelInExplorer(Sender: TObject; Model: PModel);
     procedure ClipboardDataChangedHandler(Kind: PClipboardDataKind);
@@ -440,6 +440,7 @@ begin
    // GUI Initialization
 
   MainForm.PaletteNavBarFrame.SetSharedComponents(MainForm.ActionProcessor,MainForm.TotalImageList);
+  MainForm.LookAndFeelManager.InitLookAndFeel;
   InteractionManager.MenuManager := MainForm.MenuManager;
   MainForm.MenuManager.MenuFormReady;
 
@@ -1794,7 +1795,6 @@ end;
 
 procedure PMain.BrowserFormElementSelectedHandler(Sender: TObject; Element: PModel);
 var
-  I: Integer;
   ContextMenuLaunched: Boolean;
 begin
   try
@@ -2337,7 +2337,7 @@ begin
   end;
 end;
 
-procedure PMain.ElementsCreatedHandler(Sender: TObject; Models: POrderedSet; Views: POrderedSet);
+procedure PMain.ElementsCreatedHandler(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
 
   procedure CollectDiagrams(AModel: PModel; Diagrams: POrderedSet);
   var
@@ -2402,7 +2402,7 @@ begin
   end;
 end;
 
-procedure PMain.ElementsDeletingHandler(Sender: TObject; Models: POrderedSet; Views: POrderedSet);
+procedure PMain.ElementsDeletingHandler(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
 var
   I: Integer;
 begin
@@ -2466,10 +2466,10 @@ begin
   end;
 end;
 
-procedure PMain.ModelsChangedHandler(Sender: TObject; Models: POrderedSet);
+procedure PMain.ModelsChangedHandler(Sender: TObject; Models: PModelOrderedSet);
 var
   I: Integer;
-  ASet: POrderedSet;
+  ASet: PModelOrderedSet;
 begin
   try
   {
@@ -2487,7 +2487,7 @@ begin
     MainForm.WorkingAreaFrame.RedrawActiveDiagram;
 
     //-- MainForm.BrowserFrame.UpdateModels(Models);
-    ASet := POrderedSet.Create;
+    ASet := PModelOrderedSet.Create;
     try
       ASet.Assign(Models);
       Screen.Cursor := crHourGlass;
@@ -2644,7 +2644,7 @@ begin
   end;
 end;
 
-procedure PMain.ViewsChangedHandler(Sender: TObject; Views: POrderedSet);
+procedure PMain.ViewsChangedHandler(Sender: TObject; Views: PViewOrderedSet);
 var
   I: Integer;
 begin
@@ -2834,11 +2834,11 @@ end;
 
 procedure PMain.UnitSeparatedHandler(Sender: TObject; APackage: PUMLPackage);
 var
-  Models: POrderedSet;
+  Models: PModelOrderedSet;
 begin
   try
     if Assigned(APackage) then begin
-      Models := POrderedSet.Create;
+      Models := PModelOrderedSet.Create;
       Models.Clear;
       try
         Models.Add(APackage);
@@ -2857,11 +2857,11 @@ end;
 
 procedure PMain.UnitMergedHandler(Sender: TObject; APackage: PUMLPackage);
 var
-  Models: POrderedSet;
+  Models: PModelOrderedSet;
 begin
   try
     if Assigned(APackage) then begin
-      Models := POrderedSet.Create;
+      Models := PModelOrderedSet.Create;
       Models.Clear;
       try
         Models.Add(APackage);
@@ -4913,7 +4913,7 @@ end;
 procedure UpdateDocumentElements;
 var
   I: Integer;
-  ASet: POrderedSet;
+  ASet: PModelOrderedSet;
   Doc: PDocument;
 begin
   try
@@ -4928,10 +4928,10 @@ begin
         end;
       end;
     end;
-    ASet := POrderedSet.Create;
+    ASet := PModelOrderedSet.Create;
     try
       for I := 0 to StarUMLApplication.DocumentElementCount - 1 do
-        ASet.Add(StarUMLApplication.DocumentElements[I]);
+        ASet.Add(StarUMLApplication.DocumentElements[I] as PModel);
 
       Screen.Cursor := crHourGlass;
       MainForm.ModelExplorer.UpdateModels(ASet);

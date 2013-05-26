@@ -4335,7 +4335,7 @@ end;
 procedure PNoteQuickDialog.NameEditKeyDownHandler(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if (Key = VK_RETURN) and (ssCtrl in Shift) then NameEdit.ReadOnly := True;
-  if ((Key = 65) or (Key = 97)) and (ssCtrl in Shift) then NameEdit.SelectAll; // Ctrl + A
+  if ((Key = 65) or (Key = 97)) and (ssCtrl in Shift) and not (ssAlt in Shift)then NameEdit.SelectAll; // Ctrl + A
 end;
 
 procedure PNoteQuickDialog.NameEditKeyUpHandler(Sender: TObject; var Key: Word; Shift: TShiftState);

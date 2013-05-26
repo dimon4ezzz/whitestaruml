@@ -2,7 +2,7 @@ unit MenuManagerTdxImpl;
 
 interface
 uses
-  Classes, MenuManager, dxBar, Generics.Collections;
+  Classes, MenuManager, dxBar, cxLookAndFeelPainters, Generics.Collections;
 
 type
   TMenuElementHandleTdxImpl = class (TMenuElementHandle)
@@ -104,10 +104,35 @@ type
 
   end;
 
+  // Provides look and feel info for components without automatic support for look and feel
+  TLookAndFeelManagerTdxImpl = class(TLookAndFeelManager)
+  private const
+    ModernStyle = 0;
+    ClassicStyle = 1;
+    NativeStyle = 2;
+    UIThemeValueTag = 'UITheme';
+  private
+    FPainter: TcxCustomLookAndFeelPainter;
+  private protected
+    function GetWindowLightColor: Integer; override;
+    function GetWindowDarkColor: Integer; override;
+    function GetCaptionLightColor: Integer; override;
+    function GetCaptionDarkColor: Integer; override;
+    function GetFrameColor: Integer; override;
+  public
+    constructor Create (APainter: TcxCustomLookAndFeelPainter);
+    procedure InitLookAndFeel; override;
+    procedure NotifyLookAndFeelChanged; override;
+
+    procedure LoadFromRegistry(Key: string); override;
+    procedure SaveToRegistry(Key: string); override;
+
+  end;
+
 implementation
 
 uses
-  MainFrm;
+  Windows, Registry, MainFrm;
 
 
 /////////////////////////////////
@@ -542,4 +567,117 @@ end;
 // TMenuHandlesManagerTdxImpl
 /////////////////////////////////
 
+
+
+/////////////////////////////////
+// TLookAndFeelManagerTdxImpl
+
+constructor TLookAndFeelManagerTdxImpl.Create (APainter: TcxCustomLookAndFeelPainter);
+begin
+  inherited Create;
+  FPainter := APainter;
+end;
+
+procedure TLookAndFeelManagerTdxImpl.InitLookAndFeel;
+begin
+  MainForm.SetAlertLookAndFeel;
+end;
+
+procedure TLookAndFeelManagerTdxImpl.NotifyLookAndFeelChanged;
+begin
+  FPainter := MainForm.BarManager.LookAndFeel.Painter;
+  inherited;
+end;
+
+procedure TLookAndFeelManagerTdxImpl.LoadFromRegistry(Key: string);
+var
+  Reg: TRegistry;
+  Style: Integer;
+begin
+  // Read UI style from Registry
+  Reg := TRegistry.Create;
+  try
+    Reg.RootKey := HKEY_CURRENT_USER;
+    if Reg.OpenKey(Key, False) then begin
+      try
+        Style := Reg.ReadInteger(UIThemeValueTag);
+      except
+        Style := ModernStyle;
+      end;
+      Reg.CloseKey;
+    end
+    else
+      Style := ModernStyle;
+  finally
+    Reg.Free;
+  end;
+
+  // Set UI style
+  case Style of
+    ModernStyle: MainForm.ViewUIThemeModern.Click;
+    ClassicStyle: MainForm.ViewUIThemeClassic.Click;
+    NativeStyle: MainForm.ViewUIThemeNative.Click;
+ end;
+
+end;
+
+procedure TLookAndFeelManagerTdxImpl.SaveToRegistry(Key: string);
+const
+  NoStyle = -1;
+var
+  Reg: TRegistry;
+  Style: Integer;
+begin
+   // Identify UI Style
+  Style := NoStyle; // Dummy init value
+  if MainForm.ViewUIThemeModern.Down then
+    Style := ModernStyle
+  else if MainForm.ViewUIThemeClassic.Down then
+    Style := ClassicStyle
+  else if MainForm.ViewUIThemeNative.Down then
+    Style := NativeStyle;
+
+  if Style <> NoStyle then begin // Style was correctly set
+    // Write UI style to Registry
+    Reg := TRegistry.Create;
+    try
+      Reg.RootKey := HKEY_CURRENT_USER;
+      if Reg.OpenKey(Key, True) then begin
+        Reg.WriteInteger(UIThemeValueTag, Style);
+        Reg.CloseKey;
+      end;
+    finally
+      Reg.Free;
+    end;
+  end;
+ end;
+
+function TLookAndFeelManagerTdxImpl.GetWindowLightColor: Integer;
+begin
+  Result := FPainter.DefaultTabColor;
+end;
+
+function TLookAndFeelManagerTdxImpl.GetWindowDarkColor: Integer;
+begin
+  Result := FPainter.DefaultHeaderBackgroundColor;
+end;
+
+function TLookAndFeelManagerTdxImpl.GetCaptionLightColor: Integer;
+begin
+  Result := FPainter.DefaultHeaderColor;
+end;
+
+function TLookAndFeelManagerTdxImpl.GetCaptionDarkColor: Integer;
+begin
+  Result := FPainter.DefaultHeaderBackgroundColor
+end;
+
+function TLookAndFeelManagerTdxImpl.GetFrameColor: Integer;
+begin
+  Result := FPainter.DefaultFilterBoxColor;
+end;
+
+// TLookAndFeelManagerTdxImpl
+/////////////////////////////////
+///
 end.
