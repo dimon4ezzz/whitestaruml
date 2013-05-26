@@ -111,13 +111,14 @@ object MainForm: TMainForm
                 inherited DiagramPageControl: TPageControl
                   Width = 483
                   Height = 252
+                  OnChange = WorkingAreaFrameDiagramPageControlChange
                   ExplicitWidth = 483
                   ExplicitHeight = 252
                 end
               end
               inherited DiagramTabPopupMenu: TPopupMenu
-                Left = 384
-                Top = 40
+                Left = 160
+                Top = 176
               end
             end
           end
@@ -940,6 +941,9 @@ object MainForm: TMainForm
                 ExplicitHeight = 91
               end
             end
+            inherited MessageImageList: TImageList
+              Left = 44
+            end
             inherited SaveMessagesDialog: TSaveDialogEx
               Left = 168
             end
@@ -1022,6 +1026,12 @@ object MainForm: TMainForm
             inherited ModelExplorerToolbar: TToolBar
               Width = 264
               ExplicitWidth = 264
+            end
+            inherited DragTimeTimer: TTimer
+              Left = 172
+            end
+            inherited ModelExplorerImageList: TImageList
+              Top = 72
             end
           end
         end
@@ -1152,6 +1162,23 @@ object MainForm: TMainForm
                     ExplicitWidth = 262
                     ExplicitHeight = 133
                   end
+                end
+                inherited RowImageList: TImageList
+                  Left = 52
+                  Top = 40
+                end
+                inherited AggregationImageList: TImageList
+                  Left = 48
+                  Top = 96
+                end
+                inherited VisibilityImageList: TImageList
+                  Left = 128
+                end
+                inherited PsedostatsImageList: TImageList
+                  Top = 96
+                end
+                inherited ActionKindImageList: TImageList
+                  Left = 208
                 end
               end
               inherited SelectionTextPanel: TFlatPanel
@@ -1317,8 +1344,8 @@ object MainForm: TMainForm
     UseSystemFont = False
     OnBarVisibleChange = BarManagerBarVisibleChange
     OnClickItem = BarManagerClickItem
-    Left = 412
-    Top = 176
+    Left = 460
+    Top = 208
     DockControlHeights = (
       0
       0
@@ -1698,12 +1725,6 @@ object MainForm: TMainForm
       Visible = True
       WholeRow = True
     end
-    object dxBarSeparator1: TdxBarSeparator
-      Caption = 'New Separator'
-      Category = 0
-      Hint = 'New Separator'
-      Visible = ivAlways
-    end
     object FileMenu: TdxBarSubItem
       Caption = '&File'
       Category = 1
@@ -1954,6 +1975,7 @@ object MainForm: TMainForm
       Category = 1
       Hint = 'View'
       Visible = ivAlways
+      OnClick = ViewMenuClick
       ItemLinks = <
         item
           Visible = True
@@ -2015,6 +2037,11 @@ object MainForm: TMainForm
           BeginGroup = True
           Visible = True
           ItemName = 'ViewToolbars'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'ViewUITheme'
         end>
     end
     object ToolsMenu: TdxBarSubItem
@@ -2044,6 +2071,7 @@ object MainForm: TMainForm
           ItemName = 'HelpContents'
         end
         item
+          BeginGroup = True
           Visible = True
           ItemName = 'HelpAbout'
         end>
@@ -3514,6 +3542,14 @@ object MainForm: TMainForm
       ButtonStyle = bsChecked
       OnClick = ViewCheckTypeMenuMainFormOnlyClick
     end
+    object ViewToolbarsStatusBar: TdxBarButton
+      Caption = 'Status &Bar'
+      Category = 5
+      Hint = 'Status Bar'
+      Visible = ivAlways
+      ButtonStyle = bsChecked
+      OnClick = ViewCheckTypeMenuMainFormOnlyClick
+    end
     object ViewZoomCombo: TdxBarCombo
       Caption = 'Zoom'
       Category = 5
@@ -3613,13 +3649,50 @@ object MainForm: TMainForm
       ShowCheck = True
       ShowNumbers = False
     end
-    object ViewToolbarsStatusBar: TdxBarButton
-      Caption = 'Status &Bar'
+    object ViewUITheme: TdxBarSubItem
+      Caption = '&UI Theme'
       Category = 5
-      Hint = 'Status Bar'
+      Visible = ivAlways
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'ViewUIThemeModern'
+        end
+        item
+          Visible = True
+          ItemName = 'ViewUIThemeClassic'
+        end
+        item
+          Visible = True
+          ItemName = 'ViewUIThemeNative'
+        end>
+    end
+    object ViewUIThemeModern: TdxBarButton
+      Caption = '&Modern (Office 2003)'
+      Category = 5
+      Hint = 'Modern (Office 2003)'
       Visible = ivAlways
       ButtonStyle = bsChecked
-      OnClick = ViewCheckTypeMenuMainFormOnlyClick
+      GroupIndex = 10
+      OnClick = ViewUIThemeModernClick
+    end
+    object ViewUIThemeClassic: TdxBarButton
+      Caption = '&Classic (StarUML)'
+      Category = 5
+      Hint = 'Classic (StarUML)'
+      Visible = ivAlways
+      ButtonStyle = bsChecked
+      GroupIndex = 10
+      OnClick = ViewUIThemeClassicClick
+    end
+    object ViewUIThemeNative: TdxBarButton
+      Caption = '&Native'
+      Category = 5
+      Hint = 'Native'
+      Visible = ivAlways
+      ButtonStyle = bsChecked
+      GroupIndex = 10
+      OnClick = ViewUIThemeNativeClick
     end
     object ToolsOptions: TdxBarButton
       Caption = '&Options...'
@@ -4279,11 +4352,16 @@ object MainForm: TMainForm
         'ViewToolbarsFormat'
         'ViewToolbarsView'
         'ViewToolbarsAlignment'
+        'ViewToolbarsStatusBar'
         'ToolsOptions'
         'ToolsAddInManager'
         'HelpContents'
         'HelpAbout'
-        'FileCreate')
+        'FileCreate'
+        'ViewUITheme'
+        'ViewUIThemeModern'
+        'ViewUIThemeClassic'
+        'ViewUIThemeNative')
     end
     object ProjectOpenedGroup: TdxBarGroup
       Items = (
@@ -4344,25 +4422,31 @@ object MainForm: TMainForm
         'FileUnitsSaveAs'
         'FileUnitsDeleteUnit')
     end
+    object ViewUIThemeGroup: TdxBarGroup
+      Items = (
+        'ViewUIThemeModern'
+        'ViewUIThemeClassic'
+        'ViewUIThemeNative')
+    end
   end
   object SaveDialog: TSaveDialogEx
     DefaultExt = 'uml'
     Filter = 'StarUML Project File(*.uml)|*.uml'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Title = 'Save As'
-    Left = 444
-    Top = 88
+    Left = 436
+    Top = 104
   end
   object OpenDialog: TOpenDialog
     DefaultExt = 'uml'
     Filter = 'StarUML Project File(*.uml)|*.uml|All Files(*.*)|*.*'
     Title = 'Open'
-    Left = 444
-    Top = 120
+    Left = 436
+    Top = 152
   end
   object TotalImageList: TImageList
-    Left = 452
-    Top = 264
+    Left = 484
+    Top = 304
     Bitmap = {
       494C0101B700B900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000040000000E0020000010020000000000000E0
@@ -10449,22 +10533,22 @@ object MainForm: TMainForm
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Title = 'Save Unit'
     Left = 476
-    Top = 88
+    Top = 104
   end
   object SaveModelFragmentDialog: TSaveDialogEx
     DefaultExt = 'mfg'
     Filter = 'StarUML Model Fragment File(*.mfg)|*.mfg'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Title = 'Save Model Fragment'
-    Left = 508
-    Top = 88
+    Left = 516
+    Top = 104
   end
   object ImportModelFragmentDialog: TOpenDialog
     DefaultExt = 'mfg'
     Filter = 'StarUML Model Fragment File(*.mfg)|*.mfg'
     Title = 'Open Model Fragment'
     Left = 476
-    Top = 120
+    Top = 152
   end
   object AttachmentsPopupMenu: TdxBarPopupMenu
     BarManager = BarManager
@@ -10494,8 +10578,8 @@ object MainForm: TMainForm
         ItemName = 'InspectorAttachmentMoveDown'
       end>
     UseOwnFont = False
-    Left = 324
-    Top = 204
+    Left = 332
+    Top = 172
   end
   object MessagesPopupMenu: TdxBarPopupMenu
     BarManager = BarManager
@@ -10572,8 +10656,8 @@ object MainForm: TMainForm
         ItemName = 'ModelTaggedValues'
       end>
     UseOwnFont = False
-    Left = 324
-    Top = 276
+    Left = 332
+    Top = 228
   end
   object DiagramTabPopupMenu: TdxBarPopupMenu
     BarManager = BarManager
@@ -10620,8 +10704,8 @@ object MainForm: TMainForm
         ItemName = 'EditDeleteFromModel'
       end>
     UseOwnFont = False
-    Left = 284
-    Top = 148
+    Left = 212
+    Top = 164
   end
   object ExportDiagramDialog: TSaveDialogEx
     DefaultExt = 'jpg'
@@ -10630,15 +10714,15 @@ object MainForm: TMainForm
       '.bmp)|*.bmp|Enhanced Metafile(*.emf)|*.emf|Metafile(*.wmf)|*.wmf'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Title = 'Export Diagram'
-    Left = 540
-    Top = 88
+    Left = 556
+    Top = 104
   end
   object OpenUnitDialog: TOpenDialog
     DefaultExt = 'unt'
     Filter = 'StarUML Unit File(*.unt)|*.unt'
     Title = 'Open Unit'
-    Left = 508
-    Top = 120
+    Left = 516
+    Top = 152
   end
   object DiagramEditorPopupMenu: TdxBarPopupMenu
     BarManager = BarManager
@@ -10693,7 +10777,7 @@ object MainForm: TMainForm
         ItemName = 'ModelProperty'
       end>
     UseOwnFont = False
-    Left = 203
+    Left = 211
     Top = 212
   end
   object FontDialog: TCompactFontDialog
@@ -10726,13 +10810,13 @@ object MainForm: TMainForm
     ColorNameWhite = 'White'
     DefaultColorString = 'Default'
     CustomColorString = '(Custom)..'
-    Left = 608
-    Top = 120
+    Left = 592
+    Top = 152
   end
   object ColorDialog: TColorDialog
     Color = clWindow
-    Left = 608
-    Top = 248
+    Left = 600
+    Top = 256
   end
   object FileCreatePopupMenu: TdxBarPopupMenu
     BarManager = BarManager
@@ -10746,7 +10830,7 @@ object MainForm: TMainForm
         ItemName = 'FileSelectProject'
       end>
     UseOwnFont = False
-    Left = 356
+    Left = 332
     Top = 116
   end
   object DockingManager: TdxDockingManager
@@ -10766,12 +10850,12 @@ object MainForm: TMainForm
     LookAndFeel.Kind = lfOffice11
     LookAndFeel.NativeStyle = False
     Options = [doActivateAfterDocking, doDblClickDocking, doFloatingOnTop, doTabContainerHasCaption, doTabContainerCanAutoHide, doSideContainerCanClose, doSideContainerCanAutoHide, doTabContainerCanInSideContainer]
-    Left = 484
-    Top = 174
+    Left = 540
+    Top = 206
     PixelsPerInch = 96
   end
   object DockPanelImageList: TImageList
-    Left = 544
+    Left = 568
     Top = 302
     Bitmap = {
       494C010109000D00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
@@ -11179,8 +11263,8 @@ object MainForm: TMainForm
   end
   object DocumentStateImageList: TImageList
     Width = 8
-    Left = 524
-    Top = 240
+    Left = 412
+    Top = 304
     Bitmap = {
       494C010104000900040008001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000200000002000000001002000000000000010
@@ -11445,7 +11529,7 @@ object MainForm: TMainForm
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000000}
-    Left = 568
-    Top = 192
+    Left = 536
+    Top = 256
   end
 end

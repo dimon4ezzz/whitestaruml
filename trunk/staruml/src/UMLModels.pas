@@ -15907,6 +15907,7 @@ end;
 function PUMLGeneralizableElement.MOF_GetCollectionItem(Name: string; Index: Integer): PElement;
 begin
   if Name = 'Generalizations' then begin
+    //Result := (Generalizations[Index] as UMLModels.PUMLGeneralization).Parent;
     Result := Generalizations[Index];
   end
   else if Name = 'Specializations' then begin

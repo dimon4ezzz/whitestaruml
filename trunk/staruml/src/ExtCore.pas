@@ -86,12 +86,16 @@ type
 
   // PExtensibleModel
   PExtensibleModel = class(PModel)
+  private type
+    PConstraintOrderedSet = POrderedSet<PConstraint>;
+    PTaggedValueOrderedSet = POrderedSet<PTaggedValue>;
+
   private
     FStereotypeProfile: string;
     FStereotypeName: string;
-    FConstraints: POrderedSet;
-    FTaggedValues: POrderedSet;
-    FReferencingTags: POrderedSet;
+    FConstraints: PConstraintOrderedSet;
+    FTaggedValues: PTaggedValueOrderedSet;
+    FReferencingTags: PTaggedValueOrderedSet;
     procedure SetStereotypeProfile(Value: string);
     procedure SetStereotypeName(Value: string);
     function GetConstraint(Index: Integer): PConstraint;
@@ -782,9 +786,9 @@ begin
   inherited;
   FStereotypeProfile := '';
   FStereotypeName := '';
-  FConstraints := POrderedSet.Create;
-  FTaggedValues := POrderedSet.Create;
-  FReferencingTags := POrderedSet.Create;
+  FConstraints := PConstraintOrderedSet.Create;
+  FTaggedValues := PTaggedValueOrderedSet.Create;
+  FReferencingTags := PTaggedValueOrderedSet.Create;
 end;
 
 destructor PExtensibleModel.Destroy;
@@ -812,7 +816,7 @@ end;
 
 function PExtensibleModel.GetConstraint(Index: Integer): PConstraint;
 begin
-  Result := FConstraints.Items[Index] as PConstraint;
+  Result := FConstraints.Items[Index];
 end;
 
 function PExtensibleModel.GetConstraintCount:Integer;
@@ -822,7 +826,7 @@ end;
 
 function PExtensibleModel.GetTaggedValue(Index: Integer): PTaggedValue;
 begin
-  Result := FTaggedValues.Items[Index] as PTaggedValue;
+  Result := FTaggedValues.Items[Index];
 end;
 
 function PExtensibleModel.GetTaggedValueCount:Integer;
@@ -832,7 +836,7 @@ end;
 
 function PExtensibleModel.GetReferencingTag(Index: Integer): PTaggedValue;
 begin
-  Result := FReferencingTags.Items[Index] as PTaggedValue;
+  Result := FReferencingTags.Items[Index];
 end;
 
 function PExtensibleModel.GetReferencingTagCount: Integer;
@@ -996,7 +1000,7 @@ end;
 
 procedure PExtensibleModel.DeleteTaggedValue(Index: Integer);
 begin
-  RemoveTaggedValue(FTaggedValues.Items[Index] as PTaggedValue);
+  RemoveTaggedValue(FTaggedValues.Items[Index]);
 end;
 
 function PExtensibleModel.IndexOfTaggedValue(ATaggedValue: PTaggedValue): Integer;
@@ -1038,7 +1042,7 @@ end;
 
 procedure PExtensibleModel.DeleteReferencingTag(Index: Integer);
 begin
-  RemoveReferencingTag(FReferencingTags.Items[Index] as PTaggedValue);
+  RemoveReferencingTag(FReferencingTags.Items[Index]);
 end;
 
 function PExtensibleModel.IndexOfReferencingTag(ATaggedValue: PTaggedValue): Integer;

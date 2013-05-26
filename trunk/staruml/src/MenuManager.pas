@@ -178,6 +178,47 @@ type
   end;
 
 
+  TLookAndFeelManager = class;
+
+  // Interface for Look and feel changed callback event
+  ILookAndFeelChangedListener = interface
+    procedure LookAndFeelChanged(ALookAndFeelManager: TLookAndFeelManager);
+  end;
+
+  // Provides look and feel info for components without automatic support for look and feel
+  TLookAndFeelManager = class abstract
+  private type
+    TLookAndFeelChangedListeners = TList<ILookAndFeelChangedListener>;
+  private
+    FLookAndFeelChangedListeners: TLookAndFeelChangedListeners;
+  private protected
+    function GetWindowLightColor: Integer; virtual; abstract;
+    function GetWindowDarkColor: Integer; virtual; abstract;
+    function GetCaptionLightColor: Integer; virtual; abstract;
+    function GetCaptionDarkColor: Integer; virtual; abstract;
+    function GetFrameColor: Integer; virtual; abstract;
+  public
+    constructor Create;
+    destructor Destroy; virtual;
+    procedure InitLookAndFeel; virtual; abstract;
+    procedure NotifyLookAndFeelChanged; virtual;
+
+    procedure RegisterLookAndFeelChangedListener
+      (ALookAndFeelChangedListener: ILookAndFeelChangedListener);
+    procedure UnregisterLookAndFeelChangedListener
+      (ALookAndFeelChangedListener: ILookAndFeelChangedListener);
+
+    procedure LoadFromRegistry(Key: string); virtual; abstract;
+    procedure SaveToRegistry(Key: string); virtual; abstract;
+
+    property WindowLightColor: Integer read GetWindowLightColor;
+    property WindowDarkColor: Integer read GetWindowDarkColor;
+    property CaptionLightColor: Integer read GetCaptionLightColor;
+    property CaptionDarkColor: Integer read GetCaptionDarkColor;
+    property FrameColor: Integer read GetFrameColor;
+  end;
+
+
 implementation
 
 constructor TSubmenuHandle.Create;
@@ -218,5 +259,40 @@ begin
         Exit;
       end;
 end;
+
+procedure TLookAndFeelManager.RegisterLookAndFeelChangedListener
+      (ALookAndFeelChangedListener: ILookAndFeelChangedListener);
+begin
+  FLookAndFeelChangedListeners.Add(ALookAndFeelChangedListener);
+end;
+
+procedure TLookAndFeelManager.UnregisterLookAndFeelChangedListener
+      (ALookAndFeelChangedListener: ILookAndFeelChangedListener);
+var
+  Status: Integer;
+begin
+  Status := FLookAndFeelChangedListeners.Remove(ALookAndFeelChangedListener);
+  Assert (Status >= 0);
+end;
+
+procedure TLookAndFeelManager.NotifyLookAndFeelChanged;
+var
+  LookAndFeelChangedListener: ILookAndFeelChangedListener;
+begin
+  for LookAndFeelChangedListener in FLookAndFeelChangedListeners do
+    LookAndFeelChangedListener.LookAndFeelChanged(self);
+end;
+
+
+constructor TLookAndFeelManager.Create;
+begin
+  FLookAndFeelChangedListeners := TLookAndFeelChangedListeners.Create;
+end;
+
+destructor TLookAndFeelManager.Destroy;
+begin
+  FLookAndFeelChangedListeners.Free;
+end;
+
 
 end.

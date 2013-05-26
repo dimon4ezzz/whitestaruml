@@ -119,6 +119,11 @@ type
   PDiagramView = class;
   PDocument = class;
 
+  // Parametrized collections of Core types
+  PModelOrderedSet = POrderedSet<PModel>;
+  PViewOrderedSet = POrderedSet<PView>;
+
+
   // Exceptions
   EInvalidFileFormat = class(Exception);
     EFileNotFound = class(Exception);
@@ -150,10 +155,10 @@ type
     PModelEvent = procedure(Sender: TObject; Model: PModel) of object;
     PViewEvent = procedure(Sender: TObject; View: PView) of object;
     PDiagramEvent = procedure(Sender: TObject; Diagram: PDiagram) of object;
-    PModelsEvent = procedure(Sender: TObject; Models: POrderedSet) of object;
-    PViewsEvent = procedure(Sender: TObject; Views: POrderedSet) of object;
-    PModelsViewsEvent = procedure(Sender: TObject; Models: POrderedSet;
-      Views: POrderedSet) of object;
+    PModelsEvent = procedure(Sender: TObject; Models: PModelOrderedSet) of object;
+    PViewsEvent = procedure(Sender: TObject; Views: PViewOrderedSet) of object;
+    PModelsViewsEvent = procedure(Sender: TObject; Models: PModelOrderedSet;
+      Views: PViewOrderedSet) of object;
     PModelNameEvent = procedure(Sender: TObject; Model: PModel;
       Name: string) of object;
     PProgressEvent = procedure(Sender: TObject; Info: string;
@@ -1137,7 +1142,10 @@ type
     end;
   }
 
-  // PrimitiveType Conversion Routines
+
+
+
+// PrimitiveType Conversion Routines
 function BooleanToString(B: Boolean): string;
 function StringToBoolean(S: string): Boolean;
 function IntegerToString(I: Integer): string;
@@ -1148,9 +1156,12 @@ function RectToString(ARect: TRect): string;
 function StringToRect(RectStr: string): TRect;
 function ExtractHeadName(Pathname: string): string;
 function ExtractTailPath(Pathname: string): string;
+
 // Utility Functions
 procedure CheckNameValidity(Name: string);
 procedure CheckReadOnly(ElementSet: POrderedSet); overload;
+procedure CheckReadOnly(ElementSet: PModelOrderedSet); overload;
+procedure CheckReadOnly(ElementSet: PViewOrderedSet); overload;
 procedure CheckReadOnly(Element: PElement); overload;
 
 var
@@ -2422,6 +2433,8 @@ var
   DefaultBoolean: Boolean;
   DefaultReal: Extended;
   DefaultString: string;
+  CollectionItem: PElement;
+  StrIdx: string;
 begin
   inherited;
   BeforeStore(Writer);
@@ -2529,9 +2542,11 @@ begin
       else
       begin
         Writer.WriteInteger('#' + C.Name, Cnt);
-        for J := 0 to Cnt - 1 do
-          Writer.WriteReference(C.Name + '[' + IntToStr(J) + ']',
-            MOF_GetCollectionItem(C.Name, J));
+        for J := 0 to Cnt - 1 do begin
+          CollectionItem := MOF_GetCollectionItem(C.Name, J);
+          StrIdx := C.Name + '[' + IntToStr(J) + ']';
+          Writer.WriteReference(StrIdx, CollectionItem);
+        end;
       end;
     end;
   end;
@@ -6704,6 +6719,22 @@ begin
     CheckReadOnly(ElementSet.Items[I] as PElement);
 end;
 
+procedure CheckReadOnly(ElementSet: PModelOrderedSet);
+var
+  Element: PElement;
+begin
+  for Element in  ElementSet do
+    CheckReadOnly(Element);
+end;
+
+procedure CheckReadOnly(ElementSet: PViewOrderedSet);
+var
+  Element: PElement;
+begin
+  for Element in  ElementSet do
+    CheckReadOnly(Element);
+end;
+
 procedure CheckReadOnly(Element: PElement);
 var
   Doc: PDocument;
@@ -6715,6 +6746,7 @@ begin
       raise EReadOnlyDocument.Create(ERR_READONLY);
   end;
 end;
+
 
 
 // Procedures and Functions

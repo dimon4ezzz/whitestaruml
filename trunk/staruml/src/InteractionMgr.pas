@@ -445,11 +445,11 @@ begin
     // ASSERTIONS
     if PalItemInteraction.HanderName = MainForm.ActiveHandlerName then begin
       MainForm.PaletteNavBarFrame.ButtonClickHandlerReady := True;
-      MainForm.PaletteNavBarFrame.PaletteNavBar.SelectedButtonColor := clGreen;
+      MainForm.PaletteNavBarFrame.MultipleUseItemSelected;
     end
     else begin
       MainForm.ActivateHandler(PalItemInteraction.HanderName);
-      MainForm.PaletteNavBarFrame.PaletteNavBar.SelectedButtonColor := clAqua;
+      MainForm.PaletteNavBarFrame.SingleUseItemSelected;
       MainForm.PaletteNavBarFrame.ButtonClickHandlerReady := False;
     end;
     // call some mainform service (change menu state)

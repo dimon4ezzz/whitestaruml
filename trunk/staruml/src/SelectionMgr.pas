@@ -54,7 +54,7 @@ uses
 type
   PSelectionManager = class
   private
-    FSelectedModels: POrderedSet;
+    FSelectedModels: PModelOrderedSet;
     FActiveDiagram: PDiagramView;
     FOnSelectionChanged: TNotifyEvent;
     FOnDiagramActivated: TNotifyEvent;
@@ -72,23 +72,24 @@ type
     destructor Destroy; override;
     procedure SelectModel(AModel: PModel; AContextMenuLaunched: Boolean=False);
     procedure DeselectModel(AModel: PModel);
-    procedure DeselectModels(Models: POrderedSet);
+    procedure DeselectModels(Models: PModelOrderedSet);
     procedure SelectView(AView: PView);
+    procedure SelectMultipleViews(Views: PViewOrderedSet);
     procedure DeselectView(AView: PView);
-    procedure DeselectViews(Views: POrderedSet);
+    procedure DeselectViews(Views: PViewOrderedSet);
     procedure DeselectAllModels;
     procedure DeselectAllViews;
-    procedure DeselectModelsViews(Models, Views: POrderedSet);
+    procedure DeselectModelsViews(Models: PModelOrderedSet; Views: PViewOrderedSet);
     procedure SelectArea(X1, Y1, X2, Y2: Integer);
     procedure SelectAdditionalView(AView: PView);
     procedure SelectAdditionalArea(X1, Y1, X2, Y2: Integer);
     procedure SelectAdditionalModel(AModel: PModel);
     procedure SelectAll;
     procedure DeselectAll;
-    procedure CollectSelectedModels(AOrderedSet: POrderedSet);
+    procedure CollectSelectedModels(AOrderedSet: PModelOrderedSet);
     procedure CollectSelectedModelsOfType(AOrderedSet: POrderedSet; OfType: PClass);
-    procedure CollectSelectedViews(AOrderedSet: POrderedSet);
-    procedure CollectSelectedViewsOfType(AOrderedSet: POrderedSet; OfType: PClass);
+    procedure CollectSelectedViews(AOrderedSet: PViewOrderedSet);
+    procedure CollectSelectedViewsOfType(AOrderedSet: PViewOrderedSet; OfType: PClass);
     function IsSelected(AModel: PModel): Boolean;
     property SelectedModels[Index: Integer]: PModel read GetSelectedModel;
     property SelectedModelCount: Integer read GetSelectedModelCount;
@@ -102,8 +103,8 @@ type
 implementation
 
 uses
-  NLS_StarUML,
-  SysUtils;
+  SysUtils, NLS_StarUML, ViewCore;
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // PSelectionManager
@@ -111,7 +112,7 @@ uses
 constructor PSelectionManager.Create;
 begin
   inherited;
-  FSelectedModels := POrderedSet.Create;
+  FSelectedModels := PModelOrderedSet.Create;
 end;
 
 destructor PSelectionManager.Destroy;
@@ -122,7 +123,7 @@ end;
 
 function PSelectionManager.GetSelectedModel(Index: Integer): PModel;
 begin
-  Result := FSelectedModels.Items[Index] as PModel;
+  Result := FSelectedModels.Items[Index];
 end;
 
 function PSelectionManager.GetSelectedModelCount: Integer;
@@ -222,7 +223,7 @@ begin
   end;
 end;
 
-procedure PSelectionManager.DeselectModels(Models: POrderedSet);
+procedure PSelectionManager.DeselectModels(Models: PModelOrderedSet);
 var
   I: Integer;
   SelectedModelsChanged: Boolean;
@@ -250,6 +251,24 @@ begin
   end;
 end;
 
+procedure PSelectionManager.SelectMultipleViews(Views: PViewOrderedSet);
+var
+  View: PView;
+begin
+  if FActiveDiagram <> nil then begin
+    ClearSelectedModels;
+    ClearSelectedViews;
+    for View in Views do begin
+      if (View <> nil) and (View is PNodeView) then begin // Select only Node Views and skip Edge Views
+        View.Selected := True;
+        if View.Model <> nil then
+          FSelectedModels.Add(View.Model);
+      end;
+    end;
+    SelectionChanged;
+  end;
+end;
+
 procedure PSelectionManager.DeselectView(AView: PView);
 begin
   AView.Selected := False;
@@ -257,18 +276,21 @@ begin
   SelectionChanged;
 end;
 
-procedure PSelectionManager.DeselectViews(Views: POrderedSet);
+procedure PSelectionManager.DeselectViews(Views: PViewOrderedSet);
 var
-  I: Integer;
   Changed: Boolean;
+  View: PView;
 begin
   Changed := False;
-  for I := 0 to Views.Count - 1 do
-    if (Views.Items[I] as PView).Selected then
+
+  for View in Views do begin
+    if View.Selected then
     begin
-      (Views.Items[I] as PView).Selected := False;
+      View.Selected := False;
       Changed := True;
     end;
+  end;
+
   if Changed then SelectionChanged;
 end;
 
@@ -290,7 +312,7 @@ begin
   end
 end;
 
-procedure PSelectionManager.DeselectModelsViews(Models, Views: POrderedSet);
+procedure PSelectionManager.DeselectModelsViews(Models: PModelOrderedSet; Views: PViewOrderedSet);
 var
   I: Integer;
   Changed: Boolean;
@@ -386,7 +408,7 @@ begin
   SelectionChanged;
 end;
 
-procedure PSelectionManager.CollectSelectedModels(AOrderedSet: POrderedSet);
+procedure PSelectionManager.CollectSelectedModels(AOrderedSet: PModelOrderedSet);
 begin
   AOrderedSet.Clear;
   AOrderedSet.Assign(FSelectedModels);
@@ -402,7 +424,7 @@ begin
       AOrderedSet.Add(FSelectedModels.Items[I]);
 end;
 
-procedure PSelectionManager.CollectSelectedViews(AOrderedSet: POrderedSet);
+procedure PSelectionManager.CollectSelectedViews(AOrderedSet: PViewOrderedSet);
 var
   I: Integer;
 begin
@@ -411,7 +433,7 @@ begin
     AOrderedSet.Add(SelectedViews[I]);
 end;
 
-procedure PSelectionManager.CollectSelectedViewsOfType(AOrderedSet: POrderedSet; OfType: PClass);
+procedure PSelectionManager.CollectSelectedViewsOfType(AOrderedSet: PViewOrderedSet; OfType: PClass);
 var
   I: Integer;
 begin
