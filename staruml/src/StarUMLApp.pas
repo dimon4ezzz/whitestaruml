@@ -49,7 +49,7 @@ interface
 
 uses
   BasicClasses, GraphicClasses, Core, ExtCore, ViewCore, ProjectMgr, UMLModels, UMLAux,
-  UMLViews, UMLFacto, SelectionMgr, CmdExec, ClipboardMgr,
+  UMLViews, UMLFacto, SelectionMgr, CmdExec, ClipboardMgr, MenuManager,
   Types, Classes, Graphics, SysUtils, Forms, Messages;
 
 type
@@ -70,12 +70,12 @@ type
     CommandExecutor: PCommandExecutor;
     SelectionManager: PSelectionManager;
     ClipboardManager: PClipboardManager;
-    ModelSet: POrderedSet;
-    ViewSet: POrderedSet;
+    ModelSet: PModelOrderedSet;
+    ViewSet: PViewOrderedSet;
     LockUpdate: Boolean;
     LockUpdateDepth: Integer;
-    FEventArgModels: POrderedSet;
-    FEventArgViews: POrderedSet;
+    FEventArgModels: PModelOrderedSet;
+    FEventArgViews: PViewOrderedSet;
     FEventArgDocument: PDocument;
     FEventArgUnit: PUMLUnitDocument;
     // Event Variables
@@ -110,11 +110,11 @@ type
     // Event Propagate Procedures
     procedure SelectionChanged(Sender: TObject);
     procedure DiagramActivated(Sender: TObject);
-    procedure ElementsCreated(Sender: TObject; Models: POrderedSet; Views: POrderedSet);
-    procedure ElementsDeleting(Sender: TObject; Models: POrderedSet; Views: POrderedSet);
+    procedure ElementsCreated(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
+    procedure ElementsDeleting(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
     procedure ElementsDeleted(Sender: TObject);
-    procedure ModelsChanged(Sender: TObject; Models: POrderedSet);
-    procedure ViewsChanged(Sender: TObject; Views: POrderedSet);
+    procedure ModelsChanged(Sender: TObject; Models: PModelOrderedSet);
+    procedure ViewsChanged(Sender: TObject; Views: PViewOrderedSet);
     procedure DocumentModified(Sender: TObject; Document: PDocument);
     procedure DocumentSaved(Sender: TObject; Document: PDocument);
     procedure ProjectOpened(Sender: TObject);
@@ -166,19 +166,25 @@ type
     function GetClipboardDataKind: PClipboardDataKind;
     function GetClipboardElementKind: string;
     function GetClipboardCopyContext: string;
+    function GetLookAndFeelManager: TLookAndFeelManager;
     // Utility Functions
-    procedure DetermineDeletingElements(Models, Views: POrderedSet);
-    procedure CheckUndeletableViews(Views: POrderedSet);
-    function CheckDeleteUnits(ElementSet: POrderedSet): Boolean;
-    procedure CheckUnmovableViews(Views: POrderedSet);
+    procedure DetermineDeletingElements(Models: PModelOrderedSet; Views: PViewOrderedSet);
+    procedure CheckUndeletableViews(Views: PViewOrderedSet);
+    function CheckDeleteUnits(ElementSet: PModelOrderedSet): Boolean;
+    procedure CheckUnmovableViews(Views: PViewOrderedSet);
     procedure CheckFileName(FilePath: string);
-    function DifferentAttributeExists(ElementSet: POrderedSet; Key, Value: string): Boolean;
+    function DifferentAttributeExists(ElementSet: POrderedSet; Key, Value: string): Boolean; overload;
+    function DifferentAttributeExists(ElementSet: PModelOrderedSet; Key, Value: string): Boolean; overload;
+    function DifferentAttributeExists(ElementSet: PViewOrderedSet; Key, Value: string): Boolean; overload;
     procedure ElementModified(Element: PElement); overload;
     procedure ElementModified(ElementSet: POrderedSet); overload;
-    procedure CollectElements(Element: PElement; CollectionName: string; ASet: POrderedSet);
-    procedure CollectOwners(Models, Owners: POrderedSet);
-    procedure CollectDiagramViews(Views, DiagramViews: POrderedSet);
-    procedure CollectModelsOfViews(Views, Models: POrderedSet);
+    procedure ElementModified(ElementSet: PModelOrderedSet); overload;
+    procedure ElementModified(ElementSet: PViewOrderedSet); overload;
+    procedure CollectElements(Element: PElement; CollectionName: string; ASet: POrderedSet); overload;
+    procedure CollectElements(Element: PModel; CollectionName: string; ASet: PModelOrderedSet); overload;
+    procedure CollectOwners(Models, Owners: PModelOrderedSet);
+    procedure CollectDiagramViews(Views, DiagramViews: PViewOrderedSet);
+    procedure CollectModelsOfViews(Views: PViewOrderedSet; Models: PModelOrderedSet);
   public
     constructor Create;
     destructor Destroy; override;
@@ -240,7 +246,7 @@ type
     function NewExtendedElement(DiagramView: PDiagramView; X1, Y1, X2, Y2: Integer; Profile, ElementPrototype: string): PView; overload;
     function NewViewByDragDrop(DiagramView: PDiagramView; Model: PModel; X, Y: Integer): PView;
     procedure NewModelByCopyPaste(AModel, Target: PModel);
-    procedure NewViewsByCopyPaste(Views: POrderedSet; Target: PDiagramView);
+    procedure NewViewsByCopyPaste(Views: PViewOrderedSet; Target: PDiagramView);
     // Delete Related
     procedure DeleteModel(Model: PModel);
     procedure DeleteView(View: PView);
@@ -250,10 +256,10 @@ type
     // Selection Related
     procedure SelectModel(AModel: PModel; AContextMenuLaunched: Boolean = False);
     procedure DeselectModel(AModel: PModel);
-    procedure DeselectModels(Models: POrderedSet);
+    procedure DeselectModels(Models: PModelOrderedSet);
     procedure SelectView(AView: PView);
     procedure DeselectView(AView: PView);
-    procedure DeselectViews(Views: POrderedSet);
+    procedure DeselectViews(Views: PViewOrderedSet);
     procedure SelectArea(X1, Y1, X2, Y2: Integer);
     procedure SelectAdditionalView(AView: PView);
     procedure SelectAdditionalArea(X1, Y1, X2, Y2: Integer);
@@ -261,10 +267,10 @@ type
     procedure SelectAll;
     procedure DeselectAllViews;
     procedure DeselectAllModels;
-    procedure DeselectModelsViews(Models, Views: POrderedSet);
+    procedure DeselectModelsViews(Models: PModelOrderedSet; Views: PViewOrderedSet);
     procedure DeselectAll;
-    procedure CollectSelectedModels(Models: POrderedSet);
-    procedure CollectSelectedViews(Views: POrderedSet);
+    procedure CollectSelectedModels(Models: PModelOrderedSet);
+    procedure CollectSelectedViews(Views: PViewOrderedSet);
     // View Related
     procedure ChangeViewAttribute(AView: PView; Key: string; Value: string);
     procedure MoveView(AView: PView; DX, DY: Integer);
@@ -373,6 +379,7 @@ type
     property ClipboardDataKind: PClipboardDataKind read GetClipboardDataKind;
     property ClipboardElementKind: string read GetClipboardElementKind;
     property ClipboardCopyContext: string read GetClipboardCopyContext;
+    property LookAndFeelManager: TLookAndFeelManager read GetLookAndFeelManager;
     // Events
     property OnSelectionChanged: TNotifyEvent read FOnSelectionChanged write FOnSelectionChanged;
     property OnDiagramActivated: TNotifyEvent read FOnDiagramActivated write FOnDiagramActivated;
@@ -419,8 +426,8 @@ uses
 
 constructor PStarUMLApplication.Create;
 begin
-  ModelSet := POrderedSet.Create;
-  ViewSet := POrderedSet.Create;
+  ModelSet := PModelOrderedSet.Create;
+  ViewSet := PViewOrderedSet.Create;
   LockUpdate := False;
   LockUpdateDepth := 0;
   // ProjectManager
@@ -456,8 +463,8 @@ begin
   ClipboardManager := PClipboardManager.Create;
   ClipboardManager.OnClipboardDataChanged := ClipboardDataKindChangedHandler;
   // Event Arguments
-  FEventArgModels := POrderedSet.Create;
-  FEventArgViews := POrderedSet.Create;
+  FEventArgModels := PModelOrderedSet.Create;
+  FEventArgViews := PViewOrderedSet.Create;
   FEventArgDocument := nil;
   FEventArgUnit := nil;
 end;
@@ -553,7 +560,7 @@ begin
   end;
 end;
 
-procedure PStarUMLApplication.ElementsCreated(Sender: TObject; Models: POrderedSet; Views: POrderedSet);
+procedure PStarUMLApplication.ElementsCreated(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
 begin
   if not LockUpdate and Assigned(FOnElementsCreated) then
   begin
@@ -563,7 +570,7 @@ begin
   end;
 end;
 
-procedure PStarUMLApplication.ElementsDeleting(Sender: TObject; Models: POrderedSet; Views: POrderedSet);
+procedure PStarUMLApplication.ElementsDeleting(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
 begin
   if not LockUpdate and Assigned(FOnElementsDeleting) then
   begin
@@ -583,7 +590,7 @@ begin
   end;
 end;
 
-procedure PStarUMLApplication.ModelsChanged(Sender: TObject; Models: POrderedSet);
+procedure PStarUMLApplication.ModelsChanged(Sender: TObject; Models: PModelOrderedSet);
 begin
   if not LockUpdate and Assigned(FOnModelsChanged) then
   begin
@@ -592,7 +599,7 @@ begin
   end;
 end;
 
-procedure PStarUMLApplication.ViewsChanged(Sender: TObject; Views: POrderedSet);
+procedure PStarUMLApplication.ViewsChanged(Sender: TObject; Views: PViewOrderedSet);
 begin
   if not LockUpdate and Assigned(FOnViewsChanged) then
   begin
@@ -836,6 +843,11 @@ begin
   Result := ClipboardManager.ClipboardCopyContext;
 end;
 
+function PStarUMLApplication.GetLookAndFeelManager: TLookAndFeelManager;
+begin
+  Result := MainForm.LookAndFeelManager;
+end;
+
 procedure PStarUMLApplication.SetActiveDiagram(Value: PDiagramView);
 begin
   SelectionManager.ActiveDiagram := Value;
@@ -906,7 +918,7 @@ begin
   Result := SelectionManager.SelectedViewCount;
 end;
 
-procedure PStarUMLApplication.DetermineDeletingElements(Models, Views: POrderedSet);
+procedure PStarUMLApplication.DetermineDeletingElements(Models: PModelOrderedSet; Views: PViewOrderedSet);
 var
   I: Integer;
   Changed: Boolean;
@@ -914,7 +926,7 @@ var
   // ---------------------------------------------------------------------------
   // determine model to delete with view (Stimulus and Message)
   // ---------------------------------------------------------------------------
-  procedure DetermineModelsThatShouldBeDeletedWithView(ModelSet, ViewSet: POrderedSet);
+  procedure DetermineModelsThatShouldBeDeletedWithView(ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet);
   var
     I: Integer;
     V: PView;
@@ -934,7 +946,7 @@ var
   // ---------------------------------------------------------------------------
   // remove undeletable models from Set
   // ---------------------------------------------------------------------------
-  function ExcludeUndeletableModel(AModel: PModel; ModelSet, ViewSet: POrderedSet): Boolean;
+  function ExcludeUndeletableModel(AModel: PModel; ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet): Boolean;
   begin
     Result := False;
     // Project cannot be deleted.
@@ -978,7 +990,7 @@ var
   // ---------------------------------------------------------------------------
   // insert Owned Models into deletion Set
   // ---------------------------------------------------------------------------
-  function IncludeModelsOwnedBy(AModel: PModel; ModelSet, ViewSet: POrderedSet): Boolean;
+  function IncludeModelsOwnedBy(AModel: PModel; ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet): Boolean;
   var
     C, I: Integer;
   begin
@@ -991,7 +1003,7 @@ var
   // ---------------------------------------------------------------------------
   // insert all views related to model into set
   // ---------------------------------------------------------------------------
-  function IncludeViewsOf(AModel: PModel; ModelSet, ViewSet: POrderedSet): Boolean;
+  function IncludeViewsOf(AModel: PModel; ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet): Boolean;
   var
     C, I: Integer;
   begin
@@ -1010,7 +1022,7 @@ var
   // ---------------------------------------------------------------------------
   // insert all edge views connected to view into set
   // ---------------------------------------------------------------------------
-  function IncludeEdgeViews(AView: PView; ModelSet, ViewSet: POrderedSet): Boolean;
+  function IncludeEdgeViews(AView: PView; ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet): Boolean;
   var
     C, I: Integer;
     V: PView;
@@ -1034,7 +1046,7 @@ var
   // ---------------------------------------------------------------------------
   // insert views to be deleted with model into set
   // ---------------------------------------------------------------------------
-  function IncludeRelatedViews(AView: PView; ModelSet, ViewSet: POrderedSet): Boolean;
+  function IncludeRelatedViews(AView: PView; ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet): Boolean;
   var
     C, I: Integer;
     V: PView;
@@ -1064,7 +1076,7 @@ var
   // ---------------------------------------------------------------------------
   // insert all SubViews into set
   // ---------------------------------------------------------------------------
-  function IncludeSubViews(AView: PView; ModelSet, ViewSet: POrderedSet): Boolean;
+  function IncludeSubViews(AView: PView; ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet): Boolean;
   var
     C, I: Integer;
   begin
@@ -1077,7 +1089,7 @@ var
   // ---------------------------------------------------------------------------
   // remove views contained in read-only document from set
   // ---------------------------------------------------------------------------
-  function ExcludeReadOnlyView(AView: PView; ModelSet, ViewSet: POrderedSet): Boolean;
+  function ExcludeReadOnlyView(AView: PView; ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet): Boolean;
   var
     Doc: PDocument;
   begin
@@ -1111,7 +1123,7 @@ begin
   DetermineModelsThatShouldBeDeletedWithView(Models, Views);
 end;
 
-procedure PStarUMLApplication.CheckUndeletableViews(Views: POrderedSet);
+procedure PStarUMLApplication.CheckUndeletableViews(Views: PViewOrderedSet);
 var
   I: Integer;
   V: PView;
@@ -1124,13 +1136,13 @@ begin
   end;
 end;
 
-function PStarUMLApplication.CheckDeleteUnits(ElementSet: POrderedSet): Boolean;
+function PStarUMLApplication.CheckDeleteUnits(ElementSet: PModelOrderedSet): Boolean;
 var
   I: Integer;
   E: PElement;
   R: Integer;
 
-  function UnitExists(ASet: POrderedSet): Boolean;
+  function UnitExists(ASet: POrderedSet): Boolean; overload;
   var
     I: Integer;
   begin
@@ -1141,6 +1153,20 @@ var
         Result := True;
         Exit;
       end;
+  end;
+
+  function UnitExists(ASet: PModelOrderedSet): Boolean; overload;
+  var
+    Element: PElement;
+  begin
+    Result := False;
+    for Element in ASet do begin
+      if Element.IsDocumentElement then
+      begin
+        Result := True;
+        Exit;
+      end;
+    end;
   end;
 
 begin
@@ -1160,8 +1186,8 @@ begin
   end
 end;
 
-procedure PStarUMLApplication.CheckUnmovableViews(Views: POrderedSet);
-  function ContaierViewExistInSet(AContainerView: PView; ASet: POrderedSet): Boolean;
+procedure PStarUMLApplication.CheckUnmovableViews(Views: PViewOrderedSet);
+  function ContaierViewExistInSet(AContainerView: PView; ASet: PViewOrderedSet): Boolean;
   var
     I: Integer;
     SetElement: PView;
@@ -1242,6 +1268,42 @@ begin
   end;
 end;
 
+function PStarUMLApplication.DifferentAttributeExists(ElementSet: PModelOrderedSet; Key, Value: string): Boolean;
+var
+  E: PElement;
+begin
+  Result := False;
+  for E in ElementSet do
+  begin
+    if (E.MetaClass <> nil) and E.MetaClass.ExistsAttribute(Key) then
+    begin
+      if E.MOF_GetAttribute(Key) <> Value then
+      begin
+        Result := True;
+        Exit;
+      end;
+    end;
+  end;
+end;
+
+function PStarUMLApplication.DifferentAttributeExists(ElementSet: PViewOrderedSet; Key, Value: string): Boolean;
+var
+  E: PElement;
+begin
+  Result := False;
+  for E in ElementSet do
+  begin
+    if (E.MetaClass <> nil) and E.MetaClass.ExistsAttribute(Key) then
+    begin
+      if E.MOF_GetAttribute(Key) <> Value then
+      begin
+        Result := True;
+        Exit;
+      end;
+    end;
+  end;
+end;
+
 procedure PStarUMLApplication.ElementModified(Element: PElement);
 var
   Doc: PDocument;
@@ -1262,6 +1324,24 @@ begin
     ElementModified(ElementSet.Items[I] as PElement);
 end;
 
+procedure PStarUMLApplication.ElementModified(ElementSet: PModelOrderedSet);
+var
+  Element: PElement;
+begin
+  for Element in  ElementSet do
+    ElementModified(Element);
+end;
+
+procedure PStarUMLApplication.ElementModified(ElementSet: PViewOrderedSet);
+var
+  Element: PElement;
+begin
+  for Element in  ElementSet do
+    ElementModified(Element);
+end;
+
+
+
 procedure PStarUMLApplication.CollectElements(Element: PElement; CollectionName: string; ASet: POrderedSet);
 var
   I: Integer;
@@ -1270,7 +1350,15 @@ begin
     ASet.Add(Element.MOF_GetCollectionItem(CollectionName, I));
 end;
 
-procedure PStarUMLApplication.CollectOwners(Models, Owners: POrderedSet);
+procedure PStarUMLApplication.CollectElements(Element: PModel; CollectionName: string; ASet: PModelOrderedSet);
+var
+  I: Integer;
+begin
+  for I := 0 to Element.MOF_GetCollectionCount(CollectionName) - 1 do
+    ASet.Add(Element.MOF_GetCollectionItem(CollectionName, I) as PModel);
+end;
+
+procedure PStarUMLApplication.CollectOwners(Models, Owners: PModelOrderedSet);
 var
   I: Integer;
 begin
@@ -1278,7 +1366,7 @@ begin
     Owners.Add((Models.Items[I] as PModel).VirtualNamespace);
 end;
 
-procedure PStarUMLApplication.CollectDiagramViews(Views, DiagramViews: POrderedSet);
+procedure PStarUMLApplication.CollectDiagramViews(Views, DiagramViews: PViewOrderedSet);
 var
   I: Integer;
 begin
@@ -1286,7 +1374,7 @@ begin
     DiagramViews.Add((Views.Items[I] as PView).OwnerDiagramView);
 end;
 
-procedure PStarUMLApplication.CollectModelsOfViews(Views, Models: POrderedSet);
+procedure PStarUMLApplication.CollectModelsOfViews(Views: PViewOrderedSet; Models: PModelOrderedSet);
 var
   I: Integer;
   V: PView;
@@ -1516,8 +1604,12 @@ function PStarUMLApplication.Cut: Boolean;
 begin
   Result := Copy;
   if Result then begin
-    if SelectedViewCount > 0 then DeleteSelectedViews
-    else DeleteSelectedModels;
+    if MainForm.IsModelExplorerActive then
+      DeleteSelectedModels
+    else
+      if (SelectedViewCount > 0) then
+        DeleteSelectedViews;
+
   end;
 end;
 
@@ -1549,7 +1641,7 @@ end;
 procedure PStarUMLApplication.Paste;
 var
   ClipbrdDataKind: PClipboardDataKind;
-  Views: POrderedSet;
+  Views: PViewOrderedSet;
   AnOwnerDiagram: PDiagramView;
   AModel, AnOwnerModel: PModel;
 begin
@@ -1779,6 +1871,7 @@ begin
   CheckReadOnly(DiagramView);
   V := CommandExecutor.NewViewByDragDrop(DiagramView, Model, X, Y);
   ElementModified(DiagramView);
+  MainForm.ActivateWorkingAreaPanel;
   if V <> nil then ElementModified(V.Model);
   if Model <> nil then
     SelectionManager.SelectModel(Model);
@@ -1795,16 +1888,22 @@ begin
   ElementModified(Target);
 end;
 
-procedure PStarUMLApplication.NewViewsByCopyPaste(Views: POrderedSet; Target: PDiagramView);
+procedure PStarUMLApplication.NewViewsByCopyPaste(Views: PViewOrderedSet; Target: PDiagramView);
+var
+  NewViews: PViewOrderedSet;
 begin
   CheckReadOnly(Target);
-  CommandExecutor.NewViewsByCopyPaste(Views, Target);
-  ElementModified(Target);
+  NewViews := CommandExecutor.NewViewsByCopyPaste(Views, Target);
+  if NewViews <> nil then begin
+    ElementModified(Target);
+    SelectionManager.SelectMultipleViews(NewViews);
+  end;
 end;
 
 procedure PStarUMLApplication.DeleteModel(Model: PModel);
 var
-  Owners, DiagramViews: POrderedSet;
+  Owners: PModelOrderedSet;
+  DiagramViews: PViewOrderedSet;
 begin
   // Preprocessing
   SelectionManager.DeselectModel(Model);
@@ -1812,8 +1911,8 @@ begin
   ViewSet.Clear;
   ModelSet.Add(Model);
   DetermineDeletingElements(ModelSet, ViewSet);
-  Owners := POrderedSet.Create;
-  DiagramViews := POrderedSet.Create;
+  Owners := PModelOrderedSet.Create;
+  DiagramViews := PViewOrderedSet.Create;
   try
     CollectOwners(ModelSet, Owners);
     CollectDiagramViews(ViewSet, DiagramViews);
@@ -1838,7 +1937,7 @@ end;
 
 procedure PStarUMLApplication.DeleteView(View: PView);
 var
-  DiagramViews: POrderedSet;
+  DiagramViews: PViewOrderedSet;
 begin
   // Preprocessing
   View.Selected := False;
@@ -1847,7 +1946,7 @@ begin
   ViewSet.Add(View);
   CheckUndeletableViews(ViewSet);
   DetermineDeletingElements(ModelSet, ViewSet);
-  DiagramViews := POrderedSet.Create;
+  DiagramViews := PViewOrderedSet.Create;
   try
     CollectDiagramViews(ViewSet, DiagramViews);
     CheckReadOnly(ViewSet);
@@ -1866,7 +1965,8 @@ end;
 
 procedure PStarUMLApplication.DeleteSelectedModels;
 var
-  Owners, DiagramViews: POrderedSet;
+  Owners: PModelOrderedSet;
+  DiagramViews: PViewOrderedSet;
 begin
   // Preprocessing
   ModelSet.Clear;
@@ -1874,8 +1974,8 @@ begin
   SelectionManager.CollectSelectedModels(ModelSet);
   SelectionManager.DeselectAllModels;
   DetermineDeletingElements(ModelSet, ViewSet);
-  Owners := POrderedSet.Create;
-  DiagramViews := POrderedSet.Create;
+  Owners := PModelOrderedSet.Create;
+  DiagramViews := PViewOrderedSet.Create;
   try
     CollectOwners(ModelSet, Owners);
     CollectDiagramViews(ViewSet, DiagramViews);
@@ -1900,7 +2000,7 @@ end;
 
 procedure PStarUMLApplication.DeleteSelectedViews;
 var
-  DiagramViews: POrderedSet;
+  DiagramViews: PViewOrderedSet;
 begin
   // Preprocessing
   ModelSet.Clear;
@@ -1909,7 +2009,7 @@ begin
   SelectionManager.DeselectAllViews;
   CheckUndeletableViews(ViewSet);
   DetermineDeletingElements(ModelSet, ViewSet);
-  DiagramViews := POrderedSet.Create;
+  DiagramViews := PViewOrderedSet.Create;
   try
     CollectDiagramViews(ViewSet, DiagramViews);
     CheckReadOnly(ViewSet);
@@ -1929,7 +2029,8 @@ end;
 
 procedure PStarUMLApplication.DeleteSelectedViewsWithModels;
 var
-  Owners, DiagramViews: POrderedSet;
+  Owners: PModelOrderedSet;
+  DiagramViews: PViewOrderedSet;
 begin
   // Preprocessing
   ModelSet.Clear;
@@ -1939,8 +2040,8 @@ begin
   SelectionManager.DeselectAll;
   CheckUndeletableViews(ViewSet);
   DetermineDeletingElements(ModelSet, ViewSet);
-  Owners := POrderedSet.Create;
-  DiagramViews := POrderedSet.Create;
+  Owners := PModelOrderedSet.Create;
+  DiagramViews := PViewOrderedSet.Create;
   try
     CollectOwners(ModelSet, Owners);
     CollectDiagramViews(ViewSet, DiagramViews);
@@ -1976,7 +2077,7 @@ begin
   SelectionManager.DeselectModel(AModel);
 end;
 
-procedure PStarUMLApplication.DeselectModels(Models: POrderedSet);
+procedure PStarUMLApplication.DeselectModels(Models: PModelOrderedSet);
 begin
   SelectionManager.DeselectModels(Models);
 end;
@@ -1991,7 +2092,7 @@ begin
   SelectionManager.DeselectView(AView);
 end;
 
-procedure PStarUMLApplication.DeselectViews(Views: POrderedSet);
+procedure PStarUMLApplication.DeselectViews(Views: PViewOrderedSet);
 begin
   SelectionManager.DeselectViews(Views);
 end;
@@ -2031,7 +2132,7 @@ begin
   SelectionManager.DeselectAllModels;
 end;
 
-procedure PStarUMLApplication.DeselectModelsViews(Models, Views: POrderedSet);
+procedure PStarUMLApplication.DeselectModelsViews(Models: PModelOrderedSet; Views: PViewOrderedSet);
 begin
   SelectionManager.DeselectModelsViews(Models, Views);
 end;
@@ -2041,12 +2142,12 @@ begin
   SelectionManager.DeselectAll;
 end;
 
-procedure PStarUMLApplication.CollectSelectedModels(Models: POrderedSet);
+procedure PStarUMLApplication.CollectSelectedModels(Models: PModelOrderedSet);
 begin
   SelectionManager.CollectSelectedModels(Models);
 end;
 
-procedure PStarUMLApplication.CollectSelectedViews(Views: POrderedSet);
+procedure PStarUMLApplication.CollectSelectedViews(Views: PViewOrderedSet);
 begin
   SelectionManager.CollectSelectedViews(Views);
 end;
@@ -2501,7 +2602,7 @@ begin
     CheckReadOnly(AElement);
     // Collection that containing at least one readonly element cannot be cleared.
     ModelSet.Clear;
-    CollectElements(AElement, Key, ModelSet);
+    CollectElements(AElement as PModel, Key, ModelSet);
     CheckReadOnly(ModelSet);
     CommandExecutor.ClearCollection(AElement, Key);
     ElementModified(AElement);

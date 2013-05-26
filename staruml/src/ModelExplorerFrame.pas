@@ -217,6 +217,7 @@ type
       Shift: TShiftState);
     procedure ModelTreeEdited(Sender: TBaseVirtualTree; Node: PVirtualNode;
       Column: TColumnIndex);
+    procedure DragTimeTimerTimer(Sender: TObject);
   private
     FProject: PUMLProject;
     NodeHashTable: THashedStringList;
@@ -270,9 +271,9 @@ type
     procedure Clear;
     procedure RefreshNodes;
     procedure Expand(Model: PModel);
-    procedure AddModels(Models: POrderedSet);
-    procedure DeleteModels(Models: POrderedSet);
-    procedure UpdateModels(Models: POrderedSet);
+    procedure AddModels(Models: PModelOrderedSet);
+    procedure DeleteModels(Models: PModelOrderedSet);
+    procedure UpdateModels(Models: PModelOrderedSet);
     procedure RebuildAll(CompletelyRebuild: Boolean = True; UseUpdateLock: Boolean = True);
     procedure Select(AModel: PModel);
     procedure SelectWithFocus(AModel: PModel);
@@ -308,7 +309,7 @@ type
 implementation
 
 uses
-  ExtCore, ModelExpFilterFrm, LogMgr,
+  MainFrm, ExtCore, ModelExpFilterFrm, LogMgr,
   Registry;
 
 {$R *.dfm}
@@ -713,9 +714,29 @@ begin
   GetCursorPos(Pt);
   Pt := ModelTree.ScreenToClient(Pt);
   if (GetKeyState(VK_LBUTTON) < 0) and
-     (IsMousePosTopScrollZone(Pt.Y) or IsMousePosBottomScrollZone(Pt.Y))
-  then begin
-    if not DragTimeTimer.Enabled then DragTimeTimer.Enabled := True;
+     (IsMousePosTopScrollZone(Pt.Y) or IsMousePosBottomScrollZone(Pt.Y)) then
+  begin
+    if not DragTimeTimer.Enabled then
+      DragTimeTimer.Enabled := True;
+  end
+  else if DragTimeTimer.Enabled then begin
+      DragTimeTimer.Enabled := False;
+      ModelTree.Perform(WM_VSCROLL, SB_ENDSCROLL, 0);
+  end;
+
+end;
+
+procedure TModelExplorerPanel.DragTimeTimerTimer(Sender: TObject);
+var
+  Pt: TPoint;
+begin
+  GetCursorPos(Pt);
+  Pt := ModelTree.ScreenToClient(Pt);
+  if DragTimeTimer.Enabled then begin
+    if IsMousePosTopScrollZone(Pt.Y) then
+      ModelTree.Perform(wm_vscroll, SB_LINEUP, 0)
+    else if IsMousePosBottomScrollZone(Pt.Y) then
+      ModelTree.Perform(wm_vscroll, SB_LINEDOWN, 0);
   end;
 end;
 
@@ -757,7 +778,7 @@ begin
     ModelTree.Expanded[Node] := True;
 end;
 
-procedure TModelExplorerPanel.AddModels(Models: POrderedSet);
+procedure TModelExplorerPanel.AddModels(Models: PModelOrderedSet);
 var
   I: Integer;
   M: PModel;
@@ -785,7 +806,7 @@ begin
   ModelTree.SortTree(-1, sdAscending);
 end;
 
-procedure TModelExplorerPanel.DeleteModels(Models: POrderedSet);
+procedure TModelExplorerPanel.DeleteModels(Models: PModelOrderedSet);
 var
   I: Integer;
   Node: PVirtualNode;
@@ -801,7 +822,7 @@ begin
   ModelTree.SortTree(-1, sdAscending);
 end;
 
-procedure TModelExplorerPanel.UpdateModels(Models: POrderedSet);
+procedure TModelExplorerPanel.UpdateModels(Models: PModelOrderedSet);
 var
   I: Integer;
   Node: PVirtualNode;
@@ -1450,6 +1471,9 @@ begin
     FCollapsedTimeFlag := False;
     Exit;
   end;
+
+  if not MainForm.IsModelExplorerActive then
+    MainForm.ActivateModelExplorerPanel;
 
   // Selection changing
   Node := ModelTree.GetNodeAt(X, Y);

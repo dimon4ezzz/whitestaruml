@@ -237,7 +237,7 @@ type
     function MakeEnumAccessibility(CSharpEnum: PCSharpClassType; BaseID: Integer): PAccessibilityKind;
     function MakeDelegateAccessibility(CSharpDelegate: PCSharpClassType; BaseID: Integer): PAccessibilityKind;
 
-    function ParseSoureFile(Value : string):boolean;
+    function ParseSourceFile(Value : string): Boolean;
     function GetChildNodesValue(BaseID: Integer): TStringList;
     function GetExistNamespace(CSharpNamespaceName: string; ParentCSharpNamespace: PCSharpNamespace): PCSharpNamespace;
     function SearchNodeValue(StrSearch: string; BaseNode: Integer): string;
@@ -250,6 +250,7 @@ type
     { Member procedure/function }
     function CreateCSharpElement(ParentCSharpElement:PCSharpElement;BaseID:Integer):Boolean;
     procedure Reset;
+    procedure CloseSourceFile;
 
 		{ Properties }
 		property SourceFile: string read FSourceFile write Set_SourceFile;
@@ -358,6 +359,64 @@ uses
 Symbols, Utility,
 Forms, SysUtils,Dialogs, NLS_CSharpAddIn;
 
+type
+TUTF8EncodingNoPreamble = class (TUTF8Encoding)
+  private
+    function GetPreamble: TBytes; override;
+  end;
+
+function TUTF8EncodingNoPreamble.GetPreamble: TBytes;
+begin
+  Result := nil;
+end;
+
+function CreateOutputFileName(InputFileName: String): String;
+const
+  FilePrefix = '_NOBOM';
+  ExtSeparator = '.';
+var
+  I: Integer;
+begin
+  // Find position of separator
+  for I := Length(InputFileName) downto 1 do
+    if InputFileName[I] = ExtSeparator then
+      Break;
+
+  // If separator not found append prefix at the end
+  if I = 0 then
+    I := Length(InputFileName) + 1;
+
+  Insert(FilePrefix,InputFileName,I);
+  Result := InputFileName;
+end;
+
+function CreateFileNoBom(InputFileName: String): String;
+var
+  StreamReader: TStreamReader;
+  StreamWriter: TStreamWriter;
+  Line: string;
+  Encoding: TEncoding;
+  OutputFileName: string;
+begin
+  OutputFileName := CreateOutputFileName(InputFileName);
+  StreamReader := TStreamReader.Create(InputFileName, True);
+  // File with BOM Preamble not supported by ProGrammar parser
+  Encoding := TUTF8EncodingNoPreamble.Create;
+
+  StreamWriter := TStreamWriter.Create(OutputFileName, False, Encoding);
+
+  while not StreamReader.EndOfStream do begin
+    Line := StreamReader.ReadLine;
+    StreamWriter.WriteLine(Line);
+  end;
+
+  Encoding.Free;
+  StreamReader.Free;
+  StreamWriter.Free;
+
+  Result := OutputFileName;
+
+end;
 /////////////////////////////////////////////////////////////////////////////
 // PClassName
 
@@ -430,15 +489,21 @@ var
   CSharpUMLBuilder: PCSharpUMLBuilder;
   I: Integer;
   ParseResult: Boolean;
+  NoBomFile: string;
 begin
   InitializeRootNamespace();
 
   CSharpElementBuilder := PCSharpElementBuilder.Create;
   CSharpElementBuilder.OnLog := FOnLog;
+  NoBomFile := '';
+
   for I := 0 to FSourceFiles.Count -1 do begin
     if FIsCancel then exit;
     CSharpElementBuilder.Reset;
-    CSharpElementBuilder.SourceFile := FSourceFiles.Strings[I];
+    //CSharpElementBuilder.SourceFile := FSourceFiles.Strings[I];
+
+    NoBomFile := CreateFileNoBom(FSourceFiles.Strings[I]);
+    CSharpElementBuilder.SourceFile := NoBomFile;
 
     OnParsingFile(Self, FSourceFiles.Strings[I], I, FSourceFiles.Count, ppkRead);
     OnParsingFile(Self, FSourceFiles.Strings[I], I, FSourceFiles.Count, ppkParse);
@@ -450,6 +515,11 @@ begin
       OnParsingFile(Self, FSourceFiles.Strings[I], I, FSourceFiles.Count, ppkError);
 
     Application.ProcessMessages;
+
+    CSharpElementBuilder.CloseSourceFile;
+    if not DeleteFile(NoBomFile) then
+      Log('C# parsing: temporary file ' + NoBomFile + ' was not deleted.');
+
   end;
 
   if FIsCancel then exit;
@@ -664,19 +734,18 @@ begin
     FOnLog(Self, Msg);
 end;
 
-function PCSharpElementBuilder.ParseSoureFile(Value : String):boolean;
+function PCSharpElementBuilder.ParseSourceFile(Value : String): Boolean;
 begin
+  Result := True;
   FProGMR.SetInputFilename(Value);
   FProGMR.Parse;
+
   if FProGMR.GetNumErrors > 0 then begin
     DetailPGMRErr;
     Result := False
   end
-  else
-  begin
-    Result := True;
-  end;
-end;
+
+ end;
 
 procedure PCSharpElementBuilder.DetailPGMRErr;
 var
@@ -706,9 +775,14 @@ begin
   end;
 end;
 
+procedure PCSharpElementBuilder.CloseSourceFile;
+begin
+  FProGMR.SetInputFilename(''); // Force closing NoBomFile
+end;
+
 function PCSharpElementBuilder.CreateCSharpElement(ParentCSharpElement: PCSharpElement; BaseID: Integer): Boolean;
 begin
-  Result := ParseSoureFile(FSourceFile);
+  Result := ParseSourceFile(FSourceFile);
   if Result then
   begin
     BaseID := FProGMR.Find('/.*compilation_unit',BaseID);

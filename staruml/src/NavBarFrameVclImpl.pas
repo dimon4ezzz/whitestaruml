@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, NavBarFrame, CategoryButtons, Generics.Collections, ActnList;
+  Dialogs, CategoryButtons, Generics.Collections, ActnList,
+  NavBarFrame, MenuManager;
 
 type
   TNavBarItemVclImpl = class(TNavBarItem)
@@ -42,7 +43,7 @@ type
       AInvisibleButtonsContainer: TButtonCategories);
   end;
 
-  TPaletteNavBarFrameVclImpl = class(TPaletteNavBarFrame)
+  TPaletteNavBarFrameVclImpl = class(TPaletteNavBarFrame, ILookAndFeelChangedListener)
     PaletteNavBar: TCategoryButtons;
     NavBarActions: TActionList;
     TextAction: TAction;
@@ -121,7 +122,8 @@ type
     SelectAction: TAction;
     procedure PaletteNavBarCategoryClicked(Sender: TObject;
       const Category: TButtonCategory);
-    procedure HandleButtonClicked(Sender: TObject);
+    procedure PaletteNavBarMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private type
     TPredefinedInteractionGroups = TDictionary<string, TNavBarGroup>;
 
@@ -165,6 +167,7 @@ type
     procedure InitPredefinedInteractionKeys;
     procedure SelectSelectNavBarItem(aButtonCategory: TButtonCategory);
     procedure CollapseOtherCategories(aExpandedCategory: TButtonCategory);
+    procedure SetLookAndFeel(ALookAndFeelManager: TLookAndFeelManager);
 
   protected
     procedure SetImageList(ImageList: TImageList); override;
@@ -184,6 +187,11 @@ type
     function CreateNavBarItem: TNavBarItem; override;
     function CreateNavBarGroup: TNavBarGroup; override;
 
+    procedure SingleUseItemSelected; override;
+    procedure MultipleUseItemSelected; override;
+
+    procedure LookAndFeelChanged(ALookAndFeelManager: TLookAndFeelManager);
+
   end;
 
 var
@@ -194,7 +202,7 @@ implementation
 {$R *.dfm}
 
 uses
-  cxLookAndFeelPainters, Handlers, MainFrm;
+  Handlers, StarUMLApp;
 
 procedure MoveButtonCategory(Destination: TButtonCategories;
   CategoryToMove: TButtonCategory);
@@ -264,6 +272,30 @@ begin
   FNavBarItems.Add(Item);
 end;
 
+procedure TPaletteNavBarFrameVclImpl.LookAndFeelChanged
+  (ALookAndFeelManager: TLookAndFeelManager);
+begin
+    SetLookAndFeel(ALookAndFeelManager)
+end;
+
+procedure TPaletteNavBarFrameVclImpl.SetLookAndFeel
+  (ALookAndFeelManager: TLookAndFeelManager);
+var
+  GroupCollectionItem: TCollectionItem;
+  ButtonCategory: TButtonCategory;
+
+  begin
+  PaletteNavBar.Color := ALookAndFeelManager.WindowLightColor;
+
+  for GroupCollectionItem in PaletteNavBar.Categories do
+  begin
+    ButtonCategory := GroupCollectionItem as TButtonCategory;
+    ButtonCategory.Color := ALookAndFeelManager.WindowLightColor;
+    ButtonCategory.GradientColor := ALookAndFeelManager.WindowDarkColor;
+  end
+
+end;
+
 constructor TNavBarGroupVclImpl.Create
   (AVisibleButtonsContainer: TButtonCategories;
   AInvisibleButtonsContainer: TButtonCategories);
@@ -324,7 +356,7 @@ begin
   NewNativeItem := FNavBarGroup.Items.Add;
   NewNativeItem.Assign(NavBarItemVclImpl.FNavBarItems[0]);
   NavBarItemVclImpl.AddButtonItem(NewNativeItem);
-  NewNativeItem.OnClick := PaletteNavBarFrameVclImpl.HandleButtonClicked;
+  //NewNativeItem.OnClick := PaletteNavBarFrameVclImpl.HandleButtonClicked;
   PaletteNavBarFrameVclImpl.FNavItemFromVclComponent.Add(NewNativeItem, AItem);
 end;
 
@@ -380,7 +412,7 @@ var
 begin
   NewItem := TNavBarItemVclImpl.Create;
   NewItem.FNavBarItems.Add(TButtonItem.Create(nil));
-  NewItem.FNavBarItems[0].OnClick := HandleButtonClicked;
+  //NewItem.FNavBarItems[0].OnClick := HandleButtonClicked;
 
   FInteractionItems.Add(NewItem);
   FNavItemFromVclComponent.Add(NewItem.FNavBarItems[0], NewItem);
@@ -400,8 +432,6 @@ var
   ItemCollectionItem: TCollectionItem;
   ButtonItem: TButtonItem;
 
-  Painter: TcxCustomLookAndFeelPainter;
-
 begin
   for GroupCollectionItem in PaletteNavBar.Categories do
   begin
@@ -415,9 +445,7 @@ begin
     end;
   end;
 
-  Painter := MainForm.BarManager.LookAndFeel.Painter;
-  PaletteNavBar.Color := Painter.DefaultTabsBackgroundColor;
-
+  //PaletteNavBar.Color := StarUMLApplication.LookAndFeelManager.WindowLightColor;
 
 end;
 
@@ -428,7 +456,6 @@ var
   ExistingGroup: TNavBarGroup;
   GroupKey: string;
   GroupKeyDefined: Boolean;
-  Painter: TcxCustomLookAndFeelPainter;
 begin
   Result := nil;
 
@@ -455,12 +482,6 @@ begin
   end;
 
   NewGroup.FNavBarGroup.Collapsed := True;
-  //NewGroup.FNavBarGroup.Color := clSkyBlue;
-  //NewGroup.FNavBarGroup.GradientColor := clBlue;
-  Painter := MainForm.BarManager.LookAndFeel.Painter;
-  NewGroup.FNavBarGroup.Color := Painter.DefaultTabsBackgroundColor;
-  //NewGroup.FNavBarGroup.GradientColor := Painter.DefaultSelectionColor;
-  NewGroup.FNavBarGroup.GradientColor := Painter.DefaultFilterBoxColor;
 
   FInteractionGroups.Add(NewGroup);
   if GroupKeyDefined then
@@ -484,7 +505,7 @@ begin
     // Item wrapper already exists
     else if FNamedInteractionItems.TryGetValue(ItemKey, ItemWrapper) then begin
       (ItemWrapper as TNavBarItemVclImpl).AddButtonItem(AButtonItem);
-      AButtonItem.OnClick := HandleButtonClicked;
+      //AButtonItem.OnClick := HandleButtonClicked;
       FNavItemFromVclComponent.Add(AButtonItem, ItemWrapper);
     end
     else
@@ -512,7 +533,7 @@ begin
   NewItem := TNavBarItemVclImpl.Create;
   //NewItem.FNavBarItems.Add(aNavBarItem);
   NewItem.AddButtonItem(ANavBarItem);
-  ANavBarItem.OnClick := HandleButtonClicked;
+  //ANavBarItem.OnClick := HandleButtonClicked;
   FInteractionItems.Add(NewItem);
   FNavItemFromVclComponent.Add(ANavBarItem, NewItem);
   Result := NewItem;
@@ -658,8 +679,10 @@ end;
 procedure TPaletteNavBarFrameVclImpl.MainFormReady;
 begin
   InitPredefinedInteractionKeys;
-  CreateWrappersForPredefinedElements
+  CreateWrappersForPredefinedElements;
   // InitPredefinedInteractionGroups;
+  SetLookAndFeel(StarUMLApplication.LookAndFeelManager);
+  StarUMLApplication.LookAndFeelManager.RegisterLookAndFeelChangedListener(self);
 end;
 
 procedure TPaletteNavBarFrameVclImpl.SelectSelectNavBarItem
@@ -724,6 +747,16 @@ begin
 
 end;
 
+procedure TPaletteNavBarFrameVclImpl.SingleUseItemSelected;
+begin
+  PaletteNavBar.SelectedButtonColor := clAqua;
+end;
+
+procedure TPaletteNavBarFrameVclImpl.MultipleUseItemSelected;
+begin
+  PaletteNavBar.SelectedButtonColor := clGreen;
+end;
+
 procedure TPaletteNavBarFrameVclImpl.SetActiveGroup(Group: TNavBarGroup);
 var
   VclGroup: TNavBarGroupVclImpl;
@@ -735,36 +768,6 @@ begin
     // CollapseOtherCategories(VclGroup.FNavBarGroup);
     SelectSelectNavBarItem(VclGroup.FNavBarGroup);
   end;
-end;
-
-procedure TPaletteNavBarFrameVclImpl.HandleButtonClicked(Sender: TObject);
-var
-  NavBarItem: TNavBarItem;
-  CategoryButtonsSender: TCategoryButtons;
-begin
-  // PRECONDITIONS
-  // Assert(Sender is TButtonItem);
-  if Sender is TBasicAction then
-    CategoryButtonsSender := (Sender as TBasicAction)
-      .ActionComponent as TCategoryButtons
-  else
-    CategoryButtonsSender := Sender as TCategoryButtons;
-
-  NavBarItem := FNavItemFromVclComponent
-    [CategoryButtonsSender.FocusedItem as TButtonItem];
-  // PRECONDITIONS
-
-  if NavBarItem.ImageIndex = 0 then // Select item
-  begin
-    // ButtonClickHandlerReady := False;
-    ActivateSelectHandler(False);
-  end
-  else
-  begin
-    if Assigned(FOnButtonClicked) then
-      FOnButtonClicked(NavBarItem);
-  end;
-
 end;
 
 function TPaletteNavBarFrameVclImpl.GetPredefinedInteractionGroup(Name: String)
@@ -784,6 +787,42 @@ procedure TPaletteNavBarFrameVclImpl.PaletteNavBarCategoryClicked
 begin
   inherited;
   SelectSelectNavBarItem(Category);
+end;
+
+procedure TPaletteNavBarFrameVclImpl.PaletteNavBarMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+  NavBarItem: TNavBarItem;
+  CategoryButtonsSender: TCategoryButtons;
+begin
+  inherited;
+   // PRECONDITIONS
+  // Assert(Sender is TButtonItem);
+  if Sender is TBasicAction then
+    CategoryButtonsSender := (Sender as TBasicAction)
+      .ActionComponent as TCategoryButtons
+  else
+    CategoryButtonsSender := Sender as TCategoryButtons;
+
+  NavBarItem := FNavItemFromVclComponent
+    [CategoryButtonsSender.FocusedItem as TButtonItem];
+  // PRECONDITIONS
+
+  if NavBarItem.ImageIndex = 0 then // Select item
+  begin
+    // ButtonClickHandlerReady := False;
+    ActivateSelectHandler(False);
+    SingleUseItemSelected;
+  end
+  else
+  begin
+    if Assigned(FOnButtonClicked) then begin
+      FOnButtonClicked(NavBarItem);
+      // Some idea: Drag and drop from Tool Palette, possibly in the future
+      //        MainForm.WorkingAreaFrame.ActiveDiagramEditor.HandleExternalMouseUp(Sender, Button, Shift, X, Y);
+    end;
+  end;
+  // Mouse up
 end;
 
 end.

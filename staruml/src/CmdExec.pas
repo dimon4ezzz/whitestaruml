@@ -78,11 +78,11 @@ type
     FOnCommandHistoryChanged: TNotifyEvent;
     function GetUndoLevel: Integer;
     procedure SetUndoLevel(Value: Integer);
-    procedure ElementsCreated(Sender: TObject; Models: POrderedSet; Views: POrderedSet);
-    procedure ElementsDeleting(Sender: TObject; Models: POrderedSet; Views: POrderedSet);
+    procedure ElementsCreated(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
+    procedure ElementsDeleting(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
     procedure ElementsDeleted(Sender: TObject);
-    procedure ModelsChanged(Sender: TObject; Models: POrderedSet);
-    procedure ViewsChanged(Sender: TObject; Views: POrderedSet);
+    procedure ModelsChanged(Sender: TObject; Models: PModelOrderedSet);
+    procedure ViewsChanged(Sender: TObject; Views: PViewOrderedSet);
     procedure ErrorOccurred(Sender: TObject; ErrorMessage: string);
     procedure EngineCommandExecutedHandler(Sender: TObject; Command: PCommand);
     procedure EngineCommandUnexecutedHandler(Sender: TObject; Command: PCommand);
@@ -109,11 +109,12 @@ type
     function NewExtendedElement(DiagramView: PDiagramView; X1, Y1, X2, Y2: Integer; Profile, PaletteElement: string): PView; overload;
     function NewViewByDragDrop(DiagramView: PDiagramView; Model: PModel; X, Y: Integer): PView;
     procedure NewModelByCopyPaste(AModel, ATarget: PModel);
-    procedure NewViewsByCopyPaste(Views: POrderedSet; Target: PDiagramView);
-    procedure DeleteElements(Models, Views: POrderedSet);
+    //procedure NewViewsByCopyPaste(Views: POrderedSet; Target: PDiagramView);
+    function NewViewsByCopyPaste(Views: PViewOrderedSet; Target: PDiagramView): PViewOrderedSet;
+    procedure DeleteElements(Models: PModelOrderedSet; Views: PViewOrderedSet);
     // Models Changing Functions.
-    procedure ChangeModelsAttribute(Models: POrderedSet; Key: string; Value: string);
-    procedure ChangeModelsReference(Models: POrderedSet; Key: string; Value: PModel);
+    procedure ChangeModelsAttribute(Models: PModelOrderedSet; Key: string; Value: string);
+    procedure ChangeModelsReference(Models: PModelOrderedSet; Key: string; Value: PModel);
     procedure ClearCollection(AElement: PElement; Key: string);
     procedure AddCollectionItem(AElement: PElement; Key: string; Value: PElement);
     procedure RemoveCollectionItem(AElement: PElement; Key: string; Value: PElement);
@@ -124,8 +125,8 @@ type
     procedure ChangeValueExpression(AModel: PModel; ValueExpr: string; ValueRef: PModel);
     procedure ChangeActionKind(AModel: PModel; ActionKind: string);
     procedure ChangeDocumentation(AModel: PModel; Documentation: string);
-    procedure RelocateModels(Models: POrderedSet; ATarget: PModel);
-    procedure ChangeModelsStereotype(Models: POrderedSet; AStereotypeProfile: string; AStereotype: string);
+    procedure RelocateModels(Models: PModelOrderedSet; ATarget: PModel);
+    procedure ChangeModelsStereotype(Models: PModelOrderedSet; AStereotypeProfile: string; AStereotype: string);
     function AddConstraint(AExtensibleModel: PExtensibleModel; AName: string; ABody: string): PConstraint;
     procedure DeleteConstraint(AExtensibleModel: PExtensibleModel; AConstraint: PConstraint);
     procedure ChangeConstraint(AExtensibleModel: PExtensibleModel; AConstraint: PConstraint; AName: string; ABody: string);
@@ -143,31 +144,31 @@ type
     procedure DeleteAttachment(AModel: PModel; Index: Integer);
     procedure ChangeAttachment(AModel: PModel; Index: Integer; Attach: string);
     procedure ChangeAttachmentOrder(AModel: PModel; Index: Integer; NewIndex: Integer);
-    function ApplyGeneralNameExpression(Models: POrderedSet; Value: string; var Msg: string): Boolean;
-    function ApplyClassifierRoleExpression(Models: POrderedSet; Value: string; var Msg: string): Boolean;
-    function ApplyObjectExpression(Models: POrderedSet; Value: string; var Msg: string): Boolean;
-    function ApplyAttributeExpression(Models: POrderedSet; Value: string; var Msg: string): Boolean;
-    function ApplyOperationExpression(Models: POrderedSet; Value: string; var Msg: string): Boolean;
-    function ApplyMessageExpression(Models: POrderedSet; Value: string; var Msg: string): Boolean;
+    function ApplyGeneralNameExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
+    function ApplyClassifierRoleExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
+    function ApplyObjectExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
+    function ApplyAttributeExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
+    function ApplyOperationExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
+    function ApplyMessageExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
     procedure ChangeModelReferenceWithNamedModelCreating(AModel: PModel; Key: string; Owner: PModel; ModelKind: string; Name: string = '');
     // Views Changing Functions.
-    procedure MoveViews(ADiagramView: PDiagramView; Views: POrderedSet; DX, DY: Integer);
+    procedure MoveViews(ADiagramView: PDiagramView; Views: PViewOrderedSet; DX, DY: Integer);
     procedure MoveParasiticView(AParasiticView: PParasiticView; Alpha, Distance: Extended);
     procedure ResizeNode(ANode: PNodeView; ARect: TRect);
     procedure ResizeFragmentedNode(ANode: PNodeView; ARect: TRect);
     procedure ReshapeEdge(AEdge: PEdgeView; APoints: PPoints);
     procedure ReconnectEdge(AEdge: PEdgeView; APoints: PPoints; NewParticipant: PView; IsTailSide: Boolean);
-    procedure ChangeViewsAttribute(Views: POrderedSet; Key: string; Value: string);
-    procedure ChangeViewsLineColor(Views: POrderedSet; LineColor: TColor);
-    procedure ChangeViewsFillColor(Views: POrderedSet; FillColor: TColor);
-    procedure ChangeViewsFont(Views: POrderedSet; Font: TFont; AChangedFontItems: PFontItemKinds);
-    procedure ChangeEdgesLineStyle(Views: POrderedSet; LineStyle: PLineStyleKind);
-    procedure ChangeNoteViewStrings(Views: POrderedSet; Strs: string);
-    procedure SendToBackViews(Views: POrderedSet);
-    procedure BringToFrontViews(Views: POrderedSet);
-    procedure AlignViews(Views: POrderedSet; AlignmentKind: PAlignmentKind);
+    procedure ChangeViewsAttribute(Views: PViewOrderedSet; Key: string; Value: string);
+    procedure ChangeViewsLineColor(Views: PViewOrderedSet; LineColor: TColor);
+    procedure ChangeViewsFillColor(Views: PViewOrderedSet; FillColor: TColor);
+    procedure ChangeViewsFont(Views: PViewOrderedSet; Font: TFont; AChangedFontItems: PFontItemKinds);
+    procedure ChangeEdgesLineStyle(Views: PViewOrderedSet; LineStyle: PLineStyleKind);
+    procedure ChangeNoteViewStrings(Views: PViewOrderedSet; Strs: string);
+    procedure SendToBackViews(Views: PViewOrderedSet);
+    procedure BringToFrontViews(Views: PViewOrderedSet);
+    procedure AlignViews(Views: PViewOrderedSet; AlignmentKind: PAlignmentKind);
     procedure LayoutDiagram(ADiagramView: PDiagramView);
-    procedure MoveViewsChangeContainer(ADiagramView: PDiagramView; Views: POrderedSet; DX, DY: Integer; AContainerView: PView = nil);
+    procedure MoveViewsChangeContainer(ADiagramView: PDiagramView; Views: PViewOrderedSet; DX, DY: Integer; AContainerView: PView = nil);
     procedure ClearHistory;
     procedure Undo;
     procedure Redo;
@@ -190,7 +191,7 @@ implementation
 
 uses
   UMLViews, UMLAux, ExprParsers, LayoutDgm,
-  SysUtils, NLS_StarUML;
+  SysUtils, Generics.Defaults, NLS_StarUML;
 
 type
   // PAbstractChangeCommand
@@ -200,10 +201,8 @@ type
   // this class has the functionality of storing and restoring view's size.
   // ---------------------------------------------------------------------------
   PAbstractCommand = class(PCommand)
-  private type
-    POrderedViewSet = POrderedSet<PView>;
   private
-    FSizePreservingViews: POrderedViewSet;
+    FSizePreservingViews: PViewOrderedSet;
     FWidthArray: TStringList;
     FHeightArray: TStringList;
   protected
@@ -211,12 +210,12 @@ type
     procedure RestoreViewSizes;
     procedure CollectSizesFromModel(AModel: PModel);
     procedure CollectSizesFromView(AView: PView);
-    procedure CollectSizesFromModelSet(AModelSet: POrderedSet);
-    procedure CollectSizesFromViewSet(AViewSet: POrderedSet);
+    procedure CollectSizesFromModelSet(AModelSet: PModelOrderedSet);
+    procedure CollectSizesFromViewSet(AViewSet: PViewOrderedSet);
   public
     constructor Create; override;
     destructor Destroy; override;
-    property SizePreservingViews: POrderedViewSet read FSizePreservingViews;
+    property SizePreservingViews: PViewOrderedSet read FSizePreservingViews;
   end;
 
   // PAbstractCreateDeleteElementsCommand
@@ -225,7 +224,8 @@ type
   // ---------------------------------------------------------------------------
   PAbstractCreateDeleteElementsCommand = class(PAbstractCommand)
   private
-    FModelSet, FViewSet: POrderedSet;
+    FModelSet: PModelOrderedSet;
+    FViewSet: PViewOrderedSet;
     FModelReferences, FViewReferences: POrderedSet;
     FModelMementos, FViewMementos: TList;
     FOnElementsCreated: PModelsViewsEvent;
@@ -240,8 +240,8 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    property ModelSet: POrderedSet read FModelSet;
-    property ViewSet: POrderedSet read FViewSet;
+    property ModelSet: PModelOrderedSet read FModelSet;
+    property ViewSet: PViewOrderedSet read FViewSet;
     property OnElementsCreated: PModelsViewsEvent read FOnElementsCreated write FOnElementsCreated;
     property OnElementsDeleting: PModelsViewsEvent read FOnElementsDeleting write FOnElementsDeleting;
     property OnElementsDeleted: TNotifyEvent read FOnElementsDeleted write FOnElementsDeleted;
@@ -268,14 +268,14 @@ type
   // ---------------------------------------------------------------------------
   PAbstractChangeModelsCommand = class(PAbstractCommand)
   private
-    FModelSet: POrderedSet;
+    FModelSet: PModelOrderedSet;
     FOnModelsChanged: PModelsEvent;
   protected
     procedure ModelsChanged;
   public
     constructor Create; override;
     destructor Destroy; override;
-    property ModelSet: POrderedSet read FModelSet;
+    property ModelSet: PModelOrderedSet read FModelSet;
     property OnModelsChanged: PModelsEvent read FOnModelsChanged write FOnModelsChanged;
   end;
 
@@ -285,7 +285,7 @@ type
   // ---------------------------------------------------------------------------
   PAbstractChangeViewsCommand = class(PAbstractCommand)
   private
-    FViewSet: POrderedSet;
+    FViewSet: PViewOrderedSet;
     FSizePreservingViews: POrderedSet;
     FWidthArray: TStringList;
     FHeightArray: TStringList;
@@ -295,7 +295,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    property ViewSet: POrderedSet read FViewSet;
+    property ViewSet: PViewOrderedSet read FViewSet;
     property OnViewsChanged: PViewsEvent read FOnViewsChanged write FOnViewsChanged;
   end;
 
@@ -305,8 +305,8 @@ type
   // ---------------------------------------------------------------------------
   PAbstractChangeModelsViewsCommand = class(PAbstractCommand)
   private
-    FModelSet: POrderedSet;
-    FViewSet: POrderedSet;
+    FModelSet: PModelOrderedSet;
+    FViewSet: PViewOrderedSet;
     FOnModelsChanged: PModelsEvent;
     FOnViewsChanged: PViewsEvent;
   protected
@@ -315,8 +315,8 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    property ModelSet: POrderedSet read FModelSet;
-    property ViewSet: POrderedSet read FViewSet;
+    property ModelSet: PModelOrderedSet read FModelSet;
+    property ViewSet: PViewOrderedSet read FViewSet;
     property OnModelsChanged: PModelsEvent read FOnModelsChanged write FOnModelsChanged;
     property OnViewsChanged: PViewsEvent read FOnViewsChanged write FOnViewsChanged;
   end;
@@ -460,7 +460,7 @@ type
   protected
     function Precondition: Boolean; override;
   public
-    procedure SetParameter(Views: POrderedSet; Target: PDiagramView);
+    procedure SetParameter(Views: PViewOrderedSet; Target: PDiagramView);
   end;
 
   // PDeleteElementsCommand
@@ -476,7 +476,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(AModelSet, AViewSet: POrderedSet);
+    procedure SetParameter(AModelSet: PModelOrderedSet; AViewSet: PViewOrderedSet);
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -499,7 +499,7 @@ type
     destructor Destroy; override;
     procedure Reexecute; override;
     procedure Unexecute; override;
-    procedure SetParameter(AModelSet: POrderedSet; AKey: string; ANewValue: string);
+    procedure SetParameter(AModelSet: PModelOrderedSet; AKey: string; ANewValue: string);
   end;
 
   // PChangeModelsReferenceCommand
@@ -520,7 +520,7 @@ type
     destructor Destroy; override;
     procedure Reexecute; override;
     procedure Unexecute; override;
-    procedure SetParameter(AModelSet: POrderedSet; AKey: string; ANewValue: PModel);
+    procedure SetParameter(AModelSet: PModelOrderedSet; AKey: string; ANewValue: PModel);
   end;
 
   // PClearCollectionCommand
@@ -726,7 +726,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(AModelSet: POrderedSet; ContainerModel: PModel);
+    procedure SetParameter(AModelSet: PModelOrderedSet; ContainerModel: PModel);
     procedure Execute; override;
     procedure Reexecute; override;
     procedure Unexecute; override;
@@ -1106,7 +1106,7 @@ type
   protected
     function Precondition: Boolean; override;
   public
-    procedure SetParameter(ADiagramView: PDiagramView; AViewSet: POrderedSet; ADX, ADY: Integer);
+    procedure SetParameter(ADiagramView: PDiagramView; AViewSet: PViewOrderedSet; ADX, ADY: Integer);
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1184,7 +1184,7 @@ type
     destructor Destroy; override;
     procedure Reexecute; override;
     procedure Unexecute; override;
-    procedure SetParameter(AViewSet: POrderedSet; AKey: string; ANewValue: string);
+    procedure SetParameter(AViewSet: PViewOrderedSet; AKey: string; ANewValue: string);
   end;
 
   // PChangeViewsLineColorCommand
@@ -1200,7 +1200,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(AViewSet: POrderedSet; ANewLineColor: TColor);
+    procedure SetParameter(AViewSet: PViewOrderedSet; ANewLineColor: TColor);
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1218,7 +1218,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(AViewSet: POrderedSet; ANewFillColor: TColor);
+    procedure SetParameter(AViewSet: PViewOrderedSet; ANewFillColor: TColor);
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1232,14 +1232,14 @@ type
     ChangedFontItems: PFontItemKinds;
     OldFonts: TList;
     NewFont: TFont;
-    procedure StoreOldFonts(AViewSet: POrderedSet);
+    procedure StoreOldFonts(AViewSet: PViewOrderedSet);
   protected
     function Precondition: Boolean; override;
     procedure Preprocess; override;
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(AViewSet: POrderedSet; ANewFont: TFont; AChangedFontItems: PFontItemKinds);
+    procedure SetParameter(AViewSet: PViewOrderedSet; ANewFont: TFont; AChangedFontItems: PFontItemKinds);
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1258,7 +1258,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(AEdgeSet: POrderedSet; ANewLineStyle: PLineStyleKind);
+    procedure SetParameter(AEdgeSet: PViewOrderedSet; ANewLineStyle: PLineStyleKind);
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1275,7 +1275,7 @@ type
     function Precondition: Boolean; override;
     procedure Preprocess; override;
   public
-    procedure SetParameter(Views: POrderedSet; Strs: string);
+    procedure SetParameter(Views: PViewOrderedSet; Strs: string);
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1292,7 +1292,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(Views: POrderedSet);
+    procedure SetParameter(Views: PViewOrderedSet);
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1309,7 +1309,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(Views: POrderedSet);
+    procedure SetParameter(Views: PViewOrderedSet);
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1327,7 +1327,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(Views: POrderedSet; Alignment: PAlignmentKind);
+    procedure SetParameter(Views: PViewOrderedSet; Alignment: PAlignmentKind);
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1376,7 +1376,7 @@ type
     function SymbolToUMLVisibilityKind(Value: string): PUMLVisibilityKind;
     function GetProfile(M: PExtensibleModel; StreotypeStr: string): string;
   public
-    procedure SetParameter(AModelSet: POrderedSet; Value: string); virtual;
+    procedure SetParameter(AModelSet: PModelOrderedSet; Value: string); virtual;
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1387,7 +1387,7 @@ type
   // ---------------------------------------------------------------------------
   PApplyGeneralNameExpressionCommand = class(PAbstractApplyExpressionCommand)
   public
-    procedure SetParameter(AModelSet: POrderedSet; Value: string); override;
+    procedure SetParameter(AModelSet: PModelOrderedSet; Value: string); override;
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1404,7 +1404,7 @@ type
   protected
     function Precondition: Boolean; override;
   public
-    procedure SetParameter(AModelSet: POrderedSet; Value: string); override;
+    procedure SetParameter(AModelSet: PModelOrderedSet; Value: string); override;
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1421,7 +1421,7 @@ type
   protected
     function Precondition: Boolean; override;
   public
-    procedure SetParameter(AModelSet: POrderedSet; Value: string); override;
+    procedure SetParameter(AModelSet: PModelOrderedSet; Value: string); override;
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1446,7 +1446,7 @@ type
   protected
     function Precondition: Boolean; override;
   public
-    procedure SetParameter(AModelSet: POrderedSet; Value: string); override;
+    procedure SetParameter(AModelSet: PModelOrderedSet; Value: string); override;
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1462,12 +1462,12 @@ type
     FOldProfile: string;
     FOldStereotype: string;
     FOldName: string;
-    FOldParameters: POrderedSet;
+    FOldParameters: PModelOrderedSet;
     FNewVisibility: PUMLVisibilityKind;
     FNewProfile: string;
     FNewStereotype: string;
     FNewName: string;
-    FNewParameters: POrderedSet;
+    FNewParameters: PModelOrderedSet;
     FIsParameterChanged: Boolean;
     // Events
     FOnModelsChanged: PModelsEvent;
@@ -1485,7 +1485,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(AModelSet: POrderedSet; Value: string);
+    procedure SetParameter(AModelSet: PModelOrderedSet; Value: string);
     procedure Reexecute; override;
     procedure Unexecute; override;
     property OnModelsChanged: PModelsEvent read FOnModelsChanged write FOnModelsChanged;
@@ -1517,7 +1517,7 @@ type
   protected
     function Precondition: Boolean; override;
   public
-    procedure SetParameter(AModelSet: POrderedSet; Value: string); override;
+    procedure SetParameter(AModelSet: PModelOrderedSet; Value: string); override;
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1525,7 +1525,7 @@ type
   // PMoveViewsChangingContainerViewCommand
   PMoveViewsChaningContainerViewCommand = class(PRelocateModelsCommand)
   private
-    FViewSet: POrderedSet;
+    FViewSet: PViewOrderedSet;
     FOnViewsChanged: PViewsEvent;
     ViewTable: PTable;
     DiagramView: PDiagramView;
@@ -1536,10 +1536,10 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(ADiagramView: PDiagramView; AViewSet: POrderedSet; ADX, ADY: Integer; AContainerView: PView);
+    procedure SetParameter(ADiagramView: PDiagramView; AViewSet: PViewOrderedSet; ADX, ADY: Integer; AContainerView: PView);
     procedure Reexecute; override;
     procedure Unexecute; override;
-    property ViewSet: POrderedSet read FViewSet;
+    property ViewSet: PViewOrderedSet read FViewSet;
     property OnViewsChanged: PViewsEvent read FOnViewsChanged write FOnViewsChanged;
   end;
 
@@ -1559,7 +1559,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(AModelSet: POrderedSet; ANewProfile: string; ANewStereotype: string);
+    procedure SetParameter(AModelSet: PModelOrderedSet; ANewProfile: string; ANewStereotype: string);
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -1570,8 +1570,8 @@ type
   // ---------------------------------------------------------------------------
   PAbstractChangeCreateDeleteElementsCommand = class(PAbstractCreateDeleteElementsCommand)
   private
-    FChangingModels: POrderedSet;
-    FChangingViews: POrderedSet;
+    FChangingModels: PModelOrderedSet;
+    FChangingViews: PViewOrderedSet;
     FOnModelsChanged: PModelsEvent;
     FOnViewsChanged: PViewsEvent;
   protected
@@ -1580,8 +1580,8 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    property ChangingModels: POrderedSet read FChangingModels;
-    property ChangingViews: POrderedSet read FChangingViews;
+    property ChangingModels: PModelOrderedSet read FChangingModels;
+    property ChangingViews: PViewOrderedSet read FChangingViews;
     property OnModelsChanged: PModelsEvent read FOnModelsChanged write FOnModelsChanged;
     property OnViewsChanged: PViewsEvent read FOnViewsChanged write FOnViewsChanged;
   end;
@@ -1592,8 +1592,8 @@ type
   // ---------------------------------------------------------------------------
   PAbstractChangeCreateElementsCommand = class(PAbstractCreateElementsCommand)
   private
-    FChangingModels: POrderedSet;
-    FChangingViews: POrderedSet;
+    FChangingModels: PModelOrderedSet;
+    FChangingViews: PViewOrderedSet;
     FOnModelsChanged: PModelsEvent;
     FOnViewsChanged: PViewsEvent;
   protected
@@ -1602,8 +1602,8 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    property ChangingModels: POrderedSet read FChangingModels;
-    property ChangingViews: POrderedSet read FChangingViews;
+    property ChangingModels: PModelOrderedSet read FChangingModels;
+    property ChangingViews: PViewOrderedSet read FChangingViews;
     property OnModelsChanged: PModelsEvent read FOnModelsChanged write FOnModelsChanged;
     property OnViewsChanged: PViewsEvent read FOnViewsChanged write FOnViewsChanged;
   end;
@@ -1736,13 +1736,13 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.ElementsCreated(Sender: TObject; Models: POrderedSet; Views: POrderedSet);
+procedure PCommandExecutor.ElementsCreated(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
 begin
   if Assigned(FOnElementsCreated) then
     FOnElementsCreated(Self, Models, Views);
 end;
 
-procedure PCommandExecutor.ElementsDeleting(Sender: TObject; Models: POrderedSet; Views: POrderedSet);
+procedure PCommandExecutor.ElementsDeleting(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
 begin
   if Assigned(FOnElementsDeleting) then
     FOnElementsDeleting(Self, Models, Views);
@@ -1754,13 +1754,13 @@ begin
     FOnElementsDeleted(Self);
 end;
 
-procedure PCommandExecutor.ModelsChanged(Sender: TObject; Models: POrderedSet);
+procedure PCommandExecutor.ModelsChanged(Sender: TObject; Models: PModelOrderedSet);
 begin
   if Assigned(FOnModelsChanged) then
     FOnModelsChanged(Self, Models);
 end;
 
-procedure PCommandExecutor.ViewsChanged(Sender: TObject; Views: POrderedSet);
+procedure PCommandExecutor.ViewsChanged(Sender: TObject; Views: PViewOrderedSet);
 begin
   if Assigned(FOnViewsChanged) then
     FOnViewsChanged(Self, Views);
@@ -2036,16 +2036,19 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.NewViewsByCopyPaste(Views: POrderedSet; Target: PDiagramView);
+//procedure PCommandExecutor.NewViewsByCopyPaste(Views: PViewsOrderedSet; Target: PDiagramView);
+function PCommandExecutor.NewViewsByCopyPaste(Views: PViewOrderedSet; Target: PDiagramView): PViewOrderedSet;
 var
   Cmd: PNewViewsByCopyPasteCommand;
 begin
+  Result := nil;
   Cmd := PNewViewsByCopyPasteCommand.Create;
   Cmd.SetParameter(Views, Target);
   Cmd.OnElementsCreated := ElementsCreated;
   Cmd.OnElementsDeleting := ElementsDeleting;
   Cmd.OnElementsDeleted := ElementsDeleted;
   if Engine.Execute(Cmd) then begin
+   Result := Cmd.ViewSet
    // Nothing to do.
   end
   else begin
@@ -2053,7 +2056,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.DeleteElements(Models, Views: POrderedSet);
+procedure PCommandExecutor.DeleteElements(Models: PModelOrderedSet; Views: PViewOrderedSet);
 var
   Cmd: PDeleteElementsCommand;
 begin
@@ -2070,7 +2073,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.ChangeModelsAttribute(Models: POrderedSet; Key: string; Value: string);
+procedure PCommandExecutor.ChangeModelsAttribute(Models: PModelOrderedSet; Key: string; Value: string);
 var
   Cmd: PChangeModelsAttributeCommand;
 begin
@@ -2085,7 +2088,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.ChangeModelsReference(Models: POrderedSet; Key: string; Value: PModel);
+procedure PCommandExecutor.ChangeModelsReference(Models: PModelOrderedSet; Key: string; Value: PModel);
 var
   Cmd: PChangeModelsReferenceCommand;
 begin
@@ -2253,7 +2256,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.RelocateModels(Models: POrderedSet; ATarget: PModel);
+procedure PCommandExecutor.RelocateModels(Models: PModelOrderedSet; ATarget: PModel);
 var
   Cmd: PRelocateModelsCommand;
 begin
@@ -2270,7 +2273,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.ChangeModelsStereotype(Models: POrderedSet; AStereotypeProfile: string; AStereotype: string);
+procedure PCommandExecutor.ChangeModelsStereotype(Models: PModelOrderedSet; AStereotypeProfile: string; AStereotype: string);
 var
   Cmd: PChangeModelsStereotypeCommand;
 begin
@@ -2546,7 +2549,7 @@ begin
   end;
 end;
 
-function PCommandExecutor.ApplyGeneralNameExpression(Models: POrderedSet; Value: string; var Msg: string): Boolean;
+function PCommandExecutor.ApplyGeneralNameExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
 var
   Cmd: PApplyGeneralNameExpressionCommand;
 begin
@@ -2561,7 +2564,7 @@ begin
   end;
 end;
 
-function PCommandExecutor.ApplyClassifierRoleExpression(Models: POrderedSet; Value: string; var Msg: string): Boolean;
+function PCommandExecutor.ApplyClassifierRoleExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
 var
   Cmd: PApplyClassifierRoleExpressionCommand;
 begin
@@ -2576,7 +2579,7 @@ begin
   end;
 end;
 
-function PCommandExecutor.ApplyObjectExpression(Models: POrderedSet; Value: string; var Msg: string): Boolean;
+function PCommandExecutor.ApplyObjectExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
 var
   Cmd: PApplyObjectExpressionCommand;
 begin
@@ -2591,7 +2594,7 @@ begin
   end;
 end;
 
-function PCommandExecutor.ApplyAttributeExpression(Models: POrderedSet; Value: string; var Msg: string): Boolean;
+function PCommandExecutor.ApplyAttributeExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
 var
   Cmd: PApplyAttributeExpressionCommand;
 begin
@@ -2606,7 +2609,7 @@ begin
   end;
 end;
 
-function PCommandExecutor.ApplyOperationExpression(Models: POrderedSet; Value: string; var Msg: string): Boolean;
+function PCommandExecutor.ApplyOperationExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
 var
   Cmd: PApplyOperationExpressionCommnad;
 begin
@@ -2624,7 +2627,7 @@ begin
   end;
 end;
 
-function PCommandExecutor.ApplyMessageExpression(Models: POrderedSet; Value: string; var Msg: string): Boolean;
+function PCommandExecutor.ApplyMessageExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
 var
   Cmd: PApplyMessageExpressionCommnad;
 begin
@@ -2657,7 +2660,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.MoveViews(ADiagramView: PDiagramView; Views: POrderedSet; DX, DY: Integer);
+procedure PCommandExecutor.MoveViews(ADiagramView: PDiagramView; Views: PViewOrderedSet; DX, DY: Integer);
 var
   Cmd: PMoveViewsCommand;
 begin
@@ -2751,7 +2754,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.ChangeViewsAttribute(Views: POrderedSet; Key: string; Value: string);
+procedure PCommandExecutor.ChangeViewsAttribute(Views: PViewOrderedSet; Key: string; Value: string);
 var
   Cmd: PChangeViewsAttributeCommand;
 begin
@@ -2766,7 +2769,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.ChangeViewsLineColor(Views: POrderedSet; LineColor: TColor);
+procedure PCommandExecutor.ChangeViewsLineColor(Views: PViewOrderedSet; LineColor: TColor);
 var
   Cmd: PChangeViewsLineColorCommand;
 begin
@@ -2781,7 +2784,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.ChangeViewsFillColor(Views: POrderedSet; FillColor: TColor);
+procedure PCommandExecutor.ChangeViewsFillColor(Views: PViewOrderedSet; FillColor: TColor);
 var
   Cmd: PChangeViewsFillColorCommand;
 begin
@@ -2796,7 +2799,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.ChangeViewsFont(Views: POrderedSet; Font: TFont; AChangedFontItems: PFontItemKinds);
+procedure PCommandExecutor.ChangeViewsFont(Views: PViewOrderedSet; Font: TFont; AChangedFontItems: PFontItemKinds);
 var
   Cmd: PChangeViewsFontCommand;
 begin
@@ -2811,7 +2814,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.ChangeEdgesLineStyle(Views: POrderedSet; LineStyle: PLineStyleKind);
+procedure PCommandExecutor.ChangeEdgesLineStyle(Views: PViewOrderedSet; LineStyle: PLineStyleKind);
 var
   Cmd: PChangeEdgesLineStyleCommand;
 begin
@@ -2826,7 +2829,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.ChangeNoteViewStrings(Views: POrderedSet; Strs: string);
+procedure PCommandExecutor.ChangeNoteViewStrings(Views: PViewOrderedSet; Strs: string);
 var
   Cmd: PChangeNoteViewStringsCommand;
 begin
@@ -2841,7 +2844,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.SendToBackViews(Views: POrderedSet);
+procedure PCommandExecutor.SendToBackViews(Views: PViewOrderedSet);
 var
   Cmd: PSendToBackViewsCommand;
 begin
@@ -2856,7 +2859,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.BringToFrontViews(Views: POrderedSet);
+procedure PCommandExecutor.BringToFrontViews(Views: PViewOrderedSet);
 var
   Cmd: PBringToFrontViewsCommand;
 begin
@@ -2871,7 +2874,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.AlignViews(Views: POrderedSet; AlignmentKind: PAlignmentKind);
+procedure PCommandExecutor.AlignViews(Views: PViewOrderedSet; AlignmentKind: PAlignmentKind);
 var
   Cmd: PAlignViewsCommand;
 begin
@@ -2901,7 +2904,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.MoveViewsChangeContainer(ADiagramView: PDiagramView; Views: POrderedSet; DX, DY: Integer; AContainerView: PView = nil);
+procedure PCommandExecutor.MoveViewsChangeContainer(ADiagramView: PDiagramView; Views: PViewOrderedSet; DX, DY: Integer; AContainerView: PView = nil);
 {
 var
   Cmd: PMoveViewsChangeContainerCommand;
@@ -2990,7 +2993,7 @@ end;
 constructor PAbstractCommand.Create;
 begin
   inherited;
-  FSizePreservingViews := POrderedViewSet.Create;
+  FSizePreservingViews := PViewOrderedSet.Create;
   FWidthArray := TStringList.Create;
   FHeightArray := TStringList.Create;
 end;
@@ -3075,7 +3078,7 @@ begin
   SizePreservingViews.Add(V);
 end;
 
-procedure PAbstractCommand.CollectSizesFromModelSet(AModelSet: POrderedSet);
+procedure PAbstractCommand.CollectSizesFromModelSet(AModelSet: PModelOrderedSet);
 var
   I: Integer;
 begin
@@ -3083,7 +3086,7 @@ begin
     CollectSizesFromModel(AModelSet.Items[I] as PModel);
 end;
 
-procedure PAbstractCommand.CollectSizesFromViewSet(AViewSet: POrderedSet);
+procedure PAbstractCommand.CollectSizesFromViewSet(AViewSet: PViewOrderedSet);
 var
   I: Integer;
 begin
@@ -3100,8 +3103,8 @@ end;
 constructor PAbstractCreateDeleteElementsCommand.Create;
 begin
   inherited;
-  FModelSet := POrderedSet.Create;
-  FViewSet := POrderedSet.Create;
+  FModelSet := PModelOrderedSet.Create;
+  FViewSet := PViewOrderedSet.Create;
   FModelReferences := POrderedSet.Create;
   FViewReferences := POrderedSet.Create;
   FModelMementos := TList.Create;
@@ -3275,7 +3278,7 @@ end;
 constructor PAbstractChangeModelsCommand.Create;
 begin
   inherited;
-  FModelSet := POrderedSet.Create;
+  FModelSet := PModelOrderedSet.Create;
 end;
 
 destructor PAbstractChangeModelsCommand.Destroy;
@@ -3298,7 +3301,7 @@ end;
 constructor PAbstractChangeViewsCommand.Create;
 begin
   inherited;
-  FViewSet := POrderedSet.Create;
+  FViewSet := PViewOrderedSet.Create;
   FSizePreservingViews := POrderedSet.Create;
   FWidthArray := TStringList.Create;
   FHeightArray := TStringList.Create;
@@ -3327,8 +3330,8 @@ end;
 constructor PAbstractChangeModelsViewsCommand.Create;
 begin
   inherited;
-  FModelSet := POrderedSet.Create;
-  FViewSet := POrderedSet.Create;
+  FModelSet := PModelOrderedSet.Create;
+  FViewSet := PViewOrderedSet.Create;
 end;
 
 destructor PAbstractChangeModelsViewsCommand.Destroy;
@@ -4240,7 +4243,7 @@ begin
   Result := not (ViewSet.IsEmpty);
 end;
 
-procedure PNewViewsByCopyPasteCommand.SetParameter(Views: POrderedSet; Target: PDiagramView);
+procedure PNewViewsByCopyPasteCommand.SetParameter(Views: PViewOrderedSet; Target: PDiagramView);
 var
   I, J: Integer;
   AView: PView;
@@ -4257,7 +4260,9 @@ begin
       ANodeView := AView as PNodeView;
       ANodeView.Left := ANodeView.Left + 10;
       ANodeView.Top := ANodeView.Top + 10;
-    end else if AView is PEdgeView then begin
+      ComplementEdgeViews(Target, AView);
+    end
+    else if AView is PEdgeView then begin
       AEdgeView := AView as PEdgeView;
       for J := 0 to AEdgeView.Points.Count - 1 do begin
         Point := AEdgeView.Points.Points[J];
@@ -4266,9 +4271,11 @@ begin
       end;
     end;
     Target.AddOwnedView(AView);
-    AView.Selected := True;
+    //AView.Selected := True;
     ViewSet.Add(AView);
-  end;
+    if AView <> nil then
+      ComplementEdgeViews(Target, AView);
+  end; // End of for
 end;
 
 // PNewViewsByCopyPasteCommand
@@ -4297,7 +4304,7 @@ begin
   Result := (ModelSet.Count + ViewSet.Count) > 0;
 end;
 
-procedure PDeleteElementsCommand.SetParameter(AModelSet, AViewSet: POrderedSet);
+procedure PDeleteElementsCommand.SetParameter(AModelSet: PModelOrderedSet; AViewSet: PViewOrderedSet);
 var
   I, Idx: Integer;
   R, OtherSide: PMetaAssociationEnd;
@@ -4471,7 +4478,7 @@ begin
   ModelsChanged;
 end;
 
-procedure PChangeModelsAttributeCommand.SetParameter(AModelSet: POrderedSet; AKey: string; ANewValue: string);
+procedure PChangeModelsAttributeCommand.SetParameter(AModelSet: PModelOrderedSet; AKey: string; ANewValue: string);
 var
   I: Integer;
   M: PModel;
@@ -4545,7 +4552,7 @@ begin
   ModelsChanged;
 end;
 
-procedure PChangeModelsReferenceCommand.SetParameter(AModelSet: POrderedSet; AKey: string; ANewValue: PModel);
+procedure PChangeModelsReferenceCommand.SetParameter(AModelSet: PModelOrderedSet; AKey: string; ANewValue: PModel);
 var
   I: Integer;
   M: PModel;
@@ -4608,7 +4615,7 @@ var
   I: Integer;
 begin
   ModelSet.Clear;
-  ModelSet.Add(AElement);
+  ModelSet.Add(AElement as PModel);
   Element := AElement;
   Key := AKey;
   // preserve collection's items
@@ -4645,7 +4652,7 @@ end;
 procedure PAddCollectionItemCommand.SetParameter(AElement: PElement; AKey: string; AValue: PElement);
 begin
   ModelSet.Clear;
-  ModelSet.Add(AElement);
+  ModelSet.Add(AElement as PModel);
   Element := AElement;
   Key := AKey;
   Value := AValue;
@@ -4679,7 +4686,7 @@ end;
 procedure PRemoveCollectionItemCommand.SetParameter(AElement: PElement; AKey: string; AValue: PElement);
 begin
   ModelSet.Clear;
-  ModelSet.Add(AElement);
+  ModelSet.Add(AElement as PModel);
   Element := AElement;
   Key := AKey;
   Value := AValue;
@@ -4713,7 +4720,7 @@ end;
 procedure PInsertCollectionItemCommand.SetParameter(AElement: PElement; AKey: string; AIndex: Integer; AValue: PElement);
 begin
   ModelSet.Clear;
-  ModelSet.Add(AElement);
+  ModelSet.Add(AElement as PModel);
   Element := AElement;
   Key := AKey;
   Value := AValue;
@@ -4748,7 +4755,7 @@ end;
 procedure PDeleteCollectionItemCommand.SetParameter(AElement: PElement; AKey: string; AIndex: Integer);
 begin
   ModelSet.Clear;
-  ModelSet.Add(AElement);
+  ModelSet.Add(AElement as PModel);
   Element := AElement;
   Key := AKey;
   Index := AIndex;
@@ -4785,7 +4792,7 @@ end;
 procedure PChangeCollectionItemOrderCommand.SetParameter(AElement: PElement; ACollectionItem: PElement; AKey: string; ANewIndex: Integer);
 begin
   ModelSet.Clear;
-  ModelSet.Add(AElement);
+  ModelSet.Add(AElement as PModel);
   Element := AElement;
   FCollectionItem := ACollectionItem;
   Key := AKey;
@@ -5039,7 +5046,7 @@ begin
   Result := not ((DX = 0) and (DY = 0));
 end;
 
-procedure PMoveViewsCommand.SetParameter(ADiagramView: PDiagramView; AViewSet: POrderedSet; ADX, ADY: Integer);
+procedure PMoveViewsCommand.SetParameter(ADiagramView: PDiagramView; AViewSet: PViewOrderedSet; ADX, ADY: Integer);
 var
   V: PView;
   E: PEdgeView;
@@ -5269,7 +5276,7 @@ begin
   ViewsChanged;
 end;
 
-procedure PChangeViewsAttributeCommand.SetParameter(AViewSet: POrderedSet; AKey: string; ANewValue: string);
+procedure PChangeViewsAttributeCommand.SetParameter(AViewSet: PViewOrderedSet; AKey: string; ANewValue: string);
 var
   I: Integer;
   V: PView;
@@ -5313,7 +5320,7 @@ begin
   Result := not ViewSet.IsEmpty;
 end;
 
-procedure PChangeViewsLineColorCommand.SetParameter(AViewSet: POrderedSet; ANewLineColor: TColor);
+procedure PChangeViewsLineColorCommand.SetParameter(AViewSet: PViewOrderedSet; ANewLineColor: TColor);
 var
   I: Integer;
 begin
@@ -5373,7 +5380,7 @@ begin
   Result := not ViewSet.IsEmpty;
 end;
 
-procedure PChangeViewsFillColorCommand.SetParameter(AViewSet: POrderedSet; ANewFillColor: TColor);
+procedure PChangeViewsFillColorCommand.SetParameter(AViewSet: PViewOrderedSet; ANewFillColor: TColor);
 var
   I: Integer;
 begin
@@ -5432,7 +5439,7 @@ begin
   inherited;
 end;
 
-procedure PChangeViewsFontCommand.StoreOldFonts(AViewSet: POrderedSet);
+procedure PChangeViewsFontCommand.StoreOldFonts(AViewSet: PViewOrderedSet);
 var
   I: Integer;
   F: TFont;
@@ -5462,7 +5469,7 @@ begin
   StoreViewSizes;
 end;
 
-procedure PChangeViewsFontCommand.SetParameter(AViewSet: POrderedSet; ANewFont: TFont; AChangedFontItems: PFontItemKinds);
+procedure PChangeViewsFontCommand.SetParameter(AViewSet: PViewOrderedSet; ANewFont: TFont; AChangedFontItems: PFontItemKinds);
 begin
   ViewSet.Assign(AViewSet);
   NewFont.Assign(ANewFont);
@@ -5554,7 +5561,7 @@ begin
   Result := not ViewSet.IsEmpty;
 end;
 
-procedure PChangeEdgesLineStyleCommand.SetParameter(AEdgeSet: POrderedSet; ANewLineStyle: PLineStyleKind);
+procedure PChangeEdgesLineStyleCommand.SetParameter(AEdgeSet: PViewOrderedSet; ANewLineStyle: PLineStyleKind);
 var
   I: Integer;
   E: PEdgeView;
@@ -5622,7 +5629,7 @@ begin
   StoreViewSizes;
 end;
 
-procedure PChangeNoteViewStringsCommand.SetParameter(Views: POrderedSet; Strs: string);
+procedure PChangeNoteViewStringsCommand.SetParameter(Views: PViewOrderedSet; Strs: string);
 var
   AView: PUMLCustomTextView;
 begin
@@ -5697,12 +5704,10 @@ end;
 // - declares this function in global
 // - to use this function in POrderedSet.Sort's Compare function
 // -----------------------------------------------------------------------------
-function CompareIndex(Item1, Item2: Pointer): Integer;
+function CompareIndex(const V1, V2: PView): Integer;
 var
-  V1, V2: PView;
   VI1, VI2: Integer;
 begin
-  V1 := Item1; V2 := Item2;
   VI1 := V1.OwnerDiagramView.IndexOfOwnedView(V1);
   VI2 := V2.OwnerDiagramView.IndexOfOwnedView(V2);
   if VI1 < VI2 then
@@ -5713,7 +5718,7 @@ begin
     Result := 0;
 end;
 
-procedure PSendToBackViewsCommand.SetParameter(Views: POrderedSet);
+procedure PSendToBackViewsCommand.SetParameter(Views: PViewOrderedSet);
 var
   I: Integer;
   V: PView;
@@ -5724,7 +5729,7 @@ begin
     V := Views.Items[I] as PView;
     if V.OwnerDiagramView <> nil then ViewSet.Add(V);
   end;
-  ViewSet.Sort(CompareIndex);
+  ViewSet.Sort(TComparer<PView>.Construct(CompareIndex));
   // preserve indices of views
   OldIndices.Clear;
   for I := 0 to ViewSet.Count - 1 do begin
@@ -5787,7 +5792,7 @@ begin
   Result := not ViewSet.IsEmpty;
 end;
 
-procedure PBringToFrontViewsCommand.SetParameter(Views: POrderedSet);
+procedure PBringToFrontViewsCommand.SetParameter(Views: PViewOrderedSet);
 var
   I: Integer;
   V: PView;
@@ -5798,7 +5803,7 @@ begin
     V := Views.Items[I] as PView;
     if V.OwnerDiagramView <> nil then ViewSet.Add(V);
   end;
-  ViewSet.Sort(CompareIndex);
+  ViewSet.Sort(TComparer<PView>.Construct(CompareIndex));
   // preserve views indices
   OldIndices.Clear;
   for I := 0 to ViewSet.Count - 1 do begin
@@ -5861,7 +5866,7 @@ begin
   Result := not ViewSet.IsEmpty;
 end;
 
-procedure PAlignViewsCommand.SetParameter(Views: POrderedSet; Alignment: PAlignmentKind);
+procedure PAlignViewsCommand.SetParameter(Views: PViewOrderedSet; Alignment: PAlignmentKind);
 var
   I: Integer;
   V: PView;
@@ -5883,11 +5888,13 @@ end;
 // - declare this function for global function to use for comapre function
 // - in POrderedSet.Sort
 // -----------------------------------------------------------------------------
-function CompareXPosition(Item1, Item2: Pointer): Integer;
+function CompareXPosition(const Item1, Item2: PView): Integer;
 var
   N1, N2: PNodeView;
 begin
-  N1 := Item1; N2 := Item2;
+  N1 := Item1 as PNodeView;
+  N2 := Item2 as PNodeView;
+
   if N1.Left < N2.Left then
     Result := -1
   else if N1.Left > N2.Left then
@@ -5901,11 +5908,13 @@ end;
 // - declare this function for global function to use for comapre function
 // - in POrderedSet.Sort
 // -----------------------------------------------------------------------------
-function CompareYPosition(Item1, Item2: Pointer): Integer;
+function CompareYPosition(const Item1, Item2: PView): Integer;
 var
   N1, N2: PNodeView;
 begin
-  N1 := Item1; N2 := Item2;
+  N1 := Item1 as PNodeView;
+  N2 := Item2 as PNodeView;
+
   if N1.Top < N2.Top then
     Result := -1
   else if N1.Top > N2.Top then
@@ -5918,9 +5927,10 @@ procedure PAlignViewsCommand.Reexecute;
 var
   I, V: Integer;
   Node: PNodeView;
-  TempSet: POrderedSet;
+  TempSet: PViewOrderedSet;
+  View: TObject;
 
-  function GetLeftMost(Nodes: POrderedSet): Integer;
+  function GetLeftMost(Nodes: PViewOrderedSet): Integer;
   var
     I, R: Integer;
   begin
@@ -5934,7 +5944,7 @@ var
     Result := R;
   end;
 
-  function GetRightMost(Nodes: POrderedSet): Integer;
+  function GetRightMost(Nodes: PViewOrderedSet): Integer;
   var
     I, R: Integer;
   begin
@@ -5948,7 +5958,7 @@ var
     Result := R;
   end;
 
-  function GetTopMost(Nodes: POrderedSet): Integer;
+  function GetTopMost(Nodes: PViewOrderedSet): Integer;
   var
     I, R: Integer;
   begin
@@ -5962,7 +5972,7 @@ var
     Result := R;
   end;
 
-  function GetBottomMost(Nodes: POrderedSet): Integer;
+  function GetBottomMost(Nodes: PViewOrderedSet): Integer;
   var
     I, R: Integer;
   begin
@@ -5976,7 +5986,7 @@ var
     Result := R;
   end;
 
-  function GetHorzInterval(Nodes: POrderedSet): Integer;
+  function GetHorzInterval(Nodes: PViewOrderedSet): Integer;
   var
     I, S: Integer;
   begin
@@ -5986,7 +5996,7 @@ var
     Result := ((GetRightMost(Nodes) - GetLeftMost(Nodes)) - S) div (Nodes.Count - 1);
   end;
 
-  function GetVertInterval(Nodes: POrderedSet): Integer;
+  function GetVertInterval(Nodes: PViewOrderedSet): Integer;
   var
     I, S: Integer;
   begin
@@ -6041,9 +6051,9 @@ begin
       end;
     end;
     akSpaceEvenlyHorizontally: begin
-      TempSet := POrderedSet.Create;
+      TempSet := PViewOrderedSet.Create;
       TempSet.Assign(ViewSet);
-      TempSet.Sort(CompareXPosition);
+      TempSet.Sort(TComparer<PView>.Construct(CompareXPosition));
       V := GetHorzInterval(TempSet);
       for I := 1 to TempSet.Count - 1 do begin
         Node := TempSet.Items[I] as PNodeView;
@@ -6052,9 +6062,9 @@ begin
       TempSet.Free;
     end;
     akSpaceEvenlyVertically: begin
-      TempSet := POrderedSet.Create;
+      TempSet := PViewOrderedSet.Create;
       TempSet.Assign(ViewSet);
-      TempSet.Sort(CompareYPosition);
+      TempSet.Sort(TComparer<PView>.Construct(CompareYPosition));
       V := GetVertInterval(TempSet);
       for I := 1 to TempSet.Count - 1 do begin
         Node := TempSet.Items[I] as PNodeView;
@@ -6251,7 +6261,7 @@ begin
   end;
 end;
 
-procedure PAbstractApplyExpressionCommand.SetParameter(AModelSet: POrderedSet; Value: string);
+procedure PAbstractApplyExpressionCommand.SetParameter(AModelSet: PModelOrderedSet; Value: string);
 var
   B: Boolean;
 begin
@@ -6300,7 +6310,7 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 // PApplyGeneralNameExpressionCommand
 
-procedure PApplyGeneralNameExpressionCommand.SetParameter(AModelSet: POrderedSet; Value: string);
+procedure PApplyGeneralNameExpressionCommand.SetParameter(AModelSet: PModelOrderedSet; Value: string);
 var
   AParser: PGeneralNameExpressionParser;
   R: PParseStatus;
@@ -6371,7 +6381,7 @@ begin
   Result := B;
 end;
 
-procedure PApplyClassifierRoleExpressionCommand.SetParameter(AModelSet: POrderedSet; Value: string);
+procedure PApplyClassifierRoleExpressionCommand.SetParameter(AModelSet: PModelOrderedSet; Value: string);
 var
   AParser: PClassifierRoleExpressionParser;
   TempModel: PModel;
@@ -6467,7 +6477,7 @@ begin
   Result := B;
 end;
 
-procedure PApplyObjectExpressionCommand.SetParameter(AModelSet: POrderedSet; Value: string);
+procedure PApplyObjectExpressionCommand.SetParameter(AModelSet: PModelOrderedSet; Value: string);
 var
   AParser: PObjectExpressionParser;
   TempModel: PModel;
@@ -6572,7 +6582,7 @@ begin
   Result := B;
 end;
 
-procedure PApplyAttributeExpressionCommand.SetParameter(AModelSet: POrderedSet; Value: string);
+procedure PApplyAttributeExpressionCommand.SetParameter(AModelSet: PModelOrderedSet; Value: string);
 var
   AParser: PAttributeExpressionParser;
   TypeExpression: string;
@@ -6698,8 +6708,8 @@ end;
 constructor PApplyOperationExpressionCommnad.Create;
 begin
   inherited;
-  FOldParameters := POrderedSet.Create;
-  FNewParameters := POrderedSet.Create;
+  FOldParameters := PModelOrderedSet.Create;
+  FNewParameters := PModelOrderedSet.Create;
   FIsParameterChanged := False;
   FViewSet.Clear;
 end;
@@ -6815,7 +6825,7 @@ begin
   if Assigned(FOnElementsDeleted) then FOnElementsDeleted(Self);
 end;
 
-procedure PApplyOperationExpressionCommnad.SetParameter(AModelSet: POrderedSet; Value: string);
+procedure PApplyOperationExpressionCommnad.SetParameter(AModelSet: PModelOrderedSet; Value: string);
 var
   AModel: PModel;
   AParser: POperationExpressionParser;
@@ -7034,7 +7044,7 @@ begin
   Result := B;
 end;
 
-procedure PApplyMessageExpressionCommnad.SetParameter(AModelSet: POrderedSet; Value: string);
+procedure PApplyMessageExpressionCommnad.SetParameter(AModelSet: PModelOrderedSet; Value: string);
 var
   AMessage: PUMLMessage;
   AStimulus: PUMLStimulus;
@@ -7342,7 +7352,7 @@ begin
   StoreViewSizes;
 end;
 
-procedure PRelocateModelsCommand.SetParameter(AModelSet: POrderedSet; ContainerModel: PModel);
+procedure PRelocateModelsCommand.SetParameter(AModelSet: PModelOrderedSet; ContainerModel: PModel);
 var
   I: Integer;
   R: PMetaAssociationEnd;
@@ -8360,7 +8370,7 @@ end;
 constructor PMoveViewsChaningContainerViewCommand.Create;
 begin
   inherited;
-  FViewSet := POrderedSet.Create;
+  FViewSet := PViewOrderedSet.Create;
   ViewTable := PTable.Create(['View', 'OldContainer', 'OldIdx', 'OldLeft', 'OldTop', 'NewContainer']);
 end;
 
@@ -8390,10 +8400,10 @@ begin
     end;
 end;
 
-procedure PMoveViewsChaningContainerViewCommand.SetParameter(ADiagramView: PDiagramView; AViewSet: POrderedSet; ADX, ADY: Integer; AContainerView: PView);
+procedure PMoveViewsChaningContainerViewCommand.SetParameter(ADiagramView: PDiagramView; AViewSet: PViewOrderedSet; ADX, ADY: Integer; AContainerView: PView);
 var
   I: Integer;
-  TempSet: POrderedSet;
+  TempSet: PModelOrderedSet;
   V, OldContainer, NewContainer: PView;
   OldOwnerView, NewOwnerView: PView;
   OldIdx, OldLeft, OldTop: Integer;
@@ -8409,7 +8419,7 @@ var
 
 begin
   // Setting Models to be relocated.
-  TempSet := POrderedSet.Create;
+  TempSet := PModelOrderedSet.Create;
   TempSet.Clear;
   try
     for I := 0 to AViewSet.Count - 1 do
@@ -8544,7 +8554,7 @@ begin
   StoreViewSizes;
 end;
 
-procedure PChangeModelsStereotypeCommand.SetParameter(AModelSet: POrderedSet; ANewProfile: string; ANewStereotype: string);
+procedure PChangeModelsStereotypeCommand.SetParameter(AModelSet: PModelOrderedSet; ANewProfile: string; ANewStereotype: string);
 var
   M: PExtensibleModel;
   S: PStereotype;
@@ -8615,8 +8625,8 @@ end;
 constructor PAbstractChangeCreateDeleteElementsCommand.Create;
 begin
   inherited;
-  FChangingModels := POrderedSet.Create;
-  FChangingViews := POrderedSet.Create;
+  FChangingModels := PModelOrderedSet.Create;
+  FChangingViews := PViewOrderedSet.Create;
 end;
 
 destructor PAbstractChangeCreateDeleteElementsCommand.Destroy;
@@ -8645,8 +8655,8 @@ end;
 constructor PAbstractChangeCreateElementsCommand.Create;
 begin
   inherited;
-  FChangingModels := POrderedSet.Create;
-  FChangingViews := POrderedSet.Create;
+  FChangingModels := PModelOrderedSet.Create;
+  FChangingViews := PViewOrderedSet.Create;
 end;
 
 destructor PAbstractChangeCreateElementsCommand.Destroy;

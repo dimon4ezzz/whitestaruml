@@ -94,6 +94,8 @@ type
     function GetPredefinedInteractionItem(Name: String): TNavBarItem; virtual; abstract;
     procedure SetActiveGroup(Group: TNavBarGroup); virtual; abstract;
     procedure SetSharedComponents(ActionProc: PActionProcessor; ImageList: TImageList);
+    procedure SingleUseItemSelected; virtual; abstract;
+    procedure MultipleUseItemSelected; virtual; abstract;
     property Groups: TInteractionGroups read GetGroups;
     property OnPaletteChanged: TNotifyEvent read FOnPaletteChanged write FOnPaletteChanged;
     property OnHandlerButtonClicked: TNotifyEvent read FOnHandlerButtonClicked write FOnHandlerButtonClicked;

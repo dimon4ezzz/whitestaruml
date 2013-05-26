@@ -1171,7 +1171,7 @@ procedure TCollectionEditorForm.UpdateRelationsListView(AModel: PModel; AListVie
       for I := 0 to (AModel as PUMLFeature).ConnectorEndCount - 1 do
         AList.Add((AModel as PUMLFeature).ConnectorEnds[I].Connector);
     end;
-  end;
+  end; // End of inner procedure CollectRelations
 
 var
   M: PUMLElement;
