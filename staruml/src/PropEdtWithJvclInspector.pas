@@ -163,7 +163,7 @@ begin
     FElemsHolder.AddElem(Result);
     with Result.Item do
     begin
-      Flags := Result.Item.Flags + AFlags;
+      Flags := Flags + AFlags;
       DisplayName := P.Caption;
       ReadOnly := FReadOnly;
 
@@ -180,8 +180,13 @@ end;
 
 function TPropertyEditorWithJvclInspector.SetUpTextButtonRow
   (SuperNode: TJvInspectorCustomCategoryItem; P:PProperty): TJvInspectorElemBase;
+var
+  ItemFlags: TInspectorItemFlags;
 begin
-  Result := SetUpTextRow(SuperNode,P,[iifEditButton,iifEditFixed]);
+  ItemFlags := [iifEditButton];
+  if not P.RowEditable then
+     ItemFlags := ItemFlags + [iifEditFixed];
+  Result := SetUpTextRow(SuperNode,P,ItemFlags);
 end;
 
 function TPropertyEditorWithJvclInspector.SetUpChoiceRow(SuperNode: TJvInspectorCustomCategoryItem;
