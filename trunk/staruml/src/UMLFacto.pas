@@ -319,6 +319,7 @@ var
   OptionShowSequenceNumber: Boolean;
   OptionMessageSignature: PUMLMessageSignatureKind;
   OptionShowActivation: Boolean;
+  OptionWordWrapByDefault: Boolean;
 
   // UMLFactory Instance
   UMLFactory: PUMLFactory;
@@ -2053,36 +2054,45 @@ begin
       V.MOF_SetAttribute('SuppressAttributes', BooleanToString(OptionSuppressAttributes));
     if V.MetaClass.ExistsAttribute('SuppressOperations') then
       V.MOF_SetAttribute('SuppressOperations', BooleanToString(OptionSuppressOperations));
+    if V.MetaClass.ExistsAttribute('WordWrap') then
+      V.MOF_SetAttribute('WordWrap', BooleanToString(OptionWordWrapByDefault));
+
     if V is PUMLEnumerationView then
       V.MOF_SetAttribute('SuppressLiterals', BooleanToString(OptionEnumerationSuppressLiterals));
+
     if V is PUMLActorView then
     begin
       V.MOF_SetAttribute('StereotypeDisplay', UMLStereotypeDisplayKindToString(OptionActorStereotypeDisplay));
       V.MOF_SetAttribute('SuppressAttributes', BooleanToString(OptionActorSuppressAttributes));
       V.MOF_SetAttribute('SuppressOperations', BooleanToString(OptionActorSuppressOperations));
     end;
+
     if V is PUMLUseCaseView then
     begin
       V.MOF_SetAttribute('StereotypeDisplay', UMLStereotypeDisplayKindToString(OptionUseCaseStereotypeDisplay));
       V.MOF_SetAttribute('SuppressAttributes', BooleanToString(OptionUseCaseSuppressAttributes));
       V.MOF_SetAttribute('SuppressOperations', BooleanToString(OptionUseCaseSuppressOperations));
     end;
+
     if V is PUMLInterfaceView then
     begin
       V.MOF_SetAttribute('StereotypeDisplay', UMLStereotypeDisplayKindToString(OptionInterfaceStereotypeDisplay));
       V.MOF_SetAttribute('SuppressAttributes', BooleanToString(OptionInterfaceSuppressAttributes));
       V.MOF_SetAttribute('SuppressOperations', BooleanToString(OptionInterfaceSuppressOperations));
     end;
+
     if V is PUMLArtifactView then
     begin
       V.MOF_SetAttribute('StereotypeDisplay', UMLStereotypeDisplayKindToString(OptionArtifactStereotypeDisplay));
       V.MOF_SetAttribute('SuppressAttributes', BooleanToString(OptionArtifactSuppressAttributes));
       V.MOF_SetAttribute('SuppressOperations', BooleanToString(OptionArtifactSuppressOperations));
     end;
+
     if (V is PUMLComponentView) or (V is PUMLComponentInstanceView) then
     begin
       V.MOF_SetAttribute('StereotypeDisplay', UMLStereotypeDisplayKindToString(OptionComponentStereotypeDisplay));
     end;
+
     if (V is PUMLNodeView) or (V is PUMLNodeInstanceView) then
     begin
       V.MOF_SetAttribute('StereotypeDisplay', UMLStereotypeDisplayKindToString(OptionNodeStereotypeDisplay));
@@ -2510,6 +2520,7 @@ initialization
   OptionShowSequenceNumber := True;
   OptionShowActivation := True;
   OptionMessageSignature := mskNameAndType;
+  OptionWordWrapByDefault := False;
   // Create UMLFactory instance
   UMLFactory := PUMLFactory.Create;
 finalization
