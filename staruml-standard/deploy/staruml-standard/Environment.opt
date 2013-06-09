@@ -282,6 +282,12 @@
            <DESCRIPTION>Specifies whether to suppress the operations for class type view elements.</DESCRIPTION>
            <DEFAULTVALUE>False</DEFAULTVALUE>
         </OPTIONITEM-BOOLEAN>
+        
+        <OPTIONITEM-BOOLEAN key="WORD_WRAP_BY_DEFAULT">
+           <CAPTION>Word Wrap by default</CAPTION>
+           <DESCRIPTION>Specifies whether Word Wrap is set by default.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
 
       </OPTIONCLASSIFICATION>
     </OPTIONCATEGORY>    
