@@ -199,6 +199,8 @@ type
     procedure TasksGridEnter(Sender: TObject);
     procedure TasksGridExit(Sender: TObject);
     procedure TasksGridSelectCell(Sender: TObject; ACol, ARow: Integer);
+    procedure TasksGridAfterSort(Sender: TObject; ACol: Integer);
+    procedure ExecTasksGridAfterSort(Sender: TObject; ACol: Integer);
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -695,15 +697,18 @@ var
   TaskInfoForm: TTaskInformationForm;
   T: PTask;
 begin
-  T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
-  Assert(T <> nil);
-  TaskInfoForm := TTaskInformationForm.Create(Self);
-  try
-    TaskInfoForm.StarUMLApp := FStarUMLApp;
-    TaskInfoForm.Task := T;
-    TaskInfoForm.Execute(True);
-  finally
-    TaskInfoForm.Free;
+
+  if TasksGrid.SelectedRow > -1 then begin
+    T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
+    Assert(T <> nil);
+    TaskInfoForm := TTaskInformationForm.Create(Self);
+    try
+      TaskInfoForm.StarUMLApp := FStarUMLApp;
+      TaskInfoForm.Task := T;
+      TaskInfoForm.Execute(True);
+    finally
+      TaskInfoForm.Free;
+    end;
   end;
 end;
 
@@ -920,15 +925,17 @@ procedure TPieForm.ExecuteDocument;
 var
   S: string;
 begin
-  S := ExecTasksGrid.CellByName[COL_EXEC_FULL_PATH, ExecTasksGrid.SelectedRow].AsString;
-  if S <> '' then
-    try
-      ExecuteFile(S);
-    except
-      on E: Exception do begin
-        ErrorMessage(Format(ERR_CANNOT_OPEN_FILE, [ExtractFileName(S), E.Message]));
-      end;          
-    end;
+  if ExecTasksGrid.SelectedRow > -1 then begin
+    S := ExecTasksGrid.CellByName[COL_EXEC_FULL_PATH, ExecTasksGrid.SelectedRow].AsString;
+    if S <> '' then
+      try
+        ExecuteFile(S);
+      except
+        on E: Exception do begin
+          ErrorMessage(Format(ERR_CANNOT_OPEN_FILE, [ExtractFileName(S), E.Message]));
+        end;
+      end;
+  end;
 end;
 
 procedure TPieForm.HandleLog(Sender: TObject; Msg: string; MsgKind: LogMessageKind);
@@ -1392,23 +1399,26 @@ begin
   end;
 end;
 
+procedure TPieForm.TasksGridAfterSort(Sender: TObject; ACol: Integer);
+begin
+  TasksGrid.Refresh;
+end;
+
 procedure TPieForm.TasksGridCellClick(Sender: TObject; ACol, ARow: Integer);
 begin
   ShowTaskDescription;
   if (TasksGrid.Columns.Item[ACol] = PreviewColumn)
     and (TasksGrid.CellByName[COL_PREVIEW, ARow].AsInteger <> -1) then begin
-    PreviewTemplate;
+     PreviewTemplate;
+     TasksGrid.Refresh;
   end
   else if TasksGrid.Columns.Item[ACol] = ParametersColumn then begin
+    UpdateUIStates;
     EditTaskParameters;
+    TasksGrid.Refresh;
   end;
 
-  //UpdateTasksGrid;
-  //TasksGrid.Refresh;
-  //UpdateUIStates;
-  //if Sender is TNxCustomGridControl then
-  //  (Sender as TNxCustomGridControl).RefreshCell(ACol, ARow);
-end;
+ end;
 
 procedure TPieForm.BatchPageControlChange(Sender: TObject);
 begin
@@ -1495,6 +1505,11 @@ procedure TPieForm.DirectMDAWizardCancelButtonClick(Sender: TObject);
 begin
   if InGenerating then
     AbortGeneration;
+end;
+
+procedure TPieForm.ExecTasksGridAfterSort(Sender: TObject; ACol: Integer);
+begin
+  ExecTasksGrid.Refresh;
 end;
 
 procedure TPieForm.ExecTasksGridDblClick(Sender: TObject);

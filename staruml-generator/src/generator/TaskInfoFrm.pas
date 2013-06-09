@@ -188,7 +188,7 @@ implementation
 {$R *.dfm}
 
 uses
-  PreviewFrm, Utilities, Symbols, NxEdit;
+  Utilities, Symbols, NxEdit, PieFrm, PreviewFrm;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PParameterRow
