@@ -54,9 +54,9 @@ uses
 const
   // Test constants
   //OPT_SCHEMATA_REG_PATH = 'HKEY_LOCAL_MACHINE\SOFTWARE\StarUML\Schemata';
-  OPT_SCHEMATA_REG_PATH = 'HKEY_LOCAL_MACHINE' + RK_BASE_LOCATION + 'Schemata';
+  OPT_SCHEMATA_REG_PATH = 'HKEY_CURRENT_USER' + RK_BASE_LOCATION + 'Schemata';
   //OPT_REG_PATH = 'HKEY_CURRENT_USER\Software\StarUML\Options';
-  OPT_REG_PATH = 'HKEY_LOCAL_MACHINE' + RK_BASE_LOCATION + 'Options';
+  OPT_REG_PATH = 'HKEY_CURRENT_USER' + RK_BASE_LOCATION + 'Options';
   OPT_SCHEMA_ENVIRONMENT = 'ENVIRONMENT';
 
   // Option Item Key-Names
@@ -109,6 +109,7 @@ const
   OPT_ARTIFACT_SUPPRESS_OPER = 'ARTIFACT_SUPPRESS_OPER';
   OPT_COMPONENT_STEREOTYPE_DISPLAY = 'COMPONENT_STEREOTYPE_DISPLAY';
   OPT_NODE_STEREOTYPE_DISPLAY = 'NODE_STEREOTYPE_DISPLAY';
+  OPT_WORD_WRAP_BY_DEFAULT = 'WORD_WRAP_BY_DEFAULT';
 
 type
   POptionValueChangeEvent = procedure(Sender: TObject; SchemaID: string; OptionName: string; Value: Variant) of object;
@@ -176,6 +177,7 @@ type
     FArtifactSuppressOperations: Boolean;
     FComponentStereotypeDisplay: Integer;
     FNodeStereotypeDisplay: Integer;
+    FWordWrapByDefault: Boolean;
 
     // option management procedure
     procedure SetDefaultOptionProperties;
@@ -231,6 +233,7 @@ type
     procedure SetArtifactSuppressOperations(Value: Boolean);
     procedure SetComponentStereotypeDisplay(Value: Integer);
     procedure SetNodeStereotypeDisplay(Value: Integer);
+    procedure SetWordWrapByDefault(Value: Boolean);
   public
     constructor Create;
     destructor Destroy; override;
@@ -290,6 +293,7 @@ type
     property ArtifactSuppressOperations: Boolean read FArtifactSuppressOperations write SetArtifactSuppressOperations;
     property ComponentStereotypeDisplay: Integer read FComponentStereotypeDisplay write SetComponentStereotypeDisplay;
     property NodeStereotypeDisplay: Integer read FNodeStereotypeDisplay write SetNodeStereotypeDisplay;
+    property WordWrapByDefault: Boolean read FWordWrapByDefault write SetWordWrapByDefault;
   end;
 
   // Utilities
@@ -784,6 +788,14 @@ begin
     NodeStereotypeDisplay := V;
   end;
 
+  V := OptionManager.GetOptionValue(OPT_SCHEMA_ENVIRONMENT, OPT_WORD_WRAP_BY_DEFAULT);
+  if VarIsNull(V) then begin
+    // Basic OptionSchema file is damaged.
+  end
+  else begin
+    WordWrapByDefault := V;
+  end;
+
   for I := 0 to OptionManager.GetOptionSchemaCount - 1 do begin
     OS := OptionManager.GetOptionSchemaAt(I);
     if OS.ID <> OPT_SCHEMA_ENVIRONMENT then
@@ -1239,6 +1251,15 @@ begin
     FNodeStereotypeDisplay := Value;
     if Assigned(FOnOptionValueChange) then
       FOnOptionValueChange(Self, OPT_SCHEMA_ENVIRONMENT, OPT_NODE_STEREOTYPE_DISPLAY, Value);
+  end;
+end;
+
+procedure POptionDepository.SetWordWrapByDefault(Value: Boolean);
+begin
+  if FWordWrapByDefault <> Value then begin
+    FWordWrapByDefault := Value;
+    if Assigned(FOnOptionValueChange) then
+      FOnOptionValueChange(Self, OPT_SCHEMA_ENVIRONMENT, OPT_WORD_WRAP_BY_DEFAULT, Value);
   end;
 end;
 

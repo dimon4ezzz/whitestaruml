@@ -4023,6 +4023,7 @@ begin
   OptionMessageSignature := PUMLMessageSignatureKind(OptionDepository.MessageSignature);
   OptionShowActivation := OptionDepository.ShowActivation;
   OptionHelpUrl := OptionDepository.HelpUrl;
+  OptionWordWrapByDefault := OptionDepository.WordWrapByDefault;
 end;
 
 procedure PMain.PopupQuickDialog(AView: PView; X, Y: Integer; OnElementCreating: Boolean = False);
@@ -4376,7 +4377,7 @@ var
 
   function MergeStringValue(Base, Addition: string): string;
   begin
-         if Base = NOT_ASSIGNED then Result := Addition
+    if Base = NOT_ASSIGNED then Result := Addition
     else if Base = ''           then Result := ''
     else if Base = Addition     then Result := Base
     else if Base <> Addition    then Result := ''

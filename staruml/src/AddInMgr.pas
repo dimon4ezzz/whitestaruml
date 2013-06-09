@@ -202,7 +202,8 @@ type
 
 const
   { Registry-related: Prefix 'VN' means Registry Value Name }
-  ROOTKEY: HKEY = HKEY_LOCAL_MACHINE;
+  //ROOTKEY: HKEY = HKEY_LOCAL_MACHINE;
+  ROOTKEY: HKEY = HKEY_CURRENT_USER;
   //ADDINSKEY: string = '\SOFTWARE\StarUML\AddIns';
   ADDINSKEY: string = RK_BASE_LOCATION + 'AddIns';
   VN_ADDINNAME: string = 'AddInName';
