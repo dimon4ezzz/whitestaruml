@@ -79,6 +79,7 @@ type
     procedure TasksGridChange(Sender: TObject; ACol, ARow: Integer);
     procedure TasksGridCellClick(Sender: TObject; ACol, ARow: Integer);
     procedure TasksGridDblClick(Sender: TObject);
+    procedure TasksGridAfterSort(Sender: TObject; ACol: Integer);
   private
     Processor: TGeneratorProcessor;
     Batch: PBatch;
@@ -259,6 +260,11 @@ begin
       (RefObj as PTask).Selected := TasksGrid.CellByName[COL_CHECK, ARow].AsBoolean;
     RequestUpdateUIStates;
   end;
+end;
+
+procedure TBatchFrame.TasksGridAfterSort(Sender: TObject; ACol: Integer);
+begin
+  TasksGrid.Refresh;
 end;
 
 procedure TBatchFrame.TasksGridCellClick(Sender: TObject; ACol, ARow: Integer);
