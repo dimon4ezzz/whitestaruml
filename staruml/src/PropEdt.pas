@@ -202,6 +202,9 @@ type
     procedure RemoveInspectingElement(AElement: PElement);
     procedure InspectElements;
 
+    // Initialization of main form completed
+    procedure MainFormReady; virtual; abstract;
+
     // Fetch values of existing properties using PropertyAdaptor.GetPropertyValue
     procedure UpdateProperties; virtual; abstract;
 
