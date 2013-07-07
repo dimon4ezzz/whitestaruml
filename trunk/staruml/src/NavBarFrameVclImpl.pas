@@ -190,6 +190,7 @@ type
     procedure SingleUseItemSelected; override;
     procedure MultipleUseItemSelected; override;
 
+    // Interface ILookAndFeelChangedListener
     procedure LookAndFeelChanged(ALookAndFeelManager: TLookAndFeelManager);
 
   end;
@@ -681,7 +682,7 @@ begin
   InitPredefinedInteractionKeys;
   CreateWrappersForPredefinedElements;
   // InitPredefinedInteractionGroups;
-  SetLookAndFeel(StarUMLApplication.LookAndFeelManager);
+  //SetLookAndFeel(StarUMLApplication.LookAndFeelManager);
   StarUMLApplication.LookAndFeelManager.RegisterLookAndFeelChangedListener(self);
 end;
 

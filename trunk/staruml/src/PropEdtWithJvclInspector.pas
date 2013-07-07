@@ -5,10 +5,10 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, PropEdt, ImgList, ExtCtrls, FlatPanel, JvExControls, JvInspector,
-  JvclExtensions, BasicClasses, Core, Generics.Collections;
+  JvclExtensions, BasicClasses, Core, MenuManager, Generics.Collections;
 
 type
-  TPropertyEditorWithJvclInspector = class(TPropertyEditor)
+  TPropertyEditorWithJvclInspector = class(TPropertyEditor, ILookAndFeelChangedListener)
     Inspector: TJvInspector;
     procedure InspectorItemEdit(Sender: TJvCustomInspector;
       Item: TJvCustomInspectorItem; var DisplayStr: string);
@@ -30,6 +30,8 @@ private
     function SetUpTextChoiceRow(SuperNode: TJvInspectorCustomCategoryItem;
       P:PProperty): TJvInspectorElemBase;
 
+    procedure SetLookAndFeel(ALookAndFeelManager: TLookAndFeelManager);
+
 
   protected
     procedure SetEnabled(Value: Boolean); override;
@@ -41,10 +43,18 @@ private
     procedure UpdateProperties; override;
     procedure ApplyChanges; override;
 
+    procedure MainFormReady; override;
+
+    // Interface ILookAndFeelChangedListener
+    procedure LookAndFeelChanged(ALookAndFeelManager: TLookAndFeelManager);
+
   end;
 
 
 implementation
+
+uses
+  StarUMLApp;
 
 {$R *.dfm}
 
@@ -55,6 +65,8 @@ begin
   TJvInspectorStringItemWithNameImage.RegisterAsDefaultItem;
   TJvInspectorBooleanItemWithNameImage.RegisterAsDefaultItem;
   FElemsHolder := TInspectorElemsHolder.Create(Inspector);
+  //SetLookAndFeel(StarUMLApplication.LookAndFeelManager);
+  //StarUMLApplication.LookAndFeelManager.RegisterLookAndFeelChangedListener(self);
 end;
 
 destructor TPropertyEditorWithJvclInspector.Destroy;
@@ -168,7 +180,9 @@ begin
       ReadOnly := FReadOnly;
 
       if P.RowEditable and (not ReadOnly) then
-        OnValueChanged := ItemDataValueChanged;
+        OnValueChanged := ItemDataValueChanged
+      else
+       Flags := Flags + [iifEditFixed];
     end;
     with Result.Item as TJvInspectorStringItemWithNameImage do
     begin
@@ -184,8 +198,8 @@ var
   ItemFlags: TInspectorItemFlags;
 begin
   ItemFlags := [iifEditButton];
-  if not P.RowEditable then
-     ItemFlags := ItemFlags + [iifEditFixed];
+  //if not P.RowEditable then
+  //   ItemFlags := ItemFlags + [iifEditFixed];
   Result := SetUpTextRow(SuperNode,P,ItemFlags);
 end;
 
@@ -293,5 +307,26 @@ procedure TPropertyEditorWithJvclInspector.SetEnabled(Value: Boolean);
 begin
   inherited;
 end;
+
+procedure TPropertyEditorWithJvclInspector.LookAndFeelChanged
+  (ALookAndFeelManager: TLookAndFeelManager);
+begin
+    SetLookAndFeel(ALookAndFeelManager)
+end;
+
+procedure TPropertyEditorWithJvclInspector.SetLookAndFeel
+  (ALookAndFeelManager: TLookAndFeelManager);
+var
+  Painter: TJvInspectorPainter;
+begin
+  Painter := Inspector.ActivePainter;
+  Painter.CategoryColor := ALookAndFeelManager.WindowLightColor;
+end;
+
+procedure TPropertyEditorWithJvclInspector.MainFormReady;
+begin
+  StarUMLApplication.LookAndFeelManager.RegisterLookAndFeelChangedListener(self);
+end;
+
 
 end.
