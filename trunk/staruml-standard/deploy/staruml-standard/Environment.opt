@@ -221,8 +221,8 @@
            <CAPTION>Line style</CAPTION>
            <DESCRIPTION>Specifies the line style for connection elements (either rectilinear or oblique).</DESCRIPTION>
            <DEFAULTVALUE>1</DEFAULTVALUE>
-           <ENUMERATIONITEM>Oblique</ENUMERATIONITEM>
            <ENUMERATIONITEM>Rectilinear</ENUMERATIONITEM>
+           <ENUMERATIONITEM>Oblique</ENUMERATIONITEM>
         </OPTIONITEM-ENUMERATION>
         
         <OPTIONITEM-ENUMERATION key="STEREOTYPE_DISPLAY">
