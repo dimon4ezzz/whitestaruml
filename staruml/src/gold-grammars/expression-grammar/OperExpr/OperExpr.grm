@@ -1,11 +1,10 @@
-"Start Symbol" = <Grammar Operation>
+﻿"Start Symbol" = <Grammar Operation>
 "Case Sensitive" = False                
                
 ! -------------------------------------------------
 ! Character Sets
 ! -------------------------------------------------
-!{Boundary String Chars} = {All Letters}  + {Number} + {Euro Sign} + ['_' '/' '\' '.' '&' '@' '$' '%' '*' '"' '`' '' ]  - { All Space }  
-{Boundary String Chars} = {All Letters} + {Number} + {Euro Sign} + [_/\.@$%*"'']
+{Boundary String Chars} = {All Letters} + {Number} + {Euro Sign} + [_/\.@$%*`’'']
 ! Restricted Chars should not start or end an indentifier as they may collide with other symbols 
 {Restricted Chars} = [+#-~]
 {All Accepted Chars} = {Boundary String Chars} + {Restricted Chars}

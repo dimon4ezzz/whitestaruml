@@ -1,4 +1,4 @@
-"Start Symbol" = <Grammar Transition>
+﻿"Start Symbol" = <Grammar Transition>
 "Case Sensitive" = False                
                
 ! -------------------------------------------------
@@ -7,7 +7,7 @@
 
 {Visibility Chars} = [+-#~]
 {Restricted Chars} = {All Space} + {Visibility Chars} ! Restricted Chars should not start or end an indentifier as they may collide with other symbols                   
-{Boundary String Chars} = {All Letters} +  {Number} + {Euro Sign} + [_,;/\.&@$%*"`'']
+{Boundary String Chars} = {All Letters} +  {Number} + {Euro Sign} + [_,;/\.&@$%*"`’'']
 {String Chars} = {Boundary String Chars} + {Restricted Chars}
 ! -------------------------------------------------
 ! Terminals
