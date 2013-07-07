@@ -303,11 +303,11 @@ var
   Bmp: TBitmap;
 begin
 
-  TH := ARect.Bottom - ARect.Top - 2;
-  BoxRect.Left := ARect.Left + (ARect.Bottom - ARect.Top - TH) div 2;
+  TH := ARect.Bottom - ARect.Top - 0;
+  BoxRect.Left := ARect.Left + (ARect.Bottom - ARect.Top - TH); //div 2;
   BoxRect.Top := ARect.Top + BoxRect.Left - ARect.Left;
-  BoxRect.Right := BoxRect.Left + TH;
-  BoxRect.Bottom := BoxRect.Top + TH;
+  BoxRect.Right := BoxRect.Left + TH + 5;
+  BoxRect.Bottom := BoxRect.Top + TH + 2;
   with ACanvas do
   begin
     if (ImgNum > -1) and (ImageList <> nil) and (ImgNum < ImageList.Count) then
@@ -320,7 +320,7 @@ begin
         Bmp.Free;
       end;
     end;
-    TextOut(ARect.Left + (ARect.Bottom - ARect.Top) + 1, BoxRect.Top, ImgName);
+    TextOut(ARect.Left + (ARect.Bottom - ARect.Top) + 5, BoxRect.Top, ImgName);
   end;
 end;
 
