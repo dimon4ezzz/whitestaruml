@@ -68,9 +68,8 @@ unit Core;
 interface
 
 uses
-  Graphics, Types, Classes, SysUtils, xmldom, XMLIntf, msxmldom, XMLDoc, ComObj,
-  IniFiles, Generics.Collections,
-  BasicClasses, GraphicClasses;
+  Graphics, Types, Classes, xmldom, XMLIntf, msxmldom, XMLDoc, ComObj, IniFiles,
+  Generics.Collections, BasicClasses, GraphicClasses, Windows, SysUtils;
 
 const
   PATH_DELIMITER = '::';
@@ -139,6 +138,7 @@ type
     // Enumeration Types
     PMetaAggregateKind = (makNone, makAggregate, makComposite);
     PMetaAssociationEndKind = (maeReference, maeCollection);
+    PFileAccessType = (fatNormal,fatExclusive);
 
     // Event Types
     PXMLObjectWriterFilter = procedure(Sender: TObject; CurrentObject: PObject;
@@ -1035,9 +1035,12 @@ type
 
   // PDocument
   PDocument = class(PObject)
+  public const
+    SharedCopyExt = '.SHARED_COPY';
   private
     FFileName: string;
     FVersion: string;
+    FFileStream: TFileStream;
     FReadOnly: Boolean;
     FModified: Boolean;
     FDocumentElement: PElement;
@@ -1047,14 +1050,18 @@ type
     FOnSaved: PDocumentEvent;
     procedure SetModified(Value: Boolean);
     procedure SetDocumentElement(Value: PElement);
+    function IsExclusiveFileAccess: Boolean;
   public
     constructor Create; override;
     destructor Destroy; override;
     procedure UpdateFileAttr;
     function GetDocumentSymbol: string; virtual;
+    procedure RemoveExclusiveFileAccess;
     property FileName: string read FFileName write FFileName;
     property Version: string read FVersion write FVersion;
+    property FileStream: TFileStream read FFileStream write FFileStream;
     property ReadOnly: Boolean read FReadOnly;
+    property ExclusiveFileAccess: Boolean read IsExclusiveFileAccess;
     property Modified: Boolean read FModified write SetModified;
     property FileSavedTime: TDateTime read FFileSavedTime write FFileSavedTime;
     property ExternallyModified
@@ -1067,12 +1074,20 @@ type
 
   // PDocumentInputStream
   PDocumentInputStream = class
+  private const
+    ExclusiveUserInfo = 'EXCLUSIVEUSERINFO';
+    UserName = 'USERNAME';
+    LockTime = 'LOCKTIME';
   private
     FFileName: string;
     FReferenceResolver: PReferenceResolver;
     FOnLoadingProgress: PProgressEvent;
     procedure AsyncLoadHandler(Sender: TObject; AsyncLoadState: Integer);
     procedure LoadingProgress(Info: string; Max, Progress: Integer);
+    function LoadDocument(var AFileAccessType: PFileAccessType;
+      var AFileStream: TFileStream): Boolean;
+    function OpenFileAsReadOnly: Boolean;
+    procedure CreateReadOnlyCopy;
   protected
     XMLDoc: TXMLDocument;
     DocumentElement: PElement;
@@ -1083,7 +1098,7 @@ type
     constructor Create(AFileName: string;
       AReferenceResolver: PReferenceResolver); virtual;
     destructor Destroy; override;
-    function ReadDocument: PDocument;
+    function ReadDocument(AFileAccessType: PFileAccessType): PDocument;
     property FileName: string read FFileName;
     property ReferenceResolver: PReferenceResolver read FReferenceResolver;
     property OnLoadingProgress
@@ -1170,7 +1185,7 @@ var
 implementation
 
 uses
-  Windows, Variants, Forms, ComServ, {HTTPApp,} HTTPUtil, NLS_StarUML;
+  Dialogs, Controls, Variants, Forms, ComServ, {HTTPApp,} HTTPUtil, NLS_StarUML;
 
 // -----------------------------------------------------------------------------
 // IsCollectionKey
@@ -1191,6 +1206,25 @@ function TrimCollectionKey(Key: string): string;
 begin
   Result := Copy(Key, 1, Pos('[', Key) - 1); // cut '[number]'
 end;
+
+// -----------------------------------------------------------------------------
+// GetUserFromWindows
+// Helper wrapping system function GetUserName
+// -----------------------------------------------------------------------------
+function GetUserFromWindows: string;
+var
+   UserName : string;
+   UserNameLen : Dword;
+begin
+   UserNameLen := 255;
+   SetLength(userName, UserNameLen);
+   if GetUserName(PChar(UserName), UserNameLen) then
+     Result := Copy(UserName,1,UserNameLen - 1)
+   else
+     Result := 'Unknown';
+end;
+
+
 
 /// /////////////////////////////////////////////////////////////////////////////
 // PMetaElement
@@ -6235,6 +6269,7 @@ begin
   inherited;
   FFileName := '';
   FVersion := '1.0';
+  FFileStream := nil;
   FModified := False;
   FReadOnly := False;
   FFileSavedTime := 0;
@@ -6247,7 +6282,22 @@ end;
 destructor PDocument.Destroy;
 begin
   DocumentElement := nil;
+  RemoveExclusiveFileAccess;
   inherited;
+end;
+
+procedure PDocument.RemoveExclusiveFileAccess;
+var
+  CopyFileName: string;
+begin
+  if ExclusiveFileAccess then begin
+    CopyFileName := FFileName + SharedCopyExt;
+    if FileExists(CopyFileName) then begin
+      FileSetAttr(CopyFileName, faNormal);
+      DeleteFile(CopyFileName)
+    end;
+    FreeAndNil(FFileStream);
+  end;
 end;
 
 procedure PDocument.UpdateFileAttr;
@@ -6306,6 +6356,11 @@ begin
   end;
 end;
 
+function PDocument.IsExclusiveFileAccess: Boolean;
+begin
+  Result := FFileStream <> nil;
+end;
+
 // PDocument
 /// /////////////////////////////////////////////////////////////////////////////
 
@@ -6357,7 +6412,7 @@ begin
   Reader.Free;
 end;
 
-function PDocumentInputStream.ReadDocument: PDocument;
+function PDocumentInputStream.ReadDocument(AFileAccessType: PFileAccessType): PDocument;
 var
   DocumentSymbol: string;
   Version: string;
@@ -6365,35 +6420,179 @@ var
   BodyNode: IXMLNode;
   ADocument: PDocument;
   CurDir: string;
+  FileStream: TFileStream;
 begin
   // Check the file existence.
   if not FileExists(FFileName) then
-    raise EFileNotFound.Create(Format(ERR_FILE_NOT_FOUND, [FFileName]));
-  // Store CurrentDir and Change CurrentDir to path of the FileName.
+   raise EFileNotFound.Create(Format(ERR_FILE_NOT_FOUND, [FFileName]));
+
+   // Store CurrentDir and Change CurrentDir to path of the FileName.
   CurDir := GetCurrentDir;
   ChDir(ExtractFilePath(FFileName));
-  // Load the file.
-  LoadingProgress(FFileName, MAX_ASYNC_LOAD_STATE + 2, 0);
-  XMLDoc.LoadFromFile(FFileName);
-  XMLDoc.Active := True;
-  DocumentSymbol := XMLDoc.DocumentElement.LocalName;
-  Version := XMLDoc.DocumentElement.Attributes[XPD_VERSION];
-  HeaderNode := XMLDoc.DocumentElement.ChildNodes.Nodes[XPD_HEADER];
-  BodyNode := XMLDoc.DocumentElement.ChildNodes.Nodes[XPD_BODY];
-  ReadHeader(HeaderNode);
-  LoadingProgress(FFileName, MAX_ASYNC_LOAD_STATE + 2,
-    MAX_ASYNC_LOAD_STATE + 1);
-  ReadBody(BodyNode);
-  ADocument := CreateDocument;
-  ADocument.FileName := FileName;
-  ADocument.Version := Version;
-  ADocument.DocumentElement := DocumentElement;
-  ADocument.UpdateFileAttr;
-  LoadingProgress(FFileName, MAX_ASYNC_LOAD_STATE + 2,
-    MAX_ASYNC_LOAD_STATE + 2);
-  Result := ADocument;
+
+  FileStream := nil;
+  if LoadDocument(AFileAccessType,FileStream) then begin
+
+    DocumentSymbol := XMLDoc.DocumentElement.LocalName;
+    Version := XMLDoc.DocumentElement.Attributes[XPD_VERSION];
+    HeaderNode := XMLDoc.DocumentElement.ChildNodes.Nodes[XPD_HEADER];
+    BodyNode := XMLDoc.DocumentElement.ChildNodes.Nodes[XPD_BODY];
+    ReadHeader(HeaderNode);
+    LoadingProgress(FFileName, MAX_ASYNC_LOAD_STATE + 2,
+      MAX_ASYNC_LOAD_STATE + 1);
+    ReadBody(BodyNode);
+
+    // Set Up Document
+    ADocument := CreateDocument;
+    ADocument.FileName := FileName;
+    ADocument.Version := Version;
+    ADocument.DocumentElement := DocumentElement;
+    ADocument.UpdateFileAttr;
+    LoadingProgress(FFileName, MAX_ASYNC_LOAD_STATE + 2,
+      MAX_ASYNC_LOAD_STATE + 2);
+
+    if AFileAccessType = fatExclusive then begin
+      ADocument.FileStream := FileStream;
+    end
+    else begin
+      ADocument.FileStream := nil;
+      FileStream.Free;
+    end;
+
+    ChDir(CurDir);
+    Result := ADocument;
+  end
+  else begin
+   ChDir(CurDir);
+   raise EReadOnlyFile.Create('Operation aborted by user');
+  end;
+
   // Restore CurrentDir
-  ChDir(CurDir);
+
+ end;
+
+ // Loads XML document respecting eclusive access request
+ function PDocumentInputStream.LoadDocument(var AFileAccessType: PFileAccessType;
+  var AFileStream: TFileStream): Boolean;
+const
+  NormalFileAccess = fmOpenRead;
+  ExclusiveFileAccess = fmOpenReadWrite + fmShareExclusive;
+var
+  FileStream: TFileStream;
+  FileAccess: Cardinal;
+  FileOpenError: Cardinal;
+begin
+  Result := False;
+  // Check the file existence.
+  if not FileExists(FFileName) then
+    raise EFileNotFound.Create(Format(ERR_FILE_NOT_FOUND, [FFileName]));
+
+  if AFileAccessType = fatNormal then
+    FileAccess := NormalFileAccess
+  else
+    FileAccess := ExclusiveFileAccess;
+
+  try
+    FileStream := TFileStream.Create(FFileName, FileAccess);
+  except on E:EFOpenError do begin // Collision with potentially locked file
+    FileOpenError := GetLastError;
+      if FileOpenError = ERROR_SHARING_VIOLATION then begin // If so try to open the copy
+        Result := OpenFileAsReadOnly;
+        AFileAccessType := fatNormal;
+        Exit; // Possibly a read only file was accepted
+      end
+      else begin
+        Result := False;
+        AFileAccessType := fatNormal;
+        Exit; // File reading exception could not be handled
+      end;
+    end;
+  end;
+
+  LoadingProgress(FFileName, MAX_ASYNC_LOAD_STATE + 2, 0);
+  try
+    XMLDoc.LoadFromStream(FileStream);
+  except on Exception do begin
+      FileStream.Free;
+      raise;
+  end;
+
+  end;
+  // Exclusive access creates a read only copy for other users
+  if AFileAccessType = fatExclusive then begin
+    CreateReadOnlyCopy;
+    AFileStream := FileStream // With exclusive access stream must be preserved
+  end
+  else
+    FileStream.Free;
+
+  Result := True; // File was read correctly
+
+end;
+
+
+function PDocumentInputStream.OpenFileAsReadOnly: Boolean;
+var
+  ExclusiveUserInfoNode, UserNameNode, LockTimeNode: IXMLNode;
+  ChildNodes: IXMLNodeList;
+  Count: Integer;
+  DeleteResult: Integer;
+  ButtonSelected : Integer;
+begin
+  Result := False;
+
+  FFileName := FFileName + PDocument.SharedCopyExt;
+  if FileExists(FileName) then begin
+    XMLDoc.LoadFromFile(FileName);
+    ChildNodes := XMLDoc.DocumentElement.ChildNodes;
+    Count := ChildNodes.GetCount;
+    ExclusiveUserInfoNode := ChildNodes.First.ChildNodes.FindNode(ExclusiveUserInfo);
+    UserNameNode := ExclusiveUserInfoNode.ChildNodes.FindNode(UserName);
+    LockTimeNode := ExclusiveUserInfoNode.ChildNodes.FindNode(LockTime);
+
+    ButtonSelected := MessageDlg('Do you want to read a copy of file locked by ' + UserNameNode.Text +
+      ' on ' + LockTimeNode.Text ,mtConfirmation, mbYesNo, 0);
+
+    Result := (buttonSelected = mrYes);
+
+    DeleteResult := ChildNodes.First.ChildNodes.Delete(ExclusiveUserInfo);
+
+  end
+  else begin
+    ShowMessage('File locked by another user and no info exists');
+    FFileName := '';
+    Result := False;
+  end;
+
+ end;
+
+
+
+procedure PDocumentInputStream.CreateReadOnlyCopy;
+var
+  ExclusiveUserInfoNode,UserNameNode, LockTimeNode: IXMLNode;
+  ChildNodes: IXMLNodeList;
+  DeleteResult: Integer;
+  CopyFileName: string;
+begin
+  ChildNodes := XMLDoc.DocumentElement.ChildNodes;
+  ExclusiveUserInfoNode := ChildNodes.First.AddChild(ExclusiveUserInfo, -1);
+  UserNameNode := ExclusiveUserInfoNode.AddChild(UserName, -1);
+  UserNameNode.Text := GetUserFromWindows;
+  LockTimeNode := ExclusiveUserInfoNode.AddChild(LockTime, -1);
+  LockTimeNode.Text := DateTimeToStr(Now);
+
+  CopyFileName := FFileName + PDocument.SharedCopyExt;
+
+  // Clear readonly flag if present
+  if FileExists(CopyFileName) then
+      FileSetAttr(CopyFileName, faNormal);
+
+  XMLDoc.SaveToFile(CopyFileName);
+  FileSetAttr(CopyFileName, faReadOnly);
+
+  // ExclusiveUserInfo node not needed anymore
+  DeleteResult := ChildNodes.First.ChildNodes.Delete(ExclusiveUserInfo);
 end;
 
 // PDocumentInputStream
@@ -6503,7 +6702,13 @@ end;
 
 procedure PDocumentOutputStream.Close(ADocument: PDocument);
 begin
-  XMLStrings.SaveToFile(FFileName, TEncoding.UTF8);
+  if ADocument.ExclusiveFileAccess then begin
+    ADocument.FileStream.Size := 0; // Overwrite existing content
+    XMLStrings.SaveToStream(ADocument.FileStream)
+  end
+  else
+    XMLStrings.SaveToFile(FFileName, TEncoding.UTF8);
+
   ADocument.FileSavedTime := FileDateToDateTime(FileAge(ADocument.FileName));
 end;
 

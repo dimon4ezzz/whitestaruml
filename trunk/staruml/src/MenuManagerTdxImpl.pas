@@ -580,6 +580,7 @@ end;
 
 procedure TLookAndFeelManagerTdxImpl.InitLookAndFeel;
 begin
+  MainForm.LookAndFeelManager.NotifyLookAndFeelChanged;
   MainForm.SetAlertLookAndFeel;
 end;
 

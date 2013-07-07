@@ -200,7 +200,7 @@ type
     procedure NewProject(ApproachName: string = '');
     procedure SaveProject;
     procedure SaveProjectAs(FileName: string);
-    procedure OpenProject(FileName: string);
+    procedure OpenProject(FileName: string; AFileAccessType: PFileAccessType = fatNormal);
     function CloseProject: Boolean;
     function SeparateUnit(APackage: PUMLPackage; AFileName: string): PUMLUnitDocument;
     procedure MergeUnit(APackage: PUMLPackage);
@@ -1408,11 +1408,11 @@ begin
   CommandExecutor.ClearHistory;
 end;
 
-procedure PStarUMLApplication.OpenProject(FileName: string);
+procedure PStarUMLApplication.OpenProject(FileName: string; AFileAccessType: PFileAccessType = fatNormal);
 begin
   if CloseProject then
   begin
-    ProjectManager.OpenProject(FileName);
+    ProjectManager.OpenProject(FileName,AFileAccessType);
     CommandExecutor.ClearHistory;
   end;
 end;
