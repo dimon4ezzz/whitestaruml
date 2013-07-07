@@ -112,6 +112,8 @@ object MainForm: TMainForm
                   Width = 483
                   Height = 252
                   OnChange = WorkingAreaFrameDiagramPageControlChange
+                  ExplicitLeft = -79
+                  ExplicitTop = -2
                   ExplicitWidth = 483
                   ExplicitHeight = 252
                 end
@@ -144,9 +146,11 @@ object MainForm: TMainForm
             Height = 254
             Align = alClient
             TabOrder = 0
+            ExplicitWidth = 163
+            ExplicitHeight = 254
             inherited PaletteNavBar: TCategoryButtons
               Width = 157
-              Height = 248
+              Height = 249
               Categories = <
                 item
                   Caption = 'Annotation'
@@ -1745,6 +1749,10 @@ object MainForm: TMainForm
         end
         item
           Visible = True
+          ItemName = 'ExclusiveFileOpen'
+        end
+        item
+          Visible = True
           ItemName = 'FileSave'
         end
         item
@@ -2293,6 +2301,14 @@ object MainForm: TMainForm
       Visible = ivAlways
       ShortCut = 16457
       OnClick = FileMenuClick
+    end
+    object ExclusiveFileOpen: TdxBarButton
+      Caption = 'Open File in Exclusive Mode...'
+      Category = 2
+      Hint = 'Open File in Exclusive Mode...'
+      Visible = ivAlways
+      ShortCut = 49231
+      OnClick = ExclusiveFileOpenClick
     end
     object EditUndo: TdxBarButton
       Caption = '&Undo'
@@ -4440,6 +4456,7 @@ object MainForm: TMainForm
   object OpenDialog: TOpenDialog
     DefaultExt = 'uml'
     Filter = 'StarUML Project File(*.uml)|*.uml|All Files(*.*)|*.*'
+    Options = [ofHideReadOnly, ofShareAware, ofEnableSizing]
     Title = 'Open'
     Left = 436
     Top = 152

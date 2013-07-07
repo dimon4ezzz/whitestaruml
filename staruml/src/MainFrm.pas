@@ -373,6 +373,7 @@ type
     ViewUIThemeNative: TdxBarButton;
     ViewUIThemeGroup: TdxBarGroup;
     ViewUITheme: TdxBarSubItem;
+    ExclusiveFileOpen: TdxBarButton;
     PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);
@@ -416,6 +417,7 @@ type
     procedure ViewUIThemeNativeClick(Sender: TObject);
     procedure ViewUIThemeClassicClick(Sender: TObject);
     procedure WorkingAreaFrameDiagramPageControlChange(Sender: TObject);
+    procedure ExclusiveFileOpenClick(Sender: TObject);
   private
     AllowToTriggerFontFaceChangedEvent: Boolean;
     AllowToTriggerFontSizeChangedEvent: Boolean;
@@ -1448,6 +1450,11 @@ end;
 procedure TMainForm.EditMenuClick(Sender: TObject);
 begin
   if Assigned(FOnEditMenuClicked) then FOnEditMenuClicked(Sender);
+end;
+
+procedure TMainForm.ExclusiveFileOpenClick(Sender: TObject);
+begin
+  if Assigned(FOnFileMenuClicked) then FOnFileMenuClicked(Sender);
 end;
 
 procedure TMainForm.FormatMenuClick(Sender: TObject);

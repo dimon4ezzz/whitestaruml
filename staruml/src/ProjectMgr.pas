@@ -118,7 +118,7 @@ type
     procedure NewProject(ApproachName: string = '');
     procedure SaveProject;
     procedure SaveProjectAs(FileName: string);
-    procedure OpenProject(FileName: string);
+    procedure OpenProject(FileName: string; AFileAccessType: PFileAccessType);
     function CloseProject: Boolean;
     function SeparateUnit(APackage: PUMLPackage; AFileName: string): PUMLUnitDocument;
     procedure MergeUnit(APackage: PUMLPackage);
@@ -358,7 +358,7 @@ begin
   S := PUMLUnitDocumentInputStream.Create(AFileName, AReferenceResolver);
   S.OnLoadingProgress := LoadingProgressHandler;
   try
-    AUnit := S.ReadDocument as PUMLUnitDocument;
+    AUnit := S.ReadDocument(fatNormal) as PUMLUnitDocument;
     AUnit.ParentUnitDocument := AParentUnit;
     AUnit.OnModified := DocumentModified;
     AUnit.OnSaved := DocumentSaved;
@@ -597,16 +597,20 @@ begin
   ChangeFileReadOnlyAttr(FileName);
   if FProjectDocument <> nil then
   begin
+    // Renaming a project with exclusive file access drops exclusive status
+    FProjectDocument.RemoveExclusiveFileAccess;
+
     FProjectDocument.FileName := FileName;
     if FCreateBackupFile then
       MakeBackupFile(FProjectDocument.FileName,
         DEFAULT_PROJECTFILE_EXT, BACKUP_PROJECTFILE_EXT);
+
     SaveProjectDocument(FProjectDocument);
   end;
   ProjectSaved;
 end;
 
-procedure PProjectManager.OpenProject(FileName: string);
+procedure PProjectManager.OpenProject(FileName: string; AFileAccessType: PFileAccessType);
 var
   S: PUMLProjectDocumentInputStream;
   Resolver: PReferenceResolver;
@@ -626,7 +630,7 @@ begin
     S := PUMLProjectDocumentInputStream.Create(FileName, Resolver);
     S.OnLoadingProgress := LoadingProgressHandler;
     try
-      FProjectDocument := S.ReadDocument as PUMLProjectDocument;
+      FProjectDocument := S.ReadDocument(AFileAccessType) as PUMLProjectDocument;
       FProjectDocument.OnModified := DocumentModified;
       FProjectDocument.OnSaved := DocumentSaved;
       FProject := FProjectDocument.DocumentElement as PUMLProject;
@@ -920,7 +924,7 @@ begin
   S.OnLoadingProgress := LoadingProgressHandler;
   try
     // Loading ModelFragment.
-    Frag := S.ReadDocument as PUMLModelFragmentDocument;
+    Frag := S.ReadDocument(fatNormal) as PUMLModelFragmentDocument;
     ImportedElement := Frag.DocumentElement as PUMLModelElement;
     // Reassigning GUIDs.
     Resolver.ReassignGUIDs(ImportedElement);
