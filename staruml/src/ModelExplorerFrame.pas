@@ -883,10 +883,9 @@ end;
 procedure TModelExplorerPanel.SelectWithFocus(AModel: PModel);
 begin
   if Visible and Enabled then begin
-    if ModelTree.Enabled then begin
+    Select(AModel);
+    if ModelTree.Visible and ModelTree.Enabled then
       ModelTree.SetFocus;
-      Select(AModel);
-    end;
   end;
 end;
 

@@ -283,7 +283,7 @@ type
     // Utility Methods processing Menu Action
     procedure ExecuteFileNew;
     procedure ExecuteFileSelectProject;
-    procedure ExecuteFileOpen;
+    procedure ExecuteFileOpen(AFileAccessType: PFileAccessType);
     procedure ExecuteFileSave;
     procedure ExecuteFileSaveAs;
     procedure ExecuteFileClose;
@@ -440,9 +440,13 @@ begin
    // GUI Initialization
 
   MainForm.PaletteNavBarFrame.SetSharedComponents(MainForm.ActionProcessor,MainForm.TotalImageList);
-  MainForm.LookAndFeelManager.InitLookAndFeel;
+  //MainForm.LookAndFeelManager.InitLookAndFeel;
+  MainForm.InspectorFrame.PropertyEditor.MainFormReady;
   InteractionManager.MenuManager := MainForm.MenuManager;
   MainForm.MenuManager.MenuFormReady;
+
+  //MainForm.LookAndFeelManager.NotifyLookAndFeelChanged;
+  MainForm.LookAndFeelManager.InitLookAndFeel;
 
   MainForm.ModelExplorer.ImageList := MainForm.TotalImageList;
   MainForm.ModelExplorer.StateImageList := MainForm.DocumentStateImageList;
@@ -519,12 +523,6 @@ procedure PMain.Initialize_WhenApplicationStartedByUser;
 begin
   if not ExecuteFileOpenWithParam then
   begin
-    ExecuteFileNew;
-    if MainForm.ModelExplorerDockPanel.Visible then
-    begin
-      SelectModelExplorerDockPanel(StarUMLApplication.Project);
-      MainForm.ModelExplorer.Expand(StarUMLApplication.Project);
-    end;
     if OptionDepository.ShowNewDialog then
         ExecuteFileSelectProject;
   end;
@@ -683,7 +681,8 @@ begin
       if Sender = FileCreate then ExecuteFileNew
       else if Sender = FileNew then ExecuteFileNew
       else if Sender = FileSelectProject then ExecuteFileSelectProject
-      else if Sender = FileOpen then ExecuteFileOpen
+      else if Sender = FileOpen then ExecuteFileOpen(fatNormal)
+      else if Sender = ExclusiveFileOpen then ExecuteFileOpen(fatExclusive)
       else if Sender = FileSave then ExecuteFileSave
       else if Sender = FileSaveAs then ExecuteFileSaveAs
       else if Sender = FileClose then ExecuteFileClose
@@ -1073,7 +1072,7 @@ end;
 procedure PMain.MainFormRecentFileClickedHandler(Sender: TObject; RecentFile: string);
 begin
   try
-    StarUMLApplication.OpenProject(RecentFile);
+    StarUMLApplication.OpenProject(RecentFile,fatNormal);
     MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
     MainForm.AddRecentFile(StarUMLApplication.FileName);
   except on
@@ -2717,7 +2716,10 @@ begin
       Doc := (StarUMLApplication.DocumentElements[0]).Document;
       if (Doc <> nil) and Doc.ReadOnly then
         MainForm.FileName := ExtractFileName(StarUMLApplication.FileName) + ' ' + TXT_DOC_STATUS_READONLY
-      else MainForm.FileName := ExtractFileName(StarUMLApplication.FileName);
+      else if (Doc <> nil) and Doc.ExclusiveFileAccess then
+        MainForm.FileName := ExtractFileName(StarUMLApplication.FileName) + ' ' + TXT_DOC_STATUS_EXCLUSIVE_FILE_OPEN
+      else
+        MainForm.FileName := ExtractFileName(StarUMLApplication.FileName);
     end;
     if MainForm.Visible then MainForm.WorkingAreaFrame.UpdateAllDiagrams;
 
@@ -3421,17 +3423,22 @@ begin
   end;
 end;
 
-procedure PMain.ExecuteFileOpen;
+procedure PMain.ExecuteFileOpen(AFileAccessType: PFileAccessType);
 begin
   if MainForm.OpenDialog.Execute then
   begin
     try
-      StarUMLApplication.OpenProject(MainForm.OpenDialog.FileName);
+      StarUMLApplication.OpenProject(MainForm.OpenDialog.FileName,AFileAccessType);
       MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
       MainForm.AddRecentFile(StarUMLApplication.FileName);
     except
       on E: EDOMParseError do begin
-        MessageDlg(ERR_INVALID_MODEL_FILE, mtError, [mbOK], 0);
+        MessageDlg(ERR_INVALID_MODEL_FILE + #13#10 + E.Message, mtError, [mbOK], 0);
+        Screen.Cursor := crDefault;
+        MainForm.SetStatusBarInfo('', 0);
+        StarUMLApplication.NewProject('');
+      end;
+      on EReadOnlyFile do begin
         Screen.Cursor := crDefault;
         MainForm.SetStatusBarInfo('', 0);
         StarUMLApplication.NewProject('');
@@ -4131,8 +4138,12 @@ begin
     or (MainForm.ModelExplorerDockPanel.TabContainer.ActiveChild =
       MainForm.ModelExplorerDockPanel ) then
 
-     if MainForm.ModelExplorerDockPanel.Visible then
-        MainForm.ModelExplorer.SelectWithFocus(AModel);
+     if MainForm.ModelExplorerDockPanel.Visible then begin
+        if  MainForm.ModelExplorerDockPanel.Showing then
+          MainForm.ModelExplorer.SelectWithFocus(AModel);
+        MainForm.ModelExplorer.Expand(AModel);
+     end;
+
 
 end;
 
