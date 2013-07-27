@@ -197,7 +197,8 @@ const
   C_ERR_DIRECTORY_NOT_FOUND = 'Directory not found.';
   C_ERR_INVALID_FILE_NAME = 'Invalid file name.'
                           + #13#10 + 'File name cannot contains the following charactors: \, /, :, *, ?, ", <, >, |';
-
+  C_ERR_BITMAP_GEN_ERROR = 'Bitmap file could not be generated.'
+                          + #13#10 + 'Use Model-Verify command to check for diagram errors.';
   // PageSetupFrm, PrintFrm
   C_ERR_MARGIN_OVERFLOW = 'The value for margins exceeds the limit.';
   C_ERR_CANNOT_READ_PRINTINFO = 'Cannot read Printer Information.';
@@ -480,6 +481,7 @@ var
   ERR_IMPROPER_ELEMENET: string;
   ERR_DIRECTORY_NOT_FOUND: string;
   ERR_INVALID_FILE_NAME: string;
+  ERR_BITMAP_GEN_ERROR: string;
   ERR_MARGIN_OVERFLOW: string;
   ERR_CANNOT_READ_PRINTINFO: string;
   TXT_PRINTER_STATUS_READY: string;
@@ -1142,6 +1144,7 @@ initialization
   NLSManager.TranslateString(NLS_STR_SECTION, 'ERR_IMPROPER_ELEMENET', ERR_IMPROPER_ELEMENET, C_ERR_IMPROPER_ELEMENET);
   NLSManager.TranslateString(NLS_STR_SECTION, 'ERR_DIRECTORY_NOT_FOUND', ERR_DIRECTORY_NOT_FOUND, C_ERR_DIRECTORY_NOT_FOUND);
   NLSManager.TranslateString(NLS_STR_SECTION, 'ERR_INVALID_FILE_NAME', ERR_INVALID_FILE_NAME, C_ERR_INVALID_FILE_NAME);
+  NLSManager.TranslateString(NLS_STR_SECTION, 'ERR_BITMAP_GEN_ERROR', ERR_BITMAP_GEN_ERROR, C_ERR_BITMAP_GEN_ERROR);
   NLSManager.TranslateString(NLS_STR_SECTION, 'ERR_MARGIN_OVERFLOW', ERR_MARGIN_OVERFLOW, C_ERR_MARGIN_OVERFLOW);
   NLSManager.TranslateString(NLS_STR_SECTION, 'ERR_CANNOT_READ_PRINTINFO', ERR_CANNOT_READ_PRINTINFO, C_ERR_CANNOT_READ_PRINTINFO);
   NLSManager.TranslateString(NLS_STR_SECTION, 'TXT_PRINTER_STATUS_READY', TXT_PRINTER_STATUS_READY, C_TXT_PRINTER_STATUS_READY);

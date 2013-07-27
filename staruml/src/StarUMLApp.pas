@@ -2496,11 +2496,15 @@ begin
   if ADiagramView.OwnedViewCount <= 0 then Exit;
   if FileName = '' then Exit;
   ABitmap := BitmapFromDiagram(ADiagramView);
-  try
-    ABitmap.SaveToFile(FileName);
-    Result := True;
-  finally
-    if ABitmap <> nil then ABitmap.Free;
+  if ABitmap = nil then
+    ShowMessage(ERR_BITMAP_GEN_ERROR)
+  else begin
+    try
+      ABitmap.SaveToFile(FileName);
+      Result := True;
+    finally
+      if ABitmap <> nil then ABitmap.Free;
+    end;
   end;
 end;
 
@@ -2515,13 +2519,17 @@ begin
   if FileName = '' then Exit;
   AJPEGImage := TJPEGImage.Create;
   ABitmap := BitmapFromDiagram(ADiagramView);
-  try
-    AJPEGImage.Assign(ABitmap);
-    AJPEGImage.SaveToFile(FileName);
-    Result := True;
-  finally
-    if ABitmap <> nil then ABitmap.Free;
-    AJPEGImage.Free;
+  if ABitmap = nil then
+    ShowMessage(ERR_BITMAP_GEN_ERROR)
+  else begin
+    try
+      AJPEGImage.Assign(ABitmap);
+      AJPEGImage.SaveToFile(FileName);
+      Result := True;
+    finally
+      if ABitmap <> nil then ABitmap.Free;
+      AJPEGImage.Free;
+    end;
   end;
 end;
 
