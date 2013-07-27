@@ -50,7 +50,7 @@ unit CppAddInObj;
 interface
 
 uses
-  Windows, ActiveX, Classes, ComObj, WhiteStarUML_TLB, StdVcl;
+  ComObj, WhiteStarUML_TLB;
 
 type
   TCppAddInObj = class(TTypedComObject, IStarUMLAddIn)
@@ -76,14 +76,24 @@ type
 implementation
 
 uses
-  RevEngineFrm, CodeGenFrm, Symbols, NLS_CppAddIn,
-  ComServ, Forms, Dialogs, Variants, WSCppAddIn_TLB;
+  Windows, ComServ, Forms, Dialogs, Variants,
+  RevEngineFrm, CodeGenFrm, Symbols, NLS_CppAddIn, Utility, WSCppAddIn_TLB;
 
 procedure TCppAddInObj.Initialize;
 begin
   inherited;
-  StarUMLApp := CoWhiteStarUMLApplication.Create;
-  Application.Handle := StarUMLApp.Handle;
+  try
+    if GetProgramName = 'WhiteStarUML.exe' then
+      StarUMLApp := CoWhiteStarUMLApplication.Create
+    else
+      StarUMLApp := CreateOleObject('StarUML.StarUMLApplication')
+        as IStarUMLApplication;
+
+    Application.Handle := StarUMLApp.Handle;
+
+  except
+    assert(False,'Could not instantiate Application Object')
+  end;
 end;
 
 destructor TCppAddInObj.Destroy;
@@ -198,9 +208,7 @@ end;
 
 
 initialization
-//  TComObjectFactory.Create(ComServer, TCppAddInObj, Class_CppAddInObj,
-//    'CppAddInObj', '', ciMultiInstance, tmApartment);
-  TTypedComObjectFactory.Create(ComServer, TCppAddInObj, Class_CppAddInObj,
+  TTypedComObjectFactory.Create(ComServer, TCppAddInObj, CLASS_CppAddInObj,
     ciMultiInstance, tmApartment);
 
 end.

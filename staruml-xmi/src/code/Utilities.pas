@@ -114,6 +114,7 @@ type
   function RemoveSlashFromName(Val: string): string;
   function CheckUMLElemNameValidation(Val: string): Boolean;
   function ConflictNameToNewName(Elem: IUMLModelElement; Val: string): string;
+  function GetProgramName: string;
 
 var
   XMLUtil: PXMLUtil;
@@ -649,6 +650,18 @@ begin
     except on Exception do
     end;
   end;
+end;
+
+function GetProgramName: string;
+const
+  CallingProcessHandle = 0;
+var
+  NameInput: array [1 .. MAX_PATH] of WideChar;
+  FileNameLength: Cardinal;
+begin
+    FileNameLength := GetModuleFileName(CallingProcessHandle, @NameInput, MAX_PATH);
+    if FileNameLength > 0 then
+      Result := ExtractFileName(WideCharToString(@NameInput));
 end;
 
 // Utility methods

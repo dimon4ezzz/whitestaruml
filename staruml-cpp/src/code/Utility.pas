@@ -140,6 +140,8 @@ type
 
 // Utility Functions
 function GetDllDirectory: string;
+function SetQualifiedFileName(var FileName: string): Boolean;
+function GetProgramName: string;
 function StringToAccessSpecifierKind(Value: string): PCppAccessSpecifierKind;
 function StringToClassKeyKind(Value: string): PCppClassKeyKind;
 function StringToTypeParameterKind(Value: string): PCppTypeParameterKind;
@@ -432,6 +434,37 @@ begin
   GetModuleFileName(HInstance, ModuleName, Sizeof(ModuleName));
   Path := ExtractFileDir(ModuleName);
   Result := Path;
+end;
+
+function SetQualifiedFileName(var FileName: string): Boolean;
+var
+  QualifiedFileName: string;
+begin
+  Result := False;
+
+  QualifiedFileName := GetDllDirectory + '\' + CPP_GRAMMAR_FILE_LOCATION
+    + '\' + FileName;
+  if not FileExists(QualifiedFileName) then begin
+    QualifiedFileName := GetDllDirectory + '\' + FileName;
+    if not FileExists(QualifiedFileName) then
+      Exit;
+  end;
+
+  FileName := QualifiedFileName;
+  Result := True;
+
+end;
+
+function GetProgramName: string;
+const
+  CallingProcessHandle = 0;
+var
+  NameInput: array [1 .. MAX_PATH] of WideChar;
+  FileNameLength: Cardinal;
+begin
+    FileNameLength := GetModuleFileName(CallingProcessHandle, @NameInput, MAX_PATH);
+    if FileNameLength > 0 then
+      Result := ExtractFileName(WideCharToString(@NameInput));
 end;
 
 function StringToAccessSpecifierKind(Value: string): PCppAccessSpecifierKind;

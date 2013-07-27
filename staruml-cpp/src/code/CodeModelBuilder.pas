@@ -431,11 +431,17 @@ end;
 //  PCodeModelBuilder
 
 constructor PCodeModelBuilder.Create;
+var
+  GrammarFileName: string;
 begin
   RootNamespace := nil;
+  GrammarFileName := CPP_GRAMMAR_FILE_NAME;
+  if not SetQualifiedFileName(GrammarFileName) then
+    raise Exception.Create(CPP_GRAMMAR_FILE_NAME + C_ERR_FILE_NOT_FOUND);
+
   DirectiveRemover := PDirectiveRemover.Create;
   Pgmr := TPgmrExt.Create(nil);
-  Pgmr.SetGrammar(GetDllDirectory + '\' + CPP_GRAMMAR_FILE_NAME);
+  Pgmr.SetGrammar(GrammarFileName);
   Factory := PCodeModelFactory.Create;
   FSourceFiles := TStringList.Create;
   ScopedTypeList := TStringList.Create;

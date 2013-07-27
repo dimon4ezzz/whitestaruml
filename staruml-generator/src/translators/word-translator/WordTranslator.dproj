@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{6ED8B1E9-5876-413A-AEA3-AFCD9B3C2709}</ProjectGuid>
 			<MainSource>WordTranslator.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
@@ -35,6 +35,8 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_ExeOutput>C:\JS\Delphi\WhiteStarNoInstall</DCC_ExeOutput>
+			<DCC_DependencyCheckOutputName>..\..\..\..\..\WhiteStarNoInstall\WordTranslator.dll</DCC_DependencyCheckOutputName>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>

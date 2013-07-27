@@ -80,7 +80,9 @@ end;
 
 constructor PPowerPointTranslatorEngine.Create;
 begin
-  JScriptFileName := GetDllPath + '\' + GENERATOR_ENGINE_JS;
+  JScriptFileName := GENERATOR_ENGINE_JS; // Initial file name
+  if not SetQualifiedFileName(JScriptFileName) then
+    raise Exception.Create(C_ERR_ENGINE_NOT_FOUND);
   JScript := TStringList.Create;
   SC := TScriptControl.Create(nil);
 end;

@@ -50,8 +50,8 @@ unit DirectMDAProc;
 interface
 
 uses
-  DirectMDAObjects,
-  Classes, ComObj, ActiveX, WSGenerator_TLB, StdVcl, ExtCtrls, MSScriptControl_TLB;
+  Classes, ComObj, ExtCtrls, MSScriptControl_TLB,
+  DirectMDAObjects, WSGenerator_TLB;
 
 const
   FILE_EXT_JS = '.JS';
@@ -188,7 +188,9 @@ implementation
 
 uses
   Serializers, Symbols, Utilities,
-  ComServ, SysUtils, Dialogs, Forms, DateUtils, ShellAPI, Windows;
+  ComServ, SysUtils, Dialogs, Forms, DateUtils, ShellAPI, Windows,
+  WSExcelTranslator_TLB, WSPowerPointTranslator_TLB,
+  WSTextTranslator_TLB, WSWordTranslator_TLB;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PLogAdaptor
@@ -444,6 +446,20 @@ procedure TGeneratorProcessor.ExecuteTask(ATask: PTask);
     end;
   end;
 
+  function GetCOMClass(GenUnit: PGenerationUnit): TGUID;
+  begin
+    Assert(IsCOMBasedGenerator(GenUnit));
+    //Result := '';
+    case GenUnit.TranslatorType of
+      ttWord: Result := CLASS_WordTranslatorObj;
+      ttExcel: Result := CLASS_ExcelTranslatorObj;
+      ttPowerPoint: Result := CLASS_PowerPointTranslatorObj;
+      ttText: Result := CLASS_TextTranslatorObj;
+      else
+       Assert(false);
+    end;
+  end;
+
   function ExecuteCOMBasedTask(ATask: PTask; SL: TStringList; var FailMsg: string): Boolean;
   var
     Generator: ITranslator;
@@ -458,7 +474,8 @@ procedure TGeneratorProcessor.ExecuteTask(ATask: PTask);
     GenUnit := ATask.GenerationUnit;
     Assert(GenUnit <> nil);
     try
-      Intf := CreateCOMObject(ProgIDToClassID(GetCOMClassName(GenUnit)));
+      //Intf := CreateCOMObject(ProgIDToClassID(GetCOMClassName(GenUnit)));
+      Intf := CreateCOMObject(GetCOMClass(GenUnit));
     except
       on E: EOleSysError do begin
         FailMsg := Format(ERR_CANNOT_CREATE_TRANSLATOR, [E.Message]);

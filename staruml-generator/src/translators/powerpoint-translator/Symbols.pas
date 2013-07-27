@@ -49,8 +49,9 @@ interface
 
 const
   GENERATOR_ENGINE_JS = 'PowerPointTranslator.js';
+  GENERATOR_ENGINE_LOCATION = 'modules\staruml-generator\translators\powerpoint';
   ENCODE_ENGINE = 'PowerPointTranslator.dat';
-  C_ERR_ENGINE_NOT_FOUND = 'PowerPointTranslator.js file is not found.';
+  C_ERR_ENGINE_NOT_FOUND = 'PowerPointTranslator.js file not found.';
 
 implementation
 

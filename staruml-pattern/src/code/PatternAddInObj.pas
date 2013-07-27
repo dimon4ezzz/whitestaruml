@@ -50,8 +50,7 @@ unit PatternAddInObj;
 interface
 
 uses
-  Windows, ActiveX, Classes, ComObj,
-  WhiteStarUML_TLB, StdVcl;
+  ComObj, WhiteStarUML_TLB;
 
 type
   // PPatternAddIn
@@ -68,14 +67,23 @@ type
     destructor Destroy; override;
   end;
 
-//const
-//  Class_PatternAddInObj: TGUID = '{42A422B0-1FE2-4B89-921C-4C26D754599F}';
-
 implementation
 
 uses
-  ComServ, Dialogs, Forms, SysUtils, NLS_PatternAddIn, PatternAddInFrm,
-  PatternAddInFrmWithJvclInspector, WSPatternAddIn_TLB;
+  Windows, ComServ, Dialogs, Forms, SysUtils,
+  NLS_PatternAddIn, PatternAddInFrm, PatternAddInFrmWithJvclInspector, WSPatternAddIn_TLB;
+
+function GetProgramName: string;
+const
+  CallingProcessHandle = 0;
+var
+  NameInput: array [1 .. MAX_PATH] of WideChar;
+  FileNameLength: Cardinal;
+begin
+    FileNameLength := GetModuleFileName(CallingProcessHandle, @NameInput, MAX_PATH);
+    if FileNameLength > 0 then
+      Result := ExtractFileName(WideCharToString(@NameInput));
+end;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PPatternAddIn
@@ -83,11 +91,20 @@ uses
 procedure PPatternAddIn.Initialize;
 begin
   inherited;
-  StarUMLApp := CoWhiteStarUMLApplication.Create;
-  Application.Handle := StarUMLApp.Handle;
-  //PatternAddInForm := TPatternAddInFormWithTdxInspector.Create(Application);
+  try
+    if GetProgramName = 'WhiteStarUML.exe' then
+      StarUMLApp := CoWhiteStarUMLApplication.Create
+    else
+      StarUMLApp := CreateOleObject('StarUML.StarUMLApplication')
+        as IStarUMLApplication;
+
+    Application.Handle := StarUMLApp.Handle;
+
+  except
+    assert(False,'Could not instantiate Application Object')
+  end;
+
   PatternAddInForm := TPatternAddInFormWithJvclInspector.Create(Application);
-  //PatternAddInForm := TPatternAddInForm.Create(Application);
   PatternAddInForm.StarUMLApp := StarUMLApp;
 end;
 
@@ -147,9 +164,6 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 
 initialization
-  //TComObjectFactory.Create(ComServer, PPatternAddIn, Class_PatternAddInObj,
-  //  'PatternAddInObj', '', ciMultiInstance, tmApartment);
-
   TTypedComObjectFactory.Create(ComServer, PPatternAddIn, CLASS_PatternAddInObj,
     ciMultiInstance, tmApartment);
 

@@ -49,8 +49,9 @@ interface
 
 const
   GENERATOR_ENGINE_JS = 'TextTranslator.js';
+  GENERATOR_ENGINE_LOCATION = 'modules\staruml-generator\translators\text';
   ENCODE_ENGINE = 'TextTranslator.dat';
-  C_ERR_ENGINE_NOT_FOUND = 'TextTranslator.js file is not found.';
+  C_ERR_ENGINE_NOT_FOUND = 'TextTranslator.js file not found.';
 
 implementation
 
