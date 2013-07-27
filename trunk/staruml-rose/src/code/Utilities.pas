@@ -86,6 +86,7 @@ function IntegerToMessViewDirectionKind(Value: Integer): RMessViewDirectionKind;
 function Vertex(X, Y: Integer): RPoint;
 procedure DelimitText(Text: string; Delimiter: string; SL: TStrings);
 function GetDllPath: string;
+function GetProgramName: string;
 
 implementation
 
@@ -319,5 +320,17 @@ begin
   Result := Path;
 end;
 
+function GetProgramName: string;
+const
+  CallingProcessHandle = 0;
+var
+  NameInput: array [1 .. MAX_PATH] of WideChar;
+  FileNameLength: Cardinal;
+begin
+    FileNameLength := GetModuleFileName(CallingProcessHandle, @NameInput, MAX_PATH);
+    if FileNameLength > 0 then
+      Result := ExtractFileName(WideCharToString(@NameInput));
+end;
 
 end.
+

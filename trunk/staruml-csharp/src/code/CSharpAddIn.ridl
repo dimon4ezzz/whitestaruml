@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 1/1/2012 6:04:24 PM (- $Rev: 12980 $, 20266323).
+// File generated on 7/14/2013 12:46:55 AM (- $Rev: 12980 $, 45347291).
 
 [
   uuid(4236BF82-40CE-4D40-BD49-61ADC888A811),
@@ -18,7 +18,6 @@ library WSCSharpAddIn
 {
 
   importlib("stdole2.tlb");
-  importlib("WhiteStarUML.exe");
 
   coclass CSharpAddInObj;
 
@@ -29,7 +28,6 @@ library WSCSharpAddIn
   ]
   coclass CSharpAddInObj
   {
-    [default] interface IStarUMLAddIn;
   };
 
 };

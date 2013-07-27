@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 1/1/2012 6:43:54 PM (- $Rev: 12980 $, 708884).
+// File generated on 7/14/2013 12:47:14 AM (- $Rev: 12980 $, 45366120).
 
 [
   uuid(A5C0474D-A3F2-4784-95E1-3629D439644F),
@@ -18,7 +18,6 @@ library WSRoseAddIn
 {
 
   importlib("stdole2.tlb");
-  importlib("WhiteStarUML.exe");
 
   coclass RoseAddInObj;
 
@@ -29,7 +28,6 @@ library WSRoseAddIn
   ]
   coclass RoseAddInObj
   {
-    [default] interface IStarUMLAddIn;
   };
 
 };

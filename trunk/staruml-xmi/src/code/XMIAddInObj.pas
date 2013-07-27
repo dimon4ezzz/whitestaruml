@@ -50,8 +50,7 @@ unit XMIAddInObj;
 interface
 
 uses
-  Windows, ActiveX, Classes, ComObj,
-  WhiteStarUML_TLB, StdVcl;
+  ComObj, WhiteStarUML_TLB;
 
 type
   TXMIAddInObj = class(TTypedComObject, IStarUMLAddIn)
@@ -72,17 +71,29 @@ type
 implementation
 
 uses
-  ComServ, Forms,
-  XMIImportFrm, XMIExportFrm, WSXMIAddIn_TLB;
+  ComServ, Forms, XMIImportFrm, XMIExportFrm, Utilities, WSXMIAddIn_TLB;
 
 ////////////////////////////////////////////////////////////////////////////////
 // TXMIAddInObj
 
 procedure TXMIAddInObj.Initialize;
+var
+  FileName: string;
 begin
   inherited;
-  StarUMLApp := CreateOleObject('WhiteStarUML.WhiteStarUMLApplication') as IStarUMLApplication;
-  Application.Handle := StarUMLApp.Handle;
+  try
+    FileName := GetProgramName;
+   if FileName = 'WhiteStarUML.exe' then
+      StarUMLApp := CoWhiteStarUMLApplication.Create
+    else
+      StarUMLApp := CreateOleObject('StarUML.StarUMLApplication')
+        as IStarUMLApplication;
+
+    Application.Handle := StarUMLApp.Handle;
+
+  except
+    assert(False,'Could not instantiate Application Object')
+  end;
 end;
 
 destructor TXMIAddInObj.Destroy;

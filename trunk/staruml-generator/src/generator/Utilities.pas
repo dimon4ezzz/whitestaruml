@@ -100,6 +100,7 @@ type
   end;
 
 function GetDllPath: string;
+function GetProgramName: string;
 //function GetPlasticInstallPath: string;
 function GetDirectMDAPath: string;
 function XMLEncoding(Str: string): string;
@@ -115,8 +116,7 @@ function RegulatedPath(APath: string; RefPath: string): string;
 implementation
 
 uses
-  Symbols,
-  Registry, Windows, Forms, HttpApp, ShellAPI, ShlObj;
+  Symbols, Registry, Windows, Forms, HttpApp, ShellAPI, ShlObj;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -271,6 +271,18 @@ begin
   Result := Path;
 end;
 
+function GetProgramName: string;
+const
+  CallingProcessHandle = 0;
+var
+  NameInput: array [1 .. MAX_PATH] of WideChar;
+  FileNameLength: Cardinal;
+begin
+    FileNameLength := GetModuleFileName(CallingProcessHandle, @NameInput, MAX_PATH);
+    if FileNameLength > 0 then
+      Result := ExtractFileName(WideCharToString(@NameInput));
+end;
+
 (*
 function GetPlasticInstallPath: string;
 var
@@ -313,7 +325,9 @@ begin
 end;
 *)
 begin
-  Result := GetDllPath;
+  Result := GetDllPath + '\' + GENERATOR_ENGINE_LOCATION;
+  if not DirectoryExists(Result) then
+    Result := GetDllPath;
 end;
 
 function XMLEncoding(Str: string): string;

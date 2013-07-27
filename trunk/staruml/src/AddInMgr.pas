@@ -1197,9 +1197,16 @@ var
   I: Integer;
   R: Boolean;
   ClassID: TGUID;
+  ObjNameIsClassID: Boolean;
 begin
   if FCOMObjName <> '' then begin
+    ObjNameIsClassID := True; // Check if ClassID is not directly passed as FCOMObjName
     try
+      ClassID := StringToGUID(FCOMObjName);
+     except
+      ObjNameIsClassID := False;
+    end;
+    if not ObjNameIsClassID then try
       ProgIDToClassID(FCOMObjName);
     except
       R := ExecAndWait('regsvr32','/s "' + InstalledDir + '\' + FFilename + '"');
@@ -1221,7 +1228,8 @@ begin
 
     try
       if ActiveFlag then begin
-        ClassID := ProgIDToClassID(FCOMObjName);
+        if not ObjNameIsClassID then
+          ClassID := ProgIDToClassID(FCOMObjName);
         FStarUMLAddIn := CreateCOMObject(ClassID) as IStarUMLAddIn;
         FStarUMLAddIn.InitializeAddIn;
       end else begin

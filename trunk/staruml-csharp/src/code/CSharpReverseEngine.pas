@@ -722,10 +722,16 @@ begin
 end;
 {## private ##################################################################}
 procedure PCSharpElementBuilder.InitializeProGMR;
+var
+  GrammarFileName: string;
 begin
   FProGMR := TPgmr.Create(Application);
 
-  FProGMR.SetGrammar(GetDllDirectory + '\' + CSHARP_GRAMMAR_FILE_NAME);
+  GrammarFileName := CSHARP_GRAMMAR_FILE_NAME;
+  if SetQualifiedFileName(GrammarFileName) then
+      FProGMR.SetGrammar(GrammarFileName)
+  else
+    raise Exception.Create(CSHARP_GRAMMAR_FILE_NAME + C_ERR_FILE_NOT_FOUND);
 end;
 
 procedure PCSharpElementBuilder.Log(Msg: string);

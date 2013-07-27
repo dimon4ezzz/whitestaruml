@@ -50,7 +50,7 @@ unit DirectMDADlg;
 interface
 
 uses
-  ComObj, ActiveX, WSGenerator_TLB, WhiteStarUML_TLB, StdVcl, SysUtils;
+  ComObj, WSGenerator_TLB, WhiteStarUML_TLB;
 
 type
   TGeneratorApplication = class(TAutoObject, IGeneratorApplication, IStarUMLAddIn)
@@ -73,14 +73,24 @@ var
 implementation
 
 uses
-  PieFrm,
-  Forms, ComServ, Dialogs, Symbols;
+  Forms, ComServ, Dialogs, Symbols,
+  PieFrm, Utilities;
 
 procedure TGeneratorApplication.Initialize;
 begin
   inherited;
-  StarUMLApp := CoWhiteStarUMLApplication.Create;
-  Application.Handle := StarUMLApp.Handle;
+  try
+    if GetProgramName = 'WhiteStarUML.exe' then
+      StarUMLApp := CoWhiteStarUMLApplication.Create
+    else
+      StarUMLApp := CreateOleObject('StarUML.StarUMLApplication')
+        as IStarUMLApplication;
+
+    Application.Handle := StarUMLApp.Handle;
+
+  except
+    assert(False,'Could not instantiate Application Object')
+  end;
 end;
 
 destructor TGeneratorApplication.Destroy;

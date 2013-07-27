@@ -50,8 +50,9 @@ interface
 const
 
   GENERATOR_ENGINE_JS = 'ExcelTranslator.js';
+  GENERATOR_ENGINE_LOCATION = 'modules\staruml-generator\translators\excel';
   ENCODE_SCRIPT_ENGINE = 'ExcelTranslator.dat';
-  C_ERR_ENGINE_NOT_FOUND = 'ExcelTranslator.js file is not found.';
+  C_ERR_ENGINE_NOT_FOUND = 'ExcelTranslator.js file not found.';
 implementation
 
 end.

@@ -186,6 +186,7 @@ const
 
   // etc
   CSHARP_GRAMMAR_FILE_NAME = 'CS.GMR';
+  CSHARP_GRAMMAR_FILE_LOCATION = 'modules\staruml-csharp';
   CSHARP_FILE_EXT = '.cs';
   CSHARP_INDEXER_NAME = 'this';
   CSHARP_DOC_BEGIN = '<summary>';
@@ -193,6 +194,7 @@ const
   PGMR_ERR_STARTPOS = 'StartPos';
   PGMR_ERR_NUMCHAR = 'NumChars';
   PGMR_NODE_NOT_EXISTS = 0;
+  C_ERR_FILE_NOT_FOUND = ' file not found.';
 
   // Images index
   IMG_INDEX_WAITING = 0;
