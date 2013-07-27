@@ -48,10 +48,11 @@ unit Utility;
 interface
 
 uses
-  WhiteStarUML_TLB,
-  StdCtrls, Classes;
+  Classes, WhiteStarUML_TLB;
 
 function GetDllDirectory: string;
+function SetQualifiedFileName(var FileName: string): Boolean;
+function GetProgramName: string;
 
   type
 // PStringWriter
@@ -91,8 +92,7 @@ function GetDllDirectory: string;
 implementation
 
 uses
-  Symbols,
-  Windows, SysUtils,Forms;
+  Windows, SysUtils, Forms, Symbols;
 
 ////////////////////////////////////////////////////////////////////////////////
 //  PStringWriter
@@ -235,5 +235,35 @@ begin
   Result := Path;
 end;
 
+function SetQualifiedFileName(var FileName: string): Boolean;
+var
+  QualifiedFileName: string;
+begin
+  Result := False;
+
+  QualifiedFileName := GetDllDirectory + '\' + CSHARP_GRAMMAR_FILE_LOCATION
+    + '\' + FileName;
+  if not FileExists(QualifiedFileName) then begin
+    QualifiedFileName := GetDllDirectory + '\' + FileName;
+    if not FileExists(QualifiedFileName) then
+      Exit;
+  end;
+
+  FileName := QualifiedFileName;
+  Result := True;
+
+end;
+
+function GetProgramName: string;
+const
+  CallingProcessHandle = 0;
+var
+  NameInput: array [1 .. MAX_PATH] of WideChar;
+  FileNameLength: Cardinal;
+begin
+    FileNameLength := GetModuleFileName(CallingProcessHandle, @NameInput, MAX_PATH);
+    if FileNameLength > 0 then
+      Result := ExtractFileName(WideCharToString(@NameInput));
+end;
 
 end.

@@ -704,15 +704,18 @@ procedure PPatternManager.ScanPatternRepository(Pathname: string);
       SysUtils.FindClose(SearchRec);
     end;
   end;
-
+var
+  ExtendedPathname: string;
 begin
   FPatternRepository.ClearChildPatternNodes;
 
-  Pathname := PathName + PATTERN_REP_FOLDER_NAME;
-  if DirectoryExists(Pathname) then begin
-    FPatternRepository.FPathName := Pathname;
+  ExtendedPathname := PathName + PATTERN_REP_FOLDER_NAME;
+  if not DirectoryExists(ExtendedPathname) then
+    ExtendedPathname := PathName + 'modules\staruml-pattern\' + PATTERN_REP_FOLDER_NAME;
+  if DirectoryExists(ExtendedPathname) then begin
+    FPatternRepository.FPathName := ExtendedPathname;
     FPatternRepository.FName := PATTERN_REP_FOLDER_NAME;
-    SearchRepo(Pathname + '\', FPatternRepository, True);
+    SearchRepo(ExtendedPathname + '\', FPatternRepository, True);
   end else begin
     Application.MessageBox(PChar(ERR_PATTERN_REPO_NOT_FOUND), PChar(Application.Title),
           MB_OK + MB_ICONERROR)

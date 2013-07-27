@@ -48,11 +48,12 @@ unit Utilities;
 interface
 
 function GetDllPath: string;
+function SetQualifiedFileName(var FileName: string): Boolean;
 
 implementation
 
 uses
-  SysUtils, Windows;
+  SysUtils, Windows, Symbols;
 
 function GetDllPath: string;
 var
@@ -63,6 +64,24 @@ begin
   GetModuleFileName(HInstance, ModuleName, Sizeof(ModuleName));
   Path := ExtractFileDir(ModuleName);
   Result := Path;
+end;
+
+function SetQualifiedFileName(var FileName: string): Boolean;
+var
+  QualifiedFileName: string;
+begin
+  Result := False;
+
+  QualifiedFileName := GetDllPath + '\' + GENERATOR_ENGINE_LOCATION + '\' + FileName;
+  if not FileExists(QualifiedFileName) then begin
+    QualifiedFileName := GetDllPath + '\' + FileName;
+    if not FileExists(QualifiedFileName) then
+      Exit;
+  end;
+
+  FileName := QualifiedFileName;
+  Result := True;
+
 end;
 
 end.

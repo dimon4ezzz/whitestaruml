@@ -189,6 +189,8 @@ const
   C_ERR_PERSONAL_EDITION = 'It is not available in personal version.';
   C_ERR_TRIAL_EDITION = 'Trial date is expired.';
 
+  GENERATOR_ENGINE_LOCATION = 'modules\staruml-generator';
+
 implementation
 
 end.

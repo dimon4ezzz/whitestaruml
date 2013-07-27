@@ -50,7 +50,7 @@ unit JavaAddInObj;
 interface
 
 uses
-  Windows, ActiveX, Classes, ComObj, WhiteStarUML_TLB, WSJavaAddIn15_TLB, StdVcl;
+  ComObj, WhiteStarUML_TLB;
 
 type
   TJavaAddInObj = class(TTypedComObject, IStarUMLAddIn)
@@ -74,28 +74,17 @@ type
   function GetStarUMLApplication: IStarUMLApplication;
 
 
-//const
-//  Class_JavaAddInObj: TGUID = '{4FA40CFC-5C5D-4D58-AEF6-9042CBC09301}';
-
 implementation
 
 uses
-  ComServ, Dialogs, Forms, SysUtils,
-  CodeGenWizardFrm, RevEngWizardFrm, Symbols, NLS_JavaAddIn;
+  Windows, ComServ, Dialogs, Forms, SysUtils,
+  CodeGenWizardFrm, RevEngWizardFrm, Symbols, NLS_JavaAddIn, Utility, WSJavaAddIn15_TLB;
 
 
 function GetStarUMLApplication: IStarUMLApplication;
-var
-  NameInput: array [1 .. MAX_PATH] of WideChar;
-  FileName: string;
-  FileNameLength: Cardinal;
 begin
- try
-    FileNameLength := GetModuleFileName(0, @NameInput, MAX_PATH);
-    if FileNameLength > 0 then
-      FileName := ExtractFileName(WideCharToString(@NameInput));
-
-    if FileName = 'WhiteStarUML.exe' then
+  try
+    if GetProgramName = 'WhiteStarUML.exe' then
       Result := CoWhiteStarUMLApplication.Create
     else
       Result := CreateOleObject('StarUML.StarUMLApplication')
@@ -237,8 +226,6 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 
 initialization
- // TComObjectFactory.Create(ComServer, TJavaAddInObj, Class_JavaAddInObj,
- //   'JavaAddInObj', '', ciMultiInstance, tmApartment);
    TTypedComObjectFactory.Create(ComServer, TJavaAddInObj, CLASS_JavaAddInObj,
     ciMultiInstance, tmApartment);
 end.

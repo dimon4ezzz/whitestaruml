@@ -342,9 +342,11 @@ const
   // etc
   CPP_GRAMMAR_FILE_NAME = 'cpp.gmr';
   PP_GRAMMAR_FILE_NAME = 'Preprocess.gmr';
+  CPP_GRAMMAR_FILE_LOCATION = 'modules\staruml-cpp';
   PGMR_ERR_STARTPOS = 'StartPos';
   PGMR_ERR_NUMCHAR = 'NumChars';
   PGMR_NODE_NOT_EXISTS = 0;
+  C_ERR_FILE_NOT_FOUND = ' file not found.';
 
   // Programmar Parsing Error Severity
   PGMR_ERR_SEV_FATAL = 0;

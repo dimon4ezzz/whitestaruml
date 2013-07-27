@@ -52,7 +52,9 @@ uses
 
 const
   ERR_CANNOT_CREATE_DIRECTORY = 'cannot create directory';
-  
+
+  function GetProgramName: string;
+
 type
   // exceptions
   ENotInitialized = class(Exception);
@@ -91,6 +93,8 @@ type
 
 implementation
 
+uses
+  Windows;
 
 ////////////////////////////////////////////////////////////////////////////////
 //  PStringWriter
@@ -210,5 +214,17 @@ end;
 
 //  PStringWriter
 ////////////////////////////////////////////////////////////////////////////////
+
+function GetProgramName: string;
+const
+  CallingProcessHandle = 0;
+var
+  NameInput: array [1 .. MAX_PATH] of WideChar;
+  FileNameLength: Cardinal;
+begin
+    FileNameLength := GetModuleFileName(CallingProcessHandle, @NameInput, MAX_PATH);
+    if FileNameLength > 0 then
+      Result := ExtractFileName(WideCharToString(@NameInput));
+end;
 
 end.

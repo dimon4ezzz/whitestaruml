@@ -133,6 +133,7 @@ type
     function GetNodeCount(BaseNodeID: Integer; SearchPattern: string): Integer;
     function GetPrevAdjacentNode(NodeID: Integer): Integer;
     function GetDllPath: string;
+    function SetQualifiedFileName(var FileName: string): Boolean;
     // error check functions
     procedure CheckBaseNode(NodeID: Integer; SymbolName: string);
  
@@ -160,10 +161,18 @@ uses
 // PJavaParserObj
 
 constructor PJavaParserObj.Create;
+const
+  JAVA_GRAMMAR_FILE_NAME = 'java.gmr';
+  C_ERR_FILE_NOT_FOUND = ' file not found.';
+var
+  GrammarFileName: string;
 begin
   inherited;
+  GrammarFileName := JAVA_GRAMMAR_FILE_NAME;
+  if not SetQualifiedFileName(GrammarFileName) then
+    raise Exception.Create(JAVA_GRAMMAR_FILE_NAME + C_ERR_FILE_NOT_FOUND);
   Pgmr := TPgmr.Create(Application);
-  Pgmr.SetGrammar(GetDllPath + '\java.gmr');
+  Pgmr.SetGrammar(GrammarFileName);
   FPackages := TList.Create;
   FCompilationUnits := TList.Create;
   FErrorLine := -1;
@@ -1234,6 +1243,27 @@ begin
   Path := ExtractFileDir(ModuleName);
   Result := Path;
 end;
+
+function PJavaParserObj.SetQualifiedFileName(var FileName: string): Boolean;
+const
+  JAVA_GRAMMAR_FILE_LOCATION = 'modules\staruml-java15';
+var
+  QualifiedFileName: string;
+begin
+  Result := False;
+
+  QualifiedFileName := GetDllPath + '\' + JAVA_GRAMMAR_FILE_LOCATION
+    + '\' + FileName;
+  if not FileExists(QualifiedFileName) then begin
+    QualifiedFileName := GetDllPath + '\' + FileName;
+    if not FileExists(QualifiedFileName) then
+      Exit;
+  end;
+
+  FileName := QualifiedFileName;
+  Result := True;
+ end;
+
 
 procedure PJavaParserObj.CheckBaseNode(NodeID: Integer; SymbolName: string);
 begin

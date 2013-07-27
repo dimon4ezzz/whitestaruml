@@ -50,8 +50,9 @@ interface
 const
 
   GENERATOR_ENGINE_JS = 'WordTranslator.js';
+  GENERATOR_ENGINE_LOCATION = 'modules\staruml-generator\translators\word';
   ENCODE_ENGINE = 'WordTranslator.dat';
-  C_ERR_ENGINE_NOT_FOUND = 'WordTranslator.js file is not found.';
+  C_ERR_ENGINE_NOT_FOUND = 'WordTranslator.js file not found.';
 
 implementation
 

@@ -50,8 +50,7 @@ unit CSharpAddInObj;
 interface
 
 uses
-  Windows, ActiveX, Classes, ComObj,
-  WhiteStarUML_TLB, NLS_CSharpAddIn, StdVcl;
+  ComObj, WhiteStarUML_TLB;
 
 type
   TCSharpAddInObj = class(TTypedComObject,IStarUMLAddIn)
@@ -72,13 +71,12 @@ type
     destructor Destroy; override;
   end;
 
-//const
-//  Class_CSharpAddInObj: TGUID = '{18936F35-F68E-4D92-AC51-CE481938A23A}';
-
 implementation
 
 uses
-  ComServ, Dialogs, CSharpRevWizardFrm, CodeGenFrm, Forms, Symbols, WSCSharpAddIn_TLB;
+  Windows, ComServ, Dialogs,
+  CSharpRevWizardFrm, CodeGenFrm, Forms, Symbols, Utility,
+  NLS_CSharpAddIn, WSCSharpAddIn_TLB;
 
 function TCSharpAddInObj.InitializeAddIn:HResult;
 begin
@@ -104,10 +102,21 @@ end;
 
 
 procedure TCSharpAddInObj.Initialize;
+
 begin
   inherited;
-  StarUMLApp := CoWhiteStarUMLApplication.Create;
-  Application.Handle := StarUMLApp.Handle;
+  try
+    if GetProgramName = 'WhiteStarUML.exe' then
+      StarUMLApp := CoWhiteStarUMLApplication.Create
+    else
+      StarUMLApp := CreateOleObject('StarUML.StarUMLApplication')
+        as IStarUMLApplication;
+
+    Application.Handle := StarUMLApp.Handle;
+
+  except
+    assert(False,'Could not instantiate Application Object')
+  end;
 end;
 
 destructor TCSharpAddInObj.Destroy;
@@ -210,8 +219,6 @@ end;
 
 //############################################################################//
 initialization
- // TComObjectFactory.Create(ComServer, TCSharpAddInObj, Class_CSharpAddInObj,
- //   'CSharpAddInObj', '', ciMultiInstance, tmApartment);
-    TTypedComObjectFactory.Create(ComServer, TCSharpAddInObj, CLASS_CSharpAddInObj,
+  TTypedComObjectFactory.Create(ComServer, TCSharpAddInObj, CLASS_CSharpAddInObj,
     ciMultiInstance, tmApartment);
 end.

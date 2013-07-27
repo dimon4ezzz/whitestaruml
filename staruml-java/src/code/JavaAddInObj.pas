@@ -50,7 +50,7 @@ unit JavaAddInObj;
 interface
 
 uses
-  Windows, ActiveX, Classes, ComObj, WhiteStarUML_TLB, StdVcl;
+  ComObj, WhiteStarUML_TLB;
 
 type
   TJavaAddInObj = class(TTypedComObject, IStarUMLAddIn)
@@ -71,14 +71,11 @@ type
     destructor Destroy; override;
   end;
 
-//const
-  //Class_JavaAddInObj: TGUID = '{4FA40CFC-5C5D-4D58-AEF6-9042CBC09301}';
-
 implementation
 
 uses
-  ComServ, Dialogs, Forms,
-  CodeGenWizardFrm, RevEngWizardFrm, Symbols, NLS_JavaAddIn, WSJavaAddIn_TLB;
+  Windows, ComServ, Dialogs, Forms,
+  CodeGenWizardFrm, RevEngWizardFrm, Symbols, NLS_JavaAddIn, Utility, WSJavaAddIn_TLB;
 
 ////////////////////////////////////////////////////////////////////////////////
 // TJavaAddInObj
@@ -86,9 +83,18 @@ uses
 procedure TJavaAddInObj.Initialize;
 begin
   inherited;
-  //StarUMLApp := CreateOleObject('WhiteStarUML.WhiteStarUMLApplication') as IStarUMLApplication;
-  StarUMLApp := CoWhiteStarUMLApplication.Create;
-  Application.Handle := StarUMLApp.Handle;
+  try
+    if GetProgramName = 'WhiteStarUML.exe' then
+      StarUMLApp := CoWhiteStarUMLApplication.Create
+    else
+      StarUMLApp := CreateOleObject('StarUML.StarUMLApplication')
+        as IStarUMLApplication;
+
+    Application.Handle := StarUMLApp.Handle;
+
+  except
+    assert(False,'Could not instantiate Application Object')
+  end;
 end;
 
 destructor TJavaAddInObj.Destroy;
@@ -211,8 +217,6 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 
 initialization
-  //TComObjectFactory.Create(ComServer, TJavaAddInObj, Class_JavaAddInObj,
-  //  'JavaAddInObj', '', ciMultiInstance, tmApartment);
   TTypedComObjectFactory.Create(ComServer, TJavaAddInObj, CLASS_JavaAddInObj,
     ciMultiInstance, tmApartment);
 end.
