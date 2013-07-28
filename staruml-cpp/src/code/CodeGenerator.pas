@@ -1495,7 +1495,7 @@ begin
   else
     Writer.WriteLine('(%s) {', [GetOperationParametersStr(AOperation)]);
   Writer.WriteLine;
-  Writer.WriteLine('};');    
+  Writer.WriteLine('}');
 end;
 
 procedure PCodeGenerator.WriteDefMemberOnVisibility(Writer: PStringWriter; AClassifier: IUMLClassifier; Visibility: UMLVisibilityKind);
