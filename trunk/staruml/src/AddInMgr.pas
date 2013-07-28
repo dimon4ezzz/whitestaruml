@@ -1197,18 +1197,15 @@ var
   I: Integer;
   R: Boolean;
   ClassID: TGUID;
-  ObjNameIsClassID: Boolean;
+  Module: string;
 begin
   if FCOMObjName <> '' then begin
-    ObjNameIsClassID := True; // Check if ClassID is not directly passed as FCOMObjName
+  try
     try
-      ClassID := StringToGUID(FCOMObjName);
-     except
-      ObjNameIsClassID := False;
-    end;
-    if not ObjNameIsClassID then try
-      ProgIDToClassID(FCOMObjName);
-    except
+
+      ClassID := StringToGUID(FCOMObjName); // First attempt of getting ClassID
+
+    except // Initial error handling, try to register DLLs if they can be found
       R := ExecAndWait('regsvr32','/s "' + InstalledDir + '\' + FFilename + '"');
       if Assigned(FOnMessage) then
         if R then
@@ -1216,27 +1213,32 @@ begin
         else
           FOnMessage(Format('AddIn "%s" registeration is failed.', [FAddInName]));
 
-      for I := 0 to FModulePath.Count-1 do begin
-        R := ExecAndWait('regsvr32','/s "' + InstalledDir + '\' + FModulePath.Strings[I] + '"');
+      for Module in FModulePath do begin
+        R := ExecAndWait('regsvr32','/s "' + InstalledDir + '\' + Module + '"');
         if Assigned(FOnMessage) then
           if R then
-            FOnMessage(Format('AddIn sub module "%s" is registered successfully.', [ExtractFileName(FModulePath.Strings[I])]))
+            FOnMessage(Format('AddIn sub module "%s" is registered successfully.', [ExtractFileName(Module)]))
           else
-            FOnMessage(Format('AddIn sub module "%s" registeration is failed.', [ExtractFileName(FModulePath.Strings[I])]));
+            FOnMessage(Format('AddIn sub module "%s" registeration is failed.', [ExtractFileName(Module)]));
       end;
+
+      ClassID := StringToGUID(FCOMObjName); // Second attempt, exception will be handled now by top level block
+
+
+    end; // End of inner try block
+
+    // If ClassID was obtained, try to create COM object
+    if ActiveFlag then begin
+      FStarUMLAddIn := CreateCOMObject(ClassID) as IStarUMLAddIn;
+      FStarUMLAddIn.InitializeAddIn;
+    end
+    else begin // or finalize COM object if inactive
+      if Assigned(FStarUMLAddIn) then
+        FStarUMLAddIn.FinalizeAddIn;
+      FStarUMLAddIn := nil;
     end;
 
-    try
-      if ActiveFlag then begin
-        if not ObjNameIsClassID then
-          ClassID := ProgIDToClassID(FCOMObjName);
-        FStarUMLAddIn := CreateCOMObject(ClassID) as IStarUMLAddIn;
-        FStarUMLAddIn.InitializeAddIn;
-      end else begin
-        if Assigned(FStarUMLAddIn) then FStarUMLAddIn.FinalizeAddIn;
-        FStarUMLAddIn := nil;
-      end;
-    except on Exception do
+    except on Exception do // Final exception handling
       begin
         Msg := Format(ERR_ADDIN_COMOBJ_CREATION, [FCOMObjName]);
         raise EAddInLoadingValuesException.Create(Msg);
