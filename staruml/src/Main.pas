@@ -2578,13 +2578,20 @@ begin
 end;
 
 procedure PMain.EndUpdateHandler(Sender: TObject; CompletelyRebuild, UseUpdateLock: Boolean);
+var
+  SelectedModel: PModel;
 begin
   try
     StarUMLApplication.UpdateDocuments;
 
     //--MainForm.BrowserFrame.RebuildAll(CompletelyRebuild, UseUpdateLock);
     Screen.Cursor := crHourGlass;
+
     MainForm.ModelExplorer.RebuildAll(CompletelyRebuild, UseUpdateLock);
+    SelectedModel := StarUMLApplication.SelectedModels[0];
+    if SelectedModel <> nil then
+      MainForm.ModelExplorer.Expand(SelectedModel);
+
     MainForm.DiagramExplorer.RebuildAll;
     Screen.Cursor := crDefault;
     //--
