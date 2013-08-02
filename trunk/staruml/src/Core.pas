@@ -121,7 +121,7 @@ type
   // Parametrized collections of Core types
   PModelOrderedSet = POrderedSet<PModel>;
   PViewOrderedSet = POrderedSet<PView>;
-
+  PDiagramOrderedSet = POrderedSet<PDiagram>;
 
   // Exceptions
   EInvalidFileFormat = class(Exception);
@@ -541,10 +541,6 @@ type
 
   // PModel
   PModel = class(PElement)
-  private type
-    PViewOrderedSet = POrderedSet<PView>;
-    PDiagramOrderedSet = POrderedSet<PDiagram>;
-    PModelOrderedSet = POrderedSet<PModel>;
   private
     FName: string;
     FDocumentation: string;
@@ -649,9 +645,9 @@ type
   private
     FModel: PModel;
     FParent: PView;
-    FSubViews: POrderedSet;
+    FSubViews: PViewOrderedSet;
     FContainerView: PView;
-    FContainedViews: POrderedSet;
+    FContainedViews: PViewOrderedSet;
     FOwnerDiagramView: PDiagramView;
     FVisible: Boolean;
     FEnabled: Boolean;
@@ -848,8 +844,8 @@ type
   private
     FDiagram: PDiagram;
     FCanvas: PCanvas;
-    FOwnedViews: POrderedSet;
-    FSelectedViews: POrderedSet;
+    FOwnedViews: PViewOrderedSet;
+    FSelectedViews: PViewOrderedSet;
     procedure SetDiagram(Value: PDiagram);
     function GetSelectedView(Index: Integer): PView;
     function GetSelectedCount: Integer;
@@ -3226,16 +3222,9 @@ end;
 procedure PModel.UpdateViews;
 var
   View: PView;
-  //I: Integer;
 begin
-  //for I := 0 to FViews.Count - 1 do
-  //begin (FViews.Items[I])
-  //  .Update;
-  //end;
-
   for View in FViews do
     View.Update;
-
 end;
 
 procedure PModel.ClearOwnedDiagrams;
@@ -3449,19 +3438,8 @@ end;
 
 function PModel.FindByName(AName: string): PModel;
 var
-  //I: Integer;
   M: PModel;
 begin
-  {for I := 0 to FVirtualOwnedModels.Count - 1 do
-  begin
-    M := FVirtualOwnedModels.Items[I] as PModel;
-    if M.Name = AName then
-    begin
-      Result := M;
-      Exit;
-    end;
-  end;}
-
   for M in FVirtualOwnedModels do begin
     if M.Name = AName then begin
       Result := M;
@@ -3730,9 +3708,9 @@ begin
   inherited Create;
   FModel := nil;
   FParent := nil;
-  FSubViews := POrderedSet.Create;
+  FSubViews := PViewOrderedSet.Create;
   FContainerView := nil;
-  FContainedViews := POrderedSet.Create;
+  FContainedViews := PViewOrderedSet.Create;
   FOwnerDiagramView := nil;
   FVisible := True;
   FEnabled := True;
@@ -3761,11 +3739,11 @@ end;
 
 procedure PView.Accept(Visitor: PVisitor);
 var
-  I: Integer;
+  SubView: PView;
 begin
   inherited;
-  for I := 0 to SubViewCount - 1 do
-    SubViews[I].Accept(Visitor);
+  for SubView in FSubViews do
+    SubView.Accept(Visitor);
 end;
 
 procedure PView.SetSelected(Value: Boolean);
@@ -3992,7 +3970,7 @@ end;
 
 function PView.GetContainedView(Index: Integer): PView;
 begin
-  Result := FContainedViews.Items[Index] as PView;
+  Result := FContainedViews[Index];
 end;
 
 function PView.GetContainedViewCount: Integer;
@@ -4104,14 +4082,14 @@ end;
 
 procedure PView.Draw(Canvas: PCanvas);
 var
-  I: Integer;
+  SubView: PView;
 begin
   if FVisible then
   begin
     Arrange(Canvas);
     DrawObject(Canvas);
-    for I := 0 to FSubViews.Count - 1 do (FSubViews.Items[I] as PView)
-      .Draw(Canvas);
+    for SubView in FSubViews do 
+      SubView.Draw(Canvas);
     if Model = nil then
       DrawNoModeledMark(Canvas);
   end;
@@ -4119,42 +4097,34 @@ end;
 
 procedure PView.Move(Canvas: PCanvas; DX, DY: Integer);
 var
-  I: Integer;
+  SubView: PView;
 begin
   if (DX <> 0) or (DY <> 0) then
   begin
     MovePosition(Canvas, DX, DY);
-    for I := 0 to FSubViews.Count - 1 do (FSubViews.Items[I] as PView)
-      .Move(Canvas, DX, DY);
+    for SubView in FSubViews do
+      SubView.Move(Canvas, DX, DY);
   end;
 end;
 
 procedure PView.Arrange(Canvas: PCanvas);
 var
-  I: Integer;
-  AView: PView;
+  SubView: PView;
 begin
-  for I := 0 to FSubViews.Count - 1 do
-  begin
-    AView := FSubViews.Items[I] as PView;
-    AView.Arrange(Canvas);
-  end;
+  for SubView in FSubViews do
+    SubView.Arrange(Canvas);
   DelimitContainingBoundary(Canvas);
   ArrangeObject(Canvas);
 end;
 
 procedure PView.Update;
 var
-  I: Integer;
-  AView: PView;
+  ContainedView: PView;
 begin
   if Model = nil then
     Exit;
-  for I := 0 to FContainedViews.Count - 1 do
-  begin
-    AView := FContainedViews.Items[I] as PView;
-    AView.Update;
-  end;
+  for ContainedView in FContainedViews do
+    ContainedView.Update;
 end;
 
 procedure PView.BringToFront;
@@ -4207,7 +4177,7 @@ begin
   Result := nil;
   for I := FSubViews.Count - 1 downto 0 do
   begin
-    V := FSubViews.Items[I] as PView;
+    V := FSubViews.Items[I];
     if V.Visible and V.Selectable then
     begin
       SubView := V.GetViewAt(Canvas, X, Y);
@@ -4242,7 +4212,7 @@ var
   I: Integer;
 begin
   for I := FSubViews.Count - 1 downto 0 do
-    RemoveSubView(FSubViews.Items[I] as PView);
+    RemoveSubView(FSubViews.Items[I]);
   FSubViews.Clear;
 end;
 
@@ -4282,7 +4252,7 @@ procedure PView.DeleteSubView(Index: Integer);
 var
   V: PView;
 begin
-  V := FSubViews.Items[Index] as PView;
+  V := FSubViews.Items[Index];
   FSubViews.Delete(Index);
   if V <> nil then
     V.FParent := nil;
@@ -4315,7 +4285,7 @@ var
   I: Integer;
 begin
   for I := FContainedViews.Count - 1 downto 0 do
-    RemoveContainedView(FContainedViews.Items[I] as PView);
+    RemoveContainedView(FContainedViews.Items[I]);
   FContainedViews.Clear;
 end;
 
@@ -4891,8 +4861,8 @@ begin
   inherited;
   FDiagram := nil;
   FCanvas := nil;
-  FOwnedViews := POrderedSet.Create;
-  FSelectedViews := POrderedSet.Create;
+  FOwnedViews := PViewOrderedSet.Create;
+  FSelectedViews := PViewOrderedSet.Create;
 end;
 
 destructor PDiagramView.Destroy;
@@ -4908,11 +4878,11 @@ end;
 
 procedure PDiagramView.Accept(Visitor: PVisitor);
 var
-  I: Integer;
+  OwnedView: PView;
 begin
   inherited;
-  for I := 0 to OwnedViewCount - 1 do
-    OwnedViews[I].Accept(Visitor);
+    for OwnedView in FOwnedViews do
+      OwnedView.Accept(Visitor);
 end;
 
 procedure PDiagramView.SetDiagram(Value: PDiagram);
@@ -4929,7 +4899,7 @@ end;
 
 function PDiagramView.GetSelectedView(Index: Integer): PView;
 begin
-  Result := FSelectedViews.Items[Index] as PView;
+  Result := FSelectedViews[Index];
 end;
 
 function PDiagramView.GetSelectedCount: Integer;
@@ -4942,7 +4912,7 @@ end;
 
 function PDiagramView.GetOwnedView(Index: Integer): PView;
 begin
-  Result := FOwnedViews.Items[Index] as PView;
+  Result := FOwnedViews[Index];
 end;
 
 function PDiagramView.GetOwnedViewCount: Integer;
@@ -4955,48 +4925,43 @@ end;
 
 procedure PDiagramView.DrawObject(Canvas: PCanvas);
 var
-  I: Integer;
-  AView: PView;
+  OwnedView: PView;
 begin
-  for I := 0 to FOwnedViews.Count - 1 do
-  begin
-    AView := FOwnedViews.Items[I] as PView;
-    AView.Arrange(Canvas);
-    // (FOwnedViews.Items[I] as PView).Arrange(Canvas);
-  end;
-end;
+  for OwnedView in FOwnedViews do
+    OwnedView.Arrange(Canvas);
+ end;
 
 procedure PDiagramView.Draw(Canvas: PCanvas);
 var
-  I: Integer;
+  OwnedView: PView;
 begin
   if FVisible then
   begin
     Arrange(Canvas);
     DrawObject(Canvas);
-    for I := 0 to FOwnedViews.Count - 1 do (FOwnedViews.Items[I] as PView)
-      .Draw(Canvas);
+    for OwnedView in FOwnedViews do 
+      OwnedView.Draw(Canvas);
   end;
 end;
 
 procedure PDiagramView.DrawDiagram(Canvas: PCanvas);
 var
-  I: Integer;
+  SelectedView: PView;
 begin
   if FVisible then
   begin
     Draw(Canvas);
-    for I := 0 to FSelectedViews.Count - 1 do (FSelectedViews.Items[I] as PView)
-      .DrawSelection(Canvas);
+    for SelectedView in  FSelectedViews do 
+      SelectedView.DrawSelection(Canvas);
   end;
 end;
 
 procedure PDiagramView.Update;
 var
-  I: Integer;
+  OwnedView: PView;
 begin
-  for I := 0 to OwnedViewCount - 1 do
-    OwnedViews[I].Update;
+  for OwnedView in FOwnedViews do
+    OwnedView.Update;
 end;
 
 function PDiagramView.GetContainingDocument: PDocument;
@@ -5045,7 +5010,7 @@ begin
   Result := nil;
   for I := FOwnedViews.Count - 1 downto 0 do
   begin
-    V := FOwnedViews.Items[I] as PView;
+    V := FOwnedViews[I];
     if V.Visible and V.Selectable and V.ContainsPoint(Canvas, X, Y) then
     begin
       Result := V;
@@ -5059,13 +5024,11 @@ end;
 function PDiagramView.GetBoundingBox(Canvas: PCanvas): TRect;
 var
   V: PView;
-  I: Integer;
   R: TRect;
 begin
   R := Rect(10000, 10000, -10000, -10000);
-  for I := 0 to OwnedViewCount - 1 do
+  for V in FOwnedViews do
   begin
-    V := OwnedViews[I];
     if V.Visible then
       UnionRect(R, R, V.GetBoundingBox(Canvas));
   end;
@@ -5075,13 +5038,11 @@ end;
 function PDiagramView.GetSelectedBoundingBox(Canvas: PCanvas): TRect;
 var
   V: PView;
-  I: Integer;
   R: TRect;
 begin
   R := Rect(10000, 10000, -10000, -10000);
-  for I := 0 to SelectedViewCount - 1 do
+  for V in FSelectedViews do
   begin
-    V := SelectedViews[I];
     UnionRect(R, R, V.GetBoundingBox(Canvas));
   end;
   Result := R;
@@ -5110,19 +5071,18 @@ procedure PDiagramView.SelectAll;
   end;
 
 var
-  I: Integer;
+  OwnedView: PView;
 begin
-  for I := 0 to FOwnedViews.Count - 1 do
-    SelectView(FOwnedViews.Items[I] as PView);
+  for OwnedView in FOwnedViews do
+    SelectView(OwnedView);
 end;
 
 procedure PDiagramView.DeselectAll;
 var
   I: Integer;
 begin
-  for I := FSelectedViews.Count - 1 downto 0
-    do (FSelectedViews.Items[I] as PView)
-    .Selected := False;
+  for I := FSelectedViews.Count - 1 downto 0 do 
+  FSelectedViews[I].Selected := False;
   FSelectedViews.Clear;
 end;
 
@@ -5140,11 +5100,11 @@ procedure PDiagramView.SelectArea(Canvas: PCanvas; X1, Y1, X2, Y2: Integer);
   end;
 
 var
-  I: Integer;
+  OwnedView: PView;
 begin
   NormalizeRect(X1, Y1, X2, Y2);
-  for I := 0 to FOwnedViews.Count - 1 do
-    SelectView(FOwnedViews.Items[I] as PView, X1, Y1, X2, Y2);
+  for OwnedView in FOwnedViews do
+    SelectView(OwnedView, X1, Y1, X2, Y2);
 end;
 
 procedure PDiagramView.ClearOwnedViews;
@@ -5200,7 +5160,7 @@ end;
 
 procedure PDiagramView.DeleteOwnedView(Index: Integer);
 begin
-  RemoveOwnedView(FOwnedViews.Items[Index] as PView);
+  RemoveOwnedView(FOwnedViews.Items[Index]);
 end;
 
 function PDiagramView.IndexOfOwnedView(AView: PView): Integer;
