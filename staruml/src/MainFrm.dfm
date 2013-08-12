@@ -45,7 +45,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 656
-        Height = 278
+        Height = 279
         ManagerFont = False
         ParentFont = True
         DockingType = 0
@@ -55,7 +55,7 @@ object MainForm: TMainForm
           Left = 167
           Top = 0
           Width = 489
-          Height = 278
+          Height = 279
           ManagerFont = False
           ParentFont = True
           DockingType = 0
@@ -65,7 +65,7 @@ object MainForm: TMainForm
             Left = 0
             Top = 0
             Width = 489
-            Height = 278
+            Height = 279
             ManagerFont = False
             ParentFont = True
             DockingType = 0
@@ -76,7 +76,7 @@ object MainForm: TMainForm
             Left = 0
             Top = 0
             Width = 489
-            Height = 278
+            Height = 279
             ManagerFont = False
             ParentFont = True
             AllowDock = [dtClient]
@@ -92,7 +92,7 @@ object MainForm: TMainForm
               Left = 0
               Top = 0
               Width = 485
-              Height = 254
+              Height = 255
               Align = alClient
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
@@ -102,20 +102,18 @@ object MainForm: TMainForm
               ParentFont = False
               TabOrder = 0
               ExplicitWidth = 485
-              ExplicitHeight = 254
+              ExplicitHeight = 255
               inherited ClientPanel: TFlatPanel
                 Width = 485
-                Height = 254
+                Height = 255
                 ExplicitWidth = 485
-                ExplicitHeight = 254
+                ExplicitHeight = 255
                 inherited DiagramPageControl: TPageControl
                   Width = 483
-                  Height = 252
+                  Height = 253
                   OnChange = WorkingAreaFrameDiagramPageControlChange
-                  ExplicitLeft = -79
-                  ExplicitTop = -2
                   ExplicitWidth = 483
-                  ExplicitHeight = 252
+                  ExplicitHeight = 253
                 end
               end
               inherited DiagramTabPopupMenu: TPopupMenu
@@ -129,7 +127,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 167
-          Height = 278
+          Height = 279
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -143,11 +141,9 @@ object MainForm: TMainForm
             Left = 0
             Top = 0
             Width = 163
-            Height = 254
+            Height = 255
             Align = alClient
             TabOrder = 0
-            ExplicitWidth = 163
-            ExplicitHeight = 254
             inherited PaletteNavBar: TCategoryButtons
               Width = 157
               Height = 249
@@ -848,9 +844,9 @@ object MainForm: TMainForm
       end
       object dxTabContainerDockSite2: TdxTabContainerDockSite
         Left = 0
-        Top = 278
+        Top = 279
         Width = 656
-        Height = 142
+        Height = 141
         ManagerFont = False
         ParentFont = True
         ActiveChildIndex = 1
@@ -858,12 +854,12 @@ object MainForm: TMainForm
         AutoHide = False
         DockingType = 4
         OriginalWidth = 695
-        OriginalHeight = 142
+        OriginalHeight = 141
         object OutputDockPanel: TdxDockPanel
           Left = 0
           Top = 0
           Width = 652
-          Height = 93
+          Height = 92
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -873,12 +869,12 @@ object MainForm: TMainForm
           ImageIndex = 5
           DockingType = 0
           OriginalWidth = 185
-          OriginalHeight = 142
+          OriginalHeight = 141
           inline OutputPanel: TOutputPanel
             Left = 0
             Top = 0
             Width = 652
-            Height = 93
+            Height = 92
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -888,17 +884,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 652
-            ExplicitHeight = 93
+            ExplicitHeight = 92
             inherited ClientPanel: TFlatPanel
               Width = 652
-              Height = 93
+              Height = 92
               ExplicitWidth = 652
-              ExplicitHeight = 93
+              ExplicitHeight = 92
               inherited OutputMemo: TMemo
                 Width = 650
-                Height = 91
+                Height = 90
                 ExplicitWidth = 650
-                ExplicitHeight = 91
+                ExplicitHeight = 90
               end
             end
           end
@@ -907,7 +903,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 652
-          Height = 93
+          Height = 92
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -917,12 +913,12 @@ object MainForm: TMainForm
           ImageIndex = 6
           DockingType = 0
           OriginalWidth = 185
-          OriginalHeight = 142
+          OriginalHeight = 141
           inline MessagePanel: TMessagePanel
             Left = 0
             Top = 0
             Width = 652
-            Height = 93
+            Height = 92
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -932,17 +928,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 652
-            ExplicitHeight = 93
+            ExplicitHeight = 92
             inherited ClientPanel: TFlatPanel
               Width = 652
-              Height = 93
+              Height = 92
               ExplicitWidth = 652
-              ExplicitHeight = 93
+              ExplicitHeight = 92
               inherited MessageListView: TListView
                 Width = 650
-                Height = 91
+                Height = 90
                 ExplicitWidth = 650
-                ExplicitHeight = 91
+                ExplicitHeight = 90
               end
             end
             inherited MessageImageList: TImageList
@@ -972,7 +968,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 268
-        Height = 215
+        Height = 226
         ManagerFont = False
         ParentFont = True
         ActiveChildIndex = 0
@@ -980,12 +976,12 @@ object MainForm: TMainForm
         AutoHide = False
         DockingType = 2
         OriginalWidth = 268
-        OriginalHeight = 215
+        OriginalHeight = 226
         object ModelExplorerDockPanel: TdxDockPanel
           Left = 0
           Top = 0
           Width = 264
-          Height = 166
+          Height = 177
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -999,12 +995,12 @@ object MainForm: TMainForm
           ImageIndex = 0
           DockingType = 0
           OriginalWidth = 268
-          OriginalHeight = 215
+          OriginalHeight = 226
           inline ModelExplorer: TModelExplorerPanel
             Left = 0
             Top = 0
             Width = 264
-            Height = 166
+            Height = 177
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1014,17 +1010,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 264
-            ExplicitHeight = 166
+            ExplicitHeight = 177
             inherited ClientPanel: TFlatPanel
               Width = 264
-              Height = 140
+              Height = 151
               ExplicitWidth = 264
-              ExplicitHeight = 140
+              ExplicitHeight = 151
               inherited ModelTree: TVirtualStringTree
                 Width = 262
-                Height = 138
+                Height = 149
                 ExplicitWidth = 262
-                ExplicitHeight = 138
+                ExplicitHeight = 149
               end
             end
             inherited ModelExplorerToolbar: TToolBar
@@ -1043,7 +1039,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 264
-          Height = 166
+          Height = 177
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -1057,12 +1053,12 @@ object MainForm: TMainForm
           ImageIndex = 1
           DockingType = 0
           OriginalWidth = 268
-          OriginalHeight = 215
+          OriginalHeight = 226
           inline DiagramExplorer: TDiagramExplorerPanel
             Left = 0
             Top = 0
             Width = 264
-            Height = 166
+            Height = 177
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1072,17 +1068,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 264
-            ExplicitHeight = 166
+            ExplicitHeight = 177
             inherited ClientPanel: TFlatPanel
               Width = 264
-              Height = 166
+              Height = 177
               ExplicitWidth = 264
-              ExplicitHeight = 166
+              ExplicitHeight = 177
               inherited DiagramTree: TVirtualStringTree
                 Width = 262
-                Height = 164
+                Height = 175
                 ExplicitWidth = 262
-                ExplicitHeight = 164
+                ExplicitHeight = 175
               end
             end
           end
@@ -1090,9 +1086,9 @@ object MainForm: TMainForm
       end
       object dxTabContainerDockSite3: TdxTabContainerDockSite
         Left = 0
-        Top = 215
+        Top = 226
         Width = 268
-        Height = 205
+        Height = 194
         ManagerFont = False
         ParentFont = True
         ActiveChildIndex = 0
@@ -1100,12 +1096,12 @@ object MainForm: TMainForm
         AutoHide = False
         DockingType = 2
         OriginalWidth = 268
-        OriginalHeight = 205
+        OriginalHeight = 194
         object PropertiesDockPanel: TdxDockPanel
           Left = 0
           Top = 0
           Width = 264
-          Height = 156
+          Height = 145
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -1115,12 +1111,12 @@ object MainForm: TMainForm
           ImageIndex = 2
           DockingType = 0
           OriginalWidth = 268
-          OriginalHeight = 205
+          OriginalHeight = 194
           inline InspectorFrame: TInspectorFrame
             Left = 0
             Top = 0
             Width = 264
-            Height = 156
+            Height = 145
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1130,12 +1126,12 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 264
-            ExplicitHeight = 156
+            ExplicitHeight = 145
             inherited ClientPanel: TPanel
               Width = 264
-              Height = 156
+              Height = 145
               ExplicitWidth = 264
-              ExplicitHeight = 156
+              ExplicitHeight = 145
               inherited InspectorTitleBarGapPanel: TPanel
                 Width = 264
                 ExplicitWidth = 264
@@ -1146,25 +1142,25 @@ object MainForm: TMainForm
               end
               inherited PropertyEditor: TPropertyEditorWithJvclInspector
                 Width = 264
-                Height = 135
+                Height = 124
                 ExplicitWidth = 264
-                ExplicitHeight = 135
+                ExplicitHeight = 124
                 inherited ClientPanel: TFlatPanel
                   Width = 264
-                  Height = 135
+                  Height = 124
                   ExplicitWidth = 264
-                  ExplicitHeight = 135
+                  ExplicitHeight = 124
                   inherited Inspector: TJvInspector
                     Left = 1
                     Top = 1
                     Width = 262
-                    Height = 133
+                    Height = 122
                     Align = alClient
                     Divider = 130
                     ExplicitLeft = 1
                     ExplicitTop = 1
                     ExplicitWidth = 262
-                    ExplicitHeight = 133
+                    ExplicitHeight = 122
                   end
                 end
                 inherited RowImageList: TImageList
@@ -1200,7 +1196,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 264
-          Height = 156
+          Height = 145
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -1210,12 +1206,12 @@ object MainForm: TMainForm
           ImageIndex = 3
           DockingType = 0
           OriginalWidth = 268
-          OriginalHeight = 205
+          OriginalHeight = 194
           inline DocumentationEditor: TDocumentationEditor
             Left = 0
             Top = 0
             Width = 264
-            Height = 156
+            Height = 145
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1225,17 +1221,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 264
-            ExplicitHeight = 156
+            ExplicitHeight = 145
             inherited ClientPanel: TFlatPanel
               Width = 264
-              Height = 156
+              Height = 145
               ExplicitWidth = 264
-              ExplicitHeight = 156
+              ExplicitHeight = 145
               inherited DocumentationMemo: TMemo
                 Width = 262
-                Height = 154
+                Height = 143
                 ExplicitWidth = 262
-                ExplicitHeight = 154
+                ExplicitHeight = 143
               end
             end
           end
@@ -1244,7 +1240,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 264
-          Height = 156
+          Height = 145
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -1254,12 +1250,12 @@ object MainForm: TMainForm
           ImageIndex = 4
           DockingType = 0
           OriginalWidth = 268
-          OriginalHeight = 205
+          OriginalHeight = 194
           inline AttachmentEditor: TAttachmentEditor
             Left = 0
             Top = 0
             Width = 264
-            Height = 156
+            Height = 145
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1269,17 +1265,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 264
-            ExplicitHeight = 156
+            ExplicitHeight = 145
             inherited ClientPanel: TFlatPanel
               Width = 264
-              Height = 132
+              Height = 121
               ExplicitWidth = 264
-              ExplicitHeight = 132
+              ExplicitHeight = 121
               inherited AttachmentListView: TListView
                 Width = 262
-                Height = 130
+                Height = 119
                 ExplicitWidth = 262
-                ExplicitHeight = 130
+                ExplicitHeight = 119
               end
             end
             inherited AttachmentsToolbar: TToolBar
@@ -1630,7 +1626,7 @@ object MainForm: TMainForm
       Caption = 'Alignment'
       CaptionButtons = <>
       DockedDockingStyle = dsTop
-      DockedLeft = 630
+      DockedLeft = 641
       DockedTop = 51
       DockingStyle = dsTop
       FloatLeft = 404

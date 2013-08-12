@@ -279,7 +279,7 @@ type
     procedure MoveSelectedViewsChaningContainerView(DX, DY: Integer; AContainerView: PView = nil);
     procedure MoveParasiticView(AParasiticView: PParasiticView; Alpha, Distance: Extended);
     procedure ResizeNode(ANode: PNodeView; Left, Top, Right, Bottom: Integer);
-    procedure ReshapeEdge(AEdge: PEdgeView; Points: PPoints);
+    procedure ReshapeEdge(AEdge: IModifiableEdge; Points: PPoints);
     procedure ReconnectEdge(AEdge: PEdgeView; Points: PPoints; NewParicipant: PView; IsTailSide: Boolean);
     procedure ChangeSelectedViewsLineColor(LineColor: TColor);
     procedure ChangeSelectedViewsFillColor(FillColor: TColor);
@@ -1418,16 +1418,13 @@ begin
 end;
 
 function PStarUMLApplication.CloseProject: Boolean;
-var
-  Closed: Boolean;
 begin
+  Result := False;
   SelectionManager.DeselectAll;
-  Closed := ProjectManager.CloseProject;
-  if Closed then
-  begin
+  if ProjectManager.ProjectCanClose then begin
     CommandExecutor.ClearHistory;
+    Result := ProjectManager.CloseProject;
   end;
-  Result := Closed;
 end;
 
 function PStarUMLApplication.SeparateUnit(APackage: PUMLPackage; AFileName: string): PUMLUnitDocument;
@@ -2245,11 +2242,11 @@ begin
   ElementModified(ANode);
 end;
 
-procedure PStarUMLApplication.ReshapeEdge(AEdge: PEdgeView; Points: PPoints);
+procedure PStarUMLApplication.ReshapeEdge(AEdge: IModifiableEdge; Points: PPoints);
 begin
-  CheckReadOnly(AEdge);
+  CheckReadOnly(AEdge as PView);
   CommandExecutor.ReshapeEdge(AEdge, Points);
-  ElementModified(AEdge);
+  ElementModified(AEdge as PElement);
 end;
 
 procedure PStarUMLApplication.ReconnectEdge(AEdge: PEdgeView; Points: PPoints; NewParicipant: PView; IsTailSide: Boolean);

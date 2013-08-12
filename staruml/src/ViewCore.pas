@@ -143,13 +143,19 @@ type
     property AutoResize: Boolean read FAutoResize write SetAutoResize;
   end;
 
+  IModifiableEdge = interface
+    function GetPoints: PPoints;
+    procedure SetPoints(Value: PPoints);
+    property Points: PPoints read GetPoints write SetPoints;
+  end;
+
   // PEdgeView
   // ---------------------------------------------------------------------------
   // LinMode, HeadEndStyle, and TailEndStyle property must be moved to protected part.
   // Because they are set once in Sub class's constructor without storing.
   // But, the movement occurs some problem.
   // ---------------------------------------------------------------------------
-  PEdgeView = class(PExtensibleView)
+  PEdgeView = class(PExtensibleView, IModifiableEdge)
   private
     FHead, FTail: PView;
     FLineMode: PLineMode;
@@ -160,6 +166,7 @@ type
     procedure SetTail(Value: PView);
     procedure SetLineMode(Value: PLineMode);
     procedure SetLineStyle(Value: PLineStyleKind);
+    function GetPoints: PPoints;
     procedure SetPoints(Value: PPoints);
     procedure SetHeadEndStyle(Value: PEdgeEndStyle);
     procedure SetTailEndStyle(Value: PEdgeEndStyle);
@@ -194,7 +201,7 @@ type
     property Tail: PView read FTail write SetTail;
     property LineMode: PLineMode read FLineMode write SetLineMode; // TRANSIENT //
     property LineStyle: PLineStyleKind read FLineStyle write SetLineStyle;
-    property Points: PPoints read FPoints write SetPoints;
+    property Points: PPoints read GetPoints write SetPoints;
     property HeadEndStyle: PEdgeEndStyle read FHeadEndStyle write SetHeadEndStyle; // TRANSIENT //
     property TailEndStyle: PEdgeEndStyle read FTailEndStyle write SetTailEndStyle; // TRANSIENT //
   end;
@@ -738,6 +745,11 @@ begin
       FPoints.ConvObliqueToRectilinear;
     FLineStyle := Value;
   end;
+end;
+
+function PEdgeView.GetPoints: PPoints;
+begin
+  Result := FPoints;
 end;
 
 procedure PEdgeView.SetPoints(Value: PPoints);

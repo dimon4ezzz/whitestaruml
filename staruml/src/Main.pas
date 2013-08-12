@@ -118,7 +118,7 @@ type
     procedure MainFormSelectedViewsContainerChangingHandler(DX, DY: Integer; AContainerView: PView);
     procedure MainFormParasiticViewMovingHandler(AParasiticView: PParasiticView; DX, DY: Extended);
     procedure MainFormNodeResizingHandler(Node: PNodeView; Left, Top, Right, Bottom: Integer);
-    procedure MainFormEdgeModifyingHandler(Edge: PEdgeView; Points: PPoints);
+    procedure MainFormEdgeModifyingHandler(Edge: IModifiableEdge; Points: PPoints);
     procedure MainFormEdgeReonnectingHandler(Edge: PEdgeView; Points: PPoints; NewParticipant: PView; IsTailSide: Boolean);
     procedure MainFormViewDoubleClickedHandler(Sender: TObject; AView: PView; X, Y: Integer);
     procedure MainFormQuickDlgPopup(AView: PView; X, Y: Integer);
@@ -1519,7 +1519,7 @@ begin
   end;
 end;
 
-procedure PMain.MainFormEdgeModifyingHandler(Edge: PEdgeView; Points: PPoints);
+procedure PMain.MainFormEdgeModifyingHandler(Edge: IModifiableEdge; Points: PPoints);
 begin
   try
     if Edge <> nil then StarUMLApplication.ReshapeEdge(Edge, Points);

@@ -123,7 +123,7 @@ type
     function InRect(X1, Y1, X2, Y2: Integer): Boolean;
     function GetEncloseRange: TRect;
     function Equal(Points: PPoints): Boolean;
-    property Points[Index: Integer]: TPoint read GetPoint write SetPoint;
+    property Points[Index: Integer]: TPoint read GetPoint write SetPoint; default;
     property Count: Integer read FCount;
   end;
 
