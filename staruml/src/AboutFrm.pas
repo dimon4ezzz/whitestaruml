@@ -49,7 +49,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, verslab;
+  Dialogs, StdCtrls, ExtCtrls, verslab, dxGDIPlusClasses;
 
 type
   TAboutForm = class(TForm)
@@ -75,6 +75,7 @@ uses
 {$R *.dfm}
 
 procedure TAboutForm.FormCreate(Sender: TObject);
+
 begin
   NLSManager.SetFile(ExtractFilePath(Application.ExeName) + 'NLS\ABOUT.LNG');
   NLSManager.TranslateComponent(Self, []);
