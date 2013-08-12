@@ -49,7 +49,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, StdCtrls;
+  Dialogs, ExtCtrls, StdCtrls, dxGDIPlusClasses;
 
 type
   TSplashForm = class(TForm)
