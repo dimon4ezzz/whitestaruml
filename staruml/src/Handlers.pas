@@ -158,7 +158,7 @@ type
   PSelectedViewsContainerChangingEvent = procedure(DX, DY: Integer; AContainerView: PView) of object;
   PParasiticViewMovingEvent = procedure(AParasiticView: PParasiticView; DX, DY: Extended) of object;
   PNodeResizingEvent = procedure(ANode: PNodeView; Left, Top, Right, Bottom: Integer) of object;
-  PEdgeModifyingEvent = procedure(AEdge: PEdgeView; Points: PPoints) of object;
+  PEdgeModifyingEvent = procedure(AEdge: IModifiableEdge; Points: PPoints) of object;
   PEdgeReconnectingEvent = procedure(AEdge: PEdgeView; Points: PPoints; NewParticipant: PView; IsTailSide: Boolean) of object;
   PViewMouseEvent = procedure(Sender: TObject; AView: PView; X, Y: Integer) of object;
 
@@ -226,7 +226,7 @@ type
     procedure ChangeSelectedViewsContainer(DX, DY: Integer; AContainerView: PView);
     procedure MoveParasiticView(AParasiticView: PParasiticView; DX, DY: Extended);
     procedure ResizeNode(Node: PNodeView; Left, Top, Right, Bottom: Integer);
-    procedure ModifyEdge(Edge: PEdgeView; Points: PPoints);
+    procedure ModifyEdge(Edge: IModifiableEdge; Points: PPoints);
     procedure ReconnectEdge(Edge: PEdgeView; Points: PPoints; NewParticipant: PView; IsTailSide: Boolean);
     // For Paint Scrolled Area
     procedure DrawRangeRect(ADiagramEditor: PDiagramEditor; Canvas: PCanvas);
@@ -339,7 +339,7 @@ type
     procedure SelectedViewsContainerChangingHandler(DX, DY: Integer; AContainerView: PView);
     procedure ParasiticViewMovingHandler(AParasiticView: PParasiticView; DX, DY: Extended);
     procedure NodeResizingHandler(Node: PNodeView; Left, Top, Right, Bottom: Integer);
-    procedure EdgeModifyingHandler(Edge: PEdgeView; Points: PPoints);
+    procedure EdgeModifyingHandler(Edge: IModifiableEdge; Points: PPoints);
     procedure EdgeReconnectingHandler(Edge: PEdgeView; Points: PPoints; NewParticipant: PView; IsTailSide: Boolean);
   public
     constructor Create;
@@ -382,7 +382,7 @@ type
   end;
 
   // PManipulator
-  PManipulator = class
+  PManipulator = class abstract
   private
     FHandler: PSelectHandler;
   protected
@@ -480,6 +480,27 @@ type
     function GetPermittedRegion(ADiagramEditor: PDiagramEditor; Canvas: PCanvas; AView: PView): TRect; override;
   end;
 
+  // PEdgeManipulator
+  PLineManipulator = class(PManipulator)
+  private const
+    NO_ENDPOINT_SELECTED = -1;
+  private
+    FPoints: PPoints;
+    FOriginPoints: PPoints;
+    FSelectedIndex: Integer;
+    FEdgeSelectLocation: PEdgeSelectLocation;
+    // not used now.
+    procedure FitToGrid(APoints: PPoints; AGridFactor: PGridFactor);
+  protected
+    procedure BeginManipulate(ADiagramEditor: PDiagramEditor; Canvas: PCanvas; AView: PView; X, Y: Integer); override;
+    procedure PaintSkeleton(ADiagramEditor: PDiagramEditor; Canvas: PCanvas); override;
+    procedure MoveSkeleton(ADiagramEditor: PDiagramEditor; Canvas: PCanvas; AView: PView; var DX: Integer; var DY: Integer); override;
+    procedure EndManipulate(ADiagramEditor: PDiagramEditor; Canvas: PCanvas; AView: PView; DX, DY: Integer); override;
+  public
+    constructor Create(Handler: PSelectHandler);
+    destructor Destroy; override;
+  end;
+
   // PManipulatorBinder
   PManipulatorBinder = class
   private
@@ -490,6 +511,7 @@ type
     FCustomColMessageManipulator: PUMLCustomColMessageManipulator;
     FQualifiedAssociationEdgeManipulator: PUMLQualifiedAssociationEdgeManipulator;
     FPortManipulator: PUMLPortManipulator;
+    FLineManipulator: PLineManipulator;
   public
     constructor Create(Handler: PSelectHandler);
     destructor Destroy; override;
@@ -613,7 +635,7 @@ begin
   if Assigned(FOnNodeResizing) then FOnNodeResizing(Node, Left, Top, Right, Bottom);
 end;
 
-procedure PSelectHandler.ModifyEdge(Edge: PEdgeView; Points: PPoints);
+procedure PSelectHandler.ModifyEdge(Edge: IModifiableEdge; Points: PPoints);
 begin
   if Assigned(FOnEdgeModifying) then FOnEdgeModifying(Edge, Points);
 end;
@@ -1411,7 +1433,7 @@ begin
   if Assigned(FOnNodeResizing) then FOnNodeResizing(Node, Left, Top, Right, Bottom);
 end;
 
-procedure PActionProcessor.EdgeModifyingHandler(Edge: PEdgeView; Points: PPoints);
+procedure PActionProcessor.EdgeModifyingHandler(Edge: IModifiableEdge; Points: PPoints);
 begin
   if Assigned(FOnEdgeModifying) then FOnEdgeModifying(Edge, Points);
 end;
@@ -2447,6 +2469,176 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
+// PLineManipulator
+
+constructor PLineManipulator.Create(Handler: PSelectHandler);
+begin
+  inherited;
+  FPoints := PPoints.Create;
+  FOriginPoints := PPoints.Create;
+end;
+
+destructor PLineManipulator.Destroy;
+begin
+  FPoints.Free;
+  FOriginPoints.Free;
+  inherited;
+end;
+
+procedure PLineManipulator.FitToGrid(APoints: PPoints; AGridFactor: PGridFactor);
+var
+  I: Integer;
+begin
+  // Because end of edge must be fit to BoundingBox of node and not be under influence of grid
+  for I := 1 to APoints.Count - 2 do
+    APoints.Points[I] := Point(APoints.Points[I].X - APoints.Points[I].X mod AGridFactor.Width,
+                        APoints.Points[I].Y - APoints.Points[I].Y mod AGridFactor.Height);
+
+end;
+
+procedure PLineManipulator.BeginManipulate(ADiagramEditor: PDiagramEditor; Canvas: PCanvas; AView: PView; X, Y: Integer);
+var
+  L: PLineView;
+  ZX, ZY: Integer;
+  ProbedPoint: TPoint;
+begin
+  // ZoomFactor only applied coordinates.
+  ZX := X;  ZY := Y;
+  CoordRevTransform(ADiagramEditor.ZoomFactor, NOGRID, ZX, ZY);
+
+  L := AView as PLineView;
+  FPoints.Assign(L.Points);
+
+  ProbedPoint := Point(ZX + DEFAULT_HALF_HIGHLIGHTER_SIZE, ZY + DEFAULT_HALF_HIGHLIGHTER_SIZE);
+  if EqualPt(ProbedPoint,FPoints.Points[0]) then
+    FSelectedIndex := 0
+  else if EqualPt(ProbedPoint, FPoints.Points[1]) then
+    FSelectedIndex := 1
+  else
+    FSelectedIndex := NO_ENDPOINT_SELECTED;
+
+  // set cursor
+  Screen.Cursor := crHandPoint;
+
+  // Remember also inital points
+  FOriginPoints.Assign(FPoints);
+end;
+
+procedure PLineManipulator.PaintSkeleton(ADiagramEditor: PDiagramEditor; Canvas: PCanvas);
+begin
+  DrawDottedLine(Canvas, FPoints);
+end;
+
+procedure PLineManipulator.MoveSkeleton(ADiagramEditor: PDiagramEditor; Canvas: PCanvas; AView: PView; var DX: Integer; var DY: Integer);
+
+  function GridFitX(X: Integer): Integer;
+  begin
+    Result := X - (X mod ADiagramEditor.GridFactor.Width);
+  end;
+
+  function GridFitY(Y: Integer): Integer;
+  begin
+    Result := Y - (Y mod ADiagramEditor.GridFactor.Height);
+  end;
+
+  procedure PutPointBoundsOnCanvas(var P: TPoint);
+  begin
+    if P.X < 0 then P.X := 0
+    else if P.X > ADiagramEditor.DiagramWidth then P.X := ADiagramEditor.DiagramWidth;
+    if P.Y < 0 then P.Y := 0
+    else if P.Y > ADiagramEditor.DiagramHeight then P.Y := ADiagramEditor.DiagramHeight;
+  end;
+
+  procedure SetSkeletonEndPoint(PointIndex: Integer);
+  var
+    P: TPoint;
+    OP: TPoint;
+  begin
+   // Get selected point
+    P := Point(FPoints.Points[PointIndex].X, FPoints[PointIndex].Y);
+    OP := Point(FOriginPoints[PointIndex].X, FOriginPoints[PointIndex].Y);
+
+    // Move skeleton
+    if (P.X + DX >= OP.X) and (P.X + DX <= GridFitX(OP.X) + ADiagramEditor.GridFactor.Width) then begin
+      DX := OP.X - P.X;
+      P.X := OP.X;
+    end
+    else begin
+      DX := DX - ((P.X + DX) - GridFitX(P.X + DX));
+      P.X := GridFitX(P.X + DX);
+    end;
+
+    if (P.Y + DY >= OP.Y) and (P.Y + DY <= GridFitY(OP.Y) + ADiagramEditor.GridFactor.Height) then begin
+      DY := OP.Y - P.Y;
+      P.Y := OP.Y;
+    end
+    else begin
+      DY := DY - ((P.Y + DY) - GridFitY(P.Y + DY));
+      P.Y := GridFitY(P.Y + DY);
+    end;
+
+    // Modify point not to stray from Canvas
+    PutPointBoundsOnCanvas(P);
+    FPoints[PointIndex] := P;
+  end;
+
+var
+  I: Integer;
+begin
+  if FSelectedIndex = NO_ENDPOINT_SELECTED then begin
+    for I := 0 to FPoints.Count - 1 do
+        SetSkeletonEndPoint(I);
+  end
+  else
+    SetSkeletonEndPoint(FSelectedIndex);
+end;
+
+
+
+procedure PLineManipulator.EndManipulate(ADiagramEditor: PDiagramEditor; Canvas: PCanvas; AView: PView; DX, DY: Integer);
+var
+  V, OldPart: PView;
+  LineView: PLineView;
+begin
+  if (DX <> 0) or (DY <> 0) then begin
+    LineView := AView as PLineView;
+    FPoints.ReduceLine;
+    if FSelectedIndex = NO_ENDPOINT_SELECTED then
+      FHandler.MoveView(AView, DX, DY)
+    else
+      FHandler.ModifyEdge(LineView, FPoints)
+    (*else begin
+      LineView := AView as PLineView;
+      if FSelectedIndex = 0 then
+        FHandler.ResizeNode(LineView, LineView.Left + DX, LineView.Top + DY,
+          LineView.Right, LineView.Bottom)
+      else
+        FHandler.ResizeNode(LineView, LineView.Left, LineView.Top,
+          LineView.Right + DX, LineView.Bottom + DY);
+    end;*)
+
+    (*if FHandler <> nil then begin
+      if FEdgeSelectLocation = slLine then
+        FHandler.ModifyEdge(AView as PLineView, FPoints)
+      else begin
+        V := ADiagramEditor.DiagramView.GetBottomViewAt(Canvas,
+          FPoints.Points[FSelectedIndex].X, FPoints.Points[FSelectedIndex].Y);
+        if V <> nil then begin
+          if V = OldPart then
+            FHandler.ModifyEdge(AView as PLineView, FPoints)
+          else
+            FHandler.ReconnectEdge(AView as PLineView, FPoints, V, FEdgeSelectLocation = slTail);
+        end;
+      end;
+    end;*)
+  end;
+  Screen.Cursor := crDefault;
+end;
+
+// PLineManipulator
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
 // PManipulatorBinder
 
 constructor PManipulatorBinder.Create(Handler: PSelectHandler);
@@ -2458,6 +2650,7 @@ begin
   FCustomColMessageManipulator := PUMLCustomColMessageManipulator.Create(Handler);
   FQualifiedAssociationEdgeManipulator := PUMLQualifiedAssociationEdgeManipulator.Create(Handler);
   FPortManipulator := PUMLPortManipulator.Create(Handler);
+  FLineManipulator := PLineManipulator.Create(Handler);
 end;
 
 destructor PManipulatorBinder.Destroy;
@@ -2469,6 +2662,7 @@ begin
   FCustomColMessageManipulator.Free;
   FQualifiedAssociationEdgeManipulator.Free;
   FPortManipulator.Free;
+  FLineManipulator.Free;
   inherited;
 end;
 
@@ -2484,6 +2678,7 @@ begin
   else if View is PUMLCustomColMessageView then Result := FCustomColMessageManipulator
   else if View is PUMLPortView then Result := FPortManipulator
   else if View is PParasiticView then Result := FParasiticManipulator
+  else if View is PLineView then Result := FLineManipulator
   else if View is PNodeView then Result := FNodeManipulator
   else if View is PEdgeView then Result := FEdgeManipulator
 end;
@@ -2497,6 +2692,7 @@ end;
 procedure PManipulatableNotifier.MouseMove(Sender: PDiagramEditor; Canvas: PCanvas; Shift: TShiftState; X, Y: Integer);
 var
   V: PView;
+  LV: PLineView;
   NV: PNodeView;
   EV: PEdgeView;
   ZX, ZY: Integer;
@@ -2517,7 +2713,22 @@ begin
   V := Sender.DiagramView.SelectedViews[0];
   P := Point(X, Y);
 
-  if V is PNodeView then begin
+  if V is PLineView then begin
+    LV := V as PLineView;
+    ZP1 := LV.Points.Points[0];
+    ZP2 := LV.Points.Points[LV.Points.Count - 1];
+    CoordTransform(Sender.ZoomFactor, NOGRID, ZP1);
+    CoordTransform(Sender.ZoomFactor, NOGRID, ZP2);
+
+    if EqualPt(ZP1, P, DEFAULT_HALF_HIGHLIGHTER_SIZE) then
+      Screen.Cursor := crHandPoint
+    else if EqualPt(ZP2, P, DEFAULT_HALF_HIGHLIGHTER_SIZE) then
+      Screen.Cursor := crHandPoint
+    else
+      Screen.Cursor := crDefault;
+  end
+
+  else if V is PNodeView then begin
     NV := V as PNodeView;
 
     ZR := V.GetBoundingBox(Canvas);

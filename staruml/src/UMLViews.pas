@@ -1767,17 +1767,19 @@ type
   end;
 
   // PLineView
-  PLineView = class(PShapeView)
+  PLineView = class(PShapeView, IModifiableEdge)
   private
     FPoints: PPoints;
     FBeginArrowheadStyle: PArrowheadStyleKind;
     FEndArrowheadStyle: PArrowheadStyleKind;
+    function GetPoints: PPoints;
     procedure SetPoints(Value: PPoints);
     procedure SetBeginArrowheadStyle(Value: PArrowheadStyleKind);
     procedure SetEndArrowheadStyle(Value: PArrowheadStyleKind);
   protected
     procedure DrawSelection(Canvas: PCanvas); override;
     procedure DrawObject(Canvas: PCanvas); override;
+    procedure MovePosition(Canvas: PCanvas; DX, DY: Integer); override;
     procedure ArrangeObject(Canvas: PCanvas); override;
   public
     constructor Create; override;
@@ -1789,6 +1791,7 @@ type
     procedure MOF_SetAttribute(Name, Value: string); override;
     property BeginArrowheadStyle: PArrowheadStyleKind read FBeginArrowheadStyle write SetBeginArrowheadStyle;
     property EndArrowheadStyle: PArrowheadStyleKind read FEndArrowheadStyle write SetEndArrowheadStyle;
+    property Points: PPoints read GetPoints write SetPoints;
   end;
 
   // PImageView
@@ -10729,6 +10732,11 @@ begin
     end;
 end;
 
+function PLineView.GetPoints: PPoints;
+begin
+  Result := FPoints;
+end;
+
 procedure PLineView.SetPoints(Value: PPoints);
 begin
   if (Value <> FPoints) and (Value <> nil) then begin
@@ -10766,6 +10774,20 @@ begin
   Canvas.LineTo(FPoints.Points[1].X, FPoints.Points[1].Y);
 end;
 
+procedure PLineView.MovePosition(Canvas: PCanvas; DX, DY: Integer);
+var
+  I: Integer;
+  Point: Types.TPoint;
+begin
+  if (DX <> 0) or (DY <> 0) then begin
+    for I := 0 to FPoints.Count - 1 do begin
+      Point.X := FPoints.Points[I].X + DX;
+      Point.Y := FPoints.Points[I].Y + DY;
+      FPoints.Points[I] := Point;
+    end;
+  end;
+end;
+
 procedure PLineView.ArrangeObject(Canvas: PCanvas);
 var
   X1, Y1, X2, Y2: Integer;
@@ -10774,7 +10796,7 @@ begin
   Y1 := FPoints.Points[0].Y;
   X2 := FPoints.Points[1].X;
   Y2 := FPoints.Points[1].Y;
-  GraphicClasses.NormalizeRect(X1, Y1, X2, Y2);
+  //GraphicClasses.NormalizeRect(X1, Y1, X2, Y2);
   Left := X1;
   Top := Y1;
   Right := X2;

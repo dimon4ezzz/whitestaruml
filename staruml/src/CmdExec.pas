@@ -156,7 +156,7 @@ type
     procedure MoveParasiticView(AParasiticView: PParasiticView; Alpha, Distance: Extended);
     procedure ResizeNode(ANode: PNodeView; ARect: TRect);
     procedure ResizeFragmentedNode(ANode: PNodeView; ARect: TRect);
-    procedure ReshapeEdge(AEdge: PEdgeView; APoints: PPoints);
+    procedure ReshapeEdge(AEdge: IModifiableEdge; APoints: PPoints);
     procedure ReconnectEdge(AEdge: PEdgeView; APoints: PPoints; NewParticipant: PView; IsTailSide: Boolean);
     procedure ChangeViewsAttribute(Views: PViewOrderedSet; Key: string; Value: string);
     procedure ChangeViewsLineColor(Views: PViewOrderedSet; LineColor: TColor);
@@ -1153,7 +1153,7 @@ type
   // ---------------------------------------------------------------------------
   PReshapeEdgeCommand = class(PAbstractChangeViewsCommand)
   private
-    Edge: PEdgeView;
+    Edge: IModifiableEdge;
     NewPoints: PPoints;
     OldPoints: PPoints;
   protected
@@ -1161,7 +1161,7 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure SetParameter(AEdge: PEdgeView; APoints: PPoints);
+    procedure SetParameter(AEdge: IModifiableEdge; APoints: PPoints);
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
@@ -2048,7 +2048,7 @@ begin
   Cmd.OnElementsDeleting := ElementsDeleting;
   Cmd.OnElementsDeleted := ElementsDeleted;
   if Engine.Execute(Cmd) then begin
-   Result := Cmd.ViewSet
+    Result := Cmd.ViewSet
    // Nothing to do.
   end
   else begin
@@ -2720,7 +2720,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.ReshapeEdge(AEdge: PEdgeView; APoints: PPoints);
+procedure PCommandExecutor.ReshapeEdge(AEdge: IModifiableEdge; APoints: PPoints);
 var
   Cmd: PReshapeEdgeCommand;
 begin
@@ -3774,9 +3774,11 @@ procedure PCreateViewCommand.FindViewByModel(DiagramView: PDiagramView; AModel: 
 var
   I: Integer;
   AView: PView;
+  OwnedView : PView;
 begin
   ASet.Clear;
   for I := 0 to DiagramView.OwnedViewCount - 1 do begin
+  //for OwnedView in DiagramView do begin
     AView := DiagramView.OwnedViews[I];
     if (AView.Model = AModel) then ASet.Add(AView);
   end;
@@ -4260,7 +4262,7 @@ begin
       ANodeView := AView as PNodeView;
       ANodeView.Left := ANodeView.Left + 10;
       ANodeView.Top := ANodeView.Top + 10;
-      ComplementEdgeViews(Target, AView);
+      //ComplementEdgeViews(Target, AView);
     end
     else if AView is PEdgeView then begin
       AEdgeView := AView as PEdgeView;
@@ -4273,8 +4275,8 @@ begin
     Target.AddOwnedView(AView);
     //AView.Selected := True;
     ViewSet.Add(AView);
-    if AView <> nil then
-      ComplementEdgeViews(Target, AView);
+    //if AView <> nil then
+      //ComplementEdgeViews(Target, AView);
   end; // End of for
 end;
 
@@ -5193,10 +5195,10 @@ begin
   Result := not OldPoints.Equal(NewPoints);
 end;
 
-procedure PReshapeEdgeCommand.SetParameter(AEdge: PEdgeView; APoints: PPoints);
+procedure PReshapeEdgeCommand.SetParameter(AEdge: IModifiableEdge; APoints: PPoints);
 begin
   ViewSet.Clear;
-  ViewSet.Add(AEdge);
+  ViewSet.Add(AEdge as PView);
   Edge := AEdge;
   NewPoints.Assign(APoints);
   OldPoints.Assign(Edge.Points);

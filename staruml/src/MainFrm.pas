@@ -533,7 +533,7 @@ type
     procedure ActionProcSelectedViewsContainerChangingHandler(DX, DY: Integer; AContainerView: PView);
     procedure ActionProcParasiticViewMovingHandler(AParasiticView: PParasiticView; DX, DY: Extended);
     procedure ActionProcNodeResizingHandler(Node: PNodeView; Left, Top, Right, Bottom: Integer);
-    procedure ActionProcEdgeModifyingHandler(Edge: PEdgeView; Points: PPoints);
+    procedure ActionProcEdgeModifyingHandler(Edge: IModifiableEdge; Points: PPoints);
     procedure ActionProcEdgeReconnectingHandler(Edge: PEdgeView; Points: PPoints; NewParticipant: PView; IsTailSide: Boolean);
     // Event Handlers (On Quick Dialog Manager)
     procedure QuickDlgGeneralNameExpApplyingHandler(AModel: PModel; Value: string);
@@ -890,7 +890,7 @@ begin
   if Assigned(FOnNodeResizing) then FOnNodeResizing(Node, Left, Top, Right, Bottom);
 end;
 
-procedure TMainForm.ActionProcEdgeModifyingHandler(Edge: PEdgeView; Points: PPoints);
+procedure TMainForm.ActionProcEdgeModifyingHandler(Edge: IModifiableEdge; Points: PPoints);
 begin
   if Assigned(FOnEdgeModifying) then FOnEdgeModifying(Edge, Points);
 end;

@@ -660,7 +660,7 @@ uses
   Windows, Variants, Forms, Registry, NLS_StarUML;
 
 const
-  PROFILES_REGPATH = '\Software\StarUML\Profiles';
+  //PROFILES_REGPATH = '\Software\StarUML\Profiles';
   REG_PROFILE_PATH = 'Path';
   REG_PROFILE_FILENAME = 'FileName';
   REG_PROFILE_ICONFILENAME = 'IconFileName';
