@@ -119,6 +119,7 @@ type
     procedure SaveProject;
     procedure SaveProjectAs(FileName: string);
     procedure OpenProject(FileName: string; AFileAccessType: PFileAccessType);
+    function ProjectCanClose: Boolean;
     function CloseProject: Boolean;
     function SeparateUnit(APackage: PUMLPackage; AFileName: string): PUMLUnitDocument;
     procedure MergeUnit(APackage: PUMLPackage);
@@ -293,6 +294,14 @@ procedure PProjectManager.ProjectClosing;
 begin
   if Assigned(FOnProjectClosing) then FOnProjectClosing(Self);
 end;
+
+function PProjectManager.ProjectCanClose: Boolean;
+begin
+  Result := True;
+  ProjectCloseQuery(Result);
+end;
+
+
 
 procedure PProjectManager.ProjectCloseQuery(var CanClose: Boolean);
 begin
@@ -688,7 +697,7 @@ begin
   CanClose := True;
   if FProjectStatus = psOpened then
   begin
-    ProjectCloseQuery(CanClose);
+    //ProjectCloseQuery(CanClose);
     if CanClose then
     begin
       ProjectClosing;

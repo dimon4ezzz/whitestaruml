@@ -2318,7 +2318,7 @@ var
   C: PMetaCollection;
   E: PElement;
 begin
-  inherited;
+  //inherited;
   // Free sub objects
   if MetaClass <> nil then
   begin
@@ -2355,6 +2355,7 @@ begin
       end;
     end;
   end;
+  inherited;
 end;
 
 procedure PElement.SetTag(Value: string);
