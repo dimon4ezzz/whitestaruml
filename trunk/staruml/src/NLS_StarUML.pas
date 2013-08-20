@@ -151,8 +151,8 @@ const
   C_MSG_STATUS_REFERENCE_RESOLVING = 'Resolving references.';
   C_MSG_STATUS_REFERENCE_RESOLVING_COMPLETE = 'Reference resolving complete.';
   C_MSG_ELEMENTS_FOUND = '%d elements found.';
-  C_MSG_VERIFICATION_FAILED = '%d element(s) did not pass the verification.';
-  C_MSG_VERIFICATION_ALL_PASSED = 'All elements passed the verification.';
+  C_MSG_VERIFICATION_FAILED = '%d element(s) did not pass verification. Please check the Message window.';
+  C_MSG_VERIFICATION_ALL_PASSED = 'All elements passed verification.';
   C_MSG_ELEMSELTTL_IMPORT_FRAMEWORK = 'Select a Package where the Framework will be imported to.';
   C_MSG_ELEMSELTTL_IMPORT_MODELFRAGMENT = 'Select a Package where the Model Fragment will be imported to';
   C_MSG_PERSONAL_EDITION_IS_NOT_ALLOWED = 'This feature is not supported in the Personal Edition.'

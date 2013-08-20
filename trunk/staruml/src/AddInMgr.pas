@@ -992,26 +992,26 @@ begin
 end;
 
 procedure PAddIn.MenuItemClickedHandler(Sender: TObject);
+const
+  // Values returned by ShellExecute up to 32 are error codes
+  ShellExecuteErrorTreshold = 32;
 var
-  dxSubItem: TdxBarSubItem;
   dxItem: TdxBarItem;
   script: string;
+  shellExecuteStatus: Cardinal;
 begin
-  if Sender is TdxBarSubItem then begin
-    dxSubItem := Sender as TdxBarSubItem;
-    script := dxSubItem.Description;
-    if script <> '' then begin
-      if ShellExecute(0, 'open', pchar(script), '', pchar(FInstalledDir), SW_SHOWNORMAL) <= 32
-      then if Assigned(FOnMessage) then FOnMessage(Format(ERR_ADDIN_SCRIPT_EXECUTION, [script]));
-    end;
-  end else if Sender is TdxBarButton then begin
-    dxItem := Sender as TdxBarButton;
-    script := dxItem.Description;
-    if script <> '' then begin
-      if ShellExecute(0, 'open', pchar(script), '', pchar(FInstalledDir), SW_SHOWNORMAL) <= 32
-      then if Assigned(FOnMessage) then FOnMessage(Format(ERR_ADDIN_SCRIPT_EXECUTION, [script]));
-    end;
-  end;
+    dxItem := Sender as TdxBarItem;
+    if dxItem <> nil then begin
+      script := dxItem.Description;
+      if script <> '' then begin
+        shellExecuteStatus := ShellExecute(0, 'open', pchar(script), '', pchar(FInstalledDir), SW_SHOWNORMAL);
+        if (shellExecuteStatus <= ShellExecuteErrorTreshold) and Assigned(FOnMessage) then
+          FOnMessage(Format(ERR_ADDIN_SCRIPT_EXECUTION, [script]));
+      end;
+    end
+    else
+      Assert(False, 'Type of sender object was not recoginized!');
+
 end;
 
 procedure PAddIn.HelpMenuItemClickedHandler(Sender: TObject);
