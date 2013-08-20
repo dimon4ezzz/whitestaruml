@@ -75,7 +75,7 @@ uses
   PAutoClass = class of PAutoObject;
 
   // PObject
-  PObject = class (TInterfacedObject)
+  PObject = class
   private
     FGUID: string;
     FData: Pointer;
