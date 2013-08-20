@@ -1782,6 +1782,12 @@ type
     procedure MovePosition(Canvas: PCanvas; DX, DY: Integer); override;
     procedure ArrangeObject(Canvas: PCanvas); override;
   public
+
+    // IInterface functions
+    function QueryInterface(const IID: TGUID; out Obj): HResult; stdcall;
+    function _AddRef: Integer; stdcall;
+    function _Release: Integer; stdcall;
+
     constructor Create; override;
     destructor Destroy; override;
     procedure Initialize(Canvas: PCanvas; X1, Y1, X2, Y2: Integer); override;
@@ -10682,6 +10688,25 @@ end;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PLineView
+
+// Implementation of IInterface functions
+function PLineView.QueryInterface(const IID: TGUID; out Obj): HResult;
+begin
+  if GetInterface(IID, Obj) then
+    Result := 0
+  else
+    Result := E_NOINTERFACE;
+end;
+
+function PLineView._AddRef: Integer;
+begin
+  Result := 1;
+end;
+
+function PLineView._Release: Integer;
+begin
+  Result := 0;
+end;
 
 constructor PLineView.Create;
 begin
