@@ -119,6 +119,7 @@ type
   PDocument = class;
 
   // Parametrized collections of Core types
+  PElementOrderedSet = POrderedSet<PElement>;
   PModelOrderedSet = POrderedSet<PModel>;
   PViewOrderedSet = POrderedSet<PView>;
   PDiagramOrderedSet = POrderedSet<PDiagram>;
@@ -527,16 +528,18 @@ type
   // PReferenceCollectionVisitor
   PReferenceCollectionVisitor = class(PVisitor)
   private
-    FReferences: POrderedSet;
-    function GetReference(Index: Integer): PObject;
+    FReferences: PElementOrderedSet;
+    function GetReference(Index: Integer): PElement;
     function GetReferenceCount: Integer;
   public
     constructor Create;
     destructor Destroy; override;
     procedure Clear;
     procedure Visit(Element: PElement); override;
-    property References[Index: Integer]: PObject read GetReference;
+    function GetEnumerator: TEnumerator<PElement>;
+    property References[Index: Integer]: PElement read GetReference;
     property ReferenceCount: Integer read GetReferenceCount;
+
   end;
 
   // PModel
@@ -3028,7 +3031,7 @@ end;
 
 constructor PReferenceCollectionVisitor.Create;
 begin
-  FReferences := POrderedSet.Create;
+  FReferences := PElementOrderedSet.Create;
 end;
 
 destructor PReferenceCollectionVisitor.Destroy;
@@ -3038,7 +3041,7 @@ begin
   inherited;
 end;
 
-function PReferenceCollectionVisitor.GetReference(Index: Integer): PObject;
+function PReferenceCollectionVisitor.GetReference(Index: Integer): PElement;
 begin
   Result := FReferences.Items[Index];
 end;
@@ -3058,6 +3061,10 @@ begin
   FReferences.Add(Element);
 end;
 
+function PReferenceCollectionVisitor.GetEnumerator: TEnumerator<PElement>;
+begin
+  Result := FReferences.GetEnumerator;
+end;
 // PReferenceCollectionVisitor
 /// /////////////////////////////////////////////////////////////////////////////
 

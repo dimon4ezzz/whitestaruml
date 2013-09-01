@@ -374,6 +374,12 @@ type
     ViewUIThemeGroup: TdxBarGroup;
     ViewUITheme: TdxBarSubItem;
     ExclusiveFileOpen: TdxBarButton;
+    FormatAnnotationLineStyle: TdxBarSubItem;
+    FormatAnnotationLineStyleSolid: TdxBarButton;
+    FormatAnnotationLineStyleDash: TdxBarButton;
+    FormatAnnotationLineStyleDot: TdxBarButton;
+    FormatAnnotationLineStyleDashDot: TdxBarButton;
+    FormatAnnotationLineStyleDashDotDot: TdxBarButton;
     PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);
