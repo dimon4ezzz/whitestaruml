@@ -287,6 +287,7 @@ type
     procedure ChangeSelectedViewsFontFace(FontFace: string);
     procedure ChangeSelectedViewsFontSize(FontSize: Integer);
     procedure ChangeSelectedEdgesLineStyle(LineStyle: PLineStyleKind);
+    procedure ChangeSelectedAnnotationsLineStyle(LineStyle: PLineKind);
     procedure ChangeSelectedViewsAttribute(Key: string; Value: string);
     procedure ChangeNoteViewStrings(AView: PUMLCustomTextView; Strs: string);
     procedure SendToBackSelectedViews;
@@ -2326,14 +2327,13 @@ end;
 procedure PStarUMLApplication.ChangeSelectedEdgesLineStyle(LineStyle: PLineStyleKind);
 var
   I: Integer;
-  V: PView;
 begin
   ViewSet.Clear;
   SelectionManager.CollectSelectedViews(ViewSet);
   // Filter views that is not decendent of PEdgeView.
   for I := ViewSet.Count - 1 downto 0 do begin
-    V := ViewSet.Items[I] as PView;
-    if not (V is PEdgeView) then ViewSet.Remove(V);
+    if not (ViewSet[I] is PEdgeView) then
+      ViewSet.Remove(ViewSet[I]);
   end;
   if DifferentAttributeExists(ViewSet, 'LineStyle', LineStyleKindToString(LineStyle)) then
   begin
@@ -2341,6 +2341,24 @@ begin
     CommandExecutor.ChangeEdgesLineStyle(ViewSet, LineStyle);
     ElementModified(ViewSet);
   end;
+end;
+
+procedure PStarUMLApplication.ChangeSelectedAnnotationsLineStyle(LineStyle: PLineKind);
+var
+  I: Integer;
+begin
+  ViewSet.Clear;
+  SelectionManager.CollectSelectedViews(ViewSet);
+  // Filter views that is not decendent of PEdgeView.
+  for I := ViewSet.Count - 1 downto 0 do begin
+    if not (ViewSet[I] is PShapeView) then
+      ViewSet.Remove(ViewSet[I]);
+  end;
+
+  CheckReadOnly(ViewSet);
+  CommandExecutor.ChangeAnnotationLineStyle(ViewSet, LineStyle);
+  ElementModified(ViewSet);
+
 end;
 
 procedure PStarUMLApplication.ChangeSelectedViewsAttribute(Key: string; Value: string);

@@ -788,10 +788,26 @@ begin
       if Sender = FormatFont then ExecuteFormatFont
       else if Sender = FormatLineColor then ExecuteFormatLineColor
       else if Sender = FormatFillColor then ExecuteFormatFillColor
+
+      // Annotations
+      else if Sender = FormatAnnotationLineStyleSolid then
+        StarUMLApplication.ChangeSelectedAnnotationsLineStyle(lkSolid)
+      else  if Sender = FormatAnnotationLineStyleDash then
+        StarUMLApplication.ChangeSelectedAnnotationsLineStyle(lkDash)
+      else  if Sender = FormatAnnotationLineStyleDot then
+        StarUMLApplication.ChangeSelectedAnnotationsLineStyle(lkDot)
+      else  if Sender = FormatAnnotationLineStyleDashDot then
+        StarUMLApplication.ChangeSelectedAnnotationsLineStyle(lkDashDot)
+      else  if Sender = FormatAnnotationLineStyleDashDotDot then
+        StarUMLApplication.ChangeSelectedAnnotationsLineStyle(lkDashDotDot)
+
+
+
       else if Sender = FormatLineStyleRectilinear then
         StarUMLApplication.ChangeSelectedEdgesLineStyle(lsRectilinear)
       else if Sender = FormatLineStyleOblique then
         StarUMLApplication.ChangeSelectedEdgesLineStyle(lsOblique)
+
       else if Sender = FormatStereotypeDisplayNone then
         StarUMLApplication.ChangeSelectedViewsAttribute('StereotypeDisplay', 'sdkNone')
       else if Sender = FormatStereotypeDisplayText then
@@ -800,6 +816,7 @@ begin
         StarUMLApplication.ChangeSelectedViewsAttribute('StereotypeDisplay', 'sdkIcon')
       else if Sender = FormatStereotypeDisplayDecoration then
         StarUMLApplication.ChangeSelectedViewsAttribute('StereotypeDisplay', 'sdkDecoration')
+
       else if Sender = FormatAlignmentSendToBack then
       begin
         if (StarUMLApplication.ActiveDiagram is PUMLSequenceDiagramView) or
@@ -809,6 +826,7 @@ begin
         else
           StarUMLApplication.SendToBackSelectedViews;
       end
+
       else if Sender = FormatAlignmentBringToFront then
       begin
         if (StarUMLApplication.ActiveDiagram is PUMLSequenceDiagramView) or
@@ -818,6 +836,7 @@ begin
         else
           StarUMLApplication.BringToFrontSelectedViews;
       end
+
       else if Sender = FormatAlignmentLeft then
         StarUMLApplication.AlignLeftSelectedViews
       else if Sender = FormatAlignmentRight then
@@ -4388,10 +4407,14 @@ const
 var
   I: Integer;
   V: PView;
+  ShapeView: PShapeView;
   NodeCount: Integer;
   ELine, EStereo, EAttr, EOper, ELiter, EParent, EProp, EOperSig, EComVisi, EComStereo, EAuto, EExtNot, EWordWrap: Boolean;
   VLine, VStereo, VAttr, VOper, VLiter, VParent, VProp, VOperSig, VComVisi, VComStereo, VAuto, VExtNot, VWordWrap: string;
   VFontFace, VFontSize: string;
+  EAnnotationLine: Boolean;
+  VAnnotationLine: string;
+  VAnnotationLineValue: PLineKind;
 
   function MergeStringValue(Base, Addition: string): string;
   begin
@@ -4432,9 +4455,11 @@ begin
   VWordWrap := NOT_ASSIGNED;
   VFontFace := NOT_ASSIGNED;
   VFontSize := NOT_ASSIGNED;
+  VAnnotationLine := NOT_ASSIGNED;
   with MainForm do
   begin
     // Initialization
+    FormatAnnotationLineStyle.Enabled := False;
     FormatLineStyle.Enabled := False;
     FormatLineStyleRectilinear.Enabled := False;
     FormatLineStyleOblique.Enabled := False;
@@ -4468,6 +4493,16 @@ begin
       if V is PNodeView then Inc(NodeCount);
       VFontFace := MergeStringValue(VFontFace, V.MOF_GetAttribute('FontFace'));
       VFontSize := MergeStringValue(VFontSize, V.MOF_GetAttribute('FontSize'));
+
+      if V is PShapeView then begin
+        EAnnotationLine := True;
+      //if AnnotationLineStyle.Enabled then begin
+        ShapeView := V as PShapeView;
+        VAnnotationLine := MergeStringValue(VAnnotationLine,
+          LineKindToString(ShapeView.LineKind));
+
+      end;
+
       if V.MetaClass.ExistsAttribute('LineStyle') then begin
         ELine := True;
         VLine := MergeStringValue(VLine, V.MOF_GetAttribute('LineStyle'));
@@ -4522,6 +4557,7 @@ begin
       end;
     end;
     // Setting enables
+    FormatAnnotationLineStyle.Enabled := EAnnotationLine;
     FormatLineStyle.Enabled := ELine;
     FormatLineStyleRectilinear.Enabled := ELine;
     FormatLineStyleOblique.Enabled := ELine;
@@ -4555,7 +4591,7 @@ begin
     end
     else if VLine = 'lsOblique' then begin
       FormatLineStyleRectilinear.Down := False;
-      FormatLineStyleOblique.Down := True;;
+      FormatLineStyleOblique.Down := True;
     end
     else begin
       FormatLineStyleRectilinear.Down := False;
@@ -4606,6 +4642,25 @@ begin
                                 else FontFaceComboText := VFontFace;
     if VFontSize = NOT_ASSIGNED then FontSizeComboText := ''
                                 else FontSizeComboText := VFontSize;
+
+    if VAnnotationLine <> NOT_ASSIGNED then begin
+      VAnnotationLineValue := StringToLineKind(VAnnotationLine);
+      case VAnnotationLineValue of
+          lkSolid: FormatAnnotationLineStyleSolid.Down := True;
+          lkDash: FormatAnnotationLineStyleDash.Down := True;
+          lkDot: FormatAnnotationLineStyleDot.Down := True;
+          lkDashDot: FormatAnnotationLineStyleDashDot.Down := True;
+          lkDashDotDot: FormatAnnotationLineStyleDashDotDot.Down := True;
+      end;
+    end
+    else begin
+      FormatAnnotationLineStyleSolid.Down := False;
+      FormatAnnotationLineStyleDash.Down := False;
+      FormatAnnotationLineStyleDot.Down := False;
+      FormatAnnotationLineStyleDashDot.Down := False;
+      FormatAnnotationLineStyleDashDotDot.Down := False;
+    end;
+
   end;
 end;
 

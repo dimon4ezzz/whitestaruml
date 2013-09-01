@@ -49,7 +49,7 @@ interface
 
 uses
   BasicClasses, GraphicClasses, Core, ExtCore, ViewCore, UMLModels, UMLFacto,
-  Classes, Types, Graphics;
+  Classes, Types, UMLViews, Graphics, Generics.Collections;
 
 type
   // Enumeration Types
@@ -63,9 +63,8 @@ type
   // PCommandExecutor
   PCommandExecutor = class
   private
-    ModelSet: POrderedSet;
-    ViewSet: POrderedSet;
-    TempSet1, TempSet2: POrderedSet;
+    ModelSet: PModelOrderedSet;
+    ViewSet: PViewOrderedSet;
     Engine: PEngine;
     FOnElementsCreated: PModelsViewsEvent;
     FOnElementsDeleting: PModelsViewsEvent;
@@ -163,6 +162,7 @@ type
     procedure ChangeViewsFillColor(Views: PViewOrderedSet; FillColor: TColor);
     procedure ChangeViewsFont(Views: PViewOrderedSet; Font: TFont; AChangedFontItems: PFontItemKinds);
     procedure ChangeEdgesLineStyle(Views: PViewOrderedSet; LineStyle: PLineStyleKind);
+    procedure ChangeAnnotationLineStyle(Views: PViewOrderedSet; LineStyle: PLineKind);
     procedure ChangeNoteViewStrings(Views: PViewOrderedSet; Strs: string);
     procedure SendToBackViews(Views: PViewOrderedSet);
     procedure BringToFrontViews(Views: PViewOrderedSet);
@@ -190,7 +190,7 @@ type
 implementation
 
 uses
-  UMLViews, UMLAux, ExprParsers, LayoutDgm,
+  UMLAux, ExprParsers, LayoutDgm,
   SysUtils, Generics.Defaults, NLS_StarUML;
 
 type
@@ -226,7 +226,7 @@ type
   private
     FModelSet: PModelOrderedSet;
     FViewSet: PViewOrderedSet;
-    FModelReferences, FViewReferences: POrderedSet;
+    FModelReferences, FViewReferences: PElementOrderedSet;
     FModelMementos, FViewMementos: TList;
     FOnElementsCreated: PModelsViewsEvent;
     FOnElementsDeleting: PModelsViewsEvent;
@@ -395,7 +395,7 @@ type
   PCreateViewCommand = class(PAbstractCreateElementsCommand)
   private
     procedure ComplementEdgeViews(DiagramView: PDiagramView; AView: PView);
-    procedure FindViewByModel(DiagramView: PDiagramView; AModel: PModel; ASet: POrderedSet);
+    procedure FindViewByModel(DiagramView: PDiagramView; AModel: PModel; ASet: PViewOrderedSet);
   protected
     function Precondition: Boolean; override;
   public
@@ -1244,13 +1244,15 @@ type
     procedure Unexecute; override;
   end;
 
-  // PChangeViewsLineStyleCommand
+  // PChangeEdgesLineStyleCommand
   // ---------------------------------------------------------------------------
   // is the command to change the line style(Rectilinear, Oblique) of edge view elements
   // ---------------------------------------------------------------------------
   PChangeEdgesLineStyleCommand = class(PAbstractChangeViewsCommand)
+  private type
+    POldLineStylesList = TList<PLineStyleKind>;
   private
-    OldLineStyles: TStringList;
+    OldLineStyles: POldLineStylesList;
     OldPoints: TList;
     NewLineStyle: PLineStyleKind;
   protected
@@ -1262,6 +1264,27 @@ type
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
+
+    // PChangeAnnotationLineStyleCommand
+  // ---------------------------------------------------------------------------
+  // is the command to change the annotation line style(Solid, Dash etc.) of Annotation view elements
+  // ---------------------------------------------------------------------------
+  PChangeAnnotationLineStyleCommand = class(PAbstractChangeViewsCommand)
+  private type
+    POldLineStylesList = TList<PLineKind>;
+  private
+    OldLineStyles: POldLineStylesList;
+    NewLineStyle: PLineKind;
+  protected
+    function Precondition: Boolean; override;
+  public
+    constructor Create; override;
+    destructor Destroy; override;
+    procedure SetParameter(AEdgeSet: PViewOrderedSet; ANewLineStyle: PLineKind);
+    procedure Reexecute; override;
+    procedure Unexecute; override;
+  end;
+
 
   // PChangeNoteViewStringsCommand
   // ---------------------------------------------------------------------------
@@ -1678,10 +1701,8 @@ type
 constructor PCommandExecutor.Create;
 begin
   inherited;
-  ModelSet := POrderedSet.Create;
-  ViewSet := POrderedSet.Create;
-  TempSet1 := POrderedSet.Create;
-  TempSet2 := POrderedSet.Create;
+  ModelSet := PModelOrderedSet.Create;
+  ViewSet := PViewOrderedSet.Create;
   Engine := PEngine.Create;
   Engine.OnCommandExecuted := EngineCommandExecutedHandler;
   Engine.OnCommandUnexecuted := EngineCommandUnexecutedHandler;
@@ -1692,8 +1713,6 @@ destructor PCommandExecutor.Destroy;
 begin
   ModelSet.Free;
   ViewSet.Free;
-  TempSet1.Free;
-  TempSet2.Free;
   Engine.Free;
   inherited;
 end;
@@ -1804,7 +1823,7 @@ begin
   Cmd.OnElementsDeleting := ElementsDeleting;
   Cmd.OnElementsDeleted := ElementsDeleted;
   if Engine.Execute(Cmd) then begin
-    Result := Cmd.ModelSet.Items[0] as PModel;
+    Result := Cmd.ModelSet[0];
   end
   else begin
     ErrorOccurred(Self, Engine.ErrorMessage);
@@ -1824,7 +1843,7 @@ begin
   Cmd.OnElementsDeleting := ElementsDeleting;
   Cmd.OnElementsDeleted := ElementsDeleted;
   if Engine.Execute(Cmd) then begin
-    Result := Cmd.ModelSet.Items[0] as PModel;
+    Result := Cmd.ModelSet[0];
   end
   else begin
     ErrorOccurred(Self, Engine.ErrorMessage);
@@ -1842,7 +1861,7 @@ begin
   Cmd.OnElementsDeleting := ElementsDeleting;
   Cmd.OnElementsDeleted := ElementsDeleted;
   if Engine.Execute(Cmd) then begin
-    Result := Cmd.ModelSet.Items[0] as PModel;
+    Result := Cmd.ModelSet[0];
   end
   else begin
     ErrorOccurred(Self, Engine.ErrorMessage);
@@ -1861,7 +1880,7 @@ begin
   Cmd.OnElementsDeleting := ElementsDeleting;
   Cmd.OnElementsDeleted := ElementsDeleted;
   if Engine.Execute(Cmd) then begin
-    Result := Cmd.ViewSet.Items[0] as PView;
+    Result := Cmd.ViewSet[0];
   end
   else begin
     ErrorOccurred(Self, Engine.ErrorMessage);
@@ -1880,7 +1899,7 @@ begin
   Cmd.OnElementsDeleting := ElementsDeleting;
   Cmd.OnElementsDeleted := ElementsDeleted;
   if Engine.Execute(Cmd) then begin
-    Result := Cmd.ViewSet.Items[0] as PView;
+    Result := Cmd.ViewSet[0];
   end
   else begin
     ErrorOccurred(Self, Engine.ErrorMessage);
@@ -1935,7 +1954,7 @@ begin
   Cmd.OnElementsDeleting := ElementsDeleting;
   Cmd.OnElementsDeleted := ElementsDeleted;
   if Engine.Execute(Cmd) then begin
-    Result := Cmd.ViewSet.Items[0] as PView;
+    Result := Cmd.ViewSet[0];
   end
   else begin
     ErrorOccurred(Self, Engine.ErrorMessage);
@@ -1954,7 +1973,7 @@ begin
   Cmd.OnElementsDeleting := ElementsDeleting;
   Cmd.OnElementsDeleted := ElementsDeleted;
   if Engine.Execute(Cmd) then begin
-    Result := Cmd.ViewSet.Items[0] as PView;
+    Result := Cmd.ViewSet[0];
   end
   else begin
     ErrorOccurred(Self, Engine.ErrorMessage);
@@ -1973,7 +1992,7 @@ begin
   Cmd.OnElementsDeleting := ElementsDeleting;
   Cmd.OnElementsDeleted := ElementsDeleted;
   if Engine.Execute(Cmd) then begin
-    Result := Cmd.ViewSet.Items[0] as PView;
+    Result := Cmd.ViewSet[0];
   end
   else begin
     ErrorOccurred(Self, Engine.ErrorMessage);
@@ -1992,7 +2011,7 @@ begin
   Cmd.OnElementsDeleting := ElementsDeleting;
   Cmd.OnElementsDeleted := ElementsDeleted;
   if Engine.Execute(Cmd) then begin
-    Result := Cmd.ViewSet.Items[0] as PView;
+    Result := Cmd.ViewSet[0];
   end
   else begin
     ErrorOccurred(Self, Engine.ErrorMessage);
@@ -2011,7 +2030,7 @@ begin
   Cmd.OnElementsDeleting := ElementsDeleting;
   Cmd.OnElementsDeleted := ElementsDeleted;
   if Engine.Execute(Cmd) then begin
-    Result := Cmd.ViewSet.Items[0] as PView;
+    Result := Cmd.ViewSet[0];
   end
   else begin
     ErrorOccurred(Self, Engine.ErrorMessage);
@@ -2829,6 +2848,21 @@ begin
   end;
 end;
 
+procedure PCommandExecutor.ChangeAnnotationLineStyle(Views: PViewOrderedSet; LineStyle: PLineKind);
+var
+  Cmd: PChangeAnnotationLineStyleCommand;
+begin
+  Cmd := PChangeAnnotationLineStyleCommand.Create;
+  Cmd.SetParameter(Views, LineStyle);
+  Cmd.OnViewsChanged := ViewsChanged;
+  if Engine.Execute(Cmd) then begin
+   // Nothing to do.
+  end
+  else begin
+    ErrorOccurred(Self, Engine.ErrorMessage);
+  end;
+end;
+
 procedure PCommandExecutor.ChangeNoteViewStrings(Views: PViewOrderedSet; Strs: string);
 var
   Cmd: PChangeNoteViewStringsCommand;
@@ -3013,8 +3047,7 @@ var
   View: PView;
 begin
   // Remove from list if the view is not NodeView or is a subview of something.
-  //for View in FSizePreservingViews do
-  for I := 0 to FSizePreservingViews.Count - 1 do begin
+  for I := FSizePreservingViews.Count - 1 downto 0 do begin
     View := FSizePreservingViews[I];
     if (not (View is PNodeView)) or
       (View.OwnerDiagramView = nil) then
@@ -3080,18 +3113,18 @@ end;
 
 procedure PAbstractCommand.CollectSizesFromModelSet(AModelSet: PModelOrderedSet);
 var
-  I: Integer;
+  Model: PModel;
 begin
-  for I := 0 to AModelSet.Count - 1 do
-    CollectSizesFromModel(AModelSet.Items[I] as PModel);
+  for Model in AModelSet do
+    CollectSizesFromModel(Model);
 end;
 
 procedure PAbstractCommand.CollectSizesFromViewSet(AViewSet: PViewOrderedSet);
 var
-  I: Integer;
+  View: PView;
 begin
-  for I := 0 to AViewSet.Count - 1 do
-    CollectSizesFromView(AViewSet.Items[I] as PView);
+  for View in AViewSet do
+    CollectSizesFromView(View);
 end;
 
 // PAbstractCommand
@@ -3105,8 +3138,8 @@ begin
   inherited;
   FModelSet := PModelOrderedSet.Create;
   FViewSet := PViewOrderedSet.Create;
-  FModelReferences := POrderedSet.Create;
-  FViewReferences := POrderedSet.Create;
+  FModelReferences := PElementOrderedSet.Create;
+  FViewReferences := PElementOrderedSet.Create;
   FModelMementos := TList.Create;
   FViewMementos := TList.Create;
 end;
@@ -3145,46 +3178,46 @@ end;
 
 procedure PAbstractCreateDeleteElementsCommand.Preprocess;
 var
-  I: Integer;
   AElement: PElement;
   RC: PReferenceCollectionVisitor;
 begin
   RC := PReferenceCollectionVisitor.Create;
-  // Collecting references and mementos of all Model (including Diagram) objects.
   RC.Clear;
-  for I := 0 to FModelSet.Count - 1 do begin
-    AElement := FModelSet.Items[I] as PElement;
-    AElement.Accept(RC);
-  end;
+
+  // Collecting references and mementos of all Model (including Diagram) objects.
+
+  for AElement in FModelSet do
+     AElement.Accept(RC);
+
   FModelReferences.Clear;
-  for I := 0 to RC.ReferenceCount - 1 do
-  begin
-    if RC.References[I] is PModel then
-      FModelReferences.Add(RC.References[I]);
+  for AElement in RC do begin
+    if AElement is PModel then
+      FModelReferences.Add(AElement);
   end;
+
   FModelMementos.Clear;
-  for I := 0 to FModelReferences.Count - 1 do
-    FModelMementos.Add((FModelReferences.Items[I] as PElement).CreateMemento);
+  for AElement in FModelReferences do
+     FModelMementos.Add(AElement.CreateMemento);
+
   // Collecting references and mementos of all View (including DiagramView) objects.
   RC.Clear;
+
   // - Collecting DiagramView object.
-  for I := 0 to FModelSet.Count - 1 do
-  begin
-    AElement := FModelSet.Items[I] as PElement;
+  for AElement in FModelSet do begin
     if AElement is PDiagram then
       (AElement as PDiagram).DiagramView.Accept(RC);
   end;
+
   // - Collecting View object.
-  for I := 0 to FViewSet.Count - 1 do
-  begin
-    AElement := FViewSet.Items[I] as PElement;
+  for AElement in FViewSet do
     AElement.Accept(RC);
-  end;
-  for I := 0 to RC.ReferenceCount - 1 do
-    FViewReferences.Add(RC.References[I]);
+
+  for AElement in RC do
+    FViewReferences.Add(AElement);
+
   FViewMementos.Clear;
-  for I := 0 to FViewReferences.Count - 1 do
-    FViewMementos.Add((FViewReferences.Items[I] as PElement).CreateMemento);
+  for AElement in FViewReferences do
+    FViewMementos.Add(AElement.CreateMemento);
   RC.Free;
 end;
 
@@ -3243,26 +3276,30 @@ var
 begin
   // Restore states of all models using mementos.
   for I := 0 to FModelReferences.Count - 1 do
-    (FModelReferences.Items[I] as PElement).SetMemento(FModelMementos.Items[I]);
+    FModelReferences[I].SetMemento(FModelMementos.Items[I]);
   // Restore states of all views using mementos.
   for I := 0 to FViewReferences.Count - 1 do
-    (FViewReferences.Items[I] as PElement).SetMemento(FViewMementos.Items[I]);
+    FViewReferences[I].SetMemento(FViewMementos.Items[I]);
   // OnElementsCreated event occurs.
   ElementsCreated;
 end;
 
 procedure PAbstractCreateElementsCommand.Unexecute;
 var
-  I: Integer;
+  Element: PElement;
 begin
   // OnElementsDeleting event occurs.
   ElementsDeleting;
+
   // Isolate all model objects.
-  for I := 0 to FModelReferences.Count - 1 do
-    (FModelReferences.Items[I] as PElement).Isolate;
+  for Element in FModelReferences do
+    Element.Isolate;
+
+
   // Isolate all view objects.
-  for I := 0 to FViewReferences.Count - 1 do
-    (FViewReferences.Items[I] as PElement).Isolate;
+  for Element in FViewReferences do
+    Element.Isolate;
+
   // Restore size of views.
   RestoreViewSizes;
   // OnElementsDeleted event occurs.
@@ -3514,7 +3551,7 @@ procedure PCreateViewCommand.ComplementEdgeViews(DiagramView: PDiagramView; AVie
 var
   M: PModel;
   V: PView;
-  I, J: Integer;
+  I: Integer;
   ATransition: PUMLTransition;
   ADependency: PUMLDependency;
   AAssociation: PUMLAssociation;
@@ -3523,7 +3560,8 @@ var
   AInclude: PUMLInclude;
   AExtend: PUMLExtend;
   TempModel: PModel;
-  ASet: POrderedSet;
+  ModelView: PView;
+  ModelViewSet: PViewOrderedSet;
   AAssociationClass: PUMLAssociationClass;
   IsDuplicated: Boolean;
 begin
@@ -3536,7 +3574,7 @@ begin
   then Exit; 
   M := AView.Model;
 
-  ASet := POrderedSet.Create;
+  ModelViewSet := PViewOrderedSet.Create;
   try
     // Transition
     if M is PUMLStateVertex then begin
@@ -3547,22 +3585,22 @@ begin
         //  get outgoing transition's target model element
         TempModel := ATransition.Target;
         // get all view elements of target state vertex in diagram
-        FindViewByModel(DiagramView, TempModel, ASet);
+        FindViewByModel(DiagramView, TempModel, ModelViewSet);
         // create transition view among created view element and all target vertex
-        for J := 0 to ASet.Count - 1 do begin
-          if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-          V := UMLFactory.CreateView(DiagramView, ATransition, '', AView, ASet.Items[J] as PView);
+        for ModelView in ModelViewSet do begin
+          if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+          V := UMLFactory.CreateView(DiagramView, ATransition, '', AView, ModelView);
           if Assigned(V) then ViewSet.Add(V);
         end;
       end;
       for I := 0 to (M as PUMLStateVertex).IncomingCount - 1 do begin
         ATransition := (M as PUMLStateVertex).Incomings[I];
         TempModel := ATransition.Source;
-        FindViewByModel(DiagramView, TempModel, ASet);
-        for J := 0 to ASet.Count - 1 do begin
-          if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-          if ASet.Items[J] = AView then Continue;
-          V := UMLFactory.CreateView(DiagramView, ATransition, '', ASet.Items[J] as PView, AView);
+        FindViewByModel(DiagramView, TempModel, ModelViewSet);
+        for ModelView in ModelViewSet do begin
+          if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+          if ModelView = AView then Continue;
+          V := UMLFactory.CreateView(DiagramView, ATransition, '', ModelView, AView);
           if Assigned(V) then ViewSet.Add(V);
         end;
       end;
@@ -3572,27 +3610,26 @@ begin
       for I := 0 to (M as PUMLModelElement).SupplierDependencyCount - 1 do begin
         ADependency := (M as PUMLModelElement).SupplierDependencies[I];
         TempModel := ADependency.Client;
-        FindViewByModel(DiagramView, TempModel, ASet);
-        for J := 0 to ASet.Count - 1 do begin
-          if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-          V := UMLFactory.CreateView(DiagramView, ADependency, '', ASet.Items[J] as PView, AView);
+        FindViewByModel(DiagramView, TempModel, ModelViewSet);
+        for ModelView in ModelViewSet do begin
+          if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+          V := UMLFactory.CreateView(DiagramView, ADependency, '', ModelView, AView);
           if Assigned(V) then ViewSet.Add(V);
         end;
       end;
       for I := 0 to (M as PUMLModelElement).ClientDependencyCount - 1 do begin
         ADependency := (M as PUMLModelElement).ClientDependencies[I];
         TempModel := ADependency.Supplier;
-        FindViewByModel(DiagramView, TempModel, ASet);
-        for J := 0 to ASet.Count - 1 do begin
-          if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-          if ASet.Items[J] = AView then Continue;
-          V := UMLFactory.CreateView(DiagramView, ADependency, '', AView, ASet.Items[J] as PView);
+        FindViewByModel(DiagramView, TempModel, ModelViewSet);
+        for ModelView in ModelViewSet do begin
+          if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+          if ModelView = AView then Continue;
+          V := UMLFactory.CreateView(DiagramView, ADependency, '', ModelView);
           if Assigned(V) then ViewSet.Add(V);
         end;
       end;
     end;
     // Association
-    TempModel := nil;
     if M is PUMLClassifier then begin
       IsDuplicated := False;
       for I := 0 to (M as PUMLClassifier).AssociationCount - 1 do begin
@@ -3603,14 +3640,14 @@ begin
         //if TempModel = AAssociation.Connections[0] then Continue;
         if (TempModel as PUMLAssociationEnd).Participant = M then begin
           TempModel := AAssociation.Connections[1];
-          FindViewByModel(DiagramView, (TempModel as PUMLAssociationEnd).Participant, ASet);
-          for J := 0 to ASet.Count - 1 do begin
-            if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-            if ASet.Items[J] = AView then begin
+          FindViewByModel(DiagramView, (TempModel as PUMLAssociationEnd).Participant, ModelViewSet);
+          for ModelView in ModelViewSet do begin
+            if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+            if ModelView = AView then begin
               if not IsDuplicated then IsDuplicated := True
               else begin IsDuplicated := False; Continue; end;
             end;
-            V := UMLFactory.CreateView(DiagramView, AAssociation, '', AView, ASet.Items[J] as PView);
+            V := UMLFactory.CreateView(DiagramView, AAssociation, '', ModelView);
             if Assigned(V) then ViewSet.Add(V);
           end;
         end else begin
@@ -3618,14 +3655,14 @@ begin
           TempModel := AAssociation.Connections[1];
           if (TempModel as PUMLAssociationEnd).Participant = M then begin
             TempModel := AAssociation.Connections[0];
-            FindViewByModel(DiagramView, (TempModel as PUMLAssociationEnd).Participant, ASet);
-            for J := 0 to ASet.Count - 1 do begin
-            if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-              if ASet.Items[J] = AView then begin
+            FindViewByModel(DiagramView, (TempModel as PUMLAssociationEnd).Participant, ModelViewSet);
+            for ModelView in ModelViewSet do begin
+            if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+              if ModelView = AView then begin
                 if not IsDuplicated then IsDuplicated := True
                 else begin IsDuplicated := False; Continue; end;
               end;
-              V := UMLFactory.CreateView(DiagramView, AAssociation, '', ASet.Items[J] as PView, AView);
+              V := UMLFactory.CreateView(DiagramView, AAssociation, '', ModelView, AView);
               if Assigned(V) then ViewSet.Add(V);
             end;
           end;
@@ -3641,10 +3678,10 @@ begin
         Assert(AGeneralization.Child = M);
         // ASSERTION
         TempModel := AGeneralization.Parent;
-        FindViewByModel(DiagramView, TempModel, ASet);
-        for J := 0 to ASet.Count - 1 do begin
-          if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-          V := UMLFactory.CreateView(DiagramView, AGeneralization, '', AView, ASet.Items[J] as PView);
+        FindViewByModel(DiagramView, TempModel, ModelViewSet);
+        for ModelView in ModelViewSet do begin
+          if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+          V := UMLFactory.CreateView(DiagramView, AGeneralization, '', AView, ModelView);
           if Assigned(V) then ViewSet.Add(V);
         end;
       end;
@@ -3655,17 +3692,16 @@ begin
         Assert(AGeneralization.Parent = M);
         // ASSERTION
         TempModel := AGeneralization.Child;
-        FindViewByModel(DiagramView, TempModel, ASet);
-        for J := 0 to ASet.Count - 1 do begin
-          if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-          if ASet.Items[J] = AView then Continue;
-          V := UMLFactory.CreateView(DiagramView, AGeneralization, '', ASet.Items[J] as PView, AView);
+        FindViewByModel(DiagramView, TempModel, ModelViewSet);
+        for ModelView in ModelViewSet do begin
+          if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+          if ModelView = AView then Continue;
+          V := UMLFactory.CreateView(DiagramView, AGeneralization, '', ModelView, AView);
           if Assigned(V) then ViewSet.Add(V);
         end;
       end;
     end;
     // Link, Stimulus
-    TempModel := nil;
     if M is PUMLInstance then begin
       IsDuplicated := False;
       for I := 0 to (M as PUMLInstance).LinkEndCount - 1 do begin
@@ -3676,14 +3712,14 @@ begin
         TempModel := ALink.Connections[0];
         if (TempModel as PUMLLinkEnd).Instance = M then begin
           TempModel := ALink.Connections[1];
-          FindViewByModel(DiagramView, (TempModel as PUMLLinkEnd).Instance, ASet);
-          for J := 0 to ASet.Count - 1 do begin
-            if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-            if ASet.Items[J] = AView then begin
+          FindViewByModel(DiagramView, (TempModel as PUMLLinkEnd).Instance, ModelViewSet);
+          for ModelView in ModelViewSet do begin
+            if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+            if ModelView = AView then begin
               if not IsDuplicated then IsDuplicated := True
               else begin IsDuplicated := False; Continue; end;
             end;
-            V := UMLFactory.CreateView(DiagramView, ALink, '', AView, ASet.Items[J] as PView);
+            V := UMLFactory.CreateView(DiagramView, ALink, '', AView, ModelView);
             if Assigned(V) then ViewSet.Add(V);
           end;
         end else begin
@@ -3691,14 +3727,14 @@ begin
           TempModel := ALink.Connections[1];
           if (TempModel as PUMLLinkEnd).Instance = M then begin
             TempModel := ALink.Connections[0];
-            FindViewByModel(DiagramView, (TempModel as PUMLLinkEnd).Instance, ASet);
-            for J := 0 to ASet.Count - 1 do begin
-              if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-              if ASet.Items[J] = AView then begin
+            FindViewByModel(DiagramView, (TempModel as PUMLLinkEnd).Instance, ModelViewSet);
+            for ModelView in ModelViewSet do begin
+              if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+              if ModelView = AView then begin
                 if not IsDuplicated then IsDuplicated := True
                 else begin IsDuplicated := False; Continue; end;
               end;
-              V := UMLFactory.CreateView(DiagramView, ALink, '', ASet.Items[J] as PView, AView);
+              V := UMLFactory.CreateView(DiagramView, ALink, '', ModelView, AView);
               if Assigned(V) then ViewSet.Add(V);
             end;
           end;
@@ -3711,10 +3747,10 @@ begin
       for I := 0 to (M as PUMLUseCase).IncludeCount - 1 do begin
         AInclude := (M as PUMLUseCase).Includes[I];
         TempModel := AInclude.Addition;
-        FindViewByModel(DiagramView, TempModel, ASet);
-        for J := 0 to ASet.Count - 1 do begin
-          if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-          V := UMLFactory.CreateView(DiagramView, AInclude, '', AView, ASet.Items[J] as PView);
+        FindViewByModel(DiagramView, TempModel, ModelViewSet);
+        for ModelView in ModelViewSet do begin
+          if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+          V := UMLFactory.CreateView(DiagramView, AInclude, '', AView, ModelView);
           if Assigned(V) then ViewSet.Add(V);
         end;
       end;
@@ -3722,11 +3758,11 @@ begin
       for I := 0 to (M as PUMLUseCase).IncluderCount - 1 do begin
         AInclude := (M as PUMLUseCase).Includers[I];
         TempModel := AInclude.Base;
-        FindViewByModel(DiagramView, TempModel, ASet);
-        for J := 0 to ASet.Count - 1 do begin
-          if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-          if ASet.Items[J] = AView then Continue;
-          V := UMLFactory.CreateView(DiagramView, AInclude, '', ASet.Items[J] as PView, AView);
+        FindViewByModel(DiagramView, TempModel, ModelViewSet);
+        for ModelView in ModelViewSet do begin
+          if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+          if ModelView = AView then Continue;
+          V := UMLFactory.CreateView(DiagramView, AInclude, '', ModelView, AView);
           if Assigned(V) then ViewSet.Add(V);
         end;
       end;
@@ -3734,10 +3770,10 @@ begin
       for I := 0 to (M as PUMLUseCase).ExtenderCount - 1 do begin
         AExtend := (M as PUMLUseCase).Extenders[I];
         TempModel := AExtend.Extension;
-        FindViewByModel(DiagramView, TempModel, ASet);
-        for J := 0 to ASet.Count - 1 do begin
-          if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-          V := UMLFactory.CreateView(DiagramView, AExtend, '', ASet.Items[J] as PView, AView);
+        FindViewByModel(DiagramView, TempModel, ModelViewSet);
+        for ModelView in ModelViewSet do begin
+          if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+          V := UMLFactory.CreateView(DiagramView, AExtend, '', ModelView, AView);
           if Assigned(V) then ViewSet.Add(V);
         end;
       end;
@@ -3745,11 +3781,11 @@ begin
       for I := 0 to (M as PUMLUseCase).ExtendCount - 1 do begin
         AExtend := (M as PUMLUseCase).Extends[I];
         TempModel := AExtend.Base;
-        FindViewByModel(DiagramView, TempModel, ASet);
-        for J := 0 to ASet.Count - 1 do begin
-          if (ASet.Items[J] <> AView) and ((ASet.Items[J] as PView).Model = M) then Continue;
-          if ASet.Items[J] = AView then Continue;
-          V := UMLFactory.CreateView(DiagramView, AExtend, '', AView, ASet.Items[J] as PView);
+        FindViewByModel(DiagramView, TempModel, ModelViewSet);
+        for ModelView in ModelViewSet do begin
+          if (ModelView <> AView) and (ModelView.Model = M) then Continue;
+          if ModelView = AView then Continue;
+          V := UMLFactory.CreateView(DiagramView, AExtend, '', AView, ModelView);
           if Assigned(V) then ViewSet.Add(V);
         end;
       end;
@@ -3758,23 +3794,22 @@ begin
     if M is PUMLClass then begin
       AAssociationClass := (M as PUMLClass).AssociationClass;
       if Assigned(AAssociationClass) then begin
-        FindViewByModel(DiagramView, AAssociationClass.AssociationSide, ASet);
-        for I := 0 to ASet.Count - 1 do begin
-          V := UMLFactory.CreateView(DiagramView, AAssociationClass, '', ASet.Items[I] as PView, AView);
+        FindViewByModel(DiagramView, AAssociationClass.AssociationSide, ModelViewSet);
+        for ModelView in ModelViewSet do begin
+          V := UMLFactory.CreateView(DiagramView, AAssociationClass, '', ModelView, AView);
           if Assigned(V) then ViewSet.Add(V);
         end;
       end;
     end;
   finally
-    ASet.Free;
+    ModelViewSet.Free;
   end;
 end;
 
-procedure PCreateViewCommand.FindViewByModel(DiagramView: PDiagramView; AModel: PModel; ASet: POrderedSet);
+procedure PCreateViewCommand.FindViewByModel(DiagramView: PDiagramView; AModel: PModel; ASet: PViewOrderedSet);
 var
   I: Integer;
   AView: PView;
-  OwnedView : PView;
 begin
   ASet.Clear;
   for I := 0 to DiagramView.OwnedViewCount - 1 do begin
@@ -4104,20 +4139,18 @@ procedure PNewViewByDragDropCommand.SetParameterEdgeTypeElem(DiagramView: PDiagr
     TailView, HeadView: PView;
     TempTailView, TempHeadView: PView;
     AView: PView;
-    TailViewSet, HeadViewSet: POrderedSet;
-    I, J, K: Integer;
+    TailViewSet, HeadViewSet: PViewOrderedSet;
+    K: Integer;
     B: Boolean;
     V: PView;
   begin
-    TailViewSet := POrderedSet.Create;
-    HeadViewSet := POrderedSet.Create;
+    TailViewSet := PViewOrderedSet.Create;
+    HeadViewSet := PViewOrderedSet.Create;
     try
       FindViewByModel(DiagramView, Tail, TailViewSet);
       FindViewByModel(DiagramView, Head, HeadViewSet);
-      for I := 0 to TailViewSet.Count - 1 do begin
-        TailView := TailViewSet.Items[I] as PView;
-        for J := 0 to HeadViewSet.Count - 1 do begin
-          HeadView := HeadViewSet.Items[J] as PView;
+      for TailView in TailViewSet do begin
+        for HeadView in HeadViewSet do begin
           B := True;
           for K := 0 to Model.ViewCount - 1 do begin
             AView := Model.View[K];
@@ -4131,7 +4164,6 @@ procedure PNewViewByDragDropCommand.SetParameterEdgeTypeElem(DiagramView: PDiagr
             end;
           end;
           if B then begin
-            V := nil;
             V := UMLFactory.CreateView(DiagramView, Model, '', TailView, HeadView);
             if Assigned(V) then ViewSet.Add(V);
           end;
@@ -5324,24 +5356,21 @@ end;
 
 procedure PChangeViewsLineColorCommand.SetParameter(AViewSet: PViewOrderedSet; ANewLineColor: TColor);
 var
-  I: Integer;
+  View: PView;
 begin
   ViewSet.Assign(AViewSet);
   NewLineColor := ANewLineColor;
   OldLineColors.Clear;
-  for I := 0 to ViewSet.Count - 1 do
-    OldLineColors.Add(ColorToString((ViewSet.Items[I] as PView).LineColor));
+  for View in ViewSet do
+     OldLineColors.Add(ColorToString(View.LineColor));
 end;
 
 procedure PChangeViewsLineColorCommand.Reexecute;
 var
-  I: Integer;
-  V: PView;
+  View: PView;
 begin
-  for I := 0 to ViewSet.Count - 1 do begin
-    V := ViewSet.Items[I] as PView;
-    V.LineColor := NewLineColor;
-  end;
+  for View in ViewSet do
+    View.LineColor := NewLineColor;
   // fire view change event
   ViewsChanged;
 end;
@@ -5349,11 +5378,11 @@ end;
 procedure PChangeViewsLineColorCommand.Unexecute;
 var
   I: Integer;
-  V: PView;
+  View: PView;
 begin
   for I := 0 to ViewSet.Count - 1 do begin
-    V := FViewSet.Items[I] as PView;
-    V.LineColor := StringToColor(OldLineColors[I]);
+    View := FViewSet[I];
+    View.LineColor := StringToColor(OldLineColors[I]);
   end;
   // fire view change event
   ViewsChanged;
@@ -5540,7 +5569,7 @@ end;
 constructor PChangeEdgesLineStyleCommand.Create;
 begin
   inherited;
-  OldLineStyles := TStringList.Create;
+  OldLineStyles := POldLineStylesList.Create;
   OldPoints := TList.Create;
 end;
 
@@ -5578,8 +5607,7 @@ begin
     P := PPoints.Create;
     P.Assign(E.Points);
     OldPoints.Add(P);
-    if E.LineStyle = lsRectilinear then OldLineStyles.Add('R')
-                                   else OldLineStyles.Add('O');
+    OldLineStyles.Add(E.LineStyle)
   end;
 end;
 
@@ -5604,8 +5632,7 @@ var
 begin
   for I := 0 to ViewSet.Count - 1 do begin
     E := ViewSet.Items[I] as PEdgeView;
-    if OldLineStyles.Strings[I] = 'R' then E.LineStyle := lsRectilinear
-                                      else E.LineStyle := lsOblique;
+    E.LineStyle := OldLineStyles[I];
     P := OldPoints.Items[I];
     E.Points.Assign(P);
   end;
@@ -5615,6 +5642,71 @@ end;
 
 // PChangeEdgesLineStyleCommand
 ////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////
+// PChangeAnnotationLineStyleCommand
+
+constructor PChangeAnnotationLineStyleCommand.Create;
+begin
+  inherited;
+  OldLineStyles := POldLineStylesList.Create;
+end;
+
+destructor PChangeAnnotationLineStyleCommand.Destroy;
+begin
+  OldLineStyles.Free;
+  inherited;
+end;
+
+function PChangeAnnotationLineStyleCommand.Precondition: Boolean;
+begin
+  Result := not ViewSet.IsEmpty;
+end;
+
+procedure PChangeAnnotationLineStyleCommand.SetParameter(AEdgeSet: PViewOrderedSet; ANewLineStyle: PLineKind);
+var
+  I: Integer;
+  ShapeView: PShapeView;
+begin
+  ViewSet.Assign(AEdgeSet);
+  NewLineStyle := ANewLineStyle;
+  OldLineStyles.Clear;
+  for I := 0 to ViewSet.Count - 1 do begin
+    ShapeView := ViewSet[I] as PShapeView;
+    OldLineStyles.Add(ShapeView.LineKind)
+  end;
+end;
+
+procedure PChangeAnnotationLineStyleCommand.Reexecute;
+var
+  I: Integer;
+  ShapeView: PShapeView;
+begin
+  for I := 0 to ViewSet.Count - 1 do begin
+    ShapeView := ViewSet[I] as PShapeView;
+    ShapeView.LineKind := NewLineStyle;
+  end;
+  // fire view change event
+  ViewsChanged;
+end;
+
+procedure PChangeAnnotationLineStyleCommand.Unexecute;
+var
+  I: Integer;
+  ShapeView: PShapeView;
+begin
+  for I := 0 to ViewSet.Count - 1 do begin
+    ShapeView := ViewSet[I] as PShapeView;
+    ShapeView.LineKind := OldLineStyles[I];
+  end;
+  // fire view change event
+  ViewsChanged;
+end;
+
+// PChangeAnnotationLineStyleCommand
+////////////////////////////////////////////////////////////////////////////////
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // PChangeNoteViewStringsCommand
@@ -5930,7 +6022,6 @@ var
   I, V: Integer;
   Node: PNodeView;
   TempSet: PViewOrderedSet;
-  View: TObject;
 
   function GetLeftMost(Nodes: PViewOrderedSet): Integer;
   var
@@ -8407,7 +8498,6 @@ var
   I: Integer;
   TempSet: PModelOrderedSet;
   V, OldContainer, NewContainer: PView;
-  OldOwnerView, NewOwnerView: PView;
   OldIdx, OldLeft, OldTop: Integer;
   ContainerModel: PModel;
 
@@ -9085,7 +9175,7 @@ end;
 procedure PChangeModelReferenceWithNamedModelCreatingCommand.Execute;
 begin
   inherited;
-  (ChangingModels.Items[0] as PModel).MOF_SetReference(Key, NewValue);
+  ChangingModels[0].MOF_SetReference(Key, NewValue);
   // fire model change event
   ModelsChanged;
 end;
@@ -9093,7 +9183,7 @@ end;
 procedure PChangeModelReferenceWithNamedModelCreatingCommand.Reexecute;
 begin
   inherited;
-  (ChangingModels.Items[0] as PModel).MOF_SetReference(Key, NewValue);
+  ChangingModels[0].MOF_SetReference(Key, NewValue);
   // fire model change event
   ModelsChanged;
 end;
@@ -9101,7 +9191,7 @@ end;
 procedure PChangeModelReferenceWithNamedModelCreatingCommand.Unexecute;
 begin
   inherited;
-  (ChangingModels.Items[0] as PModel).MOF_SetReference(Key, OldValue);
+  ChangingModels[0].MOF_SetReference(Key, OldValue);
 
   // Restore sizes of views
   RestoreViewSizes;

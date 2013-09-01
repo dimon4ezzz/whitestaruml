@@ -7184,8 +7184,10 @@ begin
     if Model is PUMLStimulus then begin
       // move at OwnerView's Indext to correspond to SequenceNumber
       C := DgmView.IndexOfOwnedView(Sti.InteractionInstanceSet.ParticipatingStimuli[SN2].View[0]);
-      DgmView.RemoveOwnedView(Self);
-      DgmView.InsertOwnedView(C, Self);
+      if C >= 0 then begin
+        DgmView.RemoveOwnedView(Self);
+        DgmView.InsertOwnedView(C, Self);
+      end;
       // move at InteractionInstanceSet's Indext to correspond to SequenceNumber
       InterIns.RemoveParticipatingStimulus(Sti);
       InterIns.InsertParticipatingStimulus(SN2, Sti);
