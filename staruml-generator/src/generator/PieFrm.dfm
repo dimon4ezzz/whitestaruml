@@ -77,7 +77,6 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Height = 12
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
-      OnPaintPage = TemplateSelectionPagePaintPage
       object Image1: TImage
         Left = 0
         Top = 70
@@ -499,13 +498,9 @@ object PieForm: TPieForm
             PopupMenu = TemplatePopupMenu
             TabOrder = 3
             TabStop = True
-            OnAfterSort = TasksGridAfterSort
             OnCellClick = TasksGridCellClick
             OnChange = TasksGridChange
             OnDblClick = TasksGridDblClick
-            OnEnter = TasksGridEnter
-            OnExit = TasksGridExit
-            OnSelectCell = TasksGridSelectCell
             object CheckColumn: TNxCheckBoxColumn
               Alignment = taCenter
               DefaultWidth = 23
@@ -1194,9 +1189,10 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Style = []
       VisibleButtons = [bkNext, bkFinish, bkCancel]
       OnPage = ExecutionPagePage
-      OnPaintPage = ExecutionPagePaintPage
       OnNextButtonClick = ExecutionPageNextButtonClick
       OnFinishButtonClick = ExecutionPageFinishButtonClick
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GenerationItemsLabel: TLabel
         Left = 8
         Top = 88
@@ -1585,7 +1581,6 @@ object PieForm: TPieForm
         Options = [goGrid, goHeader, goSelectFullRow]
         TabOrder = 0
         TabStop = True
-        OnAfterSort = ExecTasksGridAfterSort
         OnDblClick = ExecTasksGridDblClick
         object ExecStateColumn: TNxImageColumn
           DefaultValue = '0'
