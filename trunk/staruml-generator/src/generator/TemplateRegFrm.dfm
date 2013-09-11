@@ -267,7 +267,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
     end
   end
   object OpenDialog: TOpenDialog
-    Filter = #47784#46304' '#54028#51068'(*.*)|*.*'
+    Filter = 'All files(*.*)|*.*'
     Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
     Title = #54028#51068' '#50676#44592
     Left = 128
@@ -275,13 +275,13 @@ object TemplateRegisterForm: TTemplateRegisterForm
   end
   object SaveDialog: TSaveDialog
     DefaultExt = 'tdf'
-    Filter = #53596#54540#47551' '#51221#51032' '#54028#51068'(*.tdf)|*.tdf|'#47784#46304' '#54028#51068'(*.*)|*.*'
+    Filter = 'Template files(*.tdf)|*.tdf|All files(*.*)|*.*'
     Left = 224
     Top = 32
   end
   object OpenScriptDialog: TOpenDialog
     DefaultExt = 'js'
-    Filter = #49828#53356#47549#53944' '#54028#51068'(*.js;*.vbs)|*.js;*.vbs|'#47784#46304' '#54028#51068'(*.*)|*.*'
+    Filter = 'Script files(*.js;*.vbs)|*.js;*.vbs|All files(*.*)|*.*'
     Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
     Title = #49373#49457#44592' '#51648#51221
     Left = 160
@@ -289,7 +289,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
   end
   object OpenExeDialog: TOpenDialog
     DefaultExt = 'js'
-    Filter = #49892#54665' '#54028#51068'(*.exe)|*.exe|'#47784#46304' '#54028#51068'(*.*)|*.*'
+    Filter = 'Executables(*.exe)|*.exe|All files(*.*)|*.*'
     Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
     Title = #49373#49457#44592' '#51648#51221
     Left = 192
