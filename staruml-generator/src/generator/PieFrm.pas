@@ -54,7 +54,7 @@ uses
   NxCustomGridControl, NxCustomGrid, NxGrid, StdCtrls, cxPC,
   JvWizard, ComCtrls, ShellCtrls, ImgList, ExtCtrls, WhiteStarUML_TLB, FlatPanel,
   dxBar, Menus, ShellAPI, JvExControls, JvComponent, cxPCdxBarPopupMenu,
-  cxControls;
+  cxControls, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, cxClasses;
 
 const
   ERR_ERROR_ON_PROCESSOR = 'Error occurs for executing document translator.'
@@ -192,15 +192,6 @@ type
     procedure ModifyTemplatePopUpMenuItemClick(Sender: TObject);
     procedure DeleteTemplatePopUpMenuItemClick(Sender: TObject);
     procedure OpenTemplatePopUpMenuItemClick(Sender: TObject);
-    procedure TemplateSelectionPagePaintPage(Sender: TObject; ACanvas: TCanvas;
-      var ARect: TRect);
-    procedure ExecutionPagePaintPage(Sender: TObject; ACanvas: TCanvas;
-      var ARect: TRect);
-    procedure TasksGridEnter(Sender: TObject);
-    procedure TasksGridExit(Sender: TObject);
-    procedure TasksGridSelectCell(Sender: TObject; ACol, ARow: Integer);
-    procedure TasksGridAfterSort(Sender: TObject; ACol: Integer);
-    procedure ExecTasksGridAfterSort(Sender: TObject; ACol: Integer);
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -1315,27 +1306,6 @@ begin
   ShowTaskProperties;
 end;
 
-procedure TPieForm.TasksGridEnter(Sender: TObject);
-begin
-  TasksGrid.Refresh;
-end;
-
-procedure TPieForm.TasksGridExit(Sender: TObject);
-begin
-  TasksGrid.Refresh;
-end;
-
-procedure TPieForm.TasksGridSelectCell(Sender: TObject; ACol, ARow: Integer);
-begin
-  TasksGrid.Refresh;
-end;
-
-procedure TPieForm.TemplateSelectionPagePaintPage(Sender: TObject;
-  ACanvas: TCanvas; var ARect: TRect);
-begin
-  TasksGrid.Refresh;
-end;
-
 procedure TPieForm.RegisterBatchButtonClick(Sender: TObject);
 begin
   RegisterBatch;
@@ -1379,11 +1349,6 @@ begin
   ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons - [bkFinish];
   SetupExecTasks;
   UpdateUIStates;
-end;
-
-procedure TPieForm.ExecutionPagePaintPage(Sender: TObject; ACanvas: TCanvas;
-  var ARect: TRect);
-begin
   ExecTasksGrid.Refresh;
 end;
 
@@ -1399,23 +1364,16 @@ begin
   end;
 end;
 
-procedure TPieForm.TasksGridAfterSort(Sender: TObject; ACol: Integer);
-begin
-  TasksGrid.Refresh;
-end;
-
 procedure TPieForm.TasksGridCellClick(Sender: TObject; ACol, ARow: Integer);
 begin
   ShowTaskDescription;
   if (TasksGrid.Columns.Item[ACol] = PreviewColumn)
     and (TasksGrid.CellByName[COL_PREVIEW, ARow].AsInteger <> -1) then begin
      PreviewTemplate;
-     TasksGrid.Refresh;
   end
   else if TasksGrid.Columns.Item[ACol] = ParametersColumn then begin
     UpdateUIStates;
     EditTaskParameters;
-    TasksGrid.Refresh;
   end;
 
  end;
@@ -1505,11 +1463,6 @@ procedure TPieForm.DirectMDAWizardCancelButtonClick(Sender: TObject);
 begin
   if InGenerating then
     AbortGeneration;
-end;
-
-procedure TPieForm.ExecTasksGridAfterSort(Sender: TObject; ACol: Integer);
-begin
-  ExecTasksGrid.Refresh;
 end;
 
 procedure TPieForm.ExecTasksGridDblClick(Sender: TObject);
