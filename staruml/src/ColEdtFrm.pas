@@ -1607,10 +1607,16 @@ end;
 procedure TCollectionEditorForm.HandleEditNameAction(Sender: TObject);
 var
   C: PCollectionKind;
+  EditHandle: HWND;
 begin
   C := ActiveCollection;
-  if C <> ckNone then
+  if C <> ckNone then begin
     GetCollectionListView(C).Selected.EditCaption;
+    // Use Win32 editor control handle to send a message selecting all text in the editor
+    EditHandle := ListView_GetEditControl(GetCollectionListView(C).Selected.Handle);
+    SendMessage(EditHandle, EM_SETSEL, 0, -1);
+
+  end;
 end;
 
 procedure TCollectionEditorForm.HandleInsertAction(Sender: TObject);
@@ -1632,6 +1638,7 @@ begin
       SetSelectedListItem(L, L.Items.Count - 1);
       L.SetFocus;
       UpdateUIStates;
+      HandleEditNameAction(Sender);
     end;
   end;
 end;
