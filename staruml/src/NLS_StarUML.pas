@@ -100,8 +100,8 @@ const
 
   // CmdExec
   C_ERR_CMD_EXPRESSION_PARSING = 'Enter the syntax correctly.';
-  C_ERR_CMD_CANNOT_FIND_BASEELEMENT = 'Cannot find the Base element.';
-  C_ERR_CMD_CANNOT_FIND_CLASSIFIER = 'Cannot find the Classifier element.';
+  C_ERR_CMD_CANNOT_FIND_BASEELEMENT = 'Cannot find the Base element "%s".';
+  C_ERR_CMD_CANNOT_FIND_CLASSIFIER = 'Cannot find the Classifier element "%s".';
 
   // ColEdtFrm
   C_TXT_COLLEDIT_TITLE = 'Collection Editor';

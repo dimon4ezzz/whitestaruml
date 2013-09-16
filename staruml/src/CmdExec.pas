@@ -108,13 +108,12 @@ type
     function NewExtendedElement(DiagramView: PDiagramView; X1, Y1, X2, Y2: Integer; Profile, PaletteElement: string): PView; overload;
     function NewViewByDragDrop(DiagramView: PDiagramView; Model: PModel; X, Y: Integer): PView;
     procedure NewModelByCopyPaste(AModel, ATarget: PModel);
-    //procedure NewViewsByCopyPaste(Views: POrderedSet; Target: PDiagramView);
     function NewViewsByCopyPaste(Views: PViewOrderedSet; Target: PDiagramView): PViewOrderedSet;
     procedure DeleteElements(Models: PModelOrderedSet; Views: PViewOrderedSet);
     // Models Changing Functions.
     procedure ChangeModelsAttribute(Models: PModelOrderedSet; Key: string; Value: string);
     procedure ChangeModelsReference(Models: PModelOrderedSet; Key: string; Value: PModel);
-    procedure ClearCollection(AElement: PElement; Key: string);
+    procedure ClearCollection(AElement: PModel; Key: string);
     procedure AddCollectionItem(AElement: PElement; Key: string; Value: PElement);
     procedure RemoveCollectionItem(AElement: PElement; Key: string; Value: PElement);
     procedure InsertCollectionItem(AElement: PElement; Key: string; Index: Integer; Value: PElement);
@@ -145,7 +144,7 @@ type
     procedure ChangeAttachmentOrder(AModel: PModel; Index: Integer; NewIndex: Integer);
     function ApplyGeneralNameExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
     function ApplyClassifierRoleExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
-    function ApplyObjectExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
+    function ApplyInstanceExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
     function ApplyAttributeExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
     function ApplyOperationExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
     function ApplyMessageExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
@@ -223,11 +222,13 @@ type
   // is abstract class for commands related to creation and deletion of element
   // ---------------------------------------------------------------------------
   PAbstractCreateDeleteElementsCommand = class(PAbstractCommand)
+  private type
+    PMementoList = TList<PMemento>;
   private
     FModelSet: PModelOrderedSet;
     FViewSet: PViewOrderedSet;
     FModelReferences, FViewReferences: PElementOrderedSet;
-    FModelMementos, FViewMementos: TList;
+    FModelMementos, FViewMementos: PMementoList;
     FOnElementsCreated: PModelsViewsEvent;
     FOnElementsDeleting: PModelsViewsEvent;
     FOnElementsDeleted: TNotifyEvent;
@@ -286,7 +287,7 @@ type
   PAbstractChangeViewsCommand = class(PAbstractCommand)
   private
     FViewSet: PViewOrderedSet;
-    FSizePreservingViews: POrderedSet;
+    FSizePreservingViews: PViewOrderedSet;
     FWidthArray: TStringList;
     FHeightArray: TStringList;
     FOnViewsChanged: PViewsEvent;
@@ -508,8 +509,10 @@ type
   // - All models must have changing reference(key)
   // ---------------------------------------------------------------------------
   PChangeModelsReferenceCommand = class(PAbstractChangeModelsCommand)
+  private type
+    PElementList = TList<PElement>;
   private
-    OldValues: TList;
+    OldValues: PElementList;
     Key: string;
     NewValue: PModel;
   protected
@@ -529,7 +532,7 @@ type
   // ---------------------------------------------------------------------------
   PClearCollectionCommand = class(PAbstractChangeModelsCommand)
   private
-    Items: POrderedSet;
+    Items: PElementOrderedSet;
     Element: PElement;
     Key: string;
   protected
@@ -539,7 +542,7 @@ type
     destructor Destroy; override;
     procedure Reexecute; override;
     procedure Unexecute; override;
-    procedure SetParameter(AElement: PElement; AKey: string);
+    procedure SetParameter(AElement: PModel; AKey: string);
   end;
 
   // PAddCollectionItemCommand
@@ -860,7 +863,7 @@ type
   // ---------------------------------------------------------------------------
   PSetTaggedValueAsDefaultCommand = class(PAbstractChangeModelsCommand)
   private
-    Items: POrderedSet;
+    Items: PExtensibleModelOrderedSet;
     ExtensibleModel: PExtensibleModel;
     ProfileName: string;
     TagDefinitionSetName: string;
@@ -1228,9 +1231,11 @@ type
   // is the command to change the font of view elements
   // ---------------------------------------------------------------------------
   PChangeViewsFontCommand = class(PAbstractChangeViewsCommand)
+  private type
+    PFontList = TList<TFont>;
   private
     ChangedFontItems: PFontItemKinds;
-    OldFonts: TList;
+    OldFonts: PFontList;
     NewFont: TFont;
     procedure StoreOldFonts(AViewSet: PViewOrderedSet);
   protected
@@ -1251,9 +1256,10 @@ type
   PChangeEdgesLineStyleCommand = class(PAbstractChangeViewsCommand)
   private type
     POldLineStylesList = TList<PLineStyleKind>;
+    PPointsList = TList<PPoints>;
   private
     OldLineStyles: POldLineStylesList;
-    OldPoints: TList;
+    OldPoints: PPointsList;
     NewLineStyle: PLineStyleKind;
   protected
     function Precondition: Boolean; override;
@@ -1360,13 +1366,17 @@ type
   // is the command to arrange diagram's views automatically
   // ---------------------------------------------------------------------------
   PLayoutDiagramCommand = class(PAbstractChangeViewsCommand)
+  private type
+    PNodeViewOrderedSet = POrderedSet<PNodeView>;
+    PEdgeViewOrderedSet = POrderedSet<PEdgeView>;
+    PPointsList = TList<PPoints>;
   private
     DiagramView: PDiagramView;
-    Nodes: POrderedSet;
-    Edges: POrderedSet;
+    Nodes: PNodeViewOrderedSet;
+    Edges: PEdgeViewOrderedSet;
     OldNodePositions: PPoints;
     OldEdgeLineStyles: TStringList;
-    OldEdgePoints: TList;
+    OldEdgePoints: PPointsList;
   protected
     function Precondition: Boolean; override;
   public
@@ -1437,7 +1447,7 @@ type
   // is the command to change the Stereotype, Name property, Classifier Reference
   // of Object type Model
   // ---------------------------------------------------------------------------
-  PApplyObjectExpressionCommand = class(PAbstractApplyExpressionCommand)
+  PApplyInstanceExpressionCommand = class(PAbstractApplyExpressionCommand)
   private
     FOldClassifier: PUMLClassifier;
     FNewClassifier: PUMLClassifier;
@@ -2122,7 +2132,7 @@ begin
   end;
 end;
 
-procedure PCommandExecutor.ClearCollection(AElement: PElement; Key: string);
+procedure PCommandExecutor.ClearCollection(AElement: PModel; Key: string);
 var
   Cmd: PClearCollectionCommand;
 begin
@@ -2598,11 +2608,11 @@ begin
   end;
 end;
 
-function PCommandExecutor.ApplyObjectExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
+function PCommandExecutor.ApplyInstanceExpression(Models: PModelOrderedSet; Value: string; var Msg: string): Boolean;
 var
-  Cmd: PApplyObjectExpressionCommand;
+  Cmd: PApplyInstanceExpressionCommand;
 begin
-  Cmd := PApplyObjectExpressionCommand.Create;
+  Cmd := PApplyInstanceExpressionCommand.Create;
   Cmd.SetParameter(Models, Value);
   Cmd.OnModelsChanged := ModelsChanged;
   if Engine.Execute(Cmd) then Result := True
@@ -3140,40 +3150,39 @@ begin
   FViewSet := PViewOrderedSet.Create;
   FModelReferences := PElementOrderedSet.Create;
   FViewReferences := PElementOrderedSet.Create;
-  FModelMementos := TList.Create;
-  FViewMementos := TList.Create;
+  FModelMementos := PMementoList.Create;
+  FViewMementos := PMementoList.Create;
 end;
 
 destructor PAbstractCreateDeleteElementsCommand.Destroy;
 var
-  I: Integer;
   AMemento: PMemento;
 begin
   FModelSet.Free;
   FViewSet.Free;
   FModelReferences.Free;
   FViewReferences.Free;
-  for I := FModelMementos.Count - 1 downto 0 do begin
-    AMemento := FModelMementos.Items[I];
+
+  for AMemento in FModelMementos do
     AMemento.Free;
-  end;
   FModelMementos.Free;
-  for I := FViewMementos.Count - 1 downto 0 do begin
-    AMemento := FViewMementos.Items[I];
+
+  for AMemento in FViewMementos do
     AMemento.Free;
-  end;
   FViewMementos.Free;
+
   inherited;
 end;
 
 procedure PAbstractCreateDeleteElementsCommand.FreeAll;
 var
-  I: Integer;
+  Model: PModel;
+  View: PView;
 begin
-  for I := FModelSet.Count - 1 downto 0 do
-    FModelSet.Items[I].Free;
-  for I := FViewSet.Count - 1 downto 0 do
-    FViewSet.Items[I].Free;
+  for Model in FModelSet do
+    Model.Free;
+  for View in FViewSet do
+    View.Free;
 end;
 
 procedure PAbstractCreateDeleteElementsCommand.Preprocess;
@@ -3339,7 +3348,7 @@ constructor PAbstractChangeViewsCommand.Create;
 begin
   inherited;
   FViewSet := PViewOrderedSet.Create;
-  FSizePreservingViews := POrderedSet.Create;
+  FSizePreservingViews := PViewOrderedSet.Create;
   FWidthArray := TStringList.Create;
   FHeightArray := TStringList.Create;
 end;
@@ -4542,7 +4551,7 @@ end;
 constructor PChangeModelsReferenceCommand.Create;
 begin
   inherited;
-  OldValues := TList.Create;
+  OldValues := PElementList.Create;
 end;
 
 destructor PChangeModelsReferenceCommand.Destroy;
@@ -4565,10 +4574,10 @@ end;
 
 procedure PChangeModelsReferenceCommand.Reexecute;
 var
-  I: Integer;
+  Model: PModel;
 begin
-  for I := 0 to ModelSet.Count - 1 do
-    (ModelSet.Items[I] as PModel).MOF_SetReference(Key, NewValue);
+  for Model in ModelSet do
+    Model.MOF_SetReference(Key, NewValue);
   // fire model change event
   ModelsChanged;
 end;
@@ -4578,7 +4587,7 @@ var
   I: Integer;
 begin
   for I := 0 to ModelSet.Count - 1 do begin
-    (ModelSet.Items[I] as PModel).MOF_SetReference(Key, OldValues[I]);
+    ModelSet[I].MOF_SetReference(Key, OldValues[I]);
   end;
   // Restore sizes of views
   RestoreViewSizes;
@@ -4589,17 +4598,14 @@ end;
 procedure PChangeModelsReferenceCommand.SetParameter(AModelSet: PModelOrderedSet; AKey: string; ANewValue: PModel);
 var
   I: Integer;
-  M: PModel;
 begin
   ModelSet.Assign(AModelSet);
   Key := AKey;
   NewValue := ANewValue;
   OldValues.Clear;
+  // Using explicit iterator to be sure that indices for ModelSet and OldValues match.
   for I := 0 to ModelSet.Count - 1 do
-  begin
-    M := ModelSet.Items[I] as PModel;
-    OldValues.Add(M.MOF_GetReference(Key));
-  end;
+    OldValues.Add(ModelSet[I].MOF_GetReference(Key));
   SizePreservingViews.Clear;
   CollectSizesFromModelSet(AModelSet);
 end;
@@ -4613,7 +4619,7 @@ end;
 constructor PClearCollectionCommand.Create;
 begin
   inherited;
-  Items := POrderedSet.Create;
+  Items := PElementOrderedSet.Create;
 end;
 
 destructor PClearCollectionCommand.Destroy;
@@ -4639,17 +4645,17 @@ var
   I: Integer;
 begin
   for I := 0 to Items.Count - 1 do
-    Element.MOF_AddCollectionItem(Key, Items.Items[I] as PElement);
+    Element.MOF_AddCollectionItem(Key, Items[I]);
   // fire model change event
   ModelsChanged;
 end;
 
-procedure PClearCollectionCommand.SetParameter(AElement: PElement; AKey: string);
+procedure PClearCollectionCommand.SetParameter(AElement: PModel; AKey: string);
 var
   I: Integer;
 begin
   ModelSet.Clear;
-  ModelSet.Add(AElement as PModel);
+  ModelSet.Add(AElement);
   Element := AElement;
   Key := AKey;
   // preserve collection's items
@@ -5451,20 +5457,17 @@ end;
 constructor PChangeViewsFontCommand.Create;
 begin
   inherited;
-  OldFonts := TList.Create;
+  OldFonts := PFontList.Create;
   NewFont := TFont.Create;
   ChangedFontItems := [];
 end;
 
 destructor PChangeViewsFontCommand.Destroy;
 var
-  I: Integer;
   F: TFont;
 begin
-  for I := 0 to OldFonts.Count - 1 do begin
-    F := OldFonts.Items[I];
+  for F in OldFonts do
     F.Free;
-  end;
   OldFonts.Free;
   NewFont.Free;
   inherited;
@@ -5478,7 +5481,7 @@ var
 begin
   OldFonts.Clear;
   for I := 0 to AViewSet.Count - 1 do begin
-    V := AViewSet.Items[I] as PView;
+    V := AViewSet[I];
     F := TFont.Create;
     F.Color := V.FontColor;
     F.Name := V.FontFace;
@@ -5512,11 +5515,9 @@ end;
 
 procedure PChangeViewsFontCommand.Reexecute;
 var
-  I: Integer;
   V: PView;
 begin
-  for I := 0 to ViewSet.Count - 1 do begin
-    V := ViewSet.Items[I] as PView;
+  for V in ViewSet do begin
     if fiName in ChangedFontItems then
       V.FontFace := NewFont.Name;
     if fiSize in ChangedFontItems then
@@ -5543,7 +5544,7 @@ var
   V: PView;
 begin
   for I := 0 to ViewSet.Count - 1 do begin
-    V := ViewSet.Items[I] as PView;
+    V := ViewSet[I];
     F := OldFonts.Items[I];
     if fiName in ChangedFontItems then
       V.FontFace := F.Name;
@@ -5570,19 +5571,16 @@ constructor PChangeEdgesLineStyleCommand.Create;
 begin
   inherited;
   OldLineStyles := POldLineStylesList.Create;
-  OldPoints := TList.Create;
+  OldPoints := PPointsList.Create;
 end;
 
 destructor PChangeEdgesLineStyleCommand.Destroy;
 var
-  I: Integer;
   P: PPoints;
 begin
   OldLineStyles.Free;
-  for I := 0 to OldPoints.Count - 1 do begin
-    P := OldPoints.Items[I];
+  for P in OldPoints do
     P.Free;
-  end;
   OldPoints.Free;
   inherited;
 end;
@@ -5603,7 +5601,7 @@ begin
   OldPoints.Clear;
   OldLineStyles.Clear;
   for I := 0 to ViewSet.Count - 1 do begin
-    E := ViewSet.Items[I] as PEdgeView;
+    E := ViewSet[I] as PEdgeView;
     P := PPoints.Create;
     P.Assign(E.Points);
     OldPoints.Add(P);
@@ -5614,10 +5612,11 @@ end;
 procedure PChangeEdgesLineStyleCommand.Reexecute;
 var
   I: Integer;
+  V: PView;
   E: PEdgeView;
 begin
-  for I := 0 to ViewSet.Count - 1 do begin
-    E := ViewSet.Items[I] as PEdgeView;
+  for V in ViewSet do begin
+    E := V as PEdgeView;
     E.LineStyle := NewLineStyle;
   end;
   // fire view change event
@@ -5631,7 +5630,7 @@ var
   P: PPoints;
 begin
   for I := 0 to ViewSet.Count - 1 do begin
-    E := ViewSet.Items[I] as PEdgeView;
+    E := ViewSet[I] as PEdgeView;
     E.LineStyle := OldLineStyles[I];
     P := OldPoints.Items[I];
     E.Points.Assign(P);
@@ -5681,10 +5680,11 @@ end;
 procedure PChangeAnnotationLineStyleCommand.Reexecute;
 var
   I: Integer;
+  V: PView;
   ShapeView: PShapeView;
 begin
-  for I := 0 to ViewSet.Count - 1 do begin
-    ShapeView := ViewSet[I] as PShapeView;
+  for V in ViewSet do begin
+    ShapeView := V as PShapeView;
     ShapeView.LineKind := NewLineStyle;
   end;
   // fire view change event
@@ -6193,23 +6193,19 @@ end;
 constructor PLayoutDiagramCommand.Create;
 begin
   inherited;
-  Nodes := POrderedSet.Create;
-  Edges := POrderedSet.Create;
+  Nodes := PNodeViewOrderedSet.Create;
+  Edges := PEdgeViewOrderedSet.Create;
   OldNodePositions := PPoints.Create;
   OldEdgeLineStyles := TStringList.Create;
-  OldEdgePoints := TList.Create;
+  OldEdgePoints := PPointsList.Create;
 end;
 
 destructor PLayoutDiagramCommand.Destroy;
 var
-  I: Integer;
   Ps: PPoints;
 begin
-  for I := OldEdgePoints.Count - 1 downto 0 do
-  begin
-    Ps := OldEdgePoints.Items[I];
+  for Ps in OldEdgePoints do
     Ps.Free;
-  end;
   Nodes.Free;
   Edges.Free;
   OldNodePositions.Free;
@@ -6227,6 +6223,8 @@ procedure PLayoutDiagramCommand.SetParameter(ADiagramView: PDiagramView);
 var
   I: Integer;
   V: PView;
+  NodeView: PNodeView;
+  EdgeView: PEdgeView;
   Ps: PPoints;
 begin
   DiagramView := ADiagramView;
@@ -6238,24 +6236,27 @@ begin
   for I := 0 to ADiagramView.OwnedViewCount - 1 do begin
     V := ADiagramView.OwnedViews[I];
     if V is PNodeView then begin
-      Nodes.Add(V);
-      OldNodePositions.Add(Point((V as PNodeView).Left, (V as PNodeView).Top));
+      NodeView := V as PNodeView;
+      Nodes.Add(NodeView);
+      OldNodePositions.Add(Point(NodeView.Left, NodeView.Top));
       ViewSet.Add(V);
     end;
   end;
   // Storing Edges
   for I := 0 to ADiagramView.OwnedViewCount - 1 do begin
     V := ADiagramView.OwnedViews[I];
-    if (V is PEdgeView) and
-       ((V as PEdgeView).Tail is PNodeView) and
-       ((V as PEdgeView).Head is PNodeView) then
-    begin
-      Edges.Add(V);
-      OldEdgeLineStyles.Add(V.MOF_GetAttribute('LineStyle'));
-      Ps := PPoints.Create;
-      Ps.Assign((V as PEdgeView).Points);
-      OldEdgePoints.Add(Ps);
-      ViewSet.Add(V);
+    if V is PEdgeView then begin
+      EdgeView := V as PEdgeView;
+      if (EdgeView.Tail is PNodeView) and
+         (EdgeView.Head is PNodeView) then
+      begin
+        Edges.Add(EdgeView);
+        OldEdgeLineStyles.Add(V.MOF_GetAttribute('LineStyle'));
+        Ps := PPoints.Create;
+        Ps.Assign(EdgeView.Points);
+        OldEdgePoints.Add(Ps);
+        ViewSet.Add(V);
+      end;
     end;
   end;
 end;
@@ -6293,15 +6294,22 @@ var
   E: PEdgeView;
   Ps: PPoints;
 begin
-  for I := 0 to Nodes.Count - 1 do begin
+  (*for I := 0 to Nodes.Count - 1 do begin
     N := Nodes.Items[I] as PNodeView;
     N.Left := OldNodePositions.Points[I].X;
     N.Top := OldNodePositions.Points[I].Y;
+  end;*)
+
+  for I := 0 to Nodes.Count - 1 do begin
+    N := Nodes[I];
+    N.Left := OldNodePositions.Points[I].X;
+    N.Top := OldNodePositions.Points[I].Y;
   end;
+
   for I := 0 to Edges.Count - 1 do begin
-    E := Edges.Items[I] as PEdgeView;
+    E := Edges[I];
     E.MOF_SetAttribute('LineStyle', OldEdgeLineStyles.Strings[I]);
-    Ps := OldEdgePoints.Items[I];
+    Ps := OldEdgePoints[I];
     E.Points.Assign(Ps);
   end;
   // fire view change event
@@ -6520,7 +6528,7 @@ begin
           else begin
             TempModel := SearchElement(FModel, BaseName);
             if TempModel <> nil then FNewBase := TempModel as PUMLClassifier
-            else raise Exception.Create(ERR_CMD_CANNOT_FIND_BASEELEMENT);
+            else raise Exception.Create(Format(ERR_CMD_CANNOT_FIND_BASEELEMENT,[BaseName]));
           end;
         end else FNewBase := nil;
       except
@@ -6559,7 +6567,7 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 // PApplyObjectExpressionCommand
 
-function PApplyObjectExpressionCommand.Precondition: Boolean;
+function PApplyInstanceExpressionCommand.Precondition: Boolean;
 var
   B: Boolean;
 begin
@@ -6570,7 +6578,7 @@ begin
   Result := B;
 end;
 
-procedure PApplyObjectExpressionCommand.SetParameter(AModelSet: PModelOrderedSet; Value: string);
+procedure PApplyInstanceExpressionCommand.SetParameter(AModelSet: PModelOrderedSet; Value: string);
 var
   AParser: PObjectExpressionParser;
   TempModel: PModel;
@@ -6578,13 +6586,13 @@ var
   R: PParseStatus;
 begin
   inherited;
-  if not(FModel is PUMLObject) then begin
+  if not(FModel is PUMLInstance) then begin
     ModelSet.Clear;
     FErrorMessage := 'Internal Error';
     Exit;
   end;
   // Set variables for UnExecute operation
-  FOldClassifier := (FModel as PUMLObject).Classifier;
+  FOldClassifier := (FModel as PUMLInstance).Classifier;
   // Parsing
   AParser := PObjectExpressionParser.Create;
   if not AParser.Initialized then begin
@@ -6616,7 +6624,7 @@ begin
           else begin
             TempModel := SearchElement(FModel, ClassifierName);
             if TempModel <> nil then FNewClassifier := TempModel as PUMLClassifier
-            else Raise Exception.Create(ERR_CMD_CANNOT_FIND_CLASSIFIER);
+            else Raise Exception.Create(Format(ERR_CMD_CANNOT_FIND_CLASSIFIER,[ClassifierName]));
           end;
         end else FNewClassifier := nil;
       except
@@ -6634,7 +6642,7 @@ begin
   end;
 end;
 
-procedure PApplyObjectExpressionCommand.Reexecute;
+procedure PApplyInstanceExpressionCommand.Reexecute;
 begin
   inherited;
   if FNewClassifier <> FOldClassifier then
@@ -6642,7 +6650,7 @@ begin
   ModelsChanged;
 end;
 
-procedure PApplyObjectExpressionCommand.Unexecute;
+procedure PApplyInstanceExpressionCommand.Unexecute;
 begin
   inherited;
   if FNewClassifier <> FOldClassifier then
@@ -7147,9 +7155,8 @@ var
   NameStr: string;
   AClassifier: PUMLClassifier;
   AModel: PModel;
-  OpList: POrderedSet;
+  OpList: PModelOrderedSet;
   B: Boolean;
-  I: Integer;
 begin
   inherited;
   if not(FModel is PUMLMessage) and not(FModel is PUMLStimulus) then begin
@@ -7211,12 +7218,11 @@ begin
                 FNewOperation := FOldOperation;
                 B := True;
               end else begin
-                OpList := POrderedSet.Create;
+                OpList := PModelOrderedSet.Create;
                 try
                   OpList.Clear;
                   UMLAux.CollectAllInheritedItems(AClassifier, 'Operations', OpList);
-                  for I := 0 to OpList.Count - 1 do begin
-                    AModel := OpList.Items[I] as PModel;
+                  for AModel in OpList do begin
                     if AModel.Name = NameStr then begin
                       FNewOperation := AModel as PUMLOperation;
                       B := True;
@@ -7890,7 +7896,7 @@ end;
 constructor PSetTaggedValueAsDefaultCommand.Create;
 begin
   inherited;
-  Items := POrderedSet.Create;
+  Items := PExtensibleModelOrderedSet.Create;
 end;
 
 destructor PSetTaggedValueAsDefaultCommand.Destroy;
@@ -7920,11 +7926,11 @@ end;
 
 procedure PSetTaggedValueAsDefaultCommand.Unexecute;
 var
-  I: Integer;
+  ExtModel: PExtensibleModel;
 begin
   ExtensibleModel.AddTaggedValue(TaggedValue);
-  for I := 0 to Items.Count - 1 do
-    TaggedValue.AddReferenceValue(Items.Items[I] as PExtensibleModel);
+  for ExtModel in Items do
+    TaggedValue.AddReferenceValue(ExtModel);
   // fire model change event
   ModelsChanged;
 end;

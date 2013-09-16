@@ -129,7 +129,7 @@ type
 
     procedure MainFormQuickDlgGeneralNameExpressionApplyingHandler(AModel: PModel; Value: string);
     procedure MainFormQuickDlgClassifierRoleExpressionApplyingHandler(AModel: PModel; Value: string);
-    procedure MainFormQuickDlgObjectExpressionApplyingHandler(AModel: PModel; Value: string);
+    procedure MainFormQuickDlgInstanceExpressionApplyingHandler(AModel: PModel; Value: string);
     procedure MainFormQuickDlgAttributeExpressionApplyingHandler(AModel: PModel; Value: string);
     procedure MainFormQuickDlgOperationExpressionApplyingHandler(AModel: PModel; Value: string);
     procedure MainFormQuickDlgMessageExpressionApplyingHandler(AModel: PModel; Value: string);
@@ -1620,11 +1620,11 @@ begin
     StarUMLApplication.ApplyClassifierRoleExpression(AModel as PUMLClassifierRole, Value);
 end;
 
-procedure PMain.MainFormQuickDlgObjectExpressionApplyingHandler(AModel: PModel; Value: string);
+procedure PMain.MainFormQuickDlgInstanceExpressionApplyingHandler(AModel: PModel; Value: string);
 begin
   // * on Exception, process in QuickDialogFrm
-  if AModel is PUMLObject then
-    StarUMLApplication.ApplyObjectExpression(AModel as PUMLObject, Value);
+  if AModel is PUMLInstance then
+    StarUMLApplication.ApplyInstanceExpression(AModel as PUMLInstance, Value);
 end;
 
 procedure PMain.MainFormQuickDlgAttributeExpressionApplyingHandler(AModel: PModel; Value: string);
@@ -3185,7 +3185,7 @@ begin
     OnDiagramViewDragDrop := MainFormDiagramViewDragDropHandler;
     OnGeneralNameExpressionApplying := MainFormQuickDlgGeneralNameExpressionApplyingHandler;
     OnClassifierRoleExpressionApplying := MainFormQuickDlgClassifierRoleExpressionApplyingHandler;
-    OnObjectExpressionApplying := MainFormQuickDlgObjectExpressionApplyingHandler;
+    OnObjectExpressionApplying := MainFormQuickDlgInstanceExpressionApplyingHandler;
     OnAttributeExpressionApplying := MainFormQuickDlgAttributeExpressionApplyingHandler;
     OnOperationExpressionApplying := MainFormQuickDlgOperationExpressionApplyingHandler;
     OnMessageExpressionApplying := MainFormQuickDlgMessageExpressionApplyingHandler;

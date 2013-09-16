@@ -68,6 +68,10 @@ type
   PModelPrototype = class;
   PPalette = class;
   PProfile = class;
+  PExtensibleModel = class;
+
+  // Parametrized collections of ExtCore types
+  PExtensibleModelOrderedSet = POrderedSet<PExtensibleModel>;
 
   // Enumerations
   PTagTypeKind = (tkInteger, tkBoolean, tkString, tkReal, tkEnumeration, tkReference, tkCollection);

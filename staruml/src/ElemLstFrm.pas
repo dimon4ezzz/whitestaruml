@@ -201,23 +201,20 @@ end;
 
 procedure TElementListForm.AddListElementsByCollection(AModel: PModel; CollectionName: string; CollectInherited: Boolean = False);
 var
-  Items: POrderedSet;
+  Items: PModelOrderedSet;
   I: Integer;
   M: PModel;
 
 begin
-  Items := POrderedSet.Create;
+  Items := PModelOrderedSet.Create;
   try
     Items.Clear;
     if CollectInherited then
       CollectAllInheritedItems(AModel as PUMLGeneralizableElement, CollectionName, Items)
     else
       CollectAllItems(AModel, CollectionName, Items);
-    for I := 0 to Items.Count - 1 do
-    begin
-      M := Items.Items[I] as PModel;
+    for M in Items do
       ElementList.AddObject(GetExpression(M), M);
-    end;
   finally
     Items.Free;
   end;
