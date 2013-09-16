@@ -495,7 +495,7 @@ type
     FOnQuickDlgPopup: PQuickDlgPopupEvent;
     FOnGeneralNameExpressionApplying: PQuickDlgExpressionApplyingEvent;
     FOnClassifierRoleExpressionApplying: PQuickDlgExpressionApplyingEvent;
-    FOnObjectExpressionApplying: PQuickDlgExpressionApplyingEvent;
+    FOnInstanceExpressionApplying: PQuickDlgExpressionApplyingEvent;
     FOnAttributeExpressionApplying: PQuickDlgExpressionApplyingEvent;
     FOnOperationExpressionApplying: PQuickDlgExpressionApplyingEvent;
     FOnMessageExpressionApplying: PQuickDlgExpressionApplyingEvent;
@@ -544,7 +544,7 @@ type
     // Event Handlers (On Quick Dialog Manager)
     procedure QuickDlgGeneralNameExpApplyingHandler(AModel: PModel; Value: string);
     procedure QuickDlgClassifierRoleExpApplyingHandler(AModel: PModel; Value: string);
-    procedure QuickDlgObjectExpApplyingHandler(AModel: PModel; Value: string);
+    procedure QuickDlgInstanceExpApplyingHandler(AModel: PModel; Value: string);
     procedure QuickDlgAttributeExpApplyingHandler(AModel: PModel; Value: string);
     procedure QuickDlgOperationExpApplyingHandler(AModel: PModel; Value: string);
     procedure QuickDlgMessageExpApplyingHandler(AModel: PModel; Value: string);
@@ -672,7 +672,7 @@ type
     property OnQuickDlgPopup: PQuickDlgPopupEvent write FOnQuickDlgPopup;
     property OnGeneralNameExpressionApplying: PQuickDlgExpressionApplyingEvent write FOnGeneralNameExpressionApplying;
     property OnClassifierRoleExpressionApplying: PQuickDlgExpressionApplyingEvent write FOnClassifierRoleExpressionApplying;
-    property OnObjectExpressionApplying: PQuickDlgExpressionApplyingEvent write FOnObjectExpressionApplying;
+    property OnObjectExpressionApplying: PQuickDlgExpressionApplyingEvent write FOnInstanceExpressionApplying;
     property OnAttributeExpressionApplying: PQuickDlgExpressionApplyingEvent write FOnAttributeExpressionApplying;
     property OnOperationExpressionApplying: PQuickDlgExpressionApplyingEvent write FOnOperationExpressionApplying;
     property OnMessageExpressionApplying: PQuickDlgExpressionApplyingEvent write FOnMessageExpressionApplying;
@@ -1042,9 +1042,9 @@ begin
   if Assigned(FOnClassifierRoleExpressionApplying) then FOnClassifierRoleExpressionApplying(AModel, Value);
 end;
 
-procedure TMainForm.QuickDlgObjectExpApplyingHandler(AModel: PModel; Value: string);
+procedure TMainForm.QuickDlgInstanceExpApplyingHandler(AModel: PModel; Value: string);
 begin
-  if Assigned(FOnObjectExpressionApplying) then FOnObjectExpressionApplying(AModel, Value);
+  if Assigned(FOnInstanceExpressionApplying) then FOnInstanceExpressionApplying(AModel, Value);
 end;
 
 procedure TMainForm.QuickDlgAttributeExpApplyingHandler(AModel: PModel; Value: string);
@@ -1180,7 +1180,7 @@ begin
   QuickDialogManager.OnModelCreatingWithName := QuickDlgModelCreatingWithNameHandler;
   QuickDialogManager.OnElementDeleting := QuickDlgElementDeletingHandler;
   QuickDialogManager.OnClassifierRoleExpApplying := QuickDlgClassifierRoleExpApplyingHandler;
-  QuickDialogManager.OnObjectExpApplying := QuickDlgObjectExpApplyingHandler;
+  QuickDialogManager.OnObjectExpApplying := QuickDlgInstanceExpApplyingHandler;
   QuickDialogManager.OnAttributeExpApplying := QuickDlgAttributeExpApplyingHandler;
   QuickDialogManager.OnActionKindChanging := QuickDlgActionKindChangingHandler;
   QuickDialogManager.OnOperationChanging := QuickDlgOperationChangingHandler;

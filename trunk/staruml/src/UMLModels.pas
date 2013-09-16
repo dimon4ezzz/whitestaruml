@@ -188,6 +188,9 @@ type
   PUMLInteractionOperatorKind = (iokSeq, iokAlt, iokOpt, iokBreak, iokPar, iokStrict, iokLoop, iokRegion, iokNeg, iokAssert, iokIgnore, iokConsider);
   PUMLMessageSignatureKind = (mskNone, mskTypeOnly, mskNameOnly, mskNameAndType);
 
+  // Parametrized collections of UML types
+  PUMLInstanceOrderedSet = POrderedSet<PUMLInstance>;
+
   // Class Definitions
   // PUMLElement
   PUMLElement = class(PExtensibleModel)
