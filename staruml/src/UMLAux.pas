@@ -334,9 +334,9 @@ type
   function UMLElementToExpression(AModel: PUMLElement;
     ShowStereotype: Boolean = True; ShowVisibility: Boolean = True;
     ShowParentName: Boolean = False; FullExpression: Boolean = True): string;
-  procedure CollectAllAncestors(StartModel: PUMLGeneralizableElement; Ancestors: POrderedSet);
-  procedure CollectAllItems(AModel: PModel; CollectionName: string; ResultItems: POrderedSet);
-  procedure CollectAllInheritedItems(AModel: PUMLGeneralizableElement; CollectionName: string; ResultItems: POrderedSet);
+  procedure CollectAllAncestors(StartModel: PUMLGeneralizableElement; Ancestors: PModelOrderedSet);
+  procedure CollectAllItems(AModel: PModel; CollectionName: string; ResultItems: PModelOrderedSet);
+  procedure CollectAllInheritedItems(AModel: PUMLGeneralizableElement; CollectionName: string; ResultItems: PModelOrderedSet);
   procedure CheckNameConflict(Model: PModel; Name: string);
   procedure PreinspectClassifierNameConflict(Owner: PUMLNamespace; Name: string);
   function IncludeRelationsOf(AModel: PModel; ModelSet: PModelOrderedSet): Boolean;
@@ -985,7 +985,7 @@ begin
   Result := S;
 end;
 
-procedure CollectAllAncestors(StartModel: PUMLGeneralizableElement; Ancestors: POrderedSet);
+procedure CollectAllAncestors(StartModel: PUMLGeneralizableElement; Ancestors: PModelOrderedSet);
 var
   I, J, C: Integer;
   M: PUMLGeneralizableElement;
@@ -1009,28 +1009,31 @@ begin
   until (Ancestors.Count = C);
 end;
 
-procedure CollectAllItems(AModel: PModel; CollectionName: string; ResultItems: POrderedSet);
+procedure CollectAllItems(AModel: PModel; CollectionName: string; ResultItems: PModelOrderedSet);
 var
   I: Integer;
+  Model: PModel;
 begin
-  for I := 0 to AModel.MOF_GetCollectionCount(CollectionName) - 1 do
-    ResultItems.Add(AModel.MOF_GetCollectionItem(CollectionName, I));
+  for I := 0 to AModel.MOF_GetCollectionCount(CollectionName) - 1 do begin
+    Model := AModel.MOF_GetCollectionItem(CollectionName, I) as PModel;
+    Assert((Model <> nil), 'Collection item is not of type PModel');
+    ResultItems.Add(Model);
+  end;
 end;
 
-procedure CollectAllInheritedItems(AModel: PUMLGeneralizableElement; CollectionName: string; ResultItems: POrderedSet);
+procedure CollectAllInheritedItems(AModel: PUMLGeneralizableElement; CollectionName: string; ResultItems: PModelOrderedSet);
 var
   I, J: Integer;
-  BaseModels: POrderedSet;
+  BaseModels: PModelOrderedSet;
   E, E2: PModel;
 
 begin
-  BaseModels := POrderedSet.Create;
+  BaseModels := PModelOrderedSet.Create;
   BaseModels.Clear;
   try
     CollectAllAncestors(AModel, BaseModels);
-    for I := 0 to BaseModels.Count - 1 do
+    for E in BaseModels do
     begin
-      E := BaseModels.Items[I] as PModel;
       if E.MetaClass.ExistsCollection(CollectionName) then
         for J := 0 to E.MOF_GetCollectionCount(CollectionName) - 1 do
         begin

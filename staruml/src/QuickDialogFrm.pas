@@ -162,7 +162,7 @@ type
     // outgoing event fields
     FOnGeneralNameExpApplying: PQuickDlgExpressionApplyingEvent;
     FOnClassifierRoleExpApplying: PQuickDlgExpressionApplyingEvent;
-    FOnObjectExpApplying: PQuickDlgExpressionApplyingEvent;
+    FOnInstanceExpApplying: PQuickDlgExpressionApplyingEvent;
     FOnAttributeExpApplying: PQuickDlgExpressionApplyingEvent;
     FOnOperationExpApplying: PQuickDlgExpressionApplyingEvent;
     FOnMessageExpApplying: PQuickDlgExpressionApplyingEvent;
@@ -204,7 +204,7 @@ type
     // quick dialog event handling procedures { unit-scope }
     procedure GeneralNameExpApplying(AModel: PModel; Value: string);
     procedure ClassifierRoleExpApplying(AModel: PModel; Value: string);
-    procedure ObjectExpApplying(AModel: PModel; Value: string);
+    procedure InstanceExpApplying(AModel: PModel; Value: string);
     procedure AttributeExpApplying(AModel: PModel; Value: string);
     procedure OperationExpApplying(AModel: PModel; Value: string);
     procedure MessageExpApplying(AModel: PModel; Value: string);
@@ -236,7 +236,7 @@ type
     // outgoing event properties
     property OnGeneralNameExpApplying: PQuickDlgExpressionApplyingEvent write FOnGeneralNameExpApplying;
     property OnClassifierRoleExpApplying: PQuickDlgExpressionApplyingEvent write FOnClassifierRoleExpApplying;
-    property OnObjectExpApplying: PQuickDlgExpressionApplyingEvent write FOnObjectExpApplying;
+    property OnObjectExpApplying: PQuickDlgExpressionApplyingEvent write FOnInstanceExpApplying;
     property OnAttributeExpApplying: PQuickDlgExpressionApplyingEvent write FOnAttributeExpApplying;
     property OnOperationExpApplying: PQuickDlgExpressionApplyingEvent write FOnOperationExpApplying;
     property OnMessageExpApplying: PQuickDlgExpressionApplyingEvent write FOnMessageExpApplying;
@@ -1148,9 +1148,9 @@ begin
   if Assigned(FOnClassifierRoleExpApplying) then FOnClassifierRoleExpApplying(AModel, Value);
 end;
 
-procedure PQuickDialogManager.ObjectExpApplying(AModel: PModel; Value: string);
+procedure PQuickDialogManager.InstanceExpApplying(AModel: PModel; Value: string);
 begin
-  if Assigned(FOnObjectExpApplying) then FOnObjectExpApplying(AModel, Value);
+  if Assigned(FOnInstanceExpApplying) then FOnInstanceExpApplying(AModel, Value);
 end;
 
 procedure PQuickDialogManager.AttributeExpApplying(AModel: PModel; Value: string);
@@ -1905,9 +1905,10 @@ begin
       try
         if FModel is PUMLClassifierRole then
           FManager.ClassifierRoleExpApplying(FModel, Str)
-        else if FModel is PUMLObject then
-          FManager.ObjectExpApplying(FModel, Str)
-        else FManager.GeneralNameExpApplying(FModel, Str);
+        else if (FModel is PUMLObject) or (FModel is PUMLNodeInstance) then
+          FManager.InstanceExpApplying(FModel, Str)
+        else
+          FManager.GeneralNameExpApplying(FModel, Str);
       except on E: Exception do
         begin
           FShowedError := True;

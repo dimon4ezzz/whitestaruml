@@ -311,7 +311,7 @@ type
     procedure ChangeModelStereotype(AExtensibleModel: PExtensibleModel; Profile, Stereotype: string);
     procedure ChangeModelAttribute(AModel: PModel; Key: string; Value: string);
     procedure ChangeModelReference(AModel: PModel; Key: string; Value: PModel);
-    procedure ClearCollection(AElement: PElement; Key: string);
+    procedure ClearCollection(AElement: PModel; Key: string);
     procedure AddCollectionItem(AElement: PElement; Key: string; Value: PModel);
     procedure RemoveCollectionItem(AElement: PElement; Key: string; Value: PModel);
     procedure InsertCollectionItem(AElement: PElement; Key: string; Index: Integer; Value: PModel);
@@ -345,7 +345,7 @@ type
     procedure ChangeAttachmentOrder(AModel: PModel; Index: Integer; NewIndex: Integer);
     procedure ApplyGeneralNameExpression(AModel: PUMLElement; Value: string);
     procedure ApplyClassifierRoleExpression(AModel: PUMLClassifierRole; Value: string);
-    procedure ApplyObjectExpression(AModel: PUMLObject; Value: string);
+    procedure ApplyInstanceExpression(AModel: PUMLInstance; Value: string);
     procedure ApplyAttributeExpression(AModel: PUMLAttribute; Value: string);
     procedure ApplyOperationExpression(AModel: PUMLOperation; Value: string);
     procedure ApplyMessageExpresstion(AModel: PUMLModelElement; Value: string);
@@ -2618,14 +2618,14 @@ begin
   end;
 end;
 
-procedure PStarUMLApplication.ClearCollection(AElement: PElement; Key: string);
+procedure PStarUMLApplication.ClearCollection(AElement: PModel; Key: string);
 begin
   if AElement.MOF_GetCollectionCount(Key) > 0 then
   begin
     CheckReadOnly(AElement);
     // Collection that containing at least one readonly element cannot be cleared.
     ModelSet.Clear;
-    CollectElements(AElement as PModel, Key, ModelSet);
+    CollectElements(AElement, Key, ModelSet);
     CheckReadOnly(ModelSet);
     CommandExecutor.ClearCollection(AElement, Key);
     ElementModified(AElement);
@@ -3025,7 +3025,7 @@ begin
   end;
 end;
 
-procedure PStarUMLApplication.ApplyObjectExpression(AModel: PUMLObject; Value: string);
+procedure PStarUMLApplication.ApplyInstanceExpression(AModel: PUMLInstance; Value: string);
 var
   Msg: string;
 begin
@@ -3033,7 +3033,7 @@ begin
   ModelSet.Clear;
   ModelSet.Add(AModel);
   CheckReadOnly(AModel);
-  if CommandExecutor.ApplyObjectExpression(ModelSet, Value, Msg) then
+  if CommandExecutor.ApplyInstanceExpression(ModelSet, Value, Msg) then
     ElementModified(AModel)
   else begin
     if Msg <> '' then Raise EExpressionInvalid.Create(Msg);

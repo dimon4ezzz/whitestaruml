@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, dxBar, MenuManager, MenuManagerTdxImpl;
+  Dialogs, dxBar, MenuManager, MenuManagerTdxImpl, cxClasses;
 
 const
   QUICK_DIALOG_POPUP = 'QuickDialogPopup';
