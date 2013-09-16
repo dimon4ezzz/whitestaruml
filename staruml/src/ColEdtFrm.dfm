@@ -28,7 +28,7 @@ object CollectionEditorForm: TCollectionEditorForm
     Top = 3
     Width = 489
     Height = 226
-    ActivePage = AttributesPage
+    ActivePage = TriggersPage
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
     OnChange = CollectionPageControlChange
@@ -1599,10 +1599,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object TriggersPage: TTabSheet
       Caption = 'Triggers'
       ImageIndex = 13
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TriggersPanel: TPanel
         Left = 0
         Top = 0
@@ -1998,7 +1994,6 @@ object CollectionEditorForm: TCollectionEditorForm
     Anchors = [akRight, akBottom]
     Cancel = True
     Caption = 'Close'
-    Default = True
     TabOrder = 1
     OnClick = CloseButtonClick
   end
