@@ -94,7 +94,7 @@ const
 
   // Log Messages (Code Generator)
   C_MSG_CODE_GEN_BEGIN = 'Starting C++ code generation. (%d elements)';
-  C_MSG_CODE_GEN_FINISH = 'Starting C++ reverse engineering.';
+  C_MSG_CODE_GEN_FINISH = 'C++ code generation finished.';
   C_MSG_CODE_GEN_CANCEL = 'C++ code generation has been canceled by user.'
     + #13#10 + '(Generated file cannot be deleted.)';
   C_ERR_CODE_GEN_ERROR = 'Error occurred in the process of generating a code. (%s)'
