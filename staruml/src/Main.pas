@@ -4440,6 +4440,7 @@ begin
   EExtNot := False;
   EAuto := False;
   EWordWrap := False;
+  EAnnotationLine := False;
   VLine := NOT_ASSIGNED;
   VStereo := NOT_ASSIGNED;
   VAttr := NOT_ASSIGNED;
