@@ -169,7 +169,7 @@ var
 implementation
 
 uses
-  Windows, Types, SysUtils, Forms, Dialogs {,GraphVizInterface};
+  Windows, Types, SysUtils, Forms, Dialogs, NLS_StarUML {,GraphVizInterface};
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -261,7 +261,7 @@ function PGraphvizPlainOutputParser.InchStrToPixel(Inch: string): Integer;
 var
   FormatSettings: TFormatSettings;
 begin
-  FormatSettings.DecimalSeparator := '.';
+  FormatSettings.DecimalSeparator := TXT_DECIMAL_SEPARATOR[1];
   Result := InchToPixel(StrToFloat(Inch,FormatSettings));
 end;
 

@@ -110,6 +110,7 @@ const
   OPT_COMPONENT_STEREOTYPE_DISPLAY = 'COMPONENT_STEREOTYPE_DISPLAY';
   OPT_NODE_STEREOTYPE_DISPLAY = 'NODE_STEREOTYPE_DISPLAY';
   OPT_WORD_WRAP_BY_DEFAULT = 'WORD_WRAP_BY_DEFAULT';
+  OPT_FORCE_DECIMAL_SEPARATOR = 'FORCE_DECIMAL_SEPARATOR';
 
 type
   POptionValueChangeEvent = procedure(Sender: TObject; SchemaID: string; OptionName: string; Value: Variant) of object;
@@ -178,6 +179,7 @@ type
     FComponentStereotypeDisplay: Integer;
     FNodeStereotypeDisplay: Integer;
     FWordWrapByDefault: Boolean;
+    FForceDecimalSeparator: string;
 
     // option management procedure
     procedure SetDefaultOptionProperties;
@@ -234,6 +236,7 @@ type
     procedure SetComponentStereotypeDisplay(Value: Integer);
     procedure SetNodeStereotypeDisplay(Value: Integer);
     procedure SetWordWrapByDefault(Value: Boolean);
+    procedure SetForceDecimalSeparator(Value: string);
   public
     constructor Create;
     destructor Destroy; override;
@@ -294,6 +297,7 @@ type
     property ComponentStereotypeDisplay: Integer read FComponentStereotypeDisplay write SetComponentStereotypeDisplay;
     property NodeStereotypeDisplay: Integer read FNodeStereotypeDisplay write SetNodeStereotypeDisplay;
     property WordWrapByDefault: Boolean read FWordWrapByDefault write SetWordWrapByDefault;
+    property ForceDecimalSeparator: string read FForceDecimalSeparator write SetForceDecimalSeparator;
   end;
 
   // Utilities
@@ -796,6 +800,14 @@ begin
     WordWrapByDefault := V;
   end;
 
+  V := OptionManager.GetOptionValue(OPT_SCHEMA_ENVIRONMENT, OPT_FORCE_DECIMAL_SEPARATOR);
+  if VarIsNull(V) then begin
+    // Basic OptionSchema file is damaged.
+  end
+  else begin
+    ForceDecimalSeparator := V;
+  end;
+
   for I := 0 to OptionManager.GetOptionSchemaCount - 1 do begin
     OS := OptionManager.GetOptionSchemaAt(I);
     if OS.ID <> OPT_SCHEMA_ENVIRONMENT then
@@ -1260,6 +1272,15 @@ begin
     FWordWrapByDefault := Value;
     if Assigned(FOnOptionValueChange) then
       FOnOptionValueChange(Self, OPT_SCHEMA_ENVIRONMENT, OPT_WORD_WRAP_BY_DEFAULT, Value);
+  end;
+end;
+
+procedure POptionDepository.SetForceDecimalSeparator(Value: string);
+begin
+  if FForceDecimalSeparator <> Value then begin
+    FForceDecimalSeparator := Value;
+    if Assigned(FOnOptionValueChange) then
+      FOnOptionValueChange(Self, OPT_SCHEMA_ENVIRONMENT, OPT_FORCE_DECIMAL_SEPARATOR, Value);
   end;
 end;
 

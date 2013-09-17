@@ -1184,7 +1184,8 @@ var
 implementation
 
 uses
-  Dialogs, Controls, Variants, Forms, ComServ, {HTTPApp,} HTTPUtil, NLS_StarUML;
+  Dialogs, Controls, Variants, Forms, ComServ, {HTTPApp,} HTTPUtil,
+  NLS_StarUML, OptionDeps;
 
 // -----------------------------------------------------------------------------
 // IsCollectionKey
@@ -6817,13 +6818,27 @@ begin
 end;
 
 function RealToString(R: Real): string;
+var
+  FormatSettings: TFormatSettings;
 begin
-  Result := FloatToStr(R);
+  if OptionDepository.ForceDecimalSeparator <> '' then begin
+    FormatSettings.DecimalSeparator := OptionDepository.ForceDecimalSeparator[1];
+    Result := FloatToStr(R,FormatSettings);
+  end
+  else
+    Result := FloatToStr(R);
 end;
 
 function StringToReal(S: string): Real;
+var
+  FormatSettings: TFormatSettings;
 begin
-  Result := StrToFloat(S);
+  if OptionDepository.ForceDecimalSeparator <> '' then begin
+    FormatSettings.DecimalSeparator := OptionDepository.ForceDecimalSeparator[1];
+    Result := StrToFloat(S,FormatSettings);
+  end
+  else
+    Result := StrToFloat(S);
 end;
 
 function RectToString(ARect: TRect): string;
