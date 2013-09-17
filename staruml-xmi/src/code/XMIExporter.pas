@@ -714,8 +714,13 @@ begin
       E := Element.MOF_GetCollectionItem(AttrName, I);
       Assert(E <> nil);
       XE := FindXMIElementByElement(E);
-      Assert(XE <> nil);
-      XA.AddValue(XE.XMIId);
+      //Assert(XE <> nil);
+
+      // Assert(XE <> nil); replaced with following to make XMI generation more forgiving
+      if XE <> nil then
+        XA.AddValue(XE.XMIId);
+      //else // Debugging by Jaszpil
+      //  Assert(XE <> nil);
     end;
   end;
 end;
