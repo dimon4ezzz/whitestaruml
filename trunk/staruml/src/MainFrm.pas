@@ -912,9 +912,9 @@ begin
   begin
     FFileName := Value;
     if FFileName <> '' then
-      Application.Title := TXT_PROGRAM_NAME + ' - ' + FFileName
+      Application.Title := TXT_APPLICATION_TITLE + ' - ' + FFileName
     else
-      Application.Title := TXT_PROGRAM_NAME;
+      Application.Title := TXT_APPLICATION_TITLE;
     Caption := Application.Title;
   end;
 end;
