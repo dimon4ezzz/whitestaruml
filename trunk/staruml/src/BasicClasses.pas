@@ -501,27 +501,28 @@ end;
 function CreateGUIDBase64: string;
 var
   AGuid: TGUID;
-  Buf: array[0..17] of Char;
+  Buf: array[0..17] of AnsiChar;
   BufStr: string;
   I: Integer;
 
+
   function Encode3To4(Byte1, Byte2, Byte3: Byte): string;
   const
-    Base64Chars: array[0..63] of Char =
+    Base64Chars: array[0..63] of AnsiChar =
       ('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
        'S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j',
        'k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1',
        '2','3','4','5','6','7','8','9','+','/');
   var
     Val: Longword;
-    Buf4: array[0..3] of Char;
+    Buf4: array[0..3] of AnsiChar;
   begin
     Val := (Byte1*65536)+(Byte2*256)+Byte3;
     Buf4[3] := Base64Chars[Val mod 64]; Val := Val div 64;
     Buf4[2] := Base64Chars[Val mod 64]; Val := Val div 64;
     Buf4[1] := Base64Chars[Val mod 64]; Val := Val div 64;
     Buf4[0] := Base64Chars[Val mod 64];
-    Result := Buf4;
+    Result := string(Buf4);
   end;
 
 begin
@@ -531,6 +532,7 @@ begin
   BufStr := '';
   for I := 0 to 5 do
     BufStr := BufStr + Encode3To4(Ord(Buf[I*3]), Ord(Buf[I*3+1]), Ord(Buf[I*3+2]));
+
   Result := BufStr;
 end;
 
