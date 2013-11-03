@@ -45,7 +45,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 656
-        Height = 279
+        Height = 280
         ManagerFont = False
         ParentFont = True
         DockingType = 0
@@ -55,7 +55,7 @@ object MainForm: TMainForm
           Left = 167
           Top = 0
           Width = 489
-          Height = 279
+          Height = 280
           ManagerFont = False
           ParentFont = True
           DockingType = 0
@@ -65,7 +65,7 @@ object MainForm: TMainForm
             Left = 0
             Top = 0
             Width = 489
-            Height = 279
+            Height = 280
             ManagerFont = False
             ParentFont = True
             DockingType = 0
@@ -76,7 +76,7 @@ object MainForm: TMainForm
             Left = 0
             Top = 0
             Width = 489
-            Height = 279
+            Height = 280
             ManagerFont = False
             ParentFont = True
             AllowDock = [dtClient]
@@ -92,7 +92,7 @@ object MainForm: TMainForm
               Left = 0
               Top = 0
               Width = 485
-              Height = 255
+              Height = 256
               Align = alClient
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
@@ -102,18 +102,18 @@ object MainForm: TMainForm
               ParentFont = False
               TabOrder = 0
               ExplicitWidth = 485
-              ExplicitHeight = 255
+              ExplicitHeight = 256
               inherited ClientPanel: TFlatPanel
                 Width = 485
-                Height = 255
+                Height = 256
                 ExplicitWidth = 485
-                ExplicitHeight = 255
+                ExplicitHeight = 256
                 inherited DiagramPageControl: TPageControl
                   Width = 483
-                  Height = 253
+                  Height = 254
                   OnChange = WorkingAreaFrameDiagramPageControlChange
                   ExplicitWidth = 483
-                  ExplicitHeight = 253
+                  ExplicitHeight = 254
                 end
               end
               inherited DiagramTabPopupMenu: TPopupMenu
@@ -127,7 +127,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 167
-          Height = 279
+          Height = 280
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -141,712 +141,104 @@ object MainForm: TMainForm
             Left = 0
             Top = 0
             Width = 163
-            Height = 255
+            Height = 256
             Align = alClient
             TabOrder = 0
+            ExplicitWidth = 163
+            ExplicitHeight = 256
             inherited PaletteNavBar: TCategoryButtons
               Width = 157
-              Height = 249
+              Height = 250
               Categories = <
                 item
                   Caption = 'Annotation'
                   Color = 16053492
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.TextAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.NoteAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.NoteLinkAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.RectangleAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.EllipseAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.RoundedRectangleAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.LineAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ImageAction
-                    end>
+                  Items = <>
                 end
                 item
                   Caption = 'Class'
                   Color = 16771839
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SubsystemAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PackageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ClassAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.InterfaceAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.EnumerationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SignalAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ExceptionAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PortAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PartAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.AssociationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DirectedAssociationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.AggregationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.CompositionAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.GeneralizationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DependencyAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.RealizationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.AssociationClassAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ConnectorAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ObjectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.LinkAction
-                    end>
+                  Items = <>
                 end
                 item
                   Caption = 'BuiltIn'
                   Color = 16053492
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.ActionStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ActorAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.AggregationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ArtifactAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.AssociationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.AssociationClassAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.AssociationRoleAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ChoicePointAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ClassAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ClassifierRoleAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.CombinedFragmentAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ComponentAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ComponentInstanceAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.CompositionAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ConnectorAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DecisionAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DeepHistoryAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DependencyAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DirectedAssociationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.EllipseAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.EnumerationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ExceptionAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ExtendAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.FinalStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.FlowFinalStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ForwardMessageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ForwardStimulusAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.FrameAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.GeneralizationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.HorizontalSwimlaneAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ImageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.IncludeAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.InitialStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.InteractionOperandAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.InterfaceAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.JunctionPointAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.LineAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.LinkAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.MessageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.NodeAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.NodeInstanceAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.NoteAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.NoteLinkAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ObjectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ObjectFlowStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PackageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PartAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PortAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.RealizationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.RectangleAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ReverseMessageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ReverseStimulusAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.RoundedRectangleAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SelfAssociationRoleAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SelfLinkAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SelfMessageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SelfStimulusAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SelfTransitionAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ShallowHistoryAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SignalAcceptStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SignalAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SignalSendStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.StateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.StimulusAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SubactivityStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SubmachineStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SubsystemAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SynchronizationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SystemBoundaryAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.TextAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.TransitionAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.UseCaseAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.VerticalSwimlaneAction
-                    end>
+                  Items = <>
                 end
                 item
                   Caption = 'Use Case'
                   Color = 16777194
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PackageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.UseCaseAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ActorAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.AssociationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DirectedAssociationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.GeneralizationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DependencyAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.IncludeAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ExtendAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SystemBoundaryAction
-                    end>
+                  Items = <>
                 end
                 item
                   Caption = 'Component'
                   Color = 15395839
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PackageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.InterfaceAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ComponentAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ComponentInstanceAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ArtifactAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PortAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PartAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.AssociationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DependencyAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.RealizationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.LinkAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ConnectorAction
-                    end>
+                  Items = <>
                 end
                 item
                   Caption = 'Deployment'
                   Color = 15395839
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PackageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.NodeAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.NodeInstanceAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ArtifactAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PortAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PartAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.AssociationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DirectedAssociationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DependencyAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.LinkAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ConnectorAction
-                    end>
+                  Items = <>
                 end
                 item
                   Caption = 'Sequence'
                   Color = 16053492
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ObjectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.StimulusAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SelfStimulusAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.CombinedFragmentAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.InteractionOperandAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.FrameAction
-                    end>
+                  Items = <>
                 end
                 item
                   Caption = 'Sequence (Role)'
                   Color = 15395839
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ClassifierRoleAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.MessageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SelfMessageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.CombinedFragmentAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.InteractionOperandAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.FrameAction
-                    end>
+                  Items = <>
                 end
                 item
                   Caption = 'Collaboration (Role)'
                   Color = 16771839
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ClassifierRoleAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.AssociationRoleAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SelfAssociationRoleAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ForwardMessageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ReverseMessageAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.FrameAction
-                    end>
+                  Items = <>
                 end
                 item
                   Caption = 'Collaboration'
                   Color = 16771839
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ObjectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.LinkAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SelfLinkAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ForwardStimulusAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ReverseStimulusAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.FrameAction
-                    end>
+                  Items = <>
                 end
                 item
                   Caption = 'Statechart'
                   Color = 16771839
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.StateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SubmachineStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.InitialStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.FinalStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.JunctionPointAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ChoicePointAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ShallowHistoryAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DeepHistoryAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SynchronizationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.FlowFinalStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.TransitionAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SelfTransitionAction
-                    end>
+                  Items = <>
                 end
                 item
                   Caption = 'Activity'
                   Color = 16771839
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ActionStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SubactivityStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.InitialStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.FinalStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SynchronizationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DecisionAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.FlowFinalStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ObjectFlowStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SignalAcceptStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SignalSendStateAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.TransitionAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.SelfTransitionAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.VerticalSwimlaneAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.HorizontalSwimlaneAction
-                    end>
+                  Items = <>
                 end
                 item
                   Caption = 'Composite Structure'
                   Color = 15466474
                   Collapsed = False
-                  Items = <
-                    item
-                      Action = PaletteNavBarFrame.SelectAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ClassAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.InterfaceAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PortAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.PartAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.DependencyAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.RealizationAction
-                    end
-                    item
-                      Action = PaletteNavBarFrame.ConnectorAction
-                    end>
+                  Items = <>
                 end>
+              ExplicitWidth = 157
+              ExplicitHeight = 250
             end
           end
         end
       end
       object dxTabContainerDockSite2: TdxTabContainerDockSite
         Left = 0
-        Top = 279
+        Top = 280
         Width = 656
-        Height = 141
+        Height = 140
         ManagerFont = False
         ParentFont = True
         ActiveChildIndex = 1
@@ -854,12 +246,12 @@ object MainForm: TMainForm
         AutoHide = False
         DockingType = 4
         OriginalWidth = 695
-        OriginalHeight = 141
+        OriginalHeight = 140
         object OutputDockPanel: TdxDockPanel
           Left = 0
           Top = 0
           Width = 652
-          Height = 92
+          Height = 91
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -869,12 +261,12 @@ object MainForm: TMainForm
           ImageIndex = 5
           DockingType = 0
           OriginalWidth = 185
-          OriginalHeight = 141
+          OriginalHeight = 140
           inline OutputPanel: TOutputPanel
             Left = 0
             Top = 0
             Width = 652
-            Height = 92
+            Height = 91
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -884,17 +276,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 652
-            ExplicitHeight = 92
+            ExplicitHeight = 91
             inherited ClientPanel: TFlatPanel
               Width = 652
-              Height = 92
+              Height = 91
               ExplicitWidth = 652
-              ExplicitHeight = 92
+              ExplicitHeight = 91
               inherited OutputMemo: TMemo
                 Width = 650
-                Height = 90
+                Height = 89
                 ExplicitWidth = 650
-                ExplicitHeight = 90
+                ExplicitHeight = 89
               end
             end
           end
@@ -903,7 +295,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 652
-          Height = 92
+          Height = 91
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -913,12 +305,12 @@ object MainForm: TMainForm
           ImageIndex = 6
           DockingType = 0
           OriginalWidth = 185
-          OriginalHeight = 141
+          OriginalHeight = 140
           inline MessagePanel: TMessagePanel
             Left = 0
             Top = 0
             Width = 652
-            Height = 92
+            Height = 91
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -928,17 +320,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 652
-            ExplicitHeight = 92
+            ExplicitHeight = 91
             inherited ClientPanel: TFlatPanel
               Width = 652
-              Height = 92
+              Height = 91
               ExplicitWidth = 652
-              ExplicitHeight = 92
+              ExplicitHeight = 91
               inherited MessageListView: TListView
                 Width = 650
-                Height = 90
+                Height = 89
                 ExplicitWidth = 650
-                ExplicitHeight = 90
+                ExplicitHeight = 89
               end
             end
             inherited MessageImageList: TImageList
@@ -968,7 +360,7 @@ object MainForm: TMainForm
         Left = 0
         Top = 0
         Width = 268
-        Height = 226
+        Height = 237
         ManagerFont = False
         ParentFont = True
         ActiveChildIndex = 0
@@ -976,12 +368,12 @@ object MainForm: TMainForm
         AutoHide = False
         DockingType = 2
         OriginalWidth = 268
-        OriginalHeight = 226
+        OriginalHeight = 237
         object ModelExplorerDockPanel: TdxDockPanel
           Left = 0
           Top = 0
           Width = 264
-          Height = 177
+          Height = 188
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -995,12 +387,12 @@ object MainForm: TMainForm
           ImageIndex = 0
           DockingType = 0
           OriginalWidth = 268
-          OriginalHeight = 226
+          OriginalHeight = 237
           inline ModelExplorer: TModelExplorerPanel
             Left = 0
             Top = 0
             Width = 264
-            Height = 177
+            Height = 188
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1010,17 +402,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 264
-            ExplicitHeight = 177
+            ExplicitHeight = 188
             inherited ClientPanel: TFlatPanel
               Width = 264
-              Height = 151
+              Height = 162
               ExplicitWidth = 264
-              ExplicitHeight = 151
+              ExplicitHeight = 162
               inherited ModelTree: TVirtualStringTree
                 Width = 262
-                Height = 149
+                Height = 160
                 ExplicitWidth = 262
-                ExplicitHeight = 149
+                ExplicitHeight = 160
               end
             end
             inherited ModelExplorerToolbar: TToolBar
@@ -1039,7 +431,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 264
-          Height = 177
+          Height = 188
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -1053,12 +445,12 @@ object MainForm: TMainForm
           ImageIndex = 1
           DockingType = 0
           OriginalWidth = 268
-          OriginalHeight = 226
+          OriginalHeight = 237
           inline DiagramExplorer: TDiagramExplorerPanel
             Left = 0
             Top = 0
             Width = 264
-            Height = 177
+            Height = 188
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1068,17 +460,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 264
-            ExplicitHeight = 177
+            ExplicitHeight = 188
             inherited ClientPanel: TFlatPanel
               Width = 264
-              Height = 177
+              Height = 188
               ExplicitWidth = 264
-              ExplicitHeight = 177
+              ExplicitHeight = 188
               inherited DiagramTree: TVirtualStringTree
                 Width = 262
-                Height = 175
+                Height = 186
                 ExplicitWidth = 262
-                ExplicitHeight = 175
+                ExplicitHeight = 186
               end
             end
           end
@@ -1086,9 +478,9 @@ object MainForm: TMainForm
       end
       object dxTabContainerDockSite3: TdxTabContainerDockSite
         Left = 0
-        Top = 226
+        Top = 237
         Width = 268
-        Height = 194
+        Height = 183
         ManagerFont = False
         ParentFont = True
         ActiveChildIndex = 0
@@ -1096,12 +488,12 @@ object MainForm: TMainForm
         AutoHide = False
         DockingType = 2
         OriginalWidth = 268
-        OriginalHeight = 194
+        OriginalHeight = 183
         object PropertiesDockPanel: TdxDockPanel
           Left = 0
           Top = 0
           Width = 264
-          Height = 145
+          Height = 134
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -1111,12 +503,12 @@ object MainForm: TMainForm
           ImageIndex = 2
           DockingType = 0
           OriginalWidth = 268
-          OriginalHeight = 194
+          OriginalHeight = 183
           inline InspectorFrame: TInspectorFrame
             Left = 0
             Top = 0
             Width = 264
-            Height = 145
+            Height = 134
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1126,12 +518,12 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 264
-            ExplicitHeight = 145
+            ExplicitHeight = 134
             inherited ClientPanel: TPanel
               Width = 264
-              Height = 145
+              Height = 134
               ExplicitWidth = 264
-              ExplicitHeight = 145
+              ExplicitHeight = 134
               inherited InspectorTitleBarGapPanel: TPanel
                 Width = 264
                 ExplicitWidth = 264
@@ -1142,25 +534,25 @@ object MainForm: TMainForm
               end
               inherited PropertyEditor: TPropertyEditorWithJvclInspector
                 Width = 264
-                Height = 124
+                Height = 113
                 ExplicitWidth = 264
-                ExplicitHeight = 124
+                ExplicitHeight = 113
                 inherited ClientPanel: TFlatPanel
                   Width = 264
-                  Height = 124
+                  Height = 113
                   ExplicitWidth = 264
-                  ExplicitHeight = 124
+                  ExplicitHeight = 113
                   inherited Inspector: TJvInspector
                     Left = 1
                     Top = 1
                     Width = 262
-                    Height = 122
+                    Height = 111
                     Align = alClient
                     Divider = 130
                     ExplicitLeft = 1
                     ExplicitTop = 1
                     ExplicitWidth = 262
-                    ExplicitHeight = 122
+                    ExplicitHeight = 111
                   end
                 end
                 inherited RowImageList: TImageList
@@ -1196,7 +588,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 264
-          Height = 145
+          Height = 134
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -1206,12 +598,12 @@ object MainForm: TMainForm
           ImageIndex = 3
           DockingType = 0
           OriginalWidth = 268
-          OriginalHeight = 194
+          OriginalHeight = 183
           inline DocumentationEditor: TDocumentationEditor
             Left = 0
             Top = 0
             Width = 264
-            Height = 145
+            Height = 134
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1221,17 +613,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 264
-            ExplicitHeight = 145
+            ExplicitHeight = 134
             inherited ClientPanel: TFlatPanel
               Width = 264
-              Height = 145
+              Height = 134
               ExplicitWidth = 264
-              ExplicitHeight = 145
+              ExplicitHeight = 134
               inherited DocumentationMemo: TMemo
                 Width = 262
-                Height = 143
+                Height = 132
                 ExplicitWidth = 262
-                ExplicitHeight = 143
+                ExplicitHeight = 132
               end
             end
           end
@@ -1240,7 +632,7 @@ object MainForm: TMainForm
           Left = 0
           Top = 0
           Width = 264
-          Height = 145
+          Height = 134
           ManagerFont = False
           ParentFont = True
           OnVisibleChanged = DockPanelVisibleChanged
@@ -1250,12 +642,12 @@ object MainForm: TMainForm
           ImageIndex = 4
           DockingType = 0
           OriginalWidth = 268
-          OriginalHeight = 194
+          OriginalHeight = 183
           inline AttachmentEditor: TAttachmentEditor
             Left = 0
             Top = 0
             Width = 264
-            Height = 145
+            Height = 134
             Align = alClient
             Font.Charset = ANSI_CHARSET
             Font.Color = clWindowText
@@ -1265,17 +657,17 @@ object MainForm: TMainForm
             ParentFont = False
             TabOrder = 0
             ExplicitWidth = 264
-            ExplicitHeight = 145
+            ExplicitHeight = 134
             inherited ClientPanel: TFlatPanel
               Width = 264
-              Height = 121
+              Height = 110
               ExplicitWidth = 264
-              ExplicitHeight = 121
+              ExplicitHeight = 110
               inherited AttachmentListView: TListView
                 Width = 262
-                Height = 119
+                Height = 108
                 ExplicitWidth = 262
-                ExplicitHeight = 119
+                ExplicitHeight = 108
               end
             end
             inherited AttachmentsToolbar: TToolBar
