@@ -238,8 +238,8 @@ const
   C_TXT_PRINT_PAGE = 'Page';
 
   // ProfileMgrFrm
-  C_QUERY_REMOVE_PROFILE = 'If you delete the Profile, some Stereotypes, Datatypes, Tagged Values, etc.' + #13#10 +
-                         'may no longer be displayed properly. Do you want to delete it?';
+  C_QUERY_REMOVE_PROFILE = 'If you delete the Profile, some Stereotypes, Datatypes, Tagged Values, etc. ' +
+                         'may no longer be displayed properly.' + #13#10 +  'Do you want to delete it?';
 
   // ProjectMgr
   C_ERR_FILE_LOADING_FAILED = 'Cannot load the file "%s".';
