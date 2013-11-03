@@ -48,7 +48,7 @@ unit GraphicClasses;
 interface
 
 uses
-  Types, Classes, Windows, Graphics, Math, ExtCtrls, Controls;
+  Types, Classes, Windows, Forms, Graphics, Math, ExtCtrls, Controls;
 
 const
   MAXPOINTS = 1024;
@@ -802,6 +802,7 @@ var
   S: TSize;
   XCanvasLogical, YCanvasLogical: Integer;
   XScreenLogical : Integer;
+  Dpi : Integer;
   //ScreenWindow: HWND;
 begin
   if WordWrapWidth = -1 then begin
@@ -815,8 +816,9 @@ begin
     YCanvasLogical := Windows.GetDeviceCaps(Canvas.Handle, LOGPIXELSY);
     R := Rect(0, 0, WordWrapWidth + 1, 1);
     Windows.DrawText(Canvas.Handle, PChar(Text), Length(Text), R, DT_CALCRECT + DT_WORDBREAK);
-    S.CX := R.Right * 96 div XCanvasLogical;
-    S.CY := R.Bottom * 96 div YCanvasLogical;
+    Dpi := Screen.PixelsPerInch;
+    S.CX := R.Right * Dpi div XCanvasLogical;
+    S.CY := R.Bottom * Dpi div YCanvasLogical;
   end;
   Result := S;
 end;
