@@ -555,11 +555,13 @@ var
   I: Integer;
   NodeData: PNodeData;
   FirstChild: PVirtualNode;
+  ChildCount: Cardinal;
 begin
   if Node <> nil then
   begin
     // Delete child nodes recursively.
-    for I := 0 to ModelTree.ChildCount[Node] - 1 do
+    ChildCount := ModelTree.ChildCount[Node];
+    for I := 1 to ChildCount do
     begin
       FirstChild := ModelTree.GetFirstChild(Node);
       DeleteNode(FirstChild);
@@ -841,7 +843,6 @@ end;
 procedure TModelExplorerPanel.RebuildAll(CompletelyRebuild, UseUpdateLock: Boolean);
 var
   RootNode: PVirtualNode;
-  RootNodeData: PNodeData;
 begin
   if UseUpdateLock then ModelTree.BeginUpdate;
   if CompletelyRebuild then
@@ -867,7 +868,6 @@ end;
 procedure TModelExplorerPanel.Select(AModel: PModel);
 var
   Node: PVirtualNode;
-  NodeData: PNodeData;
 begin
   if AModel <> nil then
   begin
@@ -1464,7 +1464,6 @@ procedure TModelExplorerPanel.ModelTreeMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 var
   Node: PVirtualNode;
-  NodeData: PNodeData;
 begin
   if FCollapsedTimeFlag then begin
     FCollapsedTimeFlag := False;
