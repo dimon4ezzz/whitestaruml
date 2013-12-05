@@ -1,4 +1,4 @@
-﻿"Start Symbol" = <Grammar Message>
+﻿"Start Symbol" = <message_expression>
 "Case Sensitive" = False                
                
 ! -------------------------------------------------
@@ -13,18 +13,20 @@
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
-id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* ( {Restricted Chars}* '<' {String Chars}* '>'  )? 
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )*
 
+stereotypeStart = '<<'
+! Spaces to avoid collision with close angle bracket
+stereotypeEnd = {All Space}* '>>' 
 
 ! -------------------------------------------------
 ! Rules
 ! -------------------------------------------------
 
 ! The grammar starts below
-<Grammar Message> ::= <message_expression> 
 <message_expression> ::= <stereotype_part> <recurrence_part>  <message_name_clause> <argument_part>
                            
-<stereotype_part> ::= '<<' <stereotype> '>>'
+<stereotype_part> ::= stereotypeStart <stereotype> stereotypeEnd
                    |  <>
 
 <stereotype> ::= id

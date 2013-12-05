@@ -1,4 +1,4 @@
-﻿"Start Symbol" = <Grammar Operation>
+﻿"Start Symbol" = <operation_expression>
 "Case Sensitive" = False                
                
 ! -------------------------------------------------
@@ -12,18 +12,25 @@
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
-id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* ( {Restricted Chars}* '<' {All Accepted Chars}* '>' | {Restricted Chars}* '[' {All Accepted Chars}* ']' )?
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )*
 
+stereotypeStart = '<<'
+! Spaces to avoid collision with close angle bracket
+stereotypeEnd = {All Space}* '>>' 
+
+openSquareBracket = {All Space}* '[' {All Space}*
+closeSquareBracket = {All Space}* ']'
+openAngleBracket = {All Space}* '<' {All Space}*
+closeAngleBracket = {All Space}* '>'
+                  
 ! -------------------------------------------------
 ! Rules
 ! -------------------------------------------------
 
 ! The grammar starts below
-<Grammar Operation> ::= <operation_expression> 
-
 <operation_expression> ::= <stereotype_part> <visibility> <operation_name> <parameter_list_part> <return_type_expression_part>
                                                 
-<stereotype_part> ::= '<<' <stereotype> '>>'
+<stereotype_part> ::= stereotypeStart <stereotype> stereotypeEnd
                    |  <>
 
 <stereotype> ::= id
@@ -31,7 +38,7 @@ id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* 
 <visibility> ::= '+' | '#' | '-' | '~'
               | <> 
 
-<operation_name> ::= id
+<operation_name> ::= <id_expr>
                   
 
 <parameter_list_part> ::= '(' <parameter_list> ')'
@@ -46,7 +53,7 @@ id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* 
 <parameter_kind> ::= 'in' | 'out' | 'inout' | <>
 
 
-<parameter_name> ::= id
+<parameter_name> ::= <id_expr>
 
 <parameter_type_expression> ::= <type_expression>
 
@@ -58,8 +65,14 @@ id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* 
 <return_type_expression> ::= <type_expression>
 <type_expression> ::=  ':' <type_id> | <>
 
-<type_id> ::= id
-<parameter_default_value_literal> ::= id
+<type_id> ::= <id_expr>
+<parameter_default_value_literal> ::= <id_expr>
 
-        
+<nullable_id_expr> ::= <id_expr> | <>
+                    
+<id_expr> ::= id
+      | id openParen <nullable_id_expr> closeParen
+      | id openSquareBracket <nullable_id_expr> closeSquareBracket
+      | id openAngleBracket <nullable_id_expr> closeAngleBracket
+             
 

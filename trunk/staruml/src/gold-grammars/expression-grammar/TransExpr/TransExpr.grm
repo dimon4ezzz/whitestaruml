@@ -1,4 +1,4 @@
-﻿"Start Symbol" = <Grammar Transition>
+﻿"Start Symbol" = <transition_expression>
 "Case Sensitive" = False                
                
 ! -------------------------------------------------
@@ -12,22 +12,23 @@
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
-id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* ( {Restricted Chars}* '<' {String Chars}* '>' )? 
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )*
+
+openAngleBracket = {All Space}* '<' {All Space}*
+closeAngleBracket = {All Space}* '>'
 
 ! -------------------------------------------------
 ! Rules
 ! -------------------------------------------------
 
 ! The grammar starts below
-<Grammar Transition> ::= <transition_expression> 
-
 <transition_expression> ::= <event_signature> <guard_condition> <action_expression>
                                                 
 <event_signature> ::= <event_name> 
                    | <event_name> '(' <parameter_list> ')'
                    | <>
 
-<event_name> ::= id
+<event_name> ::= <id_expr>
              
 <parameter_list> ::= <parameter_list> ',' <parameter>
                   | <parameter>
@@ -35,9 +36,9 @@ id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* 
 <parameter> ::= <parameter_name> ':' <type_expression>
              | <parameter_name>
 
-<parameter_name> ::= id
+<parameter_name> ::= <id_expr>
 
-<type_expression> ::= id
+<type_expression> ::= <id_expr>
 
 <guard_condition> ::= '[' <id_expr> ']' 
                    | <>
@@ -45,8 +46,9 @@ id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* 
 <action_expression> ::= '/' <id_expr> 
                      | <>
                      
-<id_expr> ::= id
-                   
+<nullable_id_expr> ::= <id_expr> | <>
 
+<id_expr> ::= id
+      | id openAngleBracket <nullable_id_expr> closeAngleBracket
         
 
