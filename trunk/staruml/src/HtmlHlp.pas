@@ -61,16 +61,22 @@ var
 implementation
 
 uses
-  Windows, SysUtils, ShellAPI, Forms;
+  Windows, SysUtils, ShellAPI, Forms, Dialogs, NLS_StarUML;
 
 procedure ShowHtmlHelp(Url: string);
+const
+  NoError = 32;
 var
   AppPath: String;
   HelpPath: String;
+  ExecutionResult : Cardinal;
 begin
   AppPath := ExtractFilePath(Application.ExeName);
   HelpPath := AppPath + Url;
-  ShellExecute(0, 'open', PChar(HelpPath), '', '', SW_SHOWNORMAL);
+  ExecutionResult := ShellExecute(0, 'open', PChar(HelpPath), '', '', SW_SHOWNORMAL);
+  if ExecutionResult <= NoError then
+    ShowMessage(Format(ERR_FILE_NOT_FOUND,[HelpPath + ' Error code: '
+      + UIntToStr(ExecutionResult)]));
 end;
 
 procedure ShowStarUMLHelpPage;
