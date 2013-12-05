@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.IO;
 using System.Resources;
 using System.Diagnostics;
@@ -103,66 +104,75 @@ namespace ParserCore
 
             GOLD.Reduction currentNode;
             if (Root != null)
+                //currentNode = Root[0].Data as GOLD.Reduction; // TODO: Update gramars to skip root production
                 currentNode = Root;
             else
                 return null; // Cannot continue without search tree
 
-            int token = 0;
+            //int token = 0;
             bool currentNodeFound = false;
 
-            // Iterate the search path
+            // Iterate over search path nodes
             for (int i = 0; i < searchPathValues.Length; i++)
             {
 
-                // choose a tree node corresponding to the specified path node
+                // Match a tree node with the same name as the specified path node
                 currentNodeFound = false;
-                for (int j = 0; j < currentNode.Count() && !currentNodeFound; j++)
+                while (!currentNodeFound) // Guard loop allowing to recover from traversing top level grammar nodes
                 {
-                    //GOLD.Reduction iteratedReduction = (GOLD.Reduction)currentNode[j].Data;
-                    GOLD.Reduction iteratedReduction = currentNode[j].Data as GOLD.Reduction;
-
-                    if (iteratedReduction == null)
+                    for (int j = 0; j < currentNode.Count() && !currentNodeFound; j++)
                     {
-                        string str = (string)currentNode[j].Data;
-                        continue; // skip literal tokens
-                    }
-
-                    // Check tokens contained in the given reduction
-                    for (token = 0; token < iteratedReduction.Count(); token++)
-                    {
-
-                        string currentNodeName = iteratedReduction[token].Parent.Name();
-                        if (currentNodeName == searchPathValues[i])
+                        string currentTokenProductionName = currentNode[j].Parent.Name();
+                        if (currentTokenProductionName == searchPathValues[i])
                         {
+                            GOLD.Reduction iteratedReduction = currentNode[j].Data as GOLD.Reduction;
                             currentNode = iteratedReduction;
                             currentNodeFound = true;
                             break;
                         }
-                    }
-                }
-                //Debug.Assert(currentNodeFound); // Each iteration must find a corresponding reduction node
-                if (!currentNodeFound)
-                    return null;
-            }
+                        
+                    } // End of for j
+                    if (!currentNodeFound) // Searched path fragment not found in current production
+                    {
+                        if ((i == 0) && (currentNode.Count() == 1)) // Potentially a dummy top level grammar node, try to skip it
+                            currentNode = currentNode[0].Data as GOLD.Reduction;
+                        else
+                            return null; // Cannot recover, specified path does not exist.
+                    } 
+                } // End of while
+
+            } // End of for i
 
             if (currentNodeFound)
             {
-                GOLD.Reduction leafReduction = (GOLD.Reduction)currentNode[token].Data;
+                StringBuilder expressionText = new StringBuilder();
+                collectExpressionText(expressionText, currentNode);
 
-                //while ( (leafReduction.Count() > 0) && (leafReduction[0].Data as GOLD.Reduction != null) )// skip embedded reductions 
-                //    leafReduction = (GOLD.Reduction)leafReduction[0].Data;
-
-                if (leafReduction.Count() > 0)
-                    value = (string)leafReduction[0].Data;
-                else
-                    value = null;
-
+                if (expressionText.Length > 0)
+                    value = expressionText.ToString();
+            
             }
-            else
-                value = null;
-
-
+  
             return value;
+        } // End of func FindNodeValue
+
+        private void collectExpressionText(StringBuilder expressionText, GOLD.Reduction reduction)
+        {
+            for (int n = 0; n < reduction.Count(); n++)
+            {
+                switch (reduction[n].Type())
+                {
+                    case GOLD.SymbolType.Nonterminal:
+                        GOLD.Reduction subNode = (GOLD.Reduction)reduction[n].Data;
+                        collectExpressionText(expressionText, subNode);
+                        break;
+
+                    default:
+                        string leafText = (string)reduction[n].Data;
+                        expressionText.Append(leafText);
+                        break;
+                }
+            }
         }
 
 
