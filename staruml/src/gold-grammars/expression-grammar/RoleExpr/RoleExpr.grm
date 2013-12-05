@@ -1,4 +1,4 @@
-﻿"Start Symbol" = <Grammar Classifier Role>
+﻿"Start Symbol" = <classifier_role_expression>
 "Case Sensitive" = False                
                
 ! -------------------------------------------------
@@ -13,19 +13,28 @@
 ! -------------------------------------------------
 ! Terminals
 ! -------------------------------------------------
-id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* ( {Restricted Chars}+ '<' {String Chars}* '>' | {Restricted Chars}* '[' {String Chars}* ']'  | {Restricted Chars}* '(' {String Chars}* ')' )? 
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )*
 
+stereotypeStart = '<<'
+! Spaces to avoid collision with close angle bracket
+stereotypeEnd = {All Space}* '>>' 
+
+openParen = {All Space}* '(' {All Space}*
+closeParen = {All Space}* ')'
+openSquareBracket = {All Space}* '[' {All Space}*
+closeSquareBracket = {All Space}* ']'
+openAngleBracket = {All Space}* '<' {All Space}*
+closeAngleBracket = {All Space}* '>'
+                  
 
 ! -------------------------------------------------
 ! Rules
 ! -------------------------------------------------
 
 ! The grammar starts below
-<Grammar Classifier Role> ::= <classifier_role_expression> 
-
 <classifier_role_expression> ::= <stereotype_part> <classifier_role_name_part> <classifier_name_part>
                                                 
-<stereotype_part> ::= '<<' <stereotype> '>>'
+<stereotype_part> ::= stereotypeStart <stereotype> stereotypeEnd
                    |  <>
 
 <stereotype> ::= id
@@ -37,12 +46,17 @@ id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )* 
 <visibility> ::= '+' | '#' | '-' | '~'
               | <> 
 
-<classifier_role_name> ::= id
+<classifier_role_name> ::= <id_expr>
 
 <classifier_name_part> ::= ':' <classifier_name>
                             | <>
 
-<classifier_name> ::= id
+<classifier_name> ::= <id_expr>
        
-        
+<nullable_id_expr> ::= <id_expr> | <>
+
+<id_expr> ::= id
+      | id openParen <nullable_id_expr> closeParen
+      | id openSquareBracket <nullable_id_expr> closeSquareBracket
+      | id openAngleBracket <nullable_id_expr> closeAngleBracket        
 
