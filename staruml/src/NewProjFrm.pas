@@ -497,7 +497,7 @@ var
   I: Integer;
 begin
   // PRECONDITION
-  //Assert(RecentListView.Items.Count <= FNumberOfRecentProjects);
+  Assert(RecentListView.Items.Count <= FNumberOfRecentProjects);
   // PRECONDITION
 
   if (FileName <> '') then
