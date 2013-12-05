@@ -9873,13 +9873,15 @@ procedure PUMLSignalAcceptStateView.DrawObject(Canvas: PCanvas);
 begin
   inherited;
   AssignStyleToCanvas(Canvas);
-  Canvas.Polygon([Point(Left, Top), Point(Right, Top), Point(Right - Height div 2,
-    Top + Height div 2), Point(Right, Bottom), Point(Left, Bottom)]);
+  Canvas.Polygon([Point(Left, Top), Point(Right, Top),  Point(Right, Bottom), Point(Left, Bottom),
+    Point(Left + Height div 2, Top + Height div 2)]);
+
 end;
 
 procedure PUMLSignalAcceptStateView.ArrangeObject(Canvas: PCanvas);
 begin
   inherited;
+  NameCompartment.Left := Left + Height div 2;
   MinWidth := NameCompartment.MinWidth + Height div 2;
   NameCompartment.Width := Width - Height div 2; 
 end;
