@@ -3967,7 +3967,7 @@ end;
 function PView.GetSubView(Index: Integer): PView;
 begin
   if Index < FSubViews.Count then
-    Result := FSubViews.Items[Index] as PView
+    Result := FSubViews[Index]
   else
     Result := nil;
 end;

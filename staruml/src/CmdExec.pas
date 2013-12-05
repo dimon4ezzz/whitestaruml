@@ -3572,6 +3572,8 @@ var
   ModelView: PView;
   ModelViewSet: PViewOrderedSet;
   AAssociationClass: PUMLAssociationClass;
+  AssociationEnd: PUMLAssociationEnd;
+  OppositeAssociationEnd: PUMLAssociationEnd;
   IsDuplicated: Boolean;
 begin
   // in case of creating View Element (Node Type) using Drag-and-drop/Copy-and-paste
@@ -3638,33 +3640,31 @@ begin
         end;
       end;
     end;
+
     // Association
     if M is PUMLClassifier then begin
       IsDuplicated := False;
-      for I := 0 to (M as PUMLClassifier).AssociationCount - 1 do begin
-        TempModel := (M as PUMLClassifier).Associations[I];
-        AAssociation := (TempModel as PUMLAssociationEnd).Association;
-        // Case M is Tail
-        TempModel := AAssociation.Connections[0];
-        //if TempModel = AAssociation.Connections[0] then Continue;
-        if (TempModel as PUMLAssociationEnd).Participant = M then begin
-          TempModel := AAssociation.Connections[1];
-          FindViewByModel(DiagramView, (TempModel as PUMLAssociationEnd).Participant, ModelViewSet);
+      for AssociationEnd in (M as PUMLClassifier).Associations do begin
+        AAssociation := AssociationEnd.Association;
+        if AAssociation.Connections[0].Participant = M then begin // Model is attached to tail node
+          // Case M is Tail
+          OppositeAssociationEnd := AAssociation.Connections[1];
+          FindViewByModel(DiagramView, OppositeAssociationEnd.Participant, ModelViewSet);
           for ModelView in ModelViewSet do begin
             if (ModelView <> AView) and (ModelView.Model = M) then Continue;
             if ModelView = AView then begin
               if not IsDuplicated then IsDuplicated := True
               else begin IsDuplicated := False; Continue; end;
             end;
-            V := UMLFactory.CreateView(DiagramView, AAssociation, '', ModelView);
+            V := UMLFactory.CreateView(DiagramView, AAssociation, '', AView, ModelView );
             if Assigned(V) then ViewSet.Add(V);
           end;
-        end else begin
-        // Case M is Head
-          TempModel := AAssociation.Connections[1];
-          if (TempModel as PUMLAssociationEnd).Participant = M then begin
-            TempModel := AAssociation.Connections[0];
-            FindViewByModel(DiagramView, (TempModel as PUMLAssociationEnd).Participant, ModelViewSet);
+        end
+        else begin
+          if AAssociation.Connections[1].Participant = M then begin // Model is attached to head node
+            // Case M is Head
+            OppositeAssociationEnd := AAssociation.Connections[0];
+            FindViewByModel(DiagramView, OppositeAssociationEnd.Participant, ModelViewSet);
             for ModelView in ModelViewSet do begin
             if (ModelView <> AView) and (ModelView.Model = M) then Continue;
               if ModelView = AView then begin
@@ -5288,13 +5288,11 @@ end;
 
 procedure PChangeViewsAttributeCommand.Reexecute;
 var
-  I: Integer;
-  V: PView;
+  View: PView;
 begin
-  for I := 0 to ViewSet.Count - 1 do
-  begin
-    V := ViewSet.Items[I] as PView;
-    if V.MetaClass.ExistsAttribute(Key) then V.MOF_SetAttribute(Key, NewValue);
+  for View in ViewSet do begin
+    if View.MetaClass.ExistsAttribute(Key) then
+      View.MOF_SetAttribute(Key, NewValue);
   end;
   // fire view change event
   ViewsChanged;
@@ -5307,7 +5305,7 @@ var
 begin
   for I := 0 to ViewSet.Count - 1 do
   begin
-    V := ViewSet.Items[I] as PView;
+    V := ViewSet[I];
     if V.MetaClass.ExistsAttribute(Key) then V.MOF_SetAttribute(Key, OldValues[I]);
   end;
   // Restore sizes of views
@@ -5327,7 +5325,7 @@ begin
   OldValues.Clear;
   for I := 0 to ViewSet.Count - 1 do
   begin
-    V := ViewSet.Items[I] as PView;
+    V := ViewSet[I];
     if V.MetaClass.ExistsAttribute(Key) then
       OldValues.Add(V.MOF_GetAttribute(Key))
     else
@@ -5425,7 +5423,7 @@ begin
   NewFillColor := ANewFillColor;
   OldFillColors.Clear;
   for I := 0 to ViewSet.Count - 1 do
-    OldFillColors.Add(ColorToString((ViewSet.Items[I] as PView).FillColor));
+    OldFillColors.Add(ColorToString(ViewSet[I].FillColor));
 end;
 
 procedure PChangeViewsFillColorCommand.Reexecute;
@@ -5433,7 +5431,7 @@ var
   I: Integer;
 begin
   for I := 0 to ViewSet.Count - 1 do
-    (ViewSet.Items[I] as PView).FillColor := NewFillColor;
+    ViewSet[I].FillColor := NewFillColor;
   // fire view change event
   ViewsChanged;
 end;
@@ -5443,7 +5441,7 @@ var
   I: Integer;
 begin
   for I := 0 to ViewSet.Count - 1 do
-    (ViewSet.Items[I] as PView).FillColor := StringToColor(OldFillColors[I]);
+    ViewSet[I].FillColor := StringToColor(OldFillColors[I]);
   // fire view change event
   ViewsChanged;
 end;
@@ -5611,7 +5609,6 @@ end;
 
 procedure PChangeEdgesLineStyleCommand.Reexecute;
 var
-  I: Integer;
   V: PView;
   E: PEdgeView;
 begin
@@ -5679,7 +5676,6 @@ end;
 
 procedure PChangeAnnotationLineStyleCommand.Reexecute;
 var
-  I: Integer;
   V: PView;
   ShapeView: PShapeView;
 begin
