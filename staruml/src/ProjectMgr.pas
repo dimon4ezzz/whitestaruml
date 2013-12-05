@@ -553,6 +553,7 @@ procedure PProjectManager.NewProject(ApproachName: string = '');
             dkUsecase:    Dgm := UMLFactory.CreateDiagram(APackage, 'UseCaseDiagram', DgmModel);
             dkComponent:  Dgm := UMLFactory.CreateDiagram(APackage, 'ComponentDiagram', DgmModel);
             dkDeployment: Dgm := UMLFactory.CreateDiagram(APackage, 'DeploymentDiagram', DgmModel);
+            dkActivity:   Dgm := UMLFactory.CreateDiagram(APackage, 'ActivityDiagram', DgmModel);
           end;
         end;
         if Dgm <> nil then begin
