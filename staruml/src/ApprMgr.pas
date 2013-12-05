@@ -62,7 +62,7 @@ type
 
   // Enumeration Types
   PApprModelElementKind = (nkModel, nkSubsystem, nkPackage);
-  PApprDiagramKind = (dkClass, dkUsecase, dkComponent, dkDeployment);
+  PApprDiagramKind = (dkClass, dkUsecase, dkComponent, dkDeployment, dkActivity);
 
   // PModelStructureNode
   PModelStructureNode = class
@@ -662,6 +662,7 @@ begin
   else if Value = 'UseCase' then Result := dkUsecase
   else if Value = 'Component' then Result := dkComponent
   else if Value = 'Deployment' then Result := dkDeployment
+  else if Value = 'Activity' then Result := dkActivity
   else Result := dkClass;
 end;
 
