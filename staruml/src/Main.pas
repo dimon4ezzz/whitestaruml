@@ -383,6 +383,11 @@ const
   SCRIPT_JS = 'JScript';
   SCRIPT_VBS = 'VBScript';
 
+function B64EncodeUnicodeIntf(const S: string): string;
+begin
+  Result:= string (B64Encode(AnsiString(S)));
+end;
+
 ////////////////////////////////////////////////////////////////////////////////
 // PMain
 
@@ -421,6 +426,11 @@ begin
   ContributorManager.ReadContributorsFile;
   ContributorManager.LoadFromRegistry;
 
+    // Options Initialization
+  OptionDepository.LoadOptionValues;
+  ApplyOptionValues;
+  EventPublisher.NotifyEvent(EK_OPTIONS_APPLIED);
+
 
   MainForm.LoadFromRegistry;
   MenuStateHandler.BeginUpdate;
@@ -432,10 +442,6 @@ begin
   MenuStateHandler.EndUpdate;
 
 
-  // Options Initialization
-  OptionDepository.LoadOptionValues;
-  ApplyOptionValues;
-  EventPublisher.NotifyEvent(EK_OPTIONS_APPLIED);
 
    // GUI Initialization
 
@@ -1193,7 +1199,7 @@ begin
             Metafile.LoadFromFile(ImageDlg.FileName);
             Metafile.SaveToStream(Stream);
             StarUMLApplication.ChangeViewAttribute(V, 'Type_', 'ikMetafile');
-            StarUMLApplication.ChangeViewAttribute(V, 'ImageData', B64Encode(Stream.DataString));
+            StarUMLApplication.ChangeViewAttribute(V, 'ImageData', B64EncodeUnicodeIntf(Stream.DataString));
             Metafile.Free;
           end
           else if FileExt = '.bmp' then begin
@@ -1201,7 +1207,7 @@ begin
             Bitmap.LoadFromFile(ImageDlg.FileName);
             Bitmap.SaveToStream(Stream);
             StarUMLApplication.ChangeViewAttribute(V, 'Type_', 'ikBitmap');
-            StarUMLApplication.ChangeViewAttribute(V, 'ImageData', B64Encode(Stream.DataString));
+            StarUMLApplication.ChangeViewAttribute(V, 'ImageData', B64EncodeUnicodeIntf(Stream.DataString));
             Bitmap.Free;
           end;
           Stream.Free;
@@ -2125,6 +2131,8 @@ begin
 end;
 
 procedure PMain.InspectorFormAttachmentOpen(Sender: TObject; Attachment: string; Kind: PAttachmentKind);
+const
+  NoError = 32;
 var
   OpenResult: Integer;
 begin
@@ -2134,7 +2142,7 @@ begin
         begin
           if FileExists(Attachment) then begin
             OpenResult := ShellExecute(0, 'open', PChar(Attachment),'','',SW_SHOWNORMAL);
-            if OpenResult <= 32 then begin
+            if OpenResult <= NoError then begin
               if OpenResult = SE_ERR_NOASSOC then
                 Application.MessageBox(PChar(ERR_NOAPPLICATION_ASSOCIATED), PChar(Application.Title))
               else
