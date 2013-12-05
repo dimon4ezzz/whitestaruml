@@ -2266,11 +2266,13 @@ type
 
   // PUMLClassifier
   PUMLClassifier = class(PUMLNamespace)
+  private type
+    PAssociationEndOrderedSet = POrderedSet<UMLModels.PUMLAssociationEnd>;
   private
     FOperations: POrderedSet;
     FTypedFeatures: POrderedSet;
     FTypedParameters: POrderedSet;
-    FAssociations: POrderedSet;
+    FAssociations: PAssociationEndOrderedSet;
     FPowertypeGeneralizations: POrderedSet;
     FAttributes: POrderedSet;
     FOwnedPorts: POrderedSet;
@@ -2424,7 +2426,8 @@ type
     property TypedFeatureCount: Integer read GetTypedFeatureCount;
     property TypedParameters[Index: Integer]: PUMLParameter read GetTypedParameter;
     property TypedParameterCount: Integer read GetTypedParameterCount;
-    property Associations[Index: Integer]: PUMLAssociationEnd read GetAssociation;
+    property Associations: PAssociationEndOrderedSet read FAssociations;
+    property Association[Index: Integer]: PUMLAssociationEnd read GetAssociation;
     property AssociationCount: Integer read GetAssociationCount;
     property PowertypeGeneralizations[Index: Integer]: PUMLGeneralization read GetPowertypeGeneralization;
     property PowertypeGeneralizationCount: Integer read GetPowertypeGeneralizationCount;
@@ -16605,7 +16608,7 @@ begin
   FOperations := POrderedSet.Create;
   FTypedFeatures := POrderedSet.Create;
   FTypedParameters := POrderedSet.Create;
-  FAssociations := POrderedSet.Create;
+  FAssociations := PAssociationEndOrderedSet.Create;
   FPowertypeGeneralizations := POrderedSet.Create;
   FAttributes := POrderedSet.Create;
   FOwnedPorts := POrderedSet.Create;
@@ -16671,7 +16674,7 @@ end;
 
 function PUMLClassifier.GetAssociation(Index: Integer): PUMLAssociationEnd;
 begin
-  Result := FAssociations.Items[Index] as UMLModels.PUMLAssociationEnd;
+  Result := FAssociations.Items[Index];
 end;
 
 function PUMLClassifier.GetAssociationCount: Integer;
@@ -16966,7 +16969,7 @@ end;
 
 procedure PUMLClassifier.DeleteAssociation(Index: Integer);
 begin
-  RemoveAssociation(FAssociations.Items[Index] as UMLModels.PUMLAssociationEnd);
+  RemoveAssociation(FAssociations.Items[Index]);
 end;
 
 function PUMLClassifier.IndexOfAssociation(Value: PUMLAssociationEnd): Integer;
