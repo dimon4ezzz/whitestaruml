@@ -144,8 +144,6 @@ object MainForm: TMainForm
             Height = 256
             Align = alClient
             TabOrder = 0
-            ExplicitWidth = 163
-            ExplicitHeight = 256
             inherited PaletteNavBar: TCategoryButtons
               Width = 157
               Height = 250
@@ -154,82 +152,692 @@ object MainForm: TMainForm
                   Caption = 'Annotation'
                   Color = 16053492
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.TextAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.NoteAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.NoteLinkAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.RectangleAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.EllipseAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.RoundedRectangleAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.LineAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ImageAction
+                    end>
                 end
                 item
                   Caption = 'Class'
                   Color = 16771839
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SubsystemAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PackageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ClassAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.InterfaceAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.EnumerationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SignalAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ExceptionAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PortAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PartAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.AssociationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DirectedAssociationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.AggregationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.CompositionAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.GeneralizationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DependencyAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.RealizationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.AssociationClassAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ConnectorAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ObjectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.LinkAction
+                    end>
                 end
                 item
                   Caption = 'BuiltIn'
                   Color = 16053492
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.ActionStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ActorAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.AggregationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ArtifactAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.AssociationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.AssociationClassAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.AssociationRoleAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ChoicePointAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ClassAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ClassifierRoleAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.CombinedFragmentAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ComponentAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ComponentInstanceAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.CompositionAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ConnectorAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DecisionAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DeepHistoryAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DependencyAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DirectedAssociationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.EllipseAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.EnumerationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ExceptionAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ExtendAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.FinalStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.FlowFinalStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ForwardMessageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ForwardStimulusAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.FrameAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.GeneralizationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.HorizontalSwimlaneAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ImageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.IncludeAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.InitialStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.InteractionOperandAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.InterfaceAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.JunctionPointAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.LineAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.LinkAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.MessageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.NodeAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.NodeInstanceAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.NoteAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.NoteLinkAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ObjectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ObjectFlowStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PackageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PartAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PortAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.RealizationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.RectangleAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ReverseMessageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ReverseStimulusAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.RoundedRectangleAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SelfAssociationRoleAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SelfLinkAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SelfMessageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SelfStimulusAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SelfTransitionAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ShallowHistoryAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SignalAcceptStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SignalAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SignalSendStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.StateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.StimulusAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SubactivityStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SubmachineStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SubsystemAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SynchronizationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SystemBoundaryAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.TextAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.TransitionAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.UseCaseAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.VerticalSwimlaneAction
+                    end>
                 end
                 item
                   Caption = 'Use Case'
                   Color = 16777194
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PackageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.UseCaseAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ActorAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.AssociationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DirectedAssociationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.GeneralizationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DependencyAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.IncludeAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ExtendAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SystemBoundaryAction
+                    end>
                 end
                 item
                   Caption = 'Component'
                   Color = 15395839
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PackageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.InterfaceAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ComponentAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ComponentInstanceAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ArtifactAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PortAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PartAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.AssociationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DependencyAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.RealizationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.LinkAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ConnectorAction
+                    end>
                 end
                 item
                   Caption = 'Deployment'
                   Color = 15395839
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PackageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.NodeAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.NodeInstanceAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ArtifactAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PortAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PartAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.AssociationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DirectedAssociationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DependencyAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.LinkAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ConnectorAction
+                    end>
                 end
                 item
                   Caption = 'Sequence'
                   Color = 16053492
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ObjectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.StimulusAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SelfStimulusAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.CombinedFragmentAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.InteractionOperandAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.FrameAction
+                    end>
                 end
                 item
                   Caption = 'Sequence (Role)'
                   Color = 15395839
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ClassifierRoleAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.MessageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SelfMessageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.CombinedFragmentAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.InteractionOperandAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.FrameAction
+                    end>
                 end
                 item
                   Caption = 'Collaboration (Role)'
                   Color = 16771839
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ClassifierRoleAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.AssociationRoleAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SelfAssociationRoleAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ForwardMessageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ReverseMessageAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.FrameAction
+                    end>
                 end
                 item
                   Caption = 'Collaboration'
                   Color = 16771839
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ObjectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.LinkAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SelfLinkAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ForwardStimulusAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ReverseStimulusAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.FrameAction
+                    end>
                 end
                 item
                   Caption = 'Statechart'
                   Color = 16771839
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.StateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SubmachineStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.InitialStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.FinalStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.JunctionPointAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ChoicePointAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ShallowHistoryAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DeepHistoryAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SynchronizationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.FlowFinalStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.TransitionAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SelfTransitionAction
+                    end>
                 end
                 item
                   Caption = 'Activity'
                   Color = 16771839
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ActionStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SubactivityStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.InitialStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.FinalStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SynchronizationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DecisionAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.FlowFinalStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ObjectFlowStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SignalAcceptStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SignalSendStateAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.TransitionAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.SelfTransitionAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.VerticalSwimlaneAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.HorizontalSwimlaneAction
+                    end>
                 end
                 item
                   Caption = 'Composite Structure'
                   Color = 15466474
                   Collapsed = False
-                  Items = <>
+                  Items = <
+                    item
+                      Action = PaletteNavBarFrame.SelectAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ClassAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.InterfaceAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PortAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.PartAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.DependencyAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.RealizationAction
+                    end
+                    item
+                      Action = PaletteNavBarFrame.ConnectorAction
+                    end>
                 end>
-              ExplicitWidth = 157
-              ExplicitHeight = 250
             end
           end
         end
@@ -913,6 +1521,10 @@ object MainForm: TMainForm
           ItemName = 'FormatFillColor'
         end
         item
+          Visible = True
+          ItemName = 'FormatAnnotationLineStyle'
+        end
+        item
           BeginGroup = True
           Visible = True
           ItemName = 'FormatAutoResize'
@@ -1316,6 +1928,10 @@ object MainForm: TMainForm
         item
           Visible = True
           ItemName = 'FormatShowCompartmentStereotype'
+        end
+        item
+          Visible = True
+          ItemName = 'FormatShowExtendedNotation'
         end
         item
           BeginGroup = True
@@ -3639,8 +4255,10 @@ object MainForm: TMainForm
     object FormatAnnotationLineStyle: TdxBarSubItem
       Caption = '&Annotation Line Style'
       Category = 11
+      Hint = 'Annotation Line Style'
       Visible = ivAlways
       ImageIndex = 183
+      ShowCaption = False
       ItemLinks = <
         item
           Visible = True
@@ -4882,49 +5500,49 @@ object MainForm: TMainForm
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000008000000080000000800000008000
       00008000000080000000800000008000000000000000D8E9EC00FFFFFF00D8E9
-      EC00FFFFFF00D8E9EC00FFFFFF0000000000000000008080800000FFFF0000FF
+      EC00FFFFFF00D8E9EC00FFFFFF000000000000000000000000000000000000FF
       FF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FF
-      FF0000FFFF000000000000000000000000000000000000000000000000000000
+      FF0000FFFF0000FFFF0080808000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000008000000080000000800000008000
       0000800000008000000080000000800000000000000000000000000000000000
-      000000000000FFFFFF00D8E9EC0000000000000000008080800000FFFF0000FF
-      FF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FF
-      FF00000000000000000000000000000000000000000000000000000000000000
+      000000000000FFFFFF00D8E9EC00000000000000000000000000000000000000
+      000000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FF
+      FF0000FFFF0000FFFF0080808000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000080000000800000008000
       0000800000008000000080000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-      FF0000000000D8E9EC00FFFFFF0000000000000000008080800000FFFF0000FF
-      FF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      FF0000000000D8E9EC00FFFFFF00000000000000000000000000000000000000
+      00000000000000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FF
+      FF0000FFFF0000FFFF0080808000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000848484000000000084848400000000008484840000000000848484000000
       0000000000000000000000000000000000000000000000000000800000008000
       00008000000080000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
-      000099A8AC00FFFFFF00D8E9EC0000000000000000008080800000FFFF0000FF
-      FF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF008080
-      8000000000000000000000000000000000000000000000000000000000000000
+      000099A8AC00FFFFFF00D8E9EC00000000000000000000000000000000000000
+      00008080800000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FF
+      FF0000FFFF0000FFFF0080808000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
-      0000FFFFFF00D8E9EC00FFFFFF0000000000000000008080800000FFFF0000FF
-      FF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FF
-      FF00808080000000000000000000000000000000000000000000000000000000
+      0000FFFFFF00D8E9EC00FFFFFF00000000000000000000000000000000008080
+      800000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FF
+      FF0000FFFF0000FFFF0080808000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000099A8AC0000000000FFFFFF00FFFFFF00FFFFFF000000000099A8
-      AC00D8E9EC00FFFFFF00D8E9EC0000000000000000008080800000FFFF0000FF
+      AC00D8E9EC00FFFFFF00D8E9EC000000000000000000000000008080800000FF
       FF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FF
-      FF0000FFFF008080800000000000000000000000000000000000000000000000
+      FF0000FFFF0000FFFF0080808000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -9987,9 +10605,9 @@ object MainForm: TMainForm
       8003FFFFC003C00380018001C003C00380018001C003C0038003FFFFC003C003
       8007FFFFC003C003800FFFFFC003C003FFFFFFFFC003C003FFFFFFFFC003C003
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF801FFFFFC3FFFFFF
-      FFDFFFFF81FFFFFFFFDFEFEF0000FFFFFFDFDFF700008001FFDFDFF700008003
-      FFDFDFF700008007FFDFDFF78000800FFFDFB55BC000800FFF8FDFF7F8008007
-      FF07DFF7F8008003FE03DFF7FC008001FF07DFF7FC1FFFFFFF8FEFEFFE3FFFFF
+      FFDFFFFF81FFFFFFFFDFEFEF0000FFFFFFDFDFF700008001FFDFDFF70000C001
+      FFDFDFF70000E001FFDFDFF78000F001FFDFB55BC000F001FF8FDFF7F800E001
+      FF07DFF7F800C001FE03DFF7FC008001FF07DFF7FC1FFFFFFF8FEFEFFE3FFFFF
       FFDFFFFFFE3FFFFFFFFFFFFFFF7FFFFFFFFFF800FFFFFFFFD551F800801F801F
       FFF9F800FFDFFFDFDFD5F800FFDFFFDFFFCFF800FFDFFFDFDFC5F800FFDFFFDF
       803FF800FFDFFFDFBFBDF800FFDFFFDFBFBFF800FFDFFFDFBFBDFFFFFFDFFFAF
