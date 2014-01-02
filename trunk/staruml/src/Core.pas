@@ -1185,7 +1185,7 @@ implementation
 
 uses
   Dialogs, Controls, Variants, Forms, ComServ, {HTTPApp,} HTTPUtil,
-  NLS_StarUML, OptionDeps;
+  NLS_StarUML, OptionDeps, LogMgr;
 
 // -----------------------------------------------------------------------------
 // IsCollectionKey
@@ -3449,10 +3449,13 @@ function PModel.FindByName(AName: string): PModel;
 var
   M: PModel;
 begin
-  for M in FVirtualOwnedModels do begin
-    if M.Name = AName then begin
-      Result := M;
-      Exit;
+
+  if AName <> '' then begin // Do not try to match an empty name
+    for M in FVirtualOwnedModels do begin
+      if M.Name = AName then begin
+        Result := M;
+        Exit;
+      end;
     end;
   end;
 
@@ -3580,7 +3583,12 @@ procedure PModel.MOF_AddCollectionItem(Name: string; Value: PElement);
 begin
   if Name = 'Views' then
   begin
-    AddView(Value as PView);
+    try
+      AddView(Value as PView);
+    except
+      LogManager.Log('Conversion error for view: ' + Value.GUID );
+
+    end;
   end
   else if Name = 'OwnedDiagrams' then
   begin
@@ -5716,6 +5724,8 @@ end;
 function PXMLObjectReader.ReadReal(Key: string; Default: Real = 0.0): Real;
 var
   Node: IXMLNode;
+  TextValue: Real;
+  FormatSettings: TFormatSettings;
 begin
   Node := GetNodeByKey(Key);
   // If Key is not found, return 0.0.
@@ -5732,8 +5742,25 @@ begin
   // Read stored value.
   if VarIsNull(Node.NodeValue) then
     Result := Default
-  else
-    Result := Node.NodeValue;
+  else begin
+
+    TextValue := Node.NodeValue;
+    try
+
+    if OptionDepository.ForceDecimalSeparator <> '' then begin
+      FormatSettings.DecimalSeparator := OptionDepository.ForceDecimalSeparator[1];
+      Result := StrToFloat(Node.NodeValue,FormatSettings);
+    end
+    else
+      Result := StrToFloat(Node.NodeValue);
+
+    except on Exc : Exception do begin
+      LogManager.Log(ERR_READING_DATA + ': ' + Exc.Message);
+      Result := Default
+    end;
+
+    end;
+  end
 end;
 
 function PXMLObjectReader.ReadString(Key: string; Default: string = ''): string;
