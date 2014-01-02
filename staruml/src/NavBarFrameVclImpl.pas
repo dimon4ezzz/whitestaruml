@@ -743,6 +743,7 @@ begin
   if not ButtonClickHandlerReady then
   begin
     SelectSelectNavBarItem(PaletteNavBar.CurrentCategory);
+    SingleUseItemSelected;
     FActionProcessor.ActivateHandler(SELECT_HANDLER)
   end;
 
