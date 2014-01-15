@@ -144,6 +144,8 @@ object MainForm: TMainForm
             Height = 256
             Align = alClient
             TabOrder = 0
+            ExplicitWidth = 163
+            ExplicitHeight = 256
             inherited PaletteNavBar: TCategoryButtons
               Width = 157
               Height = 250
@@ -838,6 +840,8 @@ object MainForm: TMainForm
                       Action = PaletteNavBarFrame.ConnectorAction
                     end>
                 end>
+              ExplicitWidth = 157
+              ExplicitHeight = 250
             end
           end
         end
@@ -909,7 +913,7 @@ object MainForm: TMainForm
           OnVisibleChanged = DockPanelVisibleChanged
           AllowFloating = True
           AutoHide = False
-          Caption = 'Message'
+          Caption = 'Messages'
           ImageIndex = 6
           DockingType = 0
           OriginalWidth = 185
@@ -2403,6 +2407,13 @@ object MainForm: TMainForm
       ImageIndex = 111
       ShortCut = 16454
       OnClick = EditMenuClick
+    end
+    object EditFindDiagramsWithSelectedModel: TdxBarButton
+      Caption = 'Find Diagrams With Selected Model'
+      Category = 3
+      Hint = 'Find Diagrams With Selected Model'
+      Visible = ivAlways
+      OnClick = EditFindDiagramsWithSelectedModelClick
     end
     object EditSelectAll: TdxBarButton
       Caption = 'Select &All'
@@ -10872,6 +10883,10 @@ object MainForm: TMainForm
       item
         Visible = True
         ItemName = 'EditDeleteFromModel'
+      end
+      item
+        Visible = True
+        ItemName = 'EditFindDiagramsWithSelectedModel'
       end
       item
         Visible = True

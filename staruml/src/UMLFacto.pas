@@ -2140,8 +2140,8 @@ function PUMLFactory.CreateDiagram(Owner: PModel; DiagramKind: string; NamePrefi
   var CreatedModel: PModel): PDiagram;
 var
   M, N: PModel;
-  DM: PUMLDiagram;
-  DV: PUMLDiagramView;
+  DM: PUMLDiagram; // Diagram model
+  DV: PUMLDiagramView; // Diagram view
 begin
   // PRECONDITION
   Assert(Owner <> nil);

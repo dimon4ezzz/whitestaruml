@@ -238,7 +238,7 @@ begin
     else
       for I := 0 to MC.InstanceCount - 1 do
       begin
-        M := MC.Instances[I] as PModel;
+        M := MC.Instance[I] as PModel;
         ElementList.AddObject(GetExpression(M), M);
       end;
   end;

@@ -381,6 +381,7 @@ type
     FormatAnnotationLineStyleDashDot: TdxBarButton;
     FormatAnnotationLineStyleDashDotDot: TdxBarButton;
     PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
+    EditFindDiagramsWithSelectedModel: TdxBarButton;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);
     procedure EditMenuClick(Sender: TObject);
@@ -424,6 +425,7 @@ type
     procedure ViewUIThemeClassicClick(Sender: TObject);
     procedure WorkingAreaFrameDiagramPageControlChange(Sender: TObject);
     procedure ExclusiveFileOpenClick(Sender: TObject);
+    procedure EditFindDiagramsWithSelectedModelClick(Sender: TObject);
   private
     AllowToTriggerFontFaceChangedEvent: Boolean;
     AllowToTriggerFontSizeChangedEvent: Boolean;
@@ -443,6 +445,7 @@ type
 
     // Event Fields (On MainForm's events)
     FOnFileMenuClicked: TNotifyEvent;
+    FOnEditFindDiagramsWithSelectedModelClicked: TNotifyEvent;
     FOnEditMenuClicked: TNotifyEvent;
     FOnFormatMenuClicked: TNotifyEvent;
     FOnFormatCheckTypeMenuClicked: PCheckTypeMenuClickEvent;
@@ -620,6 +623,7 @@ type
 
     // Events (On MainForm's Menu Item Clicked)
     property OnFileMenuClicked: TNotifyEvent write FOnFileMenuClicked;
+    property OnEditFindDiagramsWithSelectedModelClicked: TNotifyEvent write FOnEditFindDiagramsWithSelectedModelClicked;
     property OnEditMenuClicked: TNotifyEvent write FOnEditMenuClicked;
     property OnFormatMenuClicked: TNotifyEvent write FOnFormatMenuClicked;
     property OnFormatCheckTypeMenuClicked: PCheckTypeMenuClickEvent write FOnFormatCheckTypeMenuClicked;
@@ -1452,6 +1456,12 @@ end;
 procedure TMainForm.FileMenuClick(Sender: TObject);
 begin
   if Assigned(FOnFileMenuClicked) then FOnFileMenuClicked(Sender);
+end;
+
+procedure TMainForm.EditFindDiagramsWithSelectedModelClick(Sender: TObject);
+begin
+  if Assigned(FOnEditFindDiagramsWithSelectedModelClicked) then
+    FOnEditFindDiagramsWithSelectedModelClicked(Sender);
 end;
 
 procedure TMainForm.EditMenuClick(Sender: TObject);

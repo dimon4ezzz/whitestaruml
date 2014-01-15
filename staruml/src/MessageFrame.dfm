@@ -187,7 +187,7 @@ object MessagePanel: TMessagePanel
     DefaultExt = 'txt'
     Filter = 'Text file (*.txt)|*.txt'
     Options = [ofHideReadOnly, ofNoValidate, ofEnableSizing]
-    Title = #47700#49884#51648' '#51200#51109
+    Title = 'Save Messages'
     Left = 56
     Top = 24
   end
