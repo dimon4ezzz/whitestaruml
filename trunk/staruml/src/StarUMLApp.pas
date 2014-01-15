@@ -50,7 +50,7 @@ interface
 uses
   BasicClasses, GraphicClasses, Core, ExtCore, ViewCore, ProjectMgr, UMLModels, UMLAux,
   UMLViews, UMLFacto, SelectionMgr, CmdExec, ClipboardMgr, MenuManager,
-  Types, Classes, Graphics, SysUtils, Forms, Messages;
+  Types, Classes, Graphics, SysUtils, Forms, Messages, Generics.Collections;
 
 type
   // Exceptions
@@ -65,6 +65,8 @@ type
 
   // PStarUMLApplication
   PStarUMLApplication = class
+  private type
+  PDiagramList = TList<PDiagram>;
   private
     ProjectManager: PProjectManager;
     CommandExecutor: PCommandExecutor;
@@ -185,6 +187,10 @@ type
     procedure CollectOwners(Models, Owners: PModelOrderedSet);
     procedure CollectDiagramViews(Views, DiagramViews: PViewOrderedSet);
     procedure CollectModelsOfViews(Views: PViewOrderedSet; Models: PModelOrderedSet);
+
+    class procedure SelectDiagrams(SelectedModel: PModel; SelectedDiagrams: PDiagramList);
+    class procedure ShowDiagramSearchFinishedNotification(FoundDiagramsNb: Integer; ModelName: string);
+
   public
     constructor Create;
     destructor Destroy; override;
@@ -324,6 +330,8 @@ type
     procedure ChangeSelectedModelsStereotype(StereotypeProfile: string; Stereotype: string);
     procedure ChangeDocumentation(Model: PModel; Documentation: string);
     procedure RelocateModel(AModel, Target: PModel);
+    procedure FindDiagramsWithSelectedModel;
+
     // Model Extension Related
     function AddConstraint(AExtensibleModel: PExtensibleModel; AName: string; ABody: string): PConstraint;
     procedure DeleteConstraint(AExtensibleModel: PExtensibleModel; AConstraint: PConstraint);
@@ -419,7 +427,7 @@ implementation
 
 uses
   Dialogs, LogMgr, UMLVerify, NLS_StarUML,
-  Windows, Jpeg, ShellAPI, MainFrm;
+  Windows, Jpeg, ShellAPI, MainFrm, MessageFrame;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -2801,6 +2809,74 @@ begin
     ElementModified(Target);
   end;
 end;
+
+procedure PStarUMLApplication.FindDiagramsWithSelectedModel;
+var
+  SelectedModel: PModel;
+  FoundDiagrams: PDiagramList;
+  Diagram: PDiagram;
+begin
+  if (SelectedModelCount = 0) then
+    Exit; // Abort if no model selected
+
+  // Init data
+  SelectedModel := SelectedModels[0];
+  FoundDiagrams := PDiagramList.Create; // List of found diagrams initially empty
+  // Select diagrams
+  SelectDiagrams(SelectedModel, FoundDiagrams);
+
+  // Show results in Message Panel
+  MainForm.MessagePanel.ClearAllMessages;
+  for Diagram in FoundDiagrams do
+    MainForm.MessagePanel.AddMessage(mkFindResult, Diagram.Pathname, Diagram);
+
+  // Show notification message
+  ShowDiagramSearchFinishedNotification(FoundDiagrams.Count, SelectedModel.Name);
+
+  // Clean data
+  FoundDiagrams.Free;
+
+end;
+
+class procedure PStarUMLApplication.SelectDiagrams(SelectedModel: PModel; SelectedDiagrams: PDiagramList);
+var
+  View: PView;
+  OwnerDiagramView: PDiagramView;
+  OwnerDiagramModel: PDiagram;
+begin
+
+  // Select diagrams with model
+  for View in SelectedModel.Views do begin // Look for diagrams containing views of given model
+    if View.MetaClass.IsKindOf('UMLGeneralNodeView') then begin
+      OwnerDiagramView := View.OwnerDiagramView;
+      if (OwnerDiagramView <> nil) then begin
+        OwnerDiagramModel := OwnerDiagramView.Diagram;
+        if OwnerDiagramModel <> nil then
+          SelectedDiagrams.Add(OwnerDiagramModel);
+      end;
+    end;
+  end;
+
+end;
+
+class procedure PStarUMLApplication.ShowDiagramSearchFinishedNotification(FoundDiagramsNb: Integer; ModelName: string);
+var
+  Plural: string;
+  Msg: string;
+begin
+  // Prepare and show notification message
+  if FoundDiagramsNb > 0 then begin
+    if FoundDiagramsNb > 1 then
+      Plural := 's';
+     Msg := Format(TXT_DIAGRAMS_WITH_MODEL_FOUND,
+      [FoundDiagramsNb,Plural,ModelName]);
+  end
+  else
+    Msg := Format(TXT_DIAGRAMS_WITH_MODEL_NOT_FOUND, [ModelName]);
+
+  MessageDlg(Msg,mtInformation,[mbOK],0);
+end;
+
 
 function PStarUMLApplication.AddConstraint(AExtensibleModel: PExtensibleModel; AName: string; ABody: string): PConstraint;
 var

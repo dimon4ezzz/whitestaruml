@@ -233,15 +233,21 @@ type
 
   // PMetaClass
   PMetaClass = class(PMetaClassifier)
+  private type
+    PElementList = TList<PElement>;
+    PMetaAttributeList = TList<PMetaAttribute>;
+    PMetaReferenceList = TList<PMetaReference>;
+    PMetaCollectionList = TList<PMetaCollection>;
+    PMetaClassList = TList<PMetaClass>;
   private
-    FInstances: TList;
+    FInstances: PElementList;
     FElementClass: PElementClass;
     FIsAbstract: Boolean;
-    FMetaAttributes: TList;
-    FMetaReferences: TList;
-    FMetaCollections: TList;
+    FMetaAttributes: PMetaAttributeList;
+    FMetaReferences: PMetaReferenceList;
+    FMetaCollections: PMetaCollectionList;
     FSuperclass: PMetaClass;
-    FSubclasses: TList;
+    FSubclasses: PMetaClassList;
     function GetOwnMetaAttribute(Index: Integer): PMetaAttribute;
     function GetOwnMetaAttributeCount: Integer;
     function GetOwnMetaReference(Index: Integer): PMetaReference;
@@ -304,7 +310,8 @@ type
     property MetaCollections[Index: Integer]
       : PMetaCollection read GetMetaCollection;
     property MetaCollectionCount: Integer read GetMetaCollectionCount;
-    property Instances[Index: Integer]: PElement read GetInstance;
+    property Instances: PElementList read FInstances;
+    property Instance[Index: Integer]: PElement read GetInstance;
     property InstanceCount: Integer read GetInstanceCount;
     property InclusiveInstances[Index: Integer]
       : PElement read GetInclusiveInstance;
@@ -1295,11 +1302,11 @@ end;
 constructor PMetaClass.Create;
 begin
   inherited;
-  FInstances := TList.Create;
-  FMetaAttributes := TList.Create;
-  FMetaReferences := TList.Create;
-  FMetaCollections := TList.Create;
-  FSubclasses := TList.Create;
+  FInstances := PElementList.Create;
+  FMetaAttributes := PMetaAttributeList.Create;
+  FMetaReferences := PMetaReferenceList.Create;
+  FMetaCollections := PMetaCollectionList.Create;
+  FSubclasses := PMetaClassList.Create;
   FSuperclass := nil;
   FElementClass := nil;
 end;
@@ -1431,7 +1438,7 @@ end;
 
 function PMetaClass.GetInclusiveInstance(Index: Integer): PElement;
 var
-  I: Integer;
+  Subclass: PMetaClass;
 begin
   if Index < FInstances.Count then
   begin
@@ -1441,16 +1448,16 @@ begin
   else
   begin
     Index := Index - FInstances.Count;
-    for I := 0 to SubclassCount - 1 do
+    for Subclass in FSubclasses do
     begin
-      if Index < Subclasses[I].InclusiveInstanceCount then
+      if Index < Subclass.InclusiveInstanceCount then
       begin
-        Result := Subclasses[I].InclusiveInstances[Index];
+        Result := Subclass.InclusiveInstances[Index];
         Exit;
       end
       else
       begin
-        Index := Index - Subclasses[I].InclusiveInstanceCount;
+        Index := Index - Subclass.InclusiveInstanceCount;
       end;
     end;
   end;
@@ -1459,12 +1466,11 @@ end;
 
 function PMetaClass.GetInclusiveInstanceCount: Integer;
 var
-  I, C: Integer;
+  Subclass: PMetaClass;
 begin
-  C := FInstances.Count;
-  for I := 0 to SubclassCount - 1 do
-    C := C + Subclasses[I].InclusiveInstanceCount;
-  Result := C;
+  Result := FInstances.Count;
+  for Subclass in FSubclasses do
+    Result := Result + Subclass.InclusiveInstanceCount;
 end;
 
 procedure PMetaClass.SetSuperclass(Value: PMetaClass);
@@ -1508,13 +1514,11 @@ end;
 
 function PMetaClass.FindInstanceByGuid(AGuid: string): PElement;
 var
-  I: Integer;
   E: PElement;
 begin
   Result := nil;
-  for I := 0 to FInstances.Count - 1 do
+  for E in FInstances do
   begin
-    E := FInstances.Items[I];
     if E.GUID = AGuid then
     begin
       Result := E;
@@ -1526,16 +1530,16 @@ end;
 function PMetaClass.FindInstanceByGuidRecurse(AGuid: string): PElement;
 var
   E: PElement;
-  I: Integer;
+  Subclass: PMetaClass;
 begin
   E := FindInstanceByGuid(AGuid);
   if E <> nil then
     Result := E
   else
   begin
-    for I := 0 to SubclassCount - 1 do
+    for Subclass in FSubclasses do
     begin
-      E := Subclasses[I].FindInstanceByGuidRecurse(AGuid);
+      E := Subclass.FindInstanceByGuidRecurse(AGuid);
       if E <> nil then
       begin
         Result := E;
@@ -1563,12 +1567,10 @@ end;
 
 function PMetaClass.ExistsAttribute(Name: string): Boolean;
 var
-  I: Integer;
   A: PMetaAttribute;
 begin
-  for I := 0 to FMetaAttributes.Count - 1 do
+  for A in FMetaAttributes do
   begin
-    A := FMetaAttributes.Items[I];
     if A.Name = Name then
     begin
       Result := True;
@@ -1583,12 +1585,10 @@ end;
 
 function PMetaClass.ExistsReference(Name: string): Boolean;
 var
-  I: Integer;
   R: PMetaReference;
 begin
-  for I := 0 to FMetaReferences.Count - 1 do
+  for R in FMetaReferences do
   begin
-    R := FMetaReferences.Items[I];
     if R.Name = Name then
     begin
       Result := True;
@@ -1603,12 +1603,10 @@ end;
 
 function PMetaClass.ExistsCollection(Name: string): Boolean;
 var
-  I: Integer;
   C: PMetaCollection;
 begin
-  for I := 0 to FMetaCollections.Count - 1 do
+  for C in FMetaCollections do
   begin
-    C := FMetaCollections.Items[I];
     if C.Name = Name then
     begin
       Result := True;
@@ -1623,12 +1621,10 @@ end;
 
 function PMetaClass.GetAttributeByName(Name: string): PMetaAttribute;
 var
-  I: Integer;
   A: PMetaAttribute;
 begin
-  for I := 0 to FMetaAttributes.Count - 1 do
+  for A in FMetaAttributes do
   begin
-    A := FMetaAttributes.Items[I];
     if A.Name = Name then
     begin
       Result := A;
@@ -1643,12 +1639,10 @@ end;
 
 function PMetaClass.GetReferenceByName(Name: string): PMetaReference;
 var
-  I: Integer;
   R: PMetaReference;
 begin
-  for I := 0 to FMetaReferences.Count - 1 do
+  for R in FMetaReferences do
   begin
-    R := FMetaReferences.Items[I];
     if R.Name = Name then
     begin
       Result := R;
@@ -1663,12 +1657,10 @@ end;
 
 function PMetaClass.GetCollectionByName(Name: string): PMetaCollection;
 var
-  I: Integer;
   C: PMetaCollection;
 begin
-  for I := 0 to FMetaCollections.Count - 1 do
+  for C in FMetaCollections do
   begin
-    C := FMetaCollections.Items[I];
     if C.Name = Name then
     begin
       Result := C;
@@ -1683,14 +1675,13 @@ end;
 
 function PMetaClass.GetContainerRelation(Container: PMetaClass): PMetaReference;
 var
-  I: Integer;
   R: PMetaReference;
   OtherSide: PMetaAssociationEnd;
 begin
   Result := nil;
-  for I := 0 to OwnMetaReferenceCount - 1 do
+
+  for R in FMetaReferences do
   begin
-    R := OwnMetaReferences[I];
     OtherSide := R.GetOtherSideEnd;
     if (OtherSide <> nil) and (OtherSide.Aggregate = makComposite)
       and Container.IsKindOf(R.TypeRef.Name) then
@@ -1705,27 +1696,21 @@ end;
 
 procedure PMetaClass.Empty;
 var
-  I: Integer;
-  M: PMetaElement;
+  MA: PMetaAttribute;
+  MF: PMetaReference;
+  MC: PMetaCollection;
 begin
-  for I := FMetaAttributes.Count - 1 downto 0 do
-  begin
-    M := FMetaAttributes.Items[I];
-    FMetaAttributes.Remove(M);
-    M.Free;
-  end;
-  for I := FMetaReferences.Count - 1 downto 0 do
-  begin
-    M := FMetaReferences.Items[I];
-    FMetaReferences.Remove(M);
-    M.Free;
-  end;
-  for I := FMetaCollections.Count - 1 downto 0 do
-  begin
-    M := FMetaCollections.Items[I];
-    FMetaCollections.Remove(M);
-    M.Free;
-  end;
+  for MA in FMetaAttributes do
+    MA.Free;
+  FMetaAttributes.Clear;
+
+  for MF in FMetaReferences do
+    MF.Free;
+  FMetaReferences.Clear;
+
+  for MC in FMetaCollections do
+    MC.Free;
+  FMetaCollections.Clear;
 end;
 
 procedure PMetaClass.AddMetaAttribute(AMetaAttribute: PMetaAttribute);
@@ -5450,7 +5435,7 @@ begin
     MC := MetaModel.MetaClasses[I];
     for J := 0 to MC.InstanceCount - 1 do
     begin
-      E := MC.Instances[J];
+      E := MC.Instance[J];
       HashedGuidTable.AddObject(E.GUID, E);
     end;
   end;
@@ -5503,7 +5488,7 @@ begin
   RootModel := nil;
   MC := MetaModel.FindMetaClass('UMLProject');
   if MC <> nil then
-    RootModel := MC.Instances[0] as PModel;
+    RootModel := MC.Instance[0] as PModel;
   // correct all references
   ResolvingProgress('', ResolveItemList.Count, 0);
 

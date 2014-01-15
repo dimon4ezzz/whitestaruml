@@ -81,6 +81,7 @@ type
     procedure MainFormInspectorCloseHandler(Sender: TObject);
     procedure MainFormInformationCloseHandler(Sender: TObject);
     procedure MainFormFileMenuClickedHandler(Sender: TObject);
+    procedure MainFormEditFindDiagramsWithSelectedModelClickedHandler(Sender: TObject);
     procedure MainFormEditMenuClickedHandler(Sender: TObject);
     procedure MainFormFormatMenuClickedHandler(Sender: TObject);
     procedure MainFormFormatCheckTypeMenuClickedHandler(Sender: TObject; Checked: Boolean);
@@ -349,6 +350,7 @@ type
     procedure UpdateViewMenus;
     procedure UpdateStatusBar;
     function IsEditDeleteFromModelEnabled: Boolean;
+    function IsEditFindDiagramsWithSelectedModelEnabled: Boolean;
     function IsEditCutEnabled: Boolean;
     function IsEditCopyEnabled: Boolean;
     property GeneralEditMenuEnabled: Boolean read FGeneralEditMenuEnabled
@@ -764,6 +766,11 @@ begin
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
+end;
+
+procedure PMain.MainFormEditFindDiagramsWithSelectedModelClickedHandler(Sender: TObject);
+begin
+  StarUMLApplication.FindDiagramsWithSelectedModel;
 end;
 
 procedure PMain.MainFormEditMenuClickedHandler(Sender: TObject);
@@ -3173,6 +3180,7 @@ begin
     OnEdgeReconnecting := MainFormEdgeReonnectingHandler;
     OnViewDoubleClicked := MainFormViewDoubleClickedHandler;
     OnFileMenuClicked := MainFormFileMenuClickedHandler;
+    OnEditFindDiagramsWithSelectedModelClicked := MainFormEditFindDiagramsWithSelectedModelClickedHandler;
     OnEditMenuClicked := MainFormEditMenuClickedHandler;
     OnFormatMenuClicked := MainFormFormatMenuClickedHandler;
     OnFormatCheckTypeMenuClicked := MainFormFormatCheckTypeMenuClickedHandler;
@@ -4324,12 +4332,16 @@ begin
       MainForm.IsActivated and
       ((MC > 0) and StarUMLApplication.SelectedModels[0].CanDelete);}
     EditDeleteFromModel.Enabled := IsEditDeleteFromModelEnabled;
+
+    // Determine Find Diagrams With Selected Model
+    EditFindDiagramsWithSelectedModel.Enabled := IsEditFindDiagramsWithSelectedModelEnabled;
+
     // Determine SelectAll
     EditSelectAll.Enabled :=
       GeneralEditMenuEnabled and
       MainForm.IsActivated and
       (AD <> nil);
-    // Delermine CopyDiagram
+    // Determine CopyDiagram
     EditCopyDiagram.Enabled :=
       MainForm.IsActivated and
       (AD <> nil) and
@@ -4386,6 +4398,13 @@ begin
   with StarUMLApplication do
     Result := {MainForm.IsActivated and}
       ((SelectedModelCount > 0) and SelectedModels[0].CanDelete);
+end;
+
+function PMainFormMenuStateHandler.IsEditFindDiagramsWithSelectedModelEnabled: Boolean;
+begin
+    Result := ( (StarUMLApplication.SelectedModelCount > 0)
+    and not StarUMLApplication.SelectedModels[0].MetaClass.IsKindOf('UMLProject')
+    and StarUMLApplication.SelectedModels[0].MetaClass.IsKindOf('UMLModelElement') );
 end;
 
 function PMainFormMenuStateHandler.IsEditCutEnabled: Boolean;

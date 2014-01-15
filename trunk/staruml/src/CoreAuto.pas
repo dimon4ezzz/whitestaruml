@@ -509,7 +509,7 @@ end;
 
 function PMetaClassAuto.GetInstanceAt(Index: Integer): IElement;
 begin
-  Result := (TheObject as PMetaClass).Instances[Index].GetAutomationObject as IElement;
+  Result := (TheObject as PMetaClass).Instance[Index].GetAutomationObject as IElement;
 end;
 
 function PMetaClassAuto.GetInstanceCount: Integer;
