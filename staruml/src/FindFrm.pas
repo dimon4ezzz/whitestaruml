@@ -116,14 +116,16 @@ var
   MetaClass: PMetaClass;
   I: Integer;
   M: PModel;
+  E: PElement;
   S, Substr: string;
 begin
   MetaClass := MetaModel.FindMetaClass('UML' + ModelElementType);
+
   // search in some element typed instances
   if MetaClass <> nil then begin
-    for I := 0 to MetaClass.InstanceCount - 1 do begin
-      if MetaClass.Instances[I] is PModel then begin
-        M := MetaClass.Instances[I] as PModel;
+    for E in MetaClass.Instances do begin
+      if E is PModel then begin
+        M := E as PModel;
         if CaseSensitive then begin
           S := M.Name;
           Substr := TextToFind;
@@ -139,6 +141,7 @@ begin
       end;
     end;
   end
+
   // search in all model's instances
   else begin
     MetaClass := MetaModel.FindMetaClass('Model');
@@ -164,7 +167,9 @@ end;
 
 function TFindForm.Execute: Boolean;
 begin
+  Result := False;
   FFoundedElementCount := 0;
+
   if ShowModal = mrOK then begin
     FindStarted;
     FindModelElements(FindComboBox.Text, ElementTypeComboBox.Text, CaseSensitiveCheckBox.Checked);
@@ -173,13 +178,9 @@ begin
     Close;
     Result := True;
   end
-  else begin
-    Result := False;
-  end;
+
 end;
 
-// TFindForm
-////////////////////////////////////////////////////////////////////////////////
 
 procedure TFindForm.HelpButtonClick(Sender: TObject);
 begin
@@ -191,5 +192,8 @@ begin
   NLSManager.SetFile(ExtractFilePath(Application.ExeName) + 'NLS\FINDFRM.LNG');
   NLSManager.TranslateComponent(Self, []);
 end;
+
+// TFindForm
+////////////////////////////////////////////////////////////////////////////////
 
 end.

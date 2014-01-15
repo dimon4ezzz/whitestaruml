@@ -3224,7 +3224,7 @@ begin
   Result := True;
   MC := MetaModel.FindMetaClass('TaggedValue');
   for I := MC.InstanceCount - 1 downto 0 do begin
-    T := MC.Instances[I] as PTaggedValue;
+    T := MC.Instance[I] as PTaggedValue;
     if T.ProfileName = AProfile.Name then begin
       if (T.TaggedModel <> nil) and T.TaggedModel.ReadOnly then begin
         Result := False;
@@ -3266,7 +3266,7 @@ begin
   // Delete all TaggedValues related to the Profile.
   MC := MetaModel.FindMetaClass('TaggedValue');
   for I := MC.InstanceCount - 1 downto 0 do begin
-    T := MC.Instances[I] as PTaggedValue;
+    T := MC.Instance[I] as PTaggedValue;
     if T.ProfileName = AProfile then begin
       T.Isolate;
       T.Free;
