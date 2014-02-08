@@ -65,6 +65,8 @@ begin
   TJvInspectorStringItemWithNameImage.RegisterAsDefaultItem;
   TJvInspectorBooleanItemWithNameImage.RegisterAsDefaultItem;
   FElemsHolder := TInspectorElemsHolder.Create(Inspector);
+
+  Inspector.ActivePainter.HideSelectColor := clWebLightBlue;
   //SetLookAndFeel(StarUMLApplication.LookAndFeelManager);
   //StarUMLApplication.LookAndFeelManager.RegisterLookAndFeelChangedListener(self);
 end;
