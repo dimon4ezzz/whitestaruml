@@ -134,6 +134,7 @@ type
     function GetOperationParametersStr(AOperation: IUMLOperation): string;
 
     function GetDefOperationName(AOperation: IUMLOperation; Base: IUMLClassifier = nil): string;
+    function GetDefStaticDataMemberName(AAttribute: IUMLAttribute): string;
     function GetTopNestingClassifier(BaseClassifier: IUMLClassifier): IUMLClassifier;
     function IsSameTopNestingClassifier(ClassifierA, ClassifierB: IUMLClassifier): Boolean;
     { File-Related Auxiliary Functions }
@@ -179,6 +180,7 @@ type
     procedure WriteDeclModelElement(Writer: PStringWriter; AModelElem: IUMLModelElement);
     { Definition Writing Methods }
     procedure WriteDefOperation(Writer: PStringWriter; AOperation: IUMLOperation; ABase: IUMLClassifier = nil);
+    procedure WriteDefStaticDataMember(Writer: PStringWriter; AAttribute: IUMLAttribute);
     procedure WriteDefMemberOnVisibility(Writer: PStringWriter; AClassifier: IUMLClassifier; Visibility: UMLVisibilityKind);
     procedure WriteDefMemberUnordered(Writer: PStringWriter; AClassifier: IUMLClassifier);
     procedure WriteDefClass(Writer: PStringWriter; AClass: IUMLClass);
@@ -374,7 +376,7 @@ begin
   if AOperation.StereotypeName = STEREOTYPE_DESTROY then
     Result := '~' + AOperation.Name
   else if AOperation.StereotypeName = STEREOTYPE_CPP_OPERATOR then
-    Result := 'operator' + AOperation.Name
+    Result := 'operator ' + AOperation.Name
   else
     Result := AOperation.Name;
 end;
@@ -620,9 +622,27 @@ begin
   while (Ns <> nil) and (Ns.IsKindOf(ELEM_CLASS) or Ns.IsKindOf(ELEM_INTERFACE)) do begin
     S := Ns.Name + '::' + S;
     Ns := Ns.Namespace;
-  end;  
+  end;
   Result := S;
 end;
+
+
+
+function PCodeGenerator.GetDefStaticDataMemberName(AAttribute: IUMLAttribute): string;
+var
+  Ns: IUMLNamespace;
+  S: string;
+begin
+  S := AAttribute.Name;
+  Ns := AAttribute.Owner;
+
+  while (Ns <> nil) and (Ns.IsKindOf(ELEM_CLASS) or Ns.IsKindOf(ELEM_INTERFACE)) do begin
+    S := Ns.Name + '::' + S;
+    Ns := Ns.Namespace;
+  end;
+  Result := S;
+end;
+
 
 function PCodeGenerator.GetTopNestingClassifier(BaseClassifier: IUMLClassifier): IUMLClassifier;
 var
@@ -742,6 +762,13 @@ begin
   Result := False;
   if ModelElem.IsKindOf(ELEM_CLASS) then begin
     Assert(ModelElem.QueryInterface(IUMLClass, Cls) = S_OK);
+
+    for I := 0 to Cls.GetAttributeCount - 1 do
+      if Cls.GetAttributeAt(I).OwnerScope = skClassifier then begin
+        Result := True;
+        Exit;
+      end;
+
     for I := 0 to Cls.GetOperationCount - 1 do
       if not Cls.GetOperationAt(I).IsAbstract then begin
         Result := True;
@@ -1020,8 +1047,8 @@ begin
   BitField := GetIntegerTaggedValue(AAttribute, PROFILE_CPP, TAGSET_CPP_BIT_FIELD, TAG_CPP_BIT_FIELD);
   if BitField > 0 then
     Writer.Write(' : %d', [BitField]);
-  if AAttribute.InitialValue <> '' then
-    Writer.Write(' = %s', [AAttribute.InitialValue]);
+  //if AAttribute.InitialValue <> '' then
+  //  Writer.Write(' = %s', [AAttribute.InitialValue]);
   Writer.WriteLine(';');
 // (constraints)
 // 1. mutable data member는 static 또는 const 일 수 없다.
@@ -1488,24 +1515,54 @@ begin
   if not HasNotReturnType(AOperation) then
     Writer.Write('%s ' , [GetOperationTypeStr(AOperation)]);
   Writer.Write(GetDefOperationName(AOperation, ABase));
+  Writer.Write('(%s)', [GetOperationParametersStr(AOperation)]);
   if FBraceAtNewLine then begin
-    Writer.WriteLine('(%s)', [GetOperationParametersStr(AOperation)]);
+    if GetBooleanTaggedValue(AOperation, PROFILE_CPP, TAGSET_CPP_CONST, TAG_CPP_CONST) then
+      Writer.WriteLine(' const')
+    else
+      Writer.WriteLine;
     Writer.WriteLine('{');
   end
-  else
-    Writer.WriteLine('(%s) {', [GetOperationParametersStr(AOperation)]);
+  else begin
+    if GetBooleanTaggedValue(AOperation, PROFILE_CPP, TAGSET_CPP_CONST, TAG_CPP_CONST) then
+      Writer.WriteLine(' const {')
+    else
+      Writer.WriteLine(' {');
+  end;
   Writer.WriteLine;
   Writer.WriteLine('}');
+end;
+
+procedure PCodeGenerator.WriteDefStaticDataMember(Writer: PStringWriter; AAttribute: IUMLAttribute);
+begin
+  Writer.Write( '%s %s', [AAttribute.TypeExpression, GetDefStaticDataMemberName(AAttribute)] );
+
+  if AAttribute.InitialValue <> '' then
+    Writer.Write(' = %s', [AAttribute.InitialValue]);
+
+  Writer.Write(';');
+  Writer.WriteLine;
 end;
 
 procedure PCodeGenerator.WriteDefMemberOnVisibility(Writer: PStringWriter; AClassifier: IUMLClassifier; Visibility: UMLVisibilityKind);
 var
   Cls: IUMLClass;
+  Attr: IUMLAttribute;
   Oper: IUMLOperation;
   Elem: IUMLModelElement;
   AbstOpers: TInterfaceList;
   I: Integer;
 begin
+  // Generate static data members
+  for I := 0 to AClassifier.GetAttributeCount - 1 do begin
+    Attr := AClassifier.GetAttributeAt(I);
+    if (Attr.Visibility = Visibility) and (Attr.OwnerScope = skClassifier) then begin
+      WriteDefStaticDataMember(Writer, Attr);
+      Writer.WriteLine;
+    end;
+  end;
+
+  // Generate operations
   for I := 0 to AClassifier.GetOperationCount - 1 do begin
     Oper := AClassifier.GetOperationAt(I);
     if (Oper.Visibility = Visibility) and (not Oper.IsAbstract) then begin
@@ -1520,6 +1577,7 @@ begin
       Writer.WriteLine;
     end;
   end;
+
   if AClassifier.QueryInterface(IUMLClass, Cls) = S_OK then begin
     AbstOpers := TInterfaceList.Create;
     try
@@ -1546,10 +1604,20 @@ end;
 procedure PCodeGenerator.WriteDefMemberUnordered(Writer: PStringWriter; AClassifier: IUMLClassifier);
 var
   Cls: IUMLClass;
+  Attr: IUMLAttribute;
   AbstOpers: TInterfaceList;
   Oper: IUMLOperation;
   I: Integer;
 begin
+  // Generate static data members
+  for I := 0 to AClassifier.GetAttributeCount - 1 do begin
+    Attr := AClassifier.GetAttributeAt(I);
+    if (Attr.OwnerScope = skClassifier) then begin
+      WriteDefStaticDataMember(Writer, Attr);
+      Writer.WriteLine;
+    end;
+  end;
+
   for I := 0 to AClassifier.GetOperationCount - 1 do begin
     WriteDefOperation(Writer, AClassifier.GetOperationAt(I));
     Writer.WriteLine;
