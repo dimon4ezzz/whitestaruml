@@ -4404,6 +4404,7 @@ function PMainFormMenuStateHandler.IsEditFindDiagramsWithSelectedModelEnabled: B
 begin
     Result := ( (StarUMLApplication.SelectedModelCount > 0)
     and not StarUMLApplication.SelectedModels[0].MetaClass.IsKindOf('UMLProject')
+    and not StarUMLApplication.SelectedModels[0].MetaClass.IsKindOf('UMLFeature')
     and StarUMLApplication.SelectedModels[0].MetaClass.IsKindOf('UMLModelElement') );
 end;
 

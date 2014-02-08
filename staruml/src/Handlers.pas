@@ -177,6 +177,7 @@ type
     procedure MouseUp(Sender: PDiagramEditor; Canvas: PCanvas; Button: TMouseButton; Shift: TShiftState; X, Y: Integer); virtual; abstract;
     // Key press/down/up services
     procedure KeyPress(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Char); virtual; abstract;
+    procedure KeyPressedHeld(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Repetitions: Integer); virtual; abstract;
     procedure KeyDown(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Shift: TShiftState); virtual; abstract;
     procedure KeyUp(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Shift: TShiftState); virtual; abstract;
   end;
@@ -244,6 +245,7 @@ type
     procedure MouseUp(Sender: PDiagramEditor; Canvas: PCanvas; Button: TMouseButton; Shift: TShiftState; X, Y: Integer); override;
     // Key press/down/up services
     procedure KeyPress(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Char); override;
+    procedure KeyPressedHeld(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Repetitions: Integer); override;
     procedure KeyDown(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Shift: TShiftState); override;
     procedure KeyUp(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Shift: TShiftState); override;
     // Events (View selecting related)
@@ -290,6 +292,7 @@ type
     procedure MouseUp(Sender: PDiagramEditor; Canvas: PCanvas; Button: TMouseButton; Shift: TShiftState; X, Y: Integer); override;
     // Key press/down/up services
     procedure KeyPress(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Char); override;
+    procedure KeyPressedHeld(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Repetitions: Integer); override;
     procedure KeyDown(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Shift: TShiftState); override;
     procedure KeyUp(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Shift: TShiftState); override;
     property OnElementCreating: PElementCreateHandlingEvent read FOnElementCreating write FOnElementCreating;
@@ -355,6 +358,7 @@ type
     procedure MouseMove(Sender: PDiagramEditor; Canvas: PCanvas; Shift: TShiftState; X, Y: Integer);
     // Key press/down/up services
     procedure KeyPress(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Char);
+    procedure KeyPressedHeld(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Repetitions: Integer);
     procedure KeyDown(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Shift: TShiftState);
     procedure KeyUp(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Shift: TShiftState);
     // Properties
@@ -970,6 +974,28 @@ begin
   // reserved.
 end;
 
+procedure PSelectHandler.KeyPressedHeld(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Repetitions: Integer);
+  procedure SetFactor(var DX, DY: Integer);
+  const
+    SpeedFactor = 16;
+  begin
+    DX := Sender.GridFactor.Width * SpeedFactor;
+    DY := Sender.GridFactor.Height * SpeedFactor;
+  end;
+var
+  DX, DY: Integer;
+begin
+    SetFactor(DX, DY);
+    if Key = VK_LEFT then
+      MoveSelectedViews(-DX, 0)
+    else if Key = VK_RIGHT then
+      MoveSelectedViews(DX, 0)
+    else if Key = VK_UP then
+      MoveSelectedViews(0, -DY)
+    else if Key = VK_DOWN then
+      MoveSelectedViews(0, DY);
+end;
+
 procedure PSelectHandler.KeyDown(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Shift: TShiftState);
 begin
   // reserved.
@@ -1300,6 +1326,11 @@ begin
   // reserved.
 end;
 
+procedure PCreateHandler.KeyPressedHeld(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Repetitions: Integer);
+begin
+  // reserved.
+end;
+
 procedure PCreateHandler.KeyDown(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Shift: TShiftState);
 begin
   // reserved.
@@ -1499,6 +1530,12 @@ procedure PActionProcessor.KeyPress(Sender: PDiagramEditor; Canvas: PCanvas; var
 begin
   if FActiveHandler <> nil then
     FActiveHandler.KeyPress(Sender, Canvas, Key);
+end;
+
+procedure PActionProcessor.KeyPressedHeld(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Repetitions: Integer);
+begin
+  if FActiveHandler <> nil then
+    FActiveHandler.KeyPressedHeld(Sender, Canvas, Key, Repetitions);
 end;
 
 procedure PActionProcessor.KeyDown(Sender: PDiagramEditor; Canvas: PCanvas; var Key: Word; Shift: TShiftState);
