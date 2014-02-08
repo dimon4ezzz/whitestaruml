@@ -380,8 +380,8 @@ type
     FormatAnnotationLineStyleDot: TdxBarButton;
     FormatAnnotationLineStyleDashDot: TdxBarButton;
     FormatAnnotationLineStyleDashDotDot: TdxBarButton;
-    PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     EditFindDiagramsWithSelectedModel: TdxBarButton;
+    PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);
     procedure EditMenuClick(Sender: TObject);
@@ -426,6 +426,7 @@ type
     procedure WorkingAreaFrameDiagramPageControlChange(Sender: TObject);
     procedure ExclusiveFileOpenClick(Sender: TObject);
     procedure EditFindDiagramsWithSelectedModelClick(Sender: TObject);
+    procedure WindowsMessageHandler(var Msg: TMsg; var Handled: Boolean);
   private
     AllowToTriggerFontFaceChangedEvent: Boolean;
     AllowToTriggerFontSizeChangedEvent: Boolean;
@@ -439,6 +440,9 @@ type
     FInspectorVisible: Boolean;
     FInformationVisible: Boolean;
     FNumberOfRecentProjects: Integer;
+
+    FHoldingKey: Boolean;
+    FSpeedMove: Boolean;
 
     FMenuManager: TMenuHandlesManager;
     FLookAndFeelManager: TLookAndFeelManager;
@@ -584,6 +588,7 @@ type
     procedure ZoomChanged(Zoom: Integer);
     function GetActiveHandlerName: string;
     procedure ApplyLookAndFeelStyle(LookAndFeelStyle: TcxLookAndFeelStyle);
+    procedure HandleKeyDownMessage(Key, Repetitions: Word);
 
   protected
     procedure Activate; override;
@@ -757,6 +762,9 @@ begin
   FInformationVisible := True;
   FileName := '';
   NumberOfRecentProjects := 5;
+
+  FHoldingKey := False;
+  FSpeedMove := False;
 
   QuickDialogManager := PQuickDialogManager.Create;
   InitializeQuickDialogManager;
@@ -1656,8 +1664,54 @@ begin
   NLSManager.SetFile(ExtractFilePath(Application.ExeName) + 'NLS\FONTDLG.LNG');
   NLSManager.TranslateComponent(FontDialog, []);
   Application.Title := TXT_APPLICATION_TITLE;
+  Application.OnMessage := WindowsMessageHandler;
 end;
 
+procedure TMainForm.WindowsMessageHandler(var Msg: TMsg; var Handled: Boolean);
+const
+  RepeatKeyMask = $FFFF;
+var
+  Key: Word;
+  Repetitions: Word;
+begin
+  case Msg.message of
+
+    WM_KEYDOWN:
+    begin
+     Key := Msg.wParam;
+     Repetitions := Msg.lParam and RepeatKeyMask;
+     HandleKeyDownMessage(Key, Repetitions);
+    end
+
+  end; // End of case
+end;
+
+procedure TMainForm.HandleKeyDownMessage(Key, Repetitions: Word);
+var
+  DgmEditor: PDiagramEditor;
+  CtrlAsyncKeyState: SHORT;
+  AltAsyncKeyState: SHORT;
+  IsArrowKey: Boolean;
+begin
+  IsArrowKey := Key in [VK_LEFT,VK_RIGHT,VK_UP,VK_DOWN];
+  CtrlAsyncKeyState := GetAsyncKeyState(VK_CONTROL);
+  AltAsyncKeyState := GetAsyncKeyState(VK_MENU);
+
+  // Pressed Ctrl + Arrow
+  if (CtrlAsyncKeyState <> 0) and (AltAsyncKeyState = 0) and IsArrowKey then begin
+    if FHoldingKey then begin // Repetition happened, ready for speed move
+      if dxDockingController.ActiveDockControl = WorkingAreaDockPanel then begin
+        DgmEditor := WorkingAreaFrame.ActiveDiagramEditor;
+        if DgmEditor <> nil then begin
+          ActionProcessor.KeyPressedHeld(DgmEditor, DgmEditor.Canvas, Key, Repetitions);
+          FSpeedMove := True; // Speed move performed
+        end;
+      end;
+    end
+    else
+      FHoldingKey := True; // If first time wait for repetition
+  end;
+end;
 
 procedure TMainForm.FormKeyPress(Sender: TObject; var Key: Char);
 var
@@ -1685,6 +1739,14 @@ procedure TMainForm.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
 var
   DgmEditor: PDiagramEditor;
 begin
+
+  // On Key up unsetting KeyPressed handling flags
+  FHoldingKey := False;
+  // Moving element using pressed key was in action, no need to move element this time
+  if FSpeedMove then begin
+    FSpeedMove := False;
+    Exit;
+  end;
 {
   if Key = VK_ESCAPE then begin
     if LockHandlerButton.Down then LockHandlerButton.Down := False;
@@ -1695,6 +1757,8 @@ begin
     if DgmEditor <> nil then
       ActionProcessor.KeyUp(DgmEditor, DgmEditor.Canvas, Key, Shift);
   end;
+
+
 end;
 
 // TMainForm
