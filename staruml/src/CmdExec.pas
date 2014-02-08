@@ -3635,7 +3635,7 @@ begin
         for ModelView in ModelViewSet do begin
           if (ModelView <> AView) and (ModelView.Model = M) then Continue;
           if ModelView = AView then Continue;
-          V := UMLFactory.CreateView(DiagramView, ADependency, '', ModelView);
+          V := UMLFactory.CreateView(DiagramView, ADependency, '', AView, ModelView);
           if Assigned(V) then ViewSet.Add(V);
         end;
       end;
