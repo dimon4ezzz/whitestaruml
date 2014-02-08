@@ -111,7 +111,7 @@ type
     DefaultBodyIncludeMemo: TMemo;
     CreateSubDirForNamespaceCheckBox: TCheckBox;
     CodeGenGroupBox: TGroupBox;
-    PackageAsNamesapceCheckBox: TCheckBox;
+    PackageAsNamespaceCheckBox: TCheckBox;
     MemberOrderComboBox: TComboBox;
     MemberOrderLabel: TLabel;
     MsSpecificCheckBox: TCheckBox;
@@ -371,7 +371,7 @@ begin
   BodyDirCheckBox.Checked := (BodyDirEdit.Text <> '');
   FileNameFormatComboBox.ItemIndex := GetOptionValueAsInteger(OPTION_SCHEMA_CPP, OPT_FILE_NAME_FORMAT);
   CreateSubDirForNamespaceCheckBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA_CPP, OPT_NAMESPACE_AS_SUB_DIRECTORY);
-  PackageAsNamesapceCheckBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA_CPP, OPT_PACKAGE_AS_NAMESPACE);
+  PackageAsNamespaceCheckBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA_CPP, OPT_PACKAGE_AS_NAMESPACE);
   MsSpecificCheckBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA_CPP, OPT_MS_SPECIFIC);
   ManagedCppCheckBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA_CPP, OPT_MANAGED_CPP);
   GenerateCommentCheckBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA_CPP, OPT_GENERATE_COMMENT);
@@ -414,7 +414,7 @@ begin
   CodeGen.HeaderSubdir := HeaderDirEdit.Text;
   CodeGen.BodySubdir := BodyDirEdit.Text;
   CodeGen.FileNameFormat := IntegerToFileNameFormat(FileNameFormatComboBox.ItemIndex);
-  CodeGen.PackageAsNamespace := PackageAsNamesapceCheckBox.Checked;
+  CodeGen.PackageAsNamespace := PackageAsNamespaceCheckBox.Checked;
   CodeGen.CreateSubdirectoryForNamespace := CodeGen.PackageAsNamespace and CreateSubDirForNamespaceCheckBox.Checked;
   CodeGen.UseTab := not UseSpaceCheckBox.Checked;
   CodeGen.IdentationSize := IndentSizeSpinEdit.Value;
