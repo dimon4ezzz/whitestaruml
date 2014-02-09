@@ -292,8 +292,7 @@
 						<VersionInfoKeys Name="ProductVersion">5.4.8</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
-					<Excluded_Packages>
-					</Excluded_Packages>
+					<Excluded_Packages/>
 				</Delphi.Personality>
 				<ActiveXProjectInfo>
 					<version>1</version>
