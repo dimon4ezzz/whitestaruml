@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <assemblyIdentity
+	type="win32"
+	name="WhiteStarUML"
+	version="5.4.8.0"
+	processorArchitecture="*"/>
+  <dependency>
+	<dependentAssembly>
+	  <assemblyIdentity
+		type="win32"
+		name="Microsoft.Windows.Common-Controls"
+		version="6.0.0.0"
+		publicKeyToken="6595b64144ccf1df"
+		language="*"
+		processorArchitecture="*"/>
+	</dependentAssembly>
+   </dependency>
+ <file name="OptMgr.dll" hashalg="SHA1">
+    <comClass clsid="{9890E665-379A-4DFD-A6B4-884A8D5AEAEF}" tlbid="{84BEB7B3-6221-43ED-B410-E83A5D83CED9}"></comClass>
+	<typelib tlbid="{84BEB7B3-6221-43ED-B410-E83A5D83CED9}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+ </file>
+  <file name="Generator.dll" hashalg="SHA1">
+    <comClass clsid="{144B4B1E-FBE1-44DE-A354-16F450FF7D8E}" tlbid="{765EB911-BD2A-4E44-BA34-7284C4D265C3}"></comClass>
+    <comClass clsid="{0076C4C5-1528-4060-B8D2-883D5EF68998}" tlbid="{765EB911-BD2A-4E44-BA34-7284C4D265C3}"></comClass>
+    <comClass clsid="{6492BAC0-7973-4BE8-BB1F-D6D975077F5F}" tlbid="{765EB911-BD2A-4E44-BA34-7284C4D265C3}"></comClass>
+    <comClass clsid="{E7364994-73B0-4837-B663-A1BA567CF906}" tlbid="{765EB911-BD2A-4E44-BA34-7284C4D265C3}"></comClass>
+    <typelib tlbid="{765EB911-BD2A-4E44-BA34-7284C4D265C3}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+  <file name="ExcelTranslator.dll" hashalg="SHA1">
+    <comClass clsid="{36DA5BA0-B37E-49A0-8C59-6DACAD880BDE}" tlbid="{B2C6F7DF-3DD2-4D6B-9951-F608DC6360BD}" description="ExcelTranslatorObj Object"></comClass>
+    <typelib tlbid="{B2C6F7DF-3DD2-4D6B-9951-F608DC6360BD}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+  <file name="PowerPointTranslator.dll" hashalg="SHA1">
+    <comClass clsid="{14E57C1D-24CA-4013-87E4-B5FA373A976D}" tlbid="{AC9DE618-78D1-483A-B543-5C25D203F893}" description="PowerPointTranslatorObj Object"></comClass>
+    <typelib tlbid="{AC9DE618-78D1-483A-B543-5C25D203F893}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+  <file name="TextTranslator.dll" hashalg="SHA1">
+    <comClass clsid="{D3ACBB57-8C1D-4DE4-BAEF-9248A1887D73}" tlbid="{929ACC4C-40C7-4BF9-B678-5CD3DE9C4E6E}" description="TextTranslatorObj Object"></comClass>
+    <typelib tlbid="{929ACC4C-40C7-4BF9-B678-5CD3DE9C4E6E}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+    <file name="WordTranslator.dll" hashalg="SHA1">
+    <comClass clsid="{15EDB416-C580-42FF-925B-D7960AF693A3}" tlbid="{B50752CF-E0EC-445E-BB82-B32E94A9C878}" description="WordTranslator Object"></comClass>
+    <typelib tlbid="{B50752CF-E0EC-445E-BB82-B32E94A9C878}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+  <file name="WSCppAddIn.dll" hashalg="SHA1">
+    <comClass clsid="{13C97EB7-019B-451E-8F96-AFD898782208}" tlbid="{D571B8DA-75B5-40D7-A52E-5184E479F6A1}" description="CppAddInObj"></comClass>
+    <typelib tlbid="{D571B8DA-75B5-40D7-A52E-5184E479F6A1}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+  <file name="WSCSharpAddIn.dll" hashalg="SHA1">
+    <comClass clsid="{7425E750-948D-44B0-97D6-2698CFA4F8D0}" tlbid="{4236BF82-40CE-4D40-BD49-61ADC888A811}" description="CSharpAddInObj"></comClass>
+    <typelib tlbid="{4236BF82-40CE-4D40-BD49-61ADC888A811}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+  <file name="WSJavaAddIn.dll" hashalg="SHA1">
+    <comClass clsid="{8725EBC0-B0CC-40FF-80CC-32FC1F02F41C}" tlbid="{220A0C57-217D-4130-9B59-2307774BDDEA}" description="JavaAddInObj"></comClass>
+    <typelib tlbid="{220A0C57-217D-4130-9B59-2307774BDDEA}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+  <file name="WSJavaParser.dll" hashalg="SHA1">
+    <comClass clsid="{1FB67975-76DD-411C-9D39-DCB9EE1AAD4C}" tlbid="{638317AD-3D94-499D-945E-D0ED21ABBAD5}" description="JavaCodeParser Object"></comClass>
+    <typelib tlbid="{638317AD-3D94-499D-945E-D0ED21ABBAD5}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+  <file name="WSJavaAddIn15.dll" hashalg="SHA1">
+    <comClass clsid="{034E2838-F3C6-4D8D-9A5A-544996B6948E}" tlbid="{0C706822-DF79-43A6-8624-5E2C58CB30FE}" description="JavaAddInObj"></comClass>
+    <typelib tlbid="{0C706822-DF79-43A6-8624-5E2C58CB30FE}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+  <file name="WSJavaParser15.dll" hashalg="SHA1">
+    <comClass clsid="{430031A0-C036-4DF8-BF8B-7F2446FD333E}" tlbid="{0FD60EAA-AA6A-4894-B7AB-035F67E7B208}" description="JavaCodeParser Object"></comClass>
+    <typelib tlbid="{0FD60EAA-AA6A-4894-B7AB-035F67E7B208}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+  <file name="WSPatternAddIn.dll" hashalg="SHA1">
+    <comClass clsid="{B0C63703-EB4D-499F-B196-6DCAE5D402EC}" tlbid="{CA6CC208-A65A-44AD-8DA1-19E23BC277F6}" description="PatternAddInObj"></comClass>
+    <typelib tlbid="{CA6CC208-A65A-44AD-8DA1-19E23BC277F6}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+  <file name="WSRoseAddIn.dll" hashalg="SHA1">
+    <comClass clsid="{AD36BDD6-CE9C-44CD-8D65-440C16EDBF4C}" tlbid="{A5C0474D-A3F2-4784-95E1-3629D439644F}" description="RoseAddInObj"></comClass>
+    <typelib tlbid="{A5C0474D-A3F2-4784-95E1-3629D439644F}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+  <file name="WSXMIAddIn.dll" hashalg="SHA1">
+    <comClass clsid="{0E725E96-2CB4-49DF-B32A-DCB774A4FAF4}" tlbid="{34FFB6B4-3A63-47B6-AA2A-E3993C4CAA46}" description="XMIAddInObj"></comClass>
+    <typelib tlbid="{34FFB6B4-3A63-47B6-AA2A-E3993C4CAA46}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
+  </file>
+
+ 
+ <file name="Pgmr101.ocx" hashalg="SHA1">
+	<comClass clsid="{11D80597-533C-11D4-B97E-004005F9CBA4}" tlbid="{11D80594-533C-11D4-B97E-004005F9CBA4}" description="ProGrammar 1.01 ActiveX Control"></comClass>
+	<typelib tlbid="{11D80594-533C-11D4-B97E-004005F9CBA4}" resourceid="1" version="1.0" helpdir=""></typelib>
+ </file>
+ <trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
+	<security>
+	  <requestedPrivileges>
+		<requestedExecutionLevel
+		  level="asInvoker"
+		  uiAccess="false"/>
+	  </requestedPrivileges>
+	</security>
+  </trustInfo>
+  <comInterfaceExternalProxyStub name="IOptionItem" iid="{C8E6BA96-EE0F-463E-B9BC-776C15167809}" tlbid="{84BEB7B3-6221-43ED-B410-E83A5D83CED9}" proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"></comInterfaceExternalProxyStub>
+  <comInterfaceExternalProxyStub name="IOptionClassification" iid="{A2FB7B59-01A9-4929-BC56-79A699A35E90}" tlbid="{84BEB7B3-6221-43ED-B410-E83A5D83CED9}" proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"></comInterfaceExternalProxyStub>
+  <comInterfaceExternalProxyStub name="IOptionCategory" iid="{C6C2AE66-AEE8-43C0-AA77-081646262CF2}" tlbid="{84BEB7B3-6221-43ED-B410-E83A5D83CED9}" proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"></comInterfaceExternalProxyStub>
+  <comInterfaceExternalProxyStub name="IOptionSchema" iid="{DA4FB79C-B8B5-4573-98E8-8CB2ECFA0406}" tlbid="{84BEB7B3-6221-43ED-B410-E83A5D83CED9}" proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"></comInterfaceExternalProxyStub>
+  <comInterfaceExternalProxyStub name="IOptionManager" iid="{D041BEEF-82ED-4A66-843A-4D08339C228D}" tlbid="{84BEB7B3-6221-43ED-B410-E83A5D83CED9}" proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"></comInterfaceExternalProxyStub>
+  <comInterfaceExternalProxyStub name="_DPgmr" iid="{11D80595-533C-11D4-B97E-004005F9CBA4}" tlbid="{11D80594-533C-11D4-B97E-004005F9CBA4}" proxyStubClsid32="{00020420-0000-0000-C000-000000000046}"></comInterfaceExternalProxyStub>
+  <comInterfaceExternalProxyStub name="_DPgmrEvents" iid="{11D80596-533C-11D4-B97E-004005F9CBA4}" tlbid="{11D80594-533C-11D4-B97E-004005F9CBA4}" proxyStubClsid32="{00020420-0000-0000-C000-000000000046}"></comInterfaceExternalProxyStub>
+</assembly>
