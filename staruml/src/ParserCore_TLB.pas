@@ -12,16 +12,16 @@ unit ParserCore_TLB;
 // ************************************************************************ //
 
 // $Rev: 17244 $
-// File generated on 7/14/2012 7:27:33 PM from Type Library described below.
+// File generated on 2/9/2014 1:25:00 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml\components\parser-core\ParserCore\bin\Debug\ParserCore.tlb (1)
-// LIBID: {65871AAE-95F8-305F-B7FA-2087CC441113}
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunk\staruml\components\parser-core\ParserCore\bin\Release\ParserCore.dll (1)
+// LIBID: {1ED9044F-4A24-3F3B-9818-AB8D3D6BE960}
 // LCID: 0
 // Helpfile: 
 // HelpString: 
 // DepndLst: 
-//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
+//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
 //   (2) v2.0 mscorlib, (C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.tlb)
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers. 
@@ -45,12 +45,12 @@ uses Windows, ActiveX, Classes, Graphics, mscorlib_TLB, OleServer, StdVCL, Varia
 const
   // TypeLibrary Major and minor versions
   ParserCoreMajorVersion = 1;
-  ParserCoreMinorVersion = 0;
+  ParserCoreMinorVersion = 1;
 
-  LIBID_ParserCore: TGUID = '{65871AAE-95F8-305F-B7FA-2087CC441113}';
+  LIBID_ParserCore: TGUID = '{1ED9044F-4A24-3F3B-9818-AB8D3D6BE960}';
 
   IID_IParserCore: TGUID = '{C2D5AA24-3633-479B-9EA2-5AADBECE1ECE}';
-  CLASS_ParserCoreImpl: TGUID = '{23DFC8EB-9897-3ECB-AFE0-5CC5DDFF0B91}';
+  CLASS_ParserCoreImpl: TGUID = '{72AB6FAC-1910-3F59-AF48-6FDEDC6EB6B7}';
   CLASS_NameExprParserCoreImpl: TGUID = '{41B17622-6FBA-4683-AACD-402F7F021D17}';
   CLASS_AttrExprParserCoreImpl: TGUID = '{90971B47-C855-4E13-96C0-4B2896D03E45}';
   CLASS_MsgExprParserCoreImpl: TGUID = '{822AEBDE-A58E-4A2F-8D21-C676237A8F9A}';
