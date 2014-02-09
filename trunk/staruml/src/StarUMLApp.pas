@@ -2847,11 +2847,13 @@ begin
 
   // Select diagrams with model
   for View in SelectedModel.Views do begin // Look for diagrams containing views of given model
-    if View.MetaClass.IsKindOf('UMLGeneralNodeView') or View.MetaClass.IsKindOf('EdgeView') then begin
+    if View.MetaClass.IsKindOf('UMLGeneralNodeView')
+      or View.MetaClass.IsKindOf('EdgeView') then begin
       OwnerDiagramView := View.OwnerDiagramView;
       if (OwnerDiagramView <> nil) then begin
         OwnerDiagramModel := OwnerDiagramView.Diagram;
-        if OwnerDiagramModel <> nil then
+        if (OwnerDiagramModel <> nil)
+          and not SelectedDiagrams.Contains(OwnerDiagramModel) then
           SelectedDiagrams.Add(OwnerDiagramModel);
       end;
     end;
