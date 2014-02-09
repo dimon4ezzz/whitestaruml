@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{22D746AE-94D0-4F01-B1FA-AF8DD923FB25}</ProjectGuid>
 			<MainSource>Generator.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
@@ -21,8 +21,8 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DCC_DebugDCUs>true</DCC_DebugDCUs>
-			<DCC_UnitSearchPath>..\..\..\staruml\components\plastic-components\src;..\..\..\staruml\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-			<DCC_UsePackage>vclx;vcl;vclimg;dbrtl;Rave77VCL;bdertl;rtl;vclactnband;xmlrtl;vcldb;vcldbx;vcltouch;dsnap;dsnapcon;TeeUI;TeeDB;Tee;vclib;ibxpress;adortl;IndyCore;IndySystem;IndyProtocols;inet;intrawebdb_100_140;Intraweb_100_140;VclSmp;vclie;inetdb;webdsnap;websnap;inetdbbde;inetdbxpress;soaprtl;vclribbon;DbxCommonDriver;DbxClientDriver;DBXInterBaseDriver;DBXMySQLDriver;dbexpress;dbxcds;TMSSmoothControlsPackPkgD2010;tb2k_d12;elpackD7;adgrm2010;JclDeveloperTools;Jcl;JclVcl;JclContainers;JvDocking;JvCore;JvRuntimeDesign;JvSystem;JvStdCtrls;JvControls;JvBands;JvDB;JvDlgs;JvBDE;JvCmp;JvCrypt;JvCustom;JvMM;JvNet;JvPascalInterpreter;JvPageComps;JvWizards;vclshlctrls;SynEdit_R2010;PlasticComponents;VirtualTreesR;dacvcl140;dac140;crcontrols140;unidacvcl140;unidac140;DSPackR;DirectX9_;dxCoreRS14;cxLibraryRS14;dxGDIPlusRS14;dxThemeRS14;cxPageControlRS14;dxBarRS14;dxComnRS14;dxBarExtDBItemsRS14;dxBarExtItemsRS14;dxBarDBNavRS14;dxRibbonRS14;dxTabbedMDIRS14;dxmdsRS14;dxDockingRS14;cxPageControldxBarPopupMenuRS14;NxCollectionDsgn_d2010;NxCollectionRun_d2010;NxCommonRun_d2010;NxCommonDsgn_d2010;NxDBGridDsgn_d2010;NxDBGridRun_d2010;NxGridDsgn_d2010;NxGridRun_d2010;NxInspectorDsgn_d2010;NxInspectorRun_d2010;NxAddonsRun_d2010</DCC_UsePackage>
+			<DCC_UnitSearchPath>..\..\..\staruml\components\plastic-components\src;..\..\..\staruml\src;C:\JS\Delphi\WhiteStarSourceforgeTrunk\staruml-generator\src\translators\excel-translator;C:\JS\Delphi\WhiteStarSourceforgeTrunk\staruml-generator\src\translators\powerpoint-translator;C:\JS\Delphi\WhiteStarSourceforgeTrunk\staruml-generator\src\translators\text-translator;C:\JS\Delphi\WhiteStarSourceforgeTrunk\staruml-generator\src\translators\word-translator;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UsePackage>vclx;vcl;vclimg;dbrtl;Rave77VCL;bdertl;rtl;vclactnband;xmlrtl;vcldb;vcldbx;vcltouch;dsnap;dsnapcon;TeeUI;TeeDB;Tee;vclib;ibxpress;adortl;IndyCore;IndySystem;IndyProtocols;inet;intrawebdb_100_140;Intraweb_100_140;VclSmp;vclie;inetdb;webdsnap;websnap;inetdbbde;inetdbxpress;soaprtl;vclribbon;DbxCommonDriver;DbxClientDriver;DBXInterBaseDriver;DBXMySQLDriver;dbexpress;dbxcds;TMSSmoothControlsPackPkgD2010;tb2k_d12;elpackD7;adgrm2010;JclDeveloperTools;Jcl;JclVcl;JclContainers;JvDocking;JvCore;JvRuntimeDesign;JvSystem;JvStdCtrls;JvControls;JvBands;JvDB;JvDlgs;JvBDE;JvCmp;JvCrypt;JvCustom;JvMM;JvNet;JvPascalInterpreter;JvPageComps;JvWizards;vclshlctrls;SynEdit_R2010;PlasticComponents;VirtualTreesR;dacvcl140;dac140;crcontrols140;unidacvcl140;unidac140;DSPackR;DirectX9_;dxCoreRS14;cxLibraryRS14;dxGDIPlusRS14;dxThemeRS14;cxPageControlRS14;dxBarRS14;dxComnRS14;dxBarExtDBItemsRS14;dxBarExtItemsRS14;dxBarDBNavRS14;dxRibbonRS14;dxTabbedMDIRS14;dxmdsRS14;dxDockingRS14;cxPageControldxBarPopupMenuRS14;NxCollectionDsgn_d2010;NxCollectionRun_d2010;NxCommonRun_d2010;NxCommonDsgn_d2010;NxDBGridDsgn_d2010;NxDBGridRun_d2010;NxGridDsgn_d2010;NxGridRun_d2010;NxInspectorDsgn_d2010;NxInspectorRun_d2010;NxAddonsRun_d2010;NxSheetRun_d2010;NxThirdpartyRun_d2010</DCC_UsePackage>
 			<DCC_ExeOutput>..\..\deploy\staruml-generator</DCC_ExeOutput>
 			<DCC_DependencyCheckOutputName>..\..\deploy\staruml-generator\Generator.dll</DCC_DependencyCheckOutputName>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
@@ -37,6 +37,9 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_RunTimeTypeInfo>true</DCC_RunTimeTypeInfo>
+			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+			<DCC_Optimize>false</DCC_Optimize>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>
@@ -129,8 +132,8 @@
 						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">1</VersionInfo>
-						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">46</VersionInfo>
+						<VersionInfo Name="Release">2</VersionInfo>
+						<VersionInfo Name="Build">48</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -142,7 +145,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName"/>
 						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">1.1.0.46</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.1.2.48</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
@@ -154,10 +157,6 @@
 					<Excluded_Packages>
 						<Excluded_Packages Name="C:\Users\Public\Documents\RAD Studio\7.0\Bpl\JclDeveloperTools140.bpl">JEDI Code Library Developer Tools package</Excluded_Packages>
 						<Excluded_Packages Name="C:\Users\Public\Documents\RAD Studio\7.0\Bpl\JclContainers140.bpl">JEDI Code Library Containers package</Excluded_Packages>
-						<Excluded_Packages Name="$(BDS)\bin\bcboffice2k140.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
-						<Excluded_Packages Name="$(BDS)\bin\bcbofficexp140.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
-						<Excluded_Packages Name="$(BDS)\bin\dcloffice2k140.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-						<Excluded_Packages Name="$(BDS)\bin\dclofficexp140.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
 					</Excluded_Packages>
 				</Delphi.Personality>
 				<ActiveXProjectInfo>

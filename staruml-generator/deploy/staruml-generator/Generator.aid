@@ -10,7 +10,7 @@
     <ICONFILE>Generator.ico</ICONFILE>
     <ISACTIVE>True</ISACTIVE>
     <MENUFILE>Generator.mnu</MENUFILE>
-    <VERSION>1.1.0.46</VERSION>
+    <VERSION>1.1.2.48</VERSION>
     <MODULES>
         <MODULEFILENAME>Translators\Word\WordTranslator.dll</MODULEFILENAME>
         <MODULEFILENAME>Translators\Excel\ExcelTranslator.dll</MODULEFILENAME>
