@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{DD24C958-B968-4CB6-B2DD-692DEABC6268}</ProjectGuid>
 			<MainSource>ExcelTranslator.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>

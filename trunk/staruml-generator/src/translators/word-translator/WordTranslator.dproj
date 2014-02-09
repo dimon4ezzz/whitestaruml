@@ -35,8 +35,6 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
-			<DCC_ExeOutput>C:\JS\Delphi\WhiteStarNoInstall</DCC_ExeOutput>
-			<DCC_DependencyCheckOutputName>..\..\..\..\..\WhiteStarNoInstall\WordTranslator.dll</DCC_DependencyCheckOutputName>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>

@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{0F950939-0C41-4B1C-9742-4B214D409E3F}</ProjectGuid>
 			<MainSource>PowerPointTranslator.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>

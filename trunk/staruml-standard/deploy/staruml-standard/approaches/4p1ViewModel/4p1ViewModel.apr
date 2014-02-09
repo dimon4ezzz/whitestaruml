@@ -19,7 +19,7 @@
         <DIAGRAM type="Component" name="Main"/>
       </MODEL>
       <MODEL name="Process View">
-        <DIAGRAM type="Component" name="Main"/>
+        <DIAGRAM type="Activity" name="Main"/>
       </MODEL>
       <MODEL name="Physical View">
         <DIAGRAM type="Deployment" name="Main"/>

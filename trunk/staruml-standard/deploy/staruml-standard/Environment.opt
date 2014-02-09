@@ -48,7 +48,14 @@
           <DESCRIPTION>Specifies the url of Help Document in StarUML</DESCRIPTION>
           <DEFAULTVALUE>WhiteStarUML.chm</DEFAULTVALUE>
         </OPTIONITEM-STRING>
-      </OPTIONCLASSIFICATION>
+        
+        <OPTIONITEM-STRING key="FORCE_DECIMAL_SEPARATOR">
+           <CAPTION>Force decimal separator</CAPTION>
+           <DESCRIPTION>Forces given character (usually '.' or ',') as decimal separator in save files to ensure portability between systems with different locales. Leave it empty to use the system default.</DESCRIPTION>
+           <DEFAULTVALUE></DEFAULTVALUE>
+        </OPTIONITEM-STRING>
+        
+        </OPTIONCLASSIFICATION>
       
       <OPTIONCLASSIFICATION>
         <CAPTION>Browser</CAPTION>

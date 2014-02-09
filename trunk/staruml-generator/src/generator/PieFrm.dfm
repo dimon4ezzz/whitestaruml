@@ -1,7 +1,7 @@
 object PieForm: TPieForm
   Left = 285
   Top = 142
-  ActiveControl = BatchPageControl
+  ActiveControl = ExecTasksGrid
   BorderStyle = bsDialog
   Caption = 'WhiteStarUML Generator'
   ClientHeight = 498
@@ -25,7 +25,7 @@ object PieForm: TPieForm
     Top = 0
     Width = 721
     Height = 498
-    ActivePage = TemplateSelectionPage
+    ActivePage = ExecutionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = '<< &Start page'
     ButtonStart.NumGlyphs = 1
@@ -1191,8 +1191,6 @@ object PieForm: TPieForm
       OnPage = ExecutionPagePage
       OnNextButtonClick = ExecutionPageNextButtonClick
       OnFinishButtonClick = ExecutionPageFinishButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object GenerationItemsLabel: TLabel
         Left = 8
         Top = 88
@@ -1574,13 +1572,14 @@ object PieForm: TPieForm
         Caption = 'Press [Generate] button to start generation.'
       end
       object ExecTasksGrid: TNextGrid
-        Left = 8
-        Top = 104
+        Left = 13
+        Top = 108
         Width = 705
         Height = 185
         Options = [goGrid, goHeader, goSelectFullRow]
         TabOrder = 0
         TabStop = True
+        OnChange = ExecTasksGridChange
         OnDblClick = ExecTasksGridDblClick
         object ExecStateColumn: TNxImageColumn
           DefaultValue = '0'
