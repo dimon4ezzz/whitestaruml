@@ -78,7 +78,6 @@
 						<Source Name="MainSource">OptMgr.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="HostApplication">C:\Program Files\StarUML\StarUML.exe</Parameters>
 						<Parameters Name="UseLauncher">False</Parameters>
 						<Parameters Name="LoadAllSymbols">True</Parameters>
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
