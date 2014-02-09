@@ -165,7 +165,7 @@ begin
   end;
 {$ENDIF RELEASE}
 
-  Application.Title := 'WhiteStarUML';
+  Application.Title := TXT_PROGRAM_NAME;
   Application.HelpFile := '..\..\Docs\chm\WhiteStarUML.chm';
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TAboutForm, AboutForm);

@@ -1,1 +1,5 @@
+#ifdef NO_INSTALL
+1 24 "WhiteStarUML.NoInstall.manifest"
+#else
 1 24 "WhiteStarUML.manifest"
+#endif
