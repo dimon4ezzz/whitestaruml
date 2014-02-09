@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{EB0B0DD4-3DE7-4280-9BBE-B8A725620ACE}</ProjectGuid>
 			<MainSource>WSJavaParser.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>

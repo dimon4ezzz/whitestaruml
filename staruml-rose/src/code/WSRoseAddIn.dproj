@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{1AD881F1-9193-432C-8516-C8608153BAF2}</ProjectGuid>
 			<MainSource>WSRoseAddIn.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
@@ -20,10 +20,10 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_ExeOutput>..\..\deploy\staruml-rose\</DCC_ExeOutput>
+			<DCC_ExeOutput>C:\JS\Delphi\WhiteStarNoInstall</DCC_ExeOutput>
 			<DCC_UnitSearchPath>..\..\..\staruml\src;..\..\..\staruml\components\plastic-components\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_DependencyCheckOutputName>..\..\deploy\staruml-rose\WSRoseAddIn.dll</DCC_DependencyCheckOutputName>
+			<DCC_DependencyCheckOutputName>..\..\..\..\WhiteStarNoInstall\WSRoseAddIn.dll</DCC_DependencyCheckOutputName>
 			<GenDll>true</GenDll>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_Platform>x86</DCC_Platform>

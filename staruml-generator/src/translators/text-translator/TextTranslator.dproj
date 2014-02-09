@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{58030621-CD0B-42DA-A2D7-EB8F34121616}</ProjectGuid>
 			<MainSource>TextTranslator.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>

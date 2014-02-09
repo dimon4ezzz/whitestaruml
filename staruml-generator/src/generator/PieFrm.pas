@@ -192,6 +192,7 @@ type
     procedure ModifyTemplatePopUpMenuItemClick(Sender: TObject);
     procedure DeleteTemplatePopUpMenuItemClick(Sender: TObject);
     procedure OpenTemplatePopUpMenuItemClick(Sender: TObject);
+    procedure ExecTasksGridChange(Sender: TObject; ACol, ARow: Integer);
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -714,7 +715,7 @@ begin
     except
       on E: Exception do begin
         ErrorMessage(Format(ERR_ON_GENERATING, [E.Message]));
-        InGenerating := False;          
+        InGenerating := False;
       end;
     end;
     if InGenerating then
@@ -1463,6 +1464,11 @@ procedure TPieForm.DirectMDAWizardCancelButtonClick(Sender: TObject);
 begin
   if InGenerating then
     AbortGeneration;
+end;
+
+procedure TPieForm.ExecTasksGridChange(Sender: TObject; ACol, ARow: Integer);
+begin
+  ExecTasksGrid.RefreshRow(ARow);
 end;
 
 procedure TPieForm.ExecTasksGridDblClick(Sender: TObject);
