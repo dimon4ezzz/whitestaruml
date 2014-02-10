@@ -1,7 +1,7 @@
 object RevEngineForm: TRevEngineForm
   Left = 284
   Top = 198
-  ActiveControl = OmitInitialValueCheckBox
+  ActiveControl = ShellTreeView
   BorderStyle = bsDialog
   Caption = 'C++ Reverse Engineering'
   ClientHeight = 418
@@ -24,7 +24,7 @@ object RevEngineForm: TRevEngineForm
     Top = 0
     Width = 585
     Height = 418
-    ActivePage = SetupOptionPage
+    ActivePage = SourceFileSelectionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start page'
     ButtonStart.NumGlyphs = 1
@@ -268,6 +268,8 @@ object RevEngineForm: TRevEngineForm
       Header.Subtitle.Font.Style = []
       OnEnterPage = SetupOptionPageEnterPage
       OnCancelButtonClick = SetupOptionPageCancelButtonClick
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DiagramGroupBox: TGroupBox
         Left = 264
         Top = 168
@@ -459,6 +461,8 @@ object RevEngineForm: TRevEngineForm
       VisibleButtons = [bkFinish]
       OnPage = RunPagePage
       OnFinishButtonClick = RunPageFinishButtonClick
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object MessageLabel: TLabel
         Left = 16
         Top = 296
@@ -534,7 +538,7 @@ object RevEngineForm: TRevEngineForm
     Left = 144
     Top = 384
     Bitmap = {
-      494C0101040009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -809,7 +813,7 @@ object RevEngineForm: TRevEngineForm
     Left = 92
     Top = 384
     Bitmap = {
-      494C0101060009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010106000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

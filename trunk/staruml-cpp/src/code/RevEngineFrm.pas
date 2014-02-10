@@ -558,6 +558,7 @@ begin
         Log(MSG_REVERSE_FINISH);
         Progress(100, 100);
         InformMessage(MSG_DLG_REVERSE_COMPLETE);
+        SetActiveWindow(Handle); // Make sure this form is on the top
       end;
     rsAbort:
       begin

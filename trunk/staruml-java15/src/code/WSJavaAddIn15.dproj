@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{1F225E23-3F8E-47C3-A4DE-8ABA3E1B6D65}</ProjectGuid>
 			<MainSource>WSJavaAddIn15.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Config Condition="'$(Config)'==''">Release</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
