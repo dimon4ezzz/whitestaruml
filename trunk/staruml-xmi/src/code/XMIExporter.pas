@@ -135,7 +135,7 @@ type
     procedure ClearValue;
     procedure AddValue(Value: string);
     procedure RemoveValue(Value: string);
-    function ToString: string;
+    function ToString: string; virtual;
     property Key: string read FKey;
     property ValueCount: Integer read GetValueCount;
     property Values[Index: Integer]: string read GetValue;
@@ -205,8 +205,9 @@ type
 implementation
 
 uses
-  Utilities, NLS_XMIAddIn, Symbols,
-  SysUtils;
+  SysUtils,System.Types,
+  Utilities, NLS_XMIAddIn, Symbols;
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // PXMIElement

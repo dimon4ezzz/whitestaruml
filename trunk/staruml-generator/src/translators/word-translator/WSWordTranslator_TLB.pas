@@ -11,26 +11,28 @@ unit WSWordTranslator_TLB;
 // manual modifications will be lost.
 // ************************************************************************ //
 
-// $Rev: 17244 $
-// File generated on 8/11/2012 9:31:04 PM from Type Library described below.
+// $Rev: 52393 $
+// File generated on 22/02/2014 15:02:56 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml-generator\src\translators\word-translator\WordTranslator (1)
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\translators\word-translator\WordTranslator (1)
 // LIBID: {B50752CF-E0EC-445E-BB82-B32E94A9C878}
 // LCID: 0
 // Helpfile:
 // HelpString: WordTranslator Library
 // DepndLst:
-//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
+//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
+// SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
 {$WARN SYMBOL_PLATFORM OFF}
 {$WRITEABLECONST ON}
 {$VARPROPSETTER ON}
 {$ALIGN 4}
+
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, Winapi.ActiveX;
 
 
 // *********************************************************************//
@@ -96,7 +98,7 @@ type
 
 implementation
 
-uses ComObj;
+uses System.Win.ComObj;
 
 class function CoWordTranslatorObj.Create: IWordTranslatorObj;
 begin

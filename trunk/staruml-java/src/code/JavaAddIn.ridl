@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 7/14/2013 12:47:05 AM (- $Rev: 12980 $, 45357649).
+// File generated on 23/02/2014 14:11:23 (- $Rev: 12980 $, 6993431).
 
 [
   uuid(220A0C57-217D-4130-9B59-2307774BDDEA),
@@ -18,6 +18,7 @@ library WSJavaAddIn
 {
 
   importlib("stdole2.tlb");
+  importlib("WhiteStarUML.exe");
 
   coclass JavaAddInObj;
 
@@ -28,6 +29,7 @@ library WSJavaAddIn
   ]
   coclass JavaAddInObj
   {
+    [default] interface IStarUMLAddIn;
   };
 
 };

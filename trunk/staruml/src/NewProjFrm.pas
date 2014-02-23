@@ -51,7 +51,7 @@ uses
   ApprMgr, Core,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ComCtrls, ExtCtrls,  ImgList, ToolWin, FlatPanel, FileCtrl,
-  {dxPageControl,} {cxPC,} ShellCtrls, Buttons;
+  Vcl.Shell.ShellCtrls, Buttons;
 
 const
   DEFAULT_APPROACH_ICON_INDEX = 0;

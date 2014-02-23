@@ -1,7 +1,7 @@
 object PieForm: TPieForm
   Left = 285
   Top = 142
-  ActiveControl = ExecTasksGrid
+  ActiveControl = BatchPageControl
   BorderStyle = bsDialog
   Caption = 'WhiteStarUML Generator'
   ClientHeight = 498
@@ -25,7 +25,7 @@ object PieForm: TPieForm
     Top = 0
     Width = 721
     Height = 498
-    ActivePage = ExecutionPage
+    ActivePage = TemplateSelectionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = '<< &Start page'
     ButtonStart.NumGlyphs = 1
@@ -77,6 +77,8 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Height = 12
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Image1: TImage
         Left = 0
         Top = 70
@@ -445,6 +447,10 @@ object PieForm: TPieForm
         ClientRectTop = 25
         object MainTabSheet: TcxTabSheet
           Caption = 'List of templates'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object GenerationUnitDescLabel: TLabel
             Left = 8
             Top = 274
@@ -486,6 +492,7 @@ object PieForm: TPieForm
             Height = 201
             AppearanceOptions = [aoAlphaBlendedSelection, aoIndicateSortedColumn]
             AutoScroll = True
+            Caption = ''
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
@@ -498,6 +505,8 @@ object PieForm: TPieForm
             PopupMenu = TemplatePopupMenu
             TabOrder = 3
             TabStop = True
+            Touch.InteractiveGestures = [igPan, igPressAndTap]
+            Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
             OnCellClick = TasksGridCellClick
             OnChange = TasksGridChange
             OnDblClick = TasksGridDblClick
@@ -783,6 +792,8 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
       OnNextButtonClick = OutDirectorySelectionPageNextButtonClick
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label2: TLabel
         Left = 8
         Top = 88
@@ -1191,6 +1202,8 @@ object PieForm: TPieForm
       OnPage = ExecutionPagePage
       OnNextButtonClick = ExecutionPageNextButtonClick
       OnFinishButtonClick = ExecutionPageFinishButtonClick
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GenerationItemsLabel: TLabel
         Left = 8
         Top = 88
@@ -1576,10 +1589,12 @@ object PieForm: TPieForm
         Top = 108
         Width = 705
         Height = 185
+        Caption = ''
         Options = [goGrid, goHeader, goSelectFullRow]
         TabOrder = 0
         TabStop = True
-        OnChange = ExecTasksGridChange
+        Touch.InteractiveGestures = [igPan, igPressAndTap]
+        Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
         OnDblClick = ExecTasksGridDblClick
         object ExecStateColumn: TNxImageColumn
           DefaultValue = '0'

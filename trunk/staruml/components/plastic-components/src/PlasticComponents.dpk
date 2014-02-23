@@ -1,26 +1,21 @@
 package PlasticComponents;
 
 {$R *.res}
-{$R 'AreaTitleBar.dcr'}
-{$R 'FlatPanel.dcr'}
-{$R 'CompactFontDlg.dcr'}
-{$R 'TreeViewEx.dcr'}
-{$R 'verslab.dcr'}
-{$R 'InputBox.dcr'}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
-{$DEBUGINFO ON}
+{$DEBUGINFO OFF}
 {$EXTENDEDSYNTAX ON}
 {$IMPORTEDDATA ON}
 {$IOCHECKS ON}
-{$LOCALSYMBOLS ON}
+{$LOCALSYMBOLS OFF}
 {$LONGSTRINGS ON}
 {$OPENSTRINGS ON}
 {$OPTIMIZATION ON}
 {$OVERFLOWCHECKS OFF}
 {$RANGECHECKS OFF}
-{$REFERENCEINFO ON}
+{$REFERENCEINFO OFF}
 {$SAFEDIVIDE OFF}
 {$STACKFRAMES OFF}
 {$TYPEDADDRESS OFF}
@@ -28,6 +23,8 @@ package PlasticComponents;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
 {$IMPLICITBUILD OFF}
 
 requires
@@ -37,10 +34,10 @@ requires
 contains
   AreaTitleBar in 'AreaTitleBar.pas',
   FlatPanel in 'FlatPanel.pas',
-  CompactFontDlg in 'CompactFontDlg.pas' {CompactFontDialogForm},
   TreeViewEx in 'TreeViewEx.pas',
   verslab in 'verslab.pas',
   SaveDialogEx in 'SaveDialogEx.pas',
+  CompactFontDlg in 'CompactFontDlg.pas' {CompactFontDialogForm},
   InputBox in 'InputBox.pas' {InputBoxForm};
 
 end.

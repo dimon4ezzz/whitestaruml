@@ -50,7 +50,7 @@ unit DirectMDADlg;
 interface
 
 uses
-  ComObj, WSGenerator_TLB, WhiteStarUML_TLB;
+  ComObj, WSGenerator_TLB, WhiteStarUML_TLB, StdVcl;
 
 type
   TGeneratorApplication = class(TAutoObject, IGeneratorApplication, IStarUMLAddIn)
