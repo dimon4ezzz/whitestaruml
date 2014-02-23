@@ -52,12 +52,14 @@ object BatchFrame: TBatchFrame
     Height = 217
     AppearanceOptions = [aoAlphaBlendedSelection, aoIndicateSortedColumn]
     AutoScroll = True
+    Caption = ''
     HighlightedTextColor = clWindowText
     Options = [goDisableColumnMoving, goGrid, goHeader, goSelectFullRow]
     RowSize = 18
     TabOrder = 2
     TabStop = True
-    OnAfterSort = TasksGridAfterSort
+    Touch.InteractiveGestures = [igPan, igPressAndTap]
+    Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
     OnCellClick = TasksGridCellClick
     OnChange = TasksGridChange
     OnDblClick = TasksGridDblClick

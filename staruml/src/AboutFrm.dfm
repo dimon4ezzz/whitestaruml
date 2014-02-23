@@ -3,34 +3,30 @@ object AboutForm: TAboutForm
   Top = 207
   BorderStyle = bsDialog
   Caption = 'About WhiteStarUML'
-  ClientHeight = 340
-  ClientWidth = 549
+  ClientHeight = 260
+  ClientWidth = 420
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
   OnCreate = FormCreate
-  PixelsPerInch = 120
-  TextHeight = 17
+  PixelsPerInch = 96
+  TextHeight = 13
   object SplashImage: TImage
     Left = 0
     Top = 0
-    Width = 549
-    Height = 340
-    Margins.Left = 4
-    Margins.Top = 4
-    Margins.Right = 4
-    Margins.Bottom = 4
+    Width = 420
+    Height = 260
     Align = alClient
     AutoSize = True
     Picture.Data = {
       0B546478504E47496D61676589504E470D0A1A0A0000000D49484452000001A4
       000001040802000000E832D78C000000017352474200AECE1CE9000000046741
-      4D410000B18F0BFC6105000000097048597300000EC200000EC20115284A8000
+      4D410000B18F0BFC6105000000097048597300000EC100000EC101B8916BED00
       00000774494D4507DD08040B3801B1AB1A4B0000000774455874417574686F72
       00A9AECC480000000C744558744465736372697074696F6E0013092123000000
       0A74455874436F7079726967687400AC0FCC3A0000000E744558744372656174
@@ -973,27 +969,23 @@ object AboutForm: TAboutForm
       C50E83C1BC1760B1C36030EF05B4FF2B916030184CA5078B1D0683790F2891FC
       3F8458C28A2A77A5880000000049454E44AE426082}
     Stretch = True
-    ExplicitWidth = 420
-    ExplicitHeight = 260
+    ExplicitWidth = 321
+    ExplicitHeight = 199
   end
   object VersionLabel: TfshVersionLabel
-    Left = 345
-    Top = 235
-    Width = 168
-    Height = 14
-    Margins.Left = 4
-    Margins.Top = 4
-    Margins.Right = 4
-    Margins.Bottom = 4
+    Left = 264
+    Top = 180
+    Width = 155
+    Height = 11
     VersionResource = vrFileVersion
     VersionResourceKey = 'FileVersion'
-    InfoPrefix = 'version:'
+    InfoPrefix = 'File Version:'
     ShowInfoPrefix = True
     LangCharset = '-1'
     Color = clWhite
     Font.Charset = ANSI_CHARSET
     Font.Color = clTeal
-    Font.Height = -12
+    Font.Height = -9
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
@@ -1002,31 +994,23 @@ object AboutForm: TAboutForm
     FileSizeFormat = '#,#0" Bytes"'
   end
   object AuthorLabel: TLabel
-    Left = 60
-    Top = 196
-    Width = 436
-    Height = 17
-    Margins.Left = 4
-    Margins.Top = 4
-    Margins.Right = 4
-    Margins.Bottom = 4
+    Left = 46
+    Top = 150
+    Width = 351
+    Height = 13
     Caption = 
       'Maintained by Janusz Szpilewski <janszpilewski@users.sourceforge' +
       '.net>'
   end
   object AcknowledgeLabel: TLabel
-    Left = 156
-    Top = 146
-    Width = 385
-    Height = 21
-    Margins.Left = 4
-    Margins.Top = 4
-    Margins.Right = 4
-    Margins.Bottom = 4
+    Left = 119
+    Top = 112
+    Width = 291
+    Height = 16
     Caption = 'Open Source Software derived from StarUML'
     Font.Charset = ANSI_CHARSET
     Font.Color = clLime
-    Font.Height = -17
+    Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False

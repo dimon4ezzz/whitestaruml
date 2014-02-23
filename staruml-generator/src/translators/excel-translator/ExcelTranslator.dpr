@@ -59,6 +59,12 @@ exports
   DllRegisterServer,
   DllUnregisterServer;
 
+{$IFDEF RELEASE}
+{$WEAKLINKRTTI ON}
+{$RTTI EXPLICIT METHODS([]) PROPERTIES([]) FIELDS([])}
+{$ENDIF RELEASE}
+
+
 {$R *.TLB}
 
 {$R *.RES}

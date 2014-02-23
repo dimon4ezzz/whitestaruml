@@ -50,8 +50,9 @@ interface
 uses
   RevEngine, Symbols, CppElements, ModelTranslator,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ComCtrls, StdCtrls, ExtCtrls, SelTreeFrame, ShellCtrls,
-  ImgList, WhiteStarUML_TLB, ElTree, JvWizard, JvExControls, JvComponent;
+  Dialogs, ComCtrls, StdCtrls, ExtCtrls, SelTreeFrame, ImgList, Vcl.Shell.ShellCtrls,
+  WhiteStarUML_TLB, ElTree, JvWizard, JvExControls, JvComponent;
+
 
 type
   // TRevEngineForm

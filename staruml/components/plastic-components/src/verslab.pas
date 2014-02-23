@@ -167,7 +167,7 @@ begin
     inherited Create(AOwner);
     FInfoString := '';
     FFilename := '';
-    FDateTimeFormat := ShortDateFormat;
+    FDateTimeFormat := FormatSettings.ShortDateFormat;
     FFileSizeFormat := '#,#0" Bytes"';
     WordWrap := false;
     Autosize := true;

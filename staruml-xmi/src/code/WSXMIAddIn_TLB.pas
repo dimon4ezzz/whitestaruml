@@ -11,27 +11,29 @@ unit WSXMIAddIn_TLB;
 // manual modifications will be lost.
 // ************************************************************************ //
 
-// $Rev: 17244 $
-// File generated on 1/1/2012 2:56:42 PM from Type Library described below.
+// $Rev: 52393 $
+// File generated on 23/02/2014 15:16:10 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml-xmi\src\code\XMIAddIn (1)
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-xmi\src\code\XMIAddIn (1)
 // LIBID: {34FFB6B4-3A63-47B6-AA2A-E3993C4CAA46}
 // LCID: 0
 // Helpfile:
-// HelpString: XMIAddIn Library
+// HelpString: WSXMIAddIn Library
 // DepndLst:
-//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
-//   (2) v1.0 WhiteStarUML, (C:\JS\Delphi\StarUMLFresh\WhiteStarUML.exe)
+//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
+//   (2) v1.0 WhiteStarUML, (C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML.exe)
+// SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
 {$WARN SYMBOL_PLATFORM OFF}
 {$WRITEABLECONST ON}
 {$VARPROPSETTER ON}
 {$ALIGN 4}
+
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants, WhiteStarUML_TLB;
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, WhiteStarUML_TLB, Winapi.ActiveX;
 
 
 
@@ -44,10 +46,10 @@ uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants, WhiteStar
 // *********************************************************************//
 const
   // TypeLibrary Major and minor versions
-  XMIAddInMajorVersion = 1;
-  XMIAddInMinorVersion = 0;
+  WSXMIAddInMajorVersion = 1;
+  WSXMIAddInMinorVersion = 0;
 
-  LIBID_XMIAddIn: TGUID = '{34FFB6B4-3A63-47B6-AA2A-E3993C4CAA46}';
+  LIBID_WSXMIAddIn: TGUID = '{34FFB6B4-3A63-47B6-AA2A-E3993C4CAA46}';
 
   CLASS_XMIAddInObj: TGUID = '{0E725E96-2CB4-49DF-B32A-DCB774A4FAF4}';
 type
@@ -73,7 +75,7 @@ type
 
 implementation
 
-uses ComObj;
+uses System.Win.ComObj;
 
 class function CoXMIAddInObj.Create: IStarUMLAddIn;
 begin

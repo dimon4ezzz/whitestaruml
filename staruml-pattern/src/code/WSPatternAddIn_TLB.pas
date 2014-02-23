@@ -11,27 +11,29 @@ unit WSPatternAddIn_TLB;
 // manual modifications will be lost.
 // ************************************************************************ //
 
-// $Rev: 17244 $
-// File generated on 1/1/2012 5:26:53 PM from Type Library described below.
+// $Rev: 52393 $
+// File generated on 23/02/2014 15:04:38 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml-pattern\src\code\PatternAddIn (1)
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-pattern\src\code\PatternAddIn (1)
 // LIBID: {CA6CC208-A65A-44AD-8DA1-19E23BC277F6}
 // LCID: 0
 // Helpfile:
 // HelpString: WSPatternAddIn Library
 // DepndLst:
-//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
-//   (2) v1.0 WhiteStarUML, (C:\JS\Delphi\StarUMLFresh\WhiteStarUML.exe)
+//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
+//   (2) v1.0 WhiteStarUML, (C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML.exe)
+// SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
 {$WARN SYMBOL_PLATFORM OFF}
 {$WRITEABLECONST ON}
 {$VARPROPSETTER ON}
 {$ALIGN 4}
+
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants, WhiteStarUML_TLB;
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, WhiteStarUML_TLB, Winapi.ActiveX;
 
 
 
@@ -73,7 +75,7 @@ type
 
 implementation
 
-uses ComObj;
+uses System.Win.ComObj;
 
 class function CoPatternAddInObj.Create: IStarUMLAddIn;
 begin

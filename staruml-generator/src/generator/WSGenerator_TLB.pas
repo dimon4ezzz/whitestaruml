@@ -11,26 +11,28 @@ unit WSGenerator_TLB;
 // manual modifications will be lost.
 // ************************************************************************ //
 
-// $Rev: 17244 $
-// File generated on 7/13/2013 7:24:04 PM from Type Library described below.
+// $Rev: 52393 $
+// File generated on 22/02/2014 13:50:10 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunk\staruml-generator\src\generator\Generator (1)
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\generator\Generator (1)
 // LIBID: {765EB911-BD2A-4E44-BA34-7284C4D265C3}
 // LCID: 0
 // Helpfile:
 // HelpString: WhiteStarUML Generator Library
 // DepndLst:
-//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
+//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
+// SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
 {$WARN SYMBOL_PLATFORM OFF}
 {$WRITEABLECONST ON}
 {$VARPROPSETTER ON}
 {$ALIGN 4}
+
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, Winapi.ActiveX;
 
 
 // *********************************************************************//
@@ -259,7 +261,7 @@ type
 
 implementation
 
-uses ComObj;
+uses System.Win.ComObj;
 
 class function CoGeneratorProcessor.Create: IGeneratorProcessor;
 begin

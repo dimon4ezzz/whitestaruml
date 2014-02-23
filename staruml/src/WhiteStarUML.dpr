@@ -45,11 +45,6 @@ program WhiteStarUML;
 { possible to release a modified version which carries forward this exception. }
 {******************************************************************************}
 
-
-
-
-{$R 'WhiteStarUMLManifest.res' 'WhiteStarUMLManifest.rc'}
-
 uses
   SysUtils,
   Forms,
@@ -141,7 +136,13 @@ uses
   PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas',
   ParserCore_TLB in 'ParserCore_TLB.pas';
 
-{$R *.RES}
+  {$IFDEF RELEASE}
+  {$WEAKLINKRTTI ON}
+  {$RTTI EXPLICIT METHODS([]) PROPERTIES([]) FIELDS([])}
+  {$ENDIF RELEASE}
+
+  {$R 'WhiteStarUMLManifest.res' 'WhiteStarUMLManifest.rc'}
+  {$R WhiteStarUML.res}
   {$R *.TLB}
 
 const

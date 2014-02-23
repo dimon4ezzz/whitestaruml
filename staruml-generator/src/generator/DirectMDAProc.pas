@@ -51,7 +51,7 @@ interface
 
 uses
   Classes, ComObj, ExtCtrls, MSScriptControl_TLB,
-  DirectMDAObjects, WSGenerator_TLB;
+  DirectMDAObjects, WSGenerator_TLB, StdVcl;
 
 const
   FILE_EXT_JS = '.JS';

@@ -2107,6 +2107,7 @@ begin
   try
     CollectPathFragment(AbsolutePath, SL);
     Parent := FRootNamespace;
+    Child := nil;
     for I := 1 to SL.Count - 2 do begin
       if Parent is PCppNamespace then begin
         Child := FindChildNamespace(Parent as PCppNamespace, SL[I]);

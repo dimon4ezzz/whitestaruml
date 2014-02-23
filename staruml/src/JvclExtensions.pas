@@ -186,7 +186,8 @@ type
 implementation
 
 uses
-  TypInfo,
+  System.UITypes,
+  System.TypInfo,
   JclRTTI,
   JvResources;
 
