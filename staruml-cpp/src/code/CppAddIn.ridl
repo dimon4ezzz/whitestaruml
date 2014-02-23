@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 7/14/2013 12:46:39 AM (- $Rev: 12980 $, 45331269).
+// File generated on 21/02/2014 21:37:55 (- $Rev: 12980 $, 8008732).
 
 [
   uuid(D571B8DA-75B5-40D7-A52E-5184E479F6A1),
@@ -18,6 +18,7 @@ library WSCppAddIn
 {
 
   importlib("stdole2.tlb");
+  importlib("WhiteStarUML.exe");
 
   coclass CppAddInObj;
 
@@ -28,6 +29,7 @@ library WSCppAddIn
   ]
   coclass CppAddInObj
   {
+    [default] interface IStarUMLAddIn;
   };
 
 };

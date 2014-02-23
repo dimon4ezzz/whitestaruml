@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, CategoryButtons, Generics.Collections, ActnList,
-  NavBarFrame, MenuManager;
+  NavBarFrame, MenuManager, System.Actions;
 
 type
   TNavBarItemVclImpl = class(TNavBarItem)
@@ -273,29 +273,6 @@ begin
   FNavBarItems.Add(Item);
 end;
 
-procedure TPaletteNavBarFrameVclImpl.LookAndFeelChanged
-  (ALookAndFeelManager: TLookAndFeelManager);
-begin
-    SetLookAndFeel(ALookAndFeelManager)
-end;
-
-procedure TPaletteNavBarFrameVclImpl.SetLookAndFeel
-  (ALookAndFeelManager: TLookAndFeelManager);
-var
-  GroupCollectionItem: TCollectionItem;
-  ButtonCategory: TButtonCategory;
-
-  begin
-  PaletteNavBar.Color := ALookAndFeelManager.WindowLightColor;
-
-  for GroupCollectionItem in PaletteNavBar.Categories do
-  begin
-    ButtonCategory := GroupCollectionItem as TButtonCategory;
-    ButtonCategory.Color := ALookAndFeelManager.WindowLightColor;
-    ButtonCategory.GradientColor := ALookAndFeelManager.WindowDarkColor;
-  end
-
-end;
 
 constructor TNavBarGroupVclImpl.Create
   (AVisibleButtonsContainer: TButtonCategories;
@@ -826,6 +803,34 @@ begin
   end;
   // Mouse up
 end;
+
+procedure TPaletteNavBarFrameVclImpl.LookAndFeelChanged
+  (ALookAndFeelManager: TLookAndFeelManager);
+begin
+    SetLookAndFeel(ALookAndFeelManager)
+end;
+
+procedure TPaletteNavBarFrameVclImpl.SetLookAndFeel
+  (ALookAndFeelManager: TLookAndFeelManager);
+var
+  GroupCollectionItem: TCollectionItem;
+  ButtonCategory: TButtonCategory;
+
+  begin
+  PaletteNavBar.Color := ALookAndFeelManager.WindowLightColor;
+
+  for GroupCollectionItem in PaletteNavBar.Categories do
+  begin
+    ButtonCategory := GroupCollectionItem as TButtonCategory;
+    //ButtonCategory.Color := ALookAndFeelManager.WindowLightColor;
+    ButtonCategory.Color := ALookAndFeelManager.WindowDarkColor;
+    ButtonCategory.GradientColor := ALookAndFeelManager.WindowDarkColor;
+    //ButtonCategory.GradientColor := clWhite;
+  end
+
+end;
+
+
 
 end.
 

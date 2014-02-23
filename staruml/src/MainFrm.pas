@@ -341,7 +341,6 @@ type
     ModelAddDiagramCompositeStructureDiagram: TdxBarButton;
     EditCopyDiagramAsBitmap: TdxBarButton;
     ToolBoxDockPanel: TdxDockPanel;
-    dxLayoutDockSite3: TdxLayoutDockSite;
     dxLayoutDockSite4: TdxLayoutDockSite;
     ViewDiagramPages: TdxBarSubItem;
     ViewDiagramPageList: TdxBarListItem;
@@ -381,6 +380,7 @@ type
     FormatAnnotationLineStyleDashDot: TdxBarButton;
     FormatAnnotationLineStyleDashDotDot: TdxBarButton;
     EditFindDiagramsWithSelectedModel: TdxBarButton;
+    dxLayoutDockSite3: TdxLayoutDockSite;
     PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);

@@ -11,27 +11,29 @@ unit WSRoseAddIn_TLB;
 // manual modifications will be lost.
 // ************************************************************************ //
 
-// $Rev: 17244 $
-// File generated on 1/1/2012 4:46:31 PM from Type Library described below.
+// $Rev: 52393 $
+// File generated on 23/02/2014 15:11:03 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml-rose\src\code\RoseAddIn (1)
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-rose\src\code\RoseAddIn (1)
 // LIBID: {A5C0474D-A3F2-4784-95E1-3629D439644F}
 // LCID: 0
 // Helpfile:
 // HelpString: WSRoseAddIn Library
 // DepndLst:
-//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
-//   (2) v1.0 WhiteStarUML, (C:\JS\Delphi\StarUMLFresh\WhiteStarUML.exe)
+//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
+//   (2) v1.0 WhiteStarUML, (C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML.exe)
+// SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
 {$WARN SYMBOL_PLATFORM OFF}
 {$WRITEABLECONST ON}
 {$VARPROPSETTER ON}
 {$ALIGN 4}
+
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants, WhiteStarUML_TLB;
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, WhiteStarUML_TLB, Winapi.ActiveX;
 
 
 
@@ -73,7 +75,7 @@ type
 
 implementation
 
-uses ComObj;
+uses System.Win.ComObj;
 
 class function CoRoseAddInObj.Create: IStarUMLAddIn;
 begin

@@ -73,6 +73,8 @@ object RevEngineForm: TRevEngineForm
       Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
       OnCancelButtonClick = SourceFileSelectionPageCancelButtonClick
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object SourceFileListLabel: TLabel
         Left = 8
         Top = 248

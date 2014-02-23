@@ -707,7 +707,7 @@ inherited PaletteNavBarFrameVclImpl: TPaletteNavBarFrameVclImpl
     OnSelectedCategoryChange = PaletteNavBarCategoryClicked
   end
   object NavBarActions: TActionList
-    Left = 320
+    Left = 312
     Top = 232
     object TextAction: TAction
       Caption = 'Text'

@@ -11,26 +11,28 @@ unit WSPowerPointTranslator_TLB;
 // manual modifications will be lost.
 // ************************************************************************ //
 
-// $Rev: 17244 $
-// File generated on 8/11/2012 8:53:20 PM from Type Library described below.
+// $Rev: 52393 $
+// File generated on 22/02/2014 14:37:28 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml-generator\src\translators\powerpoint-translator\PowerPointTranslator (1)
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\translators\powerpoint-translator\PowerPointTranslator (1)
 // LIBID: {AC9DE618-78D1-483A-B543-5C25D203F893}
 // LCID: 0
 // Helpfile:
 // HelpString: PowerPointTranslator Library
 // DepndLst:
-//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
+//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
+// SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
 {$WARN SYMBOL_PLATFORM OFF}
 {$WRITEABLECONST ON}
 {$VARPROPSETTER ON}
 {$ALIGN 4}
+
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, Winapi.ActiveX;
 
 
 // *********************************************************************//
@@ -96,7 +98,7 @@ type
 
 implementation
 
-uses ComObj;
+uses System.Win.ComObj;
 
 class function CoPowerPointTranslatorObj.Create: IPowerPointTranslatorObj;
 begin

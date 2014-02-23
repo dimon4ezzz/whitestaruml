@@ -426,8 +426,8 @@ var
 implementation
 
 uses
-  Dialogs, LogMgr, UMLVerify, NLS_StarUML,
-  Windows, Jpeg, ShellAPI, MainFrm, MessageFrame;
+  Windows, Dialogs, ShellAPI, System.UITypes, Jpeg, LogMgr, UMLVerify,
+  NLS_StarUML, MainFrm, MessageFrame;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -2075,7 +2075,9 @@ end;
 
 procedure PStarUMLApplication.SelectModel(AModel: PModel; AContextMenuLaunched: Boolean = False);
 begin
+  //BeginGrouping;
   SelectionManager.SelectModel(AModel,AContextMenuLaunched);
+  //EndGrouping;
 end;
 
 procedure PStarUMLApplication.DeselectModel(AModel: PModel);

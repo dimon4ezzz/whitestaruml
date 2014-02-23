@@ -75,7 +75,7 @@ implementation
 
 uses
   Windows, ComServ, Dialogs,
-  CSharpRevWizardFrm, CodeGenFrm, Forms, Symbols, Utility,
+  CSharpRevWizardFrm, CodeGenFrm, Forms, Symbols, Utility, System.UITypes,
   NLS_CSharpAddIn, WSCSharpAddIn_TLB;
 
 function TCSharpAddInObj.InitializeAddIn:HResult;

@@ -11,27 +11,29 @@ unit WSCSharpAddIn_TLB;
 // manual modifications will be lost.
 // ************************************************************************ //
 
-// $Rev: 17244 $
-// File generated on 1/1/2012 6:04:20 PM from Type Library described below.
+// $Rev: 52393 $
+// File generated on 22/02/2014 13:10:58 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml-csharp\src\code\CSharpAddIn (1)
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-csharp\src\code\CSharpAddIn (1)
 // LIBID: {4236BF82-40CE-4D40-BD49-61ADC888A811}
 // LCID: 0
 // Helpfile:
 // HelpString: WSCSharpAddIn Library
 // DepndLst:
-//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
-//   (2) v1.0 WhiteStarUML, (C:\JS\Delphi\StarUMLFresh\WhiteStarUML.exe)
+//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
+//   (2) v1.0 WhiteStarUML, (C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML.exe)
+// SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
 {$WARN SYMBOL_PLATFORM OFF}
 {$WRITEABLECONST ON}
 {$VARPROPSETTER ON}
 {$ALIGN 4}
+
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants, WhiteStarUML_TLB;
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, WhiteStarUML_TLB, Winapi.ActiveX;
 
 
 
@@ -73,7 +75,7 @@ type
 
 implementation
 
-uses ComObj;
+uses System.Win.ComObj;
 
 class function CoCSharpAddInObj.Create: IStarUMLAddIn;
 begin

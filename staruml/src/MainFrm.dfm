@@ -56,8 +56,6 @@ object MainForm: TMainForm
           Top = 0
           Width = 489
           Height = 280
-          ManagerFont = False
-          ParentFont = True
           DockingType = 0
           OriginalWidth = 300
           OriginalHeight = 200
@@ -84,7 +82,9 @@ object MainForm: TMainForm
             AllowFloating = False
             AutoHide = False
             CaptionButtons = [cbMaximize]
+            CustomCaptionButtons.Buttons = <>
             Dockable = False
+            TabsProperties.CustomButtons.Buttons = <>
             DockingType = 0
             OriginalWidth = 419
             OriginalHeight = 273
@@ -134,6 +134,8 @@ object MainForm: TMainForm
           AllowFloating = True
           AutoHide = False
           Caption = 'Toolbox'
+          CustomCaptionButtons.Buttons = <>
+          TabsProperties.CustomButtons.Buttons = <>
           DockingType = 1
           OriginalWidth = 167
           OriginalHeight = 140
@@ -852,6 +854,8 @@ object MainForm: TMainForm
         ActiveChildIndex = 1
         AllowFloating = True
         AutoHide = False
+        CustomCaptionButtons.Buttons = <>
+        TabsProperties.CustomButtons.Buttons = <>
         DockingType = 4
         OriginalWidth = 695
         OriginalHeight = 140
@@ -866,7 +870,9 @@ object MainForm: TMainForm
           AllowFloating = True
           AutoHide = False
           Caption = 'Output'
+          CustomCaptionButtons.Buttons = <>
           ImageIndex = 5
+          TabsProperties.CustomButtons.Buttons = <>
           DockingType = 0
           OriginalWidth = 185
           OriginalHeight = 140
@@ -910,7 +916,9 @@ object MainForm: TMainForm
           AllowFloating = True
           AutoHide = False
           Caption = 'Messages'
+          CustomCaptionButtons.Buttons = <>
           ImageIndex = 6
+          TabsProperties.CustomButtons.Buttons = <>
           DockingType = 0
           OriginalWidth = 185
           OriginalHeight = 140
@@ -961,6 +969,7 @@ object MainForm: TMainForm
       ActiveChildIndex = -1
       AllowFloating = True
       AutoHide = False
+      CustomCaptionButtons.Buttons = <>
       DockingType = 3
       OriginalWidth = 268
       OriginalHeight = 284
@@ -974,6 +983,8 @@ object MainForm: TMainForm
         ActiveChildIndex = 0
         AllowFloating = True
         AutoHide = False
+        CustomCaptionButtons.Buttons = <>
+        TabsProperties.CustomButtons.Buttons = <>
         DockingType = 2
         OriginalWidth = 268
         OriginalHeight = 237
@@ -992,7 +1003,9 @@ object MainForm: TMainForm
           AllowFloating = True
           AutoHide = False
           Caption = 'Model Explorer'
+          CustomCaptionButtons.Buttons = <>
           ImageIndex = 0
+          TabsProperties.CustomButtons.Buttons = <>
           DockingType = 0
           OriginalWidth = 268
           OriginalHeight = 237
@@ -1050,7 +1063,9 @@ object MainForm: TMainForm
           AllowFloating = True
           AutoHide = False
           Caption = 'Diagram Explorer'
+          CustomCaptionButtons.Buttons = <>
           ImageIndex = 1
+          TabsProperties.CustomButtons.Buttons = <>
           DockingType = 0
           OriginalWidth = 268
           OriginalHeight = 237
@@ -1094,6 +1109,8 @@ object MainForm: TMainForm
         ActiveChildIndex = 0
         AllowFloating = True
         AutoHide = False
+        CustomCaptionButtons.Buttons = <>
+        TabsProperties.CustomButtons.Buttons = <>
         DockingType = 2
         OriginalWidth = 268
         OriginalHeight = 183
@@ -1108,7 +1125,9 @@ object MainForm: TMainForm
           AllowFloating = True
           AutoHide = False
           Caption = 'Properties'
+          CustomCaptionButtons.Buttons = <>
           ImageIndex = 2
+          TabsProperties.CustomButtons.Buttons = <>
           DockingType = 0
           OriginalWidth = 268
           OriginalHeight = 183
@@ -1203,7 +1222,9 @@ object MainForm: TMainForm
           AllowFloating = True
           AutoHide = False
           Caption = 'Documentation'
+          CustomCaptionButtons.Buttons = <>
           ImageIndex = 3
+          TabsProperties.CustomButtons.Buttons = <>
           DockingType = 0
           OriginalWidth = 268
           OriginalHeight = 183
@@ -1247,7 +1268,9 @@ object MainForm: TMainForm
           AllowFloating = True
           AutoHide = False
           Caption = 'Attachments'
+          CustomCaptionButtons.Buttons = <>
           ImageIndex = 4
+          TabsProperties.CustomButtons.Buttons = <>
           DockingType = 0
           OriginalWidth = 268
           OriginalHeight = 183
@@ -11086,12 +11109,16 @@ object MainForm: TMainForm
   end
   object DockingManager: TdxDockingManager
     Color = clBtnFace
+    DefaultHorizContainerSiteProperties.CustomCaptionButtons.Buttons = <>
     DefaultHorizContainerSiteProperties.Dockable = True
     DefaultHorizContainerSiteProperties.ImageIndex = -1
+    DefaultVertContainerSiteProperties.CustomCaptionButtons.Buttons = <>
     DefaultVertContainerSiteProperties.Dockable = True
     DefaultVertContainerSiteProperties.ImageIndex = -1
+    DefaultTabContainerSiteProperties.CustomCaptionButtons.Buttons = <>
     DefaultTabContainerSiteProperties.Dockable = True
     DefaultTabContainerSiteProperties.ImageIndex = -1
+    DefaultTabContainerSiteProperties.TabsProperties.CustomButtons.Buttons = <>
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -11

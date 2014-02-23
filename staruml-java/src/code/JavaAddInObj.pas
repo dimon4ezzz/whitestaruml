@@ -74,7 +74,7 @@ type
 implementation
 
 uses
-  Windows, ComServ, Dialogs, Forms,
+  Windows, ComServ, Dialogs, Forms, System.UITypes,
   CodeGenWizardFrm, RevEngWizardFrm, Symbols, NLS_JavaAddIn, Utility, WSJavaAddIn_TLB;
 
 ////////////////////////////////////////////////////////////////////////////////

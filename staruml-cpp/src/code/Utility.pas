@@ -349,8 +349,8 @@ var
   Dir: string;
 begin
   Dir := ExtractFilePath(FileName);
-  if DirectoryCreation and not DirectoryExists(Dir) then
-    if not ForceDirectories(Dir) then
+  if DirectoryCreation and not SysUtils.DirectoryExists(Dir) then
+    if not SysUtils.ForceDirectories(Dir) then
       raise Exception.Create(ERR_CANNOT_CREATE_DIRECTORY);
   Buffer.SaveToFile(FileName);
 end;
