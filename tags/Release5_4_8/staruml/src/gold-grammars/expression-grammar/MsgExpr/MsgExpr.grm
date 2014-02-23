@@ -1,0 +1,64 @@
+﻿"Start Symbol" = <message_expression>
+"Case Sensitive" = False                
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+{Visibility Chars} = [+-#~]
+{Restricted Chars} = {All Space} + {Visibility Chars} ! Restricted Chars should not start or end an indentifier as they may collide with other symbols                   
+{Boundary String Chars} = {All Letters} +  {Number} + {Euro Sign} + [_,;/\.&@$%"`’'']
+{String Chars} = {Boundary String Chars} + {Restricted Chars}
+
+
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )*
+
+stereotypeStart = '<<'
+! Spaces to avoid collision with close angle bracket
+stereotypeEnd = {All Space}* '>>' 
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<message_expression> ::= <stereotype_part> <recurrence_part>  <message_name_clause> <argument_part>
+                           
+<stereotype_part> ::= stereotypeStart <stereotype> stereotypeEnd
+                   |  <>
+
+<stereotype> ::= id
+
+
+<recurrence_part> ::= <iteration_clause_part>  <branch_clause_part>
+        | <branch_clause_part>  <iteration_clause_part>
+        | <iteration_clause_part>
+        | <branch_clause_part> 
+        | <>
+
+<iteration_clause_part> ::= '*' '[' <iteration__branch_clause> ']'
+
+<branch_clause_part> ::= '[' <iteration__branch_clause> ']'
+                      
+!<return_part> ::= <return_id> ':=' 
+!               | <>
+
+                    
+<message_name_clause> ::= <message_name> 
+                | <return_id> ':=' <message_name>                
+                | <>
+                
+<message_name> ::= id
+
+<return_id> ::= id
+
+
+<argument_part> ::=  '(' <argument_string> ')'
+                 |  <>
+                 
+<argument_string> ::= id
+                    |  <>
+                  
+<iteration__branch_clause> ::= id 

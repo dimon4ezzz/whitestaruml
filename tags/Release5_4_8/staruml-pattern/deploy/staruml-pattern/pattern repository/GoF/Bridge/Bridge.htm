@@ -1,0 +1,71 @@
+<html>
+
+<head>
+<title>Bridge Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Bridge </h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Decouple an abstraction from its implementation so that the two can vary 
+	independently.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp;
+<img border="0" src="Bridge_Model1.gif"></p>
+<ul type="square">
+  <li><b>Abstraction</b> : Defines the abstraction's interface.</li>
+  <li><b>RefinedAbstraction</b> : Extends the interface defined by Abstraction.</li>
+  <li><b>Implementor</b> : Defines the interface for implementation classes.</li>
+  <li><b>ConcreteImplementor</b> : Implements the Implementor interface and 
+	defines its concrete implementation.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>you want to avoid a permanent binding between an abstraction and its 
+	implementation. This might be the case, for example, when the implementation 
+	must be selected or switched at run-time.</li>
+  <li>both the abstractions and their implementations should be extensible by 
+	subclassing. In this case, the Bridge pattern lets you combine the different 
+	abstractions and implementations and extend them independently.</li>
+  <li>changes in the implementation of an abstraction should have no impact on 
+	clients; that is, their code should not have to be recompiled.</li>
+  <li>(C++) you want to hide the implementation of an abstraction completely 
+	from clients. In C++ the representation of a class is visible in the class 
+	interface.</li>
+  <li>you have a proliferation of classes as shown earlier in the first 
+	Motivation diagram. Such a class hierarchy indicates the need for splitting 
+	an object into two parts. Rumbaugh uses the term &quot;nested generalizations&quot; 
+	[RBP+91] to refer to such class hierarchies.</li>
+  <li>you want to share an implementation among multiple objects (perhaps using 
+	reference counting), and this fact should be hidden from the client.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>Decoupling interface and implementation.</b>&nbsp; An implementation is 
+	not bound permanently to an interface. The implementation of an abstraction 
+	can be configured at run-time. It's even possible for an object to change 
+	its implementation at run-time. Decoupling Abstraction and Implementor also 
+	eliminates compile-time dependencies on the implementation. Changing an 
+	implementation class doesn't require recompiling the Abstraction class and 
+	its clients. This property is essential when you must ensure binary 
+	compatibility between different versions of aclass library. </li>
+  <li><b>Improved extensibility.</b> You can extend the Abstraction and 
+	Implementor hierarchies independently.</li>
+  <li><b>Hiding implementation details from clients . </b>You can shield clients 
+	from implementation details, like the sharing of implementor objects and the 
+	accompanying reference count mechanism (if any).</li>
+</ul>
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Creating a Project</title>
+  <keywords>
+    <keyword translate="true">Creating<keyword translate="true">project</keyword></keyword>
+    <keyword translate="true">New project dialog</keyword>
+    <keyword translate="true">Project</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Creating a Project</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">In order to work on a new system, you must create a new project. You may start with a completely empty project or with a new project that is initialized according to a specific approach.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A project can be created based on the default approach or you can choose which approach to use when creating the project. When you find yourself using the same approach every time you start a project, you can set the default approach.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To create a new project based on the default approach, do the following.</text></para>
+    <list id="85" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">New Project</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">A new project is created. Depending on the approach, profiles and frameworks are included</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To choose the approach when creating a project, do the following.</text></para>
+    <list id="86" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">New Project By Approach</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">New Project By Approach</text><text styleclass="List1" translate="true"> dialog, choose an approach and clik </text><text styleclass="MenuCommand" translate="true">OK</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">A new project is created. The project includes the profiles and framework from the selected approach.</text></li>
+    </list>
+    <para styleclass="kadov-p" style="text-align:left; text-indent:0px; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><image src="ch03_h1.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Notes"><image src="note.bmp" scale="100.00%" styleclass="Notes"></image><text styleclass="Notes" translate="true">&#32;</text><text styleclass="Emphasis" translate="true">Note:</text><text styleclass="Notes" translate="true"> The list of the available approaches may differ depending on installed modules.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To set the default approach, do the following.</text></para>
+    <list id="87" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">New Project By Approach</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">New Project By Approach</text><text styleclass="List1" translate="true"> dialog, select the approach you want to make the default approach from the </text><text styleclass="MenuCommand" translate="true">Approaches</text><text styleclass="List1" translate="true"> list and select the </text><text styleclass="MenuCommand" translate="true">Set As Default Approach</text><text styleclass="List1" translate="true"> check box.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">Click </text><text styleclass="MenuCommand" translate="true">OK</text><text styleclass="List1Last" translate="true">. A new project is created based on the selected approach. From now on you can choose </text><text styleclass="MenuCommand" translate="true">New Project</text><text styleclass="List1Last" translate="true"> on the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1Last" translate="true"> menu to create a project based on this default approach.</text></li>
+    </list>
+  </body>
+</topic>

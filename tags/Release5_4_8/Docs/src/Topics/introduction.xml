@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Introduction</title>
+  <keywords>
+    <keyword translate="true">Intrduction</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><var styleclass="Heading1">Introduction</var></para>
+    </header>
+    <para styleclass="Normal"><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> is a fork of StarUML with an intent to revive its Delphi code base by updating code to recent Delphi editions, reducing dependence on third party components and fixing bugs and adding new features.</text></para>
+  </body>
+</topic>

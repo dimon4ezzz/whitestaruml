@@ -1,0 +1,31 @@
+[Grammars]
+	RoleExpr.GDL, classfier_role
+
+[Output]
+	RoleExpr.GMR, RoleExpr
+
+[Samples]
+	RoleExpr_Sample.TXT, classifier_role_expression
+
+[Libraries]
+
+[Breakpoints]
+
+[Project Info]
+Version = 2
+
+
+[Project Settings]
+	ParseEntireInput = Y
+	InsertErrorNodes = Y
+	ReportParseTimes = N
+	StepIntoTerminals = Y
+	StepIntoSpaces = N
+	StepIntoTokens = N
+	StackShowBacktrackSymbols = N
+	BuildDebugTree = Y
+	ExpandNodesOption = 0
+	DataSourceOption = 0
+	SaveCache = Y
+	SaveTree = Y
+	SaveErrors = Y

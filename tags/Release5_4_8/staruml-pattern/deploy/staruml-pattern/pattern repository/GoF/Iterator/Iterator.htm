@@ -1,0 +1,60 @@
+<html>
+
+<head>
+<title>Iterator Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Iterator</h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Provide a way to access the elements of an aggregate object sequentially 
+	without exposing its underlying representation.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp; <img border="0" src="Iterator_Model1.gif" width="352" height="277"></p>
+<ul type="square">
+  <li><b>Iterator: </b>defines an interface for accessing and traversing 
+	elements.</li>
+  <li><b>ConcreteIterator:</b> implements the Iterator interface. keeps track of 
+	the current position in the traversal of the aggregate.</li>
+  <li><b>Aggregate: </b>defines an interface for creating an Iterator object.</li>
+  <li><b>ConcreteAggregate:</b> implements the Iterator creation interface to 
+	return an instance of the proper ConcreteIterator.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>to access an aggregate object's contents without exposing its internal 
+	representation.</li>
+  <li>to support multiple traversals of aggregate objects.</li>
+  <li>to provide a uniform interface for traversing different aggregate 
+	structures (that is, to support polymorphic iteration).</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>It supports variations in the traversal of an aggregate. </b>Complex 
+	aggregates may be traversed in many ways. For example, code generation and 
+	semantic checking involve traversing parse&nbsp; trees. Code generation may 
+	traverse the parse tree inorder or preorder. Iterators make it easy to 
+	change the traversal algorithm: Just replace the iterator instance with a 
+	different one. You can also define Iterator subclasses to support new 
+	traversals.</li>
+  <li><b>Iterators simplify the Aggregate interface. </b>Iterator's traversal 
+	interface obviates the need for a similar interface in Aggregate, thereby 
+	simplifying the aggregate's interface.</li>
+  <li><b>More than one traversal can be pending on an aggregate. </b> An 
+	iterator keeps track of its own traversal state. Therefore you can have more 
+	than one traversal in progress at once.</li>
+</ul>
+
+</body>
+
+</html>

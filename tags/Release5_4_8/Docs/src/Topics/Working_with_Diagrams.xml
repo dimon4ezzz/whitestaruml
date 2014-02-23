@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd" status="Out Of Date">
+  <title translate="true">Working with Diagrams</title>
+  <keywords>
+    <keyword translate="true">Reference to the diagrams</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Working with Diagrams</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To work with the diagrams available in </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> some understanding of UML is useful. However, the best way to learn UML is to use it in diagrams and talk about the diagrams. A diagram is finished if it makes sense and you can explain your thoughts to anyone who needs to know.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Each diagram has a specific set of elements. Elements have a meaning within the type of diagram, these are the semantics of the element. Understanding the semantics of the element will help you better express your thoughts in the diagram. The semantics are the basis of the conversation you will have about the diagram which is after all the purpose of the Unified Modeling Language.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline;" translate="true">Types of Diagrams Available</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><table rowcount="12" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Diagram Type</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch04_h63.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Class Diagram</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram is a visual expression of various static relations of class-related elements. Class Diagram can contain not only classes but also interfaces, enumerations, packages, various relations, instances, and their links.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch04_h64.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Use Case Diagram</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Use Case Diagram is an expression of relations between the use cases in a specific system or object and the external actors. Use Case expresses the functions of the system and how the system functions interact with the external actors.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch04_h65.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Sequence Diagram</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Diagram expresses the interactions of instances. It is a direct expression of the InteractionInstanceSet, which is a set of the stimuli exchanged between the instances within a CollaborationInstanceSet. While Sequence Role Diagram is a ClassifierRole-oriented expression, Sequence Diagram is an Instance-oriented expression.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch04_h66.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Sequence Diagram (Role)</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Role Diagram expresses the interactions of the role concepts. It is a direct expression of the Interaction, which is a set of the messages exchanged between the ClassifierRoles within a Collaboration. While Sequence Diagram is an Instance-oriented expression, Sequence Role Diagram is a ClassifierRole-oriented expression.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch04_h67.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Collaboration Diagram</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Collaboration Diagram expresses the collaboration between instances. It is a direct expression of the collaboration model of the instances within a CollaborationInstanceSet. While Collaboration Role Diagram is a ClassifierRole-oriented expression, Collaboration Diagram is an Instance-oriented expression.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch04_h68.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Collaboration Diagram (Role)</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Collaboration Role Diagram expresses the collaboration between the role concepts. It is a direct expression of the collaboration model of the ClassifierRoles within a Collaboration. While Collaboration Diagram is an Instance-oriented expression, Collaboration Role Diagram is a ClassifierRole-oriented expression.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch04_h69.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Statechart Diagram</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram expresses the static behaviors of a specific object through states and their transitions. Although Statechart Diagram is generally used to express the behaviors for instances of classes, it can also be used to express behaviors of other elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch04_h70.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Activity Diagram</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Activity Diagram is a special form of Statechart Diagram that is suitable for expressing the activity execution flow. Activity Diagram is commonly used for expressing workflow, and it is frequently used for objects like classes, packages, and operations.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch04_h71.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Component Diagram</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Component Diagram expresses the dependency between the software components. The elements that constitute software components and the elements that implement those components can all be expressed by Component Diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch04_h72.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Deployment Diagram</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Deployment Diagram expresses the hardware elements of the physical computer and devices and the software components, processes and objects that are assigned to them.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch04_h73.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Composite Structure Diagram</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Composite Structure Diagram is a diagram to express internal structure of Classifier. It is included in interaction point with other parts of system.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><image src="note.bmp" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true"> Note</text></para>
+    <list id="1" type="ul" listtype="bullet" formatstring="·" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:10px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none; font-family:Symbol; font-size:9pt; color:#000000;">
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:10px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">The types of view elements available differ for each diagram.</text></li>
+    </list>
+  </body>
+</topic>

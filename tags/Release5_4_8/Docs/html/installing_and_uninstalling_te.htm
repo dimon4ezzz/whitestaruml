@@ -1,0 +1,175 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Generating Code and Documents &gt; Installing and Uninstalling Templates</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="">
+   <meta name="description" content="Installing and Uninstalling Templates">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?installing_and_uninstalling_te.htm"; }
+  else { parent.quicksync('a9.3'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="ch08.htm">Generating Code and Documents</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Installing and Uninstalling Templates</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="using_batches.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="ch08.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="ch09.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Organization of templates</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Templates are installed under the folder "&lt;STARUML_INSTALL_PATH&gt;\modules\staruml-generator\templates" and batches are under the folder "&lt;STARUML_INSTALL_PATH&gt;\modules\staruml-generator\batches". In general, one template matches one folder and the folder contains all files associated to the template. A template includes at least two files. The first is template description file (.tdf) and the second is the template document (.cot, .doc, .xls, .ppt, ...). Batch includes one file that is batch file (.btf).</span></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">Directory structure of staruml-generator module is as follow.</span></p>
+<p style="white-space: nowrap; background: #f7f7f7; margin: 14px 0px 10px 15px;"><span style="font-family: 'Courier New'; color: #008080;">staruml-generator\</span></p>
+<p style="white-space: nowrap; background: #f7f7f7; margin: 10px 0px 10px 15px;"><span style="font-family: 'Courier New'; color: #008080;">&nbsp;&nbsp;&nbsp;&nbsp;templates\</span></p>
+<p style="white-space: nowrap; background: #f7f7f7; margin: 10px 0px 10px 15px;"><span style="font-family: 'Courier New'; color: #008080;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;template1\</span></p>
+<p style="white-space: nowrap; background: #f7f7f7; margin: 10px 0px 10px 15px;"><span style="font-family: 'Courier New'; color: #008080;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;template1.tdf</span></p>
+<p style="white-space: nowrap; background: #f7f7f7; margin: 10px 0px 10px 15px;"><span style="font-family: 'Courier New'; color: #008080;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;template1.doc</span></p>
+<p style="white-space: nowrap; background: #f7f7f7; margin: 10px 0px 10px 15px;"><span style="font-family: 'Courier New'; color: #008080;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;template2\</span></p>
+<p style="white-space: nowrap; background: #f7f7f7; margin: 10px 0px 10px 15px;"><span style="font-family: 'Courier New'; color: #008080;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...</span></p>
+<p style="white-space: nowrap; background: #f7f7f7; margin: 10px 0px 10px 15px;"><span style="font-family: 'Courier New'; color: #008080;">&nbsp;&nbsp;&nbsp;&nbsp;batches\</span></p>
+<p style="white-space: nowrap; background: #f7f7f7; margin: 10px 0px 10px 15px;"><span style="font-family: 'Courier New'; color: #008080;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;batch1.btf</span></p>
+<p style="white-space: nowrap; background: #f7f7f7; margin: 10px 0px 10px 15px;"><span style="font-family: 'Courier New'; color: #008080;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Installation and uninstallation of &nbsp;a template</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Installing a template is very simple. Simply copy the template folder to the "&lt;STARUML_INSTALL_PATH&gt;\modules\staruml-generator\templates".</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch08_h95.jpg" width="580" height="392" border="0" alt="ch08_h95"></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">Uninstalling a template is also very simple. Delete the template folder under the "&lt;STARUML_INSTALL_PATH&gt;\modules\staruml-generator\templates". It's all.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch08_h96.jpg" width="580" height="392" border="0" alt="ch08_h96"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Installation and uninstallation of &nbsp;a batch</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Installing a batch is very simple. Simply copy the batch file (.btf) &nbsp;to the "&lt;STARUML_INSTALL_PATH&gt;\modules\staruml-generator\batches".</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch08_h97.jpg" width="580" height="393" border="0" alt="ch08_h97"></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">To uninstall a batch, delete the batch file (.btf) in the "&lt;STARUML_INSTALL_PATH&gt;\modules\staruml-generator\batches".</span></p>
+<p style="margin: 14px 0px 14px 0px;"><img src="ch08_h98.jpg" width="580" height="393" border="0" alt="ch08_h98"></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

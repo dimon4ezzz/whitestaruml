@@ -1,0 +1,190 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>User-Interface Reference &gt; Viewers</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Viewers">
+   <meta name="description" content="Viewers">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?viewers.htm"; }
+  else { parent.quicksync('a12.4'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="ch11.htm">User-Interface Reference</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Viewers</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="toolbars.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="ch11.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="dialogs.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Model Explorer</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Model Explorer supports the user to effectively manage and explore the model elements by showing them in hierarchical structures. Select the </span><span style="font-size: 9pt; font-weight: bold;">[Model Explorer] </span><span style="font-size: 9pt;">tab in the </span><span style="font-size: 9pt; font-weight: bold;">[Browser]</span><span style="font-size: 9pt;"> area to open the Model Explorer.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h165.jpg" width="236" height="252" border="0" alt="ch11_h165"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Diagram Explorer</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Diagram Explorer supports the user to effectively manage and explore the diagrams by listing them by their types. Select the </span><span style="font-size: 9pt; font-weight: bold;">[Diagram Explorer] </span><span style="font-size: 9pt;">tab in the </span><span style="font-size: 9pt; font-weight: bold;">[Browser]</span><span style="font-size: 9pt;"> area to open the Diagram Explorer.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h166.jpg" width="236" height="251" border="0" alt="ch11_h166"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Property Editor</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Property Editor is used for editing the detailed properties of the currently selected model element. Select the </span><span style="font-size: 9pt; font-weight: bold;">[Properties]</span><span style="font-size: 9pt;"> tab in the </span><span style="font-size: 9pt; font-weight: bold;">[Inspector]</span><span style="font-size: 9pt;"> area to open the Property Editor.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h167.jpg" width="315" height="330" border="0" alt="ch11_h167"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Documentation Editor</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Documentation Editor is used for recording additional descriptions of the currently selected element. Select the </span><span style="font-size: 9pt; font-weight: bold;">[Documentation]</span><span style="font-size: 9pt;"> tab in the </span><span style="font-size: 9pt; font-weight: bold;">[Inspector]</span><span style="font-size: 9pt;"> area to open the Documentation Editor.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h168.jpg" width="315" height="332" border="0" alt="ch11_h168"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Attachments Editor</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Attachments Editor allows the user to attach files or web URLs to a specific element. Select the </span><span style="font-size: 9pt; font-weight: bold;">[Attachments]</span><span style="font-size: 9pt;"> tab in the </span><span style="font-size: 9pt; font-weight: bold;">[Inspector] </span><span style="font-size: 9pt;">area to open the Attachments Editor.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h169.jpg" width="313" height="328" border="0" alt="ch11_h169"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Attachment List</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows a list of the files or URLs attached to the element.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Open Button</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Opens the selected attachment file or URL with the associated program. For example, if a .doc file is selected, it is automatically opened in Microsoft Word, and if a web address such as http://www.staruml.com is selected, it is opened in the web browser.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Add Button</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Attaches a new file or URL. Click this button to open the Attachment Item dialog box.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Remove Button</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Removes the selected item from the attachment list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Edit Button</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Edits the selected item from the attachment list. The Attachment Item Editor can be used to change the file name or enter another URL.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Move Up Button</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Moves the selected item up in the attachment list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Move Down Button</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Moves the selected item down in the attachment list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Attachment Item Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Edits the attachment item name. Enter a URL or pathname for a file. The button on the right can be used to select a file.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h170.jpg" width="438" height="133" border="0" alt="ch11_h170"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Output Window</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Output Window keeps and shows a record of the events in WhiteStarUml. Select the </span><span style="font-size: 9pt; font-weight: bold;">[Output]</span><span style="font-size: 9pt;"> tab in the </span><span style="font-size: 9pt; font-weight: bold;">[Information]</span><span style="font-size: 9pt;"> area to open the Output Window.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h171.jpg" width="598" height="126" border="0" alt="ch11_h171"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Messages Window</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Message Window shows the results of element search or software model inspection. Select the </span><span style="font-size: 9pt; font-weight: bold;">[Messages]</span><span style="font-size: 9pt;"> tab in the </span><span style="font-size: 9pt; font-weight: bold;">[Information]</span><span style="font-size: 9pt;"> area to open the Message Window.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h172.jpg" width="597" height="151" border="0" alt="ch11_h172"></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

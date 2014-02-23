@@ -1,0 +1,51 @@
+[Grammars]
+	CS.GDL, CS
+
+[Output]
+	CS.GMR, _CS
+
+[Samples]
+	sample2.cs, compilation_unit
+	sample3.cs, compilation_unit
+	sample4.cs, compilation_unit
+	sample5.cs, compilation_unit
+	sample6.cs, compilation_unit
+	sample7.cs, compilation_unit
+	sample8.cs, compilation_unit
+	sample9.cs, compilation_unit
+	sample10.cs, compilation_unit
+	sample11.cs, compilation_unit
+	sample12.cs, compilation_unit
+	sample13.cs, compilation_unit
+	sample14.cs, compilation_unit
+	sample15.cs, compilation_unit
+	sample16.cs, compilation_unit
+	sample17.cs, compilation_unit
+	sample18.cs, compilation_unit
+	sample19.cs, compilation_unit
+	sample20.cs, compilation_unit
+	sample21.cs, compilation_unit
+	Operator.TXT, compilation_unit
+
+[Libraries]
+
+[Breakpoints]
+
+[Project Info]
+Version = 2
+
+
+[Project Settings]
+	ParseEntireInput = Y
+	InsertErrorNodes = Y
+	ReportParseTimes = N
+	StepIntoTerminals = Y
+	StepIntoSpaces = N
+	StepIntoTokens = N
+	StackShowBacktrackSymbols = N
+	BuildDebugTree = Y
+	ExpandNodesOption = 0
+	DataSourceOption = 0
+	SaveCache = Y
+	SaveTree = Y
+	SaveErrors = Y

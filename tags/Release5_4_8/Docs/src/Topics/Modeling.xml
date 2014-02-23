@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Modeling</title>
+  <body>
+    <header>
+      <para styleclass="Heading1" style="margin-top:19px; line-height:1.0; border-style:single; border-width:1px; border-top:none; border-right:none; border-left:none; tabstops:none;"><text styleclass="Heading1" style="font-family:Verdana; font-size:18pt; vertical-align:baseline; color:#000080;" translate="true">Modeling</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Modeling or working with diagrams, requires understanding of the semantics, meaning of what is expressed in a diagram and the meaning of the diagram elements. But, modeling also requires the knowledge about how </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> diagrams work. </text><text styleclass="Normal" translate="true">Working with diagrams in the context of the specific diagram is discussed in </text><link displaytype="text" defaultstyle="true" type="topiclink" href="Working_with_Diagrams" styleclass="Normal" translate="true">the next chapter</link><text styleclass="Normal" translate="true">. In this chapter working with diagrams is discussed in the context of </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true">. The procedures discussed here are applicable to most diagram types.</text></para>
+  </body>
+</topic>

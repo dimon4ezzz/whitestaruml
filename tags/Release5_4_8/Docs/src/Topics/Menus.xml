@@ -1,0 +1,908 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd" status="Out Of Date">
+  <title translate="true">Menus</title>
+  <keywords>
+    <keyword translate="true">Menu, explanation of</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Menus</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">This section describes in detail all of the menu items included in </text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">’s main menu.</text></para>
+    <list id="1" type="ul" listtype="bullet" formatstring="·" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none; font-family:Symbol; font-size:9pt; color:#000000;">
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">File Menu</text></li>
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Edit Menu</text></li>
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Format Menu</text></li>
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Model Menu</text></li>
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">View Menu</text></li>
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Tools Menu</text></li>
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Help Menu</text></li>
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:10px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Shortcuts</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">File Menu</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The File menu contains the following menu items.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="20" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Menu Item</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h2.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> New Project[Ctrl+N]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a new project.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">New Project By Approach[Ctrl+I]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the Select New Project dialog box.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h3.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Open[Ctrl+O]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens a project file.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h4.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Save[Ctrl+S]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Saves the project file.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Save As[Ctrl+A]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Saves the project as another file.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Close</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Closes the current project.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Unit-&gt;Control Unit</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Separates and saves the currently selected element as a unit.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Unit-&gt;Uncontrol Unit</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Merges the currently selected unit element to the parent unit (or project).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Unit-&gt;Delete Unit</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Deletes the currently selected unit element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Unit-&gt;Save Unit</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Saves the currently selected unit as a file.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Unit-&gt;Save Unit As</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Saves the currently selected unit as another file.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Import-&gt;Framework</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Imports a framework into the current project.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Import-&gt;Model Fragment</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Imports a model fragment into the current project.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Export-&gt;Model Fragment</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Saves the currently selected element as a model fragment file.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Export Diagram[Shift+Ctrl+D]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Saves the currently active diagram as an image file.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Page Setup</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Configures the page for printing</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="height:28px; background-color:#ffffff;">
+          <para><image src="ch11_h5.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Print[Ctrl+P]</text></para>
+        </td>
+        <td style="height:28px; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Prints the diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Recent Files</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Contains a list of the recently opened files.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Exit</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Exits the program.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Edit Menu</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The Edit menu contains the following menu items.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="12" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Menu Item</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h6.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Undo[Ctrl+Z]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Cancels the most recent action performed by the user.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h7.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Redo[Ctrl+Y]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Repeats the most recent action performed by the user.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h8.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Cut[Ctrl+X]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Copies the selected elements to clipboard and removes them from the current location.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h9.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Copy[Ctrl+C]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Copies the selected elements to clipboard.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Copy Diagram[Shift+Ctrl+C]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Copies the currently active diagram to clipboard.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Copy Diagram as Bitmap[Shift+Ctrl+C]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Copies the currently active diagram to clipboard as Bitmap.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="height:27px; background-color:#ffffff;">
+          <para><image src="ch11_h10.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Paste[Ctrl+V]</text></para>
+        </td>
+        <td style="height:27px; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Pastes the clipboard contents into the currently selected element (or diagram).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h11.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Delete[Del]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Deletes the selected view elements in the diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Delete From Model[Ctrl+Del]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Deletes the selected model elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h12.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Find[Ctrl+F]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Finds an element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Select All[Ctrl+A]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Selects all the elements in the current diagram.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Format Menu</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The Format menu contains the following menu items.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="31" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Menu Item</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h13.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Font</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the font for the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h14.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Line Color</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the line color for the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h15.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Fill Color</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the fill color for the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h16.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Line Style-&gt;Rectilinear[Ctrl+L]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the line style of the selected connection view element as rectilinear.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h16.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Line Style-&gt;Oblique[Ctrl+B]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the line style of the selected connection view element as oblique.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h17.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Stereotype Display-&gt;None[Shift+Ctrl+N]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows nothing for the stereotype of the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h17.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Stereotype Display-&gt;Textual[Shift+Ctrl+T]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the stereotype of the selected view elements with text.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h17.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Stereotype Display-&gt;Iconic[Shift+Ctrl+I]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the stereotype of the selected view elements with icons.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h17.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Stereotype Display-&gt;Decoration[Shift+Ctrl+E]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the stereotype of the selected view elements with decoration.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h18.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Suppress Attributes[Shift+Ctrl+A]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Suppresses the section that displays the attributes for the selected view elements (e.g. class, usecase, etc.).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h19.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Suppress Operations[Shift+Ctrl+O]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Suppresses the section that displays the operations for the selected view elements (e.g. class, subsystem, etc.).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h20.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Suppress Literals[Shift+Ctrl+L]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Suppresses the section that displays the attributes for the selected enumerations.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h21.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Word Wrap Name</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the Word Wrap of the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h322.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Show Parent Name</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the parent name of the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h23.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Show Operation Signature</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the operation signature of the selected view elements (e.g. class, subsystem, etc.).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h323.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Show Properties</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the property items (e.g. tagged values, changeability attribute, etc.) included in view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h221.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Show Compartment Visibility</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the visibility of the compartments of the selected view elements (e.g. attribute compartment, operation compartment, etc.).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h324.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Show Compartment Stereotype</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the stereotypes of the compartments of the selected view elements (e.g. attribute compartment, operation compartment, etc.).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h222.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Auto Resize</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Automatically resizes the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Alignment-&gt;</text><image src="ch11_h325.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Bring to Front</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Brings the selected elements to front.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Alignment-&gt;</text><image src="ch11_h326.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Send to Back</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sends the selected elements to back.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Alignment-&gt;</text><image src="ch11_h327.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Align Left</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Aligns the selected elements to left.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Alignment-&gt;</text><image src="ch11_h328.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Align Right</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Aligns the selected elements to right.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Alignment-&gt;</text><image src="ch11_h329.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Align Middle</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Centers the selected elements horizontally.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Alignment-&gt;</text><image src="ch11_h330.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Align Top</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Aligns the selected elements to top.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Alignment-&gt;</text><image src="ch11_h331.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Align Bottom</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Aligns the selected elements to bottom.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Alignment-&gt;</text><image src="ch11_h332.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Align Center</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Centers the selected elements vertically.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Alignment-&gt;</text><image src="ch11_h333.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Space Equally, Horizontally</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Evenly distributes the selected elements horizontally.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Alignment-&gt;</text><image src="ch11_h334.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Space Equally, Vertically</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Evenly distributes the selected elements vertically.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h335.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Layout Diagram</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Lays out the view elements in the current diagram.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Model Menu</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The Model menu contains the following menu items.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="10" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Menu Item</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Add-&gt;...</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Adds a model element. The model elements that can be added under the currently selected model elements are displayed in the sub menu.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Add Diagram-&gt;...</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Adds a diagram. The diagrams that can be added under the currently selected model elements are displayed in the sub menu.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h336.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Collection Editor[Ctrl+F5]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the collection editor that can be used to edit the child elements of the currently selected model element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h337.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Constraints[Ctrl+F6]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the constraint editor that can be used to edit the constraints of the currently selected model element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h338.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> TaggedValues[Ctrl+F7]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the tagged value editor that can be used to edit the tagged values of the currently selected model element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h339.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Profiles[Ctrl+F8]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the profile manager.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h340.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Verify Model[F9]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the Verify Model dialog box that can be used to inspect the model elements in the current project.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Convert Diagram-&gt;Convert Sequence(Role) to Collaboration(Role)</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Generates a new diagram by converting the currently selected sequence (role) diagram into a collaboration (role) diagram (</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; text-decoration:underline; vertical-align:baseline; color:#000000;" translate="true">default Add-In function</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Convert Diagram-&gt;Convert Collaboration(Role) to Sequence(Role)</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Generates a new diagram by converting the currently selected collaboration (role) diagram into a sequence (role) diagram (</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; text-decoration:underline; vertical-align:baseline; color:#000000;" translate="true">default Add-In function</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">).</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">View Menu</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The View menu contains the following menu items.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="27" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Menu Item</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Close Diagram</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Closes the currently active diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Close All Diagrams</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Closes all open diagrams.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Select In Model Explorer</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the currently selected element in the model explorer.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h341.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Referesh</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Refreshes the current diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Model Explorer</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toggles the Model Explorer on and off.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Diagram Explorer</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toggles the Diagram Explorer on and off</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Properties</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toggles the Properties Editor on and off.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Documentations</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Toggles the Documentation Editor on and off.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Attachments</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toggles the Attachments Editor on and off.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Output</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Toggles the Output Window on and off.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Messages</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toggles the Message Window on and off.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toolbox</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toggles the Toolbox on and off.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Zoom-&gt;</text><image src="ch11_h45.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Zoom In</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Makes the diagram look larger.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Zoom-&gt;</text><image src="ch11_h46.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Zoom Out</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Makes the diagram look smaller.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Zoom-&gt;</text><image src="ch11_h47.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Fit To Window</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Automatically adjusts the zoom ratio to fit the whole diagram in the window.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Zoom-&gt;50%</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the current diagram at 50% zoom ratio.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Zoom-&gt;75%</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the current diagram at 75% zoom ratio.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Zoom-&gt;100%</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the current diagram at 100% zoom ratio.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Zoom-&gt;125%</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the current diagram at 125% zoom ratio.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Zoom-&gt;150%</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the current diagram at 150% zoom ratio.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Zoom-&gt;175%</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the current diagram at 175% zoom ratio.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Zoom-&gt;200%</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the current diagram at 200% zoom ratio.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toolbars-&gt;Standard</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toggles the Standard toolbar on and off.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toolbars-&gt;Format</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toggles the Format toolbar on and off.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toolbars-&gt;View</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toggles the View toolbar on and off.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toolbars-&gt;Alignment</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Toggles the Align toolbar on and off.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Tools Menu</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The Tools menu contains the following menu items.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="3" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Menu Item</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Options...</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the Options dialog box that can be used to edit various environment configuration options.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Add-In Manager...</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the Add-In Manager that can be used to manage the additionally installed Add-In programs.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Help Menu</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The Help menu contains the following menu items.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="4" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Menu Item</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h48.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Contents...[F1]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the </text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> help.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> On the Web</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Moves to the </text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> website.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">About</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the </text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> information.</text></para>
+        </td>
+      </tr>
+    </table></para>
+  </body>
+</topic>

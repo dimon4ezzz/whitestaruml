@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Documenting Elements</title>
+  <keywords>
+    <keyword translate="true">Documentation</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Documenting Elements</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Documentation is very important for capturing thoughts, development notes, description of the element and other information. The documentation of an element can be used when generating paper documentation, this way you will automatically have the diagrams and the notes together.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To add documentation to a model element:</text></para>
+    <list id="19" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="Normal" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Model Explorer</text><text styleclass="List1" translate="true"> or the diagram, select an element.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the inspector area, open the </text><text styleclass="MenuCommand" translate="true">Documentation</text><text styleclass="List1" translate="true"> tab.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">Enter your documentation in the text box.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-left:48px;"><image src="DocumentationInspector.jpg" scale="80.00%" width="178" height="238" styleclass="Image Caption"><title translate="true">The Documentation Inspector</title><caption translate="true"><![CDATA[Documentation Inspector]]></caption></image></para>
+  </body>
+</topic>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ADDIN>
+    <NAME>Standard AddIn</NAME>
+    <DISPLAYNAME>Standard AddIn</DISPLAYNAME>
+    <COMPANY>Plastic Software, Inc.</COMPANY>
+    <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
+    <HELPFILE>WhiteStarUML.chm</HELPFILE>
+    <ICONFILE>StandardAddIn.ico</ICONFILE>
+    <ISACTIVE>True</ISACTIVE>
+    <MENUFILE>StandardAddIn.mnu</MENUFILE>
+    <VERSION>1.0.1.315</VERSION>
+</ADDIN>

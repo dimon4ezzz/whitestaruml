@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Finding Elements</title>
+  <keywords>
+    <keyword translate="true">Find</keyword>
+    <keyword translate="true">Messages<keyword translate="true">find result</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Finding Elements</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">When the project and thus the model grows, locating an element will become more difficult. Use the </text><text styleclass="MenuCommand" translate="true">Find</text><text styleclass="Normal" translate="true"> function to quickly find all diagrams in which an element name is used.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To find an element:</text></para>
+    <list id="1" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Edit</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">Find</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Find</text><text styleclass="List1" translate="true"> dialog, enter the full or partial name of the element to find in the Text to Find box.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">To limit the element types to find, select the element type from the </text><text styleclass="MenuCommand" translate="true">Element Type</text><text styleclass="List1" translate="true"> list. To perform a case sensitive search, select the </text><text styleclass="MenuCommand" translate="true">Case Sensitive</text><text styleclass="List1" translate="true"> checkbox.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">Click </text><text styleclass="MenuCommand" translate="true">OK</text><text styleclass="Normal" translate="true">. In the information message click </text><text styleclass="MenuCommand" translate="true">OK</text><text styleclass="Normal" translate="true">.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:24px;"><image src="FindDialog.jpg" scale="80.00%" width="381" height="152" styleclass="Image Caption"><title translate="true">Find Dialog</title><caption translate="true"><![CDATA[Finding an element]]></caption></image></para>
+    <list id="1" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1Last" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">The find results are listed in the </text><text styleclass="MenuCommand" translate="true">Messages</text><text styleclass="List1Last" translate="true"> information area. Double-click a find result to go to the found element.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:24px;"><image src="FindMessages.jpg" scale="80.00%" width="196" height="142" styleclass="Image Caption"><title translate="true">Find Results</title><caption translate="true"><![CDATA[Find Results]]></caption></image></para>
+  </body>
+</topic>

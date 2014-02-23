@@ -1,0 +1,928 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PROFILE version="1.0">
+	<HEADER>
+		<NAME>UMLStandard</NAME>
+		<DISPLAYNAME>UML Standard Profile</DISPLAYNAME>
+		<DESCRIPTION>UML Standard Profile</DESCRIPTION>
+		<AUTOINCLUDE>True</AUTOINCLUDE>
+	</HEADER>
+	<BODY>
+		<STEREOTYPELIST>
+
+			<STEREOTYPE>
+				<NAME>access</NAME>
+				<DESCRIPTION>Access is a stereotyped permission dependency between two namespaces, denoting that the public contents of the target namespace are accessible to the namespace of the source package.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>association</NAME>
+				<DESCRIPTION>Specifies a real association (default and redundant, but may be included for emphasis).</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLAssociationEnd</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>bind</NAME>
+				<DESCRIPTION>Specifies a relationship between a template (as supplier) and a model element generated from the template (as client).</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>call</NAME>
+				<DESCRIPTION>Call is a stereotyped usage dependency whose source is an operation and whose target is an operation. The relationship may also be subsumed to the class containing an operation, with the meaning that there exists an operation in the class to which the dependency applies.
+A call dependency specifies that the source operation or an operation in the source class invokes the target operation or an operation in the target class. A call dependency may connect a source operation to any target operation that is within scope including, but not limited to, operations of the enclosing classifier and operations of other visible classifiers.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>auxiliary</NAME>
+				<DESCRIPTION>Specifies a class that supports another more central or fundamental class, typically by implementing secondary logic or control flow. The class that the auxiliary supports may be defined explicitly using a Focus class or implicitly by a dependency relationship.
+Auxiliary classes are typically used together with Focus classes, and are particularly useful for specifying the secondary business logic or control flow of components during design.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>create</NAME>
+				<DESCRIPTION>Specifies that the designated feature creates an instance of the classifier to which the feature is attached. May be promoted to the Classifier containing the feature.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLOperation</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>create</NAME>
+				<DESCRIPTION>Create is a stereotyped call event denoting that the instance receiving that event has just been created. For state machines, it triggers the initial transition at the topmost level of the state machine (and is the only kind of trigger that may be applied to an initial transition).</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLCallEvent</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>create</NAME>
+				<DESCRIPTION>Create is a stereotyped usage dependency denoting that the client classifier creates instances of the supplier classifier.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>derive</NAME>
+				<DESCRIPTION>Specifies a derivation relationship among model elements that are usually, but not necessarily, of the same type. A derived dependency specifies that the client may be computed from the supplier. The mapping specifies the computation. The client may be implemented for design reasons, such as efficiency, even though it is logically redundant.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>destroy</NAME>
+				<DESCRIPTION>Specifies that the designated feature destroys an instance of the classifier to which the feature is attached. May be promoted to the classifier containing the feature.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLOperation</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>destroy</NAME>
+				<DESCRIPTION>Destroy is a stereotyped call event denoting that the instance receiving the event is being destroyed.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLCallEvent</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>document</NAME>
+				<DESCRIPTION>Denotes a generic file that is not a &lt;&lt;source&gt;&gt; file or &lt;&lt;executable&gt;&gt;. Subclass of &lt;&lt;file&gt;&gt;.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>executable</NAME>
+				<DESCRIPTION>Denotes a program file that can be executed on a computer system. Subclass of &lt;&lt;file&gt;&gt;.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>facade</NAME>
+				<DESCRIPTION>A facade is a stereotyped package that contains references to model elements owned by another package. It is used to provide a 'public view' of some of the contents of a package. A facade does not contain any model elements of its own.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLPackage</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>file</NAME>
+				<DESCRIPTION>Denotes a physical file in the context of the system developed.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>focus</NAME>
+				<DESCRIPTION>Specifies a class that defines the core logic or control flow for one or more auxiliary classes that support it. Support classes may be defined explicitly using Auxiliary classes or implicitly by dependency relationships.
+Focus classes are typically used together with one or more Auxiliary classes, and are particularly useful for specifying the core business logic or control flow of components during design.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>framework</NAME>
+				<DESCRIPTION>A framework is a stereotyped package that contains model elements that specify a reusable architecture for all or part of a system. Frameworks typically include classes, patterns, or templates.
+When frameworks are specialized for an application domain, they are sometimes referred to as application frameworks.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLPackage</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>friend</NAME>
+				<DESCRIPTION>Friend is a stereotyped permission dependency whose source is a model element, such as an operation, class, or package, and whose target is a model element in a different package, such as an operation, class or package. 
+A friend relationship grants the source access to the target regardless of the declared visibility. It extends the visibility of the supplier so that the client can see into the supplier.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>global</NAME>
+				<DESCRIPTION>Specifies that the target is a global value that is known to all elements rather than an actual association.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLAssociationEnd</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>implementation</NAME>
+				<DESCRIPTION>Specifies the implementation of a class in some programming language (for example, C++, Smalltalk, Java) in which an instance may not have more than one class.
+This is in contrast to Class, for which an instance may have multiple classes at one time and may gain or lose classes over time, and an object (a child of instance) may dynamically have multiple classes.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>implementation</NAME>
+				<DESCRIPTION>Specifies that the child inherits the implementation of the parent (its attributes, operations, and methods) but does not make public the supplier's interfaces nor guarantee to support them, thereby violating substitutability. This is private inheritance and is usually used only for programming implementation purposes.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLGeneralization</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>import</NAME>
+				<DESCRIPTION>Import is a stereotyped permission dependency between two namespaces, denoting that the public contents of the target package are added to the namespace of the source package.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>instantiate</NAME>
+				<DESCRIPTION>A stereotyped usage dependency among classifiers indicating that operations on the client create instances of the supplier.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>library</NAME>
+				<DESCRIPTION>Denotes a static or dynamic library file. Subclass of &lt;&lt;file&gt;&gt;.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>local</NAME>
+				<DESCRIPTION>Specifies that the relationship represents a local variable within a procedure rather than an actual association.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLAssociationEnd</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>metaclass</NAME>
+				<DESCRIPTION>Specifies that the instances of the classifier are classes.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>metamodel</NAME>
+				<DESCRIPTION>A metamodel is a stereotyped model denoting that the model is an abstraction of another model; that is, it is a model of a model.
+Hence, if M2 is a model of the model M1, then M2 is a metamodel of M1. It follows then that classes in M1 are instances of metaclasses in M2.
+The stereotype can be recursively applied, as in the case of a 4-layer metamodel architecture.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLModel</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>modelLibrary</NAME>
+				<DESCRIPTION>A model library is a stereotyped package that contains model elements that are intended to be reused by other packages.
+A model library differs from a profile in that a model library does not extend the metamodel using stereotypes and tagged definitions. A model library is analogous to a class library in some programming languages.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLPackage</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>parameter</NAME>
+				<DESCRIPTION>Specifies that the relationship represents a procedure parameter rather than an actual association.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLAssociationEnd</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>powertype</NAME>
+				<DESCRIPTION>Specifies that the classifier is a metaclass whose instances are siblings marked by the same discriminator.
+For example, the metaclass TreeSpecies might be a power type for the subclasses of Tree that represent different species, such as AppleTree, BananaTree, and CherryTree.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>process</NAME>
+				<DESCRIPTION>Specifies a classifier that represents a heavy-weight flow of control.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClassifier</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>realize</NAME>
+				<DESCRIPTION>Specifies a realization relationship between a specification model element or elements (the supplier) and a model element or elements that implement it (the client).
+The implementation model element is required to support all of the operations or received signals that the specification model element declares. The implementation model element must make or inherit its own declarations of the operations and signal receptions.
+The mapping specifies the relationship between the two. The mapping may or may not be computable. Realization can be used to model stepwise refinement, optimizations, transformations, templates, model synthesis, framework composition, etc.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>refine</NAME>
+				<DESCRIPTION>Specifies refinement relationship between model elements at different semantic levels, such as analysis and design.
+The mapping specifies the relationship between the two elements or sets of elements. The mapping may or may not be computable, and it may be unidirectional or bidirectional.
+Refinement can be used to model transformations from analysis to design and other such changes.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>self</NAME>
+				<DESCRIPTION>Specifies that the relationship represents a reference to the object that owns an operation or action rather than an actual association.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLAssociationEnd</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>send</NAME>
+				<DESCRIPTION>Send is a stereotyped usage dependency whose source is an operation and whose target is a signal, specifying that the source sends the target signal.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>source</NAME>
+				<DESCRIPTION>Denotes a source file that can be compiled into an executable file. Subclass of &lt;&lt;file&gt;&gt;.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>stub</NAME>
+				<DESCRIPTION>A stub is a stereotyped package that represents only the public parts of another package.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLPackage</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>systemModel</NAME>
+				<DESCRIPTION>A systemModel is a stereotyped model that contains a collection of models of the same physical system. A systemModel also contains all relationships and constraints between model elements contained in different models.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLPackage</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>table</NAME>
+				<DESCRIPTION>Denotes a database table.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>thread</NAME>
+				<DESCRIPTION>Specifies a classifier that represents a flow of control.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClassifier</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>trace</NAME>
+				<DESCRIPTION>Specifies a trace relationship between model elements or sets of model elements that represent the same concept in different models. Traces are mainly used for tracking requirements and changes across models. 
+Since model changes can occur in both directions, the directionality of the dependency can often be ignored. The mapping specifies the relationship between the two, but it is rarely computable and is usually informal.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLDependency</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>type</NAME>
+				<DESCRIPTION>Specifies a domain of objects together with the operations applicable to the objects, without defining the physical implementation of those objects. 
+A type may not contain any methods, maintain its own thread of control, or be nested. However, it may have attributes and associations. The associations of a Type are defined solely for the purpose of specifying the behavior of the type's operations and do not represent the implementation of state data.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>utility</NAME>
+				<DESCRIPTION>Specifies a classifier that has no instances, but rather denotes a named collection of non-member attributes and operations, all of which are class-scoped.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClassifier</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>useCaseModel</NAME>
+				<DESCRIPTION>A use case model specifies the services a system provides to its users; that is, the different ways of using the system, and whose top-level package is a use case system.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLModel</BASECLASS>
+				</BASECLASSES>
+				<SMALLICON>useCaseModel.bmp</SMALLICON>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>analysisModel</NAME>
+				<DESCRIPTION>An analysis model is a model whose top-level package is an analysis system.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLModel</BASECLASS>
+				</BASECLASSES>
+				<SMALLICON>analysisModel.bmp</SMALLICON>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>designModel</NAME>
+				<DESCRIPTION>A design model is a model whose top-level package is a design system.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLModel</BASECLASS>
+				</BASECLASSES>
+				<SMALLICON>designModel.bmp</SMALLICON>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>implementationModel</NAME>
+				<DESCRIPTION>An implementation model is a model whose top-level package is an implementation system.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLModel</BASECLASS>
+				</BASECLASSES>
+				<SMALLICON>implementationModel.bmp</SMALLICON>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>deploymentModel</NAME>
+				<DESCRIPTION>An deployment model is a model whose top-level package is an deployment system.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLModel</BASECLASS>
+				</BASECLASSES>
+				<SMALLICON>deploymentModel.bmp</SMALLICON>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>useCaseSystem</NAME>
+				<DESCRIPTION>A use case system is a top-level package that may contain use case packages, use cases, and relationships.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLPackage</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>analysisSystem</NAME>
+				<DESCRIPTION>An analysis system is a top-level package that may contain analysis packages, analysis service packages, analysis classes, and relationships.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLPackage</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>designSystem</NAME>
+				<DESCRIPTION>A design system is a top-level subsystem that may contain design subsystems, design service subsystems, design classes, and relationships.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLSubsystem</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>implementationSystem</NAME>
+				<DESCRIPTION>An implementation model is a subsystem that may contain implementation subsystems, components, and relationships.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLSubsystem</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>analysisPackage</NAME>
+				<DESCRIPTION>An analysis package is a package that may contain other analysis packages, analysis service packages, analysis classes, and relationships.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLPackage</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>designSubsystem</NAME>
+				<DESCRIPTION>A design subsystem is a subsystem that may contain other design subsystems, design classes, and relationships.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLSubsystem</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>implementationSubsystem</NAME>
+				<DESCRIPTION>A implementation subsystem is a subsystem that may contain other implementation subsystems and relationships.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLSubsystem</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>useCasePackage</NAME>
+				<DESCRIPTION>A use case package contains use cases and relationships.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLPackage</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>analysisServicePackage</NAME>
+				<DESCRIPTION>An analysis service package is a package that may contain analysis classes and relationships.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLPackage</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>designServiceSubsystem</NAME>
+				<DESCRIPTION>A design service subsystem is a subsystem that may contain design classes and relationships.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLSubsystem</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>entity</NAME>
+				<DESCRIPTION>An entity is a passive class; that is, its objects do not initiate interactions on their own. An entity object may participate in many different use case realizations and usually outlives any single interaction.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+					<BASECLASS>UMLClassifierRole</BASECLASS>
+					<BASECLASS>UMLObject</BASECLASS>
+				</BASECLASSES>
+				<ICON minWidth="40" minHeight="40">Entity.wmf</ICON>
+				<SMALLICON>entity.bmp</SMALLICON>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>boundary</NAME>
+				<DESCRIPTION>A boundary is a class that lies on the periphery of a system, but within it. It interacts with actors outside the system as well as with entity, control, and other boundary classes within the system.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+					<BASECLASS>UMLClassifierRole</BASECLASS>
+					<BASECLASS>UMLObject</BASECLASS>
+				</BASECLASSES>
+				<ICON minWidth="60" minHeight="40">Boundary.wmf</ICON>
+				<SMALLICON>boundary.bmp</SMALLICON>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>control</NAME>
+				<DESCRIPTION>A control is a class whose objects manage interactions between collections of objects. A control class usually has behavior that is specific for one use case, and a control object usually does not outlive the use case realizations in which it participates.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+					<BASECLASS>UMLClassifierRole</BASECLASS>
+					<BASECLASS>UMLObject</BASECLASS>
+				</BASECLASSES>
+				<ICON minWidth="40" minHeight="44">Control.wmf</ICON>
+				<SMALLICON>control.bmp</SMALLICON>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>communicate</NAME>
+				<DESCRIPTION>Communicate is an association between actors and use cases that is used to denote messages that may be sent between them. It may also be used between boundary, control, and entity, and between actor and boundary.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLAssociation</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>subscribe</NAME>
+				<DESCRIPTION>A subscribe association between two classes states that objects of the source class (called the subscriber) will be notified when a particular event has occurred in objects of the target class (called the publisher). The association includes a specification of a set of events defining the events that causes the subscriber to be notified.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLAssociation</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>objectModel</NAME>
+				<DESCRIPTION>An object model is a model whose top-level package is an object system that describe the things interior to the business system itself.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLModel</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>objectSystem</NAME>
+				<DESCRIPTION>An object system is the top-level subsystem in an object model, and may contain organization units, work units, classes, and relationships.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLSubsystem</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>organizationUnit</NAME>
+				<DESCRIPTION>An organization unit is a subsystem that may contain other organization units, work units, classes, and relationships.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLSubsystem</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>workUnit</NAME>
+				<DESCRIPTION>A work unit is a subsystem that may contain one or more entities. It is a task-oriented set of objects that forms a recognizable whole to the end user, and may have a facade defining the view of the work unit's entities relevant to the task.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLSubsystem</BASECLASS>
+				</BASECLASSES>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>worker</NAME>
+				<DESCRIPTION>A worker is a class that represents an abstraction of a human that acts within the system. A worker interacts with other workers and manipulates entities while participating in use case realizations.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+					<BASECLASS>UMLClassifierRole</BASECLASS>
+					<BASECLASS>UMLObject</BASECLASS>
+				</BASECLASSES>
+				<ICON minWidth="40" minHeight="44">Worker.wmf</ICON>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>caseWorker</NAME>
+				<DESCRIPTION>A case worker is a special case of worker that interacts directly with actors outside the system.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+					<BASECLASS>UMLClassifierRole</BASECLASS>
+					<BASECLASS>UMLObject</BASECLASS>
+				</BASECLASSES>
+				<ICON minWidth="60" minHeight="40">CaseWorker.wmf</ICON>
+			</STEREOTYPE>
+
+			<STEREOTYPE>
+				<NAME>internalWorker</NAME>
+				<DESCRIPTION>An internal worker is a special case of worker that interacts with other workers and entities inside the system.</DESCRIPTION>
+				<BASECLASSES>
+					<BASECLASS>UMLClass</BASECLASS>
+					<BASECLASS>UMLClassifierRole</BASECLASS>
+					<BASECLASS>UMLObject</BASECLASS>
+				</BASECLASSES>
+				<ICON minWidth="40" minHeight="44">InternalWorker.wmf</ICON>
+			</STEREOTYPE>
+
+		</STEREOTYPELIST>
+
+		<TAGDEFINITIONSETLIST>
+		
+			<TAGDEFINITIONSET>
+				<NAME>Default</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLElement</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+
+					<TAGDEFINITION lock="True">
+						<NAME>UniqueId</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION lock="True">
+						<NAME>File</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION lock="True">
+						<NAME>Language</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION>
+						<NAME>Alias</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+				
+					<TAGDEFINITION>
+						<NAME>Derived</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+						<DEFAULTDATAVALUE>False</DEFAULTDATAVALUE>
+					</TAGDEFINITION>
+					
+					<TAGDEFINITION>
+						<NAME>Persistence</NAME>
+						<TAGTYPE>Enumeration</TAGTYPE>
+						<DEFAULTDATAVALUE>TRANSITORY</DEFAULTDATAVALUE>
+						<LITERALS>
+							<LITERAL>TRANSITORY</LITERAL>
+							<LITERAL>PERSISTENT</LITERAL>
+						</LITERALS>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION>
+						<NAME>Semantics</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION>
+						<NAME>Usage</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION>
+						<NAME>Requirements</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION>
+						<NAME>Implementation</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>UseCaseSpecification</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLUseCase</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+				
+					<TAGDEFINITION>
+						<NAME>BasicFlow</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION>
+						<NAME>AlternativeFlows</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+					
+					<TAGDEFINITION>
+						<NAME>SpecialRequirements</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION>
+						<NAME>Preconditions</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION>
+						<NAME>Postconditions</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION>
+						<NAME>ExtensionPoints</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+					
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>TemporalUse</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLElement</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+				
+					<TAGDEFINITION lock="True">
+						<NAME>Integer1</NAME>
+						<TAGTYPE>Integer</TAGTYPE>
+						<DEFAULTDATAVALUE>0</DEFAULTDATAVALUE>
+					</TAGDEFINITION>
+					
+					<TAGDEFINITION lock="True">
+						<NAME>Integer2</NAME>
+						<TAGTYPE>Integer</TAGTYPE>
+						<DEFAULTDATAVALUE>0</DEFAULTDATAVALUE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION lock="True">
+						<NAME>Boolean1</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+						<DEFAULTDATAVALUE>False</DEFAULTDATAVALUE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION lock="True">
+						<NAME>Boolean2</NAME>
+						<TAGTYPE>Boolean</TAGTYPE>
+						<DEFAULTDATAVALUE>False</DEFAULTDATAVALUE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION lock="True">
+						<NAME>String1</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION lock="True">
+						<NAME>String2</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION lock="True">
+						<NAME>Real1</NAME>
+						<TAGTYPE>Real</TAGTYPE>
+						<DEFAULTDATAVALUE>0.0</DEFAULTDATAVALUE>
+					</TAGDEFINITION>
+
+					<TAGDEFINITION lock="True">
+						<NAME>Real2</NAME>
+						<TAGTYPE>Real</TAGTYPE>
+						<DEFAULTDATAVALUE>0.0</DEFAULTDATAVALUE>
+					</TAGDEFINITION>
+
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+
+			<TAGDEFINITIONSET>
+				<NAME>VersionControl</NAME>
+				<BASECLASSES>
+					<BASECLASS>UMLPackage</BASECLASS>
+				</BASECLASSES>
+				<TAGDEFINITIONLIST>
+				
+					<TAGDEFINITION lock="True">
+						<NAME>Spec</NAME>
+						<TAGTYPE>String</TAGTYPE>
+					</TAGDEFINITION>
+
+				</TAGDEFINITIONLIST>
+			</TAGDEFINITIONSET>
+			
+		</TAGDEFINITIONSETLIST>
+
+		<DATATYPELIST>
+			<DATATYPE>
+				<NAME>Integer</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>Float</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>Boolean</NAME>
+			</DATATYPE>
+			<DATATYPE>
+				<NAME>String</NAME>
+			</DATATYPE>
+		</DATATYPELIST>
+
+		<ELEMENTPROTOTYPELIST>
+			<ELEMENTPROTOTYPE>
+				<NAME>Entity</NAME>
+				<DISPLAYNAME>Entity</DISPLAYNAME>
+				<ICON>entity.bmp</ICON>
+				<DRAGTYPE>Rect</DRAGTYPE>
+				<BASEELEMENT>Class</BASEELEMENT>
+				<STEREOTYPEDISPLAY>sdkIcon</STEREOTYPEDISPLAY>
+				<STEREOTYPENAME>entity</STEREOTYPENAME>
+				<SHOWEXTENDEDNOTATION>False</SHOWEXTENDEDNOTATION>
+			</ELEMENTPROTOTYPE>
+			<ELEMENTPROTOTYPE>
+				<NAME>Control</NAME>
+				<DISPLAYNAME>Control</DISPLAYNAME>
+				<ICON>control.bmp</ICON>
+				<DRAGTYPE>Rect</DRAGTYPE>
+				<BASEELEMENT>Class</BASEELEMENT>
+				<STEREOTYPEDISPLAY>sdkIcon</STEREOTYPEDISPLAY>
+				<STEREOTYPENAME>control</STEREOTYPENAME>
+				<SHOWEXTENDEDNOTATION>False</SHOWEXTENDEDNOTATION>
+			</ELEMENTPROTOTYPE>
+			<ELEMENTPROTOTYPE>
+				<NAME>Boundary</NAME>
+				<DISPLAYNAME>Boundary</DISPLAYNAME>
+				<ICON>boundary.bmp</ICON>
+				<DRAGTYPE>Rect</DRAGTYPE>
+				<BASEELEMENT>Class</BASEELEMENT>
+				<STEREOTYPEDISPLAY>sdkIcon</STEREOTYPEDISPLAY>
+				<STEREOTYPENAME>boundary</STEREOTYPENAME>
+				<SHOWEXTENDEDNOTATION>False</SHOWEXTENDEDNOTATION>
+			</ELEMENTPROTOTYPE>
+		</ELEMENTPROTOTYPELIST>
+
+		<MODELPROTOTYPELIST>
+			<MODELPROTOTYPE>
+			    <NAME>Use Case Model</NAME>
+			    <DISPLAYNAME>Use Case Model</DISPLAYNAME>
+			    <ICON>useCaseModel.bmp</ICON>
+			    <BASEMODEL>Model</BASEMODEL>
+			    <STEREOTYPENAME>useCaseModel</STEREOTYPENAME>
+			    <CONTAINERMODELLIST>
+			        <CONTAINERMODEL type="UMLProject"/>
+			    </CONTAINERMODELLIST>
+			</MODELPROTOTYPE>
+			<MODELPROTOTYPE>
+			    <NAME>Analysis Model</NAME>
+			    <DISPLAYNAME>Analysis Model</DISPLAYNAME>
+			    <ICON>analysisModel.bmp</ICON>
+			    <BASEMODEL>Model</BASEMODEL>
+			    <STEREOTYPENAME>analysisModel</STEREOTYPENAME>
+			    <CONTAINERMODELLIST>
+			        <CONTAINERMODEL type="UMLProject"/>
+			    </CONTAINERMODELLIST>
+			</MODELPROTOTYPE>
+			<MODELPROTOTYPE>
+			    <NAME>Design Model</NAME>
+			    <DISPLAYNAME>Design Model</DISPLAYNAME>
+			    <ICON>designModel.bmp</ICON>
+			    <BASEMODEL>Model</BASEMODEL>
+			    <STEREOTYPENAME>designModel</STEREOTYPENAME>
+			    <CONTAINERMODELLIST>
+			        <CONTAINERMODEL type="UMLProject"/>
+			    </CONTAINERMODELLIST>
+			</MODELPROTOTYPE>
+			<MODELPROTOTYPE>
+			    <NAME>Implementation Model</NAME>
+			    <DISPLAYNAME>Implementation Model</DISPLAYNAME>
+			    <ICON>implementationModel.bmp</ICON>
+			    <BASEMODEL>Model</BASEMODEL>
+			    <STEREOTYPENAME>implementationModel</STEREOTYPENAME>
+			    <CONTAINERMODELLIST>
+			        <CONTAINERMODEL type="UMLProject"/>
+			    </CONTAINERMODELLIST>
+			</MODELPROTOTYPE>
+			<MODELPROTOTYPE>
+			    <NAME>Deployment Model</NAME>
+			    <DISPLAYNAME>Deployment Model</DISPLAYNAME>
+			    <ICON>deploymentModel.bmp</ICON>
+			    <BASEMODEL>Model</BASEMODEL>
+			    <STEREOTYPENAME>deploymentModel</STEREOTYPENAME>
+			    <CONTAINERMODELLIST>
+			        <CONTAINERMODEL type="UMLProject"/>
+			    </CONTAINERMODELLIST>
+			</MODELPROTOTYPE>
+		</MODELPROTOTYPELIST>
+
+		<PALETTELIST>
+
+			<PALETTE>
+				<NAME>Analysis</NAME>
+				<DISPLAYNAME>Analysis</DISPLAYNAME>
+				<PALETTEITEMLIST>
+					<PALETTEITEM>Entity</PALETTEITEM>
+					<PALETTEITEM>Control</PALETTEITEM>
+					<PALETTEITEM>Boundary</PALETTEITEM>
+					<PALETTEITEM>Association</PALETTEITEM>
+					<PALETTEITEM>Generalization</PALETTEITEM>
+				</PALETTEITEMLIST>
+			</PALETTE>
+
+		</PALETTELIST>
+
+		<DIAGRAMTYPELIST>
+			<DIAGRAMTYPE>
+				<NAME>RobustnessDiagram</NAME>
+				<DISPLAYNAME>Robustness Diagram</DISPLAYNAME>
+				<BASEDIAGRAM>ClassDiagram</BASEDIAGRAM>
+				<ICON>robustnessDiagram.bmp</ICON>
+				<AVAILABLEPALETTELIST>
+					<AVAILABLEPALETTE>Analysis</AVAILABLEPALETTE>
+					<AVAILABLEPALETTE>Class</AVAILABLEPALETTE>
+				</AVAILABLEPALETTELIST>
+			</DIAGRAMTYPE>
+		</DIAGRAMTYPELIST>
+
+	</BODY>
+</PROFILE>

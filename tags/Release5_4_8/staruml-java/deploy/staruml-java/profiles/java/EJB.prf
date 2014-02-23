@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PROFILE version="1.0">
+	<HEADER>
+		<NAME>EJB</NAME>
+		<DISPLAYNAME>EJB Profile</DISPLAYNAME>
+		<DESCRIPTION>EJB (Enterprise Java Beans) Profile</DESCRIPTION>
+	</HEADER>
+<BODY>
+<STEREOTYPELIST>
+<STEREOTYPE>
+	<NAME>EJBCreateMethod</NAME>
+        <DESCRIPTION>The specified operation indicates EJB Create Method.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLOperation</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+
+<STEREOTYPE>
+	<NAME>EJBFinderMethod</NAME>
+        <DESCRIPTION>The specified operation indicates EJB Finder Method.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLOperation</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+
+<STEREOTYPE>
+	<NAME>EJBRemoteMethod</NAME>
+        <DESCRIPTION>The specified operation indicates EJB Remote Method.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLOperation</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+
+
+<STEREOTYPE>
+	<NAME>EJBRemoteInterface</NAME>
+        <DESCRIPTION>The specified class indicates EJB Remote Interface.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLClass</BASECLASS>
+		<BASECLASS>UMLInterface</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+
+<STEREOTYPE>
+	<NAME>EJBHomeInterface</NAME>
+        <DESCRIPTION>An abstract stereotype. The specified class indicates EJB Home Interface.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLClass</BASECLASS>
+		<BASECLASS>UMLInterface</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+
+<STEREOTYPE>
+	<NAME>EJBSessionHomeInterface</NAME>
+        <DESCRIPTION>An implementation of the abstract stereotype Home Interface. The specified class indicates EJB Session Home.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLClass</BASECLASS>
+		<BASECLASS>UMLInterface</BASECLASS>
+	</BASECLASSES>
+	<PARENT>EJBHomeInterface</PARENT>
+  <RELATEDTAGDEFINITIONSET>EJBSessionType</RELATEDTAGDEFINITIONSET>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBEntityHomeInterface</NAME>
+        <DESCRIPTION>An implementation of the abstract stereotype Home Interface. The specified class indicates EJB Entity Home.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLClass</BASECLASS>
+		<BASECLASS>UMLInterface</BASECLASS>
+	</BASECLASSES>
+	<PARENT>EJBHomeInterface</PARENT>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBPrimaryKey</NAME>
+        <DESCRIPTION>Indicates use of EJB Primary Key Class for EJB Entity Home.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLDependency</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBCmpField</NAME>
+        <DESCRIPTION>The specified attribute indicates the container-managed field for the CMP-based EJB Entity Bean.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLAttribute</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBPrimaryKeyField</NAME>
+        <DESCRIPTION>An implementation of the stereotype EJBCmpField. The specified attribute indicates the primary key field for the CMP-based EJB Entity Bean.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLAttribute</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBRealizeHome</NAME>
+        <DESCRIPTION>Indicates abstraction of EJB Home Interface for EJB Implementation Class.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLDependency</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBRealizeRemote</NAME>
+        <DESCRIPTION>Indicates abstraction of EJB Remote Interface for EJB Implementation Class.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLDependency</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBImplementation</NAME>
+        <DESCRIPTION>The specified Class indicates EJB Implementation Class.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLClass</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBEnterpriseBean</NAME>
+        <DESCRIPTION>An abstract stereotype. The specified subsystem indicates EJB Enterprise Bean.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLSubsystem</BASECLASS>
+	</BASECLASSES>
+  <RELATEDTAGDEFINITIONSET>EJBEnterpriseBean</RELATEDTAGDEFINITIONSET>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBSessionBean</NAME>
+        <DESCRIPTION>An implementation of the abstract stereotype EJBEnterpriseBean. The specified subsystem indicates EJB Session Bean.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLSubsystem</BASECLASS>
+	</BASECLASSES>
+	<PARENT>EJBEnterpriseBean</PARENT>
+  <RELATEDTAGDEFINITIONSET>EJBSessionBean</RELATEDTAGDEFINITIONSET>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBEntityBean</NAME>
+        <DESCRIPTION>An implementation of the abstract stereotype EJBEnterpriseBean. The specified subsystem indicates EJB Entity Bean.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLSubsystem</BASECLASS>
+	</BASECLASSES>
+	<PARENT>EJBEnterpriseBean</PARENT>
+  <RELATEDTAGDEFINITIONSET>EJBEntityBean</RELATEDTAGDEFINITIONSET>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBReference</NAME>
+        <DESCRIPTION>Association with the specified direction indicates the referenced EJB Enterprise Bean.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLAssociation</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBAccess</NAME>
+        <DESCRIPTION>The specified association indicates the security regulation relation between the subsystems indicated by the actor and the stereotype EJBEnterpriseBean.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLAssociation</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJB-JAR</NAME>
+        <DESCRIPTION>The specified package indicates EJB-JAR.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLPackage</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBDescriptor</NAME>
+        <DESCRIPTION>The specified component indicates EJB Deployment Descriptor.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLComponent</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+<STEREOTYPE>
+	<NAME>EJBClientJAR</NAME>
+        <DESCRIPTION>Indicates whether ejb-client-jar is using EJB-JAR.</DESCRIPTION>
+	<BASECLASSES>
+		<BASECLASS>UMLDependency</BASECLASS>
+	</BASECLASSES>
+</STEREOTYPE>
+</STEREOTYPELIST>
+<TAGDEFINITIONSETLIST>
+<TAGDEFINITIONSET>
+		<NAME>EJBSessionType</NAME>
+		<BASECLASSES>
+			<BASECLASS>UMLClass</BASECLASS>
+		</BASECLASSES>
+		<TAGDEFINITIONLIST>
+			<TAGDEFINITION>
+				<NAME>EJBSessionType</NAME>
+				<TAGTYPE>Enumeration</TAGTYPE>
+				<DEFAULTDATAVALUE>Stateful</DEFAULTDATAVALUE>
+				<LITERALS>
+					<LITERAL>Stateful</LITERAL>
+					<LITERAL>Stateless</LITERAL>
+				</LITERALS>
+			</TAGDEFINITION>
+		</TAGDEFINITIONLIST>
+	</TAGDEFINITIONSET>
+
+	<TAGDEFINITIONSET>
+		<NAME>EJBRoleNames</NAME>
+		<BASECLASSES>
+			<BASECLASS>UMLOperation</BASECLASS>
+		</BASECLASSES>
+		<TAGDEFINITIONLIST>
+			<TAGDEFINITION>
+				<NAME>EJBRoleNames</NAME>
+				<TAGTYPE>String</TAGTYPE>
+				<DEFAULTDATAVALUE></DEFAULTDATAVALUE>
+			</TAGDEFINITION>
+		</TAGDEFINITIONLIST>
+	</TAGDEFINITIONSET>
+	<TAGDEFINITIONSET>
+		<NAME>EJBTransAttribute</NAME>
+		<BASECLASSES>
+			<BASECLASS>UMLOperation</BASECLASS>
+		</BASECLASSES>
+		<TAGDEFINITIONLIST>
+			<TAGDEFINITION>
+				<NAME>EJBTrasAttribute</NAME>
+				<TAGTYPE>Enumeration</TAGTYPE>
+				<DEFAULTDATAVALUE></DEFAULTDATAVALUE>
+				<LITERALS>
+					<LITERAL>Not Supported</LITERAL>
+					<LITERAL>Supported</LITERAL>
+					<LITERAL>Required</LITERAL>
+					<LITERAL>RequiredNew</LITERAL>
+					<LITERAL>Mandatory</LITERAL>
+					<LITERAL>Never</LITERAL>
+				</LITERALS>
+			</TAGDEFINITION>
+		</TAGDEFINITIONLIST>
+	</TAGDEFINITIONSET>
+	<TAGDEFINITIONSET>
+		<NAME>EJBEnterpriseBean</NAME>
+		<BASECLASSES>
+			<BASECLASS>UMLSubSystem</BASECLASS>
+		</BASECLASSES>
+		<TAGDEFINITIONLIST>
+			<TAGDEFINITION>
+				<NAME>EJBEnvEntries</NAME>
+				<TAGTYPE>String</TAGTYPE>
+				<DEFAULTDATAVALUE></DEFAULTDATAVALUE>
+			</TAGDEFINITION>
+			<TAGDEFINITION>
+				<NAME>EJBNameInJAR</NAME>
+				<TAGTYPE>String</TAGTYPE>
+				<DEFAULTDATAVALUE></DEFAULTDATAVALUE>
+			</TAGDEFINITION>
+			<TAGDEFINITION>
+				<NAME>EJBReferences</NAME>
+				<TAGTYPE>String</TAGTYPE>
+				<DEFAULTDATAVALUE></DEFAULTDATAVALUE>
+			</TAGDEFINITION>
+			<TAGDEFINITION>
+				<NAME>EJBResources</NAME>
+				<TAGTYPE>String</TAGTYPE>
+				<DEFAULTDATAVALUE></DEFAULTDATAVALUE>
+			</TAGDEFINITION>
+			<TAGDEFINITION>
+				<NAME>EJBSecurityRoles</NAME>
+				<TAGTYPE>String</TAGTYPE>
+				<DEFAULTDATAVALUE></DEFAULTDATAVALUE>
+			</TAGDEFINITION>
+		</TAGDEFINITIONLIST>
+	</TAGDEFINITIONSET>
+	<TAGDEFINITIONSET>
+		<NAME>EJBSessionBean</NAME>
+		<BASECLASSES>
+			<BASECLASS>UMLSubSystem</BASECLASS>
+		</BASECLASSES>
+		<TAGDEFINITIONLIST>
+			<TAGDEFINITION>
+				<NAME>EJBTransType</NAME>
+				<TAGTYPE>Enumeration</TAGTYPE>
+				<DEFAULTDATAVALUE>Bean</DEFAULTDATAVALUE>
+				<LITERALS>
+					<LITERAL>Bean</LITERAL>
+					<LITERAL>Container</LITERAL>
+				</LITERALS>
+			</TAGDEFINITION>
+		</TAGDEFINITIONLIST>
+	</TAGDEFINITIONSET>
+	<TAGDEFINITIONSET>
+		<NAME>EJBEntityBean</NAME>
+		<BASECLASSES>
+			<BASECLASS>UMLSubSystem</BASECLASS>
+		</BASECLASSES>
+		<TAGDEFINITIONLIST>
+			<TAGDEFINITION>
+				<NAME>EJBPersistenceType</NAME>
+				<TAGTYPE>Enumeration</TAGTYPE>
+				<DEFAULTDATAVALUE>Bean</DEFAULTDATAVALUE>
+				<LITERALS>
+					<LITERAL>Bean</LITERAL>
+					<LITERAL>Container</LITERAL>
+				</LITERALS>
+			</TAGDEFINITION>
+			<TAGDEFINITION>
+				<NAME>EJBReentrant</NAME>
+				<TAGTYPE>Boolean</TAGTYPE>
+				<DEFAULTDATAVALUE>True</DEFAULTDATAVALUE>
+			</TAGDEFINITION>
+		</TAGDEFINITIONLIST>
+	</TAGDEFINITIONSET>
+</TAGDEFINITIONSETLIST>
+<DATATYPELIST>
+</DATATYPELIST>
+</BODY>
+</PROFILE>

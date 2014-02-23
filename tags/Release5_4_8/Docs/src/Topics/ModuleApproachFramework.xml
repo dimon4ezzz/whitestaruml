@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Module, Approach, Framework and Profile</title>
+  <keywords>
+    <keyword translate="true">Approach<keyword translate="true">concept</keyword></keyword>
+    <keyword translate="true">Concept<keyword translate="true">approach</keyword><keyword translate="true">framework</keyword><keyword translate="true">module</keyword><keyword translate="true">profile</keyword></keyword>
+    <keyword translate="true">Framework<keyword translate="true">concept</keyword></keyword>
+    <keyword translate="true">Module<keyword translate="true">concept</keyword></keyword>
+    <keyword translate="true">Profile<keyword translate="true">concept</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Module, Approach, Framework and Profile</text></para>
+    </header>
+    <para styleclass="SubHead"><text styleclass="SubHead" translate="true">Module</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">The module is the main way of extending </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> functionality. The module can be created as a combination of several extension elements. Not only can you combine extension elements into an independent module for a specific purpose, but you can also modify the behavior of elements of another module or the main platform to meet your needs.</text></para>
+    <para styleclass="Image Caption"><image src="ch02_h2.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Normal"><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> modules provide the following functions.</text></para>
+    <list id="3" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Addition of new approach</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Addition of frameworks</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Expansion of the main menu or popup menu.</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Addition of new profile</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Addition of new element through stereotype or expansion of notation</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Implementation of new function (through COM Server or simple script file)</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Integration with other applications</text></li>
+      <li styleclass="ListBLast"><text styleclass="ListBLast" translate="true">Other Add-In functions</text></li>
+    </list>
+    <para styleclass="SubHead"><text styleclass="SubHead" translate="true">Approaches</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">There are countless methodologies for software development, and each company or organization has its own, or uses an existing one that is modified to meet the requirements of its development team or projects. Application domains, programming languages, and platforms are also different for each piece of software developed. Consequently, many items have to be configured in the initial phase of software modeling. </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> provides the concept of approaches to facilitate easier configuration of such items.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">An approach consists of the following items.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="5" colcount="2" style="width:auto; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:184px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Approach Component</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:716px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Project Structure</text></para>
+        </td>
+        <td style="width:716px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Specifies the basic structure of the project. The basic structure can be designed with package, subsystem and model elements. The diagram can also be given a default layout.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; height:25px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Import Profiles</text></para>
+        </td>
+        <td style="width:716px; height:25px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Automatically includes the default UML profiles in the project.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Import Frameworks</text></para>
+        </td>
+        <td style="width:716px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Automatically loads and includes the default frameworks in the project.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Import Model fragments</text></para>
+        </td>
+        <td style="width:716px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Automatically loads and i nclude the default model fragments in the project.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="SubHead"><text styleclass="SubHead" translate="true">Frameworks</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Frameworks in </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> refer to software models that express class libraries or application frameworks like MFC, VCL, and JFC. Including and using frameworks in projects makes it much easier for the user to model software that depends on specific class libraries or application frameworks.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A framework consists of one framework file (.FRW) and one or more unit files (.UNT).</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="3" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:184px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Component</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:716px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Framework File(.FRW)</text></para>
+        </td>
+        <td style="width:716px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Framework files contain information for the units included and the UML profiles used.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Unit File(.UNT)</text></para>
+        </td>
+        <td style="width:716px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Unit files contain actual model information for the framework.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="SubHead"><text styleclass="SubHead" translate="true"> UML Profile</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">The Unified Modeling Language (UML) is so general that it can be used to express many thoughts or concepts. This can also be the source of its weakness, as concepts of specific domains cannot be expressed in fine detail. To overcome such weakness, </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> provides UML profiles that expand UML. </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> supports easy expansion of UML by directly accommodating the concepts in UML profiles.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A UML profile consists of the following components.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="8" colcount="2" style="width:auto; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:184px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Component</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:716px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; height:53px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Stereotype</text></para>
+        </td>
+        <td style="width:716px; height:53px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">The Stereotypes are attached to specific UML elements to further clarify their semantics and provide extension attributes, making more accurate modeling possible.The stereotype specifies not only icon file to express graphic notation but also defines notation schema method as using extension notation defined file(.PNX).For more detail about extension notation, refer to developer’s guide.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">TagDefinition</text></para>
+        </td>
+        <td style="width:716px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">When the default UML element properties are inadequate for accurate modeling, tag definition provide additional information for the elements. In </text><var styleclass="Table Content">&lt;%PROGNAME%&gt;</var><text styleclass="Table Content" translate="true">, tag definitions can either be included in specific stereotypes or exist independently.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">DataType</text></para>
+        </td>
+        <td style="width:716px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">The datatype that is contained in the profile by default.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">DiagramType</text></para>
+        </td>
+        <td style="width:716px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">The DiagramType is extension element suggested by </text><var styleclass="Table Content">&lt;%PROGNAME%&gt;</var><text styleclass="Table Content" translate="true"> to define new diagram types.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; height:39px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">ElementPrototype</text></para>
+        </td>
+        <td style="width:716px; height:39px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">The element prototype is an extension element suggested by </text><var styleclass="Table Content">&lt;%PROGNAME%&gt;</var><text styleclass="Table Content" translate="true"> to define a sample for creating element as configuring attributes in the present defined element. These defined element prototypes can create elements as linked to a palette or create elements through an external API.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">ModelPrototype</text></para>
+        </td>
+        <td style="width:716px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">The model prototype is an extension element suggested by </text><var styleclass="Table Content">&lt;%PROGNAME%&gt;</var><text styleclass="Table Content" translate="true"> similar to element prototype, but &#160;it applies only to a model. An element defined as model prototype shows up on the model addition menu.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:184px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Palette</text></para>
+        </td>
+        <td style="width:716px; background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">The Palette is an extension element suggested by </text><var styleclass="Table Content">&lt;%PROGNAME%&gt;</var><text styleclass="Table Content" translate="true"> to add palettes.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">For detailed descriptions on writing profiles, see the </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> Developer guide.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">The OMG (Object Management Group) specifies UML profile standards for specific purposes. UML Profiles that adhere to the standard can be processed by other tools than </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true">. As an example, UML Profiles are used for the following.</text></para>
+    <list id="4" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Specific programming languages (C/C++, Java, C#, Python, etc.)</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Specific development methodologies (RUP, Catalysis, UML Components, etc.)</text></li>
+      <li styleclass="ListBLast"><text styleclass="ListBLast" translate="true">Specific domains (EAI, CRM, SCM, ERP, etc.)</text></li>
+    </list>
+    <para styleclass="Normal"><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> contains several modules out of the box.</text></para>
+    <list id="5" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><var styleclass="ListB">&lt;%PROGNAME%&gt;</var><text styleclass="ListB" translate="true"> basically provides UML standard profile, a few approaches and standard functionality to provide transformations between sequence &amp; collaboration diagram.</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">A Generator module to generation for document and code.</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">A Java module to support Java profile, J2SE/J2EE Framework, code generation, reverse engineering.</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">A C++ module to support C++ profile, MFC Framework, code generation, reverse engineering.</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">A C# module to support C# profile, .NET BCL framework, code generation, reverse engineering.</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">An XMI module to support XMI import &amp; export for model exchange.</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">A Rational Rose module to read Rational Rose Files.</text></li>
+      <li styleclass="ListBLast"><text styleclass="ListBLast" translate="true">A Pattern module to support design patterns.</text></li>
+    </list>
+    <para styleclass="SubHead"><text styleclass="SubHead" translate="true">Addition of Module</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">If you install modules that are developed by users or distributed by third party vendors, you can use the extension functions in </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true">. In order to install new additional modules in a system, complicated authentication is not needed.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">For more information about working with modules, see </text><link displaytype="text" defaultstyle="true" type="topiclink" href="ch07" styleclass="Normal" translate="true">Managing Modules</link><text styleclass="Normal" translate="true">.</text></para>
+  </body>
+</topic>

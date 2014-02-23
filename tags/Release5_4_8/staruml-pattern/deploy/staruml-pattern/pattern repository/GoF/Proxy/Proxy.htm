@@ -1,0 +1,76 @@
+<html>
+
+<head>
+<title>Proxy Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Proxy </h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Provide a surrogate or placeholder for another object to control access to 
+	it.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp; <img border="0" src="Proxy_Model1.gif" width="477" height="207"></p>
+<ul type="square">
+  <li><b><font face="Verdana">Proxy</font></b><ol>
+    <li>maintains a reference that lets the proxy access the real subject. Proxy 
+	may refer to a Subject if the RealSubject and Subject interfaces are the 
+	same.</li>
+    <li>provides an interface identical to Subject's so that a proxy can by 
+	substituted for the real subject.</li>
+    <li>controls access to the real subject and may be responsible for creating 
+	and deleting it.</li>
+    <li>other responsibilities depend on the kind of proxy:</li>
+    <li>remote proxies are responsible for encoding a request and its arguments 
+	and for sending the encoded request to the real subject in a different 
+	address space.</li>
+    <li>virtual proxies may cache additional information about the real subject 
+	so that they can postpone accessing it. For example, the ImageProxy from the 
+	Motivation caches the real image's extent.</li>
+    <li>protection proxies check that the caller has the access permissions 
+	required to perform a request.</li>
+  </ol>
+  </li>
+  <li><font face="Verdana"><b>Subject : </b>defines the common interface for 
+	RealSubject and Proxy so that a Proxy can be used anywhere a RealSubject is 
+	expected.</font></li>
+  <li><font face="Verdana"><b>RealSubject :</b> defines the real object that the 
+	proxy represents.</font></li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>A remote proxy provides a local representative for an object in a 
+	different address space.</li>
+  <li>A virtual proxy creates expensive objects on demand. The ImageProxy 
+	described in the Motivation is an example of such a proxy.</li>
+  <li>A protection proxy controls access to the original object. Protection 
+	proxies are useful when objects should have different access rights. </li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li>The Proxy pattern introduces a level of indirection when accessing an 
+	object. The additional indirection has many uses, depending on the kind of 
+	proxy:<ol>
+    <li>A remote proxy can hide the fact that an object resides in a different 
+	address space.</li>
+    <li>A virtual proxy can perform optimizations such as creating an object on 
+	demand.</li>
+    <li>Both protection proxies and smart references allow additional 
+	housekeeping tasks when an object is accessed.</li>
+  </ol>
+  </li>
+</ul>
+
+</body>
+
+</html>

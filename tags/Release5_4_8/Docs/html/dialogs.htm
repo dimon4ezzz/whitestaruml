@@ -1,0 +1,350 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>User-Interface Reference &gt; Dialogs</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Dialogs">
+   <meta name="description" content="Dialogs">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?dialogs.htm"; }
+  else { parent.quicksync('a12.5'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="ch11.htm">User-Interface Reference</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Dialogs</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="viewers.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="ch11.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="quick_dialogs.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Collection Editor</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Collection Editor is used for managing a list of child elements for a specific element.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h173.jpg" width="504" height="301" border="0" alt="ch11_h173"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Tab</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows collections (a list of child elements contained in the current element) contained in the element by tabs. Different types of elements have different collections, and therefore have different tabs. For example, Class element has tabs for Attributes and Operations. The Relations tab is always present regardless of the element type.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Collection Element List</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows a list of the child elements. Select an element here and edit it using the property editor, documentation editor, and attachment editor in the inspector area. For showing element stereotype, visibility/stereotype, etc., please refer to the section on General Configurations, in Environment Configurations.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Add Button</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Creates a new element and adds it to the list. This button may connect existing elements instead of creating a new element (e.g. Residents, DeployedComponents, RaisedSignals).</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Delete Button</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Deletes the selected element in the collection element list. This button may remove the element from the list instead of deleting it (e.g. Residents, DeployedComponents, RaisedSignals).</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Move Up Button</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Moves the selected element up in the collection element list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Move Down Button</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Moves the selected element down in the collection element list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold;">Constraint Editor</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Constraint Editor is used for managing the constraints for elements.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h174.jpg" width="504" height="301" border="0" alt="ch11_h174"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Constraints</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows the names and contents of the constraints for elements.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Add</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Adds a new constraint to the element. This button opens the Constraints dialog box.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Delete</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Deletes the selected constraint in the constraints list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Edit</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Edits the selected constraint in the constraints list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Move Up</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Moves the selected constraint up in the constraints list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Move Down</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Moves the selected constraint down in the constraints list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Constraint Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">This is used for adding a new constraint or editing the name and/or contents of existing constraints in the Constraint Editor. Enter the name of the constraint in the </span><span style="font-size: 9pt; font-weight: bold;">[Name]</span><span style="font-size: 9pt;"> field and enter the contents of the constraint in the </span><span style="font-size: 9pt; font-weight: bold;">[Expression]</span><span style="font-size: 9pt;"> field. The user may freely enter any contents or write in the UML OCL (Object Constraint Language).</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h175.jpg" width="451" height="278" border="0" alt="ch11_h175"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Tagged Value Editor</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Tagged Value Editor is used for editing the tagged values that can be added to specific elements.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h176.jpg" width="415" height="415" border="0" alt="ch11_h176"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Profile Tab</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">By default, tagged values are defined in profiles. If there is a profile that contains the tagged values which can be applied to the currently selected element, it is shown as a tab. The tag definitions defined in the profile are displayed in the </span><span style="font-size: 9pt; font-weight: bold;">[Tag Definition Set] </span><span style="font-size: 9pt;">and </span><span style="font-size: 9pt; font-weight: bold;">[Tagged Values]</span><span style="font-size: 9pt;"> fields.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Tag Definition Set</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows the tag definition set that can be applied to the currently selected element. The tagged values included in this set are displayed in the </span><span style="font-size: 9pt; font-weight: bold;">[Tagged Values]</span><span style="font-size: 9pt;"> field.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Tagged Values</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Lists the definitions and their values included in the tag definition set selected in </span><span style="font-size: 9pt; font-weight: bold;">[Tag Definition Set]</span><span style="font-size: 9pt;">. The user may directly change the values.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Set As Default</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Every tag definition has a default value. Select a tag definition in </span><span style="font-size: 9pt; font-weight: bold;">[Tagged Values]</span><span style="font-size: 9pt;"> and click this button to clear the changed value and set it back to the default value.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Profile Manager</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Profile Manager can be used for including or excluding the UML profiles for the current project.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h177.jpg" width="598" height="348" border="0" alt="ch11_h177"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Available profiles</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows a list of the UML profiles registered for use in WhiteStarUml. Profiles currently in use by the current project are not shown here.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Include profiles</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows a list of the UML profiles in use by the current project.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Large Icon/Small Icon Button</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Toggles the profile list icon size between large and small. Select the Small Icon Button if the profile names are only partially shown and difficult to read.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Include</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Includes the profile selected in the available profile list for use by the current project.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Exclude</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Excludes the profile selected in the included profile list so that it is no longer used by the current project.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Add-In Manager</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Add-In Manager can be used to view a list of the installed Add-Ins and to enable or disable the Add-Ins.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h178.jpg" width="402" height="252" border="0" alt="ch11_h178"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Add-Ins List</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows a list of the installed Add-Ins. The user can check or uncheck each item to enable or disable the respective Add-In.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">The list of Add-Ins in the Add-In Manager window may vary according to the user’s installation environment.</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Select New Project Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Select New Project dialog box provides various selection methods when creating a new project. The New Project dialog box consists of three pages: Select Approach, Open Existing File, and Open Recent File.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Approaches</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The user can apply a specific approach for creating a new project.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h179.jpg" width="489" height="349" border="0" alt="ch11_h179"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Approaches</span><span style="font-size: 9pt;">: The approaches list displays the names and icons of the registered approaches. Select the “Empty Project” item if no approach is needed.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Large Icon/Small Icon Button: </span><span style="font-size: 9pt;">This toggles the icon size for the approach list. Select the small icon button if the approach names are shortened and difficult to read.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Description: This area shows a brief description of the approach item selected from the list.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Use the selected Approach by default : </span><span style="font-size: 9pt;">Select an approach from the list and check this check box to set the approach as the default approach. The default approach is applied when creating a new project by selecting the </span><span style="font-size: 9pt; font-weight: bold;">[File] -&gt; [New] -&gt; [New Project] </span><span style="font-size: 9pt;">menu.</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Open Files</span></p>
+<p style="margin: 19px 0px 10px 0px;"><img src="ch11_h180.jpg" width="489" height="349" border="0" alt="ch11_h180"></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">The user can open a previously created file. The tree view on the left shows the user system’s folder structure, and the file list area on the right shows the project files in the selected folder. Select a file from this file list and click the </span><span style="font-size: 9pt; font-weight: bold;">[Open]</span><span style="font-size: 9pt;"> button to open the selected file.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Recent Files</span></p>
+<p style="margin: 19px 0px 10px 0px;"><img src="ch11_h181.jpg" width="489" height="349" border="0" alt="ch11_h181"></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">The user can see a list of the recently edited files and open them.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Recently modified files</span><span style="font-size: 9pt; font-weight: bold;">: </span><span style="font-size: 9pt;">Shows a list of the recently edited files.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Remove non-existent files from the list</span><span style="font-size: 9pt; font-weight: bold;">: </span><span style="font-size: 9pt;">Checks for files that no longer exist and removes them from the recent files list.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt; font-weight: bold;">Clear the recent files list</span><span style="font-size: 9pt; font-weight: bold;">: </span><span style="font-size: 9pt;">Clears all the files in the recent file list. The recent file list in the system registry is deleted.</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Import Framework Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Import Framework dialog box allows the user to select an available framework and load it to the current project.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h182.jpg" width="460" height="319" border="0" alt="ch11_h182"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Frameworks list</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The frameworks list displays the names and icons of the registered frameworks. Select a framework to load.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Large Icon/Small Icon Button</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">This toggles the icon size for the framework list. Select the small icon button if the framework names are shortened and difficult to read.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">This area shows a brief description of the framework item selected from the list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Page Setup Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Page Setup dialog box allows the user to specify what and how diagram information is printed, the paper orientation, margins, outlines, etc.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h183.jpg" width="433" height="330" border="0" alt="ch11_h183"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Option</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The user can specify some of the diagram information to be printed.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">On Header : Prints the diagram information in the page header.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">On Footer : Prints the diagram information in the page footer.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">None : Does not print the diagram information.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Diagram Name : Prints the diagram name.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Project Title : Prints the project name of the diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Page Number : Prints the page number.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Diagram Kind : Prints the diagram kind.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Date/Time :Prints the current date and time.</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Margin</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The user can specify the top, bottom, left, and right page margins in millimeters.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Page orientation</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The user can specify whether to print the page in portrait or landscape.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Border</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The user can specify how the page border will be printed. Select top, bottom, left, or right for drawing border and specify the border thickness.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Print Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Print dialog box appears when the user prints a diagram. The user can select and specify various options related to printing.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h184.jpg" width="529" height="515" border="0" alt="ch11_h184"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Printer</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The user can configure the printer-related options.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Name : Select a printer to use from the installed printers.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Status : Indicates the status of the selected printer.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Location : Indicates the location of the selected printer.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Page Setup : Opens the Page Setup dialog box.</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Size</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Specifies the size of the diagram to print.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Diagram as is : Prints the diagram in its original size. The diagram is printed in multiple pages if it does not fit in one page.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Fit to page : Prints the diagram to fit in one page. This option prevents printing of multiple pages if the diagram is large.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Tile : Prints the diagram to fit in multiple pages. The user can specify the number of pages to print by width and height (e.g. 3 pages wide and 4 pages tall = total 12 pages).</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Print Range</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Specifies the range of the diagram to print.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Current diagram : Prints only the currently active diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">All diagrams : Prints all of the diagrams in the current project.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Selected diagrams : Prints only the selected diagram. The </span><span style="font-size: 9pt; font-weight: bold;">[Select All]</span><span style="font-size: 9pt;"> button selects all diagrams, and the </span><span style="font-size: 9pt; font-weight: bold;">[Deselect All]</span><span style="font-size: 9pt;"> button deselects all diagrams.</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Preview</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Opens the Preview dialog box.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Print Preview Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Print Preview dialog box allows the user to preview the print result before actually printing the diagram.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h185.jpg" width="800" height="600" border="0" alt="ch11_h185"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Print</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Starts printing.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">One Page / Two Pages</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Toggles preview by one page or two pages.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">&lt;&lt;, &lt;, &gt;, &gt;&gt;</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Allows navigation to the first page, previous page, next page, and last page.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Page Selection</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The user can move to a specific page by directly entering the page number.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Find Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Find dialog box allows the user to find elements quickly and easily.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h186.jpg" width="460" height="174" border="0" alt="ch11_h186"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Text to Find</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Enter the full or partial string for the element to find. The user can also select from the previously entered strings.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Option-Element Type</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">This specifies the range of elements to find. Available ranges: ‘All elements’, Model, Subsystem, Package, Class, Interface, Enumeration, Signal, Exception, Component, Node, Instance, UseCase, and Actor.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Option-Case Sensitive</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">This specifies lowercase or uppercase for the element to find.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Verify Model Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Verify Model dialog box is used to inspect the model elements and their definitions.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h187.jpg" width="525" height="246" border="0" alt="ch11_h187"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Verification Rule</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows the verification rule currently being applied.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Verifying Element</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows the name of the element currently being verified.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Progress</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Visually displays the progress of the verification.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Failed</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Indicates the number of the elements that failed the verification.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Options Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Options dialog box lists the various option items for environment configuration of WhiteStarUml and allows the user to edit them.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h188.jpg" width="569" height="399" border="0" alt="ch11_h188"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Option category</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">This list shows the option categories. The top category is “Environment” which contains the sub-categories “General”, “Diagram”, “General View”, and “Specific View”. Additional option categories may be present depending on the module of WhiteStarUml.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Option item</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows the option items contained in the selected option category. The option values can be edited.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows a brief description of the selected option category or item.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Reset to default values</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Sets the selected option item value to the default value.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Revert to last value</span></p>
+<p style="margin: 19px 0px 0px 0px;"><span style="font-size: 9pt;">Reverts the selected option item value to the last saved value.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">　</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Select Stereotype Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Select Stereotype dialog box appears when the user needs to specify a stereotype for the selected element. The stereotype can be entered directly or selected from the list.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h189.jpg" width="423" height="301" border="0" alt="ch11_h189"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Stereotypes</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The user can directly enter the stereotype. If a stereotype has been registered, it is indicated in the stereotype list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Stereotypes List</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows the stereotypes defined in the UML profiles that are in use by the current project. The name of the stereotype and the name of the project that contains it are shown together. The user can select a stereotype from the list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Icon preview</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The icon is shown if the selected stereotype is associated with an icon.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows the description for the selected stereotype.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Select Element Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Select Element dialog box allows the user to select an element from the hierarchical structure of the project elements. The Select Element dialog box appears when the user needs to assign an element at the property editor, collection editor, etc. Unlike the Element List dialog box, the Select Element dialog box lists the elements in a hierarchical structure.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h190.jpg" width="412" height="397" border="0" alt="ch11_h190"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Dialog Box Title</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The dialog box title changes according to the type of the element to be selected. An appropriate title is displayed for defining the attribute type, or the object type (i.e., Classifier).</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Element List</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows the available elements. For example, only the StateMachine elements are displayed when selecting a StateMachine element.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Data Types</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows the available data types. The data types shown here are those defined in the UML profiles which are in use by the current project. This list may not be shown if a data type does not need to be specified.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Do not specify　</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Check this to specify nothing. This actually assigns a null value.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Selected Element</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The bottom part of the dialog box shows the full pathname of the selected element. This information can be used to verify which element is currently selected.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Element List Dialog Box &nbsp; </span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Element List dialog box allows the user to select an element from a list. The Select Element dialog box appears when the user needs to assign an element to a specific property at the property editor, collection editor, etc. Unlike the Select Element dialog box, the Element List dialog box lists the elements in a one-dimensional list.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h191.jpg" width="522" height="285" border="0" alt="ch11_h191"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Dialog Box Title</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The dialog box title changes according to the type of the element to be selected. An appropriate title is displayed for selecting a StateMachine, or for assigning a component in a node.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Element List</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows the available elements. For example, only the StateMachine elements are displayed when selecting a StateMachine element.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Do not specify　</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Check this to specify nothing. This actually assigns a null value.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Model Filtering Dialog Box</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Model Filter dialog box can be used to show or hide specific elements in the model explorer.</span></p>
+<p style="margin: 14px 0px 10px 0px;"><img src="ch11_h192.jpg" width="447" height="345" border="0" alt="ch11_h192"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Element to show</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Shows all the elements that can be displayed in the model explorer. Only those checked are displayed in the model explorer.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Select Relations</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Selects all the relationship elements (</span><span style="font-size: 9pt; font-style: italic;">Transition, Dependency, Association, AssociationClass, Generalization, Link, AssociationRole, Stimulus, Message, Include, Extend, and Realization</span><span style="font-size: 9pt;">) from the elements list.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Deselect Relations</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Deselects all the relation elements.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Select All</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Selects all elements.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Deselect All</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Deselects all elements.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Set As Default</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Selects the elements set as default by the program.</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

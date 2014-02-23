@@ -1,0 +1,64 @@
+﻿"Start Symbol" = <attribute_expression>
+"Case Sensitive" = False                
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+{Visibility Chars} = [+-#~]
+{Restricted Chars} = {All Space} + {Visibility Chars} ! Restricted Chars should not start or end an indentifier as they may collide with other symbols                   
+{Boundary String Chars} = {All Letters} +  {Number} + {Euro Sign} + [_,;/\.&@$%*"`’'']
+{String Chars} = {Boundary String Chars} + {Restricted Chars}
+
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )*
+
+stereotypeStart = '<<'
+! Spaces to avoid collision with close angle bracket
+stereotypeEnd = {All Space}* '>>' 
+
+openParen = {All Space}* '(' {All Space}*
+closeParen = {All Space}* ')'
+openSquareBracket = {All Space}* '[' {All Space}*
+closeSquareBracket = {All Space}* ']'
+openAngleBracket = {All Space}* '<' {All Space}*
+closeAngleBracket = {All Space}* '>'
+              
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<attribute_expression> ::= <stereotype_part> <visibility> <attribute_name> <type_expression_part> <initial_value_part>
+                           
+<stereotype_part> ::= stereotypeStart <stereotype> stereotypeEnd
+                   |  <>
+
+<stereotype> ::= id
+
+<visibility> ::= '+' | '#' | '-' | '~'
+              | <> 
+
+<attribute_name> ::= <id_expr>
+                  
+<type_expression_part> ::= ':' <type_expression>
+                        | <>
+
+<type_expression> ::= <type_id>                  
+                        
+<initial_value_part> ::= '=' <initial_value>
+                      | <>
+       
+<type_id> ::= <id_expr>
+
+<initial_value> ::= <id_expr>
+                 
+<nullable_id_expr> ::= <id_expr> | <>
+
+<id_expr> ::= id
+      | id openParen <nullable_id_expr> closeParen
+      | id openSquareBracket <nullable_id_expr> closeSquareBracket
+      | id openAngleBracket <nullable_id_expr> closeAngleBracket
+        
+

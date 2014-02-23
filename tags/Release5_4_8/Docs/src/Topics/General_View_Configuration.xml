@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd" status="Out Of Date">
+  <title translate="true">General View Configuration</title>
+  <keywords>
+    <keyword translate="true">Configuration<keyword translate="true">general view</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">General View Configuration</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">General View Configuration is a group of the basic and general option items related to view elements. This category includes the </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Default View Style] </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">and </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">[Default View Format] </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">subcategories.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">[Default View Style] </text><text styleclass="Normal" style="font-family:'Times New Roman'; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Options</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><table rowcount="6" colcount="3" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Option Item</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Default</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Default fill color</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">$00B9FFFF</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the default fill color for view elements (default is light yellow).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Default line color</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">$00000080</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the default line color for view elements (default is maroon).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Default font name</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Tahoma</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the default font face for view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Default font size</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">8</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the default font size for view elements. The range for default font size is 1~50.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Default font color</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">$00000000</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the default font color for view elements (default is black).</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">[Default View Format] </text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Options</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><table rowcount="11" colcount="3" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Option Item</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Default</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Line style</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Rectilinear</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the Line Style for connection elements (either rectilinear or oblique).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Show stereotype</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">text</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the default stereotype indication method (text, icon, or hide).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Show parent name</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">False</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies whether to show the name of the parent element that contains the model element represented by the view element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Automatic resize</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">False</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies whether to automatically resize view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Show compartment visibility</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">True</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies whether to show compartment visibility for view elements (e.g., attribute compartment, operation compartment, etc.).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Show compartment stereotype</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">True</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies whether to show compartment stereotype for view elements (e.g., attribute compartment, operation compartment, etc.).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Show operation signature</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">True</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies whether to show signature when expressing operation elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Show property</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">False</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies whether to show the property items (e.g. tagged values, changeability attribute, etc.) included in view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Suppress attribute</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">False</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies whether to suppress the attributes for class type view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Suppress operation</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">False</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies whether to suppress the operations for class type view elements.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> </text></para>
+  </body>
+</topic>

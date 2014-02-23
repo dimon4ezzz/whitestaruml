@@ -1,0 +1,1259 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd" status="Out Of Date">
+  <title translate="true">Toolbars</title>
+  <keywords>
+    <keyword translate="true">Toolbars</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Toolbars</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">This section describes in detail all of the toolbar items in </text><var styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">.</text></para>
+    <list id="1" type="ul" listtype="bullet" formatstring="·" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none; font-family:Symbol; font-size:9pt; color:#000000;">
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Standard Toolbar</text></li>
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Format Toolbar</text></li>
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">View Toolbar</text></li>
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:0px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Align Toolbar</text></li>
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:10px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">Pallet Toolbar</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Standard Toolbar</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The Standard toolbar contains the following functions.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="17" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Toolbar</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h49.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> New Project[Ctrl+N]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a new project.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h50.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Open[Ctrl+O]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens a project file.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h51.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Save[Ctrl+S]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Saves the project file</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h52.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Print[Ctrl+P]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Prints the diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h53.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Cut[Ctrl+X]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Copies the selected elements to clipboard and removes them from the current location.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h54.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Copy[Ctrl+C]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Copies the selected elements to clipboard.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h55.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Paste[Ctrl+V]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Pastes the clipboard contents into the currently selected element (or diagram).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h56.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Delete[Del]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Deletes the selected view elements in the diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h57.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Undo[Ctrl+Z]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Cancels the most recent action performed by the user.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h58.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Redo[Ctrl+Y]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Repeats the most recent action performed by the user.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h59.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Find[Ctrl+F]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Finds an element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h60.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Collection Editor[Ctrl+F5]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the collection editor that can be used to edit the child elements of the currently selected model element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h61.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Constraints[Ctrl+F6]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the constraint editor that can be used to edit the constraints of the currently selected model element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h62.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> TaggedValues[Ctrl+F7]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the tagged value editor that can be used to edit the tag definitions of the currently selected model element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h63.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Profiles[Ctrl+F8]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the profile manager.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="height:60px; background-color:#ffffff;">
+          <para><image src="ch11_h64.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Verify Model[F9]</text></para>
+        </td>
+        <td style="height:60px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Opens the Verify Model dialog box that can be used to inspect the model elements in the current project.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Format Toolbar</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The Format toolbar contains the following functions.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="19" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Tool</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">(Combo) Font Name</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the font name for the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">(Combo) Font Size</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the font size for the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="height:27px; background-color:#ffffff;">
+          <para><image src="ch11_h65.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Font...</text></para>
+        </td>
+        <td style="height:27px; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the font for the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h66.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Line Color...</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the line color for the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h67.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Fill Color...</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the fill color for the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="height:28px; background-color:#ffffff;">
+          <para><image src="ch11_h68.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Auto Resize</text></para>
+        </td>
+        <td style="height:28px; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Automatically resizes the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h69.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Stereotype Display</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies how the stereotypes will be shown for the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h70.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Show As Extended Notation</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies how the extended notation will be shown for the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h71.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Line Style</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Specifies the line style for the selected connection view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h72.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Suppress Attributes[Shift+Ctrl+A]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Suppresses the section that displays the attributes for the selected view elements (e.g. class, usecase, etc.).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h73.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Suppress Operations[Shift+Ctrl+O]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Suppresses the section that displays the operations for the selected view elements (e.g. class, subsystem, etc.).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h74.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Suppress Literals[Shift+Ctrl+L]</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Suppresses the section that displays the attributes for the selected enumerations.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h21.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Word Wrap Name</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the word wrap of the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h75.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Show Parent Name</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the parent name of the selected view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h76.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Show Operation Signature</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the operation signature of the selected view elements (e.g. class, subsystem, etc.).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h77.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Show Properties</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the property items (e.g. tagged values, changeability attribute, etc.) included in view elements.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h78.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Show Compartment Visibility</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the visibility of the compartments of the selected view elements (e.g. attribute compartment, operation compartment, etc.).</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><image src="ch11_h79.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Show Compartment Stereotype</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Shows the stereotype of the compartments of the selected view elements (e.g. attribute compartment, operation compartment, etc.).</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">　</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">View Toolbar</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The View toolbar contains the following functions.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="6" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:31%; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Tool</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:69%; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">(Combo) Zoom</text></para>
+        </td>
+        <td style="width:69%; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Selects the zoom ratio for the current diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><image src="ch11_h80.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Zoom In</text></para>
+        </td>
+        <td style="width:69%; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Makes the diagram look larger.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><image src="ch11_h81.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Zoom Out</text></para>
+        </td>
+        <td style="width:69%; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Makes the diagram look smaller.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><image src="ch11_h82.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Fit To Window</text></para>
+        </td>
+        <td style="width:69%; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Automatically adjusts the zoom ratio to fit the whole diagram in the window.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><image src="ch11_h83.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Refersh[F5]</text></para>
+        </td>
+        <td style="width:69%; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Refreshes the current diagram.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Align Toolbar</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The Align toolbar contains the following functions.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="12" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:227px; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Tool</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:227px; background-color:#ffffff;">
+          <para><image src="ch11_h84.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Layout Diagram</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Lays out the view elements in the current diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:227px; background-color:#ffffff;">
+          <para><image src="ch11_h85.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Bring to Front</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Brings the selected elements to front.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:227px; background-color:#ffffff;">
+          <para><image src="ch11_h86.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Send to Back</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sends the selected elements to back.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:227px; background-color:#ffffff;">
+          <para><image src="ch11_h87.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Align Left</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Aligns the selected elements to left.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:227px; background-color:#ffffff;">
+          <para><image src="ch11_h88.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Align Right</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Aligns the selected elements to right.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:227px; background-color:#ffffff;">
+          <para><image src="ch11_h89.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Align Middle</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Centers the selected elements horizontally.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:227px; background-color:#ffffff;">
+          <para><image src="ch11_h90.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Align Top</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Aligns the selected elements to top.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:227px; background-color:#ffffff;">
+          <para><image src="ch11_h91.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Align Bottom</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Aligns the selected elements to bottom.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:227px; background-color:#ffffff;">
+          <para><image src="ch11_h92.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Align Center</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Centers the selected elements vertically.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:227px; background-color:#ffffff;">
+          <para><image src="ch11_h93.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Space Equally, Horizontally</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Evenly distributes the selected elements horizontally.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:227px; background-color:#ffffff;">
+          <para><image src="ch11_h94.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Space Equally, Vertically</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Evenly distributes the selected elements vertically.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Pallet Toolbar</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The Pallet toolbar contains the following functions for selecting and creating elements in the diagram. </text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline;" translate="true">Common Pallet Tool</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The following functions are always available in the Pallet toolbar regardless of the diagram types.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="8" colcount="2" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:31%; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Tool</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:69%; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><image src="ch11_h95.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Select</text></para>
+        </td>
+        <td style="width:69%; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The most basic tool that selects, moves or resizes an element in the diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><image src="ch11_h96.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Note</text></para>
+        </td>
+        <td style="width:69%; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a note element in the current diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><image src="ch11_h97.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Note Link</text></para>
+        </td>
+        <td style="width:69%; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links a note in the current diagram to another element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><image src="ch11_h98.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Text</text></para>
+        </td>
+        <td style="width:69%; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a string element in the current diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><image src="ch11_h99.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Rectangle</text></para>
+        </td>
+        <td style="width:69%; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Create a figure of  rectangle in the current diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><image src="ch11_h100.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Ellipse</text></para>
+        </td>
+        <td style="width:69%; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a figure of  ellipse in the current diagram.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:31%; background-color:#ffffff;">
+          <para><image src="ch11_h101.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Rounded Rectangle</text></para>
+        </td>
+        <td style="width:69%; background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a figure of  rounded rectangle in the current diagram.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline;" translate="true">Pallet Tool by Diagram Types</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> The following functions create elements by diagram types.</text></para>
+    <para styleclass="Normal" style="margin-top:14px; line-height:1.0; tabstops:none;"><table rowcount="65" colcount="3" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:18%; height:17px; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Tool</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:51%; height:17px; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Description</text></para>
+        </td>
+        <td style="vertical-align:bottom; width:31%; height:17px; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h95.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Select</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">The most basic tool that selects, moves or resizes an element in the diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">All diagrams</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h102.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Subsystem</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a subsystem element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h103.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Package</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a package element in the current diagram..</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Component Diagram, Deployment Diagram, UseCase Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h104.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Class</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a class element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Composite Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h105.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Interface</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates an interface element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Component Diagram, Composite Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h106.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Enumeration</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates an enumeration element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h107.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Signal</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a signal element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h108.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Except</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates an exception element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h109.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Component</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a component element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Component Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:33px; background-color:#ffffff;">
+          <para><image src="ch11_h110.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> ComponentInstance</text></para>
+        </td>
+        <td style="width:51%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a component instance element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Component Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h111.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Node</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a node element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Deployment Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h112.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> NodeInstance</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a node instance element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Component Diagram, Deployment Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h113.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Artifact</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a artifact in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">UseCase Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h114.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> UseCase</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a usecase element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">UseCase Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h115.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Actor</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates an actor element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">UseCase Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h116.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> SystemBoundary</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates an system boundary in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">UseCase Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:31px; background-color:#ffffff;">
+          <para><image src="ch11_h117.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Object</text></para>
+        </td>
+        <td style="width:51%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates an object element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Sequence Diagram, Collaboration Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:31px; background-color:#ffffff;">
+          <para><image src="ch11_h118.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Part</text></para>
+        </td>
+        <td style="width:51%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a  Part element with a Classifier in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Component Diagram, Deployment Diagram, Composite Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:31px; background-color:#ffffff;">
+          <para><image src="ch11_h119.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Port</text></para>
+        </td>
+        <td style="width:51%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a  Port element with a Classifier in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Component Diagram, Deployment Diagram, Composite Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:31px; background-color:#ffffff;">
+          <para><image src="ch11_h120.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> ClassifierRole</text></para>
+        </td>
+        <td style="width:51%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a ClassifierRole element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Role Diagram, Collaboration Role Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:31px; background-color:#ffffff;">
+          <para><image src="ch11_h121.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Combined Fragment</text></para>
+        </td>
+        <td style="width:51%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a Combined Fragment element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Diagram, Sequence Role Diagram, Collaboration Diagram, Collaboration Role Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:31px; background-color:#ffffff;">
+          <para><image src="ch11_h122.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Interaction Operand</text></para>
+        </td>
+        <td style="width:51%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a  Interaction Operand element with a Combined Fragment in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Diagram, Sequence Role Diagram, Collaboration Diagram, Collaboration Role Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:31px; background-color:#ffffff;">
+          <para><image src="ch11_h123.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Frame</text></para>
+        </td>
+        <td style="width:51%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a Frame element in the current diagram</text></para>
+        </td>
+        <td style="width:31%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Diagram, Sequence Role Diagram, Collaboration Diagram, Collaboration Role Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h124.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> CompositeState</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a CompositeState element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:33px; background-color:#ffffff;">
+          <para><image src="ch11_h125.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> SubmachineState</text></para>
+        </td>
+        <td style="width:51%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a SubmachineState element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:33px; background-color:#ffffff;">
+          <para><image src="ch11_h126.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> InitialState</text></para>
+        </td>
+        <td style="width:51%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates an InitialState (Pseudostate) element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram, Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:23px; background-color:#ffffff;">
+          <para><image src="ch11_h127.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> FinalState</text></para>
+        </td>
+        <td style="width:51%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a FinalState element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:23px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram, Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:33px; background-color:#ffffff;">
+          <para><image src="ch11_h128.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Flow Final</text></para>
+        </td>
+        <td style="width:51%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a DeepHistory(FlowFinalState) element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram, Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:33px; background-color:#ffffff;">
+          <para><image src="ch11_h129.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> ChoicePoint</text></para>
+        </td>
+        <td style="width:51%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a Choice (Pseudostate) element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:33px; background-color:#ffffff;">
+          <para><image src="ch11_h130.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> JunctionPoint</text></para>
+        </td>
+        <td style="width:51%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a Junction (Pseudostate) element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:24px; background-color:#ffffff;">
+          <para><image src="ch11_h131.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> ShallowHistory</text></para>
+        </td>
+        <td style="width:51%; height:24px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a ShallowHistory (Pseudostate) element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:24px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:33px; background-color:#ffffff;">
+          <para><image src="ch11_h132.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> DeepHistory</text></para>
+        </td>
+        <td style="width:51%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a DeepHistory (Pseudostate) element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:33px; background-color:#ffffff;">
+          <para><image src="ch11_h133.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Synchronization</text></para>
+        </td>
+        <td style="width:51%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a Synchronization (Pseudostate) element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:33px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram, Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h134.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> ActionState</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates an ActionState element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h135.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> SubactivityState</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a Subactivity State element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h136.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Decision</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a Decision (Pseudostate) element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h137.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> ObjectFlow</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a ObjectFlowState element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h138.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Signal Accept State</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a SignalAcceptState element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h139.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Signal Send State</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a SignalSendState element in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h140.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Swimlane(Vertical)</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a Swimlane by vertical solid lines in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h141.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Swimlane(Horizontal)</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a Swimlane by horizontal solid lines in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h142.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Association</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links a semantic association between two classes in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Component Diagram, Deployment Diagram, UseCase Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h143.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> DirectedAssociation</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links a semantic association between two classes in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Deployment Diagram, UseCase Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h144.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Aggregation</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links a semantic association between two classes in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h145.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Composition</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links a semantic association between two classes in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h146.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Generalization</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links a generalized element and a specialized element with a generalization relation in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, UseCase Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h147.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Dependency</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links two elements with a dependency relation in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Component Diagram, Deployment Diagram, UseCase Diagram, Composite Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h148.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Realization</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links a specification element and its implementation element with a realization relation in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Component Diagram, Composite Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h149.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> AssociationClass</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links a class and an association in the current diagram so that the association itself can have the significance of a class.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h150.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Include</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links two UseCases with an Include relation in the current diagram so that one UseCase includes the other UseCase behaviors.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">UseCase Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h151.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Extend</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links two UseCases with an Extend relation in the current diagram so that one UseCase can be extended with the behaviors defined in the other UseCase.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">UseCase Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h152.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> AssociationRole</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links two roles with an AssociationRole in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Collaboration Role Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h153.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> SelfAssociationRole</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates an AssociationRole from one role to the same role in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Collaboration Role Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h154.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Link</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links two objects in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Collaboration Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h155.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> SelfLink</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links an object with itself in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Collaboration Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h156.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> ForwardMessage</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Defines a message between two roles in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Role Diagram, Collaboration Role Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h157.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> ReverseMessage</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Defines a message between two roles in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Role Diagram, Collaboration Role Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h158.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> SelfMessage</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a message from a role to the same role in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Role Diagram, Collaboration Role Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h159.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> ForwardStimulus</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Defines a stimulus between two objects in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Diagram, Collaboration Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h160.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> ReverseStimulus</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Defines a stimulus between two objects in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Diagram, Collaboration Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h161.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> SelfStimulus</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Creates a stimulus from an object to the same object in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sequence Diagram, Collaboration Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h162.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Transition</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links a source state and a target state with a transition in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram, Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:19px; background-color:#ffffff;">
+          <para><image src="ch11_h163.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> SelfTransition</text></para>
+        </td>
+        <td style="width:51%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links an original state and a target state with a transition in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:19px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Statechart Diagram, Activity Diagram</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:18%; height:31px; background-color:#ffffff;">
+          <para><image src="ch11_h164.jpg" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> Connector</text></para>
+        </td>
+        <td style="width:51%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Links a original feature and a target feature with a connector in the current diagram.</text></para>
+        </td>
+        <td style="width:31%; height:31px; background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Class Diagram, Component Diagram, Deployment Diagram, Composite Diagram</text></para>
+        </td>
+      </tr>
+    </table></para>
+  </body>
+</topic>

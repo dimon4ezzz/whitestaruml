@@ -1,0 +1,94 @@
+<html>
+
+<head>
+<title>Memento Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Memento </h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Interaction">Interaction</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Without violating encapsulation, capture and externalize an object's 
+	internal state so that the object can be restored to this state later.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp;
+<img border="0" src="Memento_Model1.gif" width="503" height="169"></p>
+<ul type="square">
+  <li><b><font face="Verdana">Memento(SolverState)</font></b><font face="Verdana"><b>:
+  </b>stores internal state of the Originator object. The memento may store as 
+	much or as little of the originator's internal state as necessary at its 
+	originator's discretion<b>.
+  </b>protects<b>
+  </b>against access by objects other than the originator. Mementos have 
+	effectively two interfaces. Caretaker sees a narrow interface to the 
+	Memento&#8212;it can only pass the<br>
+	memento to other objects. Originator, in contrast, sees a wide interface, 
+	one that lets it access all the data necessary to restore itself to its 
+	previous state. Ideally, only the originator that produced the memento would 
+	be permitted to access the memento's internal state.</font></li>
+  <li><font face="Verdana"><b>Originator(ConstraintSolver):</b> creates a 
+	memento containing a snapshot of its current internal state. uses the 
+	memento to restore its internal state.</font></li>
+  <li><font face="Verdana"><b>Caretaker(undo mechanism):</b> is responsible for 
+	the memento's safekeeping. never operates on or examines the contents of a 
+	memento.</font></li>
+</ul>
+<h2><a name="Interaction">Interaction</a></h2>
+<p>
+<img border="0" src="Memento_Model_Seq1.gif" width="421" height="260"></p>
+<ul type="square">
+  <li>A caretaker requests a memento from an originator, holds it for a time, 
+	and passes it back to the originator, as the following interaction diagram 
+	illustrates.</li>
+  <li>Sometimes the caretaker won't pass the memento back to the originator, 
+	because the originator might never need to revert to an earlier state.</li>
+  <li>Mementos are passive. Only the originator that created a memento will 
+	assign or retrieve its state.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>a snapshot of (some portion of) an object's state must be saved so that it 
+	can be restored to that state later, and</li>
+  <li>a direct interface to obtaining the state would expose implementation 
+	details and break the object's encapsulation.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>Preserving encapsulation boundaries. </b>Memento avoids exposing 
+	information that only an originator should manage but that must be stored 
+	nevertheless outside the originator. The pattern<br>
+	shields other objects from potentially complex Originator internals, thereby 
+	preserving encapsulation boundaries.</li>
+  <li><b>It simplifies Originator. </b>In other encapsulation-preserving 
+	designs, Originator keeps the versions of internal state that clients have 
+	requested. That puts all the storage management burden on Originator. Having 
+	clients manage the state they ask for simplifies Originator and keeps 
+	clients from having to notify originators when they're done.</li>
+  <li><b>Using mementos might be expensive. </b>Mementos might incur 
+	considerable overhead if Originator must copy large amounts of information 
+	to store in the memento or if clients create and return mementos to the 
+	originator often enough. Unless encapsulating and restoring Originator state 
+	is cheap, the pattern might not be appropriate. See the discussion of 
+	incrementality in the Implementation section.</li>
+  <li><b>Defining narrow and wide interfaces. </b> It may be difficult in some 
+	languages to ensure that only the originator can access the memento's state.</li>
+  <li><b>Hidden costs in caring for mementos. </b> A caretaker is responsible 
+	for deleting the mementos it cares for. However, the caretaker has no idea 
+	how much state is in the memento. Hence an<br>
+	otherwise lightweight caretaker might incur large storage costs when it 
+	stores mementos.</li>
+</ul>
+
+</body>
+
+</html>

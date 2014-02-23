@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Merging Units</title>
+  <keywords>
+    <keyword translate="true">Merging units</keyword>
+    <keyword translate="true">Unit</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Merging Units</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">If a unit no longer needs to be managed separately, the unit can be merged back in to the project.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To merge a unit in to the project</text></para>
+    <list id="1" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Model explorer</text><text styleclass="List1" translate="true"> select the unit you want to merge. In the </text><text styleclass="MenuCommand" translate="true">Model explorer</text><text styleclass="List1" translate="true"> units are indicated with a small document icon.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:48px;"><image src="CreateUnitSaved.jpg" scale="100.00%" styleclass="Image Caption"></image><br/><text styleclass="Image Caption" translate="true">package saved as unit</text></para>
+    <list id="1" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, point to </text><text styleclass="MenuCommand" translate="true">Unit</text><text styleclass="Normal" translate="true">,</text><text styleclass="List1" translate="true"> and then click </text><text styleclass="MenuCommand" translate="true">Uncontrol Unit</text><text styleclass="List1" translate="true">.</text></li>
+    </list>
+    <para styleclass="Notes"><image src="note.bmp" scale="100.00%" styleclass="Notes"></image><text styleclass="Notes" translate="true">&#32;</text><text styleclass="Emphasis" translate="true">Note:</text><text styleclass="Notes" translate="true"> Merging a unit does not automatically delete the unit file from disk. </text><text styleclass="Normal" translate="true">Please remove the unit file manually if that file is no longer needed.</text></para>
+  </body>
+</topic>

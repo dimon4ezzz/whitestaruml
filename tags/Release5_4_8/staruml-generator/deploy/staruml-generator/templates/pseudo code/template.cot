@@ -1,0 +1,56 @@
+<@SCRIPT
+function identStr(str, ident, prefix) {
+    var result = "";
+    var strs = str.split("\n");
+    var len = strs.length;
+    for (var i=0; i<len; i++) {
+        for (var j=0; j<ident; j++)
+            result += " ";
+        result += prefix;
+        result += strs[i];
+        if (i != len-1)
+             result += "\n";
+    }
+    return result;
+}
+
+@>
+
+<@REPEAT {R};UMLClass;;@>
+<@SCRIPT
+    fileBegin(getTarget()+"\\"+current().Name+".java");
+
+@>
+/**
+<@= identStr(current().Documentation, 0, " * ") @>
+ */
+public class <@DISPLAY ;current().Name@> {
+
+<@REPEAT ;UMLAttribute;;@>
+    <@DISPLAY ;current().TypeExpression@> <@DISPLAY ;current().Name@>;
+<@ENDREPEAT@>
+<@REPEAT ;UMLOperation;;@>
+
+<@SCRIPT typeStr = ""; argStrs = ""; argStr = ""@>
+<@REPEAT ;;Parameters;current().DirectionKind==3@>
+<@SCRIPT typeStr = current().TypeExpression; @>
+<@ENDREPEAT@>
+<@REPEAT ;;Parameters;current().DirectionKind!=3@>
+<@SCRIPT
+argStr = current().TypeExpression + " " + current().Name;
+argStrs += argStr;
+@>
+<@ENDREPEAT@>
+    /**
+    <@= identStr(current().Documentation, 0, " * ") @>
+     */
+    <@=typeStr@> <@=current().Name@>(<@=argStrs@>) {
+        // implement here...
+    }
+<@ENDREPEAT@>
+}
+<@SCRIPT
+    fileEnd();
+@>
+<@ENDREPEAT@>
+

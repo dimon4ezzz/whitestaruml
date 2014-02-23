@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<map xmlns:xsi="http://www.w3.org/2001/XInclude">
+  <topicref type="topic" id="412187243485476" build="ALL" modified="2012-11-12T09:21:25.296Z" icon="0" href="introduction">
+    <caption translate="true">Introduction</caption>
+    <topicref type="topic" id="412252977727452" build="ALL" modified="2012-11-12T09:20:02.359Z" icon="0" href="Key_to_the_Guide">
+      <caption translate="true">Key to the Guide</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="412186405469249" build="ALL" modified="2012-11-05T15:31:51.984Z" icon="0" href="wsuOverview">
+    <caption translate="true">Overview</caption>
+    <topicref type="topic" id="412198962993948" build="ALL" modified="2012-11-06T21:01:22.812Z" icon="0" href="What_is_WhiteStarUML_">
+      <caption translate="true">What is WhiteStarUML?</caption>
+    </topicref>
+    <topicref type="topic" id="412197576282541" build="ALL" modified="2012-11-06T21:00:13.359Z" icon="0" href="Key_Features">
+      <caption translate="true">Key Features</caption>
+    </topicref>
+    <topicref type="topic" id="412200852841461" build="ALL" modified="2012-11-06T20:59:15.750Z" icon="0" href="System_Requirements">
+      <caption translate="true">System Requirements</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="412186587143977" build="ALL" modified="2012-11-05T15:31:41.000Z" icon="0" href="ch02">
+    <caption translate="true">Basic Concepts</caption>
+    <topicref type="topic" id="412199308090480" build="ALL" modified="2012-11-06T21:09:14.234Z" icon="0" href="Projects_and_Units">
+      <caption translate="true">Projects and Units</caption>
+    </topicref>
+    <topicref type="topic" id="412199907591190" build="ALL" modified="2012-11-06T21:11:42.859Z" icon="0" href="Model__View_and_Diagram">
+      <caption translate="true">Model, View and Diagram</caption>
+    </topicref>
+    <topicref type="topic" id="412197643639906" build="ALL" modified="2012-11-08T19:50:05.828Z" icon="0" href="ModuleApproachFramework">
+      <caption translate="true">Module, Approach, Framework and Profile</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="412187429102585" build="ALL" modified="2012-11-06T20:43:46.250Z" icon="0" href="ch03">
+    <caption translate="true">Managing Projects</caption>
+    <topicref type="topic" id="412199321546098" build="ALL" modified="2012-11-06T21:36:16.890Z" icon="0" href="Creating_a_Project">
+      <caption translate="true">Creating a Project</caption>
+    </topicref>
+    <topicref type="topic" id="412197584798084" build="ALL" modified="2012-11-06T21:35:23.890Z" icon="0" href="Opening_a_Project">
+      <caption translate="true">Opening a Project</caption>
+    </topicref>
+    <topicref type="topic" id="412199568602900" build="ALL" modified="2012-11-06T21:34:09.968Z" icon="0" href="Saving_a_Project">
+      <caption translate="true">Saving a Project</caption>
+    </topicref>
+    <topicref type="topic" id="412198180750724" build="ALL" modified="2012-11-06T21:33:20.765Z" icon="0" href="Closing_a_Project">
+      <caption translate="true">Closing a Project</caption>
+    </topicref>
+    <topicref type="topic" id="412198667798632" build="ALL" modified="2012-11-06T21:28:28.765Z" icon="0" href="Creating_Units">
+      <caption translate="true">Creating Units</caption>
+    </topicref>
+    <topicref type="topic" id="41219779304889" build="ALL" modified="2012-11-06T21:27:30.031Z" icon="0" href="Merging_Units">
+      <caption translate="true">Merging Units</caption>
+    </topicref>
+    <topicref type="topic" id="412197114247103" build="ALL" modified="2012-11-06T21:26:52.125Z" icon="0" href="Saving_Units">
+      <caption translate="true">Saving Units</caption>
+    </topicref>
+    <topicref type="topic" id="412197099792535" build="ALL" modified="2012-11-06T21:25:39.609Z" icon="0" href="Removing_a_Unit">
+      <caption translate="true">Removing Units</caption>
+    </topicref>
+    <topicref type="topic" id="412200178321695" build="ALL" modified="2012-11-06T21:25:48.890Z" icon="0" href="Creating_a_Model_Fragment">
+      <caption translate="true">Creating Model Fragments</caption>
+    </topicref>
+    <topicref type="topic" id="412199959970653" build="ALL" modified="2012-11-06T21:25:58.078Z" icon="0" href="Importing_a_Model_Fragment">
+      <caption translate="true">Importing Model Fragments</caption>
+    </topicref>
+    <topicref type="topic" id="412198325232459" build="ALL" modified="2012-11-06T21:26:05.265Z" icon="0" href="Importing_a_Framework">
+      <caption translate="true">Importing Frameworks</caption>
+    </topicref>
+    <topicref type="topic" id="412199013621470" build="ALL" modified="2012-11-06T21:26:11.750Z" icon="0" href="Include_a_Profile">
+      <caption translate="true">Including Profiles</caption>
+    </topicref>
+    <topicref type="topic" id="412200622166738" build="ALL" modified="2012-11-06T21:26:19.406Z" icon="0" href="Exclude_a_Profile">
+      <caption translate="true">Excluding Profiles</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="412188139175178" build="ALL" modified="2012-12-14T19:35:41.296Z" icon="0" href="Modeling">
+    <caption translate="true">Modeling</caption>
+    <topicref type="topic" id="412604918723995" build="ALL" modified="2012-12-17T15:16:08.437Z" icon="0" href="Managing_Diagrams">
+      <caption translate="true">Managing Diagrams</caption>
+      <topicref type="topic" id="41219344272914" build="ALL" modified="2012-12-22T08:53:39.343Z" icon="0" href="Basic_Tasks_Diagrams">
+        <caption translate="true">Basic Tasks with Diagrams</caption>
+      </topicref>
+      <topicref type="topic" id="412606677698329" build="ALL" modified="2012-12-17T14:40:24.578Z" icon="0" href="Navigating_Diagrams">
+        <caption translate="true">Navigating Diagrams</caption>
+      </topicref>
+      <topicref type="topic" id="412608266900843" build="ALL" modified="2012-12-17T14:52:27.828Z" icon="0" href="Finding_Elements">
+        <caption translate="true">Finding Elements</caption>
+      </topicref>
+      <topicref type="topic" id="412605159415333" build="ALL" modified="2012-12-17T14:43:16.390Z" icon="0" href="Diagrams_as_Image_Files">
+        <caption translate="true">Diagrams as Image Files</caption>
+      </topicref>
+      <topicref type="topic" id="412607067733576" build="ALL" modified="2012-12-17T14:47:35.015Z" icon="0" href="Setting_the_Default_Diagram">
+        <caption translate="true">Setting the Default Diagram</caption>
+      </topicref>
+    </topicref>
+    <topicref type="topic" id="412197847144243" build="ALL" modified="2013-01-04T13:46:10.281Z" icon="0" href="Managing_Elements">
+      <caption translate="true">Managing Elements</caption>
+      <topicref type="topic" id="412200162272420" build="ALL" modified="2013-01-04T14:52:52.531Z" icon="0" href="Editing_Elements_in_the_Model">
+        <caption translate="true">Elements in Models</caption>
+        <topicref type="topic" id="412604812924359" build="ALL" modified="2013-01-05T08:33:06.843Z" icon="0" href="Changing_Properties">
+          <caption translate="true">Changing Properties</caption>
+        </topicref>
+        <topicref type="topic" id="412792683200385" build="ALL" modified="2013-01-05T08:27:54.937Z" icon="0" href="Documenting_Elements">
+          <caption translate="true">Documenting Elements</caption>
+        </topicref>
+        <topicref type="topic" id="412792960469201" build="ALL" modified="2013-01-05T08:28:13.531Z" icon="0" href="Adding_Attachments_to_Elements">
+          <caption translate="true">Adding Attachments to Elements</caption>
+        </topicref>
+        <topicref type="topic" id="412791870057835" build="ALL" modified="2013-01-05T08:31:00.828Z" icon="0" href="Editing_Constraints">
+          <caption translate="true">Editing Constraints</caption>
+        </topicref>
+        <topicref type="topic" id="41280017042367" build="ALL" modified="2013-01-05T08:32:06.500Z" icon="0" href="Editing_Tagged_Values">
+          <caption translate="true">Editing Tagged Values</caption>
+        </topicref>
+        <topicref type="topic" id="412199136901508" build="ALL" modified="2012-11-06T21:32:19.218Z" icon="0" href="Organizing_Elements_in_the_Mod">
+          <caption translate="true">Organizing Elements in the Model</caption>
+        </topicref>
+      </topicref>
+      <topicref type="topic" id="41260011054191" build="ALL" modified="2013-01-04T14:51:15.000Z" icon="0" href="Basic_Tasks_Elements">
+        <caption translate="true">Elements in Diagrams</caption>
+        <topicref type="topic" id="412604713807058" build="ALL" modified="2012-12-17T14:58:57.375Z" icon="0" href="Resizing_and_Moving_Elements">
+          <caption translate="true">Resizing and Moving Elements</caption>
+        </topicref>
+        <topicref type="topic" id="412606287550158" build="ALL" modified="2012-12-17T14:42:46.859Z" icon="0" href="Copy_and_Paste_Elements">
+          <caption translate="true">Copy and Paste Elements</caption>
+        </topicref>
+        <topicref type="topic" id="412605667838589" build="ALL" modified="2013-01-13T10:34:50.781Z" icon="0" href="Compartments_View_Elements">
+          <caption translate="true">Formatting View Elements Compartments</caption>
+        </topicref>
+        <topicref type="topic" id="412785831304452" build="ALL" modified="2013-01-13T10:38:30.078Z" icon="0" href="Appearance_View_Element">
+          <caption translate="true">Formatting View Element Appearance</caption>
+        </topicref>
+        <topicref type="topic" id="412604856709545" build="ALL" modified="2013-01-18T19:01:21.671Z" icon="0" href="Changing_Relation_Line">
+          <caption translate="true">Changing Relationships and Line Styles</caption>
+        </topicref>
+        <topicref type="topic" id="412605042821410" build="ALL" modified="2012-12-17T14:50:12.406Z" icon="0" href="Laying_Out_Elements_in_a_Diagr">
+          <caption translate="true">Laying Out Elements in a Diagram</caption>
+        </topicref>
+      </topicref>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="412197089972053" build="ALL" modified="2012-11-06T21:49:00.343Z" icon="0" href="Working_with_Diagrams">
+    <caption translate="true">Working with Diagrams</caption>
+    <topicref type="topic" id="412186289259957" build="ALL" modified="2012-11-05T15:33:44.968Z" icon="0" href="ch05_1">
+      <caption translate="true">UseCase Diagrams</caption>
+    </topicref>
+    <topicref type="topic" id="412187212211158" build="ALL" modified="2012-11-05T15:33:56.359Z" icon="0" href="ch05_2">
+      <caption translate="true">Class Diagrams</caption>
+    </topicref>
+    <topicref type="topic" id="412186007420777" build="ALL" modified="2012-11-05T15:34:05.843Z" icon="0" href="ch05_3">
+      <caption translate="true">Sequence Diagrams</caption>
+    </topicref>
+    <topicref type="topic" id="412184915653137" build="ALL" modified="2012-11-05T15:34:15.562Z" icon="0" href="ch05_4">
+      <caption translate="true">Collaboration Diagrams</caption>
+    </topicref>
+    <topicref type="topic" id="412186769823943" build="ALL" modified="2012-11-05T15:34:26.390Z" icon="0" href="ch05_5">
+      <caption translate="true">State Diagrams</caption>
+    </topicref>
+    <topicref type="topic" id="4121037805695" build="ALL" modified="2012-11-05T15:33:30.937Z" icon="0" href="ch05_6">
+      <caption translate="true">Activity Diagrams</caption>
+    </topicref>
+    <topicref type="topic" id="412188147407204" build="ALL" modified="2012-11-05T15:34:41.921Z" icon="0" href="ch05_7">
+      <caption translate="true">Component Diagrams</caption>
+    </topicref>
+    <topicref type="topic" id="412184840704876" build="ALL" modified="2012-11-05T15:35:02.562Z" icon="0" href="ch05_8">
+      <caption translate="true">Deployment Diagrams</caption>
+    </topicref>
+    <topicref type="topic" id="412185405386689" build="ALL" modified="2012-11-05T15:35:14.750Z" icon="0" href="ch05_9">
+      <caption translate="true">Structure Diagrams</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="412184862305438" build="ALL" modified="2012-11-06T20:48:22.812Z" icon="0" href="ch06">
+    <caption translate="true">Program Configuration</caption>
+    <topicref type="topic" id="412219374446597" build="ALL" modified="2012-11-08T19:01:38.937Z" icon="0" href="General_Configuration">
+      <caption translate="true">General Configuration</caption>
+    </topicref>
+    <topicref type="topic" id="41223917886005" build="ALL" modified="2012-11-08T19:00:28.328Z" icon="0" href="Diagram_Configuration">
+      <caption translate="true">Diagram Configuration</caption>
+    </topicref>
+    <topicref type="topic" id="412218778704313" build="ALL" modified="2012-11-08T18:59:39.578Z" icon="0" href="General_View_Configuration">
+      <caption translate="true">General View Configuration</caption>
+    </topicref>
+    <topicref type="topic" id="412216793557251" build="ALL" modified="2012-11-08T18:58:49.375Z" icon="0" href="Specific_View_Configuration">
+      <caption translate="true">Specific View Configuration</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="412187548286996" build="ALL" modified="2012-11-05T15:35:40.484Z" icon="0" href="ch07">
+    <caption translate="true">Managing Modules</caption>
+    <topicref type="topic" id="412218467236886" build="ALL" modified="2012-11-08T19:46:34.796Z" icon="0" href="Installing_Modules">
+      <caption translate="true">Installing Modules</caption>
+    </topicref>
+    <topicref type="topic" id="412218626049894" build="ALL" modified="2012-11-08T19:45:08.625Z" icon="0" href="Uninstalling_Modules">
+      <caption translate="true">Uninstalling Modules</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="412187304156378" build="ALL" modified="2012-11-05T15:35:54.390Z" icon="0" href="ch08">
+    <caption translate="true">Generating Code and Documents</caption>
+    <topicref type="topic" id="412219090149254" build="ALL" modified="2012-11-08T19:10:53.656Z" icon="0" href="Generating_with_Templates">
+      <caption translate="true">Generating with Templates</caption>
+    </topicref>
+    <topicref type="topic" id="412216711951325" build="ALL" modified="2012-11-08T19:09:08.640Z" icon="0" href="Using_Batches">
+      <caption translate="true">Using Batches</caption>
+    </topicref>
+    <topicref type="topic" id="412216616452601" build="ALL" modified="2012-11-08T19:07:41.453Z" icon="0" href="Installing_and_Uninstalling_Te">
+      <caption translate="true">Installing and Uninstalling Templates</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="412186736308504" build="ALL" modified="2012-11-05T15:36:10.093Z" icon="0" href="ch09">
+    <caption translate="true">Verifying Models</caption>
+    <topicref type="topic" id="412217311226267" build="ALL" modified="2012-11-08T19:14:27.609Z" icon="0" href="Well-formedness_Rules">
+      <caption translate="true">Well-formedness Rules</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="412219249908996" build="ALL" modified="2012-11-08T19:24:05.468Z" icon="0" href="Printing_Diagrams">
+    <caption translate="true">Printing Diagrams</caption>
+    <topicref type="topic" id="4121172442359" build="ALL" modified="2012-11-08T19:26:10.671Z" icon="0" href="pagesetup">
+      <caption translate="true">Page Setup</caption>
+    </topicref>
+    <topicref type="topic" id="412217251486452" build="ALL" modified="2012-11-08T19:22:54.312Z" icon="0" href="Print_Preview">
+      <caption translate="true">Print Preview</caption>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="412184436079287" build="ALL" modified="2012-11-05T15:36:35.828Z" icon="0" href="ch11">
+    <caption translate="true">User-Interface Reference</caption>
+    <topicref type="topic" id="412218407083614" build="ALL" modified="2012-11-08T19:40:42.703Z" icon="0" href="Menus">
+      <caption translate="true">Menus</caption>
+    </topicref>
+    <topicref type="topic" id="412217979725954" build="ALL" modified="2012-11-08T19:38:59.703Z" icon="0" href="Shortcut_Keys">
+      <caption translate="true">Shortcut Keys</caption>
+    </topicref>
+    <topicref type="topic" id="412218523845583" build="ALL" modified="2012-11-08T19:37:40.281Z" icon="0" href="Toolbars">
+      <caption translate="true">Toolbars</caption>
+    </topicref>
+    <topicref type="topic" id="412218230642672" build="ALL" modified="2012-11-08T19:36:21.421Z" icon="0" href="Viewers">
+      <caption translate="true">Viewers</caption>
+    </topicref>
+    <topicref type="topic" id="412216572148811" build="ALL" modified="2012-11-08T19:34:33.781Z" icon="0" href="Dialogs">
+      <caption translate="true">Dialogs</caption>
+    </topicref>
+    <topicref type="topic" id="412218302426697" build="ALL" modified="2012-11-08T19:32:39.218Z" icon="0" href="Quick_Dialogs">
+      <caption translate="true">Quick Dialogs</caption>
+      <topicref type="topic" id="412584580387181" build="ALL" modified="2012-12-15T08:16:11.468Z" icon="0" href="Element_Creation_Shorthand">
+        <caption translate="true">Element Creation Shorthand</caption>
+      </topicref>
+    </topicref>
+  </topicref>
+  <topicref type="topic" id="412187032328289" build="ALL" modified="2012-11-05T15:37:39.984Z" icon="0" href="Appendices">
+    <caption translate="true">Appendices</caption>
+    <topicref type="topic" id="412184905799572" build="ALL" modified="2012-11-06T21:47:03.500Z" icon="0" href="AppendixGPL">
+      <caption translate="true">GPL Software License Agreement</caption>
+    </topicref>
+    <topicref type="topic" id="412184907196966" build="ALL" modified="2012-11-06T21:47:23.828Z" icon="0" href="AppendixFDL">
+      <caption translate="true">FDL Documentation License Agreement</caption>
+    </topicref>
+  </topicref>
+</map>

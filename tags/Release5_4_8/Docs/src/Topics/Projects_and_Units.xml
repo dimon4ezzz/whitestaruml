@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Projects and Units</title>
+  <keywords>
+    <keyword translate="true">Concept<keyword translate="true">project</keyword><keyword translate="true">unit</keyword></keyword>
+    <keyword translate="true">Model</keyword>
+    <keyword translate="true">Model fragment</keyword>
+    <keyword translate="true">Package</keyword>
+    <keyword translate="true">Project<keyword translate="true">concept</keyword></keyword>
+    <keyword translate="true">Subsystem</keyword>
+    <keyword translate="true">Unit<keyword translate="true">concept</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Projects and Units</text></para>
+    </header>
+    <para styleclass="SubHead"><text styleclass="SubHead" translate="true">Project</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A project is the basic element to organize your work in </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true">. Your project contains one or more models, subsystems or packages, each of which can contain subsystems and packages. The project is a representation of the system you are developing and contains all the artifacts used to document that system.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A model is a representation of structure of your system. The most direct way to show the model is a class diagram. However, a class diagram is not </text><text styleclass="Normal" style="font-style:italic;" translate="true">the</text><text styleclass="Normal" translate="true"> model. Nor should one class diagram show the whole model of your system.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A subsystem is a larger, more or less independent part of the system. In general a subsystem is a self-contained set of functionality, but larger than a simple component.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A package is a way to group related UML elements. The package provides a boundary for naming the elements. As such, the package provides a namespace. Package names are often used as a prefix for the elements it contains.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">In general, one project is saved in one project file.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Project files are saved in the XML format with the extension name “.UML”. All models, views and diagrams created in </text><var styleclass="Normal">&lt;%PROGNAME%&gt;</var><text styleclass="Normal" translate="true"> are saved in one project file. A project file contains the following information.</text></para>
+    <list id="1" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">UML profiles used in the project</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Unit files referenced by the project</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">The models, subsystems and packages contained in the project</text></li>
+      <li styleclass="ListBLast"><text styleclass="ListBLast" translate="true">Diagrams contained in the project</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A project may be divided into and saved in multiple units.</text></para>
+    <para styleclass="SubHead"><text styleclass="SubHead" translate="true">Units</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">While a project is generally saved in one file, there are cases where one project needs to be separated into smaller files so that multiple developers can work on the project simultaneously. In this case, the project can be managed as multiple units. A unit can have a hierarchical structure; it may contain many sub-units under it. Units are saved in XML format, with the extension &quot;.UNT&quot;.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A unit represents one model, subsystem or package. All elements under the model, subsystem or package are saved in the respective unit file.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A unit file is referenced by project files or other unit files.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Just as a project can reference many units, a unit also can reference many sub-units. Given this parent-child relation, you can build a hierarchical unit structure.</text></para>
+    <para styleclass="SubHead"><text styleclass="SubHead" translate="true">Model Fragments</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">A model fragment is a part of a project saved as a separate file. Only model, subsystem or package items can be saved as model fragments. Model fragments are saved in XML format, with the extension “.MFG”.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Model fragment files allow the easy reuse of part of a model. Model fragments are essentially different from units in that once included in a project, they merge completely with the rest of the project.</text></para>
+  </body>
+</topic>

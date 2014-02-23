@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd" status="Out Of Date">
+  <title translate="true">Well-formedness Rules</title>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Well-formedness Rules</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Thirty-eight regulations are defined for verifying models. These definitions are mostly adaptations of the Well-formedness Rule in the UML specification.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000080;" translate="true">Model Verification Regulation List</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><table rowcount="39" colcount="3" style="width:100%; cell-padding:1px; cell-spacing:0px; page-break-inside:auto; border-width:1px; border-spacing:0px; cell-border-width:1px; border-color:#aca899; border-style:solid; background-color:none; head-row-background-color:none; alt-row-background-color:none;">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">No</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Regulation Contents</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true">Elements Applied</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">1</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">AssociationEnds within an Association must have unique names.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Association</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">2</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Two or more Aggregations or Composite AssociationEnds cannot exist within an Association.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Association</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">3</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Parameters must have unique names.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">BehavioralFeature</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">4</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Attributes of the same name cannot exist within a Classifier.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Classifier</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">5</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">AssociationEnds on the other side must have unique names.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Classifier</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">6</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">An Attribute cannot have the same name as the Association on the other side, or as elements included in Classifier.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Classifier</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">7</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">AssociationEnd on the other side cannot have the same name as elements included in Classifier or its Attribute name.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Classifier</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">8</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Root element cannot have elements that are more generalized than itself.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">GeneralizableElement</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">9</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Leaf element cannot have elements that are more specialized than itself.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">GeneralizableElement</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">10</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Looped inheritance structure is not allowed.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">GeneralizableElement</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">11</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">All features of interfaces must be public.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Interface</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">12</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">ComponentInstance must accurately assign a component as its origin.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">ComponentInstance</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">13</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">NodeInstance must accurately assign a node as its origin.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">NodeInstance</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">14</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">AssociationEndRole must be connected with ClassifierRole.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">AssociationEndRole</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">15</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">ClassifierRole cannot have its own features.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">ClassifierRole</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">16</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">ClassifierRole cannot become the ClassifierRole for another ClassifierRole.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">ClassifierRole</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">17</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Sender and receiver of a message must participate in the collaboration that constitutes the interaction context.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Message</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">18</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Actor can only have associations that are connected to UseCase, Class or Subsystem.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Actor</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">19</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">CompositeState can have a maximum of one initial state only.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">CompositeState</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">20</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">CompositeState can have a maximum of one deep history only.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">CompositeState</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">21</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">CompositeState can have a maximum of one shallow history only.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">CompositeState</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">22</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Concurrent composite state must contain a minimum of two composite states.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">CompositeState</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">23</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Concurrent state can only have composite state as its sub state.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">CompositeState</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">24</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Final state cannot have outgoing transition.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">FinalState</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">25</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Initial state can have a maximum of one outgoing transition and cannot have incoming transition.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Pseudostate</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">26</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">History state can have a maximum of one outgoing transition.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Pseudostate</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">27</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Junction vertex must have a minimum of one incoming transition and one outgoing transition each.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Pseudostate</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">28</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Choice vertex must have a minimum of one incoming transition and one outgoing transition each.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Pseudostate</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">29</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">StateMachine can be integrated either with Classifier or with BehavioralFeature.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">StateMachine</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">30</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Top state must always be composite state.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">StateMachine</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">31</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">No state can contain top state.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">StateMachine</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">32</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Top state cannot have outgoing transition.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">StateMachine</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">33</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">SubmachineState cannot have concurrency.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">SubmachineState</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">34</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Transition that points to Pseudostate cannot have Trigger.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Transition</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">35</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">ActivityGraph can express dynamic behavior of Package, Classifier or BehavioralFeature.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">ActivityGraph</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">36</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">ActionState cannot have internal transition, exit action or do activity.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">ActionState</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">37</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Outgoing transition of ActionState cannot have trigger event.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">ActionState</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">38</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Normal" style="line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">SubactivityState must have connection to ActivityGraph.</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">SubactivityState</text></para>
+        </td>
+      </tr>
+    </table></para>
+  </body>
+</topic>

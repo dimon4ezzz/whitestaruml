@@ -1,0 +1,71 @@
+<html>
+
+<head>
+<title>Composite Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Composite </h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Compose objects into tree structures to represent part-whole hierarchies. </li>
+  <li>Composite lets clients treat individual objects and compositions of 
+	objects uniformly.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp; <img border="0" src="Composite_Model1.gif" width="559" height="294"></p>
+<ul type="square">
+  <li><b>Component :</b> declares the interface for objects in the composition. 
+	implements default behavior for the interface common to all classes, as 
+	appropriate. declares an interface for accessing and managing its child 
+	components. (optional) defines an interface for accessing a component's 
+	parent in the recursive structure, and implements it if that's appropriate.</li>
+  <li><b>Leaf :</b> represents leaf objects in the composition. A leaf has no 
+	children. defines behavior for primitive objects in the composition.</li>
+  <li><b>Composite : </b>defines behavior for components having children. stores 
+	child components. implements child-related operations in the Component 
+	interface.</li>
+  <li><b>Client : </b>manipulates objects in the composition through the 
+	Component interface.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>you want to represent part-whole hierarchies of objects. you want clients 
+	to be able to ignore the difference between compositions of objects and 
+	individual objects. Clients will treat all objects in the composite 
+	structure uniformly.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>defines class hierarchies consisting of primitive objects and composite 
+	objects</b>. Primitive objects can be composed into more complex objects, 
+	which in turn can be composed, and so on recursively. Wherever client code 
+	expects a primitive object, it can also take a composite object.</li>
+  <li><b>makes the client simple</b>. Clients can treat composite structures and 
+	individual objects uniformly. Clients normally don't know (and shouldn't 
+	care) whether they're dealing with a leaf or a composite component. This 
+	simplifies client code, because it avoids having to write 
+	tag-and-case-statement-style functions over the classes that define the 
+	composition.</li>
+  <li><b>l makes it easier to add new kinds of components.</b> Newly defined 
+	Composite or Leaf subclasses work automatically with existing structures and 
+	client code. Clients don't have to be changed for new Component classes.</li>
+  <li><b>can make your design overly general. </b>The disadvantage of making it 
+	easy to add new components is that it makes it harder to restrict the 
+	components of a composite. Sometimes you want a composite to have only 
+	certain components. With Composite, you can't rely on the type system to 
+	enforce those constraints for you. You'll have to use run-time checks 
+	instead.</li>
+</ul>
+
+</body>
+
+</html>

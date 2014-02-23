@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<APPROACH version="1.0"> 
+  <HEADER>
+    <NAME>Rational</NAME>
+    <DISPLAYNAME>Rational Approach</DISPLAYNAME>
+    <DESCRIPTION>Approach for Rational Software</DESCRIPTION>
+  </HEADER>
+  <BODY>
+    <IMPORTPROFILES>
+    </IMPORTPROFILES>
+    <MODELSTRUCTURE>
+      <MODEL name="Use Case View">
+        <DIAGRAM type="UseCase" name="Main"/>
+      </MODEL>
+      <MODEL name="Logical View">
+        <DIAGRAM type="Class" name="Main" defaultDiagram="True"/>
+      </MODEL>
+      <MODEL name="Component View">
+        <DIAGRAM type="Component" name="Main"/>
+      </MODEL>
+      <MODEL name="Deployment View">
+        <DIAGRAM type="Deployment" name="Main"/>
+      </MODEL>
+    </MODELSTRUCTURE>
+  </BODY>
+</APPROACH>
+

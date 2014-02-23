@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FRAMEWORK version="1.0">
+  <HEADER>
+    <NAME>J2SE1.3</NAME>
+    <DISPLAYNAME>Java 2 Standard 1.3</DISPLAYNAME>
+    <DESCRIPTION>Java 2 Standard Edition (J2SE) 1.3 Framework</DESCRIPTION>
+  </HEADER>
+  <BODY>
+  <FRAMEWORKMODELS>
+    <UNIT>J2SE13 (java).unt</UNIT>
+    <UNIT>J2SE13 (javax).unt</UNIT>
+    <UNIT>J2SE13 (org).unt</UNIT>        
+  </FRAMEWORKMODELS>
+  </BODY>
+</FRAMEWORK>
+

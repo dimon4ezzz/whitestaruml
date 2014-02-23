@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Saving Units</title>
+  <keywords>
+    <keyword translate="true">Saving<keyword translate="true">units</keyword></keyword>
+    <keyword translate="true">Unit</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Saving Units</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">You can save changed unit files to replace the existing unit file or save the unit to a file with another name.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To save the unit:</text></para>
+    <list id="5" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Model Explorer</text><text styleclass="List1" translate="true">, select the unit to save.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, point to </text><text styleclass="MenuCommand" translate="true">Unit</text><text styleclass="Normal" translate="true">,</text><text styleclass="List1" translate="true"> and and then click </text><text styleclass="MenuCommand" translate="true">Save Unit</text><text styleclass="List1" translate="true">.</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To save the unit with another name</text></para>
+    <list id="6" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the Model Explorer, select the unit to save.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, point to </text><text styleclass="MenuCommand" translate="true">Unit</text><text styleclass="List1" translate="true">, and then click </text><text styleclass="MenuCommand" translate="true">Save Unit As</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Save Unit As</text><text styleclass="List1Last" translate="true"> dialog box, enter the new unit file name and click </text><text styleclass="MenuCommand" translate="true">Save</text><text styleclass="List1Last" translate="true">.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:24px;"><image src="ch03_h8.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Normal"><image src="note.bmp" scale="100.00%" styleclass="Emphasis"></image><text styleclass="Emphasis" translate="true"> Note:</text><text styleclass="Notes" translate="true">&#32;</text><text styleclass="Normal" translate="true">Saving a unit as another file does not delete the original unit file from disk. Please remove the original unit file manually if that file is no longer needed.</text></para>
+  </body>
+</topic>

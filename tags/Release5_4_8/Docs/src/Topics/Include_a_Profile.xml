@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Including Profiles</title>
+  <keywords>
+    <keyword translate="true">Include a profile</keyword>
+    <keyword translate="true">Profile<keyword translate="true">include</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Including Profiles</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Predefined UML profiles can be included for use with the current project. Once a UML profile is included in a project, the stereotypes, tag definitions and data types defined in the profile can be used in the project.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To include a profile</text></para>
+    <list id="23" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Model</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">Profiles</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Profile Manager</text><text styleclass="List1" translate="true"> dialog, select a profile from the </text><text styleclass="MenuCommand" translate="true">Available Profiles</text><text styleclass="List1" translate="true"> list, click </text><text styleclass="MenuCommand" translate="true">Include</text><text styleclass="Normal" translate="true">. The profile appears in the </text><text styleclass="MenuCommand" translate="true">Included Profiles</text><text styleclass="Normal" translate="true"> list.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:24px;"><image src="ch03_h14.jpg" scale="100.00%" styleclass="Normal"></image></para>
+    <list id="23" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1Last" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">Click </text><text styleclass="MenuCommand" translate="true">Close</text><text styleclass="List1Last" translate="true">.</text></li>
+    </list>
+    <para styleclass="Emphasis"><image src="note.bmp" scale="100.00%" styleclass="Emphasis"></image><text styleclass="Emphasis" translate="true"> Note</text></para>
+    <list id="24" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">The profile list in the Profile Manager may vary according to the user’s installation environment.</text></li>
+    </list>
+  </body>
+</topic>

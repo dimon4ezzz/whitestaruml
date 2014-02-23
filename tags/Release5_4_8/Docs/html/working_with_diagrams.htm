@@ -1,0 +1,231 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Working with Diagrams</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Reference to the diagrams">
+   <meta name="description" content="Working with Diagrams">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?working_with_diagrams.htm"; }
+  else { parent.quicksync('a6'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   &raquo;No topics above this level&laquo;
+   </p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Working with Diagrams</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="laying_out_elements_in_a_diagr.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="introduction.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="ch05_1.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p>To work with the diagrams available in WhiteStarUml some understanding of UML is useful. However, the best way to learn UML is to use it in diagrams and talk about the diagrams. A diagram is finished if it makes sense and you can explain your thoughts to anyone who needs to know.</p>
+<p>Each diagram has a specific set of elements. Elements have a meaning within the type of diagram, these are the semantics of the element. Understanding the semantics of the element will help you better express your thoughts in the diagram. The semantics are the basis of the conversation you will have about the diagram which is after all the purpose of the Unified Modeling Language.</p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Types of Diagrams Available</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 19px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Diagram Type</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h63.jpg" width="16" height="16" border="0" alt="ch04_h63"><span style="font-size: 9pt;"> Class Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Class Diagram is a visual expression of various static relations of class-related elements. Class Diagram can contain not only classes but also interfaces, enumerations, packages, various relations, instances, and their links.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h64.jpg" width="16" height="16" border="0" alt="ch04_h64"><span style="font-size: 9pt;"> Use Case Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Use Case Diagram is an expression of relations between the use cases in a specific system or object and the external actors. Use Case expresses the functions of the system and how the system functions interact with the external actors.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h65.jpg" width="16" height="16" border="0" alt="ch04_h65"><span style="font-size: 9pt;"> Sequence Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sequence Diagram expresses the interactions of instances. It is a direct expression of the InteractionInstanceSet, which is a set of the stimuli exchanged between the instances within a CollaborationInstanceSet. While Sequence Role Diagram is a ClassifierRole-oriented expression, Sequence Diagram is an Instance-oriented expression.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h66.jpg" width="16" height="16" border="0" alt="ch04_h66"><span style="font-size: 9pt;"> Sequence Diagram (Role)</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Sequence Role Diagram expresses the interactions of the role concepts. It is a direct expression of the Interaction, which is a set of the messages exchanged between the ClassifierRoles within a Collaboration. While Sequence Diagram is an Instance-oriented expression, Sequence Role Diagram is a ClassifierRole-oriented expression.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h67.jpg" width="16" height="16" border="0" alt="ch04_h67"><span style="font-size: 9pt;"> Collaboration Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Collaboration Diagram expresses the collaboration between instances. It is a direct expression of the collaboration model of the instances within a CollaborationInstanceSet. While Collaboration Role Diagram is a ClassifierRole-oriented expression, Collaboration Diagram is an Instance-oriented expression.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h68.jpg" width="16" height="16" border="0" alt="ch04_h68"><span style="font-size: 9pt;"> Collaboration Diagram (Role)</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Collaboration Role Diagram expresses the collaboration between the role concepts. It is a direct expression of the collaboration model of the ClassifierRoles within a Collaboration. While Collaboration Diagram is an Instance-oriented expression, Collaboration Role Diagram is a ClassifierRole-oriented expression.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h69.jpg" width="16" height="16" border="0" alt="ch04_h69"><span style="font-size: 9pt;"> Statechart Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Statechart Diagram expresses the static behaviors of a specific object through states and their transitions. Although Statechart Diagram is generally used to express the behaviors for instances of classes, it can also be used to express behaviors of other elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h70.jpg" width="16" height="16" border="0" alt="ch04_h70"><span style="font-size: 9pt;"> Activity Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Activity Diagram is a special form of Statechart Diagram that is suitable for expressing the activity execution flow. Activity Diagram is commonly used for expressing workflow, and it is frequently used for objects like classes, packages, and operations.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h71.jpg" width="16" height="16" border="0" alt="ch04_h71"><span style="font-size: 9pt;"> Component Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Component Diagram expresses the dependency between the software components. The elements that constitute software components and the elements that implement those components can all be expressed by Component Diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h72.jpg" width="16" height="16" border="0" alt="ch04_h72"><span style="font-size: 9pt;"> Deployment Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Deployment Diagram expresses the hardware elements of the physical computer and devices and the software components, processes and objects that are assigned to them.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch04_h73.jpg" width="17" height="18" border="0" alt="ch04_h73"><span style="font-size: 9pt;"> Composite Structure Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Composite Structure Diagram is a diagram to express internal structure of Classifier. It is included in interaction point with other parts of system.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><img src="note.png" width="12" height="12" border="0" alt="note"><span style="font-weight: bold;"> Note</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">The types of view elements available differ for each diagram.</span></td></tr></table></div>
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

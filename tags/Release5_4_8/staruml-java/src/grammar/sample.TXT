@@ -1,0 +1,8 @@
+public class A {
+	public int test() {
+          if(cur == PClass) {
+            class2assoc.put(cur, pa);
+		// class로 시작하는 문자 오류
+          }
+	}
+}

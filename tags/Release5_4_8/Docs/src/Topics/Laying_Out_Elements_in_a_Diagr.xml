@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Laying Out Elements in a Diagram</title>
+  <keywords>
+    <keyword translate="true">Align elements</keyword>
+    <keyword translate="true">Automatic layout</keyword>
+    <keyword translate="true">Distribute elements</keyword>
+    <keyword translate="true">Layout</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Laying Out Elements in a Diagram</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">The layout of a diagram can help emphasizing the important parts of a diagram. For example by helper classes around a central class. Another form of layout may align classifiers to show levels or groups of classifiers that go together.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To align elements, select the elements you want to align and then on the </text><text styleclass="MenuCommand" translate="true">Format</text><text styleclass="Normal" translate="true"> menu point to </text><text styleclass="MenuCommand" translate="true">Alignment</text><text styleclass="Normal" translate="true"> and click the type of alignment. The following table shows the available types of alignment.</text></para>
+    <para styleclass="Table Content"><table styleclass="Default" rowcount="9" colcount="2">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:256px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Align Function</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:256px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch04_h89.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Align Left</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Align the selected elements to the left side of the left most element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:256px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch04_h90.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Align Right</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Align the selected elements to the right side of the right most element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:256px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch04_h94.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Align Middle</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Center the selected elements horizontally to the middle between the left most and the right most element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:256px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch04_h92.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Align Top</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Align the selected elements to the top of the top most element</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:256px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch04_h93.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Align Bottom</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Align the selected elements to the bottom of the lowest element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:256px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch04_h91.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Align Center</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Center the selected element vertically to the middle between the top most and the lowest element.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:256px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch04_h95.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Space Equally, Horizontally</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Evenly distribute the selected elements horizontally.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:256px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch04_h96.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Space Equally, Vertically</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Evenly distribute the selected elements vertically.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">When working with a large number of view elements in a diagram, the elements may overlap. You can improve the situation by bringing the element you are working on to the front, the element is then over all other elements. To bring an element to the front, select the element in the diagram and then on the </text><text styleclass="MenuCommand" translate="true">Format</text><text styleclass="Normal" translate="true"> menu point to </text><text styleclass="MenuCommand" translate="true">Alignment</text><text styleclass="Normal" translate="true"> and click </text><text styleclass="MenuCommand" translate="true">Bring to Front</text><text styleclass="Normal" translate="true">. </text></para>
+    <para styleclass="Table Content"><table styleclass="Default" rowcount="3" colcount="2">
+      <tr style="vertical-align:top">
+        <td style="vertical-align:bottom; width:256px; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Align Function</text></para>
+        </td>
+        <td style="vertical-align:bottom; background-color:#cccccc;">
+          <para styleclass="Table Heading"><text styleclass="Table Heading" translate="true">Description</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:256px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch04_h97.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Bring to Front</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Bring the selected elements to the front.</text></para>
+        </td>
+      </tr>
+      <tr style="vertical-align:top">
+        <td style="width:256px; background-color:#ffffff;">
+          <para styleclass="Table Content"><image src="ch04_h98.jpg" scale="100.00%" styleclass="Table Content"></image><text styleclass="Table Content" translate="true"> Send to Back</text></para>
+        </td>
+        <td style="background-color:#ffffff;">
+          <para styleclass="Table Content"><text styleclass="Table Content" translate="true">Send the selected elements to the back.</text></para>
+        </td>
+      </tr>
+    </table></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">In case the diagram elements are laid out in a disorderly way, you may automatically lay out the diagram for tidier display. The automatic layout will organize the elements as follows:</text></para>
+    <list id="24" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">The elements will be placed closed to each other, starting in the upper left hand corner.</text></li>
+      <li styleclass="ListBLast"><text styleclass="ListBLast" translate="true">The elements will not overlap.</text></li>
+      <li styleclass="ListBLast"><text styleclass="ListBLast" translate="true">If there is a hierarchy, then the elements will be laid out in a tree structure with the root of the tree at the top.</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To use the automatic layout, activate the diagram and then on the Format menu click Layout Diagram.</text></para>
+    <para styleclass="Notes"><image src="note.bmp" scale="100.00%" styleclass="Notes"></image><text styleclass="Emphasis" translate="true"> Note:</text><text styleclass="Notes" translate="true">&#32;</text><text styleclass="Notes" translate="true">The layout diagram function is not available for Sequence Diagram.</text></para>
+  </body>
+</topic>

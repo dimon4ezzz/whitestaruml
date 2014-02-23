@@ -1,0 +1,451 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Generating Code and Documents &gt; Generating with Templates</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="">
+   <meta name="description" content="Generating with Templates">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?generating_with_templates.htm"; }
+  else { parent.quicksync('a9.1'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="ch08.htm">Generating Code and Documents</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Generating with Templates</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="ch08.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="ch08.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="using_batches.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p style="border-color: #000000; border-style: solid; border-width: 1px; border-top: none; border-right: none; border-left: none; margin: 19px 0px 10px 0px;"><span style="font-size: 14pt; font-weight: bold; color: #000080;">Generating by Template</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Generating Artifacts</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">To generate artifacts by template, it must be applicable to current working UML model.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Select </span><span style="font-size: 9pt; font-weight: bold;">[Tools]-&gt;[WhiteStarUml Generator...]</span><span style="font-size: 9pt;"> Menu</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h58.jpg" width="180" height="199" border="0" alt="ch08_h58"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Page, Check templates to generate in the ListBox and Click </span><span style="font-size: 9pt; font-weight: bold;">[Next]</span><span style="font-size: 9pt;"> Button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h59.jpg" width="727" height="530" border="0" alt="ch08_h59"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">To bind values with parameters, Click </span><img src="ch08_h60.jpg" width="16" height="14" border="0" alt="ch08_h60"><span style="font-size: 9pt;"> Button of each template item in the ListBox, and set values of parameter as you want. (Refer to </span><span style="font-size: 9pt; font-weight: bold;">Registering Template</span><span style="font-size: 9pt;"> for more information about template parameters)</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h61.jpg" width="564" height="620" border="0" alt="ch08_h61"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">4.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select target path]</span><span style="font-size: 9pt;"> Page, Select a folder that generated artifacts will be placed and click </span><span style="font-size: 9pt; font-weight: bold;">[Next]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h62.jpg" width="907" height="655" border="0" alt="ch08_h62"></p>
+<p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><span style="font-size: 9pt;">If you want to create a new folder, click </span><span style="font-size: 9pt; font-weight: bold;">[New Folder...]</span><span style="font-size: 9pt;"> button and input name of the new folder.</span></p>
+<p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h63.jpg" width="352" height="128" border="0" alt="ch08_h63"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">5.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Generating...]</span><span style="font-size: 9pt;"> Page, click </span><span style="font-size: 9pt; font-weight: bold;">[Generate]</span><span style="font-size: 9pt;"> button. You can check the progress of generation and it will be logged on </span><span style="font-size: 9pt; font-weight: bold;">Logs</span><span style="font-size: 9pt;">. If you want to cancel the generation process, click </span><span style="font-size: 9pt; font-weight: bold;">[Cancel] </span><span style="font-size: 9pt;">button. When all artifacts are successfully generated, </span><span style="font-size: 9pt; font-weight: bold;">[Finish]</span><span style="font-size: 9pt;"> will be enabled and clicking it will finish the artifact generation. To see generated artifacts, double-click the item that want to see in the </span><span style="font-size: 9pt; font-weight: bold;">[Generation List]</span><span style="font-size: 9pt;"> then the generated artifact will be opened.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 10px 35px;"><img src="ch08_h64.jpg" width="727" height="530" border="0" alt="ch08_h64"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Registering a Template</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Your own templates can be registered in WhiteStarUml Generator.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Page, click </span><span style="font-size: 9pt; font-weight: bold;">[Register Template]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch08_h65.jpg" width="727" height="530" border="0" alt="ch08_h65"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Register Template]</span><span style="font-size: 9pt;"> Dialog, click </span><img src="ch08_h66.jpg" width="21" height="20" border="0" alt="ch08_h66"><span style="font-size: 9pt; color: #ff0000;"> </span><span style="font-size: 9pt;">button and select a folder that the template files will be placed.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch08_h67.jpg" width="382" height="442" border="0" alt="ch08_h67"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">Input template information on </span><span style="font-size: 9pt; font-weight: bold;">[Properties:]</span><span style="font-size: 9pt;"> and click </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button to complete registering a template.</span></td></tr></table></div><p style="margin: 19px 0px 19px 0px;"><span style="font-size: 9pt; font-weight: bold;">[Basic] property section</span></p>
+<p><span style="font-size: 9pt;">Basic properties for template registration.</span></p>
+<p><span style="font-size: 9pt;">&nbsp;</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 0px;"><table width="684" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="32%" bgcolor="#c0c0c0" style="width:32%; background-color:#c0c0c0; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Property</span></p>
+</td>
+<td valign="bottom" width="68%" bgcolor="#c0c0c0" style="width:68%; background-color:#c0c0c0; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="32%" bgcolor="#ffffff" style="width:32%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Template Name</span></p>
+</td>
+<td valign="top" width="68%" bgcolor="#ffffff" style="width:68%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Name for the template to register.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="32%" bgcolor="#ffffff" style="width:32%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Group</span></p>
+</td>
+<td valign="top" width="68%" bgcolor="#ffffff" style="width:68%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Group name for the template. There is no restriction to name a group but to group a set of template, give the same group name for the set of templates. (it is used for horizontal classification like as RUP, CBD, &lt;ModuleName&gt;, &lt;CompanyName&gt;, ...)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="32%" bgcolor="#ffffff" style="width:32%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Category</span></p>
+</td>
+<td valign="top" width="68%" bgcolor="#ffffff" style="width:68%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Category name for the template. There is no restriction to name a category but to categorize a set of template, give the same category name for the set of templates. (it is used for vertical classification like as Requirements, Design, Code, Analysis, ...)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="32%" bgcolor="#ffffff" style="width:32%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Description</span></p>
+</td>
+<td valign="top" width="68%" bgcolor="#ffffff" style="width:68%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Brief description of the template.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 19px 0px;"><span style="font-size: 9pt; font-weight: bold;">[Detail] property section</span></p>
+<p><span style="font-size: 9pt;">Detailed properties for template registration.</span></p>
+<p><span style="font-size: 9pt;">　</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 0px;"><table width="687" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="31%" bgcolor="#c0c0c0" style="width:31%; background-color:#c0c0c0; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Property</span></p>
+</td>
+<td valign="bottom" width="67%" bgcolor="#c0c0c0" style="width:67%; background-color:#c0c0c0; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Document Type</span></p>
+</td>
+<td valign="top" width="67%" bgcolor="#ffffff" style="width:67%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Type of the template. Select DOCUMENT or CODE.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Format</span></p>
+</td>
+<td valign="top" width="67%" bgcolor="#ffffff" style="width:67%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Type of generated artifact. Input the format name or select one of the already defined formats (TXT, DOC, PPT, XLS)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Version</span></p>
+</td>
+<td valign="top" width="67%" bgcolor="#ffffff" style="width:67%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Version of the template</span></p>
+<p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">(e.g) 1.0</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Related Profile</span></p>
+</td>
+<td valign="top" width="67%" bgcolor="#ffffff" style="width:67%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Profiles related to the template.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Related Approach</span></p>
+</td>
+<td valign="top" width="67%" bgcolor="#ffffff" style="width:67%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Approach related to the template. (it is a declarative property, so it will not effect anything)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Translator Type</span></p>
+</td>
+<td valign="top" width="67%" bgcolor="#ffffff" style="width:67%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Kind of translator for the template. Select one of the following: WORD, EXCEL, POWERPOINT, TEXT, COM(user-defined COM-based generator), SCRIPT(user-defined scripts like as JScript, VBScript, ...), EXE(user-defined .EXE-based generator).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Translator</span></p>
+</td>
+<td valign="top" width="67%" bgcolor="#ffffff" style="width:67%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specify filename of user-defined translator. It is used only for user want to use his/her own translator not built-in translators(WORD, EXCEL, POWERPOINT, TEXT)</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Example</span></p>
+</td>
+<td valign="top" width="67%" bgcolor="#ffffff" style="width:67%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">If any, specify an example model for the template.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Parameters</span></p>
+</td>
+<td valign="top" width="67%" bgcolor="#ffffff" style="width:67%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Parameters required for the template.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="31%" bgcolor="#ffffff" style="width:31%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Related files</span></p>
+</td>
+<td valign="top" width="67%" bgcolor="#ffffff" style="width:67%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">If any, specify all related files to the template.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">[Parameters] property</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">Click </span><img src="ch08_h68.jpg" width="17" height="15" border="0" alt="ch08_h68"><span style="font-size: 9pt;"> button in Parameters property.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch08_h69.jpg" width="344" height="63" border="0" alt="ch08_h69"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Parameters]</span><span style="font-size: 9pt;"> Dialog, click </span><img src="ch08_h70.jpg" width="23" height="23" border="0" alt="ch08_h70"><span style="font-size: 9pt;"> button to create a new parameter and click </span><img src="ch08_h71.jpg" width="23" height="23" border="0" alt="ch08_h71"><span style="font-size: 9pt;"> button to delete a existing parameter.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch08_h72.jpg" width="319" height="256" border="0" alt="ch08_h72"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[New Parameter]</span><span style="font-size: 9pt;"> Dialog, specify Name, Type and Default Value for the parameter and click </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch08_h73.jpg" width="255" height="173" border="0" alt="ch08_h73"></p>
+<p style="margin: 14px 0px 10px 0px;"><span style="font-size: 9pt;">Default parameters are different according to the Translator Type. Following are the default parameters for each Translator Types.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="687" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="154" bgcolor="#c0c0c0" style="width:154px; background-color:#c0c0c0; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Property</span></p>
+</td>
+<td valign="bottom" width="64" bgcolor="#c0c0c0" style="width:64px; background-color:#c0c0c0; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Type</span></p>
+</td>
+<td valign="bottom" width="122" bgcolor="#c0c0c0" style="width:122px; background-color:#c0c0c0; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Translator Type</span></p>
+</td>
+<td valign="bottom" width="317" bgcolor="#c0c0c0" style="width:317px; background-color:#c0c0c0; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="154" bgcolor="#ffffff" style="width:154px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">TemplateFile</span></p>
+</td>
+<td valign="top" width="64" bgcolor="#ffffff" style="width:64px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">FILENAME or STRING</span></p>
+</td>
+<td valign="top" width="122" bgcolor="#ffffff" style="width:122px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">WORD,EXCEL,</span></p>
+<p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">POWERPOINT</span></p>
+</td>
+<td valign="top" width="317" bgcolor="#ffffff" style="width:317px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specify file name of the template document.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="154" bgcolor="#ffffff" style="width:154px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">OutputFile</span></p>
+</td>
+<td valign="top" width="64" bgcolor="#ffffff" style="width:64px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">FILENAME or STRING</span></p>
+</td>
+<td valign="top" width="122" bgcolor="#ffffff" style="width:122px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">WORD,EXCEL,</span></p>
+<p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">POWERPOINT,</span></p>
+<p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">TEXT</span></p>
+</td>
+<td valign="top" width="317" bgcolor="#ffffff" style="width:317px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specify file name of the generated artifact.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="154" bgcolor="#ffffff" style="width:154px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Keep Comment</span></p>
+</td>
+<td valign="top" width="64" bgcolor="#ffffff" style="width:64px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">BOOLEAN</span></p>
+</td>
+<td valign="top" width="122" bgcolor="#ffffff" style="width:122px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">WORD,EXCEL,</span></p>
+<p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">POWERPOINT</span></p>
+</td>
+<td valign="top" width="317" bgcolor="#ffffff" style="width:317px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specify whether to remain the comment used for generation or to delete it.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="154" bgcolor="#ffffff" style="width:154px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">ShowGenerationProcess</span></p>
+</td>
+<td valign="top" width="64" bgcolor="#ffffff" style="width:64px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">BOOLEAN</span></p>
+</td>
+<td valign="top" width="122" bgcolor="#ffffff" style="width:122px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">WORD,EXCEL,</span></p>
+<p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">POWERPOINT</span></p>
+</td>
+<td valign="top" width="317" bgcolor="#ffffff" style="width:317px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specify whether to show the progress of generation or not. It may affect the performance of the generation.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="154" bgcolor="#ffffff" style="width:154px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Normal Generation</span></p>
+</td>
+<td valign="top" width="64" bgcolor="#ffffff" style="width:64px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">BOOLEAN</span></p>
+</td>
+<td valign="top" width="122" bgcolor="#ffffff" style="width:122px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">WORD</span></p>
+</td>
+<td valign="top" width="317" bgcolor="#ffffff" style="width:317px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">If true, the template is applied to top-level package (Project). if false, the template is applied to the package (or element) that is currently selected in WhiteStarUml.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="154" bgcolor="#ffffff" style="width:154px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Generate Index</span></p>
+</td>
+<td valign="top" width="64" bgcolor="#ffffff" style="width:64px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">BOOLEAN</span></p>
+</td>
+<td valign="top" width="122" bgcolor="#ffffff" style="width:122px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">WORD</span></p>
+</td>
+<td valign="top" width="317" bgcolor="#ffffff" style="width:317px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specify whether to generate Index or not.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="154" bgcolor="#ffffff" style="width:154px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">intermediate</span></p>
+</td>
+<td valign="top" width="64" bgcolor="#ffffff" style="width:64px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">STRING</span></p>
+</td>
+<td valign="top" width="122" bgcolor="#ffffff" style="width:122px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">TEXT</span></p>
+</td>
+<td valign="top" width="317" bgcolor="#ffffff" style="width:317px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specify file name of intermediate file used for generation.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="154" bgcolor="#ffffff" style="width:154px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">target</span></p>
+</td>
+<td valign="top" width="64" bgcolor="#ffffff" style="width:64px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">STRING</span></p>
+</td>
+<td valign="top" width="122" bgcolor="#ffffff" style="width:122px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">TEXT</span></p>
+</td>
+<td valign="top" width="317" bgcolor="#ffffff" style="width:317px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">If more than two artifacts are generated, specify the pathname the artifacts are placed.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt; font-weight: bold;">Note:</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">To specify file name in the parameters, environment variables is required of WhiteStarUml Generator. The variable is as follow.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="686" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" width="35%" bgcolor="#c0c0c0" style="width:35%; background-color:#c0c0c0; border: solid 1px #aca899;"><p style="text-align: center;"><span style="font-size: 9pt; font-weight: bold;">Variable</span></p>
+</td>
+<td valign="bottom" width="65%" bgcolor="#c0c0c0" style="width:65%; background-color:#c0c0c0; border: solid 1px #aca899;"><p style="text-align: center;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="35%" bgcolor="#ffffff" style="width:35%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">$PATH$</span></p>
+</td>
+<td valign="top" width="65%" bgcolor="#ffffff" style="width:65%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">The path that the template files are placed.</span></p>
+<p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">(e.g.) $PATH$\BusinessActorReport.doc</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="35%" bgcolor="#ffffff" style="width:35%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">$GROUP$</span></p>
+</td>
+<td valign="top" width="65%" bgcolor="#ffffff" style="width:65%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Group name of the template.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="35%" bgcolor="#ffffff" style="width:35%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">$CATEGORY$</span></p>
+</td>
+<td valign="top" width="65%" bgcolor="#ffffff" style="width:65%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Category name of the template.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="35%" bgcolor="#ffffff" style="width:35%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">$NAME$</span></p>
+</td>
+<td valign="top" width="65%" bgcolor="#ffffff" style="width:65%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Name of the template.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" width="35%" bgcolor="#ffffff" style="width:35%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">$TARGET$</span></p>
+</td>
+<td valign="top" width="65%" bgcolor="#ffffff" style="width:65%; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Output path that the user selected.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Cloning a Template</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">You can start to define a template by cloning an existing template without defining from the scratch.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Dialog, select a template to clone and click </span><span style="font-size: 9pt; font-weight: bold;">[Clone Template] </span><span style="font-size: 9pt;">button, or click mouse right button on the template to clone and then click </span><span style="font-size: 9pt; font-weight: bold;">[Clone Template]</span><span style="font-size: 9pt;"> menu on the popup menu.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch08_h74.jpg" width="727" height="530" border="0" alt="ch08_h74"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Specify the name of cloned template and click </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch08_h75.jpg" width="432" height="175" border="0" alt="ch08_h75"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">You can find the cloned template in the </span><span style="font-size: 9pt; font-weight: bold;">[List of templates]</span><span style="font-size: 9pt;">. You can edit more information of the cloned template (click </span><span style="font-size: 9pt; font-weight: bold;">[Template Properties]</span><span style="font-size: 9pt;"> button).</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Template Properties</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">You can edit properties of a registered template.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Dialog, select a template want to edit properties and click  </span><span style="font-size: 9pt; font-weight: bold;">[Template properties]</span><span style="font-size: 9pt;"> button, or click mouse right button on the template to edit properties and then click </span><span style="font-size: 9pt; font-weight: bold;">[Show Template Properties]</span><span style="font-size: 9pt;"> menu on the popup menu.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch08_h76.jpg" width="727" height="530" border="0" alt="ch08_h76"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt; font-weight: bold;">Edit properties in the[Modify Template]</span><span style="font-size: 9pt;"> Dialog and click </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button. (Please refer to </span><span style="font-size: 9pt; font-weight: bold;">Registering Template &gt; Basic/Detail Parameters</span><span style="font-size: 9pt;"> for detailed information of each property)</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch08_h77.jpg" width="382" height="442" border="0" alt="ch08_h77"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Opening a Template</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">You can open and edit a registered template.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Dialog, select a template to open and click </span><span style="font-size: 9pt; font-weight: bold;">[Open Template] </span><span style="font-size: 9pt;">button, or click mouse right button on the template to open and then click </span><span style="font-size: 9pt; font-weight: bold;">[Open Template]</span><span style="font-size: 9pt;"> menu on the popup menu.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch08_h78.jpg" width="727" height="530" border="0" alt="ch08_h78"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">And then, the default application associated with each file extension (.cot, .doc, .xls, .ppt) will be executed and you can edit in the application. (Please refer to </span><span style="font-size: 9pt; font-weight: bold;">WhiteStarUml 5.3.4 Developer Guides &gt;Writing Templates</span><span style="font-size: 9pt;"> for how to write template)</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Deleing a Template</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Dialog, select a template to delete and click mouse right button and click </span><span style="font-size: 9pt; font-weight: bold;">[Delete Template]</span><span style="font-size: 9pt;"> menu in the popup menu.</span></td></tr></table></div><p style="margin: 10px 0px 10px 35px;">&nbsp;</p>
+<p style="margin: 10px 0px 10px 35px;"><img src="ch08_h79.jpg" width="727" height="530" border="0" alt="ch08_h79"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Deleting a template causes deletion of the template folder and all files in the folder, so you must take care about deleting template.</span></td></tr></table></div>
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

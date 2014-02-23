@@ -1,0 +1,198 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Generating Code and Documents &gt; Using Batches</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="">
+   <meta name="description" content="Using Batches">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?using_batches.htm"; }
+  else { parent.quicksync('a9.2'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="ch08.htm">Generating Code and Documents</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Using Batches</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="generating_with_templates.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="ch08.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="installing_and_uninstalling_te.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">In the [List of templates] tab, registered templates are listed. If you want to generate a set of artifacts at once, you can make a batch that used to generate a set of artifacts and can run the batch without selecting a set of templates.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Creating a new batch</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">Create a new batch containing selected templates.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Page, check templates, to make as a batch, in </span><span style="font-size: 9pt; font-weight: bold;">[List of templates]</span><span style="font-size: 9pt;"> tab, and click</span><span style="font-size: 9pt; font-weight: bold;"> [Register to Batch]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h80.jpg" width="727" height="530" border="0" alt="ch08_h80"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Register Batch]</span><span style="font-size: 9pt;"> Dialog, specify </span><span style="font-size: 9pt; font-weight: bold;">[Batch Name]</span><span style="font-size: 9pt;">, </span><span style="font-size: 9pt; font-weight: bold;">[Description]</span><span style="font-size: 9pt;"> and click </span><span style="font-size: 9pt; font-weight: bold;">[OK] </span><span style="font-size: 9pt;">button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h81.jpg" width="309" height="251" border="0" alt="ch08_h81"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">You can find a new batch as a tab and selected templates in template list of the batch.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 10px 35px;"><img src="ch08_h82.jpg" width="727" height="530" border="0" alt="ch08_h82"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Add templates to existing batch</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">You can add templates to an existing batch.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Page, check templates, to add to existing batch, in the </span><span style="font-size: 9pt; font-weight: bold;">[List of templates]</span><span style="font-size: 9pt;"> tab and click </span><span style="font-size: 9pt; font-weight: bold;">[Add to Batch]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h83.jpg" width="727" height="530" border="0" alt="ch08_h83"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select Batch]</span><span style="font-size: 9pt;"> Dialog, select a batch and click </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h84.jpg" width="248" height="250" border="0" alt="ch08_h84"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">You can find templates added to existing batch.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 10px 35px;"><img src="ch08_h85.jpg" width="727" height="530" border="0" alt="ch08_h85"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Executing a batch</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">You can generate many artifacts at once by using batch.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Page, select batch tab to execute.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-size: 9pt;">　</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">Check templates to generate and click </span><span style="font-size: 9pt; font-weight: bold;">[Next]</span><span style="font-size: 9pt;"> button. (As default, all templates are checked in the batch.)</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h86.jpg" width="727" height="530" border="0" alt="ch08_h86"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">You can generate artifacts in the batch using different property values. If you want to do so, click </span><img src="ch08_h60.jpg" width="16" height="14" border="0" alt="ch08_h60"><span style="font-size: 9pt;"> button of each template and set the value of the each property. The change of the properties are applied only once. (Please refer to </span><span style="font-size: 9pt; color: #ff0000;">Registering Template &gt; property</span><span style="font-size: 9pt;"> for more information about properties of template)</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h87.jpg" width="452" height="502" border="0" alt="ch08_h87"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">4.</span></td><td><span style="font-size: 9pt;">When </span><span style="font-size: 9pt; font-weight: bold;">[Select target path]</span><span style="font-size: 9pt;"> page is appeared on the screen, selects a folder to save generate a document to generate, and click </span><span style="font-size: 9pt; font-weight: bold;">[Next]</span><span style="font-size: 9pt;">. If you want to add a folder under the present selected folder, click </span><span style="font-size: 9pt; font-weight: bold;">[New Folder…]</span><span style="font-size: 9pt;"> button on left bottom and write a name for adding folder on name configuration dialog</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">5.</span></td><td><span style="font-size: 9pt;">When </span><span style="font-size: 9pt; font-weight: bold;">[Generating</span><span style="font-family: 'Times New Roman'; font-weight: bold;">…</span><span style="font-size: 9pt; font-weight: bold;">]</span><span style="font-size: 9pt;"> page is appeared on the screen, clicks </span><span style="font-size: 9pt; font-weight: bold;">[Generate]</span><span style="font-size: 9pt;"> button. You can check the statue of each template generating through statue bar as generating documents from the template. And the log of generating process is recorded to </span><span style="font-size: 9pt; font-weight: bold;">[Logs:]</span><span style="font-size: 9pt;"> window. If you want to cancel the present generating document, click </span><span style="font-size: 9pt; font-weight: bold;">[Cancel]</span><span style="font-size: 9pt;"> button. And clicks OK button on Confirm cancel dialog.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">6.</span></td><td><span style="font-size: 9pt;">Log(Document Creation is done) on log window is recorded, and is activated </span><span style="font-size: 9pt; font-weight: bold;">[Finish]</span><span style="font-size: 9pt;"> button after completing document generation. If you want to finish document generation, close the document generation process as clicking </span><span style="font-size: 9pt; font-weight: bold;">[Finish]</span><span style="font-size: 9pt;"> button. Or you can check the generated document as double-clicking document list in </span><span style="font-size: 9pt; font-weight: bold;">[Generation List]</span><span style="font-size: 9pt;">.</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Deleting templates in a batch</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">You can delete templates in the batch. (The deletion in the batch, the template is not remove and only deleted from the batch.)</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Page, go to the batch tab and check templates to remove, and click </span><span style="font-size: 9pt; font-weight: bold;">[Delete Item]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h88.jpg" width="727" height="530" border="0" alt="ch08_h88"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">You can make a certain the deletion of the checked templates.</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Creating an empty batch</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">You can create a batch that containing no template.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Page, click mouse right button on the any tab, and click </span><span style="font-size: 9pt; font-weight: bold;">[New Batch]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h89.jpg" width="727" height="530" border="0" alt="ch08_h89"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Register Batch]</span><span style="font-size: 9pt;"> Dialog, specify </span><span style="font-size: 9pt; font-weight: bold;">[Batch Name]</span><span style="font-size: 9pt;">, </span><span style="font-size: 9pt; font-weight: bold;">[Description]</span><span style="font-size: 9pt;"> and click </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h90.jpg" width="309" height="251" border="0" alt="ch08_h90"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">3.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Page, you can find an empty batch tab.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 10px 35px;"><img src="ch08_h91.jpg" width="727" height="530" border="0" alt="ch08_h91"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Modifying a batch</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">You can modify information about a batch.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Page, select batch tab to modify, and click mouse right button and click </span><span style="font-size: 9pt; font-weight: bold;">[Modify Batch]</span><span style="font-size: 9pt;"> menu.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h92.jpg" width="727" height="530" border="0" alt="ch08_h92"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Register Batch]</span><span style="font-size: 9pt;"> Dialog, modify </span><span style="font-size: 9pt; font-weight: bold;">[Batch Name]</span><span style="font-size: 9pt;">, </span><span style="font-size: 9pt; font-weight: bold;">[Description]</span><span style="font-size: 9pt;"> and click </span><span style="font-size: 9pt; font-weight: bold;">[OK]</span><span style="font-size: 9pt;"> button.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 10px 35px;"><img src="ch08_h93.jpg" width="309" height="251" border="0" alt="ch08_h93"></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Deleting a batch</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">You can delete a batch.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span style="font-size: 9pt;">In the </span><span style="font-size: 9pt; font-weight: bold;">[Select templates for generation]</span><span style="font-size: 9pt;"> Page, select a batch tab to delete and click mouse right button and click </span><span style="font-size: 9pt; font-weight: bold;">[Delete Batch] </span><span style="font-size: 9pt;">menu.</span></td></tr></table></div><p style="margin: 0px 0px 0px 35px;"><span style="font-family: 'Arial'; color: #000000;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 35px;"><img src="ch08_h94.jpg" width="727" height="530" border="0" alt="ch08_h94"></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span style="font-size: 9pt;">You can make a certain that the deletion of the batch tab (Deleting batch not cause deletion of the templates contained by the template)</span></td></tr></table></div>
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

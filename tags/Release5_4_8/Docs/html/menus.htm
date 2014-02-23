@@ -1,0 +1,830 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>User-Interface Reference &gt; Menus</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Menu, explanation of">
+   <meta name="description" content="Menus">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?menus.htm"; }
+  else { parent.quicksync('a12.1'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="ch11.htm">User-Interface Reference</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Menus</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="ch11.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="ch11.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="shortcut_keys.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">This section describes in detail all of the menu items included in WhiteStarUml’s main menu.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">File Menu</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Edit Menu</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Format Menu</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Model Menu</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">View Menu</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Tools Menu</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 0px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Help Menu</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="13"><span style="font-size: 9pt; font-family: 'Arial Unicode MS', 'Lucida Sans Unicode', 'Arial'; color: #000000;">&#8226;</span></td><td><span style="font-size: 9pt;">Shortcuts</span></td></tr></table></div><p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">File Menu</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The File menu contains the following menu items.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Menu Item</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h2.jpg" width="16" height="16" border="0" alt="ch11_h2"><span style="font-size: 9pt;"> New Project[Ctrl+N]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Creates a new project.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">New Project By Approach[Ctrl+I]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Opens the Select New Project dialog box.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h3.jpg" width="16" height="16" border="0" alt="ch11_h3"><span style="font-size: 9pt;"> Open[Ctrl+O]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Opens a project file.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h4.jpg" width="16" height="16" border="0" alt="ch11_h4"><span style="font-size: 9pt;"> Save[Ctrl+S]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Saves the project file.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Save As[Ctrl+A]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Saves the project as another file.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Close</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Closes the current project.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Unit-&gt;Control Unit</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Separates and saves the currently selected element as a unit.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Unit-&gt;Uncontrol Unit</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Merges the currently selected unit element to the parent unit (or project).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Unit-&gt;Delete Unit</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Deletes the currently selected unit element</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Unit-&gt;Save Unit</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Saves the currently selected unit as a file.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Unit-&gt;Save Unit As</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Saves the currently selected unit as another file.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Import-&gt;Framework</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Imports a framework into the current project.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Import-&gt;Model Fragment</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Imports a model fragment into the current project.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Export-&gt;Model Fragment</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Saves the currently selected element as a model fragment file.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Export Diagram[Shift+Ctrl+D]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Saves the currently active diagram as an image file.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Page Setup</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Configures the page for printing</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:28px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h5.jpg" width="16" height="16" border="0" alt="ch11_h5"><span style="font-size: 9pt;"> Print[Ctrl+P]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:28px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Prints the diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Recent Files</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Contains a list of the recently opened files.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Exit</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Exits the program.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Edit Menu</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Edit menu contains the following menu items.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Menu Item</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h6.jpg" width="16" height="16" border="0" alt="ch11_h6"><span style="font-size: 9pt;"> Undo[Ctrl+Z]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Cancels the most recent action performed by the user.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h7.jpg" width="16" height="16" border="0" alt="ch11_h7"><span style="font-size: 9pt;"> Redo[Ctrl+Y]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Repeats the most recent action performed by the user.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h8.jpg" width="16" height="16" border="0" alt="ch11_h8"><span style="font-size: 9pt;"> Cut[Ctrl+X]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Copies the selected elements to clipboard and removes them from the current location.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h9.jpg" width="16" height="16" border="0" alt="ch11_h9"><span style="font-size: 9pt;"> Copy[Ctrl+C]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Copies the selected elements to clipboard.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Copy Diagram[Shift+Ctrl+C]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Copies the currently active diagram to clipboard.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Copy Diagram as Bitmap[Shift+Ctrl+C]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Copies the currently active diagram to clipboard as Bitmap.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="height:27px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h10.jpg" width="16" height="16" border="0" alt="ch11_h10"><span style="font-size: 9pt;"> Paste[Ctrl+V]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="height:27px; background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Pastes the clipboard contents into the currently selected element (or diagram).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h11.jpg" width="16" height="16" border="0" alt="ch11_h11"><span style="font-size: 9pt;"> Delete[Del]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Deletes the selected view elements in the diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Delete From Model[Ctrl+Del]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Deletes the selected model elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h12.jpg" width="16" height="16" border="0" alt="ch11_h12"><span style="font-size: 9pt;"> Find[Ctrl+F]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Finds an element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Select All[Ctrl+A]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Selects all the elements in the current diagram.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Format Menu</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Format menu contains the following menu items.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Menu Item</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h13.jpg" width="16" height="16" border="0" alt="ch11_h13"><span style="font-size: 9pt;"> Font</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies the font for the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h14.jpg" width="16" height="16" border="0" alt="ch11_h14"><span style="font-size: 9pt;"> Line Color</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies the line color for the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h15.jpg" width="16" height="16" border="0" alt="ch11_h15"><span style="font-size: 9pt;"> Fill Color</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies the fill color for the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h16.jpg" width="16" height="16" border="0" alt="ch11_h16"><span style="font-size: 9pt;"> Line Style-&gt;Rectilinear[Ctrl+L]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies the line style of the selected connection view element as rectilinear.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h16.jpg" width="16" height="16" border="0" alt="ch11_h16"><span style="font-size: 9pt;"> Line Style-&gt;Oblique[Ctrl+B]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Specifies the line style of the selected connection view element as oblique.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h17.jpg" width="16" height="16" border="0" alt="ch11_h17"><span style="font-size: 9pt;"> Stereotype Display-&gt;None[Shift+Ctrl+N]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows nothing for the stereotype of the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h17.jpg" width="16" height="16" border="0" alt="ch11_h17"><span style="font-size: 9pt;"> Stereotype Display-&gt;Textual[Shift+Ctrl+T]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the stereotype of the selected view elements with text.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h17.jpg" width="16" height="16" border="0" alt="ch11_h17"><span style="font-size: 9pt;"> Stereotype Display-&gt;Iconic[Shift+Ctrl+I]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the stereotype of the selected view elements with icons.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h17.jpg" width="16" height="16" border="0" alt="ch11_h17"><span style="font-size: 9pt;"> Stereotype Display-&gt;Decoration[Shift+Ctrl+E]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the stereotype of the selected view elements with decoration.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h18.jpg" width="16" height="16" border="0" alt="ch11_h18"><span style="font-size: 9pt;"> Suppress Attributes[Shift+Ctrl+A]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Suppresses the section that displays the attributes for the selected view elements (e.g. class, usecase, etc.).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h19.jpg" width="16" height="16" border="0" alt="ch11_h19"><span style="font-size: 9pt;"> Suppress Operations[Shift+Ctrl+O]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Suppresses the section that displays the operations for the selected view elements (e.g. class, subsystem, etc.).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h20.jpg" width="16" height="16" border="0" alt="ch11_h20"><span style="font-size: 9pt;"> Suppress Literals[Shift+Ctrl+L]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Suppresses the section that displays the attributes for the selected enumerations.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h21.jpg" width="21" height="21" border="0" alt="ch11_h21"><span style="font-size: 9pt;"> Word Wrap Name</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the Word Wrap of the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h322.jpg" width="16" height="16" border="0" alt="ch11_h322"><span style="font-size: 9pt;"> Show Parent Name</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the parent name of the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h23.jpg" width="21" height="21" border="0" alt="ch11_h23"><span style="font-size: 9pt;"> Show Operation Signature</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the operation signature of the selected view elements (e.g. class, subsystem, etc.).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h323.jpg" width="16" height="16" border="0" alt="ch11_h323"><span style="font-size: 9pt;"> Show Properties</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the property items (e.g. tagged values, changeability attribute, etc.) included in view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h221.jpg" width="16" height="16" border="0" alt="ch11_h221"><span style="font-size: 9pt;"> Show Compartment Visibility</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the visibility of the compartments of the selected view elements (e.g. attribute compartment, operation compartment, etc.).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h324.jpg" width="16" height="16" border="0" alt="ch11_h324"><span style="font-size: 9pt;"> Show Compartment Stereotype</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the stereotypes of the compartments of the selected view elements (e.g. attribute compartment, operation compartment, etc.).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h222.jpg" width="16" height="16" border="0" alt="ch11_h222"><span style="font-size: 9pt;"> Auto Resize</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Automatically resizes the selected view elements.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Alignment-&gt;</span><img src="ch11_h325.jpg" width="16" height="16" border="0" alt="ch11_h325"><span style="font-size: 9pt;"> Bring to Front</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Brings the selected elements to front.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Alignment-&gt;</span><img src="ch11_h326.jpg" width="16" height="16" border="0" alt="ch11_h326"><span style="font-size: 9pt;"> Send to Back</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Sends the selected elements to back.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Alignment-&gt;</span><img src="ch11_h327.jpg" width="16" height="16" border="0" alt="ch11_h327"><span style="font-size: 9pt;"> Align Left</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Aligns the selected elements to left.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Alignment-&gt;</span><img src="ch11_h328.jpg" width="16" height="16" border="0" alt="ch11_h328"><span style="font-size: 9pt;"> Align Right</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Aligns the selected elements to right.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Alignment-&gt;</span><img src="ch11_h329.jpg" width="16" height="16" border="0" alt="ch11_h329"><span style="font-size: 9pt;"> Align Middle</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Centers the selected elements horizontally.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Alignment-&gt;</span><img src="ch11_h330.jpg" width="16" height="16" border="0" alt="ch11_h330"><span style="font-size: 9pt;"> Align Top</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Aligns the selected elements to top.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Alignment-&gt;</span><img src="ch11_h331.jpg" width="16" height="16" border="0" alt="ch11_h331"><span style="font-size: 9pt;"> Align Bottom</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Aligns the selected elements to bottom.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Alignment-&gt;</span><img src="ch11_h332.jpg" width="16" height="16" border="0" alt="ch11_h332"><span style="font-size: 9pt;"> Align Center</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Centers the selected elements vertically.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Alignment-&gt;</span><img src="ch11_h333.jpg" width="16" height="16" border="0" alt="ch11_h333"><span style="font-size: 9pt;"> Space Equally, Horizontally</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Evenly distributes the selected elements horizontally.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Alignment-&gt;</span><img src="ch11_h334.jpg" width="16" height="16" border="0" alt="ch11_h334"><span style="font-size: 9pt;"> Space Equally, Vertically</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Evenly distributes the selected elements vertically.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h335.jpg" width="16" height="16" border="0" alt="ch11_h335"><span style="font-size: 9pt;"> Layout Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Lays out the view elements in the current diagram.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Model Menu</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Model menu contains the following menu items.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Menu Item</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Add-&gt;...</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Adds a model element. The model elements that can be added under the currently selected model elements are displayed in the sub menu.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Add Diagram-&gt;...</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Adds a diagram. The diagrams that can be added under the currently selected model elements are displayed in the sub menu.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h336.jpg" width="16" height="16" border="0" alt="ch11_h336"><span style="font-size: 9pt;"> Collection Editor[Ctrl+F5]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Opens the collection editor that can be used to edit the child elements of the currently selected model element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h337.jpg" width="16" height="16" border="0" alt="ch11_h337"><span style="font-size: 9pt;"> Constraints[Ctrl+F6]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Opens the constraint editor that can be used to edit the constraints of the currently selected model element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h338.jpg" width="16" height="16" border="0" alt="ch11_h338"><span style="font-size: 9pt;"> TaggedValues[Ctrl+F7]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Opens the tagged value editor that can be used to edit the tagged values of the currently selected model element.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h339.jpg" width="16" height="16" border="0" alt="ch11_h339"><span style="font-size: 9pt;"> Profiles[Ctrl+F8]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Opens the profile manager.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h340.jpg" width="16" height="16" border="0" alt="ch11_h340"><span style="font-size: 9pt;"> Verify Model[F9]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Opens the Verify Model dialog box that can be used to inspect the model elements in the current project.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Convert Diagram-&gt;Convert Sequence(Role) to Collaboration(Role)</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Generates a new diagram by converting the currently selected sequence (role) diagram into a collaboration (role) diagram (</span><span style="font-size: 9pt; text-decoration: underline;">default Add-In function</span><span style="font-size: 9pt;">).</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Convert Diagram-&gt;Convert Collaboration(Role) to Sequence(Role)</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Generates a new diagram by converting the currently selected collaboration (role) diagram into a sequence (role) diagram (</span><span style="font-size: 9pt; text-decoration: underline;">default Add-In function</span><span style="font-size: 9pt;">).</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">View Menu</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The View menu contains the following menu items.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Menu Item</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Close Diagram</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Closes the currently active diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Close All Diagrams</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Closes all open diagrams.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Select In Model Explorer</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the currently selected element in the model explorer.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h341.jpg" width="16" height="16" border="0" alt="ch11_h341"><span style="font-size: 9pt;"> Referesh</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Refreshes the current diagram.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Model Explorer</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toggles the Model Explorer on and off.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Diagram Explorer</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toggles the Diagram Explorer on and off</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Properties</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toggles the Properties Editor on and off.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Documentations</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;"> Toggles the Documentation Editor on and off.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Attachments</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toggles the Attachments Editor on and off.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Output</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;"> Toggles the Output Window on and off.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Messages</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toggles the Message Window on and off.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toolbox</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toggles the Toolbox on and off.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Zoom-&gt;</span><img src="ch11_h45.jpg" width="16" height="16" border="0" alt="ch11_h45"><span style="font-size: 9pt;"> Zoom In</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Makes the diagram look larger.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Zoom-&gt;</span><img src="ch11_h46.jpg" width="16" height="16" border="0" alt="ch11_h46"><span style="font-size: 9pt;"> Zoom Out</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Makes the diagram look smaller.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Zoom-&gt;</span><img src="ch11_h47.jpg" width="16" height="16" border="0" alt="ch11_h47"><span style="font-size: 9pt;"> Fit To Window</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Automatically adjusts the zoom ratio to fit the whole diagram in the window.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Zoom-&gt;50%</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the current diagram at 50% zoom ratio.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Zoom-&gt;75%</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the current diagram at 75% zoom ratio.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Zoom-&gt;100%</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the current diagram at 100% zoom ratio.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Zoom-&gt;125%</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the current diagram at 125% zoom ratio.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Zoom-&gt;150%</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the current diagram at 150% zoom ratio.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Zoom-&gt;175%</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the current diagram at 175% zoom ratio.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Zoom-&gt;200%</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the current diagram at 200% zoom ratio.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toolbars-&gt;Standard</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toggles the Standard toolbar on and off.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toolbars-&gt;Format</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toggles the Format toolbar on and off.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toolbars-&gt;View</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toggles the View toolbar on and off.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toolbars-&gt;Alignment</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Toggles the Align toolbar on and off.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Tools Menu</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Tools menu contains the following menu items.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Menu Item</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Options...</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Opens the Options dialog box that can be used to edit various environment configuration options.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Add-In Manager...</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p><span style="font-size: 9pt;">Opens the Add-In Manager that can be used to manage the additionally installed Add-In programs.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-weight: bold; color: #000080;">Help Menu</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">The Help menu contains the following menu items.</span></p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 14px 0px 10px 0px;"><table width="100%" cellspacing="0" cellpadding="1" border="1" style="border: solid 1px #aca899; border-spacing:0px;">
+<tr style="text-align:left;vertical-align:top;">
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Menu Item</span></p>
+</td>
+<td valign="bottom" bgcolor="#cccccc" style="background-color:#cccccc; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt; font-weight: bold;">Description</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><img src="ch11_h48.jpg" width="16" height="16" border="0" alt="ch11_h48"><span style="font-size: 9pt;"> Contents...[F1]</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Opens the WhiteStarUml help.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">WhiteStarUml On the Web</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Moves to the WhiteStarUml website.</span></p>
+</td>
+</tr>
+<tr style="text-align:left;vertical-align:top;">
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">About</span></p>
+</td>
+<td valign="top" bgcolor="#ffffff" style="background-color:#ffffff; border: solid 1px #aca899;"><p style="margin: 0px 0px 0px 0px;"><span style="font-size: 9pt;">Shows the WhiteStarUml information.</span></p>
+</td>
+</tr>
+</table>
+</div>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

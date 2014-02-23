@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<title>Prototype Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Prototype </h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Specify the kinds of objects to create using a prototypical instance, and 
+	create new objects by copying this prototype.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp; <img border="0" src="Prototype_Model1.gif" width="488" height="250"></p>
+<ul type="square">
+  <li><b><font face="Verdana">Prototype(Graphic)</font></b><font face="Verdana"><b>:
+  </b>declares an interface for cloning itself.</font></li>
+  <li><font face="Verdana"><b>ConcretePrototype(Staff, WholeNote, HalfNote): </b></font>
+	implements an operation for cloning itself.</li>
+  <li><font face="Verdana"><b>Client(GraphicTool):</b> </font>creates a new 
+	object by asking a prototype to clone itself.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>when the classes to instantiate are specified at run-time, for example, by 
+	dynamic loading.</li>
+  <li>to avoid building a class hierarchy of factories that parallels the class 
+	hierarchy of products.</li>
+  <li>when instances of a class can have one of only a few different 
+	combinations of state. It may be more convenient to install a corresponding 
+	number of prototypes and clone them rather than instantiating the class 
+	manually, each time with the appropriate state.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>Adding and removing products at run-time. </b> Prototypes let you 
+	incorporate a new concrete product class into a system simply by registering 
+	a prototypical instance with the client. That's a bit more flexible than 
+	other creational patterns, because a client can install and remove 
+	prototypes at run-time.</li>
+  <li><b>Specifying new objects by varying values. </b> Highly dynamic systems 
+	let you define new behavior through object composition&#8212;by specifying values 
+	for an object's variables, for example&#8212;and not by defining new classes. You 
+	effectively define new kinds of objects by instantiating existing classes 
+	and registering the instances as prototypes of client objects. A client can 
+	exhibit new behavior by delegating responsibility to the prototype.</li>
+  <li><b>Specifying new objects by varying structure. </b>Many applications 
+	build objects from parts and subparts. Editors for circuit design, for 
+	example, build circuits out of subcircuits. For convenience, such 
+	applications often let you instantiate complex, user-defined structures, 
+	say, to use a specific subcircuit again and again.The Prototype pattern 
+	supports this as well. We simply add this subcircuit as a prototype to the 
+	palette of available circuit elements. As long as the composite circuit 
+	object implements Clone as a deep copy, circuits with different structures 
+	can be prototypes.</li>
+  <li><b>Configuring an application with classes dynamically. </b>Some run-time 
+	environments let you load classes into an application dynamically. The 
+	Prototype pattern is the key to exploiting such facilities in a language 
+	like C++.</li>
+</ul>
+
+</body>
+
+</html>

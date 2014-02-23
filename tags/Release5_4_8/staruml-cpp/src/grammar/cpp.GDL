@@ -1,0 +1,1143 @@
+ /************************************************************************
+ *                                                                       *
+ *  THIS EXAMPLE IS INTENDED FOR DEMONSTRATION PURPOSES ONLY AND         *
+ *  IS PROVIDED "AS IS" WITHOUT WARRANTY EITHER EXPRESS OR IMPLIED.      *
+ *                                                                       *
+ *  Copyright (c) 1999-2002 NorKen Technologies, Inc.                    *
+ *  All rights reserved.                                                 *
+ *                                                                       *
+ *************************************************************************/
+
+//  	CPP.GDL - Grammar for parsing C and C++
+//
+//	Revision Date:	11/10/02
+//
+//	This is an Beta release of the C/C++ parser.  Since this project
+//	is still being tested, please let us know if you encounter any errors.
+//
+// 	The CPP project contains two grammar files:
+//
+// 	CPP.GDL           Grammar for parsing C and C++.  Use "CPP.program" 
+//				as the start symbol.  This grammar assumes that each 
+//				file has already been preprocessed (see below for a 
+//				description of the preprocessor).
+//
+// 	PreProcessCPP.GDL A work-around to provide simple preprocessing.  To 
+//				use the preprocessor grammar, set "PreProcessCPP.program" 
+//				as the start symbol.  This grammar skips comments, and 
+//				ignores preprocessor directives (# statements, such as 
+//				#include and #define) and pragmas.
+//
+//
+//	For best results, use an external C++ compiler to preprocess the source 
+//	files before parsing them.  For MSVC++ users, the command-line:
+//
+//    	cl /c /EP filename.cpp > output.cpp
+//
+//	preprocesses the input file without compiling it, and redirects the output 
+//	to a filename name 뱋utput.cpp?  
+//
+//	NOTES:
+//	
+//	- operator precedence is ignored when parsing expressions
+//
+//	- assembly instructions, included in __asm statements, are skipped over
+
+/* 
+
+========================================================================
+	Change History (변경시 반드시 기록하여 코드모델과 구현에 반영할 것)
+------------------------------------------------------------------------
+
+1. file_scope_decl_list 사용부분에서는 다음과 같이 변경 (1. 28)
+
+	[file_scope_decl_list] ;
+	 -->
+	[ { file_scope_decl } ];
+
+2. class_scope_decl_list 사용부분을 다음과 같이 변경 (1. 29)
+
+	[class_scope_decl_list];
+	-->  
+	[ { class_scope_decl } ];
+
+3. compiler_directive 부분의 정의 중 일부를 다음과 같이 수정
+
+	compiler_directive <SPACE=""> ::= 
+		"#" identifier
+		[{ *("\\\r" | "\r") "\\\r" }] *("\r") "\r" ;
+
+		-->
+
+		"#" identifier
+		*("\n" | "r") ("\n" | "\r") ;
+
+4. error_line 추가, class_scope_decl에 error_line 추가
+
+5. pretense_decl_attr 추가
+ 
+6. class_spec에 macro 수용가능하게 변경
+
+	class_spec ::= 	
+		class_key
+		[class_specifier_list]
+		[class_name [":" inheritance_spec_list]
+			| class_name_error]
+		[class_definition];
+
+	-->
+
+	class_spec ::=
+		class_key
+		(
+		[ class_specifier_list ]
+		[ class_name [ ":" inheritance_spec_list ]
+			| class_name_error ]
+		|
+		macro_using_list [ ":" inheritance_spec_list | macro_using_list ]
+		)
+		[ class_definition ]
+		;
+
+7. ignorable_call_modifier 추가, call_modifier 의 production에 추가
+
+8. lined_macro_using 정의 추가
+    file_scope_declaration 와 class_scope_declaration에 lined_macro_using 추가
+
+*/
+
+
+grammar CPP <HIDELITERALS,
+		 HIDEREPEATERS,
+		 SPACE=space_symbol,
+		 NOBACKTRACK>
+{
+	program ::=
+		[ { file_scope_decl } ] ;
+
+
+	// =================================================================
+	//
+	//				DECLARATIONS
+	//
+	// =================================================================
+	
+	file_scope_decl ::=
+		linkage_spec
+		| using_directive
+		| using_decl
+		| namespace_def
+		| namespace_alias_def
+		| declarator
+		| declarator_ext
+		| ";"
+		| RECOVER_IN_FILE_SCOPE_DECL ;
+
+	class_scope_decl ::= 
+		  access_decl ":" 
+		| friend_decl
+		| declarator
+		| declarator_ext
+		| ";"
+		| RECOVER_IN_CLASS_SCOPE_DECL ;
+
+	access_decl ::=
+		access_spec ;
+
+	block_scope_decl ::= 
+		  asm_block_stmt
+		| asm_line_stmt
+		| control_stmt
+		| using_directive
+		| using_decl
+		| namespace_def
+		| namespace_alias_def
+		| declarator
+		| expr_stmt
+		| label_stmt
+		| ";"
+		| RECOVER_IN_BLOCK_SCOPE_DECL ;
+
+	file_scope_decl_list ::=
+		{ file_scope_decl } ;
+
+	class_scope_decl_list ::=
+		{ class_scope_decl } ;
+
+	block_scope_decl_list ::=
+		{ block_scope_decl };
+
+
+	// =================================================================
+	//
+	//				DECLARATOR
+	//
+	// =================================================================
+
+	declarator <BACKTRACK> ::=
+		[ template_spec ]
+		[ typedef_tag ]
+		[ decl_attr_list ]
+		(
+		( class_spec | enum_spec ) [ type_attr_list ] [ decl_item_list ]
+		 | type_name [ type_attr_list ] decl_item_list
+		 | decl_item (? ^.*method_stuff | ^.*typedef_tag )
+		)
+		( ";" | (? ^.*method_stuff.method_body ) )
+		;
+
+	declarator_ext <BACKTRACK> ::=
+		lined_macro_using
+		| declarator_ext_header declarator_ext_body ;
+
+	declarator_ext_header ::=
+		[ template_spec ]
+		[ typedef_tag ]
+		[ macro_using_list_ext ] ;
+
+	declarator_ext_body ::=
+		(
+		( class_spec | enum_spec ) [ macro_using_list_ext ] [ decl_item_list ]
+		 | type_name [ macro_using_list_ext ] decl_item_list
+		 | decl_item (? ^.*method_stuff | ^.*typedef_tag )
+		)
+		( ";" | (? ^.*method_stuff.method_body ) )
+		;
+	
+	macro_using_list_ext ::=
+		macro_using macro_using macro_using macro_using macro_using macro_using
+		| macro_using	 macro_using macro_using macro_using macro_using
+		| macro_using macro_using macro_using macro_using
+		| macro_using macro_using macro_using
+		| macro_using macro_using
+		| macro_using ;
+
+	// arg_decl is a declarator that occurs within an arg_list
+	arg_decl ::= 	
+		[ decl_attr_list ]
+		(
+		( class_spec | enum_spec)  [ type_attr_list ] [ decl_item ]
+		 | type_name [ type_attr_list ] decl_item
+		 | decl_item (? ^.*method_stuff )
+		 | type_name [ array_spec_list ] [ initializer ]
+		)
+		;
+
+	// c_style_arg_decl is a declarator that occurs within a c_style_arg_list
+	c_style_arg_decl<BACKTRACK> ::=
+		[ decl_attr_list ]
+		(
+		( class_spec | enum_spec ) [ type_attr_list ] [ decl_item_list ]
+		 | type_name [ type_attr_list ] decl_item_list
+		)
+		";" ;
+
+	decl_item ::=
+	  	( item_attr_list [ declarator_name | "("  group_decl_item ")" ^( "{" | ":" ) ]
+			| declarator_name | "(" group_decl_item ")" ^( "{" | ":" )
+			| ":" bit_offset )
+		[ method_stuff
+		  | array_spec_list 
+		  | ":" bit_offset
+		]
+		[ initializer ] ;
+
+	// attrs that follow a type name or spec and should be associated with the type
+	type_attr_list ::=
+		{ const_spec | volatile_spec } ;
+
+	decl_attr ::=
+		  type_prefix
+		| based_specifier
+		| declspec_specifier 
+		| storage_class_spec
+  		| fct_specifier 
+		| call_modifier
+		| friend_modifier
+		| managed_cpp_modifier
+		| event_modifier
+		| pretense_decl_attr ;
+
+	managed_cpp_modifier ::=
+		"__abstract"
+		| "__delegate"
+		| "__gc"
+		| "__nogc"
+		| "__pin"
+		| "__property"
+		| "__sealed"
+		| "__value" ;
+
+	event_modifier ::=
+		"__event" ;
+
+	friend_modifier ::=
+		"friend" ;
+
+	pretense_decl_attr ::=
+		"afx_msg" ;
+
+	decl_attr_list ::=
+		{ decl_attr } ;
+
+	decl_item_list ::= 
+		{ decl_item, "," } ;
+
+	group_decl_item ::= 
+		decl_item ;
+
+	item_attr_list ::=
+		{ type_qualifier | decl_attr } ;
+
+	declarator_name ::= 
+		scoped_name ;
+
+	typedef_tag 
+		::= "typedef" ;
+
+
+	// =================================================================
+	//
+	//				CLASSES
+	//
+	// =================================================================
+
+	class_spec ::=
+		class_key
+		(
+		[ class_specifier_list ]
+		[ /* class_name */ scoped_name [ ":" inheritance_spec_list ]
+			| class_name_error ]
+		|
+		macro_using_list [ ":" inheritance_spec_list | macro_using_list ]
+		)
+		[ class_definition ] ;
+
+	class_definition ::=
+		"{"
+			[ {class_scope_decl } ]
+		 ("}" /*| RECOVER_TO_RBRACE*/ ) ;
+
+	class_specifier_list ::=
+		{ class_specifier } ;
+
+	inheritance_spec_list ::=
+		{ inheritance_spec, "," } ;
+
+	class_key <TERMINAL> ::= 
+		  "class" 
+		| "struct" 
+		| "union" 
+		| "interface"
+		| "_interface" 
+		| "__interface" ;
+		
+	class_specifier ::=
+		  declspec_specifier 
+		| "__virtual_inheritance"
+		| "__multiple_inheritance"
+		| "__single_inheritance" ;
+
+	inheritance_spec ::= 
+		[ virtual_spec [ access_spec ]
+		 | access_spec [ virtual_spec ] ]
+		scoped_name ;
+	
+	virtual_spec ::= 
+		"virtual" ;
+		
+	class_name ::= 
+		ident
+		[ "<" [ template_arg_list ] ">" ] ;
+
+	access_spec <TERMINAL> ::= 
+		  "public" 
+		| "private" 
+		| "protected" ;
+
+
+	// =================================================================
+	//
+	//				ENUMS
+	//
+	// =================================================================
+
+	enum_spec ::= 
+		"enum"
+		[ enum_name ] [ "=" ]
+		"{" [ enum_list [ "," ] ] 
+		( "}" /*| RECOVER_TO_RBRACE*/ )
+		;
+
+	enum_list ::= 
+		{ enum_entry , "," } ;
+
+	enum_entry ::=
+		ident [ "=" expression ] ;
+
+	enum_name <TERMINAL> ::= 
+		identifier ;	// it can be scoped_name
+
+
+	// =================================================================
+	//
+	//				TEMPLATES
+	//
+	// =================================================================
+
+	template_spec ::= 
+		"template" 
+		[ "<" [ template_decl_arg_list ] ">" ] ;
+
+	template_decl_arg_list ::=
+		{ template_decl_arg , "," } ;
+		
+	template_decl_arg ::= 
+		[ template_prefix ]
+		( template_typedef_arg			
+		  | template_vardecl_arg
+		  | template_typespec_arg
+		) ;
+
+	template_prefix ::= 
+		"template" "<" [ template_decl_arg_list ] ">" ;
+
+	template_typedef_arg ::=
+		template_typedef_key
+		[ ident ]
+		[ template_initializer ]
+		^(^( "," | ">" ));
+
+	template_typedef_key ::=
+		"class"
+		| "typename" ;
+
+	template_vardecl_arg ::=
+		type_spec 
+		ident
+	  	[ template_initializer ] ;
+
+	template_typespec_arg ::=
+		type_spec 
+	  	[ template_initializer ] ;
+
+	template_initializer ::=
+		"=" ( type_spec | expression ) ;
+		
+	template_arg_list ::= 
+		{ template_arg , "," } ;
+
+	template_arg ::=
+		macro_using (? .*macro_parameters)
+		| [ reference_op ] type_spec 	
+		| literal
+		| "(" expression ")" ;
+
+
+	// =================================================================
+	//
+	//				NAMESPACES
+	//
+	// =================================================================
+
+	using_decl ::=
+		"using" scoped_name ";" ;
+
+	using_directive ::=
+		"using" "namespace" scoped_name ";" ;
+
+	namespace_name <TERMINAL> ::=
+		ident ;
+		
+	namespace_def ::=
+		"namespace" [ namespace_name ]
+		"{" namespace_body "}" [ ";" ] ;
+		
+	namespace_body ::=
+		[ { file_scope_decl } ] ;
+
+	namespace_alias <TERMINAL> ::=
+		ident ;
+
+	namespace_alias_def ::=
+		"namespace" namespace_alias "=" scoped_name ";" ;
+
+
+	// =================================================================
+	//
+	//					Methods
+	//
+	// ================================================================
+
+	method_stuff ::=
+		"(" [ arg_decl_list ] ")"
+//		[ c_style_arg_types ]
+		[ const_spec ]
+		[ throw_decl ]
+		[ pure_virtual 
+		 | [ base_initializers ] method_body ] ;
+
+	c_style_arg_types ::=
+		{ c_style_arg_decl };
+
+	pure_virtual ::=
+		"=" "0" ;
+		
+	base_initializers ::= 
+		":" { base_initializer , "," } ;
+
+	base_initializer ::=
+		scoped_name "(" arg_list ")" ;
+
+	fct_specifier ::= 
+		"inline" 
+		| "virtual" 
+		/* --- MS extensions --- */
+		| declspec_specifier
+		| "__inline"
+		| "_inline"
+		| "__forceinline"
+		| "explicit"
+		;
+	
+	call_modifier ::= 
+		  "__cdecl" 
+		| "_cdecl" 
+		| "__fastcall" 
+		| "_stdcall" 
+		| "__stdcall" 
+		| "__syscall" 
+		| "__oldcall" 
+		| "__unaligned"
+		| "pascal" | "_pascal" | "__pascal"
+		| ignorable_call_modifier
+		;    
+
+	ignorable_call_modifier ::=
+		"WINAPI"
+		| "WINAPIV"
+		| "CALLBACK"
+		| "AFXAPI" ;
+
+	method_body ::= 
+		"{" [ block_scope_decl_list ] 
+		( "}" /* | RECOVER_TO_RBRACE */ )
+		[ ";" ] ;
+	
+	arg_decl_list ::= 
+		[ { arg_decl , "," } ] [ [ "," ] ellipses ];
+
+	ellipses ::= "..." ;
+
+//================================================================
+
+	compound_stmt ::= 
+		 "{" [ block_scope_decl_list ] 
+		 ( "}" /* RECOVER_TO_EOL_OR_RBRACE */ ) [ ";" ]
+		 | declarator ;
+
+	based_specifier ::=
+		("_based" | "__based") "(" simple_expression ")" ;
+
+	bit_offset ::= 
+		numeric ;
+	
+	initializer ::= 
+		 "=" initializer_list
+		| "=" expression
+		| "(" arg_list ")" ;
+				
+	initializer_list ::= 
+		"{" { initializer_list | expression , "," } [ "," ] "}" ;
+					
+	friend_decl ::=
+		"friend" 
+		( declarator | type_name )
+		[ ";" ] ;
+
+	declspec_specifier ::=
+		( "__declspec" | "_declspec" ) "(" simple_expression ")"
+		| "_export" | "__export"
+		;
+
+	storage_class_spec ::= 
+		  "auto" 
+		| "register" 
+		| "static" 
+		| "extern"
+		| "volatile"
+		;
+
+	linkage_spec ::= 
+		"extern" string_literal
+		( "{" [ { file_scope_decl } ] "}" | file_scope_decl ) ;
+
+		
+	// =================================================================
+	//
+	//					Statements
+	//
+	// ================================================================
+
+	statement ::= 
+		  control_stmt
+		| expr_stmt 
+		| label_stmt
+		| asm_block_stmt
+		| asm_line_stmt
+		| ";" ;
+
+	statement_list ::=
+		{ statement } ;
+
+	control_stmt ::= 		
+		  if_stmt
+		| delete_stmt
+		| compound_stmt
+		| return_stmt
+		| while_stmt
+		| do_while_stmt
+		| for_stmt
+		| goto_stmt
+		| switch_stmt
+		| break_stmt
+		| continue_stmt
+		| try_stmt
+		| throw_stmt ;
+		
+	expr_stmt ::= 
+		expr_list ";" ;
+	
+	if_stmt ::= 
+		"if" "(" expression ")" statement [ ";" ]
+		[ "else" statement ] ;
+	
+	delete_stmt ::= 
+		[ "::" ] "delete" [ "[" "]" ] 
+		expression ";" ;
+	
+	return_stmt ::= 
+		"return" [ expression ] 
+		";" ;
+	
+	while_stmt ::= 
+		"while" "(" expression ")" 
+		statement ;
+	
+	do_while_stmt ::= 
+		"do" statement 
+		"while" "(" expression ")" ;
+	
+	for_stmt ::= 
+		"for" "("
+		( declarator | [ expr_list ] ";" )
+		[ expr_list ] ";"
+		[ expr_list ]
+		")" 
+		statement ;
+			
+	goto_stmt ::= 
+		"goto" label_name ";" ;
+	
+	label_stmt ::= 
+		label_name ":" ;
+	
+	label_name ::= 
+		ident ;
+	
+	switch_stmt ::= 
+		"switch" 
+		"(" expression ")"
+		"{" [ case_clause_list ] "}" ;
+
+	case_clause_list ::=
+		{ case_clause } ;
+				
+	case_clause ::= 
+		  "case" 
+		  simple_expression
+		  ":" [ statement_list ]
+		| default_case_clause ;
+
+	default_case_clause ::=
+		"default" ":" [ statement_list ] ;
+
+	break_stmt ::= 
+		"break" ";" ;
+	
+	continue_stmt ::= 
+		"continue" ";" ;
+	
+	try_stmt ::= 
+		( "try" | "__try" ) compound_stmt
+			[ { "catch" "(" arg_decl_list ")" compound_stmt } ]
+		| ( "except" | "__except" ) "(" expression ")" compound_stmt
+		| ( "finally" | "__finally" ) [ "(" expression ")" ] compound_stmt
+		| "__leave"
+		;
+		
+	throw_stmt ::=
+		throw_clause ";" ;
+	
+	throw_clause ::=
+		"throw" 
+		[ "(" [ expression ] ")" | expression ] ;
+	
+	throw_decl ::=
+		"throw"
+		"(" [ arg_decl_list ] ")" ;
+
+	asm_block_stmt ::= 
+		"__asm" 
+		"{" *("}") "}" ;
+
+	asm_line_stmt <SPACE=""> ::= 
+		"__asm" *( "\r" | "}" ) ;
+
+
+	// ===========================================================================
+	//
+	//					EXPRESSION
+	//
+	// ===========================================================================
+
+	expression <NOBACKTRACK> ::= 
+		[ unary_pre_op ]
+		simple_expression 
+		[ unary_post_op ]
+		[ operator expression | conditional_expression ]
+		;
+
+	conditional_expression ::= 
+		"?" expression ":" expression ;
+
+	operator <TERMINAL> ::=  
+		( "!=" | "==" | ">=" | "<="  
+			| "*=" | "/=" | "^="
+			| "+=" | "-=" | "%="
+			| "<" | "*" | "/" | "%" | "+" | "-" | "=" | "^"
+			| "&" | "|" 
+			| "&&" | "||"
+			| "<<" | ">>" | "<<=" | ">>="
+			| "&=" | "|=" 
+		)
+		
+		// --------------------------------------------------------------------
+		// A Note about Templates and the ">" Token
+		// --------------------------------------------------------------------
+		// Special consideration must be taken for the ">" token, since
+		// it's both the "greater-than" operator, and it also delimits template
+		// declarations.  
+		//
+		// In this grammar, we use parse constraints to determine whether the
+		// ">" token should be considered an operator, based upon the context
+		// in which it occurs.
+		
+		| (? ^*expr_list ) ">"				// OK in an expr_list
+		| (? ^*template_decl_arg_list )		// not OK in a template_decl
+		| ">"
+		;
+
+	unary_pre_op ::= 
+		"++" | "--" | "-" | "+" | "!" | "~";
+	
+	unary_post_op ::= 
+		"++" | "--" ;
+	
+	simple_expression ::= 
+		  sizeof_expr
+		| uuidof_expr
+		| literal [ subscript ]	// 01/08/02 -- added optional subscript, to parse statements like:  char c = "str"[2];
+		| new_expr
+		| reference_op expression
+		| pointer_op expression
+		| cast_expr 
+		| qualified_name
+		| "(" expr_list ")"
+		;
+			
+	new_expr <BACKTRACK> ::= 
+		[ "::" ] "new"
+		[ placement ]
+		( "(" type_name ")" | type_name )
+		[ pointer_spec_list ]
+		[ "(" arg_list ")" | "[" expression "]" ] ;
+
+	placement ::=
+		"(" ( expr_list | type_spec ) ")" ;
+	
+	sizeof_expr ::= 
+		"sizeof"
+		( "(" sizeof_arg ")" 
+		  | sizeof_arg
+		) ;
+		
+	uuidof_expr	::=
+		"__uuidof"
+		"(" expression ")" ;
+			    
+	sizeof_arg ::= 
+		  type_spec
+		|  expression ;
+
+	expr_list ::= 
+		{ expression , "," } ;
+	
+	cast_expr ::= 
+		  "(" type_spec ")" expression 
+		| cast_type "<" type_name ">" "(" expression ")" 
+		| "typeid" "(" ( type_name | expression ) ")" 
+		| basic_type "(" expression ")"
+		| "(" arg_decl ")" expression
+		;
+			
+	cast_type <TERMINAL> ::= 
+		  "dynamic_cast"
+		| "static_cast"
+		| "const_cast"
+		| "reinterpret_cast"
+		;
+
+
+	// ===========================================================================
+	//
+	//				QUALIFIED NAME
+	//
+	// ===========================================================================
+
+	qualified_name ::= 
+		{ ( scoped_name | "(" expression ")" )
+		   [ { subscript | "(" arg_list ")" } ]
+		   , ".*" | "." | "->*" | "->" } ;
+
+	subscript ::= 
+		"[" [ expression ] "]" ;
+					
+	arg_list ::= 
+		[ { expression, "," } ] ;
+	
+	scoped_name ::= 
+		[ scope_qualifier ]
+		( "operator" operator_name
+		 | [ destructor_tag | template_tag ] class_name ) ;
+
+	template_tag ::= "template" ;
+
+	scope_qualifier ::=		 
+		[ scope_operator ] name_scope_pair_list
+		| scope_operator 
+		;
+
+	name_scope_pair_list ::=
+		{ name_scope_pair } ;
+
+	name_scope_pair ::= 
+		class_name scope_operator ;
+		 
+	scope_operator ::= 
+		"::";
+
+	destructor_tag ::= 
+		"~" ;
+
+	operator_name ::= 
+	    (  ( "++" | "--" | "==" | "!=" | "," | "->*" | "->" | "~" | "!" )
+		 | "delete" ["[" "]"]
+		 | "new" ["[" "]"]
+		 | "(" ")" | "[" "]" 
+		 | operator 
+		 | [ const_spec ] conversion_name
+	    ) [ pointer_op | reference_op ]
+	    ;
+	    
+	conversion_name ::= 
+		  basic_type
+		| ident ;
+
+
+	// ===========================================================================
+	//
+	//				C++ TYPES
+	//
+	// ===========================================================================
+	
+	type_spec ::= 
+		[ decl_attr_list ]
+		( class_spec | enum_spec | type_name )
+		[ type_qualifier_list ] ;
+
+	type_prefix ::= 
+		  "const"
+		| "mutable" ;
+	
+	type_qualifier ::= 
+		( pointer_op | reference_op ) 
+			  [ { mem_spec|volatile_spec } ]	// grouping in the same subtree
+		| mem_spec | volatile_spec		// catch stray occurrences
+		;
+
+	type_qualifier_list ::=
+		{ type_qualifier } ;
+
+	pointer_spec_list ::=
+		{ mem_spec | pointer_op } ;
+	
+	mem_spec ::= 
+		  "far" | "__far"
+		| "near"
+		| "const"
+		| "_huge" | "__huge"
+		;
+
+	const_spec ::= 
+		"const" ;
+
+	pointer_op ::= 
+		[scope_qualifier] "*" ;
+
+	reference_op ::= 
+		"&" ;			
+
+	volatile_spec ::=
+		"volatile" ;
+
+	array_spec_list ::= 
+		{ array_spec } ;
+
+	array_spec ::= 
+		"[" [ array_subscript ] "]" ;
+	
+	array_subscript ::= 
+		expression ;	
+		
+	type_name <NOBACKTRACK> ::= 
+		  basic_type 
+		| enum_reference
+		| class_key scoped_class_name
+		| typename_expr
+		| uuidof_expr 	// MS-specific
+		| scoped_name
+		;
+
+	typename_expr ::= 
+		"typename" scoped_name ;
+
+	enum_reference ::= 
+		"enum" enum_name ;
+
+	basic_type <BACKTRACK, TERMINAL, SPACE=""> ::=
+		basic_type_name ^'[a-zA-Z0-9_$]' ;
+
+	basic_type_name <SPACE="\n\r\t\32"> ::=
+		  "void"
+		| "float"
+		| "double"
+		| "bool"
+		| ["unsigned" | "signed"] 
+		  (
+			("long" | "short") ["double" | "int"]
+			| "char" 
+			| "int"
+			/* MS extensions */
+			| "__int8" 
+			| "__int16"
+			| "__int32"
+			| "__int64"
+		  )
+		| "unsigned" 
+		| "signed"
+		;
+
+	scoped_class_name ::=
+		[ scope_qualifier ] class_name ;
+
+	ident <TERMINAL> ::= 
+		identifier (? #VALUE !::= reserved_word; );
+
+	identifier ::= 
+		'[a-zA-Z_][a-zA-Z0-9_$]*' ;
+				
+	reserved_word ::=
+		  "__asm"		| "else"	| "operator"	
+		| "auto"		| "enum"	| "typedef"
+		| "break"		| "extern"	| "private"		| "union"
+		| "case"		| "far"	| "__far"
+		| "_huge" 		| "__huge"
+		| "protected"	| "unsigned"
+		| "catch"		| "float"	| "public"		| "virtual"
+		| "cdecl"		| "for"	| "register"	| "void"
+		| "char"		| "friend"	| "return"		| "volatile"
+		| "class"		| "goto"	| "short"		| "using"
+		| "const"		| "if"	| "signed"		| "while"
+		| "continue"	| "inline"	| "sizeof"
+		| "namespace"
+		| "default"		| "int"	| "static"		| "typename"
+		| "delete"		| "long"	| "struct"		| "__uuidof"
+		| "do"		| "near"	| "switch"		| "try"	
+		| "__try"		| "throw"
+		| "double"		| "new"	| "template"	| "finally"	
+		| "__finally"	| "except"  | "__except"	| "__leave"
+		| "__int8" 		| "__int16"	| "__int32" 	| "__int64"
+		| "_declspec" 	| "__declspec"	| "__based"
+		| "__forceinline"	| "_based"
+		| "__virtual_inheritance" | "__multiple_inheritance" | "__single_inheritance"
+		| "explicit"
+		| "_export" | "__export"
+		// call modifiers
+		| "__cdecl" | "_cdecl" | "__fastcall" 
+		| "_stdcall" | "__stdcall" | "__syscall" | "__oldcall" 
+		| "__unaligned"| "pascal" | "_pascal" | "__pascal"
+		// 추가됨
+		| "interface" | "_interface" | "__interface"
+		| "__abstract" | "__delegate" | "__gc"
+		| "__nogc" | "__pin" | "__property"
+		| "__sealed" | "__value" | "__event" ;
+
+
+	// =================================================================
+	//
+	//					CONSTANTS
+	//
+	// =================================================================
+
+	literal ::= 
+		  numeric_constant	// includes integers (decimal, hex, octal) and floats 
+		| string_literal
+		| character_constant
+		;
+			
+	numeric_constant ::= 
+		[ sign ]
+		( hex_constant
+		  | octal_constant
+		  | float_constant
+		)
+		[ numeric_suffix ] ;
+		
+	numeric_suffix ::= 
+		'[LlUuFf]+';
+				    
+	hex_constant ::= 
+		'0[xX][a-fA-F0-9]+' ;
+	
+	octal_constant ::= 
+		'0[oO][0-7]+' ;
+	
+	float_constant ::= 
+		  numeric [ "." [ numeric ] ] [ exponent_part ]
+		| "." numeric ;
+	
+	exponent_part ::= 
+		("e" | "E") [sign] numeric;
+
+	sign ::= 
+		'[+\-]' ;
+
+	// literal_constant is a quote-enclosed string
+	string_literal<TERMINAL,
+			   SPACE=""> ::= 
+		 	{ text_segment, [ whitespace ]} ;
+
+	text_segment ::= 
+		["L"] "\"" text_elem [more_text_elems] "\"" ;
+
+	text_elem  ::= 
+		*('[\\\"]');
+
+	more_text_elems ::= 
+		'\\.' text_elem [more_text_elems] ;
+
+	character_constant ::= 
+		["L"] '\'\\?([0-9A-Za-z]+|.)\'';
+
+
+	space_symbol <TERMINAL,HIDDEN> ::= 
+		{ ( "\32" | "\r" |"\n"|"\t"| "\12" )
+		  | "//" *("\r" | "\n")
+		  |  "/*" *("*/") "*/"
+		  | "\\" "\r"			// line continuation  
+		,0 };
+
+	space_symbol_in_line <TERMINAL,HIDDEN> ::=
+		{ ( "\32" | "\t" | "\12" )
+		  | "//" *("\r" | "\n")
+		  |  "/*" *("*/") "*/"
+		  | "\\" "\r"			// line continuation  
+		,0 };
+
+	// =================================================================
+	//
+	//				MACRO FORM
+	//
+	// =================================================================
+
+	macro_using_list ::=
+		{ macro_using } ;
+
+	macro_using ::=
+		scoped_name
+		| reserved_word
+		| macro_name
+		  [ "(" macro_parameters ")" ] ;
+
+	macro_name ::=
+//		ident ;
+		identifier;
+
+	macro_parameters ::=
+		[ { macro_parameter , "," } ] ;
+
+	macro_parameter ::=
+		identifier
+		| literal ;
+
+	lined_macro_using <SPACE=space_symbol_in_line> ::=
+		macro_using ( "\n" | "\r" | ";" ) ;
+
+	// =================================================================
+	//
+	//				ERROR RECOVERY
+	//
+	// =================================================================
+
+	RECOVER_IN_FILE_SCOPE_DECL <ERROR = "file scope declaration error"> ::=
+		^( "}" | ";" ) *( "\r" | "\n" | ";"  | "}" ) [ ";" | "}" ] ;
+
+	RECOVER_IN_CLASS_SCOPE_DECL <ERROR = "class scope declaration error"> ::=
+		^( "}" | ";" ) *( "\r" | "\n" | ";"  | "}" ) [ "}" | ";" ] ;
+
+	RECOVER_IN_BLOCK_SCOPE_DECL <ERROR = "block scope declaration error"> ::=
+		^"}" *( "\r" | "\n" | ";"  | "}" ) ;
+
+
+	REQUIRED_SEMICOLON<HIDDEN> ::= 
+		";" | (? #warn=10000,NULL);
+
+	RECOVER_TO_RBRACE<TERMINAL, ERROR="expecting }"> ::=
+		*("}"|"{"|#EOF) ("}"|#EOF);
+
+	RECOVER_TO_EOL <TERMINAL, ERROR="unrecognized expression"> ::=
+		*("\r");
+
+	RECOVER_TO_EOL_OR_RBRACE <TERMINAL, ERROR="expecting }"> ::=
+		*("}" | "\r");
+
+	block_scope_error <TERMINAL, ERROR="expecting ;"> ::=
+		reserved_word *(";") ";" ;
+
+	class_name_error <ERROR="class name cannot be reserved word"> ::=
+		reserved_word ;
+
+};
+
+/*
+
+1. 'public private / protected private' modifier 즉 modifier_list 가 오는 것을 허용해야 한다.
+2. __interface를 지원해야 한다.
+3. 주석을 포함하는 라인 단위 오류 일때 잘 못 인식하는 경우가 있다.
+    예를 들어,
+  #  define YYSTACK_FREE(Ptr) do { /* empty * / ;  } while (0)
+    에서 ~~ * /; 까지만 인식
+4. __w64
+
+*/

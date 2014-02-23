@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Resizing and Moving Elements</title>
+  <keywords>
+    <keyword translate="true">Automatic resize</keyword>
+    <keyword translate="true">View elements<keyword translate="true">resize and move</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Resizing and Moving Elements</text></para>
+    </header>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">You can change the view element&apos;s size or position in the diagram. Using the keyboard you can change the size and position in very small steps.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To resize a view element</text></para>
+    <list id="78" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Select a view element in the diagram. A guide box will appear around the view element.</text></li>
+    </list>
+    <para styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-left:59px; line-height:1.0; tabstops:none;"><image src="ViewElementResize.jpg" scale="100.00%" styleclass="Image Caption"><title translate="true">Resize View Element</title><caption translate="true"><![CDATA[Resizing a View Element]]></caption></image></para>
+    <list id="78" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none; font-family:Verdana; font-size:9pt; color:#000000;">
+      <li styleclass="Normal" style="text-indent:-13px; margin-top:10px; margin-bottom:10px; margin-left:35px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Drag a square-shaped tab on the guide box.</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To move a view element</text></para>
+    <list id="79" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">Select a view element in the diagram. A guide box will appear around the view element</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">Position the mouse in the center of the guide box and drag the view element.</text></li>
+    </list>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To move an element using the keyboard, select a view element then hold down the Shift key and press an arrow key in the direction you want to move the view element. Using the Shift key with the arrow keys, you move the view element one grid unit at the time. To move the view element one pixel, select a view element then hold down Shift+Alt and press an arrow key in the direction you want to move the view element.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To move multiple view elements you first select the individual view elements and then move the guide box. To select multiple view elements, first select one element then hold down the Shift key and select additional view elements.</text></para>
+    <para styleclass="Heading2"><text styleclass="Heading2" translate="true">Automatic Resize</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">A view element can also resize automatically to the size of its content. Auto resize will change the size of the view element each time you change the element&apos;s name, stereotype, attribute definition or operation definition. You can set auto resize for each individual view element.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">To turn on auto resize of a view element, select the view element and then on the </text><text styleclass="MenuCommand" translate="true">Format</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> menu click </text><text styleclass="MenuCommand" translate="true">Auto Resize</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">. </text><text styleclass="MenuCommand" translate="true">Auto Resize</text><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true"> will now be checked.</text></para>
+    <para styleclass="Normal" style="margin-top:19px; margin-left:24px; line-height:1.0; tabstops:none;"><image src="ViewElementAutoResize.jpg" scale="100.00%" styleclass="Image Caption"><title translate="true">Auto Resize On</title><caption translate="true"><![CDATA[Auto Resize Turned On]]></caption></image></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To turn auto resize off, select the view element and uncheck </text><text styleclass="MenuCommand" translate="true">Auto Resize</text><text styleclass="Normal" translate="true">.</text></para>
+  </body>
+</topic>

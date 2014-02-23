@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FRAMEWORK version="1.0">
+  <HEADER>
+    <NAME>MFC6.0</NAME>
+    <DISPLAYNAME>Microsoft Foundation Classes 6.0</DISPLAYNAME>
+    <DESCRIPTION>Microsoft Foundation Classes (MFC) 6.0 Framework</DESCRIPTION>
+  </HEADER>
+  <BODY>
+  <FRAMEWORKMODELS>
+    <UNIT>MFC6.0.unt</UNIT>
+  </FRAMEWORKMODELS>
+  </BODY>
+</FRAMEWORK>
+

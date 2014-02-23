@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Importing Frameworks</title>
+  <keywords>
+    <keyword translate="true">Framework<keyword translate="true">import</keyword></keyword>
+    <keyword translate="true">Importing<keyword translate="true">frameworks</keyword></keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Importing Frameworks</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To use a framework in a project, you must first load the framework. Although approaches may include a framework, not all approaches include a framework. A framework consists of one or more unit files that will be linked to the project. Once the units are loaded, all the elements contained in the units can be used. Framework units are usually read-only and the elements in the framework cannot be modified directly.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">You can import a framework into a model or package.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To import a framework</text></para>
+    <list id="2" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, point to </text><text styleclass="MenuCommand" translate="true">Import</text><text styleclass="List1" translate="true">, and then click </text><text styleclass="MenuCommand" translate="true">Framework</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Import Framework</text><text styleclass="List1" translate="true"> dialog, select a framework and click </text><text styleclass="MenuCommand" translate="true">OK</text><text styleclass="List1" translate="true">.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:24px;"><image src="ch03_h12.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <list id="2" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="List1" style="font-style:italic;" translate="true">Select a Package where the Framework will be imported to</text><text styleclass="List1" translate="true"> dialog, select an element and click </text><text styleclass="MenuCommand" translate="true">OK</text><text styleclass="List1" translate="true">.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:24px;"><image src="ch03_h13.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Emphasis"><image src="note.bmp" scale="100.00%" styleclass="Emphasis"></image><text styleclass="Emphasis" translate="true"> Notes:</text></para>
+    <list id="3" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="Normal" translate="true">Importing a framework </text><text styleclass="ListB" translate="true">does not save the framework elements in the project. The framework units are referenced in the project, and the units must be present when the project is opened.</text></li>
+      <li styleclass="ListBLast"><text styleclass="ListB" translate="true">In order to remove a framework from the project</text><text styleclass="ListBLast" translate="true">, you have to delete all the units manually.</text></li>
+    </list>
+  </body>
+</topic>

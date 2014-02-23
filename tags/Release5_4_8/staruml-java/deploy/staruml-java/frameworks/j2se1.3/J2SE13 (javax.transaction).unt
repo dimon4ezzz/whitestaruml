@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XPD:UNIT xmlns:XPD="http://www.plasticsoftware.com/products/plastic" version="1">
+<XPD:HEADER>
+<XPD:SUBUNITS>
+</XPD:SUBUNITS>
+</XPD:HEADER>
+<XPD:BODY>
+<XPD:OBJ name="DocumentElement" type="UMLPackage" guid="7t6/o16gZEe7Z0xXuB6IyQAA">
+<XPD:ATTR name="Name" type="string">transaction</XPD:ATTR>
+<XPD:ATTR name="#OwnedElements" type="integer">3</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLClass" guid="geetILBVnUWHc2e6pUT4hwAA">
+<XPD:ATTR name="Name" type="string">InvalidTransactionException</XPD:ATTR>
+<XPD:REF name="Namespace">7t6/o16gZEe7Z0xXuB6IyQAA</XPD:REF>
+<XPD:ATTR name="#Generalizations" type="integer">1</XPD:ATTR>
+<XPD:REF name="Generalizations[0]" pathname="::java::rmi::">Ap27+cQtw0yw5xBTaB0fFgAA</XPD:REF>
+<XPD:ATTR name="#Operations" type="integer">2</XPD:ATTR>
+<XPD:OBJ name="Operations[0]" type="UMLOperation" guid="rHei14vyP02Wrnmn3YxocQAA">
+<XPD:ATTR name="Name" type="string">InvalidTransactionException</XPD:ATTR>
+<XPD:REF name="Owner">geetILBVnUWHc2e6pUT4hwAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Operations[1]" type="UMLOperation" guid="UutYpwceuky9+wza2g9HiAAA">
+<XPD:ATTR name="Name" type="string">InvalidTransactionException</XPD:ATTR>
+<XPD:REF name="Owner">geetILBVnUWHc2e6pUT4hwAA</XPD:REF>
+<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="kzjOoij8JEuMhElgGM53PwAA">
+<XPD:ATTR name="Name" type="string">arg0</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">String</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">UutYpwceuky9+wza2g9HiAAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[1]" type="UMLClass" guid="5PF85Y/X8Ea4TqcaE6WDkQAA">
+<XPD:ATTR name="Name" type="string">TransactionRequiredException</XPD:ATTR>
+<XPD:REF name="Namespace">7t6/o16gZEe7Z0xXuB6IyQAA</XPD:REF>
+<XPD:ATTR name="#Generalizations" type="integer">1</XPD:ATTR>
+<XPD:REF name="Generalizations[0]" pathname="::java::rmi::">COvt5CbHjEC6O/A5Z2lc4wAA</XPD:REF>
+<XPD:ATTR name="#Operations" type="integer">2</XPD:ATTR>
+<XPD:OBJ name="Operations[0]" type="UMLOperation" guid="y0u858bU1Eucug+cJV5PxQAA">
+<XPD:ATTR name="Name" type="string">TransactionRequiredException</XPD:ATTR>
+<XPD:REF name="Owner">5PF85Y/X8Ea4TqcaE6WDkQAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Operations[1]" type="UMLOperation" guid="3fGxLUxOKEekRGdkjeOTBAAA">
+<XPD:ATTR name="Name" type="string">TransactionRequiredException</XPD:ATTR>
+<XPD:REF name="Owner">5PF85Y/X8Ea4TqcaE6WDkQAA</XPD:REF>
+<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="R7+TESQsR0q0l4mgLUX76gAA">
+<XPD:ATTR name="Name" type="string">arg0</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">String</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">3fGxLUxOKEekRGdkjeOTBAAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[2]" type="UMLClass" guid="Qyri6HLDD0mLoRQwdfrcAgAA">
+<XPD:ATTR name="Name" type="string">TransactionRolledbackException</XPD:ATTR>
+<XPD:REF name="Namespace">7t6/o16gZEe7Z0xXuB6IyQAA</XPD:REF>
+<XPD:ATTR name="#Generalizations" type="integer">1</XPD:ATTR>
+<XPD:REF name="Generalizations[0]" pathname="::java::rmi::">G1XNZYCJMkCROHYltwcJngAA</XPD:REF>
+<XPD:ATTR name="#Operations" type="integer">2</XPD:ATTR>
+<XPD:OBJ name="Operations[0]" type="UMLOperation" guid="PgIEfc7LgUuF5EG5iyuFOwAA">
+<XPD:ATTR name="Name" type="string">TransactionRolledbackException</XPD:ATTR>
+<XPD:REF name="Owner">Qyri6HLDD0mLoRQwdfrcAgAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Operations[1]" type="UMLOperation" guid="vsFaVgPXJUC2pG3woCjMIwAA">
+<XPD:ATTR name="Name" type="string">TransactionRolledbackException</XPD:ATTR>
+<XPD:REF name="Owner">Qyri6HLDD0mLoRQwdfrcAgAA</XPD:REF>
+<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="JWrBfwtB2UWaheTAJu4Z2wAA">
+<XPD:ATTR name="Name" type="string">arg0</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">String</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">vsFaVgPXJUC2pG3woCjMIwAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:BODY>
+</XPD:UNIT>

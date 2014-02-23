@@ -1,0 +1,84 @@
+<html>
+
+<head>
+<title>Mediator Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Mediator </h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Interaction">Interaction</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Define an object that encapsulates how a set of objects interact. </li>
+  <li>Mediator promotes loose coupling by keeping objects from referring to each 
+	other explicitly, and it lets you vary their interaction independently.</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp; <img border="0" src="Mediator_Model1.gif" width="479" height="181"></p>
+<ul type="square">
+  <li><font face="Verdana"><b>Mediator : </b>defines an interface for 
+	communicating with Colleague objects.</font></li>
+  <li><font face="Verdana"><b>ConcreteMediator :</b> 
+  </font>implements cooperative behavior by coordinating Colleague objects. 
+	knows and maintains its colleagues.</li>
+  <li><font face="Verdana"><b>Colleague Class :</b> each Colleague class knows 
+	its Mediator object. each colleague communicates with its mediator whenever 
+	it would have otherwise communicated with another colleague.</font></li>
+</ul>
+<h2><a name="Interaction">Interaction</a></h2>
+<p>
+<img border="0" src="Mediator_Model_Seq1.gif" width="505" height="360"></p>
+<ul type="square">
+  <li><font face="Verdana">Here's the succession of events by which a list box's 
+	selection passes to an entry field.</font><ol>
+    <li>The list box tells its director that it's changed.</li>
+    <li>The director gets the selection from the list box.</li>
+    <li>The director passes the selection to the entry field.</li>
+    <li>Now that the entry field contains some text, the director enables 
+	button(s) for initiating an action</li>
+  </ol>
+  </li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>a set of objects communicate in well-defined but complex ways. The 
+	resulting interdependencies are unstructured and difficult to understand.</li>
+  <li>l reusing an object is difficult because it refers to and communicates 
+	with many other objects.</li>
+  <li>a behavior that's distributed between several classes should be 
+	customizable without a lot of subclassing.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>It limits subclassing. </b>A mediator localizes behavior that otherwise 
+	would be distributed among several objects. Changing this behavior requires 
+	subclassing Mediator only; Colleague classes can be reused as is.</li>
+  <li><b>It decouples colleagues. </b> A mediator promotes loose coupling 
+	between colleagues. You can vary and reuse Colleague and Mediator classes 
+	independently<b>.</b></li>
+  <li><b>It simplifies object protocols. </b> A mediator replaces many-to-many 
+	interactions with one-to-many interactions between the mediator and its 
+	colleagues. One-to-many relationships are easier to understand, maintain, 
+	and extend<b>.</b></li>
+  <li><b>It abstracts how objects cooperate. </b> Making mediation an 
+	independent concept and encapsulating it in an object lets you focus on how 
+	objects interact apart from their individual behavior. That can help clarify 
+	how objects interact in a system.</li>
+  <li><b>It centralizes control. </b> The Mediator pattern trades complexity of 
+	interaction for complexity in the mediator. Because a mediator encapsulates 
+	protocols, it can become more complex than any<br>
+	individual colleague. This can make the mediator itself a monolith that's 
+	hard to maintain.</li>
+</ul>
+
+</body>
+
+</html>

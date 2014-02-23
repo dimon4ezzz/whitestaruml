@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Formatting View Element Appearance</title>
+  <keywords>
+    <keyword translate="true">Fill color</keyword>
+    <keyword translate="true">Font</keyword>
+    <keyword translate="true">Formatting</keyword>
+    <keyword translate="true">Line style</keyword>
+    <keyword translate="true">Text style</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Formatting View Element Appearance</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">The color used in UML diagrams can convey extra information. For example, Peter Coad, Eric Lefebvre, and Jeff De Luca in their book Java Modeling In Color With UML: Enterprise Components and Process proposed to use color to identify archetypes. They defined four archetypes that roughly model similar things across domains. Each of the archetypes has a specific color.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">Other common use of color in UML diagrams are to identify the participants in a design pattern, or to identify the classes from different packages, or to simply emphasize a few classes in an illustration used in documentation.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">In this topic the appearance of individual elements and relationships is discussed. To change the default appearance of new elements in diagrams, see </text><link displaytype="text" defaultstyle="true" type="topiclink" href="General_View_Configuration" styleclass="Normal" translate="true">General View Configuration</link><text styleclass="Normal" translate="true">.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To change the line color of a classifier</text></para>
+    <list id="4" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the diagram, select an element.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Format</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">Line Color.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Color</text><text styleclass="List1Last" translate="true"> dialog, select a color and click </text><text styleclass="MenuCommand" translate="true">OK.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:48px;"><image src="ch04_h81.jpg" scale="80.00%" width="178" height="265" styleclass="Image Caption"><title translate="true">Color Dialog</title><caption translate="true"><![CDATA[Color Dialog]]></caption></image></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To change the fill color of a classifier</text></para>
+    <list id="5" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the diagram, select an element.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Format</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">Fill Color.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Color</text><text styleclass="List1Last" translate="true"> dialog, select a color and click </text><text styleclass="MenuCommand" translate="true">OK.</text></li>
+    </list>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><text styleclass="Normal" style="font-family:Verdana; font-size:9pt; vertical-align:baseline; color:#000000;" translate="true">To change the font style and color</text></para>
+    <list id="6" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the diagram, select an element.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">Format</text><text styleclass="List1" translate="true"> menu, click </text><text styleclass="MenuCommand" translate="true">Font</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Font</text><text styleclass="List1" translate="true"> dialog, select style and color for the element and click </text><text styleclass="MenuCommand" translate="true">OK</text><text styleclass="List1" translate="true">.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:48px;"><image src="ch04_h83.jpg" scale="80.00%" width="376" height="209" styleclass="Image Caption"><title translate="true">Font Dialog</title><caption translate="true"><![CDATA[Font Dialog]]></caption></image></para>
+    <para styleclass="Normal" style="margin-top:19px; line-height:1.0; tabstops:none;"><image src="note.bmp" scale="100.00%" styleclass="Image Caption"></image><text styleclass="Normal" style="font-family:Verdana; font-weight:bold; vertical-align:baseline; color:#000000;" translate="true"> Note</text></para>
+    <list id="7" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:10px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none; font-family:Symbol; font-size:9pt; color:#000000;">
+      <li styleclass="kadov-p" style="text-align:left; text-indent:-13px; margin-top:10px; margin-right:0px; margin-bottom:10px; margin-left:35px; line-height:1.0; background-color:transparent; white-space:normal; page-break-inside:auto; page-break-after:auto; border:none; tabstops:none;"><text styleclass="kadov-p" style="font-family:Verdana; font-size:9pt; font-weight:normal; font-style:normal; text-decoration:none; text-transform:none; vertical-align:baseline; color:#000000; background-color:transparent; letter-spacing:normal; letter-scaling:100%;" translate="true">The font style for some view elements cannot be changed because some the font styles are defined by the UML conventions.</text></li>
+    </list>
+  </body>
+</topic>

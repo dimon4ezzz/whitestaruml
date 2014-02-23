@@ -1,0 +1,65 @@
+﻿"Start Symbol" = <object_expression>
+"Case Sensitive" = False                
+               
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+{Visibility Chars} = [+-#~]
+{Restricted Chars} = {All Space} + {Visibility Chars} ! Restricted Chars should not start or end an indentifier as they may collide with other symbols                   
+{Boundary String Chars} = {All Letters} +  {Number} + {Euro Sign} + [_,;/\.&@$%*"`’'']
+{String Chars} = {Boundary String Chars} + {Restricted Chars}
+               
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )*
+
+stereotypeStart = '<<'
+! Spaces to avoid collision with close angle bracket
+stereotypeEnd = {All Space}* '>>' 
+
+openParen = {All Space}* '(' {All Space}*
+closeParen = {All Space}* ')'
+openSquareBracket = {All Space}* '[' {All Space}*
+closeSquareBracket = {All Space}* ']'
+openAngleBracket = {All Space}* '<' {All Space}*
+closeAngleBracket = {All Space}* '>'
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<object_expression> ::= <stereotype_part> <visibility> <object_name> <classifier_name_part>
+                                                
+<stereotype_part> ::= stereotypeStart <stereotype> stereotypeEnd
+                   |  <>
+
+<stereotype> ::= id
+
+<visibility> ::= '+' | '#' | '-' | '~'
+              | <> 
+
+<object_name> ::= <id_expr>
+               | <>
+
+
+<classifier_name_part> ::= ':' <classifier_name>
+                            | <>
+
+<classifier_name> ::= <type_id>
+
+<type_id> ::= <id_expr>  
+        
+<nullable_id_expr> ::= <id_expr> | <>
+
+<id_expr> ::= id
+      | id openParen <nullable_id_expr> closeParen
+      | id openSquareBracket <nullable_id_expr> closeSquareBracket
+      | id openAngleBracket <nullable_id_expr> closeAngleBracket
+      
+     
+
+
+        
+

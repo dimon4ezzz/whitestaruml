@@ -1,0 +1,166 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!-- saved from url=(0029)http://www.helpandmanual.com/ -->
+<head>
+   <title>Modeling &gt; Managing Diagrams &gt; Basic Tasks with Diagrams</title>
+   <meta name="generator" content="Help & Manual">
+   <meta name="keywords" content="Diagrams,Diagrams activating,Diagrams closing,Diagrams creating,Diagrams deleting,Diagrams opening">
+   <meta name="description" content="Basic Tasks with Diagrams">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+   <!-- This line forces IE8 into IE7 mode, safer until IE8 is better known -->
+   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+   <link type="text/css" href="default.css" rel="stylesheet">
+   <link type="text/css" href="custom.css" rel="stylesheet">
+   <script type="text/javascript" src="nsh.js"></script>
+
+<script type="text/javascript">   
+// Toggle Toggler 
+
+var toggleCount=false;
+var switchState;
+
+function toggleToggles() {
+
+    if (!toggleCount) {
+     toggleCount = true;
+     HMToggleExpandAll(true);
+     switchState = true;
+     }
+   
+     else if (switchState) {
+        HMToggleExpandAll(false);
+        switchState = false;
+        }
+        
+     else  {
+        HMToggleExpandAll(true);
+        switchState = true;
+        } 
+    }
+</script>
+   
+<!-- non-scrolling headers for CHM and browser-based help, local styles-->
+<style TYPE="text/css" media="screen"> 
+   body {    
+      margin:0; 
+      padding:0; 
+      overflow: auto; 
+      background: #FFFFFF; 
+   } 
+   #idheader { 
+      width:100%; 
+      height:auto; 
+      padding: 0; 
+      margin: 0; 
+} 
+    #idheaderbg  {
+    background: #6F6F6F; 
+}
+
+   #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+   #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+   #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+   #callout-table a {text-decoration: none; color: blue;}
+   #callout-table a:visited {text-decoration: none; color: blue;}
+   #overview-table a {text-decoration: none; color: black;}
+   #overview-table a:visited {text-decoration: none; color: black;}
+   #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}
+   </style>
+   
+<style TYPE="text/css" MEDIA="print">
+<!--
+/* Hide navigation links and add space between header
+     and text in the printed version. Not valid for eBooks. */
+#idnav { display:none;	 }
+.topichead { padding: 5px 5px 20px 5px; }
+-->
+</style>   
+<script type="text/javascript" src="helpman_topicinit.js"></script>
+<!-- Redirect browser to frame page if page is not in the content frame. -->
+<script type="text/javascript">
+<!--
+if (location.search.lastIndexOf("toc=0")<=0) {
+  if (parent.frames.length==0) { parent.location.href="index.html?basic_tasks_diagrams.htm"; }
+  else { parent.quicksync('a5.1.1'); }
+}
+//-->
+</script>
+<script type="text/javascript" src="highlight.js"></script></head>
+<body onload="highlight();">
+<div id="hmpopupDiv" style="visibility:hidden; position:absolute; z-index:1000; "></div>
+<!--ZOOMSTOP-->
+
+<div id="idheader">
+<div id="idheaderbg">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" 
+       style="margin: 0px; background: url(header_bg.jpg);">
+
+  <tr valign="bottom">
+    <td align="left" valign="bottom" class="topichead">
+   <p class="crumbs" id="idnav"><b>Navigation:</b>&nbsp;
+   
+   <a href="modeling.htm">Modeling</a> &gt; <a href="managing_diagrams.htm">Managing Diagrams</a>&nbsp;&gt;</p>
+   <p class="p_Heading1" style="border-top: none; border-right: none; border-left: none;"><span class="f_Heading1">Basic Tasks with Diagrams</span></p>
+
+    </td>
+    <td align="right" width="120" valign="middle" class="topichead" id="idnav">
+    
+     <a href="managing_diagrams.htm"
+        onmouseover="document.images.prev.src='btn_prev_h.gif'" 
+        onmouseout="document.images.prev.src='btn_prev_n.gif'"
+        ><img name=prev src="btn_prev_n.gif" border=0 alt="Previous page"
+        ></a><a href="managing_diagrams.htm"
+        onmouseover="document.images.main.src='btn_home_h.gif'" 
+        onmouseout="document.images.main.src='btn_home_n.gif'"><img name=main src="btn_home_n.gif" border=0 alt="Return to chapter overview"
+        ></a><a href="navigating_diagrams.htm"
+        onmouseover="document.images.next.src='btn_next_h.gif'" 
+        onmouseout="document.images.next.src='btn_next_n.gif'"><img name=next src="btn_next_n.gif" border=0 alt="Next page"
+        ></a>
+    </td>
+  </tr>
+  <tr><td colspan="2" style="height: 3px; background: url(header_bg_shadow.gif)"></td></tr>
+</table>
+</div>
+
+<!-- The following code displays Expand All/Collapse All links  below the header in topics containing toggles -->
+  
+
+</div>  
+
+
+
+<div id="idcontent"><div id="innerdiv"> 
+<!--ZOOMRESTART-->
+<p class="p_Heading2" style="border-top: none; border-right: none; border-left: none;"><a name="create_diagram"></a><span class="f_Heading2">Creating Diagrams</span></p>
+<p>You create a diagram within the context of an element. The element determines for example when and how a qualifying path is shown in the diagram. Structure diagrams can be placed in packages and models. To choose the element for a diagram think of the details you want to show in your diagram. Normally you would choose the package for which you want to show details, most of the elements you show in the diagram would be within the chosen package. Behavioral diagrams are related to the diagram or element for which behavioral detail is shown.</p>
+<p>To create a diagram</p>
+<div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 10px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">1.</span></td><td><span class="f_List1">In the </span><span class="f_MenuCommand">Model Explorer</span><span class="f_List1"> or in the diagram, select the element for which you want to create a diagram.</span></td></tr></table></div><div style="text-align: left; text-indent: 0px; padding: 0px 0px 0px 0px; margin: 10px 0px 5px 22px;"><table border="0" cellpadding="0" cellspacing="0" style="line-height: normal;"><tr style="vertical-align:baseline" valign="baseline"><td width="15"><span style="font-size: 10pt; font-family: 'Verdana'; color: #000000;">2.</span></td><td><span class="f_List1Last">On the </span><span class="f_MenuCommand">Model</span><span class="f_List1Last"> menu, point to </span><span class="f_MenuCommand">Add Diagram</span><span class="f_List1Last">, and then click the diagram you want to create. The </span><span class="f_MenuCommand">Add Diagram</span><span class="f_List1Last"> menu only shows the diagrams you can create for the selected element.</span></td></tr></table></div><p class="p_Heading2" style="border-top: none; border-right: none; border-left: none;"><a name="open_diagram"></a><span class="f_Heading2">Opening Existing Diagrams</span></p>
+<p><span style="font-size: 9pt;">Once created, the diagram is shown in the </span><span class="f_MenuCommand">Model Explorer</span> and the <span class="f_MenuCommand">Diagram Explorer</span><span style="font-size: 9pt;">. The Model Explorer shows the structure of the model and shows the diagram with the element for which the diagram was created. </span><span class="f_MenuCommand">Diagram Explorer</span><span style="font-size: 9pt;"> groups the different kinds of diagrams in folders and does not show elements. To open a diagram navigate to the diagram in either the </span><span class="f_MenuCommand">Model Explorer</span><span style="font-size: 9pt;"> or the </span><span class="f_MenuCommand">Diagram Explorer</span><span style="font-size: 9pt;"> and then double-click the diagram.</span></p>
+<div><div style="width:227px;padding:0px"><img src="explorermodel.zoom80.png" width="227" height="366" border="0" alt="Model Explorer with Class Diagram Selected" title="Model Explorer"><p style="text-align:center"><span class="f_ImageCaption">Model Explorer with Class Diagram Selected</span></p></div><div style="width:227px;padding:0px"><img src="explorerdiagrams.zoom80.png" width="227" height="366" border="0" alt="Diagram Explorer with Class Diagram Selected" title="Diagram Explorer"><p style="text-align:center"><span class="f_ImageCaption">Diagram Explorer with Class Diagram Selected</span></p></div></div>
+<p><a name="activate_diagram"></a><span style="font-size: 9pt;">All open diagrams are available in the diagram area, only the active diagram is shown and can be edited. &nbsp;To activate a diagram, click the tab of the diagram at the top of the diagram area. When you double click an already open diagram in the </span><span class="f_MenuCommand">Model Explorer</span><span style="font-size: 9pt;"> or the </span><span class="f_MenuCommand">Diagram Explorer</span> the diagram will be activated too.</p>
+<div><div style="width:433px;padding:0px"><img src="diagramactivate.zoom80.png" width="433" height="106" border="0" alt="Activate the Class Diagram" title="Activate Diagram"><p style="text-align:center"><span class="f_ImageCaption">Activate the Class Diagram</span></p></div></div>
+<p class="p_Heading2" style="border-top: none; border-right: none; border-left: none;"><a name="close_diagram"></a><span class="f_Heading2">Closing Diagrams</span></p>
+<p><span style="font-size: 9pt;">To close a diagram, activate the diagram, then on the </span><span class="f_MenuCommand">View</span><span style="font-size: 9pt;"> menu click </span><span class="f_MenuCommand">Close Diagram</span><span style="font-size: 9pt;">. As an alternative, to close a diagram, activate the diagram, right click the diagram tab and then click </span><span class="f_MenuCommand">Close Diagram</span><span style="font-size: 9pt;">.</span></p>
+<div><div style="width:257px;padding:0px"><img src="diagramclose.zoom80.png" width="257" height="164" border="0" alt="Closing a Diagram" title="Close Diagram"><p style="text-align:center"><span class="f_ImageCaption">Closing a Diagram</span></p></div></div>
+<p class="p_Heading2" style="border-top: none; border-right: none; border-left: none;"><a name="delete_diagram"></a><span class="f_Heading2">Deleting Diagrams</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">When you delete a diagram, you only delete the diagram, not the elements represented on the diagram. However, if the diagram contains view elements specific for that diagram then the view elements are deleted with the diagram. For example, the objects shown in a sequence diagram will be deleted when you delete the diagram. However, the classifiers represented by the objects will not be deleted.</span></p>
+<p style="margin: 19px 0px 10px 0px;"><span style="font-size: 9pt;">To delete a diagram, activate the diagram, then without selecting any element on the </span><span class="f_MenuCommand">Edit</span><span style="font-size: 9pt;"> menu click </span><span class="f_MenuCommand">Delete From Model</span><span style="font-size: 9pt;">. As an alternative to delete a diagram, in the </span><span class="f_MenuCommand">Model Explorer</span><span style="font-size: 9pt;"> right click on the diagram and click </span><span class="f_MenuCommand">Delete From Model</span><span style="font-size: 9pt;">.</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript"> 
+<!-- 
+var lastSlashPos = document.URL.lastIndexOf("/") >
+document.URL.lastIndexOf("\\") ? document.URL.lastIndexOf("/") :
+document.URL.lastIndexOf("\\");
+if( document.URL.substring( lastSlashPos + 1, lastSlashPos + 4
+).toLowerCase() != "~hh" )
+{
+    nsrInit();
+}
+--> 
+</script> 
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<title>Chain of Responsibility Pattern</title>
+<link rel="stylesheet" type="text/css" href="../../../style.css">
+</head>
+
+<body>
+
+<h1>Chain of Responsibility</h1>
+<ul>
+  <li><a href="#Purpose">Purpose</a></li>
+  <li><a href="#Structure">Structure</a></li>
+  <li><a href="#Applications">Applications</a></li>
+  <li><a href="#Consequences">Consequences</a></li>
+</ul>
+<h2><a name="Purpose">Purpose</a></h2>
+<ul type="square">
+  <li>Avoid coupling the sender of a request to its receiver by giving more than 
+	one object a chance to handle the request. </li>
+	<li>Chain the receiving objects and pass the request along the chain until 
+	an object handles it</li>
+</ul>
+<h2><a name="Structure">Structure</a></h2>
+<p>&nbsp;
+<img border="0" src="Chain%20of%20Responsibility_Model1.gif" width="399" height="196"></p>
+<ul type="square">
+  <li><b>Handler :</b> defines an interface for handling requests. (optional) 
+	implements the successor link.</li>
+  <li><b>ConcreteHandler :</b> handles requests it is responsible for. can 
+	access its successor. if the ConcreteHandler can handle the request, it does 
+	so; otherwise it forwards the request to its successor.</li>
+  <li><b>Client :</b> initiates the request to a ConcreteHandler object on the 
+	chain.</li>
+</ul>
+<h2><a name="Applications">Applications</a></h2>
+<ul type="square">
+  <li>more than one object may handle a request, and the handler isn't known a 
+	priori. The handler should be ascertained automatically.</li>
+  <li>you want to issue a request to one of several objects without specifying 
+	the receiver explicitly.</li>
+  <li>the set of objects that can handle a request should be specified 
+	dynamically.</li>
+</ul>
+<h2><a name="Consequences">Consequences</a></h2>
+<ul type="square">
+  <li><b>Reduced coupling. </b>The pattern frees an object from knowing which 
+	other object handles a request. An object only has to know that a request 
+	will be handled &quot;appropriately.&quot; Both the receiver and the sender have no 
+	explicit knowledge of each other, and an object in the chain doesn't have to 
+	know about the chain's structure.</li>
+  <li><b>Added flexibility in assigning responsibilities to objects. </b>Chain 
+	of Responsibility gives you added flexibility in distributing 
+	responsibilities among objects. You can add or change responsibilities for 
+	handling a request by adding to or otherwise changing the chain at run-time. 
+	You can combine this with subclassing to specialize handlers statically.</li>
+  <li><b>Receipt isn't guaranteed</b>. Since a request has no explicit receiver, 
+	there's no guarantee it'll be handled&#8212;the request can fall off the end of 
+	the chain without ever being handled. A request can also go unhandled when 
+	the chain is not configured properly.</li>
+</ul>
+
+</body>
+
+</html>

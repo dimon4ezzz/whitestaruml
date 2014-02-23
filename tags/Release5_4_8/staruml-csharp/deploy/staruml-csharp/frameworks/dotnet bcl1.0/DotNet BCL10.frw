@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<FRAMEWORK version="1.0">
+  <HEADER>
+    <NAME>DotNet BCL 1.0</NAME>
+    <DISPLAYNAME>.NET Base Class Libraries 1.0</DISPLAYNAME>
+    <DESCRIPTION>.NET Base Class Libraries(BCL) 1.0 Framework</DESCRIPTION>
+  </HEADER>
+  <BODY>
+  <FRAMEWORKMODELS>
+    <UNIT>DotNet BCL10.unt</UNIT>
+  </FRAMEWORKMODELS>
+  </BODY>
+</FRAMEWORK>

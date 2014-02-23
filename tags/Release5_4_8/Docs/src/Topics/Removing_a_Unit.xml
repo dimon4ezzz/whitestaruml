@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../helpproject.xsl" ?>
+<topic template="Default" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../helpproject.xsd">
+  <title translate="true">Removing Units</title>
+  <keywords>
+    <keyword translate="true">Removing<keyword translate="true">units</keyword></keyword>
+    <keyword translate="true">Unit</keyword>
+  </keywords>
+  <body>
+    <header>
+      <para styleclass="Heading1"><text styleclass="Heading1" translate="true">Removing Units</text></para>
+    </header>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">If a unit is no longer needed in a project, the unit file can be removed. Removing a unit deletes all the elements contained of the unit and the unit is no longer loaded in the project. </text><text styleclass="ListB" translate="true">If you do not want to lose the elements contained in the unit, you may want to merge &#160;the unit.</text></para>
+    <para styleclass="Normal"><text styleclass="Normal" translate="true">To remove a unit file</text></para>
+    <list id="5" type="ol" listtype="decimal" formatstring="&#37;&#48;&#58;&#115;&#46;" format-charset="DEFAULT_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="List1" style="font-family:Verdana; font-size:10pt; color:#000000;">
+      <li styleclass="List1"><text styleclass="List1" translate="true">In the </text><text styleclass="MenuCommand" translate="true">Model Explorer</text><text styleclass="List1" translate="true">, select the unit you want to remove.</text></li>
+      <li styleclass="List1"><text styleclass="List1" translate="true">On the </text><text styleclass="MenuCommand" translate="true">File</text><text styleclass="List1" translate="true"> menu, point to </text><text styleclass="MenuCommand" translate="true">Unit</text><text styleclass="List1" translate="true">, and then click </text><text styleclass="MenuCommand" translate="true">Delete Unit</text><text styleclass="List1" translate="true">.</text></li>
+      <li styleclass="List1Last"><text styleclass="List1Last" translate="true">In the &quot;Delete the Unit&quot; message, click </text><text styleclass="MenuCommand" translate="true">Yes</text><text styleclass="List1Last" translate="true">.</text></li>
+    </list>
+    <para styleclass="Image Caption" style="margin-left:24px;"><image src="ch03_h9.jpg" scale="100.00%" styleclass="Image Caption"></image></para>
+    <para styleclass="Emphasis"><image src="note.bmp" scale="100.00%" styleclass="Emphasis"></image><text styleclass="Emphasis" translate="true"> Notes:</text></para>
+    <list id="6" type="ul" listtype="bullet" formatstring="&#183;" format-charset="SYMBOL_CHARSET" levelreset="true" legalstyle="false" startfrom="1" styleclass="ListB" style="font-family:Symbol; font-size:10pt; color:#000000;">
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Alternatively, select the unit in the </text><text styleclass="MenuCommand" translate="true">Model Explorer</text><text styleclass="ListB" translate="true"> then on the </text><text styleclass="MenuCommand" translate="true">Edit</text><text styleclass="ListB" translate="true"> menu choose </text><text styleclass="MenuCommand" translate="true">Delete From Model</text><text styleclass="ListB" translate="true">.</text></li>
+      <li styleclass="ListB"><text styleclass="ListB" translate="true">Removing a unit does not delete the unit file from disk. </text><text styleclass="Normal" translate="true">Please remove the original unit file manually if that file is no longer needed.</text></li>
+    </list>
+  </body>
+</topic>
