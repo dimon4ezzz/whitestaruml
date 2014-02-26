@@ -189,7 +189,7 @@ type
 implementation
 
 uses
-  UMLAux, ExprParsers, LayoutDgm,
+  System.UITypes, UMLAux, ExprParsers, LayoutDgm,
   SysUtils, Generics.Defaults, NLS_StarUML;
 
 type
@@ -7191,6 +7191,11 @@ begin
   end;
   // Parsing
   AParser := PMessageExpressionParser.Create;
+  if not AParser.Initialized then begin
+    AParser.Free;
+    FNewName := Value
+  end
+  else
   try
     R := AParser.Parse(Value);
     if (R <> psNotIntialized) and (R <> psError) then begin
