@@ -164,7 +164,7 @@ var
 implementation
 
 uses
-  ViewCore, PrintPreviewFrm, PageSetupFrm, NLS, NLS_StarUML,
+  System.UITypes, ViewCore, PrintPreviewFrm, PageSetupFrm, NLS, NLS_StarUML,
   Math, Types, WinSpool, HtmlHlp;
 
 {$R *.dfm}

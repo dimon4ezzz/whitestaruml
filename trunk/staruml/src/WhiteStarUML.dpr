@@ -136,7 +136,7 @@ uses
   PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas',
   ParserCore_TLB in 'ParserCore_TLB.pas';
 
-  {$IFDEF RELEASE}
+{$IFDEF RELEASE}
   {$WEAKLINKRTTI ON}
   {$RTTI EXPLICIT METHODS([]) PROPERTIES([]) FIELDS([])}
   {$ENDIF RELEASE}

@@ -165,8 +165,8 @@ type
 implementation
 
 uses
-  FrwMgr, ApprMgr, UMLFacto, LogMgr, NLS_StarUML,
-  SysUtils, Variants, Dialogs, Windows;
+  System.Types, System.UITypes,   SysUtils, Variants, Dialogs, Windows,
+  FrwMgr, ApprMgr, UMLFacto, LogMgr, NLS_StarUML;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PProjectManager

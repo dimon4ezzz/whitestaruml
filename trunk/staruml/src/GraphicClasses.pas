@@ -235,7 +235,7 @@ var
 implementation
 
 uses
-  ComCtrls, SysUtils;
+  System.UITypes, ComCtrls, SysUtils;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PPoints

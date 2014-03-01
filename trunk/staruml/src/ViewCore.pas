@@ -407,7 +407,7 @@ begin
     else begin
       DrawObject(Canvas);
       for I := 0 to SubViewCount - 1 do
-        SubViews[I].Draw(Canvas);
+        SubView[I].Draw(Canvas);
     end;
     if Model = nil then
       DrawNoModeledMark(Canvas);
@@ -424,7 +424,7 @@ begin
     ArrangeExtendedView(Canvas)
   else begin
     for I := 0 to SubViewCount - 1 do
-      SubViews[I].Arrange(Canvas);
+      SubView[I].Arrange(Canvas);
     DelimitContainingBoundary(Canvas);
     ArrangeObject(Canvas);
   end;    
@@ -1131,8 +1131,8 @@ begin
     R := GraphicClasses.UnionRect(R, Rect(FPoints.Points[I].X, FPoints.Points[I].Y,
                                           FPoints.Points[I].X+1, FPoints.Points[I].Y+1));
   for I := 0 to SubViewCount - 1 do
-    if SubViews[I].Visible then
-      R := GraphicClasses.UnionRect(R, SubViews[I].GetBoundingBox(Canvas));
+    if SubView[I].Visible then
+      R := GraphicClasses.UnionRect(R, SubView[I].GetBoundingBox(Canvas));
   Result := R;
 end;
 

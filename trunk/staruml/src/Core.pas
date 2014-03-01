@@ -638,9 +638,9 @@ type
     property ViewCount: Integer read GetViewCount;
     property OwnedDiagrams[Index: Integer]: PDiagram read GetOwnedDiagram;
     property OwnedDiagramCount: Integer read GetOwnedDiagramCount;
-    property VirtualOwnedModels[Index: Integer]
-      : PModel read GetVirtualOwnedModel;
+    property VirtualOwnedModel[Index: Integer] : PModel read GetVirtualOwnedModel;
     property VirtualOwnedModelCount: Integer read GetVirtualOwnedModelCount;
+    property VirtualOwnedModels: PModelOrderedSet read FVirtualOwnedModels;
     property VirtualNamespace: PModel read FVirtualNamespace write
       SetVirtualNamespace;
   end;
@@ -774,8 +774,9 @@ type
       override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
     property Model: PModel read FModel write SetModel;
-    property SubViews[Index: Integer]: PView read GetSubView;
+    property SubView[Index: Integer]: PView read GetSubView;
     property SubViewCount: Integer read GetSubViewCount;
+    property SubViews: PViewOrderedSet read FSubViews;
     property Parent: PView read FParent write SetParent;
     property ContainedViews[Index: Integer]: PView read GetContainedView;
     property ContainedViewCount: Integer read GetContainedViewCount;
@@ -908,7 +909,8 @@ type
     property Diagram: PDiagram read FDiagram write SetDiagram;
     property SelectedViews[Index: Integer]: PView read GetSelectedView;
     property SelectedViewCount: Integer read GetSelectedCount;
-    property OwnedViews[Index: Integer]: PView read GetOwnedView;
+    property OwnedView[Index: Integer]: PView read GetOwnedView;
+    property OwnedViews: PViewOrderedSet read FOwnedViews;
     property OwnedViewCount: Integer read GetOwnedViewCount;
     property Canvas: PCanvas read FCanvas write FCanvas;
   end;
@@ -1191,7 +1193,7 @@ var
 implementation
 
 uses
-  Dialogs, Controls, Variants, Forms, ComServ, {HTTPApp,} HTTPUtil,
+  System.UITypes, Dialogs, Controls, Variants, Forms, ComServ, {HTTPApp,} HTTPUtil,
   NLS_StarUML, OptionDeps, LogMgr;
 
 // -----------------------------------------------------------------------------
@@ -3087,7 +3089,7 @@ var
 begin
   inherited;
   for I := 0 to VirtualOwnedModelCount - 1 do
-    VirtualOwnedModels[I].Accept(Visitor);
+    VirtualOwnedModel[I].Accept(Visitor);
 end;
 
 procedure PModel.SetName(Value: string);
@@ -5069,7 +5071,7 @@ procedure PDiagramView.SelectAll;
     if V.Visible and V.Enabled and V.Selectable then
       V.Selected := True;
     for I := 0 to V.SubViewCount - 1 do
-      SelectView(V.SubViews[I]);
+      SelectView(V.SubView[I]);
   end;
 
 var
@@ -5098,7 +5100,7 @@ procedure PDiagramView.SelectArea(Canvas: PCanvas; X1, Y1, X2, Y2: Integer);
       if V.OverlapRect(Canvas, Rect(X1, Y1, X2, Y2)) then
         V.Selected := True;
     for I := 0 to V.SubViewCount - 1 do
-      SelectView(V.SubViews[I], X1, Y1, X2, Y2);
+      SelectView(V.SubView[I], X1, Y1, X2, Y2);
   end;
 
 var
@@ -5331,7 +5333,7 @@ begin
   end
   else if Name = 'OwnedViews' then
   begin
-    Result := OwnedViews[Index];
+    Result := OwnedView[Index];
   end
   else
   begin

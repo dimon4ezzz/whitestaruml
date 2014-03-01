@@ -344,7 +344,7 @@ procedure PUMLFactory.AssignNewName(Model: PModel; BaseName: string);
   begin
     Result := False;
     for I := 0 to OwnedModel.VirtualOwnedModelCount - 1 do
-      if OwnedModel.VirtualOwnedModels[I].Name = Name then begin
+      if OwnedModel.VirtualOwnedModel[I].Name = Name then begin
         Result := True;
         Exit;
       end;
@@ -1602,7 +1602,7 @@ begin
     if DiagramView.Diagram is PUMLSequenceRoleDiagram then begin
       Idx := -1;
       for I := 0 to DiagramView.OwnedViewCount - 1 do begin
-        if DiagramView.OwnedViews[I] is PUMLSeqMessageView then begin
+        if DiagramView.OwnedView[I] is PUMLSeqMessageView then begin
           Idx := I;
           Break;
         end;
@@ -1644,7 +1644,7 @@ begin
     if DiagramView.Diagram is PUMLSequenceDiagram then begin
       Idx := -1;
       for I := 0 to DiagramView.OwnedViewCount - 1 do begin
-        if DiagramView.OwnedViews[I] is PUMLSeqStimulusView then begin
+        if DiagramView.OwnedView[I] is PUMLSeqStimulusView then begin
           Idx := I;
           Break;
         end;

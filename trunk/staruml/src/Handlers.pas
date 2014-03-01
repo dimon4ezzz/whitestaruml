@@ -2996,8 +2996,8 @@ begin
   MaxRight := Low(Integer);
   PrevObj := nil;
   for I := 0 to DgmView.OwnedViewCount - 1 do
-    if DgmView.OwnedViews[I] is PUMLCustomSeqObjectView then begin
-      Obj := DgmView.OwnedViews[I] as PUMLCustomSeqObjectView;
+    if DgmView.OwnedView[I] is PUMLCustomSeqObjectView then begin
+      Obj := DgmView.OwnedView[I] as PUMLCustomSeqObjectView;
       if (Obj <> AObjView) and (Obj.Right < AObjView.Right) and (Obj.Right > MaxRight) then begin
         PrevObj := Obj;
         MaxRight := Obj.Right;
@@ -3019,8 +3019,8 @@ begin
   MinLeft := High(Integer);
   NextObj := nil;
   for I := 0 to DgmView.OwnedViewCount - 1 do
-    if DgmView.OwnedViews[I] is PUMLCustomSeqObjectView then begin
-      Obj := DgmView.OwnedViews[I] as PUMLCustomSeqObjectView;
+    if DgmView.OwnedView[I] is PUMLCustomSeqObjectView then begin
+      Obj := DgmView.OwnedView[I] as PUMLCustomSeqObjectView;
       if (Obj <> AObjView) and (Obj.Left > AObjView.Left) and (Obj.Left < MinLeft) then begin
         NextObj := Obj;
         MinLeft := Obj.Left;
@@ -3040,8 +3040,8 @@ begin
   DgmView := AObjView.OwnerDiagramView;
   if DgmView = nil then Exit;
   for I := 0 to DgmView.OwnedViewCount - 1 do
-    if DgmView.OwnedViews[I] is PUMLCustomSeqMessageView then begin
-      Msg := DgmView.OwnedViews[I] as PUMLCustomSeqMessageView;
+    if DgmView.OwnedView[I] is PUMLCustomSeqMessageView then begin
+      Msg := DgmView.OwnedView[I] as PUMLCustomSeqMessageView;
       TailObj := (Msg.Tail as PUMLLifeLineView).Parent as PUMLCustomSeqObjectView;
       if TailObj = AObjView then begin
         Result := Msg;
@@ -3068,10 +3068,10 @@ begin
   // ASSERTIONS
   C := GetCenterPoint(AMsgView);
   for I := Idx + 1 to DgmView.OwnedViewCount - 1 do
-    if DgmView.OwnedViews[I] is PUMLCustomSeqMessageView then begin
-      V := DgmView.OwnedViews[I] as PUMLCustomSeqMessageView;
+    if DgmView.OwnedView[I] is PUMLCustomSeqMessageView then begin
+      V := DgmView.OwnedView[I] as PUMLCustomSeqMessageView;
       if IsLinked(AMsgView, V) and (GetCenterPoint(V).X >= C.X) then begin
-        Result := DgmView.OwnedViews[I] as PUMLCustomSeqMessageView;
+        Result := DgmView.OwnedView[I] as PUMLCustomSeqMessageView;
         Exit;
       end;  
     end;
@@ -3095,10 +3095,10 @@ begin
   // ASSERTIONS
   C := GetCenterPoint(AMsgView);
   for I := Idx - 1 downto 0 do
-    if DgmView.OwnedViews[I] is PUMLCustomSeqMessageView then begin
-      V := DgmView.OwnedViews[I] as PUMLCustomSeqMessageView;
+    if DgmView.OwnedView[I] is PUMLCustomSeqMessageView then begin
+      V := DgmView.OwnedView[I] as PUMLCustomSeqMessageView;
       if IsLinked(AMsgView, V) and (GetCenterPoint(V).X <= C.X) then begin
-        Result := DgmView.OwnedViews[I] as PUMLCustomSeqMessageView;
+        Result := DgmView.OwnedView[I] as PUMLCustomSeqMessageView;
         Exit;
       end;
     end;
@@ -3120,8 +3120,8 @@ begin
   Assert(Idx <> -1);
   // ASSERTIONS
   for I := Idx - 1 downto 0 do
-    if DgmView.OwnedViews[I] is PUMLCustomSeqMessageView then begin
-      V := DgmView.OwnedViews[I] as PUMLCustomSeqMessageView;
+    if DgmView.OwnedView[I] is PUMLCustomSeqMessageView then begin
+      V := DgmView.OwnedView[I] as PUMLCustomSeqMessageView;
       if IsOverlapedXPos(V, AMsgView) then begin
         Result := V;
         Exit;
@@ -3145,8 +3145,8 @@ begin
   Assert(Idx <> -1);
   // ASSERTIONS
   for I := Idx + 1 to DgmView.OwnedViewCount - 1 do
-    if DgmView.OwnedViews[I] is PUMLCustomSeqMessageView then begin
-      V := DgmView.OwnedViews[I] as PUMLCustomSeqMessageView;
+    if DgmView.OwnedView[I] is PUMLCustomSeqMessageView then begin
+      V := DgmView.OwnedView[I] as PUMLCustomSeqMessageView;
       if IsOverlapedXPos(V, AMsgView) then begin
         Result := V;
         Exit;
@@ -3202,7 +3202,7 @@ function FindNearestNodeView(ANodeView: PNodeView; Direction: PDirectionKind): P
   begin
     Result := nil;
     for I := 0 to ADiagramView.OwnedViewCount - 1 do begin
-      V := ADiagramView.OwnedViews[I];
+      V := ADiagramView.OwnedView[I];
       if V is PNodeView then begin
         Result := V as PNodeView;
         Exit;
@@ -3223,8 +3223,8 @@ begin
   MinDist := High(Integer);
   NearestView := nil;
   for I := 0 to DgmView.OwnedViewCount - 1 do
-    if (DgmView.OwnedViews[I] is PNodeView) then begin
-      V := DgmView.OwnedViews[I] as PNodeView;
+    if (DgmView.OwnedView[I] is PNodeView) then begin
+      V := DgmView.OwnedView[I] as PNodeView;
       if V <> ANodeView then begin
         Dist := GetDistance(V, ANodeView);
         if (Direction = dkLeft) and (V.Right < ANodeView.Left) and (Dist < MinDist) then begin
