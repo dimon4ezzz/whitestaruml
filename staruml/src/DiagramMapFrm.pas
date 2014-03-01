@@ -103,6 +103,7 @@ implementation
 {$R *.dfm}
 
 uses
+  System.Types,
   LogMgr,
   Math, NLS;
 

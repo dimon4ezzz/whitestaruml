@@ -379,7 +379,7 @@ procedure TDiagramExplorerPanel.RebuildAll;
     begin
       for I := 0 to AModel.VirtualOwnedModelCount - 1 do
       begin
-        M := AModel.VirtualOwnedModels[I];
+        M := AModel.VirtualOwnedModel[I];
         if M is PUMLDiagram then
         begin
           GroupNode := FindGroupNode(M as PUMLDiagram);

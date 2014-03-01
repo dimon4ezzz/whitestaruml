@@ -216,8 +216,8 @@ var
 implementation
 
 uses
-  NLS, NLS_StarUML,
-  Math, HtmlHlp;
+  System.Types, System.UITypes, Math,
+  NLS, NLS_StarUML, HtmlHlp;
 
 {$R *.dfm}
 

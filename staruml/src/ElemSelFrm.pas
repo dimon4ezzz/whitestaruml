@@ -115,7 +115,7 @@ var
 implementation
 
 uses
-  ExtCore, StarUMLApp, MainFrm, HtmlHlp, NLS, NLS_StarUML;
+  System.Types, StarUMLApp, MainFrm, HtmlHlp, NLS, NLS_StarUML, ExtCore;
 
 const
   ELEMENTTREEVIEWPANEL_DEFAULT_HEIGHT = 217;

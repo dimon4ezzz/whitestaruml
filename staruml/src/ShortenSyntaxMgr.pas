@@ -330,7 +330,7 @@ begin
   // find the bottom message of DiagramView and locate a message under the message
   C := DiagramView.OwnedViewCount;
   for I := 0 to C-1 do begin
-    View := DiagramView.OwnedViews[I];
+    View := DiagramView.OwnedView[I];
     if (View is PUMLSeqMessageView) or (View is PUMLSeqStimulusView) then
 
       if View <> ReturnEdgeView then begin
@@ -861,11 +861,11 @@ var I: Integer;
 begin
   with SourceView.OwnerDiagramView do
     for I := 0 to OwnedViewCount-1 do
-      if OwnedViews[I] is PUMLLinkView then
-        with (OwnedViews[I] as PUMLLinkView) do
+      if OwnedView[I] is PUMLLinkView then
+        with (OwnedView[I] as PUMLLinkView) do
           if ((Head = SourceView) and (Tail = TargetView)) or
              ((Tail = SourceView) and (Head = TargetView)) then begin
-            Result := OwnedViews[I] as PEdgeView;
+            Result := OwnedView[I] as PEdgeView;
             Exit;
           end;
   Result := nil;
@@ -997,7 +997,7 @@ var
 begin
   C := DiagramView.OwnedViewCount;
   for I := 0 to C-1 do begin
-    View := DiagramView.OwnedViews[I];
+    View := DiagramView.OwnedView[I];
     if View.Model.Name = Name then begin
       Result := View;
       Exit;
@@ -1014,7 +1014,7 @@ var
 begin
   C := DiagramView.OwnedViewCount;
   for I := 0 to C-1 do begin
-    View := DiagramView.OwnedViews[I];
+    View := DiagramView.OwnedView[I];
     if View.Model = Model then begin
       Result := View;
       Exit;
@@ -1038,8 +1038,8 @@ var _H_INT, _V_INT: Integer;
 
     C := DiagramView.OwnedViewCount;
     for I := 0 to C-1 do
-      if DiagramView.OwnedViews[I] is PNodeView then
-        if DiagramView.OwnedViews[I].
+      if DiagramView.OwnedView[I] is PNodeView then
+        if DiagramView.OwnedView[I].
           OverlapRect(DiagramView.Canvas, Left, Top, Right, Bottom) then begin
             Result := true;
             Exit;
@@ -1375,10 +1375,10 @@ begin
     ActivationView := GetActivationView(MsgView);
     with DiagramView do
       for I := 0 to OwnedViewCount-1 do
-        if (OwnedViews[I] is PUMLSeqStimulusView) or
-           (OwnedViews[I] is PUMLSeqMessageView) then begin
+        if (OwnedView[I] is PUMLSeqStimulusView) or
+           (OwnedView[I] is PUMLSeqMessageView) then begin
 
-          EdgeView := OwnedViews[I] as PEdgeView;
+          EdgeView := OwnedView[I] as PEdgeView;
           if (EdgeView.Model.MOF_GetReference('Action') is PUMLReturnAction) and
              (GetActivation(EdgeView.Tail as PNodeView, EdgeView.Points.Points[0].Y) = ActivationView) then
             ReturnMsgView := EdgeView;
@@ -1410,11 +1410,11 @@ begin
   // compare and select
   with DiagramView do
     for I := 0 to OwnedViewCount-1 do
-      if (OwnedViews[I] is PUMLSeqStimulusView) or
-         (OwnedViews[I] is PUMLSeqMessageView) then
-        if ((OwnedViews[I] as PEdgeView).Points.Points[0].Y > Top) and
-           (LastReturnMsgView <> OwnedViews[I]) then
-          OwnedViews[I].Selected := True;
+      if (OwnedView[I] is PUMLSeqStimulusView) or
+         (OwnedView[I] is PUMLSeqMessageView) then
+        if ((OwnedView[I] as PEdgeView).Points.Points[0].Y > Top) and
+           (LastReturnMsgView <> OwnedView[I]) then
+          OwnedView[I].Selected := True;
 //          StarUMLApplication.ChangeViewAttribute(OwnedViews[I], 'Selected', BooleanToString(True));
 
   // Move
@@ -1464,14 +1464,14 @@ begin
   if ActivationView <> nil then
     with DiagramView do
       for I := 0 to OwnedViewCount-1 do
-        if (OwnedViews[I] is PUMLSeqStimulusView) or
-           (OwnedViews[I] is PUMLSeqMessageView) then
+        if (OwnedView[I] is PUMLSeqStimulusView) or
+           (OwnedView[I] is PUMLSeqMessageView) then
 
-          if OwnedViews[I] <> ReturnMsgView then begin
+          if OwnedView[I] <> ReturnMsgView then begin
 
             AV := GetActivation(
-                  (OwnedViews[I] as PEdgeView).Tail as PNodeView,
-                  (OwnedViews[I] as PEdgeView).Points.Points[0].Y);
+                  (OwnedView[I] as PEdgeView).Tail as PNodeView,
+                  (OwnedView[I] as PEdgeView).Points.Points[0].Y);
 
             if (AV <> nil) and Overlap(
 //                  Rect(ActivationView.Left-20, ActivationView.Top, ActivationView.Right+20, ActivationView.Bottom),
@@ -1479,27 +1479,27 @@ begin
                   Rect(AV.Left, AV.Top, AV.Right, AV.Bottom)
                 ) then
 
-              if (OwnedViews[I] as PEdgeView).Points.Points[0].Y > Value then begin
-                Value := (OwnedViews[I] as PEdgeView).Points.Points[0].Y;
-                Result := (OwnedViews[I] as PEdgeView);
+              if (OwnedView[I] as PEdgeView).Points.Points[0].Y > Value then begin
+                Value := (OwnedView[I] as PEdgeView).Points.Points[0].Y;
+                Result := (OwnedView[I] as PEdgeView);
               end;
 
 
             AV := GetActivation(
-                  (OwnedViews[I] as PEdgeView).Head as PNodeView,
-                  (OwnedViews[I] as PEdgeView).Points.Points[0].Y);
+                  (OwnedView[I] as PEdgeView).Head as PNodeView,
+                  (OwnedView[I] as PEdgeView).Points.Points[0].Y);
 
             if (AV <> nil) and
-               (not (OwnedViews[I].Model.MOF_GetReference('Action') is PUMLReturnAction)) and
+               (not (OwnedView[I].Model.MOF_GetReference('Action') is PUMLReturnAction)) and
                 Overlap(
 //                  Rect(ActivationView.Left-20, ActivationView.Top, ActivationView.Right+20, ActivationView.Bottom),
                   Rect(ActivationView.Left, ActivationView.Top, ActivationView.Right, ActivationView.Bottom),
                   Rect(AV.Left, AV.Top, AV.Right, AV.Bottom)
                 ) then
 
-              if (OwnedViews[I] as PEdgeView).Points.Points[0].Y > Value then begin
-                Value := (OwnedViews[I] as PEdgeView).Points.Points[0].Y;
-                Result := (OwnedViews[I] as PEdgeView);
+              if (OwnedView[I] as PEdgeView).Points.Points[0].Y > Value then begin
+                Value := (OwnedView[I] as PEdgeView).Points.Points[0].Y;
+                Result := (OwnedView[I] as PEdgeView);
               end;
 
           end;
@@ -1552,7 +1552,7 @@ begin
 
   // extend height to V_INT for all Activation in CurMsgView.Points.Points[0].Y of range
   for I := 0 to DiagramView.OwnedViewCount-1 do begin
-    View := DiagramView.OwnedViews[I];
+    View := DiagramView.OwnedView[I];
     if (CurMsgView <> View) and (LastMsgView <> View) and ((View is PUMLSeqStimulusView) or (View is PUMLSeqMessageView)) then begin
       ActivationView := GetActivationView(View);
       if (ActivationView.Top <= PY) and (PY <= ActivationView.Bottom) then
@@ -1587,10 +1587,10 @@ function PShortenSyntaxManager.MakeSeqMsgView2(Model: PModel; Rel1,
     if ActivationView <> nil then
       with DiagramView do
         for I := 0 to OwnedViewCount-1 do
-          if (OwnedViews[I] is PUMLSeqStimulusView) or
-             (OwnedViews[I] is PUMLSeqMessageView) then begin
+          if (OwnedView[I] is PUMLSeqStimulusView) or
+             (OwnedView[I] is PUMLSeqMessageView) then begin
 
-            EdgeView := OwnedViews[I] as PEdgeView;
+            EdgeView := OwnedView[I] as PEdgeView;
 
             // exclude ReturnMsgView corresponding to CurMsgView
             if (EdgeView.Model.MOF_GetReference('Action') is PUMLReturnAction) and
@@ -1614,10 +1614,10 @@ function PShortenSyntaxManager.MakeSeqMsgView2(Model: PModel; Rel1,
     if ActivationView <> nil then
       with DiagramView do
         for I := 0 to OwnedViewCount-1 do
-          if (OwnedViews[I] is PUMLSeqStimulusView) or
-             (OwnedViews[I] is PUMLSeqMessageView) then begin
+          if (OwnedView[I] is PUMLSeqStimulusView) or
+             (OwnedView[I] is PUMLSeqMessageView) then begin
 
-            EdgeView := OwnedViews[I] as PEdgeView;
+            EdgeView := OwnedView[I] as PEdgeView;
 
             // exclude CurMsgView
             if (EdgeView <> CurMsgView) then
@@ -1680,8 +1680,8 @@ function PShortenSyntaxManager.MakeSeqMsgView2(Model: PModel; Rel1,
 
     with DiagramView do
       for I := 0 to OwnedViewCount-1 do
-        if (OwnedViews[I] is PUMLSeqStimulusView) or (OwnedViews[I] is PUMLSeqMessageView) then begin
-          EdgeView := OwnedViews[I] as PEdgeView;
+        if (OwnedView[I] is PUMLSeqStimulusView) or (OwnedView[I] is PUMLSeqMessageView) then begin
+          EdgeView := OwnedView[I] as PEdgeView;
 
 //          if not (EdgeView.Model.MOF_GetReference('Action') is PUMLReturnAction) then begin
 
@@ -1713,9 +1713,9 @@ function PShortenSyntaxManager.MakeSeqMsgView2(Model: PModel; Rel1,
     // compare and select
     with DiagramView do
       for I := 0 to OwnedViewCount-1 do
-        if (OwnedViews[I] is PUMLSeqStimulusView) or (OwnedViews[I] is PUMLSeqMessageView) then
-          if ((OwnedViews[I] as PEdgeView).Points.Points[0].Y > Top) then
-            OwnedViews[I].Selected := True;
+        if (OwnedView[I] is PUMLSeqStimulusView) or (OwnedView[I] is PUMLSeqMessageView) then
+          if ((OwnedView[I] as PEdgeView).Points.Points[0].Y > Top) then
+            OwnedView[I].Selected := True;
 //            StarUMLApplication.ChangeViewAttribute(OwnedViews[I], 'Selected', BoolToStr(True));
 
 

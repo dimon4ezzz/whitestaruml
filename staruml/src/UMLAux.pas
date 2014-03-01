@@ -351,7 +351,7 @@ type
 implementation
 
 uses
-  UMLViews, NLS_StarUML,
+  System.Types, UMLViews, NLS_StarUML,
   Variants;
 
 procedure PUMLDocumentOutputStream.IsFiltered(Obj: PObject; Key: string; var CanFilter: Boolean);

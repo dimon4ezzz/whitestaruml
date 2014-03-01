@@ -140,8 +140,8 @@ const
 implementation
 
 uses
-  NLS, NLS_StarUML,
-  Math, PageSetupFrm, HtmlHlp;
+  System.Types, System.UITypes, Math,
+  NLS, NLS_StarUML, PageSetupFrm, HtmlHlp;
 
 {$R *.dfm}
 

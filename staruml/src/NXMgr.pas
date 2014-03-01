@@ -125,7 +125,8 @@ implementation
 
 uses
  (* System, *)
-  Types,
+  System.Types,
+  System.UITypes,
   Classes,
   StrUtils,
   Math,

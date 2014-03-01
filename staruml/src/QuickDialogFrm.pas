@@ -564,9 +564,9 @@ var
 implementation
 
 uses
+  System.Types, System.UITypes, Math,
   GraphicClasses, BasicClasses, UMLAux, ElemLstFrm, ElemSelFrm, ModelExplorerFrame,
-  NLS_StarUML, ShortenSyntaxMgr,
-  Math, InputBox;
+  NLS_StarUML, ShortenSyntaxMgr, InputBox;
 
 const
   NAME_EDIT_DEFAULT_WIDTH: Integer = 130;

@@ -601,7 +601,7 @@ begin
   begin
     for I := 0 to BaseModel.VirtualOwnedModelCount - 1 do
     begin
-      Model := BaseModel.VirtualOwnedModels[I];
+      Model := BaseModel.VirtualOwnedModel[I];
       if CompletelyRebuild then
       begin
         Node := CreateNode(BaseNode, Model);

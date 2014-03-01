@@ -369,6 +369,7 @@ var
 implementation
 
 uses
+  System.Types, System.UITypes,
   StarUMLApp, FrwMgr, LogMgr, UMLFacto, CmdExec, HtmlHlp, ApprMgr, InteractionMgr,
   ContributorMgr, MainFrm, InspectorFrm, ColEdtFrm, AboutFrm, MessageFrame,
   ProfileMgrFrm, OptionDeps, NewProjFrm, ImportFrameworkFrm, AddInMgr, ConstEdtFrm,
@@ -777,7 +778,7 @@ procedure PMain.MainFormEditMenuClickedHandler(Sender: TObject);
 begin
   try
     with MainForm do begin
-           if Sender = EditUndo                then ExecuteEditUndo
+      if Sender = EditUndo                     then ExecuteEditUndo
       else if Sender = EditRedo                then ExecuteEditRedo
       else if Sender = EditCut                 then StarUMLApplication.Cut
       else if Sender = EditCopy                then StarUMLApplication.Copy
@@ -2379,7 +2380,7 @@ procedure PMain.ElementsCreatedHandler(Sender: TObject; Models: PModelOrderedSet
     for I := 0 to AModel.OwnedDiagramCount - 1 do
       Diagrams.Add(AModel.OwnedDiagrams[I]);
     for I := 0 to AModel.VirtualOwnedModelCount - 1 do
-      CollectDiagrams(AModel.VirtualOwnedModels[I], Diagrams);
+      CollectDiagrams(AModel.VirtualOwnedModel[I], Diagrams);
   end;
 
 var
@@ -3776,7 +3777,7 @@ var
     I: Integer;
   begin
     for I := 0 to AModel.VirtualOwnedModelCount - 1 do begin
-      TempModel := AModel.VirtualOwnedModels[I];
+      TempModel := AModel.VirtualOwnedModel[I];
       if TempModel is PUMLDiagram then
         APrintForm.AddDiagram((TempModel as PUMLDiagram).DiagramView);
       if TempModel.VirtualOwnedModelCount > 0 then

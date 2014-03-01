@@ -1971,7 +1971,7 @@ type
 implementation
 
 uses
-  Math, Dialogs, JvStrings;
+  System.UITypes, Math, Dialogs, JvStrings;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Procedures and Functions
@@ -2684,7 +2684,7 @@ begin
       else
         DrawObject(Canvas);
       for I := 0 to SubViewCount - 1 do
-        SubViews[I].Draw(Canvas);
+        SubView[I].Draw(Canvas);
     end;
     if Model = nil then
       DrawNoModeledMark(Canvas);
@@ -2701,7 +2701,7 @@ begin
     ArrangeExtendedView(Canvas)
   else begin
     for I := 0 to SubViewCount - 1 do
-      SubViews[I].Arrange(Canvas);
+      SubView[I].Arrange(Canvas);
     DelimitContainingBoundary(Canvas);
     if IsIconicView then
       ArrangeIconicObject(Canvas)
@@ -4317,7 +4317,7 @@ var
 begin
   RealizationViews.Clear;
   for I := 0 to OwnerDiagramView.OwnedViewCount - 1 do begin
-    V := OwnerDiagramView.OwnedViews[I];
+    V := OwnerDiagramView.OwnedView[I];
     if (V is PUMLRealizationView) and ((V as PUMLRealizationView).Head = Self) then
       RealizationViews.Add(V);
 
@@ -4340,7 +4340,7 @@ var
 begin
   DependencyViews.Clear;
   for I := 0 to OwnerDiagramView.OwnedViewCount - 1 do begin
-    V := OwnerDiagramView.OwnedViews[I];
+    V := OwnerDiagramView.OwnedView[I];
     if (V is PUMLDependencyView) and ((V as PUMLDependencyView).Head = Self) then
       DependencyViews.Add(V);
   end;
@@ -6539,8 +6539,8 @@ begin
   // draw Destruction Mark.
   IsDestruction := False;
   for I := 0 to GetDiagramView.OwnedViewCount - 1 do begin
-    if GetDiagramView.OwnedViews[I] is PUMLCustomSeqMessageView then begin
-      V := GetDiagramView.OwnedViews[I] as PUMLCustomSeqMessageView;
+    if GetDiagramView.OwnedView[I] is PUMLCustomSeqMessageView then begin
+      V := GetDiagramView.OwnedView[I] as PUMLCustomSeqMessageView;
       if Model <> nil then begin
         if V.Head = Self then begin
           if (V.Model is PUMLStimulus) and ((V.Model as PUMLStimulus).Action is PUMLDestroyAction) then
@@ -6574,8 +6574,8 @@ begin
   // LifeLine's Height is long to contain all MessageView.
   B := (Parent as PNodeView).Bottom;
   for I := 0 to GetDiagramView.OwnedViewCount - 1 do begin
-    if (GetDiagramView.OwnedViews[I] is PUMLCustomSeqMessageView) then begin
-      MessageView := GetDiagramView.OwnedViews[I] as PUMLCustomSeqMessageView;
+    if (GetDiagramView.OwnedView[I] is PUMLCustomSeqMessageView) then begin
+      MessageView := GetDiagramView.OwnedView[I] as PUMLCustomSeqMessageView;
       if (MessageView.Head = Self) or (MessageView.Tail = Self) then begin
         if MessageView.Activation.Bottom > B then B := MessageView.Activation.Bottom;
       end;
@@ -6608,8 +6608,8 @@ begin
   // find the most extruded Activation(FrontMostActivation)
   // regard Activation whose Top position is the lowest as the most extruded Activation
   for I := 0 to GetDiagramView.OwnedViewCount - 1 do begin
-    if GetDiagramView.OwnedViews[I] is PUMLCustomSeqMessageView then begin
-      Msg := GetDiagramView.OwnedViews[I] as PUMLCustomSeqMessageView;
+    if GetDiagramView.OwnedView[I] is PUMLCustomSeqMessageView then begin
+      Msg := GetDiagramView.OwnedView[I] as PUMLCustomSeqMessageView;
       if Msg.Head = Self then begin
         if (Msg.Activation.Visible) and
            (Msg.Activation.Top <= YPosition) and
@@ -6994,8 +6994,8 @@ begin
     //     (3) the message's Activation is really Child Activation.
     MinimumBottom := Top + ACTIVATION_MINHEIGHT;
     for I := 0 to GetDiagramView.OwnedViewCount - 1 do begin
-      if GetDiagramView.OwnedViews[I] is PUMLCustomSeqMessageView then begin
-        Msg := GetDiagramView.OwnedViews[I] as PUMLCustomSeqMessageView;
+      if GetDiagramView.OwnedView[I] is PUMLCustomSeqMessageView then begin
+        Msg := GetDiagramView.OwnedView[I] as PUMLCustomSeqMessageView;
         if (Msg.Head = LifeLine) and (Msg <> MessageView) then begin
           Y := Msg.Points.Points[Msg.Points.Count - 1].Y;
           if (Top <= Y) and (Bottom > Y) then begin
@@ -7150,8 +7150,8 @@ var
   begin
     SeqNum := 0;
     for I := 0 to GetDiagramView.OwnedViewCount - 1 do begin
-      if GetDiagramView.OwnedViews[I] is PUMLCustomSeqMessageView then begin
-        V := GetDiagramView.OwnedViews[I] as PUMLCustomSeqMessageView;
+      if GetDiagramView.OwnedView[I] is PUMLCustomSeqMessageView then begin
+        V := GetDiagramView.OwnedView[I] as PUMLCustomSeqMessageView;
         if V.Points.Points[0].Y < YPos then begin
           SeqNum := SeqNum + 1;
         end
@@ -11043,7 +11043,7 @@ begin
   Views := TList.Create;
   try
     for I := 0 to OwnedViewCount - 1 do
-      Views.Add(OwnedViews[I]);
+      Views.Add(OwnedView[I]);
     for I := Length(PrecedentViewKinds) - 1 downto 0 do begin
       VClass := PrecedentViewKinds[I];
       for J := Views.Count - 1 downto 0 do begin
@@ -11285,8 +11285,8 @@ begin
   // Regulate sequence number of stimulus view
   L := TList.Create;
   for I := 0 to OwnedViewCount - 1 do
-    if OwnedViews[I] is PUMLCustomSeqMessageView then
-      L.Add(OwnedViews[I]);
+    if OwnedView[I] is PUMLCustomSeqMessageView then
+      L.Add(OwnedView[I]);
   for I := 0 to L.Count - 1 do
     PUMLCustomSeqMessageView(L.Items[I]).RegulateSequenceNumber;
   L.Free;
@@ -11295,7 +11295,7 @@ begin
 
   // Following code may be needless.
   for I := 0 to OwnedViewCount - 1 do
-    OwnedViews[I].Arrange(Canvas);
+    OwnedView[I].Arrange(Canvas);
 end;
 
 function PUMLSequenceDiagramView.CanOwnViewKind(Kind: string): Boolean;
@@ -11347,8 +11347,8 @@ begin
   // Regulate sequence number of stimulus view
   L := TList.Create;
   for I := 0 to OwnedViewCount - 1 do
-    if OwnedViews[I] is PUMLCustomSeqMessageView then
-      L.Add(OwnedViews[I]);
+    if OwnedView[I] is PUMLCustomSeqMessageView then
+      L.Add(OwnedView[I]);
   for I := 0 to L.Count - 1 do
     PUMLCustomSeqMessageView(L.Items[I]).RegulateSequenceNumber;
   L.Free;
@@ -11357,7 +11357,7 @@ begin
 
   // Following code may be needless.
   for I := 0 to OwnedViewCount - 1 do
-    OwnedViews[I].Arrange(Canvas);
+    OwnedView[I].Arrange(Canvas);
 end;
 
 function PUMLSequenceRoleDiagramView.CanOwnViewKind(Kind: string): Boolean;
