@@ -136,7 +136,8 @@ const
 implementation
 
 uses
-  GraphicClasses, ViewCore, UMLViews, Forms, SysUtils, Clipbrd, Types, Controls,
+  System.Types, System.UITypes, GraphicClasses, ViewCore, UMLViews, Forms,
+  SysUtils, Clipbrd, Controls,
   OptionDeps, NLS_StarUML;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -673,7 +674,7 @@ begin
         if AView is PParasiticView then Continue;
         if ValidView(AView) then Views.Add(AView);
       end;
-    end else for I := 0 to ADiagramView.OwnedViewCount - 1 do Views.Add(ADiagramView.OwnedViews[I]);
+    end else for I := 0 to ADiagramView.OwnedViewCount - 1 do Views.Add(ADiagramView.OwnedView[I]);
     // encode views data to XML data
     SetStrDataBuffer(Views, ADiagramView);
     // write Data in Clipboard

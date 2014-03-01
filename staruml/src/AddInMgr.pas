@@ -266,7 +266,7 @@ var
 implementation
 
 uses
-  Dialogs, Variants, xmldom, Forms, ShellAPI, OleCtnrs, Controls, ExtCtrls,
+  System.UITypes, Dialogs, Variants, xmldom, Forms, ShellAPI, OleCtnrs, Controls, ExtCtrls,
   System.Win.ComObj, MainFrm, HtmlHlp, NLS_StarUML;
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -560,13 +560,13 @@ begin
   end;
   // Generates Nodes
   for I := 0 to ADiagramView.OwnedViewCount - 1 do begin
-    V := ADiagramView.OwnedViews[I];
+    V := ADiagramView.OwnedView[I];
     if V is PNodeView then
       OutputGraph.Add(GetNodeString(V as PNodeView));
   end;
   // Generates Edges
   for I := 0 to ADiagramView.OwnedViewCount - 1 do begin
-    V := ADiagramView.OwnedViews[I];
+    V := ADiagramView.OwnedView[I];
     if V is PEdgeView then
     begin
       with V as PEdgeView do
@@ -595,13 +595,13 @@ var
 begin
   for I := 0 to AGraphvizGraph.NodeCount - 1 do begin
     Node := AGraphvizGraph.Nodes[I];
-    NodeView := ADiagramView.OwnedViews[ExtractIndex(Node.Name)] as PNodeView;
+    NodeView := ADiagramView.OwnedView[ExtractIndex(Node.Name)] as PNodeView;
     NodeView.Left := Node.Left + LAYOUT_LEFT_MARGIN;
     NodeView.Top := Node.Top + LAYOUT_TOP_MARGIN;
   end;
   for I := 0 to AGraphvizGraph.EdgeCount - 1 do begin
     Edge:= AGraphvizGraph.Edges[I];
-    EdgeView := ADiagramView.OwnedViews[ExtractIndex(Edge.Name)] as PEdgeView;
+    EdgeView := ADiagramView.OwnedView[ExtractIndex(Edge.Name)] as PEdgeView;
     if EdgeView.Head <> EdgeView.Tail then
     begin
       EdgeView.LineStyle := lsOblique;

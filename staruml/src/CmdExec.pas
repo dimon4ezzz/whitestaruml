@@ -3823,7 +3823,7 @@ begin
   ASet.Clear;
   for I := 0 to DiagramView.OwnedViewCount - 1 do begin
   //for OwnedView in DiagramView do begin
-    AView := DiagramView.OwnedViews[I];
+    AView := DiagramView.OwnedView[I];
     if (AView.Model = AModel) then ASet.Add(AView);
   end;
 end;
@@ -4025,9 +4025,9 @@ begin
     Exit;
   end;
   for I := 0 to DiagramView.OwnedViewCount - 1 do begin
-    V := DiagramView.OwnedViews[I];
+    V := DiagramView.OwnedView[I];
     if V.Model = Model then begin
-      Result := DiagramView.OwnedViews[I];
+      Result := DiagramView.OwnedView[I];
       Exit;
     end;
     V := FindContainedView(V, Model);
@@ -5101,8 +5101,8 @@ begin
     V := ViewSet.Items[I] as PView;
     if V is PNodeView then
       for J := 0 to ADiagramView.OwnedViewCount - 1 do
-        if ADiagramView.OwnedViews[J] is PEdgeView then begin
-          E := ADiagramView.OwnedViews[J] as PEdgeView;
+        if ADiagramView.OwnedView[J] is PEdgeView then begin
+          E := ADiagramView.OwnedView[J] as PEdgeView;
           if (E.Head = V) and (E.Tail = V) and not(ViewSet.Contains(E)) then
             ViewSet.Add(E);
         end;
@@ -6230,7 +6230,7 @@ begin
   OldEdgePoints.Clear;
   // Storing Nodes
   for I := 0 to ADiagramView.OwnedViewCount - 1 do begin
-    V := ADiagramView.OwnedViews[I];
+    V := ADiagramView.OwnedView[I];
     if V is PNodeView then begin
       NodeView := V as PNodeView;
       Nodes.Add(NodeView);
@@ -6240,7 +6240,7 @@ begin
   end;
   // Storing Edges
   for I := 0 to ADiagramView.OwnedViewCount - 1 do begin
-    V := ADiagramView.OwnedViews[I];
+    V := ADiagramView.OwnedView[I];
     if V is PEdgeView then begin
       EdgeView := V as PEdgeView;
       if (EdgeView.Tail is PNodeView) and
@@ -6853,7 +6853,7 @@ begin
   Result := False;
   AModel := ModelSet.Items[0] as PUMLOperation;
   for I := 0 to AModel.VirtualOwnedModelCount - 1 do
-    if AModel.VirtualOwnedModels[I].Name = Value then begin
+    if AModel.VirtualOwnedModel[I].Name = Value then begin
       Result := True;
       Exit;
     end;

@@ -1029,7 +1029,7 @@ function PDiagramViewAuto.GetOwnedViewAt(Index: Integer): IView;
 var
   E: PView;
 begin
-  E := (TheObject as PDiagramView).OwnedViews[Index];
+  E := (TheObject as PDiagramView).OwnedView[Index];
   if E = nil then Result := nil
   else Result := E.GetAutomationObject as PViewAuto;
 end;

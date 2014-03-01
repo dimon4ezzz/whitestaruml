@@ -721,8 +721,9 @@ const
 implementation
 
 uses
-  StarUMLApp, MenuManagerTdxImpl, UMLFacto, NLS, NLS_StarUML,
-  StrUtils, Math, ShellAPI;
+  System.Types, System.UITypes, StrUtils, Math, ShellAPI,
+  StarUMLApp, MenuManagerTdxImpl, UMLFacto, NLS, NLS_StarUML;
+
 
 {$R *.dfm}
 

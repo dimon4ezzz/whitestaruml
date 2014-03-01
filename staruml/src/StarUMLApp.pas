@@ -929,7 +929,8 @@ end;
 
 procedure PStarUMLApplication.DetermineDeletingElements(Models: PModelOrderedSet; Views: PViewOrderedSet);
 var
-  I: Integer;
+  Model: PModel;
+  View: PView;
   Changed: Boolean;
 
   // ---------------------------------------------------------------------------
@@ -937,12 +938,10 @@ var
   // ---------------------------------------------------------------------------
   procedure DetermineModelsThatShouldBeDeletedWithView(ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet);
   var
-    I: Integer;
     V: PView;
   begin
-    for I := 0 to ViewSet.Count - 1 do
+    for V in ViewSet do
     begin
-      V := ViewSet.Items[I] as PView;
       if (V is PUMLColMessageView) or (V is PUMLColStimulusView) or
          (V is PUMLSeqMessageView) or (V is PUMLSeqStimulusView) or
          (V is PUMLInteractionOperandView) then
@@ -1001,11 +1000,12 @@ var
   // ---------------------------------------------------------------------------
   function IncludeModelsOwnedBy(AModel: PModel; ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet): Boolean;
   var
-    C, I: Integer;
+    C: Integer;
+    Model: PModel;
   begin
     C := ModelSet.Count;
-    for I := 0 to AModel.VirtualOwnedModelCount - 1 do
-      ModelSet.Add(AModel.VirtualOwnedModels[I]);
+    for Model in AModel.VirtualOwnedModels do
+      ModelSet.Add(Model);
     Result := (ModelSet.Count <> C);
   end;
 
@@ -1014,16 +1014,19 @@ var
   // ---------------------------------------------------------------------------
   function IncludeViewsOf(AModel: PModel; ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet): Boolean;
   var
-    C, I: Integer;
+    C: Integer;
+    View: PView;
+    Diagram: PDiagram;
   begin
     C := ViewSet.Count;
-    for I := 0 to AModel.ViewCount - 1 do
-      ViewSet.Add(AModel.View[I]);
+    for View in AModel.Views do
+      ViewSet.Add(View);
     // 모델이 PDiagram인 경우 그것의 DiagramView와 모든 OwnedView들을 추가한다.
     if AModel is PDiagram then begin
-      ViewSet.Add((AModel as PDiagram).DiagramView);
-      for I := 0 to (AModel as PDiagram).DiagramView.OwnedViewCount - 1 do
-        ViewSet.Add((AModel as PDiagram).DiagramView.OwnedViews[I]);
+      Diagram := AModel as PDiagram;
+      ViewSet.Add(Diagram.DiagramView);
+      for View in Diagram.DiagramView.OwnedViews do
+        ViewSet.Add(View);
     end;
     Result := (ViewSet.Count <> C);
   end;
@@ -1033,16 +1036,14 @@ var
   // ---------------------------------------------------------------------------
   function IncludeEdgeViews(AView: PView; ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet): Boolean;
   var
-    C, I: Integer;
+    C: Integer;
     V: PView;
     DV: PDiagramView;
   begin
     C := ViewSet.Count;
     DV := AView.GetDiagramView;
     if DV <> nil then begin
-      for I := 0 to DV.OwnedViewCount - 1 do
-      begin
-        V := DV.OwnedViews[I];
+      for V in  DV.OwnedViews do begin
         if V is PEdgeView then begin
           if ((V as PEdgeView).Head = AView) or ((V as PEdgeView).Tail = AView) then
             ViewSet.Add(V);
@@ -1057,26 +1058,24 @@ var
   // ---------------------------------------------------------------------------
   function IncludeRelatedViews(AView: PView; ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet): Boolean;
   var
-    C, I: Integer;
+    C: Integer;
     V: PView;
   begin
     C := ViewSet.Count;
     if AView is PUMLLinkView then
     begin
-      for I := 0 to AView.GetDiagramView.OwnedViewCount - 1 do
-      begin
-        V := AView.GetDiagramView.OwnedViews[I];
+      for  V in AView.GetDiagramView.OwnedViews do begin
         if (V is PUMLColStimulusView) and
-           ((V as PUMLColStimulusView).HostEdge = AView) then ViewSet.Add(V);
+           ((V as PUMLColStimulusView).HostEdge = AView) then
+           ViewSet.Add(V);
       end;
     end
     else if AView is PUMLAssociationRoleView then
     begin
-      for I := 0 to AView.GetDiagramView.OwnedViewCount - 1 do
-      begin
-        V := AView.GetDiagramView.OwnedViews[I];
+      for V in AView.GetDiagramView.OwnedViews do begin
         if (V is PUMLColMessageView) and
-           ((V as PUMLColMessageView).HostEdge = AView) then ViewSet.Add(V);
+           ((V as PUMLColMessageView).HostEdge = AView) then
+           ViewSet.Add(V);
       end;
     end;
     Result := (ViewSet.Count <> C);
@@ -1087,11 +1086,12 @@ var
   // ---------------------------------------------------------------------------
   function IncludeSubViews(AView: PView; ModelSet: PModelOrderedSet; ViewSet: PViewOrderedSet): Boolean;
   var
-    C, I: Integer;
+    C: Integer;
+    SubView: PView;
   begin
     C := ViewSet.Count;
-    for I := 0 to AView.SubViewCount - 1 do
-      ViewSet.Add(AView.SubViews[I]);
+    for SubView in AView.SubViews do
+      ViewSet.Add(SubView);
     Result := (ViewSet.Count <> C);
   end;
 
@@ -1113,20 +1113,21 @@ var
 begin
   repeat
      Changed := False;
-     for I := 0 to Models.Count - 1 do begin
-       Changed := Changed or ExcludeUndeletableModel(Models.Items[I] as PModel, Models, Views);
-       Changed := Changed or IncludeModelsOwnedBy(Models.Items[I] as PModel, Models, Views);
-       Changed := Changed or IncludeRelationsOf(Models.Items[I] as PModel, Models);
-       Changed := Changed or IncludeViewsOf(Models.Items[I] as PModel, Models, Views);
+     for Model in Models do begin
+
+       Changed := Changed or ExcludeUndeletableModel(Model, Models, Views);
+       Changed := Changed or IncludeModelsOwnedBy(Model, Models, Views);
+       Changed := Changed or IncludeRelationsOf(Model, Models);
+       Changed := Changed or IncludeViewsOf(Model, Models, Views);
      end;
   until (not Changed);
   repeat
      Changed := False;
-     for I := 0 to Views.Count - 1 do begin
-       Changed := Changed or IncludeSubViews(Views.Items[I] as PView, Models, Views);
-       Changed := Changed or IncludeEdgeViews(Views.Items[I] as PView, Models, Views);
-       Changed := Changed or IncludeRelatedViews(Views.Items[I] as PView, Models, Views);
-       Changed := Changed or ExcludeReadOnlyView(Views.Items[I] as PView, Models, Views);
+     for View in Views do begin
+       Changed := Changed or IncludeSubViews(View, Models, Views);
+       Changed := Changed or IncludeEdgeViews(View, Models, Views);
+       Changed := Changed or IncludeRelatedViews(View, Models, Views);
+       Changed := Changed or ExcludeReadOnlyView(View, Models, Views);
      end;
   until (not Changed);
   DetermineModelsThatShouldBeDeletedWithView(Models, Views);
