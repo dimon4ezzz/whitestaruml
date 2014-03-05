@@ -5711,7 +5711,6 @@ end;
 function PXMLObjectReader.ReadReal(Key: string; Default: Real = 0.0): Real;
 var
   Node: IXMLNode;
-  TextValue: Real;
   FormatSettings: TFormatSettings;
 begin
   Node := GetNodeByKey(Key);
@@ -5730,16 +5729,13 @@ begin
   if VarIsNull(Node.NodeValue) then
     Result := Default
   else begin
-
-    TextValue := Node.NodeValue;
     try
-
-    if OptionDepository.ForceDecimalSeparator <> '' then begin
-      FormatSettings.DecimalSeparator := OptionDepository.ForceDecimalSeparator[1];
-      Result := StrToFloat(Node.NodeValue,FormatSettings);
-    end
-    else
-      Result := StrToFloat(Node.NodeValue);
+      if OptionDepository.ForceDecimalSeparator <> '' then begin
+        FormatSettings.DecimalSeparator := OptionDepository.ForceDecimalSeparator[1];
+        Result := StrToFloat(Node.NodeValue,FormatSettings);
+      end
+      else
+        Result := StrToFloat(Node.NodeValue);
 
     except on Exc : Exception do begin
       LogManager.Log(ERR_READING_DATA + ': ' + Exc.Message);
