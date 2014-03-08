@@ -1,5 +1,7 @@
 unit InputBox;
 
+{$R InputBox.dcr}
+
 interface
 
 uses

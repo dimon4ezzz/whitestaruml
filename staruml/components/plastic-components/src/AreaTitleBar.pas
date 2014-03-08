@@ -4,6 +4,8 @@
 
 unit AreaTitleBar;
 
+{$R AreaTitleBar.dcr}
+
 interface
 
 uses
