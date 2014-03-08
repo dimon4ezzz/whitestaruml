@@ -1,6 +1,12 @@
 package PlasticComponents;
 
 {$R *.res}
+{$R 'AreaTitleBar.dcr'}
+{$R 'CompactFontDlg.dcr'}
+{$R 'FlatPanel.dcr'}
+{$R 'InputBox.dcr'}
+{$R 'TreeViewEx.dcr'}
+{$R 'verslab.dcr'}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}

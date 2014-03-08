@@ -1,7 +1,5 @@
 unit CompactFontDlg;
 
-{$R CompactFontDlg.dcr}
-
 interface
 
 uses
