@@ -1,7 +1,5 @@
 unit FlatPanel;
 
-{$R FlatPanel.dcr}
-
 interface
 
 uses
