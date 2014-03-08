@@ -1,5 +1,7 @@
 unit TreeViewEx;
 
+{$R TreeViewEx.dcr}
+
 interface
 
 uses
