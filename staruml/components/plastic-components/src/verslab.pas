@@ -58,6 +58,8 @@ unit verslab;
 
 {$H+}
 
+{$R verslab.dcr}
+
 interface
 
 uses
