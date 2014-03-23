@@ -14,6 +14,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure InspectorItemEdit(Sender: TJvCustomInspector;
       Item: TJvCustomInspectorItem; var DisplayStr: string);
+    procedure InspectorItemSelected(Sender: TObject);
   private
     { Private declarations }
   public
@@ -368,8 +369,9 @@ begin
         end; // of case T.TagType
       end; // if T <> nil
     end; // of for Row
-    if Assigned(FOnInspectorChange) then
-      FOnInspectorChange(Self);
+    {if Assigned(FOnInspectorChange) then
+      FOnInspectorChange(Self);}
+    Form.Inspector.RefreshValues;
   end; // of if FModel <> nil
   if FModel <> nil then
     ReadOnly := Model.ReadOnly
@@ -439,6 +441,14 @@ begin
   inherited;
   with TagDefinitionSetInspector as PTagDefinitionSetJvclInspector do
     ButtonRowButtonClick(Sender, Item, DisplayStr);
+end;
+
+procedure TTaggedValueEditorFormWithJvclInspector.InspectorItemSelected(
+  Sender: TObject);
+begin
+  inherited;
+  if Assigned(TagDefinitionSetInspector.OnInspectorChange) then
+    TagDefinitionSetInspector.OnInspectorChange(Self);
 end;
 
 end.
