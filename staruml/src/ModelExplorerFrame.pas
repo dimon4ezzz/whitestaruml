@@ -1470,8 +1470,8 @@ begin
     Exit;
   end;
 
-  if not MainForm.IsModelExplorerActive then
-    MainForm.ActivateModelExplorerPanel;
+  //if not MainForm.IsModelExplorerActive then
+  //  MainForm.ActivateModelExplorerPanel;
 
   // Selection changing
   Node := ModelTree.GetNodeAt(X, Y);
