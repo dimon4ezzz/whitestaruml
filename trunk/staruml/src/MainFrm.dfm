@@ -1207,6 +1207,10 @@ object MainForm: TMainForm
               inherited SelectionTextPanel: TFlatPanel
                 Width = 264
                 ExplicitWidth = 264
+                inherited SelectionText: TLabel
+                  Width = 262
+                  Height = 15
+                end
               end
             end
           end
@@ -1367,7 +1371,7 @@ object MainForm: TMainForm
     UseSystemFont = False
     OnBarVisibleChange = BarManagerBarVisibleChange
     OnClickItem = BarManagerClickItem
-    Left = 460
+    Left = 452
     Top = 208
     DockControlHeights = (
       0
@@ -1976,6 +1980,7 @@ object MainForm: TMainForm
       Category = 1
       Hint = 'Model'
       Visible = ivAlways
+      OnClick = ModelMenuClick
       ItemLinks = <
         item
           Visible = True
@@ -3376,11 +3381,17 @@ object MainForm: TMainForm
       OnClick = ModelMenuClick
     end
     object ModelProperty: TdxBarButton
-      Caption = 'Properties'
+      Caption = 'Show P&roperties'
       Category = 4
-      Hint = 'Properties'
+      Hint = 'Show Properties'
       Visible = ivAlways
-      ShortCut = 121
+      OnClick = ModelMenuClick
+    end
+    object ModelAttachments: TdxBarButton
+      Caption = 'Show Attachments (&Links)'
+      Category = 4
+      Hint = 'Show Attachments (Links)'
+      Visible = ivAlways
       OnClick = ModelMenuClick
     end
     object ViewCloseDiagram: TdxBarButton
@@ -11049,6 +11060,10 @@ object MainForm: TMainForm
         BeginGroup = True
         Visible = True
         ItemName = 'ModelProperty'
+      end
+      item
+        Visible = True
+        ItemName = 'ModelAttachments'
       end>
     UseOwnFont = False
     Left = 211

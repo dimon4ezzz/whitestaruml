@@ -320,6 +320,7 @@ type
     procedure PopupQuickDialogForSubElement(OwnerModel: PModel; ModelKind: string; Argument: Integer);
     procedure ProcessDoubleClickAction(AView: PView; X, Y: Integer);
     procedure ProcessPropertyAction;
+    procedure ProcessAttachmentsAction;
     procedure BrowseElement(AModel: PModel); overload;
     procedure BrowseElement(PathName: string); overload;
     procedure SelectModelExplorerDockPanel(AModel: PModel);
@@ -980,9 +981,9 @@ begin
         ModelVerifierForm.ShowModal;
       end
       else if Sender = ModelProperty then
-      begin
-        ProcessPropertyAction;
-      end;
+        ProcessPropertyAction
+      else if Sender = ModelAttachments then
+        ProcessAttachmentsAction;
     end;
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
@@ -1316,7 +1317,7 @@ begin
       MenuStateHandler.UpdateFileMenus;
       MenuStateHandler.UpdateEditMenus;
       MenuStateHandler.EndUpdate;
-      InteractionManager.ChangePaletteVisibility(Diagram as PUMLDiagram);
+      //InteractionManager.ChangePaletteVisibility(Diagram as PUMLDiagram);
     end;
     MainForm.PaletteNavBarFrame.ActivateSelectHandler(false);
   except on
@@ -2298,24 +2299,26 @@ begin
     TaggedValueEditorForm.Model := nil;
 
     // Inspect
-    if StarUMLApplication.SelectedModelCount = 1 then
-    begin
+    M := nil;
+    if StarUMLApplication.SelectedViewCount = 1 then
+      M := StarUMLApplication.SelectedViews[0].Model
+    else if StarUMLApplication.SelectedModelCount = 1 then
       M := StarUMLApplication.SelectedModels[0];
-      if M is PUMLModelElement then
-      begin
-        ConstraintEditorForm.ConstrainedElement := M as PUMLModelElement;
-        TaggedValueEditorForm.Model := M as PExtensibleModel;
-      end;
-      MainForm.DocumentationEditor.InspectingElement := M;
-      MainForm.AttachmentEditor.TargetModel := M;
-    end
-    else begin
-      // ...
+
+    if M <> nil then begin
+      if M is PUMLModelElement then begin
+          ConstraintEditorForm.ConstrainedElement := M as PUMLModelElement;
+          TaggedValueEditorForm.Model := M as PExtensibleModel;
+        end;
+        MainForm.DocumentationEditor.InspectingElement := M;
+        MainForm.AttachmentEditor.TargetModel := M;
     end;
 
-
-    for I := 0 to StarUMLApplication.SelectedModelCount - 1 do
-      MainForm.InspectorFrame.AddInspectingElement(StarUMLApplication.SelectedModels[I]);
+    if StarUMLApplication.SelectedViewCount = 1 then
+      MainForm.InspectorFrame.AddInspectingElement(StarUMLApplication.SelectedViews[0].Model)
+    else
+      for I := 0 to StarUMLApplication.SelectedModelCount - 1 do
+        MainForm.InspectorFrame.AddInspectingElement(StarUMLApplication.SelectedModels[I]);
 
     MainForm.InspectorFrame.Inspect;
     MainForm.AttachmentEditor.Inspect;
@@ -2359,6 +2362,7 @@ begin
     if StarUMLApplication.ActiveDiagram <> nil then begin
       MainForm.WorkingAreaFrame.UpdateActiveDiagram;
       MainForm.WorkingAreaFrame.RedrawActiveDiagram;
+      SelectionChangedHandler(Sender);
       EventPublisher.NotifyEvent(EK_DIAGRAM_ACTIVATED);
     end;
     MenuStateHandler.BeginUpdate;
@@ -4147,6 +4151,13 @@ begin
   // reserved for menu property action customization
 end;
 
+procedure PMain.ProcessAttachmentsAction;
+begin
+   if StarUMLApplication.SelectedModelCount = 0 then
+    Exit;
+  MainForm.AttachmentEditor.SetFocusOnAttachmentList;
+end;
+
 procedure PMain.BrowseElement(AModel: PModel);
 begin
   if AModel <> nil then begin
@@ -5046,7 +5057,7 @@ begin
       MainForm.DocumentationEditor.UpdateDocumentation;
       ConstraintEditorForm.UpdateConstraints;
       CollectionEditorForm.UpdateCollection;
-      TaggedValueEditorForm.UpdateTaggedValues;
+      //TaggedValueEditorForm.UpdateTaggedValues;
 
     finally
       ASet.Free;
