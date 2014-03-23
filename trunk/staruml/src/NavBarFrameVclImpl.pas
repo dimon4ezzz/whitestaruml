@@ -157,9 +157,12 @@ type
 
     FPredefinedInteractionGroups: TPredefinedInteractionGroups;
     FInvisibleButtonCategories: TButtonCategories;
+
+    FLookAndFeelManager: TLookAndFeelManager;
+
     procedure CreateWrappersForPredefinedElements;
     function CreateNavBarGroupForCategory(Category: TButtonCategory)
-      : TNavBarGroup;
+      : TNavBarGroupVclImpl;
     function CreateNavBarItemForButtonItem(AButtonItem: TButtonItem)
       : TNavBarItem;
 
@@ -168,6 +171,7 @@ type
     procedure SelectSelectNavBarItem(aButtonCategory: TButtonCategory);
     procedure CollapseOtherCategories(aExpandedCategory: TButtonCategory);
     procedure SetLookAndFeel(ALookAndFeelManager: TLookAndFeelManager);
+    procedure AssignLookAndFeel(ButtonCategory: TButtonCategory);
 
   protected
     procedure SetImageList(ImageList: TImageList); override;
@@ -208,7 +212,8 @@ uses
 procedure MoveButtonCategory(Destination: TButtonCategories;
   CategoryToMove: TButtonCategory);
 begin
-  if Destination.IndexOf(CategoryToMove.Caption) < 0 then
+  //if Destination.IndexOf(CategoryToMove.Caption) < 0 then
+  if CategoryToMove.Collection <> Destination then
     Destination.AddItem(CategoryToMove, 0);
 end;
 
@@ -398,8 +403,13 @@ begin
 end;
 
 function TPaletteNavBarFrameVclImpl.CreateNavBarGroup: TNavBarGroup;
+var
+  NavBarGroup: TNavBarGroupVclImpl;
 begin
-  Result := CreateNavBarGroupForCategory(nil);
+  NavBarGroup := CreateNavBarGroupForCategory(nil);
+  if Assigned(NavBarGroup) then
+    AssignLookAndFeel(NavBarGroup.FNavBarGroup);
+  Result := NavBarGroup;
 end;
 
 procedure TPaletteNavBarFrameVclImpl.CreateWrappersForPredefinedElements;
@@ -423,12 +433,10 @@ begin
     end;
   end;
 
-  //PaletteNavBar.Color := StarUMLApplication.LookAndFeelManager.WindowLightColor;
-
 end;
 
 function TPaletteNavBarFrameVclImpl.CreateNavBarGroupForCategory
-  (Category: TButtonCategory): TNavBarGroup;
+  (Category: TButtonCategory): TNavBarGroupVclImpl;
 var
   NewGroup: TNavBarGroupVclImpl;
   ExistingGroup: TNavBarGroup;
@@ -814,23 +822,22 @@ procedure TPaletteNavBarFrameVclImpl.SetLookAndFeel
   (ALookAndFeelManager: TLookAndFeelManager);
 var
   GroupCollectionItem: TCollectionItem;
-  ButtonCategory: TButtonCategory;
-
-  begin
+begin
+  FLookAndFeelManager := ALookAndFeelManager;
   PaletteNavBar.Color := ALookAndFeelManager.WindowLightColor;
 
   for GroupCollectionItem in PaletteNavBar.Categories do
-  begin
-    ButtonCategory := GroupCollectionItem as TButtonCategory;
-    //ButtonCategory.Color := ALookAndFeelManager.WindowLightColor;
-    ButtonCategory.Color := ALookAndFeelManager.WindowDarkColor;
-    ButtonCategory.GradientColor := ALookAndFeelManager.WindowDarkColor;
-    //ButtonCategory.GradientColor := clWhite;
-  end
+    AssignLookAndFeel(GroupCollectionItem as TButtonCategory);
 
 end;
 
-
+procedure TPaletteNavBarFrameVclImpl.AssignLookAndFeel(ButtonCategory: TButtonCategory);
+begin
+  if Assigned(FLookAndFeelManager) then begin
+    ButtonCategory.Color := FLookAndFeelManager.WindowDarkColor;
+    ButtonCategory.GradientColor := FLookAndFeelManager.WindowDarkColor;
+  end;
+end;
 
 end.
 
