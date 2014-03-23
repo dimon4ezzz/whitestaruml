@@ -316,6 +316,7 @@ begin
       Bmp := TBitmap.Create;
       try
         ImageList.GetBitmap(ImgNum, Bmp);
+        Bmp.Transparent := True;
         StretchDraw(BoxRect, Bmp);
       finally
         Bmp.Free;
