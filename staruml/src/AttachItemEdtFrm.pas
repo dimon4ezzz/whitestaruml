@@ -73,6 +73,9 @@ type
     property Location: string read FLocation write SetLocation;
   end;
 
+const
+  ELEMENT_MARK = 'element://';
+
 var
   AttachmentItemEditForm: TAttachmentItemEditForm;
 
@@ -130,7 +133,7 @@ begin
   ElementSelectorForm.AddSelectableModels(FULL_FILTERINGSET);
   if ElementSelectorForm.Execute('Select Element') then
   begin
-    FLocation := 'element://' + ExtractTailPath(ElementSelectorForm.SelectedModel.Pathname);
+    FLocation := ELEMENT_MARK + ExtractTailPath(ElementSelectorForm.SelectedModel.Pathname);
     LocationEdit.Text := FLocation;
   end;
   OkButton.Enabled := (OldValue <> FLocation) and (FLocation <> '');

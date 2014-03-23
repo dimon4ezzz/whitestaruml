@@ -382,6 +382,7 @@ type
     EditFindDiagramsWithSelectedModel: TdxBarButton;
     dxLayoutDockSite3: TdxLayoutDockSite;
     PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
+    ModelAttachments: TdxBarButton;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);
     procedure EditMenuClick(Sender: TObject);

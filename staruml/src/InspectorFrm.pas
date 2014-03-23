@@ -471,8 +471,16 @@ end;
 
 procedure TInspectorFrame.SetFocusOnPropertyEditor;
 begin
-  PropertyEditor.SetFocus;
-end;
+   // Is PropertiesDockPanel inside tab panel?
+  if (MainForm.PropertiesDockPanel.TabContainer <> nil) then begin
+    // Set PropertiesDockPanel active panel
+    MainForm.PropertiesDockPanel.TabContainer.ActiveChild :=
+      MainForm.PropertiesDockPanel;
+  end;
+  // Now focus can be set
+  if MainForm.PropertiesDockPanel.Visible then
+    PropertyEditor.SetFocus;
+ end;
 
 procedure TInspectorFrame.ApplyChanges;
 begin
