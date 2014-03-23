@@ -114,6 +114,7 @@ type
     procedure EnterHandler(Sender: TObject);
     procedure SetReadOnly(Value: Boolean);
     function GetSelectedIndex: Integer;
+    procedure ReplaceModelNameWithGuid(var Attachment: string);
     procedure UpdateAttachmentPopupMenuStatus;
     procedure UpdateUIState;
     procedure SetImageList(Value: TCustomImageList);
@@ -123,6 +124,7 @@ type
     constructor Create(AOwner: TComponent); override;
     procedure Inspect;
     procedure UpdateAttachments;
+    procedure SetFocusOnAttachmentList;
     procedure OpenAttachment;
     procedure AddAttachment;
     procedure DeleteAttachment;
@@ -158,7 +160,7 @@ const
   ICON_IDX_UNKNOWN = 0;
   ICON_IDX_URL = 1;
   ICON_IDX_ELEMENT = 2;
-  ELEMENT_MARK = 'element://';
+  //ELEMENT_MARK = 'element://';
 
 ////////////////////////////////////////////////////////////////////////////////
 // TAttachmentEditor
@@ -243,19 +245,25 @@ var
   FileInfo: TSHFileInfo;
   ListItem: TListItem;
   M: PModel;
+  ElementId: string;
 begin
   ListItem := AttachmentListView.Items.Add;
   if IsElement(Value) then begin
-    M := StarUMLApplication.Project.FindByRelativePathname(Copy(Value, 11, Length(Value) - 10));
+    //M := StarUMLApplication.Project.FindByRelativePathname(Copy(Value, 11, Length(Value) - 10));
+    ElementId := Copy(Value, Length(ELEMENT_MARK)+1, Length(Value) - Length(ELEMENT_MARK));
+   // Is it GUID?
+    M := MetaModel.FindInstanceByGuid(ElementId) as PModel;
+    if M = nil then  // Not Guid, try decode it as relative path
+      M := StarUMLApplication.Project.FindByRelativePathname(ElementId);
+
     if M <> nil then
     begin
       ListItem.Caption := M.Name + ' (' + M.MetaClass.Name + ')';
-      ListItem.ImageIndex := ICON_IDX_ELEMENT;
+      Value := ELEMENT_MARK + ExtractTailPath(M.Pathname);
     end
-    else begin
-      ListItem.Caption := '(element not exist)';
-      ListItem.ImageIndex := ICON_IDX_ELEMENT;
-    end;
+    else
+      ListItem.Caption := '(element does not exist)';
+    ListItem.ImageIndex := ICON_IDX_ELEMENT;
   end
   else if IsURL(Value) then begin
     ListItem.Caption := Value;
@@ -297,6 +305,18 @@ begin
     Result := AttachmentListView.Selected.Index
   else
     Result := -1;
+end;
+
+procedure TAttachmentEditor.ReplaceModelNameWithGuid(var Attachment: string);
+var
+  M: PModel;
+begin
+  if IsElement(Attachment) then begin
+    M := StarUMLApplication.Project.FindByRelativePathname
+      (Copy(Attachment, Length(ELEMENT_MARK)+1, Length(Attachment) - Length(ELEMENT_MARK)));
+    if M <> nil then
+      Attachment := ELEMENT_MARK + M.GUID;
+  end;
 end;
 
 procedure TAttachmentEditor.SetEnabled(Value: Boolean);
@@ -394,6 +414,19 @@ begin
     ReadOnly := True;
 end;
 
+procedure TAttachmentEditor.SetFocusOnAttachmentList;
+begin
+  // Is AttachmentsDockPanel inside tab panel?
+  if (MainForm.AttachmentsDockPanel.TabContainer <> nil) then begin
+    // Set AttachmentsDockPanel active panel
+    MainForm.AttachmentsDockPanel.TabContainer.ActiveChild :=
+      MainForm.AttachmentsDockPanel;
+  end;
+  // Now focus can be set
+  if MainForm.AttachmentsDockPanel.Visible then
+    AttachmentListView.SetFocus;
+end;
+
 procedure TAttachmentEditor.OpenAttachment;
 var
   Attachment: string;
@@ -415,15 +448,23 @@ begin
 end;
 
 procedure TAttachmentEditor.AddAttachment;
+var
+  Attachment: string;
+  M: PModel;
 begin
   AttachmentItemEditForm.Location := 'http://';
   if AttachmentItemEditForm.Execute then begin
     if AttachmentListView.Visible then
       AttachmentListView.SetFocus;
-    if Assigned(FOnAttachmentAdd) then
-      FOnAttachmentAdd(Self, FTargetModel, AttachmentItemEditForm.Location);
-    AttachmentListView.ItemIndex := AttachmentListView.Items.Count - 1;
+    Attachment := AttachmentItemEditForm.Location;
+    ReplaceModelNameWithGuid(Attachment);
   end;
+
+  if Assigned(FOnAttachmentAdd) then
+      FOnAttachmentAdd(Self, FTargetModel, Attachment);
+
+  AttachmentListView.ItemIndex := AttachmentListView.Items.Count - 1;
+
 end;
 
 procedure TAttachmentEditor.DeleteAttachment;
@@ -445,7 +486,7 @@ end;
 procedure TAttachmentEditor.EditAttachment;
 var
   ListItem: TListItem;
-  N: string;
+  Attachment: string;
   I: Integer;
 begin
   if AttachmentListView.ItemIndex <> -1 then begin
@@ -453,9 +494,10 @@ begin
     ListItem := AttachmentListView.Selected;
     AttachmentItemEditForm.Location := ListItem.SubItems[0];
     if AttachmentItemEditForm.Execute then begin
-      N := AttachmentItemEditForm.Location;
+      Attachment := AttachmentItemEditForm.Location;
+      ReplaceModelNameWithGuid(Attachment);
       if Assigned(FOnAttachmentChange) then
-        FOnAttachmentChange(Self, FTargetModel, I, N);
+        FOnAttachmentChange(Self, FTargetModel, I, Attachment);
       AttachmentListView.ItemIndex := I;
     end;
   end;
