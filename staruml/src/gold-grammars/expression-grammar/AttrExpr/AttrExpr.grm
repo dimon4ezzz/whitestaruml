@@ -53,6 +53,7 @@ closeAngleBracket = {All Space}* '>'
 <type_id> ::= <id_expr>
 
 <initial_value> ::= <id_expr>
+                 | '-' <id_expr>
                  
 <nullable_id_expr> ::= <id_expr> | <>
 
