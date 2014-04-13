@@ -100,6 +100,24 @@ type
     property NameImageIdx: Integer read FNameImageIdx write FNameImageIdx;
   end;
 
+  TMultiStringItemWithNameImage = type TStringList;
+
+  TJvInspectorMultiStringItemWithNameImage = class(TJvInspectorMultilineStringItem)
+  private
+    FNameImageList: TCustomImageList;
+    FNameImageIdx: Integer;
+  protected
+    function GetDisplayValue: string; override;
+    procedure SetDisplayValue(const Value: string); override;
+
+  public
+    procedure DrawName(const ACanvas: TCanvas); override;
+    class procedure RegisterAsDefaultItem;
+    class procedure UnregisterAsDefaultItem;
+    property NameImages: TCustomImageList read FNameImageList write FNameImageList;
+    property NameImageIdx: Integer read FNameImageIdx write FNameImageIdx;
+  end;
+
   TBooleanItemWithNameImage = type Boolean;
 
   TJvInspectorBooleanItemWithNameImage = class(TJvInspectorBooleanItem)
@@ -501,6 +519,8 @@ begin
   PaintAreaContent(NameImageIdx, DisplayName, ACanvas, ARect, NameImages);
 end;
 
+//////////////////////////////////////
+// TJvInspectorStringItemWithNameImage
 
 class procedure TJvInspectorStringItemWithNameImage.RegisterAsDefaultItem;
 begin
@@ -524,6 +544,70 @@ begin
   ACanvas.FillRect(ARect);
   PaintAreaContent(NameImageIdx, DisplayName, ACanvas, ARect, NameImages);
 end;
+
+// TJvInspectorStringItemWithNameImage
+//////////////////////////////////////
+
+/////////////////////////////////////////////
+// TJvInspectorMultiStringItemWithNameImage
+
+class procedure TJvInspectorMultiStringItemWithNameImage.RegisterAsDefaultItem;
+begin
+  with TJvCustomInspectorData.ItemRegister do
+  begin
+    if IndexOf(Self) = -1 then
+      Add(TJvInspectorTypeInfoRegItem.Create(Self, TypeInfo(TMultiStringItemWithNameImage)));
+  end;
+end;
+
+class procedure TJvInspectorMultiStringItemWithNameImage.UnregisterAsDefaultItem;
+begin
+  TJvCustomInspectorData.ItemRegister.Delete(Self);
+end;
+
+procedure TJvInspectorMultiStringItemWithNameImage.DrawName(const ACanvas: TCanvas);
+var
+  ARect: TRect;
+begin
+  ARect := Rects[iprName];
+  ACanvas.FillRect(ARect);
+  PaintAreaContent(NameImageIdx, DisplayName, ACanvas, ARect, NameImages);
+end;
+
+function TJvInspectorMultiStringItemWithNameImage.GetDisplayValue: string;
+var
+  Obj: TObject;
+begin
+  Obj := TObject(Data.AsOrdinal);
+  {if not Multiline then
+  begin
+    if Obj <> nil then
+      Result := Result + '(' + Obj.ClassName + ')'
+    else
+      Result := Result + '(' + GetTypeData(Data.TypeInfo).ClassType.ClassName + ')';
+  end
+  else}
+    Result := TStrings(Obj).Text;
+    if Result = '' then
+      Result := '(empty)'
+end;
+
+procedure TJvInspectorMultiStringItemWithNameImage.SetDisplayValue(const Value: string);
+var
+  Obj: TObject;
+begin
+  if Multiline then
+  begin
+    Obj := TObject(Data.AsOrdinal);
+    TStrings(Obj).Text := Value;
+  end;
+end;
+
+
+
+// TJvInspectorMultiStringItemWithNameImage
+/////////////////////////////////////////////
+
 
 
 class procedure TJvInspectorBooleanItemWithNameImage.RegisterAsDefaultItem;

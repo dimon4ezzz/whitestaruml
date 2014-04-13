@@ -64,6 +64,7 @@ begin
   TJvInspectorTImageTextItem.RegisterAsDefaultItem;
   TJvInspectorStringItemWithNameImage.RegisterAsDefaultItem;
   TJvInspectorBooleanItemWithNameImage.RegisterAsDefaultItem;
+  TJvInspectorMultiStringItemWithNameImage.RegisterAsDefaultItem;
   FElemsHolder := TInspectorElemsHolder.Create(Inspector);
 
   Inspector.ActivePainter.HideSelectColor := clWebLightBlue;
@@ -76,6 +77,7 @@ begin
   TJvInspectorTImageTextItem.UnregisterAsDefaultItem;
   TJvInspectorStringItemWithNameImage.UnregisterAsDefaultItem;
   TJvInspectorBooleanItemWithNameImage.UnregisterAsDefaultItem;
+  TJvInspectorMultiStringItemWithNameImage.UnregisterAsDefaultItem;
 
   FreeAndNil(FElemsHolder);
   inherited;
