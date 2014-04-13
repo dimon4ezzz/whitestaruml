@@ -117,7 +117,8 @@ end;
 
 procedure TNewParameterForm.SetParameterType(Value: PParameterTypeKind);
 begin
-  TypeComboBox.Text := ParameterTypeKindToString(Value);
+  //TypeComboBox.Text := ParameterTypeKindToString(Value);
+  TypeComboBox.ItemIndex := Ord(Value);
 end;
 
 procedure TNewParameterForm.UpdateUIStates;

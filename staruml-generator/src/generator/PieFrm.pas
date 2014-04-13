@@ -54,7 +54,9 @@ uses
   NxCustomGridControl, NxCustomGrid, NxGrid, StdCtrls, cxPC,
   JvWizard, ComCtrls, ShellCtrls, ImgList, ExtCtrls, WhiteStarUML_TLB, FlatPanel,
   dxBar, Menus, ShellAPI, JvExControls, JvComponent, cxPCdxBarPopupMenu,
-  cxControls, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, cxClasses;
+  cxControls, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, cxClasses,
+  Winapi.ShlObj, cxShellCommon, cxContainer, cxEdit, cxTreeView, cxShellTreeView,
+  cxShellListView;
 
 const
   ERR_ERROR_ON_PROCESSOR = 'Error occurs for executing document translator.'
@@ -94,7 +96,6 @@ type
     MainTabSheet: TcxTabSheet;
     OutDirectorySelectionPage: TJvWizardInteriorPage;
     Label2: TLabel;
-    OutputDirShellTreeView: TShellTreeView;
     NewFolderButton: TButton;
     ExecutionPage: TJvWizardInteriorPage;
     ExecTasksGrid: TNextGrid;
@@ -155,6 +156,7 @@ type
     FormatColumn: TNxTextColumn;
     TutorialColumn: TNxImageColumn;
     ParametersColumn: TNxImageColumn;
+    OutputDirShellTreeView: TcxShellTreeView;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TasksGridDblClick(Sender: TObject);
@@ -192,6 +194,10 @@ type
     procedure ModifyTemplatePopUpMenuItemClick(Sender: TObject);
     procedure DeleteTemplatePopUpMenuItemClick(Sender: TObject);
     procedure OpenTemplatePopUpMenuItemClick(Sender: TObject);
+    procedure OutputDirShellTreeViewChange(Sender: TObject; Node: TTreeNode);
+    procedure OutputDirShellTreeViewEnter(Sender: TObject);
+  private type
+    TcxShellTreeViewAccess = class(TcxShellTreeView);
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -199,6 +205,8 @@ type
     ActiveTaskRow: Integer;
     InGenerating: Boolean;
     FStarUMLApp: IStarUMLApplication;
+    class var LastDirPIDL: PItemIDList;
+
     { initialization & finalization methods }
     procedure Initialize;
     procedure Finalize;
@@ -293,6 +301,7 @@ begin
     DirectMDAProcessor.LoadGenerationUnits;
     DirectMDAProcessor.LoadBatches;
     SelectedBatch := DirectMDAProcessor.DefaultBatch;
+
   except
     on E: Exception do begin
       ErrorMessage(Format(ERR_ERROR_ON_PROCESSOR, [E.Message]));
@@ -805,16 +814,30 @@ procedure TPieForm.CreateNewFolder;
 var
   NewFolderForm: TNewFolderForm;
   NewDir: string;
+
+  ANewFolderName, ANewFolderPath: string;
+  ANewFolderRelativePidl: PItemIDList;
+  AShellFolder: IShellFolder;
 begin
   NewFolderForm := TNewFolderForm.Create(Self);
   try
     if NewFolderForm.Execute then begin
       try
-        NewDir := OutputDirShellTreeView.Path + '\' + NewFolderForm.FolderName;
-        CreateDir(NewDir);
+        ANewFolderName := NewFolderForm.FolderName;
+        ANewFolderPath := IncludeTrailingPathDelimiter(OutputDirShellTreeView.Path) + ANewFolderName;
+        if not ForceDirectories(ANewFolderPath) then
+           raise exception.createFmt('New Folder "%s" could not be created.', [NewDir]);
       except
         ErrorMessage(ERR_CANNOT_CREATE_NEW_FOLDER);
       end;
+
+      OutputDirShellTreeView.UpdateContent;
+      Application.ProcessMessages;
+      AShellFolder := OutputDirShellTreeView.Folders[OutputDirShellTreeView.InnerTreeView.Selected.AbsoluteIndex].ShellFolder;
+      ANewFolderRelativePidl := InternalParseDisplayName(AShellFolder, ANewFolderName, TcxShellTreeViewAccess(OutputDirShellTreeView).GetViewOptions);
+      OutputDirShellTreeView.AbsolutePIDL := ConcatenatePidls(OutputDirShellTreeView.AbsolutePIDL, ANewFolderRelativePidl);
+      OutputDirShellTreeView.SetFocus;
+
     end;
   finally
     NewFolderForm.Free;
@@ -1042,7 +1065,7 @@ end;
 
 procedure TPieForm.UpdateUIStatesOutDirectorySelectionPage;
 begin
-  if (OutputDirShellTreeView.SelectedFolder <> nil) and OutputDirShellTreeView.SelectedFolder.IsFolder then
+  if (OutputDirShellTreeView.Path <> '')  then
     OutDirectorySelectionPage.EnabledButtons := OutDirectorySelectionPage.EnabledButtons + [bkNext]
   else
     OutDirectorySelectionPage.EnabledButtons := OutDirectorySelectionPage.EnabledButtons - [bkNext];
@@ -1339,8 +1362,23 @@ end;
 procedure TPieForm.OutDirectorySelectionPageNextButtonClick(
   Sender: TObject; var Stop: Boolean);
 begin
-  DirectMDAProcessor.TargetDir := OutputDirShellTreeView.SelectedFolder.PathName;
+  DirectMDAProcessor.TargetDir := OutputDirShellTreeView.Path;
+  LastDirPIDL := OutputDirShellTreeView.AbsolutePIDL;
   // need more consideration
+end;
+
+procedure TPieForm.OutputDirShellTreeViewChange(Sender: TObject;
+  Node: TTreeNode);
+begin
+  UpdateUIStatesOutDirectorySelectionPage;
+end;
+
+procedure TPieForm.OutputDirShellTreeViewEnter(Sender: TObject);
+begin
+  if Assigned(LastDirPIDL) then begin
+    OutputDirShellTreeView.AbsolutePIDL := ConcatenatePidls(OutputDirShellTreeView.AbsolutePIDL, LastDirPIDL);
+    OutputDirShellTreeView.SetFocus;
+  end;
 end;
 
 procedure TPieForm.ExecutionPagePage(Sender: TObject);
@@ -1499,5 +1537,8 @@ procedure TPieForm.OpenTemplatePopUpMenuItemClick(Sender: TObject);
 begin
   OpenTemplate;
 end;
+
+initialization
+TPieForm.LastDirPIDL := nil;
 
 end.
