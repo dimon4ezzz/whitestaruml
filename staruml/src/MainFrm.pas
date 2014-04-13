@@ -1036,7 +1036,14 @@ end;
 procedure TMainForm.MainFormMouseWheelHandler(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
 begin
   if dxDockingController.ActiveDockControl = WorkingAreaDockPanel then begin
-    if WorkingAreaFrame.ActiveDiagramEditor <> nil then
+    // Zoom working area
+    if (ssCtrl in Shift) and not (ssAlt in Shift) then begin
+      if WheelDelta > 0 then
+        FOnViewMenuClicked(ViewZoomZoomIn) // Same as zoom in click
+      else
+        FOnViewMenuClicked(ViewZoomZoomOut) // Same as zoom out click
+    end
+    else if WorkingAreaFrame.ActiveDiagramEditor <> nil then
       WorkingAreaFrame.ActiveDiagramEditor.ScrollBy(0, -(WheelDelta div DEFAULT_WHEEL_DIVIDER));
   end;
 end;

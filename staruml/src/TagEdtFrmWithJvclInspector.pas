@@ -15,6 +15,8 @@ type
     procedure InspectorItemEdit(Sender: TJvCustomInspector;
       Item: TJvCustomInspectorItem; var DisplayStr: string);
     procedure InspectorItemSelected(Sender: TObject);
+    procedure InspectorItemValueChanged(Sender: TObject;
+      Item: TJvCustomInspectorItem);
   private
     { Private declarations }
   public
@@ -45,10 +47,14 @@ type
       : TJvInspectorElemBase;
     function SetUpTextButtonRow(SuperNode: TJvInspectorCustomCategoryItem;
       TD: PTagDefinition; ImageIndex: Integer): TJvInspectorElemBase;
+    function SetUpModifiableTextButtonRow(SuperNode: TJvInspectorCustomCategoryItem;
+      TD: PTagDefinition; ImageIndex: Integer): TJvInspectorElemBase;
     function SetUpCheckRow(SuperNode: TJvInspectorCustomCategoryItem;
       TD: PTagDefinition; ImageIndex: Integer): TJvInspectorElemBase;
     function SetUpChoiceRow(SuperNode: TJvInspectorCustomCategoryItem;
       TD: PTagDefinition; ImageIndex: Integer): TJvInspectorElemBase;
+
+    procedure MultiLineTextChanged(NewText: string);
 
     // Event handlers
     procedure InspectorEdited(Sender: TObject);
@@ -219,7 +225,10 @@ begin
       tkBoolean:
         SetUpCheckRow(CategoryNode, TD, 0);
       tkString:
-        SetUpTextRow(CategoryNode, TD, 0);
+        if TD.Lock then
+          SetUpTextRow(CategoryNode, TD, 0)
+        else
+          SetUpTextButtonRow(CategoryNode, TD, 0);
       tkEnumeration:
         SetUpChoiceRow(CategoryNode, TD, 2);
       tkReference:
@@ -238,30 +247,60 @@ function PTagDefinitionSetJvclInspector.SetUpTextRow
   (SuperNode: TJvInspectorCustomCategoryItem; TD: PTagDefinition;
   ImageIndex: Integer; AFlags: TInspectorItemFlags = []): TJvInspectorElemBase;
 begin
-  Result := TJvInspectorElem<TStringItemWithNameImage>.CreateElem
-    (SuperNode, TagTypeToStr(TD.TagType));
+  if TD.Lock then
+    Result := TJvInspectorElem<TStringItemWithNameImage>.CreateElem
+      (SuperNode, TagTypeToStr(TD.TagType))
+  else
+    Result := TJvInspectorElem<TMultiStringItemWithNameImage>.CreateElem
+      (SuperNode, TagTypeToStr(TD.TagType));
   if Result <> nil then
+  with Result.Item do
   begin
     FElemsHolder.AddElem(Result);
-    with Result.Item do
     begin
       Flags := Flags + AFlags;
       DisplayName := TD.Name;
-      Data.AsString := TD.DefaultValue;
+
+      if Result.Item is TJvInspectorStringItemWithNameImage then begin
+        Data.AsString := TD.DefaultValue;
+        with Result.Item as TJvInspectorStringItemWithNameImage do begin
+          NameImages := Form.RowImageList;
+          if TD.Lock then
+            NameImageIdx := 1
+          else
+            NameImageIdx := ImageIndex;
+        end;
+      end
+      else
+        with Result.Item as TJvInspectorMultiStringItemWithNameImage do begin
+          NewString := TD.DefaultValue;
+          OnTextModified := MultiLineTextChanged;
+          NameImages := Form.RowImageList;
+          if TD.Lock then
+            NameImageIdx := 1
+          else
+            NameImageIdx := ImageIndex;
+        end;
+
+
+
+      end;
+
+
+
       ReadOnly := TD.Lock or FReadOnly;
       if (not ReadOnly) then
         OnValueChanged := InspectorEdited;
     end;
 
-    with Result.Item as TJvInspectorStringItemWithNameImage do
+    {with Result.Item as TJvInspectorStringItemWithNameImage do
     begin
       NameImages := Form.RowImageList;
       if TD.Lock then
         NameImageIdx := 1
       else
         NameImageIdx := ImageIndex;
-    end;
-  end;
+    end;}
 end;
 
 function PTagDefinitionSetJvclInspector.SetUpTextButtonRow
@@ -270,6 +309,13 @@ function PTagDefinitionSetJvclInspector.SetUpTextButtonRow
 begin
   Result := SetUpTextRow(SuperNode, TD, ImageIndex, [iifEditButton,
     iifEditFixed]);
+end;
+
+function PTagDefinitionSetJvclInspector.SetUpModifiableTextButtonRow
+  (SuperNode: TJvInspectorCustomCategoryItem;
+  TD: PTagDefinition; ImageIndex: Integer): TJvInspectorElemBase;
+begin
+  Result := SetUpTextRow(SuperNode, TD, ImageIndex, [iifEditButton]);
 end;
 
 function PTagDefinitionSetJvclInspector.SetUpCheckRow
@@ -357,8 +403,13 @@ begin
             Row.Item.Data.AsString := FModel.QueryDataTaggedValue(Profile.Name,
               T.TagDefinitionSet.Name, T.Name);
           tkString:
-            Row.Item.Data.AsString := FModel.QueryDataTaggedValue(Profile.Name,
-              T.TagDefinitionSet.Name, T.Name);
+            if Row.Item is TJvInspectorMultiStringItemWithNameImage then
+              (Row.Item as TJvInspectorMultiStringItemWithNameImage).NewString :=
+                FModel.QueryDataTaggedValue(Profile.Name,T.TagDefinitionSet.Name, T.Name)
+            else
+              Row.Item.Data.AsString := FModel.QueryDataTaggedValue(Profile.Name,
+                T.TagDefinitionSet.Name, T.Name);
+
           tkReference:
             if (TV <> nil) and (TV.ReferenceValueCount > 0) then
               Row.Item.Data.AsString := TV.ReferenceValues[0].Name
@@ -425,6 +476,20 @@ begin
   FElemsHolder.EmptyElemList;
 end;
 
+procedure PTagDefinitionSetJvclInspector.MultiLineTextChanged(NewText: string);
+var
+  Row: TJvCustomInspectorItem;
+  T: PTagDefinition;
+begin
+  Row := Form.Inspector.Selected;
+  T := GetTagDefinition(Row);
+
+  if Assigned(FOnDataTaggedValueChange) then
+    FOnDataTaggedValueChange(Self, FModel, Profile.Name,
+      T.TagDefinitionSet.Name, T.Name, NewText);
+
+end;
+
 /// /////////////////////////////////////////////////////////////////////////////
 // TTaggedValueEditorFormWithJvclInspector
 
@@ -449,6 +514,31 @@ begin
   inherited;
   if Assigned(TagDefinitionSetInspector.OnInspectorChange) then
     TagDefinitionSetInspector.OnInspectorChange(Self);
+end;
+
+procedure TTaggedValueEditorFormWithJvclInspector.InspectorItemValueChanged(
+  Sender: TObject; Item: TJvCustomInspectorItem);
+var
+  MultiStringItem: TJvInspectorMultiStringItemWithNameImage;
+  Text: string;
+  Obj: TObject;
+begin
+  inherited;
+  if Item is TJvInspectorMultiStringItemWithNameImage then begin
+    MultiStringItem := Item as TJvInspectorMultiStringItemWithNameImage;
+    Obj := TObject(MultiStringItem.Data.AsOrdinal);
+    Text := TStrings(Obj).Text;
+    Text := MultiStringItem.DisplayValue;
+  end;
+
+  {T := Inspector.GetTagDefinition(Item);
+
+  if Assigned(FOnDataTaggedValueChange) then
+    FOnDataTaggedValueChange(Self, FModel, Profile.Name,
+      T.TagDefinitionSet.Name, T.Name, NewText);
+  end;}
+
+//
 end;
 
 end.

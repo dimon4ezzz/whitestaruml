@@ -4527,6 +4527,7 @@ begin
     FormatAlignmentCenter.Enabled := False;
     FormatAlignmentSpaceEvenlyHorizontally.Enabled := False;
     FormatAlignmentSpaceEvenlyVertically.Enabled := False;
+    V := nil;
     // Determining enables and checks
     for I := 0 to StarUMLApplication.SelectedViewCount - 1 do
     begin
@@ -4602,6 +4603,8 @@ begin
     FormatLineStyle.Enabled := ELine;
     FormatLineStyleRectilinear.Enabled := ELine;
     FormatLineStyleOblique.Enabled := ELine;
+    if Assigned(V) then
+      FormatFillColor.Enabled := V.ClassType <> PUMLTextView; // TextView has no fill
     FormatStereotypeDisplay.Enabled := EStereo;
     FormatStereotypeDisplayNone.Enabled := EStereo;
     FormatStereotypeDisplayText.Enabled := EStereo;
