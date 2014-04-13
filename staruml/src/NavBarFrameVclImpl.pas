@@ -821,13 +821,13 @@ end;
 procedure TPaletteNavBarFrameVclImpl.SetLookAndFeel
   (ALookAndFeelManager: TLookAndFeelManager);
 var
-  GroupCollectionItem: TCollectionItem;
+  NavBarGroup: TNavBarGroup;
 begin
   FLookAndFeelManager := ALookAndFeelManager;
   PaletteNavBar.Color := ALookAndFeelManager.WindowLightColor;
 
-  for GroupCollectionItem in PaletteNavBar.Categories do
-    AssignLookAndFeel(GroupCollectionItem as TButtonCategory);
+  for NavBarGroup in Groups do
+    AssignLookAndFeel((NavBarGroup as TNavBarGroupVclImpl).FNavBarGroup);
 
 end;
 
