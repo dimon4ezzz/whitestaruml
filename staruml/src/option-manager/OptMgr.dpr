@@ -60,6 +60,11 @@ uses
   OptionDialogFrmWithJvclInspector in 'OptionDialogFrmWithJvclInspector.pas' {OptionDialogFormWithJvclInspector};
   //OptionRowsJvclImpl in 'OptionRowsJvclImpl.pas';
   //OptionRowsBase in 'OptionRowsBase.pas';
+  
+{$IFDEF RELEASE}
+{$WEAKLINKRTTI ON}
+{$RTTI EXPLICIT METHODS([]) PROPERTIES([]) FIELDS([])}
+{$ENDIF RELEASE}
 
 exports
   DllGetClassObject,
