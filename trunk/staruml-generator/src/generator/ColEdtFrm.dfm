@@ -23,8 +23,6 @@ object CollectionEditorForm: TCollectionEditorForm
     ActivePage = CollectionTabSheet
     TabOrder = 2
     object CollectionTabSheet: TTabSheet
-      ExplicitTop = 24
-      ExplicitHeight = 154
       object TagColToolBar: TToolBar
         Left = 0
         Top = 0
@@ -35,11 +33,13 @@ object CollectionEditorForm: TCollectionEditorForm
         ButtonHeight = 23
         Caption = 'TagColToolBar'
         Images = ColImageList
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 0
-        ExplicitHeight = 154
         object AddButton: TToolButton
           Left = 0
           Top = 0
+          Hint = 'Add'
           Caption = 'AddButton'
           ImageIndex = 0
           Wrap = True
@@ -48,6 +48,7 @@ object CollectionEditorForm: TCollectionEditorForm
         object DeleteButton: TToolButton
           Left = 0
           Top = 23
+          Hint = 'Delete'
           Caption = 'DeleteButton'
           ImageIndex = 1
           Wrap = True
@@ -56,6 +57,7 @@ object CollectionEditorForm: TCollectionEditorForm
         object MoveUpButton: TToolButton
           Left = 0
           Top = 46
+          Hint = 'Up'
           Caption = 'MoveUpButton'
           ImageIndex = 2
           Wrap = True
@@ -64,6 +66,7 @@ object CollectionEditorForm: TCollectionEditorForm
         object MoveDownButton: TToolButton
           Left = 0
           Top = 69
+          Hint = 'Down'
           Caption = 'MoveDownButton'
           ImageIndex = 3
           Visible = False
@@ -90,7 +93,6 @@ object CollectionEditorForm: TCollectionEditorForm
         TabOrder = 1
         ViewStyle = vsReport
         OnChange = CollectionListViewChange
-        ExplicitHeight = 154
       end
     end
   end
@@ -118,7 +120,7 @@ object CollectionEditorForm: TCollectionEditorForm
     Left = 8
     Top = 192
     Bitmap = {
-      494C010104000900080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

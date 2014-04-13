@@ -87,7 +87,7 @@ object TaskInformationForm: TTaskInformationForm
     Top = 88
     Width = 437
     Height = 337
-    ActivePage = PreviewTabSheet
+    ActivePage = ParameterTabSheet
     TabOrder = 2
     object PropertyTabSheet: TTabSheet
       Caption = 'Properties'
@@ -285,22 +285,22 @@ object TaskInformationForm: TTaskInformationForm
       end
     end
     object PreviewTabSheet: TTabSheet
-      Caption = #48120#47532#48372#44592' '#48143' '#44288#47144' '#54028#51068
+      Caption = 'Preview'
       ImageIndex = 1
       TabVisible = False
       object PreviewLabel: TLabel
-        Left = 8
-        Top = 104
-        Width = 52
+        Left = 3
+        Top = 100
+        Width = 47
         Height = 14
-        Caption = #48120#47532#48372#44592':'
+        Caption = 'Preview:'
       end
       object AttachFileLabel: TLabel
         Left = 8
         Top = 8
-        Width = 56
+        Width = 76
         Height = 14
-        Caption = #44288#47144' '#54028#51068':'
+        Caption = 'Attached File:'
       end
       object PreviewScrollBox: TScrollBox
         Left = 7

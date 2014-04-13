@@ -546,6 +546,8 @@ begin
 
   try
     FGenerationUnit.Date := DateToStr(Date);
+    ParametersRow.Value := GetParametersString;
+    AttachFilesRow.Value := GetAttachFilesString;
     Accepted := (ShowModal = mrOk);
   except
     Accepted := False;
