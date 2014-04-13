@@ -22,7 +22,7 @@
     </PARAMETER>
     <PARAMETER>
       <NAME>OutputFile</NAME>
-      <TYPE>STRING</TYPE>
+      <TYPE>FILENAME</TYPE>
       <VALUE>$TARGET$\Out.txt</VALUE>
     </PARAMETER>
     <PARAMETER>

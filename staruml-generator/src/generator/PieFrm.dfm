@@ -77,8 +77,6 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Height = 12
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Image1: TImage
         Left = 0
         Top = 70
@@ -447,10 +445,6 @@ object PieForm: TPieForm
         ClientRectTop = 25
         object MainTabSheet: TcxTabSheet
           Caption = 'List of templates'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object GenerationUnitDescLabel: TLabel
             Left = 8
             Top = 274
@@ -1153,29 +1147,32 @@ object PieForm: TPieForm
           00002701FFFF030000000000}
         Stretch = True
       end
-      object OutputDirShellTreeView: TShellTreeView
-        Left = 8
-        Top = 104
-        Width = 705
-        Height = 305
-        ObjectTypes = [otFolders]
-        Root = 'rfDesktop'
-        UseShellImages = True
-        AutoRefresh = True
-        Indent = 19
-        ParentColor = False
-        RightClickSelect = True
-        ShowRoot = False
-        TabOrder = 0
-      end
       object NewFolderButton: TButton
-        Left = 16
+        Left = 3
         Top = 422
         Width = 100
         Height = 23
         Caption = 'New Folder...'
         TabOrder = 1
         OnClick = NewFolderButtonClick
+      end
+      object OutputDirShellTreeView: TcxShellTreeView
+        Left = 8
+        Top = 108
+        Width = 710
+        Height = 308
+        HideSelection = False
+        Indent = 19
+        Options.ShowNonFolders = False
+        RightClickSelect = True
+        Style.BorderStyle = cbsNone
+        Style.LookAndFeel.Kind = lfStandard
+        StyleDisabled.LookAndFeel.Kind = lfStandard
+        StyleFocused.LookAndFeel.Kind = lfStandard
+        StyleHot.LookAndFeel.Kind = lfStandard
+        TabOrder = 0
+        OnChange = OutputDirShellTreeViewChange
+        OnEnter = OutputDirShellTreeViewEnter
       end
     end
     object ExecutionPage: TJvWizardInteriorPage

@@ -4,7 +4,7 @@ object ParameterDefinitionForm: TParameterDefinitionForm
   BorderStyle = bsDialog
   Caption = 'Parameters'
   ClientHeight = 224
-  ClientWidth = 313
+  ClientWidth = 369
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object ParameterDefinitionForm: TParameterDefinitionForm
   object CollectionPageControl: TPageControl
     Left = 1
     Top = 3
-    Width = 309
+    Width = 360
     Height = 182
     ActivePage = CollectionTabSheet
     Font.Charset = DEFAULT_CHARSET
@@ -30,8 +30,7 @@ object ParameterDefinitionForm: TParameterDefinitionForm
     TabOrder = 0
     object CollectionTabSheet: TTabSheet
       Caption = 'Parameter'
-      ExplicitTop = 24
-      ExplicitHeight = 154
+      ExplicitWidth = 301
       object TagColToolBar: TToolBar
         Left = 0
         Top = 0
@@ -42,11 +41,13 @@ object ParameterDefinitionForm: TParameterDefinitionForm
         ButtonHeight = 23
         Caption = 'TagColToolBar'
         Images = ColImageList
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 0
-        ExplicitHeight = 154
         object AddButton: TToolButton
           Left = 0
           Top = 0
+          Hint = 'Add'
           Caption = 'AddButton'
           ImageIndex = 0
           Wrap = True
@@ -55,6 +56,7 @@ object ParameterDefinitionForm: TParameterDefinitionForm
         object DeleteButton: TToolButton
           Left = 0
           Top = 23
+          Hint = 'Delete'
           Caption = 'DeleteButton'
           ImageIndex = 1
           Wrap = True
@@ -63,6 +65,7 @@ object ParameterDefinitionForm: TParameterDefinitionForm
         object MoveUpButton: TToolButton
           Left = 0
           Top = 46
+          Hint = 'Up'
           Caption = 'MoveUpButton'
           ImageIndex = 2
           Wrap = True
@@ -71,6 +74,7 @@ object ParameterDefinitionForm: TParameterDefinitionForm
         object MoveDownButton: TToolButton
           Left = 0
           Top = 69
+          Hint = 'Down'
           Caption = 'MoveDownButton'
           ImageIndex = 3
           Visible = False
@@ -79,7 +83,7 @@ object ParameterDefinitionForm: TParameterDefinitionForm
       object ParametersListView: TListView
         Left = 23
         Top = 0
-        Width = 278
+        Width = 329
         Height = 153
         Align = alClient
         BevelInner = bvNone
@@ -110,14 +114,13 @@ object ParameterDefinitionForm: TParameterDefinitionForm
         ViewStyle = vsReport
         OnChange = ParametersListViewChange
         OnDblClick = ParametersListViewDblClick
-        ExplicitLeft = 29
-        ExplicitTop = 7
+        ExplicitWidth = 278
       end
     end
   end
   object CloseButton: TButton
-    Left = 208
-    Top = 194
+    Left = 271
+    Top = 193
     Width = 90
     Height = 23
     Cancel = True
@@ -130,7 +133,7 @@ object ParameterDefinitionForm: TParameterDefinitionForm
     Left = 8
     Top = 192
     Bitmap = {
-      494C010104000900080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
