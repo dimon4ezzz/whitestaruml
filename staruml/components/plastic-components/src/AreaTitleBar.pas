@@ -88,7 +88,7 @@ procedure Register;
 implementation
 
 uses
-  SysUtils;
+  SysUtils, System.UITypes;
 
 const
   CLOSEBUTTON_SIZE = 13;
