@@ -16,6 +16,7 @@ inherited TaggedValueEditorFormWithJvclInspector: TTaggedValueEditorFormWithJvcl
       TabStop = True
       TabOrder = 2
       OnItemSelected = InspectorItemSelected
+      OnItemValueChanged = InspectorItemValueChanged
       OnItemEdit = InspectorItemEdit
     end
   end

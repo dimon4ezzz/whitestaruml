@@ -566,7 +566,7 @@ implementation
 uses
   System.Types, System.UITypes, Math,
   GraphicClasses, BasicClasses, UMLAux, ElemLstFrm, ElemSelFrm, ModelExplorerFrame,
-  NLS_StarUML, ShortenSyntaxMgr, InputBox;
+  NLS_StarUML, ShortenSyntaxMgr, InputBox, StarUMLApp;
 
 const
   NAME_EDIT_DEFAULT_WIDTH: Integer = 130;
@@ -3642,8 +3642,13 @@ end;
 procedure PFeatureQuickDialog.SetNameEditData;
 begin
   inherited;
-  if FModel is PUMLAttribute then SetAttributeNameEditData
-  else if FModel is PUMLOperation then SetOperationNameEditData
+  if FModel is PUMLAttribute then
+    SetAttributeNameEditData
+  else if FModel is PUMLOperation then
+    SetOperationNameEditData;
+
+  //StarUMLApplication.SelectModel(FModel);
+
   //else if FModel is PUMLEnumerationLiteral then SetEnumerationLiteralNameEditData
   //else if FModel is PUMLUninterpretedAction then SetActionNameEditData;
 end;

@@ -1207,10 +1207,6 @@ object MainForm: TMainForm
               inherited SelectionTextPanel: TFlatPanel
                 Width = 264
                 ExplicitWidth = 264
-                inherited SelectionText: TLabel
-                  Width = 262
-                  Height = 15
-                end
               end
             end
           end
@@ -4561,7 +4557,9 @@ object MainForm: TMainForm
         'ModelCollectionEditor'
         'ModelConstraints'
         'ModelTaggedValues'
-        'ViewSelectInModelExplorer')
+        'ViewSelectInModelExplorer'
+        'ModelProperty'
+        'ModelAttachments')
     end
     object UnitSelectedGroup: TdxBarGroup
       Items = (
