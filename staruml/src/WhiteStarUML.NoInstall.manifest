@@ -51,14 +51,6 @@
     <comClass clsid="{7425E750-948D-44B0-97D6-2698CFA4F8D0}" tlbid="{4236BF82-40CE-4D40-BD49-61ADC888A811}" description="CSharpAddInObj"></comClass>
     <typelib tlbid="{4236BF82-40CE-4D40-BD49-61ADC888A811}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
   </file>
-  <file name="WSJavaAddIn.dll" hashalg="SHA1">
-    <comClass clsid="{8725EBC0-B0CC-40FF-80CC-32FC1F02F41C}" tlbid="{220A0C57-217D-4130-9B59-2307774BDDEA}" description="JavaAddInObj"></comClass>
-    <typelib tlbid="{220A0C57-217D-4130-9B59-2307774BDDEA}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
-  </file>
-  <file name="WSJavaParser.dll" hashalg="SHA1">
-    <comClass clsid="{1FB67975-76DD-411C-9D39-DCB9EE1AAD4C}" tlbid="{638317AD-3D94-499D-945E-D0ED21ABBAD5}" description="JavaCodeParser Object"></comClass>
-    <typelib tlbid="{638317AD-3D94-499D-945E-D0ED21ABBAD5}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
-  </file>
   <file name="WSJavaAddIn15.dll" hashalg="SHA1">
     <comClass clsid="{034E2838-F3C6-4D8D-9A5A-544996B6948E}" tlbid="{0C706822-DF79-43A6-8624-5E2C58CB30FE}" description="JavaAddInObj"></comClass>
     <typelib tlbid="{0C706822-DF79-43A6-8624-5E2C58CB30FE}" resourceid="1" version="1.0" helpdir="" flags="HASDISKIMAGE"></typelib>
