@@ -12,7 +12,7 @@ unit WSJavaAddIn_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 23/02/2014 14:10:03 from Type Library described below.
+// File generated on 13/04/2014 14:45:22 from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-java\src\code\JavaAddIn (1)
@@ -22,7 +22,7 @@ unit WSJavaAddIn_TLB;
 // HelpString: WSJavaAddIn Library
 // DepndLst:
 //   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
-//   (2) v1.0 WhiteStarUML, (C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML.exe)
+//   (2) v1.0 WhiteStarUML, (C:\JS\Delphi\WhiteStarUML-NoInstall\WhiteStarUML.exe)
 // SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
