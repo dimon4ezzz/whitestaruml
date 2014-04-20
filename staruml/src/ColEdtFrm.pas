@@ -271,6 +271,10 @@ type
     procedure CollectionPageControlChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure HelpButtonClick(Sender: TObject);
+    procedure RelationsListViewColumnClick(Sender: TObject;
+      Column: TListColumn);
+    procedure RelationsListViewCompare(Sender: TObject; Item1, Item2: TListItem;
+      Data: Integer; var Compare: Integer);
   private
     FModel: PModel;
     FReadOnly: Boolean;
@@ -278,6 +282,10 @@ type
     FShowStereotype: Boolean;
     FShowVisibilityIcon: Boolean;
     FImageList: TImageList;
+
+    Descending: Boolean;
+    SortedColumn: Integer;
+
     // Event variables
     FOnCollectionItemCreate: PCollectionItemCreateEvent;
     FOnCollectionItemDelete: PCollectionItemEvent;
@@ -340,6 +348,10 @@ type
     procedure ChangeCollectionItemOrder(AOwner: PModel; ACollectionName: string; AModel: PModel; NewIdx: Integer);
     procedure SelectCollectionItem(AOwner: PModel; ACollectionName: string; AModel: PModel);
     procedure ChangeCollectionItemName(AModel: PModel; Name: string);
+
+    procedure SetListViewSortType(AListView: TListView; Column: TListColumn);
+    procedure PerformCompare(Item1,Item2: TListItem; var Compare: Integer);
+
   public
     procedure ShowCollection(AModel: PModel; ActivePage: string = '');
     procedure UpdateCollection;
@@ -1464,6 +1476,18 @@ begin
     FOnCollectionItemAdd(Self, AOwner, ACollectionName, AModel);
 end;
 
+procedure TCollectionEditorForm.RelationsListViewColumnClick(Sender: TObject;
+  Column: TListColumn);
+begin
+  SetListViewSortType(Sender as TListView, Column);
+end;
+
+procedure TCollectionEditorForm.RelationsListViewCompare(Sender: TObject; Item1,
+  Item2: TListItem; Data: Integer; var Compare: Integer);
+begin
+  PerformCompare(Item1,Item2,Compare);
+end;
+
 procedure TCollectionEditorForm.RemoveCollectionItem(AOwner: PModel; ACollectionName: string; AModel: PModel);
 begin
   if Assigned(FOnCollectionItemRemove) then
@@ -1847,12 +1871,42 @@ begin
   Close;
 end;
 
-// TCollectionEdtForm
-////////////////////////////////////////////////////////////////////////////////
 
 procedure TCollectionEditorForm.HelpButtonClick(Sender: TObject);
 begin
   ShowStarUMLHelpPage;
 end;
+
+procedure TCollectionEditorForm.SetListViewSortType(AListView: TListView; Column: TListColumn);
+begin
+{SortType parameter could have these values:
+stNone
+stData
+stText
+stBoth}
+  AListView.SortType := stNone;
+  if Column.Index <> SortedColumn then
+  begin
+    SortedColumn := Column.Index;
+    Descending := False;
+  end
+  else
+    Descending := not Descending;
+    AListView.SortType := stText;
+end;
+
+procedure TCollectionEditorForm.PerformCompare(Item1,Item2: TListItem; var Compare: Integer);
+begin
+ if SortedColumn = 0 then
+    Compare := CompareText(Item1.Caption, Item2.Caption)
+  else
+  if SortedColumn <> 0 then
+    Compare := CompareText(Item1.SubItems[SortedColumn-1], Item2.SubItems[SortedColumn-1]);
+  if Descending then
+    Compare := -Compare;
+end;
+
+// TCollectionEdtForm
+////////////////////////////////////////////////////////////////////////////////
 
 end.
