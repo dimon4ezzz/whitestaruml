@@ -28,7 +28,7 @@ object CollectionEditorForm: TCollectionEditorForm
     Top = 3
     Width = 489
     Height = 226
-    ActivePage = TriggersPage
+    ActivePage = EntryActionsPage
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
     OnChange = CollectionPageControlChange
@@ -129,10 +129,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object OperationsPage: TTabSheet
       Caption = 'Operations'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object OperationsPanel: TPanel
         Left = 0
         Top = 0
@@ -227,10 +223,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object ParametersPage: TTabSheet
       Caption = 'Parameters'
       ImageIndex = 3
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ParametersPanel: TPanel
         Left = 0
         Top = 0
@@ -325,10 +317,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object TemplateParametersPage: TTabSheet
       Caption = 'TemplateParameters'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TemplateParametersPanel: TPanel
         Left = 0
         Top = 0
@@ -423,10 +411,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object LiteralsPage: TTabSheet
       Caption = 'Literals'
       ImageIndex = 4
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object LiteralsPanel: TPanel
         Left = 0
         Top = 0
@@ -521,10 +505,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object ExtensionPointsPage: TTabSheet
       Caption = 'Extension Points'
       ImageIndex = 19
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ExtensionPointsPanel: TPanel
         Left = 0
         Top = 0
@@ -619,10 +599,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object QualifiersPage: TTabSheet
       Caption = 'Qualifiers'
       ImageIndex = 5
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object QualifiersPanel: TPanel
         Left = 0
         Top = 0
@@ -717,10 +693,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object DeployedComponentsPage: TTabSheet
       Caption = 'Deployed Components'
       ImageIndex = 6
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DeployedComponentsPanel: TPanel
         Left = 0
         Top = 0
@@ -815,10 +787,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object DeployedArtifactsPage: TTabSheet
       Caption = 'Deployed Artifacts'
       ImageIndex = 17
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DeployedArtifactsPanel: TPanel
         Left = 0
         Top = 0
@@ -913,10 +881,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object ResidentsPage: TTabSheet
       Caption = 'Residents'
       ImageIndex = 7
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ResidentsPanel: TPanel
         Left = 0
         Top = 0
@@ -1011,10 +975,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object SlotsPage: TTabSheet
       Caption = 'Slots'
       ImageIndex = 18
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SlotsPanel: TPanel
         Left = 0
         Top = 0
@@ -1109,10 +1069,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object EntryActionsPage: TTabSheet
       Caption = 'Entry Actions'
       ImageIndex = 8
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object EntryActionsPanel: TPanel
         Left = 0
         Top = 0
@@ -1207,10 +1163,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object DoActivitiesPage: TTabSheet
       Caption = 'Do Actions'
       ImageIndex = 9
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DoActivitiesPanel: TPanel
         Left = 0
         Top = 0
@@ -1305,10 +1257,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object ExitActionsPage: TTabSheet
       Caption = 'Exit Actions'
       ImageIndex = 10
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ExitActionsPanel: TPanel
         Left = 0
         Top = 0
@@ -1403,10 +1351,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object RaisedSignalsPage: TTabSheet
       Caption = 'Raised Signals'
       ImageIndex = 11
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object RaisedSignalsPanel: TPanel
         Left = 0
         Top = 0
@@ -1501,10 +1445,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object EffectsPage: TTabSheet
       Caption = 'Effects'
       ImageIndex = 12
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object EffectsPanel: TPanel
         Left = 0
         Top = 0
@@ -1720,10 +1660,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object End1QualifiersPage: TTabSheet
       Caption = 'End1 Qualifiers'
       ImageIndex = 14
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object End1QualifiersPanel: TPanel
         Left = 0
         Top = 0
@@ -1818,10 +1754,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object End2QualifiersPage: TTabSheet
       Caption = 'End2 Qualifiers'
       ImageIndex = 15
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object End2QualifiersPanel: TPanel
         Left = 0
         Top = 0
@@ -1916,10 +1848,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object RelationsPage: TTabSheet
       Caption = 'Relations'
       ImageIndex = 16
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object RelationsPanel: TPanel
         Left = 0
         Top = 0
@@ -1957,6 +1885,8 @@ object CollectionEditorForm: TCollectionEditorForm
           PopupMenu = CollectionEditorPopupMenu
           TabOrder = 0
           ViewStyle = vsReport
+          OnColumnClick = RelationsListViewColumnClick
+          OnCompare = RelationsListViewCompare
           OnContextPopup = HandleListViewContextPopup
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
