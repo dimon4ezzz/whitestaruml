@@ -66,6 +66,8 @@ object ModelExplorerPanel: TModelExplorerPanel
     ButtonWidth = 25
     Caption = 'ModelExplorerToolbar'
     Images = ModelExplorerImageList
+    ParentShowHint = False
+    ShowHint = True
     TabOrder = 1
     object SortByStorageOrderItem: TToolButton
       Left = 0
