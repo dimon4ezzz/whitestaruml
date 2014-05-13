@@ -11,6 +11,8 @@ uses
 type
   TOptionDialogFormWithJvclInspector = class(TOptionDialogForm)
     OptionInspector: TJvInspector;
+    procedure OptionInspectorItemValueChanged(Sender: TObject;
+      Item: TJvCustomInspectorItem);
   private
     { Private declarations }
 
@@ -297,6 +299,15 @@ begin
   inherited;
   OptionRow := FindOptionRow(Item);
   OptionRow.RowButtonClick(DisplayStr);
+end;
+
+procedure TOptionDialogFormWithJvclInspector.OptionInspectorItemValueChanged(
+  Sender: TObject; Item: TJvCustomInspectorItem);
+begin
+  inherited;
+   if (Item is TJvInspectorMultilineStringItem) then begin
+    (Item as TJvInspectorMultilineStringItem).InvokeOnTextModifiedInlineHandler;
+  end;
 end;
 
 end.
