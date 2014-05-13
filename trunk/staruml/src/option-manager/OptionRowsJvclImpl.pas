@@ -312,7 +312,8 @@ begin
       //RawData := TStringList.Create;
       //RawData.Text := FOptionItem.Value;
       NewString := FOptionItem.Value;
-      OnTextModified := TextChanged;
+      OnTextModifiedWithEditor := TextChanged;
+      OnTextModifiedInline := TextChanged;
     end;
   end;
   DrawInspector;

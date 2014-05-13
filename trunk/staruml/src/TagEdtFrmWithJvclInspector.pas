@@ -274,7 +274,8 @@ begin
       else
         with Result.Item as TJvInspectorMultiStringItemWithNameImage do begin
           NewString := TD.DefaultValue;
-          OnTextModified := MultiLineTextChanged;
+          OnTextModifiedWithEditor := MultiLineTextChanged;
+          OnTextModifiedInline := MultiLineTextChanged;
           NameImages := Form.RowImageList;
           if TD.Lock then
             NameImageIdx := 1
@@ -307,8 +308,8 @@ function PTagDefinitionSetJvclInspector.SetUpTextButtonRow
   (SuperNode: TJvInspectorCustomCategoryItem; TD: PTagDefinition;
   ImageIndex: Integer): TJvInspectorElemBase;
 begin
-  Result := SetUpTextRow(SuperNode, TD, ImageIndex, [iifEditButton,
-    iifEditFixed]);
+  Result := SetUpTextRow(SuperNode, TD, ImageIndex,
+  [iifEditButton{, iifEditFixed}]);
 end;
 
 function PTagDefinitionSetJvclInspector.SetUpModifiableTextButtonRow
@@ -518,27 +519,16 @@ end;
 
 procedure TTaggedValueEditorFormWithJvclInspector.InspectorItemValueChanged(
   Sender: TObject; Item: TJvCustomInspectorItem);
-var
-  MultiStringItem: TJvInspectorMultiStringItemWithNameImage;
-  Text: string;
-  Obj: TObject;
 begin
   inherited;
-  if Item is TJvInspectorMultiStringItemWithNameImage then begin
-    MultiStringItem := Item as TJvInspectorMultiStringItemWithNameImage;
-    Obj := TObject(MultiStringItem.Data.AsOrdinal);
-    Text := TStrings(Obj).Text;
-    Text := MultiStringItem.DisplayValue;
+
+  if (Item is TJvInspectorMultilineStringItem) then begin
+    (Item as TJvInspectorMultilineStringItem).InvokeOnTextModifiedInlineHandler;
   end;
 
-  {T := Inspector.GetTagDefinition(Item);
 
-  if Assigned(FOnDataTaggedValueChange) then
-    FOnDataTaggedValueChange(Self, FModel, Profile.Name,
-      T.TagDefinitionSet.Name, T.Name, NewText);
-  end;}
-
-//
 end;
 
 end.
+
+

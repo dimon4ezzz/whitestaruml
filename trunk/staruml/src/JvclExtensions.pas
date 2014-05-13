@@ -31,21 +31,30 @@ type
   TJvInspectorMultilineStringItem = class(TJvInspectorTStringsItem)
   public type
     TStringModifiedEvent = procedure(ModifiedString: String) of object;
+  protected
+    const EmptyLineDisplayText = '(empty)';
+    const MultiLineDisplayText = '(multiline)';
+
   private
     FLongLine : String;
     FMultilineText : TStringList;
-    FOnTextModified: TStringModifiedEvent;
+    FOnTextModifiedWithEditor: TStringModifiedEvent;
+    FOnTextModifiedInline: TStringModifiedEvent;
     procedure SetNewString(NewString: string);
   protected
     procedure Edit; override;
+    function GetDisplayValue: string; override;
+    procedure SetDisplayValue(const Value: string); override;
   public
     constructor Create(const AParent: TJvCustomInspectorItem;
     const AData: TJvCustomInspectorData); override;
     destructor Destroy; override;
+    procedure InvokeOnTextModifiedInlineHandler();
     class procedure RegisterAsDefaultItem;
     class procedure UnregisterAsDefaultItem;
     property NewString: string write SetNewString;
-    property OnTextModified: TStringModifiedEvent read FOnTextModified write FOnTextModified;
+    property OnTextModifiedWithEditor: TStringModifiedEvent read FOnTextModifiedWithEditor write FOnTextModifiedWithEditor;
+    property OnTextModifiedInline: TStringModifiedEvent read FOnTextModifiedInline write FOnTextModifiedInline;
   end;
 
 
@@ -106,10 +115,6 @@ type
   private
     FNameImageList: TCustomImageList;
     FNameImageIdx: Integer;
-  protected
-    function GetDisplayValue: string; override;
-    procedure SetDisplayValue(const Value: string); override;
-
   public
     procedure DrawName(const ACanvas: TCanvas); override;
     class procedure RegisterAsDefaultItem;
@@ -296,6 +301,24 @@ begin
   TJvCustomInspectorData.ItemRegister.Delete(Self);
 end;
 
+procedure TJvInspectorMultilineStringItem.SetDisplayValue(const Value: string);
+begin
+  if not (iifEditFixed in Flags) then begin
+    case FMultilineText.Count of
+      0:
+          FMultilineText.Add(Value);
+      1:
+          begin
+            if (Value = '') then
+              FMultilineText.Delete(0)
+            else
+              FMultilineText[0] := Value;
+          end;
+    end;
+  end;
+end;
+
+
 procedure TJvInspectorMultilineStringItem.SetNewString(NewString: string);
 begin
   FLongLine := NewString;
@@ -303,15 +326,54 @@ begin
 end;
 
 procedure TJvInspectorMultilineStringItem.Edit;
+var
+  SelectedIdx: Integer;
 begin
-  inherited;
+  // Line was updated before launching dialog
+  if (FMultilineText.Count = 0)
+    and (EditCtrl.Text <> EmptyLineDisplayText) and (EditCtrl.Text <> '') then
+    FMultilineText.Add(EditCtrl.Text)
+  else if (FMultilineText.Count = 1) and (EditCtrl.Text <> FMultilineText[0]) then
+    FMultilineText[0] := EditCtrl.Text;
+
+  inherited; // Process text input dialog
+
   if FMultilineText.Text <> FLongLine then begin
     FLongLine := FMultilineText.Text;
-    if Assigned(FOnTextModified) then
-      FOnTextModified(FLongLine);
+    if Assigned(FOnTextModifiedWithEditor) then
+      FOnTextModifiedWithEditor(FLongLine);
+
+    // Update flags to reflect multiline state
+    if FMultilineText.Count > 1 then
+      Flags := Flags + [iifEditFixed]
+    else
+      Flags := Flags - [iifEditFixed];
+
+    EditCtrl.Text := GetDisplayValue; // Update text in input control
+
+    // Force refresh of item flags with deselecting/reselecting current item
+    SelectedIdx := (GetInspector() as TJvInspector).SelectedIndex;
+    (GetInspector() as TJvInspector).SelectedIndex := -1; // Dummy selection
+    (GetInspector() as TJvInspector).SelectedIndex := SelectedIdx;
 
   end;
 
+end;
+
+function TJvInspectorMultilineStringItem.GetDisplayValue: string;
+begin
+  case FMultilineText.Count of
+    0: Result := EmptyLineDisplayText;
+    1: Result := FMultilineText[0];
+    else
+      Result := MultiLineDisplayText;
+  end;
+end;
+
+procedure TJvInspectorMultilineStringItem.InvokeOnTextModifiedInlineHandler;
+begin
+  if Assigned(FOnTextModifiedWithEditor) then
+      FOnTextModifiedWithEditor(FMultilineText.Text);
 end;
 
 procedure PaintAreaContent(const ImgNum: Integer; const ImgName: string;
@@ -574,34 +636,8 @@ begin
   PaintAreaContent(NameImageIdx, DisplayName, ACanvas, ARect, NameImages);
 end;
 
-function TJvInspectorMultiStringItemWithNameImage.GetDisplayValue: string;
-var
-  Obj: TObject;
-begin
-  Obj := TObject(Data.AsOrdinal);
-  {if not Multiline then
-  begin
-    if Obj <> nil then
-      Result := Result + '(' + Obj.ClassName + ')'
-    else
-      Result := Result + '(' + GetTypeData(Data.TypeInfo).ClassType.ClassName + ')';
-  end
-  else}
-    Result := TStrings(Obj).Text;
-    if Result = '' then
-      Result := '(empty)'
-end;
 
-procedure TJvInspectorMultiStringItemWithNameImage.SetDisplayValue(const Value: string);
-var
-  Obj: TObject;
-begin
-  if Multiline then
-  begin
-    Obj := TObject(Data.AsOrdinal);
-    TStrings(Obj).Text := Value;
-  end;
-end;
+
 
 
 

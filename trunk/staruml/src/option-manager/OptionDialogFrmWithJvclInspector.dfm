@@ -13,5 +13,6 @@ inherited OptionDialogFormWithJvclInspector: TOptionDialogFormWithJvclInspector
     ItemHeight = 16
     TabStop = True
     TabOrder = 6
+    OnItemValueChanged = OptionInspectorItemValueChanged
   end
 end
