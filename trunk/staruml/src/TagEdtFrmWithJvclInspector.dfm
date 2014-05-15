@@ -1,8 +1,6 @@
 inherited TaggedValueEditorFormWithJvclInspector: TTaggedValueEditorFormWithJvclInspector
   Caption = 'TaggedValueEditorForm1'
   OnCreate = FormCreate
-  ExplicitWidth = 415
-  ExplicitHeight = 415
   PixelsPerInch = 96
   TextHeight = 13
   inherited TaggedValueTabControl: TTabControl
@@ -11,6 +9,7 @@ inherited TaggedValueEditorFormWithJvclInspector: TTaggedValueEditorFormWithJvcl
       Top = 94
       Width = 380
       Height = 204
+      Anchors = [akLeft, akTop, akRight, akBottom]
       Divider = 150
       ItemHeight = 16
       TabStop = True
