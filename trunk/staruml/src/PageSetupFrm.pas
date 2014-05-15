@@ -96,6 +96,7 @@ type
     procedure OKButtonClick(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);
     procedure HelpButtonClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     //FPrinterResol: Integer;    // Printer's resolution
     FDeviceWidth: Integer;       // Paper's real width
@@ -732,6 +733,14 @@ begin
   end;
   NLSManager.SetFile(ExtractFilePath(Application.ExeName) + 'NLS\PAGESET.LNG');
   NLSManager.TranslateComponent(Self, []);
+end;
+
+procedure TPageSetupForm.FormShow(Sender: TObject);
+begin
+  // Fix index value getting lost
+  if BorderWidthCombo.ItemIndex < 0 then
+    BorderWidthCombo.ItemIndex := 0;
+
 end;
 
 procedure TPageSetupForm.HeaderRButtonClick(Sender: TObject);
