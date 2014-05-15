@@ -14,6 +14,7 @@ object PageSetupForm: TPageSetupForm
   OldCreateOrder = False
   Position = poScreenCenter
   OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object OptionGroupBox: TGroupBox
@@ -221,7 +222,9 @@ object PageSetupForm: TPageSetupForm
       Width = 62
       Height = 21
       Style = csDropDownList
+      ItemIndex = 0
       TabOrder = 4
+      Text = '1'
       Items.Strings = (
         '1'
         '2'

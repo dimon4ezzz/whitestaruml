@@ -641,7 +641,7 @@ begin
 
   with PageSetupForm do begin
     if ProjectName then begin
-      if FProject.Name <> '' then Str := '    ' + FProject.Name
+      if FProject.Title <> '' then Str := '    ' + FProject.Title
       else Str := '    ' + TXT_UNTITILED_PRJ;
     end;
     if DiagramName then Str := Str + '   ' + AModel.Pathname;
