@@ -92,6 +92,7 @@ type
     procedure FinalizeEditingCurrentModel; virtual; abstract;
     function IsDefaultValue(ATagDefinition: PTagDefinition): Boolean;
     procedure SetModel(Value: PExtensibleModel);
+    procedure SetTagDefinitionSet(Value: PTagDefinitionSet);
 
     // event handlers
     procedure HandleAddCollectionTaggedValue(Sender: TObject; AModel: PExtensibleModel; AProfileName: string;
@@ -114,7 +115,7 @@ type
     procedure SetFocusedTaggedValueAsDefault; virtual; abstract;
 
     property Model: PExtensibleModel read FModel write SetModel;
-    property TagDefinitionSet: PTagDefinitionSet read FTagDefinitionSet write FTagDefinitionSet;
+    property TagDefinitionSet: PTagDefinitionSet read FTagDefinitionSet write SetTagDefinitionSet;
     property Profile: PProfile read GetProfile;
     property FocusedTagDefinition: PTagDefinition read GetFocusedTagDefinition;
     property ReadOnly: Boolean read FReadOnly write SetReadOnly;
@@ -254,6 +255,12 @@ begin
   TaggedValueCollectionEditorForm.ReadOnly := FReadOnly;
 end;
 
+procedure PTagDefinitionSetInspector.SetTagDefinitionSet(
+  Value: PTagDefinitionSet);
+begin
+  FTagDefinitionSet := Value;
+end;
+
 function PTagDefinitionSetInspector.GetProfile: PProfile;
 begin
   if FTagDefinitionSet = nil then
@@ -364,6 +371,11 @@ begin
       TagDefinitionSetComboBox.Items.AddObject(AProfile.TagDefinitionSets[I].Name,
         AProfile.TagDefinitionSets[I]);
   if TagDefinitionSetComboBox.Items.Count > 0 then begin
+
+    // Finish any operation related to the previously selected tag tab
+    if Assigned(TagDefinitionSetInspector.TagDefinitionSet) then
+      TagDefinitionSetInspector.ClearRows; // This forces finalizing old rows
+
     Idx := TagDefinitionSetComboBox.Items.IndexOf(DefaultTagDefinitionSetName);
     if (DefaultTagDefinitionSetName <> '') and (Idx <> -1) then begin
       TagDefinitionSetComboBox.ItemIndex := Idx;

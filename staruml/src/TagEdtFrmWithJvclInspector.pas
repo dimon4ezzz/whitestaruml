@@ -485,7 +485,7 @@ begin
   Row := Form.Inspector.Selected;
   T := GetTagDefinition(Row);
 
-  if Assigned(FOnDataTaggedValueChange) then
+  if Assigned(T) and Assigned(FOnDataTaggedValueChange) then
     FOnDataTaggedValueChange(Self, FModel, Profile.Name,
       T.TagDefinitionSet.Name, T.Name, NewText);
 
