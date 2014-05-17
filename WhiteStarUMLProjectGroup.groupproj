@@ -51,6 +51,9 @@
         <Projects Include="staruml\components\plastic-components\src\PlasticComponents.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="staruml-csharp\src\code\WSCSharpAddIn.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -203,14 +206,23 @@
     <Target Name="PlasticComponents:Make">
         <MSBuild Projects="staruml\components\plastic-components\src\PlasticComponents.dproj" Targets="Make"/>
     </Target>
+    <Target Name="WSCSharpAddIn">
+        <MSBuild Projects="staruml-csharp\src\code\WSCSharpAddIn.dproj"/>
+    </Target>
+    <Target Name="WSCSharpAddIn:Clean">
+        <MSBuild Projects="staruml-csharp\src\code\WSCSharpAddIn.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WSCSharpAddIn:Make">
+        <MSBuild Projects="staruml-csharp\src\code\WSCSharpAddIn.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="WhiteStarUML;WSCppAddIn;Generator;ExcelTranslator;PowerPointTranslator;TextTranslator;WordTranslator;WSJavaAddIn;WSJavaParser;WSJavaAddIn15;WSJavaParser15;WSPatternAddIn;WSRoseAddIn;WSXMIAddIn;OptMgr;PlasticComponents"/>
+        <CallTarget Targets="WhiteStarUML;WSCppAddIn;Generator;ExcelTranslator;PowerPointTranslator;TextTranslator;WordTranslator;WSJavaAddIn;WSJavaParser;WSJavaAddIn15;WSJavaParser15;WSPatternAddIn;WSRoseAddIn;WSXMIAddIn;OptMgr;PlasticComponents;WSCSharpAddIn"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="WhiteStarUML:Clean;WSCppAddIn:Clean;Generator:Clean;ExcelTranslator:Clean;PowerPointTranslator:Clean;TextTranslator:Clean;WordTranslator:Clean;WSJavaAddIn:Clean;WSJavaParser:Clean;WSJavaAddIn15:Clean;WSJavaParser15:Clean;WSPatternAddIn:Clean;WSRoseAddIn:Clean;WSXMIAddIn:Clean;OptMgr:Clean;PlasticComponents:Clean"/>
+        <CallTarget Targets="WhiteStarUML:Clean;WSCppAddIn:Clean;Generator:Clean;ExcelTranslator:Clean;PowerPointTranslator:Clean;TextTranslator:Clean;WordTranslator:Clean;WSJavaAddIn:Clean;WSJavaParser:Clean;WSJavaAddIn15:Clean;WSJavaParser15:Clean;WSPatternAddIn:Clean;WSRoseAddIn:Clean;WSXMIAddIn:Clean;OptMgr:Clean;PlasticComponents:Clean;WSCSharpAddIn:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="WhiteStarUML:Make;WSCppAddIn:Make;Generator:Make;ExcelTranslator:Make;PowerPointTranslator:Make;TextTranslator:Make;WordTranslator:Make;WSJavaAddIn:Make;WSJavaParser:Make;WSJavaAddIn15:Make;WSJavaParser15:Make;WSPatternAddIn:Make;WSRoseAddIn:Make;WSXMIAddIn:Make;OptMgr:Make;PlasticComponents:Make"/>
+        <CallTarget Targets="WhiteStarUML:Make;WSCppAddIn:Make;Generator:Make;ExcelTranslator:Make;PowerPointTranslator:Make;TextTranslator:Make;WordTranslator:Make;WSJavaAddIn:Make;WSJavaParser:Make;WSJavaAddIn15:Make;WSJavaParser15:Make;WSPatternAddIn:Make;WSRoseAddIn:Make;WSXMIAddIn:Make;OptMgr:Make;PlasticComponents:Make;WSCSharpAddIn:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
