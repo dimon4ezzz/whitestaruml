@@ -215,10 +215,13 @@ var
 begin
   CategoryNode := CreateCategoryItem(ATagDefinitionSet.Name);
 
+  if Assigned(FModel) then
+    ReadOnly := FModel.ReadOnly
+  else
+    ReadOnly := True;
+
   for TD in  ATagDefinitionSet do
-  //for I := 0 to ATagDefinitionSet.TagDefinitionCount - 1 do
   begin
-    //TD := ATagDefinitionSet.TagDefinitions[I];
     case TD.TagType of
       tkInteger, tkReal:
         SetUpTextRow(CategoryNode, TD, 0);
@@ -383,8 +386,8 @@ var
   TV: PTaggedValue;
   Row: TJvInspectorElemBase;
 begin
-  if FModel <> nil then
-  begin
+  if Assigned(FModel) then begin
+    ReadOnly := Model.ReadOnly;
     for Row in FElemsHolder do
     begin
       T := GetTagDefinition(Row.Item);
@@ -424,11 +427,10 @@ begin
     {if Assigned(FOnInspectorChange) then
       FOnInspectorChange(Self);}
     Form.Inspector.RefreshValues;
-  end; // of if FModel <> nil
-  if FModel <> nil then
-    ReadOnly := Model.ReadOnly
+  end // of if FModel <> nil
   else
-    ReadOnly := true;
+    ReadOnly := True;
+
 end;
 
 procedure PTagDefinitionSetJvclInspector.InspectorEdited(Sender: TObject);

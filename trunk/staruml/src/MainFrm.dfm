@@ -1180,8 +1180,8 @@ object MainForm: TMainForm
                     Height = 111
                     Align = alClient
                     Divider = 130
-                    ExplicitLeft = 1
-                    ExplicitTop = 1
+                    ExplicitLeft = 2
+                    ExplicitTop = 6
                     ExplicitWidth = 262
                     ExplicitHeight = 111
                   end
@@ -1207,6 +1207,10 @@ object MainForm: TMainForm
               inherited SelectionTextPanel: TFlatPanel
                 Width = 264
                 ExplicitWidth = 264
+                inherited SelectionText: TLabel
+                  Width = 262
+                  Height = 15
+                end
               end
             end
           end
