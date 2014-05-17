@@ -35,7 +35,7 @@ closeAngleBracket = {All Space}* '>'
 <stereotype_part> ::= stereotypeStart <stereotype> stereotypeEnd
                    |  <>
 
-<stereotype> ::= id
+<stereotype> ::= <id_expr>
 
 <visibility> ::= '+' | '#' | '-' | '~'
               | <> 
