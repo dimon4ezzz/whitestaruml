@@ -41,6 +41,7 @@ type
     FOnTextModifiedWithEditor: TStringModifiedEvent;
     FOnTextModifiedInline: TStringModifiedEvent;
     procedure SetNewString(NewString: string);
+    procedure UpdateFlags();
   protected
     procedure Edit; override;
     function GetDisplayValue: string; override;
@@ -301,6 +302,15 @@ begin
   TJvCustomInspectorData.ItemRegister.Delete(Self);
 end;
 
+procedure TJvInspectorMultilineStringItem.UpdateFlags;
+begin
+  // Update flags to reflect multiline tate
+  if FMultilineText.Count > 1 then
+    Flags := Flags + [iifEditFixed]
+  else
+    Flags := Flags - [iifEditFixed];
+end;
+
 procedure TJvInspectorMultilineStringItem.SetDisplayValue(const Value: string);
 begin
   if not (iifEditFixed in Flags) then begin
@@ -323,6 +333,7 @@ procedure TJvInspectorMultilineStringItem.SetNewString(NewString: string);
 begin
   FLongLine := NewString;
   FMultilineText.Text := NewString;
+  UpdateFlags;
 end;
 
 procedure TJvInspectorMultilineStringItem.Edit;
@@ -343,11 +354,7 @@ begin
     if Assigned(FOnTextModifiedWithEditor) then
       FOnTextModifiedWithEditor(FLongLine);
 
-    // Update flags to reflect multiline state
-    if FMultilineText.Count > 1 then
-      Flags := Flags + [iifEditFixed]
-    else
-      Flags := Flags - [iifEditFixed];
+    UpdateFlags;
 
     EditCtrl.Text := GetDisplayValue; // Update text in input control
 

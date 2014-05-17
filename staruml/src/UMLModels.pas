@@ -368,6 +368,30 @@ type
     property OwnerPartitionCount: Integer read GetOwnerPartitionCount;
   end;
 
+    // PUMLRelationship
+  PUMLRelationship = class abstract (PUMLModelElement)
+  private
+  public
+    constructor Create; override;
+    destructor Destroy; override;
+    function MOF_GetAttribute(Name: string): string; override;
+    procedure MOF_SetAttribute(Name, Value: string); override;
+    function MOF_GetReference(Name: string): PElement; override;
+    procedure MOF_SetReference(Name: string; Value: PElement); override;
+    procedure MOF_AddCollectionItem(Name: string; Value: PElement); override;
+    procedure MOF_RemoveCollectionItem(Name: string; Value: PElement); override;
+    procedure MOF_InsertCollectionItem(Name: string; Index: Integer; Value: PElement); override;
+    procedure MOF_DeleteCollectionItem(Name: string; Index: Integer); override;
+    procedure MOF_ClearCollection(Name: string); override;
+    function MOF_IndexOfCollectionItem(Name: string; Value: PElement): Integer; override;
+    function MOF_GetCollectionItem(Name: string; Index: Integer): PElement; override;
+    function MOF_GetCollectionCount(Name: string): Integer; override;
+
+    function FindRelatedModel(FirstElement: PModel): PModel; virtual; abstract;
+
+  end;
+
+
   // PUMLLinkEnd
   PUMLLinkEnd = class(PUMLModelElement)
   private
@@ -1603,7 +1627,7 @@ type
   end;
 
   // PUMLAssociationClass
-  PUMLAssociationClass = class(PUMLModelElement)
+  PUMLAssociationClass = class(PUMLRelationship)
   private
     FClassSide: PUMLClass;
     FAssociationSide: PUMLAssociation;
@@ -1625,6 +1649,8 @@ type
     function MOF_IndexOfCollectionItem(Name: string; Value: PElement): Integer; override;
     function MOF_GetCollectionItem(Name: string; Index: Integer): PElement; override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
+    function FindRelatedModel(FirstElement: PModel): PModel; override;
+
     property ClassSide: PUMLClass read FClassSide write SetClassSide;
     property AssociationSide: PUMLAssociation read FAssociationSide write SetAssociationSide;
   end;
@@ -1715,7 +1741,7 @@ type
   end;
 
   // PUMLFeature
-  PUMLFeature = class(PUMLModelElement)
+  PUMLFeature = class(PUMLRelationship)
   private
     FOwnerScope: PUMLScopeKind;
     FConnectorEnds: POrderedSet;
@@ -1752,6 +1778,8 @@ type
     function MOF_IndexOfCollectionItem(Name: string; Value: PElement): Integer; override;
     function MOF_GetCollectionItem(Name: string; Index: Integer): PElement; override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
+    function FindRelatedModel(FirstElement: PModel): PModel; override;
+
     property OwnerScope: PUMLScopeKind read FOwnerScope write SetOwnerScope;
     property ConnectorEnds[Index: Integer]: PUMLConnectorEnd read GetConnectorEnd;
     property ConnectorEndCount: Integer read GetConnectorEndCount;
@@ -1988,6 +2016,8 @@ type
     function MOF_IndexOfCollectionItem(Name: string; Value: PElement): Integer; override;
     function MOF_GetCollectionItem(Name: string; Index: Integer): PElement; override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
+    function FindRelatedModel(FirstElement: PModel): PModel; override;
+
     property Ends[Index: Integer]: PUMLConnectorEnd read GetEnd;
     property EndCount: Integer read GetEndCount;
     property Owner: PUMLClassifier read FOwner write SetOwner;
@@ -3419,26 +3449,6 @@ type
     property LinkEnd: PUMLLinkEnd read FLinkEnd write SetLinkEnd;
   end;
 
-  // PUMLRelationship
-  PUMLRelationship = class(PUMLModelElement)
-  private
-  public
-    constructor Create; override;
-    destructor Destroy; override;
-    function MOF_GetAttribute(Name: string): string; override;
-    procedure MOF_SetAttribute(Name, Value: string); override;
-    function MOF_GetReference(Name: string): PElement; override;
-    procedure MOF_SetReference(Name: string; Value: PElement); override;
-    procedure MOF_AddCollectionItem(Name: string; Value: PElement); override;
-    procedure MOF_RemoveCollectionItem(Name: string; Value: PElement); override;
-    procedure MOF_InsertCollectionItem(Name: string; Index: Integer; Value: PElement); override;
-    procedure MOF_DeleteCollectionItem(Name: string; Index: Integer); override;
-    procedure MOF_ClearCollection(Name: string); override;
-    function MOF_IndexOfCollectionItem(Name: string; Value: PElement): Integer; override;
-    function MOF_GetCollectionItem(Name: string; Index: Integer): PElement; override;
-    function MOF_GetCollectionCount(Name: string): Integer; override;
-  end;
-
   // PUMLGeneralization
   PUMLGeneralization = class(PUMLRelationship)
   private
@@ -3465,6 +3475,8 @@ type
     function MOF_IndexOfCollectionItem(Name: string; Value: PElement): Integer; override;
     function MOF_GetCollectionItem(Name: string; Index: Integer): PElement; override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
+    function FindRelatedModel(FirstElement: PModel): PModel; override;
+
     property Discriminator: string read FDiscriminator write SetDiscriminator;
     property Child: PUMLGeneralizableElement read FChild write SetChild;
     property Parent: PUMLGeneralizableElement read FParent write SetParent;
@@ -3493,6 +3505,7 @@ type
     function MOF_IndexOfCollectionItem(Name: string; Value: PElement): Integer; override;
     function MOF_GetCollectionItem(Name: string; Index: Integer): PElement; override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
+    function FindRelatedModel(FirstElement: PModel): PModel; override;
     property Addition: PUMLUseCase read FAddition write SetAddition;
     property Base: PUMLUseCase read FBase write SetBase;
   end;
@@ -3521,6 +3534,8 @@ type
     function MOF_IndexOfCollectionItem(Name: string; Value: PElement): Integer; override;
     function MOF_GetCollectionItem(Name: string; Index: Integer): PElement; override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
+    function FindRelatedModel(FirstElement: PModel): PModel; override;
+
     property Mapping: string read FMapping write SetMapping;
     property Client: PUMLModelElement read FClient write SetClient;
     property Supplier: PUMLModelElement read FSupplier write SetSupplier;
@@ -3579,6 +3594,8 @@ type
     function MOF_IndexOfCollectionItem(Name: string; Value: PElement): Integer; override;
     function MOF_GetCollectionItem(Name: string; Index: Integer): PElement; override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
+    function FindRelatedModel(FirstElement: PModel): PModel; override;
+
     property Condition: string read FCondition write SetCondition;
     property Base: PUMLUseCase read FBase write SetBase;
     property Extension: PUMLUseCase read FExtension write SetExtension;
@@ -3633,6 +3650,8 @@ type
     function MOF_IndexOfCollectionItem(Name: string; Value: PElement): Integer; override;
     function MOF_GetCollectionItem(Name: string; Index: Integer): PElement; override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
+    function FindRelatedModel(FirstElement: PModel): PModel; override;
+
     property Connections[Index: Integer]: PUMLAssociationEnd read GetConnection;
     property ConnectionCount: Integer read GetConnectionCount;
     property AssociationClass: PUMLAssociationClass read FAssociationClass write SetAssociationClass;
@@ -4201,7 +4220,7 @@ type
   end;
 
   // PUMLTransition
-  PUMLTransition = class(PUMLModelElement)
+  PUMLTransition = class(PUMLRelationship)
   private
     FGuardCondition: string;
     FEffects: POrderedSet;
@@ -4249,6 +4268,8 @@ type
     function MOF_IndexOfCollectionItem(Name: string; Value: PElement): Integer; override;
     function MOF_GetCollectionItem(Name: string; Index: Integer): PElement; override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
+    function FindRelatedModel(FirstElement: PModel): PModel; override;
+
     property GuardCondition: string read FGuardCondition write SetGuardCondition;
     property Effects[Index: Integer]: PUMLAction read GetEffect;
     property EffectCount: Integer read GetEffectCount;
@@ -4298,7 +4319,7 @@ type
   end;
 
   // PUMLLink
-  PUMLLink = class(PUMLModelElement)
+  PUMLLink = class(PUMLGeneralization)
   private
     FAssociation: PUMLAssociation;
     FConnections: POrderedSet;
@@ -4351,6 +4372,8 @@ type
     function MOF_IndexOfCollectionItem(Name: string; Value: PElement): Integer; override;
     function MOF_GetCollectionItem(Name: string; Index: Integer): PElement; override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
+    function FindRelatedModel(FirstElement: PModel): PModel; override;
+
     property Association: PUMLAssociation read FAssociation write SetAssociation;
     property Connections[Index: Integer]: PUMLLinkEnd read GetConnection;
     property ConnectionCount: Integer read GetConnectionCount;
@@ -12783,6 +12806,16 @@ begin
   inherited;
 end;
 
+function PUMLAssociationClass.FindRelatedModel(FirstElement: PModel): PModel;
+begin
+  if FirstElement = ClassSide then
+    Result := AssociationSide
+  else if FirstElement = AssociationSide then
+    Result := ClassSide
+  else
+    Result := nil; // First element does not match
+end;
+
 procedure PUMLAssociationClass.SetClassSide(Value: PUMLClass);
 begin
   if FClassSide <> Value then begin
@@ -13433,6 +13466,16 @@ begin
   FConnectorEnds.Free;
   FClassifierRoles.Free;
   inherited;
+end;
+
+function PUMLFeature.FindRelatedModel(FirstElement: PModel): PModel;
+begin
+  if FirstElement = ConnectorEnds[0].Role then
+    Result := ConnectorEnds[1].Role
+  else if FirstElement = ConnectorEnds[1].Role then
+    Result := ConnectorEnds[0].Role
+  else
+    Result := nil; // First element does not match
 end;
 
 procedure PUMLFeature.SetOwnerScope(Value: PUMLScopeKind);
@@ -14848,6 +14891,16 @@ destructor PUMLConnector.Destroy;
 begin
   FEnds.Free;
   inherited;
+end;
+
+function PUMLConnector.FindRelatedModel(FirstElement: PModel): PModel;
+begin
+  if FirstElement = Ends[0].Role then
+    Result := Ends[1].Role
+  else if FirstElement = Ends[1].Role then
+    Result := Ends[0].Role
+  else
+    Result := nil; // First element does not match
 end;
 
 function PUMLConnector.GetEnd(Index: Integer): PUMLConnectorEnd;
@@ -23265,6 +23318,17 @@ begin
   inherited;
 end;
 
+function PUMLGeneralization.FindRelatedModel(
+  FirstElement: PModel): PModel;
+begin
+  if FirstElement = Parent then
+    Result := Child
+  else if FirstElement = Child then
+    Result := Parent
+  else
+    Result := nil; // First element does not match
+end;
+
 procedure PUMLGeneralization.SetDiscriminator(Value: string);
 begin
   if FDiscriminator <> Value then
@@ -23414,6 +23478,16 @@ begin
   inherited;
 end;
 
+function PUMLInclude.FindRelatedModel(FirstElement: PModel): PModel;
+begin
+ if FirstElement = Base then
+    Result := Addition
+  else if FirstElement = Addition then
+    Result := Base
+  else
+    Result := nil; // First element does not match
+end;
+
 procedure PUMLInclude.SetAddition(Value: PUMLUseCase);
 begin
   if FAddition <> Value then begin
@@ -23528,6 +23602,16 @@ end;
 destructor PUMLDependency.Destroy;
 begin
   inherited;
+end;
+
+function PUMLDependency.FindRelatedModel(FirstElement: PModel): PModel;
+begin
+  if FirstElement = Supplier then
+    Result := Client
+  else if FirstElement = Client then
+    Result := Supplier
+  else
+    Result := nil; // First element does not match
 end;
 
 procedure PUMLDependency.SetMapping(Value: string);
@@ -23738,6 +23822,16 @@ destructor PUMLExtend.Destroy;
 begin
   FExtensionPoints.Free;
   inherited;
+end;
+
+function PUMLExtend.FindRelatedModel(FirstElement: PModel): PModel;
+begin
+  if FirstElement = Base then
+    Result := Extension
+  else if FirstElement = Extension then
+    Result := Base
+  else
+    Result := nil; // First element does not match
 end;
 
 procedure PUMLExtend.SetCondition(Value: string);
@@ -23967,6 +24061,16 @@ begin
   FLinks.Free;
   FAssociationRoles.Free;
   inherited;
+end;
+
+function PUMLAssociation.FindRelatedModel(FirstElement: PModel): PModel;
+begin
+  if FirstElement = Connections[0].Participant then
+    Result := Connections[1].Participant
+  else if FirstElement = Connections[1].Participant then
+    Result := Connections[0].Participant
+  else
+    Result := nil; // First element does not match
 end;
 
 function PUMLAssociation.GetConnection(Index: Integer): PUMLAssociationEnd;
@@ -27373,6 +27477,16 @@ begin
   inherited;
 end;
 
+function PUMLTransition.FindRelatedModel(FirstElement: PModel): PModel;
+begin
+  if FirstElement = Source then
+    Result := Target
+  else if FirstElement = Target then
+    Result := Source
+  else
+    Result := nil; // First element does not match
+end;
+
 procedure PUMLTransition.SetGuardCondition(Value: string);
 begin
   if FGuardCondition <> Value then
@@ -27973,6 +28087,16 @@ begin
   FStimuli.Free;
   FPlayedRoles.Free;
   inherited;
+end;
+
+function PUMLLink.FindRelatedModel(FirstElement: PModel): PModel;
+begin
+  if FirstElement = Connections[0].Instance then
+    Result := Connections[1].Instance
+  else if FirstElement = Connections[1].Instance then
+    Result := Connections[0].Instance
+  else
+    Result := nil; // First element does not match
 end;
 
 procedure PUMLLink.SetAssociation(Value: PUMLAssociation);
