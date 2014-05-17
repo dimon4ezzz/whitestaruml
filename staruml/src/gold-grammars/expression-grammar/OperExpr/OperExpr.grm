@@ -15,14 +15,16 @@
 id = {Boundary String Chars}+ ( {Restricted Chars}+ {Boundary String Chars}+ )*
 
 stereotypeStart = '<<'
-! Spaces to avoid collision with close angle bracket
+! Use spaces to avoid collision with close angle bracket
 stereotypeEnd = {All Space}* '>>' 
 
+openParen = {All Space}* '(' {All Space}*
+closeParen = {All Space}* ')'
 openSquareBracket = {All Space}* '[' {All Space}*
 closeSquareBracket = {All Space}* ']'
 openAngleBracket = {All Space}* '<' {All Space}*
 closeAngleBracket = {All Space}* '>'
-                  
+                 
 ! -------------------------------------------------
 ! Rules
 ! -------------------------------------------------
@@ -33,7 +35,7 @@ closeAngleBracket = {All Space}* '>'
 <stereotype_part> ::= stereotypeStart <stereotype> stereotypeEnd
                    |  <>
 
-<stereotype> ::= id
+<stereotype> ::= <stereotype_expr>
 
 <visibility> ::= '+' | '#' | '-' | '~'
               | <> 
@@ -41,7 +43,7 @@ closeAngleBracket = {All Space}* '>'
 <operation_name> ::= <id_expr>
                   
 
-<parameter_list_part> ::= '(' <parameter_list> ')'
+<parameter_list_part> ::= openParen <parameter_list> closeParen
                         | <>
 
 <parameter_list> ::= <parameter_list> ',' <parameter>
@@ -69,9 +71,16 @@ closeAngleBracket = {All Space}* '>'
 <parameter_default_value_literal> ::= <id_expr>
 
 <nullable_id_expr> ::= <id_expr> | <>
+
+<nullable_stereotype_expr> ::= <stereotype_expr> | <>
+
+<stereotype_expr> ::= id
+                   | id openParen <nullable_stereotype_expr> closeParen
+                   | id openSquareBracket <nullable_stereotype_expr> closeSquareBracket
+                   | id openAngleBracket <nullable_stereotype_expr> closeAngleBracket
+                   
                     
 <id_expr> ::= id
-      | id openParen <nullable_id_expr> closeParen
       | id openSquareBracket <nullable_id_expr> closeSquareBracket
       | id openAngleBracket <nullable_id_expr> closeAngleBracket
              
