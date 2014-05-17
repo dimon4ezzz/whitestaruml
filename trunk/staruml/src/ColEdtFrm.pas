@@ -243,6 +243,7 @@ type
     ExtensionPointDelete: TToolButton;
     ExtensionPointMoveUp: TToolButton;
     ExtensionPointMoveDown: TToolButton;
+    SelectRelatedMenu: TMenuItem;
     // Event handlers
     procedure FormCreate(Sender: TObject);
     // Editing event handlers
@@ -264,6 +265,7 @@ type
     procedure HandleResidentInsertAction(Sender: TObject);
     procedure HandleRaisedSignalInsertAction(Sender: TObject);
     procedure HandleRelationDeleteAction(Sender: TObject);
+    procedure HandleSelectRelatedItemAction(Sender: TObject);
     // other event handlers
     procedure CloseButtonClick(Sender: TObject);
     procedure HandleListViewContextPopup(Sender: TObject; MousePos: TPoint;
@@ -383,9 +385,9 @@ implementation
 {$R *.dfm}
 
 uses
-  BasicClasses, UMLAux, UMLModels, StarUMLApp,
+  Winapi.CommCtrl, BasicClasses, UMLAux, UMLModels, StarUMLApp,
   ElemLstFrm, ElemSelFrm, ModelExplorerFrame,
-  CommCtrl, HtmlHlp, NLS, NLS_StarUML;
+  HtmlHlp, NLS, NLS_StarUML, MainFrm;
 
 ////////////////////////////////////////////////////////////////////////////////
 // TCollectionEdtForm
@@ -648,20 +650,29 @@ end;
 procedure TCollectionEditorForm.ComposePopupMenu(Collection: PCollectionKind);
   procedure SetMenuItemVisible(MenuItems: array of TMenuItem);
   var
-    I: Integer;
+    //I: Integer;
+    MenuItem: TMenuItem;
   begin
-    for I := 0 to CollectionEditorPopupMenu.Items.Count - 1 do
+    {for I := 0 to CollectionEditorPopupMenu.Items.Count - 1 do
       CollectionEditorPopupMenu.Items.Items[I].Visible := False;
     for I := 0 to Length(MenuItems) - 1 do
-      MenuItems[I].Visible := True;
-  end;
+      MenuItems[I].Visible := True;}
+
+    // Initially make invisible all elements in the popup
+    for MenuItem in CollectionEditorPopupMenu.Items do
+      MenuItem.Visible := False;
+
+    // Make visible select elements
+    for MenuItem in MenuItems do
+      MenuItem.Visible := True;
+   end;
 begin
   case Collection of
     ckNone: SetMenuItemVisible([]);
     ckTriggers: SetMenuItemVisible([UndoMenu, RedoMenu, EditNameMenu, Seperator,
         InsertSignalEventMenu, InsertCallEventMenu, InsertTimeEventMenu,
         InsertChangeEventMenu, DeleteMenu, MoveUpMenu, MoveDownMenu]);
-    ckRelations: SetMenuItemVisible([UndoMenu, RedoMenu, EditNameMenu, Seperator, DeleteMenu]);
+    ckRelations: SetMenuItemVisible([UndoMenu, RedoMenu, EditNameMenu, Seperator, DeleteMenu, SelectRelatedMenu]);
     else SetMenuItemVisible([UndoMenu, RedoMenu, EditNameMenu, Seperator,
       InsertMenu, DeleteMenu, MoveUpMenu, MoveDownMenu]);
   end;
@@ -1378,6 +1389,7 @@ begin
     DeleteMenu.Enabled := DeleteMenu.Visible and (L.Selected <> nil) and (not FReadOnly);
     MoveUpMenu.Enabled := MoveUpMenu.Visible and (L.Selected <> nil) and (L.ItemIndex > 0) and (not FReadOnly);
     MoveDownMenu.Enabled := MoveDownMenu.Visible and (L.Selected <> nil) and (L.ItemIndex < L.Items.Count - 1) and (not FReadOnly);
+    SelectRelatedMenu.Enabled := SelectRelatedMenu.Visible and (L.Selected <> nil);
   end;
 end;
 
@@ -1818,6 +1830,21 @@ begin
     end;
 end;
 
+procedure TCollectionEditorForm.HandleSelectRelatedItemAction(Sender: TObject);
+var
+  Relationship: PUMLRelationship;
+  RelatedElement: PModel;
+begin
+  ListItemEndEdit(RelationsListView);
+  if Assigned(RelationsListView.Selected) then begin
+    Relationship := RelationsListView.Selected.Data;
+    RelatedElement := Relationship.FindRelatedModel(FModel);
+
+    if Assigned(RelatedElement) then
+      MainForm.ModelExplorer.SelectWithFocus(RelatedElement);
+  end;
+end;
+
 procedure TCollectionEditorForm.HandleRaisedSignalInsertAction(Sender: TObject);
 begin
   ListItemEndEdit(RaisedSignalsListView);
@@ -1899,10 +1926,11 @@ procedure TCollectionEditorForm.PerformCompare(Item1,Item2: TListItem; var Compa
 begin
  if SortedColumn = 0 then
     Compare := CompareText(Item1.Caption, Item2.Caption)
-  else
+ else
   if SortedColumn <> 0 then
     Compare := CompareText(Item1.SubItems[SortedColumn-1], Item2.SubItems[SortedColumn-1]);
-  if Descending then
+
+ if Descending then
     Compare := -Compare;
 end;
 
