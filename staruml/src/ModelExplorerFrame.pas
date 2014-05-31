@@ -782,14 +782,11 @@ end;
 
 procedure TModelExplorerPanel.AddModels(Models: PModelOrderedSet);
 var
-  I: Integer;
   M: PModel;
   Node, ParentNode: PVirtualNode;
   NodeData: PNodeData;
 begin
-  for I := 0 to Models.Count - 1 do
-  begin
-    M := Models.Items[I] as PModel;
+  for M in Models do begin
     Node := FindNode(M);
     if Node = nil then
     begin
@@ -810,15 +807,12 @@ end;
 
 procedure TModelExplorerPanel.DeleteModels(Models: PModelOrderedSet);
 var
-  I: Integer;
   Node: PVirtualNode;
   Model: PModel;
 begin
-  for I := 0 to Models.Count - 1 do
-  begin
-    Model := Models.Items[I] as PModel;
+  for Model in Models do begin
     Node := FindNode(Model);
-    if Node <> nil then
+    if Assigned(Node) then
       DeleteNode(Node);
   end;
   ModelTree.SortTree(-1, sdAscending);
@@ -826,13 +820,10 @@ end;
 
 procedure TModelExplorerPanel.UpdateModels(Models: PModelOrderedSet);
 var
-  I: Integer;
   Node: PVirtualNode;
   Model: PModel;
 begin
-  for I := 0 to Models.Count - 1 do
-  begin
-    Model := Models.Items[I] as PModel;
+  for Model in Models do begin
     Node := FindNode(Model);
     if Node <> nil then
       UpdateNode(Node);
