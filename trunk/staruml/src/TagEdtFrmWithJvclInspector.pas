@@ -385,6 +385,7 @@ var
   T: PTagDefinition;
   TV: PTaggedValue;
   Row: TJvInspectorElemBase;
+  NewRefValue: string;
 begin
   if Assigned(FModel) then begin
     ReadOnly := Model.ReadOnly;
@@ -415,12 +416,23 @@ begin
                 T.TagDefinitionSet.Name, T.Name);
 
           tkReference:
-            if (TV <> nil) and (TV.ReferenceValueCount > 0) then
-              Row.Item.Data.AsString := TV.ReferenceValues[0].Name
-            else
-              Row.Item.Data.AsString := '';
+            begin
+              if Assigned(TV) and (TV.ReferenceValueCount > 0) then
+                NewRefValue := TV.ReferenceValues[0].Name
+              else
+                NewRefValue := '';
+
+              if Row.Item is TJvInspectorMultiStringItemWithNameImage then
+                (Row.Item as TJvInspectorMultiStringItemWithNameImage).NewString := NewRefValue
+              else
+                Row.Item.Data.AsString := NewRefValue;
+             end;
+
           tkCollection:
-            Row.Item.Data.AsString := TXT_TAGGEDVALUE_COLLECTION;
+            if Row.Item is TJvInspectorMultiStringItemWithNameImage then
+              (Row.Item as TJvInspectorMultiStringItemWithNameImage).NewString := TXT_TAGGEDVALUE_COLLECTION
+            else
+              Row.Item.Data.AsString := TXT_TAGGEDVALUE_COLLECTION;
         end; // of case T.TagType
       end; // if T <> nil
     end; // of for Row
