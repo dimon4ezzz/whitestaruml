@@ -929,9 +929,11 @@ type
 
   // PReferenceResolver
   PReferenceResolver = class(TObject)
+  private type
+    PResolveItemList = TList<PReferenceResolveItem>;
   private
     HashedGuidTable: THashedStringList;
-    ResolveItemList: TList;
+    ResolveItemList: PResolveItemList;
     CurProgress: Integer;
     ProgressMaxStep: Integer;
     FOnResolvingProgress: PProgressEvent;
@@ -5382,7 +5384,7 @@ end;
 constructor PReferenceResolver.Create;
 begin
   inherited;
-  ResolveItemList := TList.Create;
+  ResolveItemList := PResolveItemList.Create;
   HashedGuidTable := THashedStringList.Create;
   HashedGuidTable.CaseSensitive := True;
   ProgressMaxStep := 10;
@@ -5427,19 +5429,15 @@ end;
 
 procedure PReferenceResolver.BuildHashedGuidTable;
 var
-  I, J: Integer;
+  I: Integer;
   MC: PMetaClass;
   E: PElement;
 begin
   HashedGuidTable.Clear;
-  for I := 0 to MetaModel.MetaClassCount - 1 do
-  begin
+  for I := 0 to MetaModel.MetaClassCount - 1 do begin
     MC := MetaModel.MetaClasses[I];
-    for J := 0 to MC.InstanceCount - 1 do
-    begin
-      E := MC.Instance[J];
+    for E in MC.Instances do
       HashedGuidTable.AddObject(E.GUID, E);
-    end;
   end;
 end;
 
@@ -5451,7 +5449,7 @@ begin
   if Idx < 0 then
     Result := nil
   else
-    Result := HashedGuidTable.Objects[Idx] as PElement;
+    Result := PElement(HashedGuidTable.Objects[Idx]);
 end;
 
 procedure PReferenceResolver.Clear;
