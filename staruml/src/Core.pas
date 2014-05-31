@@ -840,7 +840,7 @@ type
     procedure MOF_SetReference(Name: string; Value: PElement); override;
     property DefaultDiagram
       : Boolean read FDefaultDiagram write SetDefaultDiagram;
-    property DiagramType: string read FDiagramType write FDiagramType;
+    property DiagramType: string read FDiagramType write SetDiagramType;
     property DiagramView: PDiagramView read FDiagramView write SetDiagramView;
     property DiagramOwner: PModel read FDiagramOwner write SetDiagramOwner;
   end;
@@ -3339,7 +3339,6 @@ var
   R: PMetaReference;
   OtherSide: PMetaAssociationEnd;
 begin
-  Result := nil;
   for I := 0 to MetaClass.MetaReferenceCount - 1 do
   begin
     R := MetaClass.MetaReferences[I];
@@ -6282,9 +6281,7 @@ var
   DT: TDateTime;
   Attr: Integer;
 begin
-  if FileExists(FFileName) then
-  begin
-    DT := FileDateToDateTime(FileAge(FFileName));
+  if FileAge(FFileName,DT) then begin
     if (FFileSavedTime <> 0) and (FFileSavedTime <> DT) then
       FExternallyModified := True;
     FFileSavedTime := DT;
@@ -6459,7 +6456,6 @@ var
   FileAccess: Cardinal;
   FileOpenError: Cardinal;
 begin
-  Result := False;
   // Check the file existence.
   if not FileExists(FFileName) then
     raise EFileNotFound.Create(Format(ERR_FILE_NOT_FOUND, [FFileName]));
@@ -6512,17 +6508,15 @@ function PDocumentInputStream.OpenFileAsReadOnly: Boolean;
 var
   ExclusiveUserInfoNode, UserNameNode, LockTimeNode: IXMLNode;
   ChildNodes: IXMLNodeList;
-  Count: Integer;
-  DeleteResult: Integer;
+  //Count: Integer;
+  //DeleteResult: Integer;
   ButtonSelected : Integer;
 begin
-  Result := False;
-
   FFileName := FFileName + PDocument.SharedCopyExt;
   if FileExists(FileName) then begin
     XMLDoc.LoadFromFile(FileName);
     ChildNodes := XMLDoc.DocumentElement.ChildNodes;
-    Count := ChildNodes.GetCount;
+    //Count := ChildNodes.GetCount;
     ExclusiveUserInfoNode := ChildNodes.First.ChildNodes.FindNode(ExclusiveUserInfo);
     UserNameNode := ExclusiveUserInfoNode.ChildNodes.FindNode(UserName);
     LockTimeNode := ExclusiveUserInfoNode.ChildNodes.FindNode(LockTime);
@@ -6532,7 +6526,7 @@ begin
 
     Result := (buttonSelected = mrYes);
 
-    DeleteResult := ChildNodes.First.ChildNodes.Delete(ExclusiveUserInfo);
+    {DeleteResult := }ChildNodes.First.ChildNodes.Delete(ExclusiveUserInfo);
 
   end
   else begin
@@ -6549,7 +6543,7 @@ procedure PDocumentInputStream.CreateReadOnlyCopy;
 var
   ExclusiveUserInfoNode,UserNameNode, LockTimeNode: IXMLNode;
   ChildNodes: IXMLNodeList;
-  DeleteResult: Integer;
+  //DeleteResult: Integer;
   CopyFileName: string;
 begin
   ChildNodes := XMLDoc.DocumentElement.ChildNodes;
@@ -6569,7 +6563,7 @@ begin
   FileSetAttr(CopyFileName, faReadOnly);
 
   // ExclusiveUserInfo node not needed anymore
-  DeleteResult := ChildNodes.First.ChildNodes.Delete(ExclusiveUserInfo);
+  {DeleteResult := }ChildNodes.First.ChildNodes.Delete(ExclusiveUserInfo);
 end;
 
 // PDocumentInputStream
@@ -6678,6 +6672,8 @@ begin
 end;
 
 procedure PDocumentOutputStream.Close(ADocument: PDocument);
+var
+  DateTime: TDateTime;
 begin
   if ADocument.ExclusiveFileAccess then begin
     ADocument.FileStream.Size := 0; // Overwrite existing content
@@ -6686,7 +6682,8 @@ begin
   else
     XMLStrings.SaveToFile(FFileName, TEncoding.UTF8);
 
-  ADocument.FileSavedTime := FileDateToDateTime(FileAge(ADocument.FileName));
+  if FileAge(ADocument.FileName, DateTime) then
+    ADocument.FileSavedTime := DateTime;
 end;
 
 procedure PDocumentOutputStream.WriteDocument(ADocument: PDocument);
