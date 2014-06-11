@@ -350,7 +350,8 @@ begin
   inherited; // Process text input dialog
 
   if FMultilineText.Text <> FLongLine then begin
-    FLongLine := FMultilineText.Text;
+    FLongLine := TrimRight(FMultilineText.Text); // Get rid of trailing line separators
+
     if Assigned(FOnTextModifiedWithEditor) then
       FOnTextModifiedWithEditor(FLongLine);
 
@@ -380,7 +381,7 @@ end;
 procedure TJvInspectorMultilineStringItem.InvokeOnTextModifiedInlineHandler;
 begin
   if Assigned(FOnTextModifiedWithEditor) then
-      FOnTextModifiedWithEditor(FMultilineText.Text);
+      FOnTextModifiedWithEditor(TrimRight(FMultilineText.Text));
 end;
 
 procedure PaintAreaContent(const ImgNum: Integer; const ImgName: string;
