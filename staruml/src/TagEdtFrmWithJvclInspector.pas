@@ -285,12 +285,7 @@ begin
           else
             NameImageIdx := ImageIndex;
         end;
-
-
-
       end;
-
-
 
       ReadOnly := TD.Lock or FReadOnly;
       if (not ReadOnly) then
@@ -539,8 +534,6 @@ begin
   if (Item is TJvInspectorMultilineStringItem) then begin
     (Item as TJvInspectorMultilineStringItem).InvokeOnTextModifiedInlineHandler;
   end;
-
-
 end;
 
 end.
