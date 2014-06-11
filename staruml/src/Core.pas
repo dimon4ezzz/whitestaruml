@@ -6006,15 +6006,9 @@ procedure PXMLObjectWriter.WriteString(Key: string; Value: string;
 var
   Attr: string;
 begin
-  if not IsFiltered(Key) then
-  begin
-    if Value <> Default then
-    begin
-      //Attr := GetAttrBeginNode(Key, XPD_STRING) + HTMLEscape(UTF8Encode(Value))
-      Attr := GetAttrBeginNode(Key, XPD_STRING) + HTMLEscape(Value)
-        + GetAttrEndNode;
-
-
+  if not IsFiltered(Key) then begin
+    if Value <> Default then begin
+      Attr := GetAttrBeginNode(Key, XPD_STRING) + HTMLEscape(Value) + GetAttrEndNode;
       XMLStrings.Add(Attr);
     end;
   end;
