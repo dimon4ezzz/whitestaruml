@@ -146,8 +146,6 @@ object MainForm: TMainForm
             Height = 256
             Align = alClient
             TabOrder = 0
-            ExplicitWidth = 163
-            ExplicitHeight = 256
             inherited PaletteNavBar: TCategoryButtons
               Width = 157
               Height = 250
@@ -842,8 +840,6 @@ object MainForm: TMainForm
                       Action = PaletteNavBarFrame.ConnectorAction
                     end>
                 end>
-              ExplicitWidth = 157
-              ExplicitHeight = 250
             end
           end
         end
@@ -1180,8 +1176,8 @@ object MainForm: TMainForm
                     Height = 111
                     Align = alClient
                     Divider = 130
-                    ExplicitLeft = 2
-                    ExplicitTop = 6
+                    ExplicitLeft = 1
+                    ExplicitTop = 1
                     ExplicitWidth = 262
                     ExplicitHeight = 111
                   end
@@ -2183,6 +2179,14 @@ object MainForm: TMainForm
         end
         item
           Visible = True
+          ItemName = 'FileUnitsUnloadUnit'
+        end
+        item
+          Visible = True
+          ItemName = 'FileUnitsOpenUnit'
+        end
+        item
+          Visible = True
           ItemName = 'FileUnitsSave'
         end
         item
@@ -2208,6 +2212,20 @@ object MainForm: TMainForm
       Caption = '&Delete Unit'
       Category = 2
       Hint = 'Delete Unit'
+      Visible = ivAlways
+      OnClick = FileMenuClick
+    end
+    object FileUnitsUnloadUnit: TdxBarButton
+      Caption = 'U&nload Unit'
+      Category = 2
+      Hint = 'Unload Unit'
+      Visible = ivAlways
+      OnClick = FileMenuClick
+    end
+    object FileUnitsOpenUnit: TdxBarButton
+      Caption = '&Open Unit...'
+      Category = 2
+      Hint = 'Open Unit'
       Visible = ivAlways
       OnClick = FileMenuClick
     end
@@ -4570,7 +4588,9 @@ object MainForm: TMainForm
         'FileUnitsMergeUnit'
         'FileUnitsSave'
         'FileUnitsSaveAs'
-        'FileUnitsDeleteUnit')
+        'FileUnitsDeleteUnit'
+        'FileUnitsOpenUnit'
+        'FileUnitsUnloadUnit')
     end
     object ViewUIThemeGroup: TdxBarGroup
       Items = (

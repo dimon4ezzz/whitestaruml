@@ -212,6 +212,27 @@ type
     property SubUnitDocuments[Index: Integer]: PUMLUnitDocument read GetSubUnitDocument;
     property SubUnitDocumentCount: Integer read GetSubUnitDocumentCount;
   end;
+
+  // PUnitStubDocument
+  PUMLUnitStubDocument = class(PUMLDocument)
+  private
+    FParentUnitDocument: PUMLUnitDocument;
+    FPackageStub: PUMLPackage;
+    FPackageStubOwner: PUMLPackage;
+    FFileDir: string;
+    procedure SetParentUnitDocument(Value: PUMLUnitDocument);
+    function GetParentUnitDocument: PUMLUnitDocument;
+    function GetFilePath: string;
+  public
+    constructor Create; override;
+    procedure Setup(AOwner: PUMLPackage; AParentUnit: PUMLUnitDocument;
+      AFileName: string; AFileDir: string);
+    destructor Destroy; override;
+    property PackageStub: PUMLPackage read FPackageStub;
+    property PackageStubOwner: PUMLPackage read FPackageStubOwner;
+    property ParentUnitDocument: PUMLUnitDocument read GetParentUnitDocument write SetParentUnitDocument;
+    property FullFilePath: string read GetFilePath;
+  end;
               
   // PProjectDocument
   PUMLProjectDocument = class(PUMLUnitDocument)
@@ -351,8 +372,7 @@ type
 implementation
 
 uses
-  System.Types, UMLViews, NLS_StarUML,
-  Variants;
+  System.Types, Variants, UMLViews, NLS_StarUML, UMLFacto;
 
 procedure PUMLDocumentOutputStream.IsFiltered(Obj: PObject; Key: string; var CanFilter: Boolean);
 begin
@@ -454,6 +474,65 @@ end;
 
 // PUnitDocument
 ////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// PUnitStubDocument
+
+constructor PUMLUnitStubDocument.Create;
+begin
+  inherited;
+  FParentUnitDocument := nil;
+end;
+
+procedure PUMLUnitStubDocument.Setup(AOwner: PUMLPackage; AParentUnit: PUMLUnitDocument;
+  AFileName: string; AFileDir: string);
+begin
+  ParentUnitDocument := AParentUnit;
+  FileName := AFileName;
+  FFileDir := AFileDir;
+  FPackageStubOwner := AOwner;
+  FPackageStub := UMLFactory.CreateModel(AOwner, 'Package') as PUMLPackage;
+  FPackageStub.Name := Format('Unloaded unit: %s',[AFileName]);
+  FPackageStub.Document := Self;
+  DocumentElement := PackageStub;
+
+
+end;
+
+destructor PUMLUnitStubDocument.Destroy;
+begin
+  ParentUnitDocument := nil;
+  FreeAndNil(FPackageStub);
+  DocumentElement := nil;
+  inherited;
+end;
+
+function PUMLUnitStubDocument.GetFilePath: string;
+begin
+  Result := FFileDir + FileName;
+end;
+
+function PUMLUnitStubDocument.GetParentUnitDocument: PUMLUnitDocument;
+begin
+  Result := FParentUnitDocument;
+end;
+
+procedure PUMLUnitStubDocument.SetParentUnitDocument(Value: PUMLUnitDocument);
+begin
+  if FParentUnitDocument <> Value then begin
+    // Clear existing parent unit doc
+    if Assigned(FParentUnitDocument) then
+      FParentUnitDocument.FSubUnitDocuments.Remove(Self);
+    // Set new value of parent unit doc
+    FParentUnitDocument := Value;
+    if Assigned(Value) then
+      Value.FSubUnitDocuments.Add(Self);
+  end;
+end;
+
+// PUnitStubDocument
+////////////////////////////////////////////////////////////////////////////////
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // PProjectDocument

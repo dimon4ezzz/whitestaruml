@@ -49,6 +49,12 @@
           <DEFAULTVALUE>WhiteStarUML.chm</DEFAULTVALUE>
         </OPTIONITEM-STRING>
         
+        <OPTIONITEM-BOOLEAN key="AUTO_LOAD_UNITS">
+           <CAPTION>Auto load unit files</CAPTION>
+           <DESCRIPTION>Specifies whether to load automatically diagram parts saved as units.</DESCRIPTION>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>        
+        
         <OPTIONITEM-STRING key="FORCE_DECIMAL_SEPARATOR">
            <CAPTION>Force decimal separator</CAPTION>
            <DESCRIPTION>Forces given character (usually '.' or ',') as decimal separator in save files to ensure portability between systems with different locales. Leave it empty to use the system default.</DESCRIPTION>
