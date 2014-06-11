@@ -161,7 +161,7 @@ const
                                         + #13#10 + 'To use this feature, please contact Plastic Software, Inc.';
   C_QUERY_SAVE_MODIFICATION = 'Save the changes?';
   C_QUERY_SAVE_CHANGED_UNITS = 'Save all modified Units as well?';
-  C_QUERY_DELETE_UNIT = 'Delete the Unit?';
+  C_QUERY_DELETE_UNIT = 'Delete unit %s?';
   C_QUERY_RELOAD_PROJECT = 'The file(s) has been changed outside of the program.' + #13#10 +
                          'Reload the Project?';
   C_ERR_DIAGRAM = 'Diagram Error';

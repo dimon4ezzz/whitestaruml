@@ -111,6 +111,7 @@ const
   OPT_NODE_STEREOTYPE_DISPLAY = 'NODE_STEREOTYPE_DISPLAY';
   OPT_WORD_WRAP_BY_DEFAULT = 'WORD_WRAP_BY_DEFAULT';
   OPT_FORCE_DECIMAL_SEPARATOR = 'FORCE_DECIMAL_SEPARATOR';
+  OPT_AUTO_LOAD_UNITS = 'AUTO_LOAD_UNITS';
 
 type
   POptionValueChangeEvent = procedure(Sender: TObject; SchemaID: string; OptionName: string; Value: Variant) of object;
@@ -180,6 +181,7 @@ type
     FNodeStereotypeDisplay: Integer;
     FWordWrapByDefault: Boolean;
     FForceDecimalSeparator: string;
+    FAutoLoadUnits: Boolean;
 
     // option management procedure
     procedure SetDefaultOptionProperties;
@@ -237,6 +239,7 @@ type
     procedure SetNodeStereotypeDisplay(Value: Integer);
     procedure SetWordWrapByDefault(Value: Boolean);
     procedure SetForceDecimalSeparator(Value: string);
+    procedure SetAutoLoadUnits(Value: Boolean);
   public
     constructor Create;
     destructor Destroy; override;
@@ -298,6 +301,7 @@ type
     property NodeStereotypeDisplay: Integer read FNodeStereotypeDisplay write SetNodeStereotypeDisplay;
     property WordWrapByDefault: Boolean read FWordWrapByDefault write SetWordWrapByDefault;
     property ForceDecimalSeparator: string read FForceDecimalSeparator write SetForceDecimalSeparator;
+    property AutoLoadUnits: Boolean read FAutoLoadUnits write SetAutoLoadUnits;
   end;
 
   // Utilities
@@ -385,6 +389,9 @@ begin
   FArtifactStereotypeDisplay := 3;
   FArtifactSuppressAttributes := True;
   FArtifactSuppressOperations := True;
+  FWordWrapByDefault := False;
+  FForceDecimalSeparator := '';
+  FAutoLoadUnits := True;
 end;
 
 procedure POptionDepository.SetOptionProperties;
@@ -808,6 +815,14 @@ begin
     ForceDecimalSeparator := V;
   end;
 
+  V := OptionManager.GetOptionValue(OPT_SCHEMA_ENVIRONMENT, OPT_AUTO_LOAD_UNITS);
+  if VarIsNull(V) then begin
+    // Basic OptionSchema file is damaged.
+  end
+  else begin
+    AutoLoadUnits := V;
+  end;
+
   for I := 0 to OptionManager.GetOptionSchemaCount - 1 do begin
     OS := OptionManager.GetOptionSchemaAt(I);
     if OS.ID <> OPT_SCHEMA_ENVIRONMENT then
@@ -1065,6 +1080,15 @@ begin
     FShowParentName := Value;
     if Assigned(FOnOptionValueChange) then
       FOnOptionValueChange(Self, OPT_SCHEMA_ENVIRONMENT, OPT_SHOW_PARENT_NAME, Value);
+  end;
+end;
+
+procedure POptionDepository.SetAutoLoadUnits(Value: Boolean);
+begin
+  if FAutoLoadUnits <> Value then begin
+    FAutoLoadUnits := Value;
+    if Assigned(FOnOptionValueChange) then
+      FOnOptionValueChange(Self, OPT_SCHEMA_ENVIRONMENT, OPT_AUTO_LOAD_UNITS, Value);
   end;
 end;
 

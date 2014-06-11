@@ -98,6 +98,7 @@ type
     FOnUnitSeparated: PUnitEvent;
     FOnUnitMerged: PUnitEvent;
     FOnUnitOpened: PUnitEvent;
+    FOnUnitUnloaded: PUnitEvent;
     FOnSavingProgress: PProgressEvent;
     FOnLoadingProgress: PProgressEvent;
     FOnResolvingProgress: PProgressEvent;
@@ -212,6 +213,7 @@ type
     procedure MergeUnit(APackage: PUMLPackage);
     function OpenUnit(ABasePackage: PUMLPackage; AFileName: string): PUMLUnitDocument;
     procedure DeleteUnit(APackage: PUMLPackage);
+    procedure UnloadUnit(APackage: PUMLPackage);
     procedure SaveUnit(APackage: PUMLPackage);
     procedure SaveUnitAs(APackage: PUMLPackage; AFileName: string);
     procedure SaveAllUnits;
@@ -407,6 +409,7 @@ type
     property OnUnitSeparated: PUnitEvent read FOnUnitSeparated write FOnUnitSeparated;
     property OnUnitMerged: PUnitEvent read FOnUnitMerged write FOnUnitMerged;
     property OnUnitOpened: PUnitEvent read FOnUnitOpened write FOnUnitOpened;
+    property OnUnitUnloaded: PUnitEvent read FOnUnitUnloaded write FOnUnitUnloaded;
     property OnSavingProgress: PProgressEvent read FOnSavingProgress write FOnSavingProgress;
     property OnLoadingProgress: PProgressEvent read FOnLoadingProgress write FOnLoadingProgress;
     property OnResolvingProgress: PProgressEvent read FOnResolvingProgress write FOnResolvingProgress;
@@ -683,6 +686,30 @@ begin
     FEventArgUnit := APackage.Document as PUMLUnitDocument;
     FOnUnitSeparated(Self, APackage);
   end;
+end;
+
+procedure PStarUMLApplication.UnloadUnit(APackage: PUMLPackage);
+var
+  FileName: string;
+  Owner: PUMLPackage;
+  Index: Integer;
+  UnitDoc: PUMLUnitDocument;
+  ParentUnitDoc: PUMLUnitDocument;
+  StubUnit: PUMLUnitStubDocument;
+begin
+  // Store unit parameters need for the stub
+  UnitDoc := APackage.Document as PUMLUnitDocument;
+  FileName := UnitDoc.FileName;
+  ParentUnitDoc := UnitDoc.ParentUnitDocument;
+  Owner := APackage.VirtualNamespace as PUMLPackage;
+  Index := Owner.IndexOfOwnedElement(APackage);
+
+  DeleteUnit(APackage);
+
+  // Create stub
+  StubUnit := ProjectManager.LoadUnitStub(ParentUnitDoc, Owner, Index,
+    ExtractFileName(FileName), ExtractFilePath(FileName));
+  FOnUnitUnloaded(Self, StubUnit.DocumentElement as PUMLPackage);
 end;
 
 procedure PStarUMLApplication.UnitMerged(Sender: TObject; APackage: PUMLPackage);
@@ -1370,10 +1397,14 @@ end;
 
 procedure PStarUMLApplication.CollectOwners(Models, Owners: PModelOrderedSet);
 var
-  I: Integer;
+  //I: Integer;
+  Model: PModel;
 begin
-  for I := 0 to Models.Count - 1 do
-    Owners.Add((Models.Items[I] as PModel).VirtualNamespace);
+  //for I := 0 to Models.Count - 1 do
+    //Owners.Add((Models.Items[I] as PModel).VirtualNamespace);
+  for Model in Models do
+    Owners.Add(Model.VirtualNamespace);
+
 end;
 
 procedure PStarUMLApplication.CollectDiagramViews(Views, DiagramViews: PViewOrderedSet);

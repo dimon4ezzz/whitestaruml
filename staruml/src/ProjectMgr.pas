@@ -108,7 +108,10 @@ type
     procedure LoadingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
     procedure ResolvingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
     procedure MakeBackupFile(TargetFileName, DefaultExt, BackupExt: string);
-    function LoadUnit(AParentUnit: PUMLUnitDocument; OwnerGuid: string; OwnedIndex: string; AFileName: string; AReferenceResolver: PReferenceResolver): PUMLUnitDocument;
+    function LoadUnit(AParentUnit: PUMLUnitDocument; OwnerGuid: string; OwnedIndex: string;
+      AFileName: string; AReferenceResolver: PReferenceResolver): PUMLUnitDocument;
+    function LoadUnitStub(AParentUnit: PUMLUnitDocument; OwnerGuid: string;
+      OwnedIndex: string; AFileName: string; AFileDir: string): PUMLUnitStubDocument; overload;
     procedure SaveProjectDocument(AProjectDoc: PUMLProjectDocument);
     procedure SaveUnitDocument(AUnitDoc: PUMLUnitDocument);
     procedure AutoIncludeProfiles;
@@ -133,6 +136,10 @@ type
     procedure IncludeProfile(AProfileName: string);
     procedure ExcludeProfile(AProfileName: string);
     procedure UpdateDocuments;
+
+    function LoadUnitStub(AParentUnit: PUMLUnitDocument; Owner: PUMLPackage;
+      Index: Integer; AFileName: string; AFileDir: string): PUMLUnitStubDocument; overload;
+
     property Project: PUMLProject read FProject;
     property ProjectDocument: PUMLProjectDocument read FProjectDocument;
     property UnitDocuments[Index: Integer]: PUMLUnitDocument read GetUnitDocument;
@@ -165,8 +172,8 @@ type
 implementation
 
 uses
-  System.Types, System.UITypes,   SysUtils, Variants, Dialogs, Windows,
-  FrwMgr, ApprMgr, UMLFacto, LogMgr, NLS_StarUML;
+  System.Types, System.UITypes, SysUtils, Variants, Dialogs, Windows,
+  FrwMgr, ApprMgr, UMLFacto, LogMgr, OptionDeps, NLS_StarUML;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PProjectManager
@@ -374,6 +381,7 @@ begin
     FUnitDocuments.Add(AUnit);
     CurDir := GetCurrentDir;
     ChDir(ExtractFilePath(AUnit.FileName));
+
     // load all sub units
     with S.HeaderSubUnitTable do
     begin
@@ -419,6 +427,44 @@ begin
     S.Free;
   end;
   Result := AUnit;
+end;
+
+
+function PProjectManager.LoadUnitStub(AParentUnit: PUMLUnitDocument;
+  Owner: PUMLPackage; Index: Integer; AFileName,
+  AFileDir: string): PUMLUnitStubDocument;
+var
+  AUnit: PUMLUnitStubDocument;
+ begin
+  AUnit := PUMLUnitStubDocument.Create;
+  AUnit.Setup(Owner,AParentUnit,AFileName,AFileDir);
+
+  // add unit element(DocumentElement) at Owner's indexed position
+  if Assigned(Owner) then begin
+    if Index < 0 then
+      Owner.AddOwnedElement(AUnit.PackageStub)
+    else
+      Owner.InsertOwnedElement(Index, AUnit.PackageStub);
+  end;
+
+   Result := AUnit;
+end;
+
+function PProjectManager.LoadUnitStub(AParentUnit: PUMLUnitDocument; OwnerGuid,
+  OwnedIndex, AFileName: string; AFileDir: string): PUMLUnitStubDocument;
+var
+  Owner: PUMLPackage;
+  Index: Integer;
+begin
+  Owner := MetaModel.FindInstanceByGuid(OwnerGuid) as PUMLPackage;
+  try
+    Index := StrToInt(OwnedIndex);
+  except
+    Index := -1;
+  end;
+
+  Result := LoadUnitStub(AParentUnit,Owner,Index,AFileName, AFileDir);
+
 end;
 
 procedure PProjectManager.SaveProjectDocument(AProjectDoc: PUMLProjectDocument);
@@ -627,6 +673,7 @@ var
   I: Integer;
   FN, PN: string;
   CurDir: string;
+  FilePath: string;
 begin
   if CloseProject then
   begin
@@ -646,7 +693,8 @@ begin
       FProject := FProjectDocument.DocumentElement as PUMLProject;
       // load all sub Units of Project
       CurDir := GetCurrentDir;
-      ChDir(ExtractFilePath(FileName));
+      FilePath := ExtractFilePath(FileName);
+      ChDir(FilePath);
       with S.HeaderSubUnitTable do
       begin
         SortByColumn('Index', True);
@@ -654,7 +702,10 @@ begin
         begin
           try
             FN := GetValueAt(I, 'FileName');
-            LoadUnit(FProjectDocument, GetValueAt(I, 'Owner'), GetValueAt(I, 'Index'), FN, Resolver);
+            if OptionDepository.AutoLoadUnits then
+              LoadUnit(FProjectDocument, GetValueAt(I, 'Owner'), GetValueAt(I, 'Index'), FN, Resolver)
+            else
+              LoadUnitStub(FProjectDocument, GetValueAt(I, 'Owner'), GetValueAt(I, 'Index'), FN, FilePath);
           except
             on E: EFileNotFound do
             begin
@@ -791,7 +842,7 @@ begin
   Resolver.Clear;
   try
     AUnit := LoadUnit(ParentUnit, ABasePackage.GUID, '-1', AFileName, Resolver);
-    if (AUnit <> nil) and (AUnit.DocumentElement <> nil) then
+    if Assigned(AUnit) and Assigned(AUnit.DocumentElement) then
     begin
       Resolver.ReassignGUIDs(AUnit.DocumentElement);
       Resolver.BlockedResolveAll(AUnit.DocumentElement);

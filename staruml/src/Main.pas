@@ -227,6 +227,7 @@ type
     procedure UnitSeparatedHandler(Sender: TObject; APackage: PUMLPackage);
     procedure UnitMergedHandler(Sender: TObject; APackage: PUMLPackage);
     procedure UnitOpenedHandler(Sender: TObject; APackage: PUMLPackage);
+    procedure UnitUnloadedHandler(Sender: TObject; APackage: PUMLPackage);
     procedure SavingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
     procedure LoadingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
     procedure ResolvingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
@@ -285,13 +286,14 @@ type
     procedure ExecuteFileNew;
     procedure ExecuteFileSelectProject;
     procedure ExecuteFileOpen(AFileAccessType: PFileAccessType);
-    procedure ExecuteFileSave;
+    function ExecuteFileSave: Boolean;
     procedure ExecuteFileSaveAs;
     procedure ExecuteFileClose;
     procedure ExecuteFileUnitsSeparateUnit;
     procedure ExecuteFileUnitsMergeUnit;
     procedure ExecuteFileUnitsOpenUnit;
     procedure ExecuteFileUnitsDeleteUnit;
+    procedure ExecuteFileUnitsUnloadUnit;
     procedure ExecuteFileUnitsSave;
     procedure ExecuteFileUnitsSaveAs;
     procedure ExecuteFileImportFramework;
@@ -722,7 +724,16 @@ begin
         end;
         // END (PERSONAL EDITION TEMPORAL CODE)
         ExecuteFileUnitsDeleteUnit;
+        //ExecuteFileUnitsUnloadUnit;
       end
+
+      else if Sender = FileUnitsUnloadUnit then begin
+        ExecuteFileUnitsUnloadUnit;
+      end
+
+      else if Sender = FileUnitsOpenUnit then
+        ExecuteFileUnitsOpenUnit
+
       else if Sender = FileUnitsSave then begin
         // BEGIN (PERSONAL EDITION TEMPORAL CODE)
         if IsPersonalEdition then begin
@@ -2284,6 +2295,7 @@ procedure PMain.SelectionChangedHandler(Sender: TObject);
 var
   I: Integer;
   M: PModel;
+  UnitSelectedGroupEnabled: Boolean;
 begin
   try
     // Apply Changes in Inspector
@@ -2339,9 +2351,19 @@ begin
 
     // Setting Menu Status
     MenuStateHandler.BeginUpdate;
-    MenuStateHandler.SetUnitSelectedGroup((StarUMLApplication.SelectedModelCount = 1) and
-      StarUMLApplication.SelectedModels[0].IsDocumentElement and
-      (not (StarUMLApplication.SelectedModels[0] is PUMLProject)));
+
+    // Setting Unit group
+    if StarUMLApplication.SelectedModelCount <> 1 then
+       UnitSelectedGroupEnabled := False
+    else begin
+      M := StarUMLApplication.SelectedModels[0];
+      UnitSelectedGroupEnabled :=
+        M.IsDocumentElement and
+        not (M.Document is PUMLUnitStubDocument) and
+        not (M is PUMLProject);
+    end;
+    MenuStateHandler.SetUnitSelectedGroup(UnitSelectedGroupEnabled);
+
     MenuStateHandler.SetModelSelectedGroup(StarUMLApplication.SelectedModelCount = 1);
     MenuStateHandler.SetViewSelectedGroup(StarUMLApplication.SelectedViewCount > 0);
     MenuStateHandler.UpdateFileMenus;
@@ -2855,19 +2877,17 @@ var
 begin
   try
     if StarUMLApplication.Modified then begin
-      R := Application.MessageBox(PChar(QUERY_SAVE_MODIFICATION), PChar(Application.Title),
-        MB_ICONQUESTION or MB_YESNOCANCEL);
-      if R = IDYES then begin
-        ExecuteFileSave;
-        if StarUMLApplication.Modified then
-          CanClose := False
-        else
+      R := MessageDlg(QUERY_SAVE_MODIFICATION, mtConfirmation, mbYesNoCancel, 0);
+      case R of
+        mrYes:
+          CanClose := ExecuteFileSave;
+        mrNo:
           CanClose := True;
+        mrCancel:
+          CanClose := False;
+        else
+          Assert(False); // Code should not get here
       end
-      else if R = IDNO then
-        CanClose := True
-      else if R = IDCANCEL then
-        CanClose := False;
     end
     else
       CanClose := True;
@@ -2901,6 +2921,12 @@ begin
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
+end;
+
+procedure PMain.UnitUnloadedHandler(Sender: TObject; APackage: PUMLPackage);
+begin
+  MainForm.ModelExplorer.RebuildAll;
+  MainForm.ModelExplorer.Select(APackage);
 end;
 
 procedure PMain.UnitMergedHandler(Sender: TObject; APackage: PUMLPackage);
@@ -3351,6 +3377,7 @@ begin
     OnUnitSeparated := UnitSeparatedHandler;
     OnUnitMerged := UnitMergedHandler;
     OnUnitOpened := UnitOpenedHandler;
+    OnUnitUnloaded := UnitUnloadedHandler;
     OnClipboardDataChanged := ClipboardDataChangedHandler;
     OnCommandHistoryChanged := CommandHistoryChangedHandler;
     OnBeginUpdate := BeginUpdateHandler;
@@ -3494,7 +3521,7 @@ begin
   end;
 end;
 
-procedure PMain.ExecuteFileSave;
+function PMain.ExecuteFileSave: Boolean;
 begin
   if (StarUMLApplication.FileName <> '') then
   begin
@@ -3519,6 +3546,8 @@ begin
     end;
   end;
   UpdateDocumentElements;
+
+  Result := not StarUMLApplication.Modified;
 end;
 
 procedure PMain.ExecuteFileSaveAs;
@@ -3551,16 +3580,44 @@ begin
      (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
   begin
     try
-      CheckReadOnly(StarUMLApplication.SelectedModels[0]);
       Pkg := StarUMLApplication.SelectedModels[0] as PUMLPackage;
+      CheckReadOnly(Pkg);
       MainForm.SaveUnitDialog.FileName := Pkg.Name;
-      if MainForm.SaveUnitDialog.Execute then
+      if MainForm.SaveUnitDialog.Execute then begin
         StarUMLApplication.SeparateUnit(Pkg, MainForm.SaveUnitDialog.FileName);
+        MenuStateHandler.SetUnitSelectedGroup(True);
+        MenuStateHandler.UpdateFileMenus;
+      end;
     except
       on SaveDialogEx.EDirectoryNotFound do MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
       on SaveDialogEx.EInvalidFileName do MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
       on EReadOnlyDocument do MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
     end;
+  end;
+end;
+
+procedure PMain.ExecuteFileUnitsUnloadUnit;
+var
+  APackage: PUMLPackage;
+begin
+ if (StarUMLApplication.SelectedModelCount = 1) and
+     (StarUMLApplication.SelectedModels[0] is PUMLPackage) and
+     StarUMLApplication.SelectedModels[0].IsDocumentElement and
+     (StarUMLApplication.SelectedModels[0].Document is PUMLUnitDocument) then
+  begin
+    APackage := StarUMLApplication.SelectedModels[0] as PUMLPackage;
+
+    try
+      CheckReadOnly(APackage.Namespace);
+    except
+      on EReadOnlyDocument do begin
+        MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
+        Exit;
+      end;
+    end;
+
+    StarUMLApplication.UnloadUnit(APackage);
+
   end;
 end;
 
@@ -3576,6 +3633,8 @@ begin
         on EReadOnlyDocument do MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
       end;
       StarUMLApplication.MergeUnit(StarUMLApplication.SelectedModels[0] as PUMLPackage);
+      MenuStateHandler.SetUnitSelectedGroup(False);
+      MenuStateHandler.UpdateFileMenus;
     end;
   end;
 end;
@@ -3583,21 +3642,47 @@ end;
 procedure PMain.ExecuteFileUnitsOpenUnit;
 var
   AUnit: PUMLUnitDocument;
+  ParentPackage: PUMLPackage;
+  UnitPackage: PUMLPackage;
+  UnitStubDoc: PUMLUnitStubDocument;
+  UnitFileName: string;
+  Models: PModelOrderedSet;
 begin
   if (StarUMLApplication.SelectedModelCount = 1) and
      (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
   begin
+    UnitStubDoc := nil;
     try
-      CheckReadOnly(StarUMLApplication.SelectedModels[0] as PUMLPackage);
-      MainForm.OpenUnitDialog.FileName := '';
-      if MainForm.OpenUnitDialog.Execute then
-      begin
-        AUnit := StarUMLApplication.OpenUnit(StarUMLApplication.SelectedModels[0] as PUMLPackage,
-        MainForm.OpenUnitDialog.FileName);
-        MainForm.ModelExplorer.Expand(StarUMLApplication.SelectedModels[0]);
-        StarUMLApplication.SelectModel(AUnit.DocumentElement as PModel);
-        SelectModelExplorerDockPanel(AUnit.DocumentElement as PModel);
+      ParentPackage := StarUMLApplication.SelectedModels[0] as PUMLPackage;
+
+      if ParentPackage.Document is PUMLUnitStubDocument then begin // Loading unit from stub
+        UnitStubDoc := ParentPackage.Document as PUMLUnitStubDocument;
+        ParentPackage := UnitStubDoc.PackageStubOwner;
+        UnitFileName := UnitStubDoc.FullFilePath;
+      end
+      else begin // Normal unit
+        CheckReadOnly(ParentPackage);
+        MainForm.OpenUnitDialog.FileName := '';
+        if MainForm.OpenUnitDialog.Execute then
+          UnitFileName := MainForm.OpenUnitDialog.FileName
+        else
+          Exit // Loading unit abandoned
       end;
+
+      AUnit := StarUMLApplication.OpenUnit(ParentPackage, UnitFileName);
+      if Assigned(UnitStubDoc) then begin // Clean stub node
+        Models := PModelOrderedSet.Create;
+        Models.Add(UnitStubDoc.DocumentElement as PModel);
+        MainForm.ModelExplorer.DeleteModels(Models);
+        Models.Free;
+        UnitStubDoc.Free;
+      end;
+
+      MainForm.ModelExplorer.Expand(ParentPackage);
+      UnitPackage := AUnit.DocumentElement as PUMLPackage;
+      StarUMLApplication.SelectModel(UnitPackage);
+      SelectModelExplorerDockPanel(UnitPackage);
+
     except
       on EReadOnlyDocument do MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
     end;
@@ -3608,22 +3693,26 @@ procedure PMain.ExecuteFileUnitsDeleteUnit;
 var
   R: Integer;
   AUnit: PUMLUnitDocument;
+  APackage: PUMLPackage;
+  DeleteConfirmationMsg : string;
 begin
   if (StarUMLApplication.SelectedModelCount = 1) and
      (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
   begin
+    APackage := StarUMLApplication.SelectedModels[0] as PUMLPackage;
     try
-      CheckReadOnly((StarUMLApplication.SelectedModels[0] as PUMLPackage).Namespace);
+      CheckReadOnly(APackage.Namespace);
     except
-      on EReadOnlyDocument do MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
+      on EReadOnlyDocument do begin
+        MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
+        Exit;
+      end;
     end;
-    AUnit := (StarUMLApplication.SelectedModels[0] as PUMLPackage).Document as PUMLUnitDocument;
-    R := Application.MessageBox(PChar(ExtractFileName(AUnit.FileName) + ' ' + QUERY_DELETE_UNIT), PChar(Application.Title),
-      MB_ICONQUESTION or MB_YESNO);
-    if R = IDYES then
-    begin
-      StarUMLApplication.DeleteUnit(AUnit.DocumentElement as PUMLPackage);
-    end;
+    AUnit := APackage.Document as PUMLUnitDocument;
+    DeleteConfirmationMsg := Format(QUERY_DELETE_UNIT, [ExtractFileName(AUnit.FileName)]);
+    R := MessageDlg(DeleteConfirmationMsg, mtConfirmation, mbOKCancel, 0);
+    if R = mrOK then
+      StarUMLApplication.DeleteUnit(APackage);
   end;
 end;
 
@@ -4301,6 +4390,17 @@ begin
       (StarUMLApplication.SelectedModelCount = 1) and
       (StarUMLApplication.SelectedModels[0] is PUMLPackage) and
       (not StarUMLApplication.SelectedModels[0].IsDocumentElement);
+
+    FileUnitsOpenUnit.Enabled :=
+      (StarUMLApplication.SelectedModelCount = 1) and
+      (StarUMLApplication.SelectedModels[0] is PUMLPackage) and
+
+      (
+        not StarUMLApplication.SelectedModels[0].IsDocumentElement // Is not a document
+        or
+        (StarUMLApplication.SelectedModels[0].Document is PUMLUnitStubDocument) // Is a stub document
+      );
+
     FileExportModelFragment.Enabled :=
       (StarUMLApplication.SelectedModelCount = 1) and
       (StarUMLApplication.SelectedModels[0] is PUMLPackage) and

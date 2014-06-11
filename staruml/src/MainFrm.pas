@@ -381,8 +381,10 @@ type
     FormatAnnotationLineStyleDashDotDot: TdxBarButton;
     EditFindDiagramsWithSelectedModel: TdxBarButton;
     dxLayoutDockSite3: TdxLayoutDockSite;
-    PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     ModelAttachments: TdxBarButton;
+    FileUnitsOpenUnit: TdxBarButton;
+    FileUnitsUnloadUnit: TdxBarButton;
+    PaletteNavBarFrame: TPaletteNavBarFrameVclImpl;
     // Event Handlers (On Main Form Menu Item Clicked)
     procedure FileMenuClick(Sender: TObject);
     procedure EditMenuClick(Sender: TObject);
