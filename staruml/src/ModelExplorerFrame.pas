@@ -309,8 +309,8 @@ type
 implementation
 
 uses
-  MainFrm, ExtCore, ModelExpFilterFrm, LogMgr,
-  Registry;
+  Registry,
+   MainFrm, ExtCore, ModelExpFilterFrm, LogMgr, UMLAux;
 
 {$R *.dfm}
 
@@ -583,11 +583,15 @@ function TModelExplorerPanel.FindNode(Model: PModel): PVirtualNode;
 var
   Idx: Integer;
 begin
-  Idx := NodeHashTable.IndexOf(Model.GUID);
-  if Idx < 0 then
-    Result := nil
+  if Assigned(Model) then begin
+    Idx := NodeHashTable.IndexOf(Model.GUID);
+    if Idx < 0 then
+      Result := nil
+    else
+      Result := PVirtualNode(NodeHashTable.Objects[Idx]);
+  end
   else
-    Result := PVirtualNode(NodeHashTable.Objects[Idx]);
+    Result := nil;
 end;
 
 procedure TModelExplorerPanel.BuildNodes(BaseModel: PModel; BaseNode: PVirtualNode; CompletelyRebuild: Boolean = True);
@@ -1316,9 +1320,14 @@ var
 
   function GetStateImageIndex(M: PModel): Integer;
   begin
-    if M.ReadOnly then Result := 2
-    else if (M.IsDocumentElement) and not (M is PUMLProject) then Result := 1
-    else Result := -1;
+    if M.ReadOnly then
+      Result := 2
+    else if M.IsDocumentElement and (M.Document is PUMLUnitStubDocument) then
+      Result := 3
+    else if (M.IsDocumentElement) and not (M is PUMLProject) then
+      Result := 1
+    else
+      Result := -1;
   end;
 
 begin
