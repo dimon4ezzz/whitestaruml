@@ -47,18 +47,20 @@ library OptMgr;
 
 uses
   ComServ,
-  OptionNodes in 'OptionNodes.pas',
   OptionMgr in 'OptionMgr.pas',
   OptionDialogFrm in 'OptionDialogFrm.pas' {OptionDialogForm},
   OptionMgrAux in 'OptionMgrAux.pas',
-  //OptionRowsTdxImpl in 'OptionRowsTdxImpl.pas',
-  OptMgr_TLB in 'OptMgr_TLB.pas',
-  PVariants in 'PVariants.pas',
   NLS in 'NLS.pas',
   NLS_OPTMGR in 'NLS_OPTMGR.pas',
-  //OptionDialogFrmWithTdxInspector in 'OptionDialogFrmWithTdxInspector.pas' {OptionDialogFormWithTdxInspector},
-  OptionDialogFrmWithJvclInspector in 'OptionDialogFrmWithJvclInspector.pas' {OptionDialogFormWithJvclInspector};
-  //OptionRowsJvclImpl in 'OptionRowsJvclImpl.pas';
+  OptionDialogFrmWithJvclInspector in 'OptionDialogFrmWithJvclInspector.pas' {OptionDialogFormWithJvclInspector},
+  OptionItems in 'OptionItems.pas',
+  OptionNodes in 'OptionNodes.pas',
+  OptionRowsBase in 'OptionRowsBase.pas',
+  OptionRowsJvclImpl in 'OptionRowsJvclImpl.pas',
+  OptMgr_TLB in 'OptMgr_TLB.pas',
+  PVariants in 'PVariants.pas';
+
+//OptionRowsJvclImpl in 'OptionRowsJvclImpl.pas';
   //OptionRowsBase in 'OptionRowsBase.pas';
   
 {$IFDEF RELEASE}
