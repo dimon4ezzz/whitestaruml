@@ -998,7 +998,7 @@ begin
   C := DiagramView.OwnedViewCount;
   for I := 0 to C-1 do begin
     View := DiagramView.OwnedView[I];
-    if View.Model.Name = Name then begin
+    if Assigned(View.Model) and (View.Model.Name = Name) then begin
       Result := View;
       Exit;
     end;
