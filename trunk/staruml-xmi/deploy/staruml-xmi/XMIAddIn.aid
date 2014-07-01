@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ADDIN>
-    <NAME>XMI AddIn</NAME>
-    <DISPLAYNAME>XMI Add-In</DISPLAYNAME>
-    <COMOBJ>WSXMIAddIn.XMIAddInObj</COMOBJ>
-    <FILENAME>WSXMIAddIn.dll</FILENAME>
-    <COMPANY>Plastic Software, Inc.</COMPANY>
-    <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
-    <HELPFILE>WhiteStarUML.chm</HELPFILE>
-    <ICONFILE>XMIAddIn.ico</ICONFILE>
-    <ISACTIVE>True</ISACTIVE>
-    <MENUFILE>XMIAddIn.mnu</MENUFILE>
-    <VERSION>1.1.0.70</VERSION>
+  <NAME>XMI AddIn</NAME>
+  <DISPLAYNAME>XMI Add-In</DISPLAYNAME>
+  <COMOBJ>WSXMIAddIn.XMIAddInObj</COMOBJ>
+  <FILENAME>WSXMIAddIn.dll</FILENAME>
+  <COMPANY>Plastic Software, Inc.</COMPANY>
+  <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
+  <HELPFILE>WhiteStarUML.chm</HELPFILE>
+  <ICONFILE>XMIAddIn.ico</ICONFILE>
+  <ISACTIVE>True</ISACTIVE>
+  <MENUFILE>XMIAddIn.mnu</MENUFILE>
+  <VERSION>1.2.1.71</VERSION>
 </ADDIN>

@@ -12,7 +12,7 @@ object ProfileSelectorForm: TProfileSelectorForm
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   PixelsPerInch = 96
@@ -118,10 +118,13 @@ object ProfileSelectorForm: TProfileSelectorForm
     Height = 161
     AppearanceOptions = [aoAlphaBlendedSelection, aoHideFocus, aoHideSelection]
     AutoScroll = True
+    Caption = ''
     HighlightedTextColor = clWindowText
     Options = [goSelectFullRow]
     TabOrder = 0
     TabStop = True
+    Touch.InteractiveGestures = [igPan, igPressAndTap]
+    Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
     object CheckColumn: TNxCheckBoxColumn
       Alignment = taCenter
       DefaultWidth = 26

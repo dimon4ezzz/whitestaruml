@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ADDIN>
-    <NAME>C++ AddIn</NAME>
-    <DISPLAYNAME>C++ Add-In</DISPLAYNAME>
-    <COMOBJ>WSCppAddIn.CppAddInObj</COMOBJ>
-    <FILENAME>WSCppAddIn.dll</FILENAME>
-    <COMPANY>Plastic Software, Inc.</COMPANY>
-    <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
-    <HELPFILE>WhiteStarUML.chm</HELPFILE>
-    <ICONFILE>CppAddIn.ico</ICONFILE>
-    <ISACTIVE>True</ISACTIVE>
-    <MENUFILE>CppAddIn.mnu</MENUFILE>
-    <VERSION>1.2.0.74</VERSION>
+  <NAME>C++ AddIn</NAME>
+  <DISPLAYNAME>C++ Add-In</DISPLAYNAME>
+  <COMOBJ>WSCppAddIn.CppAddInObj</COMOBJ>
+  <FILENAME>WSCppAddIn.dll</FILENAME>
+  <COMPANY>Plastic Software, Inc.</COMPANY>
+  <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
+  <HELPFILE>WhiteStarUML.chm</HELPFILE>
+  <ICONFILE>CppAddIn.ico</ICONFILE>
+  <ISACTIVE>True</ISACTIVE>
+  <MENUFILE>CppAddIn.mnu</MENUFILE>
+  <VERSION>1.3.0.75</VERSION>
 </ADDIN>

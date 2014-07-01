@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ADDIN>
-    <NAME>C# AddIn</NAME>
-    <DISPLAYNAME>C# Add-In</DISPLAYNAME>
-    <COMOBJ>WSCSharpAddIn.CSharpAddInObj</COMOBJ>
-    <FILENAME>WSCSharpAddIn.dll</FILENAME>
-    <COMPANY>Plastic Software, Inc.</COMPANY>
-    <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
-    <HELPFILE>WhiteStarUML.chm</HELPFILE>
-    <ICONFILE>CSharpAddIn.ico</ICONFILE>
-    <ISACTIVE>True</ISACTIVE>
-    <MENUFILE>CSharpAddIn.mnu</MENUFILE>
-    <VERSION>1.1.0.78</VERSION>
+  <NAME>C# AddIn</NAME>
+  <DISPLAYNAME>C# Add-In</DISPLAYNAME>
+  <COMOBJ>WSCSharpAddIn.CSharpAddInObj</COMOBJ>
+  <FILENAME>WSCSharpAddIn.dll</FILENAME>
+  <COMPANY>Plastic Software, Inc.</COMPANY>
+  <COPYRIGHT>Copyright 2005 Plastic Software, Inc. All rights reserved.</COPYRIGHT>
+  <HELPFILE>WhiteStarUML.chm</HELPFILE>
+  <ICONFILE>CSharpAddIn.ico</ICONFILE>
+  <ISACTIVE>True</ISACTIVE>
+  <MENUFILE>CSharpAddIn.mnu</MENUFILE>
+  <VERSION>1.2.0.79</VERSION>
 </ADDIN>
