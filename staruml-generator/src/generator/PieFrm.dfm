@@ -7,6 +7,7 @@ object PieForm: TPieForm
   ClientHeight = 498
   ClientWidth = 721
   Color = clBtnFace
+  DefaultMonitor = dmMainForm
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = 14
@@ -14,7 +15,7 @@ object PieForm: TPieForm
   Font.Style = []
   FormStyle = fsStayOnTop
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow

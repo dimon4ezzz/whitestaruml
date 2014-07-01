@@ -51,7 +51,7 @@ uses
   CSharpReverseEngine, Symbols, Utility,
   ImgList, Controls, ComCtrls, ExtCtrls, StdCtrls, Forms, Classes,
   Windows, Messages, SysUtils, Variants, Graphics,
-  Dialogs, JvWizard,  ElXPThemedControl,
+  Dialogs, JvWizard, 
   ElTree, WhiteStarUML_TLB, FileCtrl, SelTreeFrame, ShellCtrls, JvExControls,
   JvComponent;
 
