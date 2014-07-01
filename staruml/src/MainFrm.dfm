@@ -11164,7 +11164,7 @@ object MainForm: TMainForm
     Images = DockPanelImageList
     LookAndFeel.Kind = lfOffice11
     LookAndFeel.NativeStyle = False
-    Options = [doActivateAfterDocking, doDblClickDocking, doFloatingOnTop, doTabContainerHasCaption, doTabContainerCanAutoHide, doSideContainerCanClose, doSideContainerCanAutoHide, doTabContainerCanInSideContainer]
+    Options = [doActivateAfterDocking, doDblClickDocking, doTabContainerHasCaption, doTabContainerCanAutoHide, doSideContainerCanClose, doSideContainerCanAutoHide, doTabContainerCanInSideContainer]
     Left = 540
     Top = 206
     PixelsPerInch = 96

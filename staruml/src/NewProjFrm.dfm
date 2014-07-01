@@ -7,6 +7,7 @@ object NewProjectForm: TNewProjectForm
   ClientHeight = 317
   ClientWidth = 483
   Color = clBtnFace
+  DefaultMonitor = dmMainForm
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -16,8 +17,6 @@ object NewProjectForm: TNewProjectForm
   Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  ExplicitWidth = 320
-  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 13
   object NewProjectPageControl: TPageControl
@@ -32,10 +31,6 @@ object NewProjectForm: TNewProjectForm
     OnChange = NewProjectPageControlChange
     object ApproachesPage: TTabSheet
       Caption = 'Approaches'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         461
         242)
@@ -275,7 +270,7 @@ object NewProjectForm: TNewProjectForm
         Left = 404
         Top = 0
         Width = 46
-        Height = 25
+        Height = 23
         Align = alNone
         Anchors = [akTop, akRight]
         AutoSize = True
@@ -288,7 +283,7 @@ object NewProjectForm: TNewProjectForm
         TabOrder = 3
         object LargeIconButton: TToolButton
           Left = 0
-          Top = 2
+          Top = 0
           Hint = 'Large Icon'
           AutoSize = True
           Caption = 'Large Icon'
@@ -301,7 +296,7 @@ object NewProjectForm: TNewProjectForm
         end
         object SmallIconButton: TToolButton
           Left = 23
-          Top = 2
+          Top = 0
           Hint = 'Small Icon'
           AutoSize = True
           Caption = 'Small Icon'
@@ -316,10 +311,6 @@ object NewProjectForm: TNewProjectForm
     object FileOpenPage: TTabSheet
       Caption = 'Open Files'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object FolderLabel: TLabel
         Left = 4
         Top = 6
@@ -380,10 +371,6 @@ object NewProjectForm: TNewProjectForm
     object RFileOpenPage: TTabSheet
       Caption = 'Recent Files'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       DesignSize = (
         461
         242)

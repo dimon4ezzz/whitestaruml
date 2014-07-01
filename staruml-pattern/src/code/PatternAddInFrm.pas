@@ -162,7 +162,7 @@ end;
 
 procedure TPatternAddInForm.BuildPatternTreeView;
 
-  procedure BuildTreeNodeRecurse(ATreeNode: TTreeNode; APatternFolder: PPatternFolder);
+  function BuildTreeNodeRecurse(ATreeNode: TTreeNode; APatternFolder: PPatternFolder): TTreeNode;
   var
     I: Integer;
     TN, SubTN: TTreeNode;
@@ -171,24 +171,33 @@ procedure TPatternAddInForm.BuildPatternTreeView;
     TN := PatternTreeView.Items.AddChild(ATreeNode, APatternFolder.Name);
     TN.Data := APatternFolder;
     TN.StateIndex := 3;
-    for I := 0 to APatternFolder.PatternNodeCount - 1 do
-    begin
-      PN := APatternFolder.PatternNodes[I];
-      if PN is PPatternFolder then
-      begin
-        BuildTreeNodeRecurse(TN, PN as PPatternFolder);
-      end
-      else begin
-        SubTN := PatternTreeView.Items.AddChild(TN, PN.Name);
-        SubTN.Data := PN;
-        SubTN.StateIndex := 5;
-      end;
-    end;
-  end;
 
+    if (APatternFolder.PatternNodeCount = 0) then
+      StarUMLApp.Log(Format('Pattern AddIn: Pattern repository %s is empty',[APatternFolder.PathName]))
+    else
+      for I := 0 to APatternFolder.PatternNodeCount - 1 do
+      begin
+        PN := APatternFolder.PatternNodes[I];
+        if PN is PPatternFolder then
+        begin
+          BuildTreeNodeRecurse(TN, PN as PPatternFolder);
+        end
+        else begin
+          SubTN := PatternTreeView.Items.AddChild(TN, PN.Name);
+          SubTN.Data := PN;
+          SubTN.StateIndex := 5;
+        end;
+      end;
+
+    Result := TN;
+  end;
+var
+  RootTreeNode: TTreeNode;
 begin
   PatternTreeView.Items.Clear;
-  BuildTreeNodeRecurse(nil, PatternManager.PatternRepository);
+  RootTreeNode := BuildTreeNodeRecurse(nil, PatternManager.PatternRepository);
+  if Assigned(RootTreeNode) then // Expand top node
+    RootTreeNode.Expand(False);
 end;
 
 

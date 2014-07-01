@@ -55,7 +55,7 @@
         <DCC_ExeOutput>..\..\deploy</DCC_ExeOutput>
         <DCC_UnitSearchPath>..\..\..\staruml\src\$(Platform)\$(Config);..\..\..\staruml\components\plastic-components\src\$(Platform)\$(Config);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_DependencyCheckOutputName>..\..\deploy\OptMgr.dll</DCC_DependencyCheckOutputName>
-        <DCC_UsePackage>vcl;rtl;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>rtl;vcl;vclx;$(DCC_UsePackage)</DCC_UsePackage>
         <GenDll>true</GenDll>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_Platform>x86</DCC_Platform>
@@ -88,8 +88,6 @@
         <DCC_Inlining>off</DCC_Inlining>
         <DCC_Optimize>false</DCC_Optimize>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
-        <Debugger_HostApplication>C:\JS\Delphi\WhiteStarDevInstall\\WhiteStarUML.exe</Debugger_HostApplication>
-        <DCC_ExeOutput>C:\JS\Delphi\WhiteStarDevInstall</DCC_ExeOutput>
         <VerInfo_Build>0</VerInfo_Build>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.1.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.1.0;Comments=</VerInfo_Keys>
     </PropertyGroup>

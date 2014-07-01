@@ -12,7 +12,7 @@ object BatchSelectionForm: TBatchSelectionForm
   Font.Name = #44404#47548
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poScreenCenter
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 12
