@@ -26,7 +26,8 @@ type
     property ValueTexts: TStringList read FValueTextList write FValueTextList;
   end;
 
-  TMultilineStringItem = type TStringList;
+  TMultilineStringItem = class
+  end;
 
   TJvInspectorMultilineStringItem = class(TJvInspectorTStringsItem)
   public type
@@ -110,7 +111,8 @@ type
     property NameImageIdx: Integer read FNameImageIdx write FNameImageIdx;
   end;
 
-  TMultiStringItemWithNameImage = type TStringList;
+  TMultiStringItemWithNameImage = class
+  end;
 
   TJvInspectorMultiStringItemWithNameImage = class(TJvInspectorMultilineStringItem)
   private
