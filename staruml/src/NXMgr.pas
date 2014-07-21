@@ -50,7 +50,8 @@ unit NXMgr;
 interface
 
 uses
-  Graphics, Core, SysUtils, GraphicClasses, IniFiles, Variants;
+  SysUtils, GraphicClasses, IniFiles, Variants, Generics.Collections,
+  Graphics, Core;
 
 type
   { class declarations }
@@ -77,25 +78,29 @@ type
 
   // PNXExpr
   PNXExpr = class
-  protected
-    FPos: Integer;
+  private type
+    PValueType = (vtValue, vtReference);
+  private
     FPrimitiveValue: Variant; // for value type
     FObjectValue: TObject; // for reference type
-    FType: Boolean;
-  public
+    FType: PValueType;  // Flags whether FPrimitiveValue or FObjectValue is used
+    FPos: Integer; // Line in input source at which expression is located
+ public
     constructor Create(Position: Integer); virtual;
     class function NewValue(Position: Integer; Value: Variant): PNXExpr; // for value type
-    class function NewRef(Position: Integer; Value: TObject): PNXExpr; // for value type
+    class function NewRef(Position: Integer; Value: TObject): PNXExpr; // for reference type
 
     procedure Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable); virtual;
     function IsValueType: Boolean;
     procedure SetValue(Value: Variant);
     procedure SetReference(Value: TObject);
-    procedure SetValueType(Value: Boolean);    
+    procedure SetValueType(Value: PValueType);
     function GetValue: Variant;
     function GetReference: TObject;
 
     property Position: Integer read FPos;
+    property Value: Variant read GetValue write SetValue;
+    property Reference: TObject read GetReference write SetReference;
   end;
 
   // PNXException
@@ -104,8 +109,11 @@ type
 
   // PNXSymbolTable
   PNXSymbolTable = class(TObject)
+  private type
+    PNXExprDictionary = TDictionary<string, PNXExpr>;
   private
-    FList: THashedStringList;
+    //FList: THashedStringList;
+    FDictionary : PNXExprDictionary;
   public
     Constructor Create;
     Destructor Destroy; override;
@@ -170,9 +178,7 @@ type
     function ChildCount(Node: Integer): Integer;
     function NodeName(Node: Integer): String;
     function NodeValue(Node: Integer): String;
-    function OperName(Node: Integer): String;
     function ExprNodeValue(Node: Integer): String;
-    function StripQuote(S: String): String;
     function GetPos(Node: Integer): Integer;
 
     function TraverseNode(Node: Integer): PNXExpr;
@@ -286,8 +292,10 @@ type
 
   // PNXGroupExpr
   PNXGroupExpr = class(PNXExpr)
+  private type
+    TExprList = TList<PNXExpr>;
   private
-    FExprList: TList;
+    FExprList: TExprList;
     function GetExprs(Index: Integer): PNXExpr;
     function GetExprCount: Integer;
   protected
@@ -305,7 +313,7 @@ type
   private
     FFilename: String;
   public
-    constructor Create(Position: Integer; Filepath: String);
+    constructor Create(Position: Integer; Filepath: String); reintroduce;
     procedure Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable); override;
     property Filename: String read FFilename write FFilename;
   end;
@@ -671,9 +679,8 @@ type
   private
     FGraphic: TGraphic;
     FFilepath: String;
-    FStretch: Boolean;
   public
-    constructor Create(Position: Integer; Filepath: String);
+    constructor Create(Position: Integer; Filepath: String);  reintroduce;
     procedure Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable); override;
   end;
 
@@ -805,8 +812,10 @@ var
   Reader: PNXReader;
   Expr: PNXNotationExpr;
 begin
+  Reader := nil;
+  Expr := nil;
+  Result := nil;
   try
-    Result := nil;
     Reader := PNXReader.Create;
     Expr := Reader.Read(FilePath) as PNXNotationExpr;
     if Expr <> nil then
@@ -826,6 +835,7 @@ procedure PNXManager.DrawExpr(Canvas: PCanvas; View: PView; Expr: PNXExpr);
 var
   Evaluator: PNXEvaluator;
 begin
+  Evaluator := nil;
   try
     FFilename := (Expr as PNXNotationExpr).Filename;
     Evaluator := PNXEvaluator.Create;
@@ -921,67 +931,68 @@ constructor PNXSymbolTable.Create;
 begin
   inherited;
 
-  FList := THashedStringList.Create;
+  FDictionary := PNXExprDictionary.Create;
 end;
 
 destructor PNXSymbolTable.Destroy;
 var
-  I: Integer;
-  S: String;
+  Expr: PNXExpr;
 begin
-  for I := 0 to FList.Count-1 do begin
-    S := FList.Objects[I].ClassName;
-    FList.Objects[I].Free;
-  end;
+  for Expr in FDictionary.Values do
+    Expr.Free;
 
-  FList.Free;
+  FDictionary.Free;
   inherited;
 end;
 
 function PNXSymbolTable.GetValue(Key: String): PNXExpr;
 var
-  Index: Integer;
+  Expr: PNXExpr;
 begin
   Key := LowerCase(Key);
-  Index := FList.IndexOf(Key);
-  ERaise(Index >= 0, 0, Key+' variable does not exist.');
-
-  Result := FList.Objects[Index] as PNXExpr;
+  if FDictionary.TryGetValue(Key, Expr) = True then
+    Result := Expr
+  else begin
+    Result := nil;
+    ERaise(False, 0, Key+' variable does not exist.');
+  end;
 end;
 
 function PNXSymbolTable.Exist(Key: String): Boolean;
 begin
   Key := LowerCase(Key);
-  Result := (FList.IndexOf(Key) <> -1);
+  Result := FDictionary.ContainsKey(Key);
 end;
 
 procedure PNXSymbolTable.Add(Key: String; Value: PNXExpr);
 begin
   Key := LowerCase(Key);
-  FList.AddObject(Key, Value);
+  FDictionary.Add(Key,Value);
 end;
 
 procedure PNXSymbolTable.SetValue(Key: String; Value: PNXExpr);
-var Index: Integer;
+var
+  Expr: PNXExpr;
 begin
   Key := LowerCase(Key);
   if Exist(Key) then begin
-    Index := FList.IndexOf(Key);
-    PNXExpr(FList.Objects[Index]).Free;
-    FList.Objects[Index] := Value;
+    Expr := FDictionary[Key];
+    Expr.Free;
+    FDictionary[Key] := Value;
   end
   else
     Add(Key, Value);
 end;
 
 procedure PNXSymbolTable.Remove(Key: String);
-var Index: Integer;
+var
+  Expr: PNXExpr;
 begin
   Key := LowerCase(Key);
   if Exist(Key) then begin
-    Index := FList.IndexOf(Key);
-    PNXExpr(FList.Objects[Index]).Free;
-    FList.Delete(Index);
+    Expr := FDictionary[Key];
+    Expr.Free;
+    FDictionary.Remove(Key);
   end;
 end;
 
@@ -1051,7 +1062,7 @@ begin
   FPos := Position;
   FPrimitiveValue := Unassigned;
   FObjectValue := nil;
-  FType := true;
+  FType := vtReference;
 end;
 
 procedure PNXExpr.Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable);
@@ -1063,14 +1074,12 @@ class function PNXExpr.NewRef(Position: Integer; Value: TObject): PNXExpr;
 begin
   Result := PNXExpr.Create(Position);
   Result.SetReference(Value);
-  Result.SetValueType(false);
 end;
 
 class function PNXExpr.NewValue(Position: Integer; Value: Variant): PNXExpr;
 begin
   Result := PNXExpr.Create(Position);
   Result.SetValue(Value);
-  Result.SetValueType(true);
 end;
 
 function PNXExpr.GetReference: TObject;
@@ -1083,27 +1092,27 @@ begin
   if IsValueType then
     Result := FPrimitiveValue
   else
-    Result := '['+ClassName+'@'+IntToHex(Integer(Self),2)+']';
+    Result := '['+ClassName+'@'+IntToHex(Integer(@Self),2)+']';
 end;
 
 procedure PNXExpr.SetReference(Value: TObject);
 begin
   FObjectValue := Value;
-  SetValueType(false);
+  SetValueType(vtReference);
 end;
 
 procedure PNXExpr.SetValue(Value: Variant);
 begin
   FPrimitiveValue :=  Value;
-  SetValueType(true);
+  SetValueType(vtValue);
 end;
 
 function PNXExpr.IsValueType: Boolean;
 begin
-  Result := FType;
+  Result := FType = vtValue;
 end;
 
-procedure PNXExpr.SetValueType(Value: Boolean);
+procedure PNXExpr.SetValueType(Value: PValueType);
 begin
   FType := Value;
 end;
@@ -1126,14 +1135,16 @@ end;
 constructor PNXGroupExpr.Create(Position: Integer);
 begin
   inherited Create(Position);
-  FExprList := TList.Create;
+  FExprList := TExprList.Create;
 end;
 
 destructor PNXGroupExpr.Destroy;
-var I: Integer;
+var
+  Expr: PNXExpr;
 begin
-  for I := 0 to FExprList.Count-1 do
-    PNXExpr(FExprList.Items[I]).Free;
+  for Expr in FExprList do
+    Expr.Free;
+
   FExprList.Free;
   inherited;
 end;
@@ -1150,7 +1161,7 @@ end;
 
 function PNXGroupExpr.GetExprs(Index: Integer): PNXExpr;
 begin
-  Result := PNXExpr(FExprList.Items[Index]);
+  Result := FExprList[Index];
 end;
 
 procedure PNXGroupExpr.Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable);
@@ -1162,10 +1173,10 @@ begin
     inherited;
     C := FExprList.Count;
     for I := 0 to C-1 do
-      PNXExpr(FExprList.Items[I]).Evaluate(Canvas, SymbolTable);
+      FExprList[I].Evaluate(Canvas, SymbolTable);
 
     if (C-1) >= 0 then begin
-      Expr := PNXExpr(FExprList.Items[C-1]);
+      Expr := FExprList[C-1];
       if Expr.IsValueType then
         SetValue(Expr.GetValue)
       else
@@ -1186,22 +1197,18 @@ end;
 
 procedure PNXListExpr.Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable);
 var
-  I, C: Integer;
   Expr: PNXExpr;
 begin
   if not FEvaluated then begin
     try
-  //    inherited;
-      C := FExprList.Count;
-      for I := 0 to C-1 do
-        PNXExpr(FExprList.Items[I]).Evaluate(Canvas, SymbolTable);
+       for Expr in FExprList do
+         Expr.Evaluate(Canvas, SymbolTable);
     except
-      ERaise(false, FPos, 'Error exists in the arguments.');
+      ERaise(False, FPos, 'Error exists in the arguments.');
     end;
 
-    FType := false;
-
-    FEValuated := true;
+    FType := vtReference;
+    FEValuated := True;
   end;
 end;
 
@@ -1325,7 +1332,6 @@ end;
 
 procedure PNXItemCountExpr.Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable);
 var Expr: PNXListExpr;
-S: String;
 begin
   try
     inherited;
@@ -1761,7 +1767,6 @@ end;
 { PNXLengthExpr }
 
 procedure PNXLengthExpr.Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable);
-var ResultValue: Integer;
 begin
   inherited;
   try
@@ -1798,7 +1803,6 @@ end;
 { PNXNotExpr }
 
 procedure PNXNotExpr.Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable);
-var ResultValue: Integer;
 begin
   inherited;
   try
@@ -2600,7 +2604,7 @@ end;
 
 procedure PNXPolyBezierExpr.Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable);
 var
-  I, C, M, AC, R: Integer;
+  I, C, AC: Integer;
   Points: array[0..255] of TPoint;
   P: PPoints;
 
@@ -2611,7 +2615,7 @@ var
       R := abs((C-4) mod 3)
     else
       R := 3 - ((C-4) mod 3);
-    if R > 0 then
+    if R > 0 then begin
       // move points
       M := (C-1) div 2;
       for I := C-1 downto M do begin
@@ -2629,6 +2633,7 @@ var
           Points[I].Y := (Points[M].Y + Points[M+R].Y) div 2;
         end;
       end;
+    end;
     Result := C + R;
   end;
 begin
@@ -3029,13 +3034,6 @@ begin
   Result := Pgmr.GetValue(Node);
 end;
 
-function PNXReader.OperName(Node: Integer): String;
-var OperNode: Integer;
-begin
-  OperNode := Pgmr.Find('.oper', Node);
-  Result := NodeValue(OperNode);
-end;
-
 function PNXReader.ExprNodeValue(Node: Integer): String;
 begin
   try
@@ -3046,10 +3044,6 @@ begin
   end;
 end;
 
-function PNXReader.StripQuote(S: String): String;
-begin
-  Result := Copy(S, 2, Length(S)-2);
-end;
 
 function PNXReader.GetPos(Node: Integer): Integer;
 begin
