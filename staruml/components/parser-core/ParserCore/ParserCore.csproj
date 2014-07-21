@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParserBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ParserCore.cs" />
     <Compile Include="ParserCoreImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
