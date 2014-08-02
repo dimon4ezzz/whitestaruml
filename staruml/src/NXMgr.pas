@@ -50,33 +50,18 @@ unit NXMgr;
 interface
 
 uses
-  SysUtils, GraphicClasses, IniFiles, Variants, Generics.Collections,
-  Graphics, Core;
+  System.SysUtils, System.Variants, Vcl.Graphics, Generics.Collections,
+  Core, GraphicClasses;
 
 type
-  { class declarations }
+  { class forward declarations }
 
-  PNXManager = class;
-  PNXExpr = class;
   PNXSymbolTable = class;
 
-  // PNXManager
-  PNXManager = class
-  private
-    FGraphicList: THashedStringList;
-    FFilename: String;
-  public
-    constructor Create;
-    destructor Destroy; override;
-    function ReadExpr(FilePath: String): PNXExpr;
-    procedure DrawExpr(Canvas: PCanvas; View: PView; Expr: PNXExpr);
-
-    function ExistGraphic(Key: String): Boolean;
-    procedure AddGraphic(Key: String; Value: TGraphic);
-    function GetGraphic(Key: String): TGraphic;
-  end;
+  // Principal Base Expression Classes ...................................................
 
   // PNXExpr
+  // Represents an atomic value or is the base class for an aggregated expression
   PNXExpr = class
   private type
     PValueType = (vtValue, vtReference);
@@ -103,6 +88,34 @@ type
     property Reference: TObject read GetReference write SetReference;
   end;
 
+  // PNXGroupExpr
+  PNXGroupExpr = class(PNXExpr)
+  private type
+    TExprList = TList<PNXExpr>;
+  private
+    FExprList: TExprList;
+    function GetExprs(Index: Integer): PNXExpr;
+    function GetExprCount: Integer;
+  protected
+  public
+    constructor Create(Position: Integer); override;
+    destructor Destroy; override;
+    procedure Add(Expr: PNXExpr);
+    procedure Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable); override;
+    property Exprs[Index: Integer]: PNXExpr read GetExprs;
+    property Count: Integer read GetExprCount;
+  end;
+
+  // PNXNotationExpr
+  PNXNotationExpr = class(PNXGroupExpr)
+  private
+    FFilename: String;
+  public
+    constructor Create(Position: Integer; Filepath: String); reintroduce;
+    procedure Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable); override;
+    property Filename: String read FFilename write FFilename;
+  end;
+
   // PNXException
   PNXException = class(Exception)
   end;
@@ -112,7 +125,6 @@ type
   private type
     PNXExprDictionary = TDictionary<string, PNXExpr>;
   private
-    //FList: THashedStringList;
     FDictionary : PNXExprDictionary;
   public
     Constructor Create;
@@ -124,6 +136,25 @@ type
     procedure SetValue(Key: String; Value: PNXExpr);
   end;
 
+    // PNXManager
+  PNXManager = class
+  private type
+    PGraphics = TDictionary<string,TGraphic>;
+  private
+    FGraphics: PGraphics;
+    FFilename: String;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    function ReadExpr(FilePath: String): PNXNotationExpr;
+    procedure DrawExpr(Canvas: PCanvas; View: PView; Expr: PNXNotationExpr);
+
+    function ExistGraphic(Key: String): Boolean;
+    procedure AddGraphic(Key: String; Value: TGraphic);
+    function GetGraphic(Key: String): TGraphic;
+  end;
+
+
 var
   NXManager: PNXManager;
 
@@ -132,20 +163,9 @@ var
 implementation
 
 uses
- (* System, *)
-  System.Types,
-  System.UITypes,
-  Classes,
-  StrUtils,
-  Math,
-  XMLDoc,
-  XMLIntf,
-  Forms,
-  PGMR101Lib_TLB,
-{  StarUMLApp,}
-  LogMgr,
-  ExtCore,
-  ViewCore;
+  System.Types, System.UITypes, System.Classes, System.StrUtils, System.Math,
+  XML.XMLDoc, XML.XMLIntf, VCL.Forms,
+  PGMR101Lib_TLB, LogMgr, ExtCore, ViewCore;
 
 const
   NOT_EXISTS = 0;
@@ -159,8 +179,6 @@ procedure ERaise(Condition: Boolean; LineNo: Integer; Message: String); forward;
 function SimilarType(V1, V2: Variant): Boolean; forward;
 
 type
-  PNXGroupExpr = class;
-
   // Controller Classes ........................................................
 
   // PNXReader
@@ -279,7 +297,7 @@ type
     function TraverseDrawBitmapNode(Node: Integer): PNXExpr;
 
   public
-    function Read(FilePath: String): PNXExpr;
+    function Read(FilePath: String): PNXNotationExpr;
   end;
 
   // PNXEvaluator
@@ -288,35 +306,6 @@ type
     procedure Evaluate(Canvas: PCanvas; View: PView; Expr: PNXExpr);
   end;
 
-  // Base Expression Classes ...................................................
-
-  // PNXGroupExpr
-  PNXGroupExpr = class(PNXExpr)
-  private type
-    TExprList = TList<PNXExpr>;
-  private
-    FExprList: TExprList;
-    function GetExprs(Index: Integer): PNXExpr;
-    function GetExprCount: Integer;
-  protected
-  public
-    constructor Create(Position: Integer); override;
-    destructor Destroy; override;
-    procedure Add(Expr: PNXExpr);
-    procedure Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable); override;
-    property Exprs[Index: Integer]: PNXExpr read GetExprs;
-    property Count: Integer read GetExprCount;
-  end;
-
-  // PNXNotationExpr
-  PNXNotationExpr = class(PNXGroupExpr)
-  private
-    FFilename: String;
-  public
-    constructor Create(Position: Integer; Filepath: String); reintroduce;
-    procedure Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable); override;
-    property Filename: String read FFilename write FFilename;
-  end;
 
   // N-ary Expression Classes ..................................................
 
@@ -794,20 +783,20 @@ type
 constructor PNXManager.Create;
 begin
   inherited;
-  FGraphicList := THashedStringList.Create;
+  FGraphics := PGraphics.Create;
 end;
 
 destructor PNXManager.Destroy;
 var
-  I: Integer;
+  Graphic: TGraphic;
 begin
-  for I := 0 to FGraphicList.Count-1 do
-    FGraphicList.Objects[I].Free;
-  FGraphicList.Free;
+  for Graphic in FGraphics.Values do
+    Graphic.Free;
+  FGraphics.Free;
   inherited;
 end;
 
-function PNXManager.ReadExpr(FilePath: String): PNXExpr;
+function PNXManager.ReadExpr(FilePath: String): PNXNotationExpr;
 var
   Reader: PNXReader;
   Expr: PNXNotationExpr;
@@ -817,7 +806,7 @@ begin
   Result := nil;
   try
     Reader := PNXReader.Create;
-    Expr := Reader.Read(FilePath) as PNXNotationExpr;
+    Expr := Reader.Read(FilePath);
     if Expr <> nil then
       Expr.Filename := ExtractFilename(Filepath);
     Result := Expr;
@@ -831,19 +820,19 @@ begin
   inherited;
 end;
 
-procedure PNXManager.DrawExpr(Canvas: PCanvas; View: PView; Expr: PNXExpr);
+procedure PNXManager.DrawExpr(Canvas: PCanvas; View: PView; Expr: PNXNotationExpr);
 var
   Evaluator: PNXEvaluator;
 begin
   Evaluator := nil;
   try
-    FFilename := (Expr as PNXNotationExpr).Filename;
+    FFilename := Expr.Filename;
     Evaluator := PNXEvaluator.Create;
     Evaluator.Evaluate(Canvas, View, Expr);
     Evaluator.Free;
     Evaluator := nil;
   except
-    LogManager.Log('Drawing is failed: ' + (Expr as PNXNotationExpr).FFilename);
+    LogManager.Log('Drawing failed: ' + Expr.FFilename);
   end;
   if Evaluator <> nil then Evaluator.Free;
 end;
@@ -851,24 +840,26 @@ end;
 procedure PNXManager.AddGraphic(Key: String; Value: TGraphic);
 begin
   Key := LowerCase(Key);
-  FGraphicList.AddObject(Key, Value);
+  FGraphics.Add(Key, Value);
 end;
 
 function PNXManager.ExistGraphic(Key: String): Boolean;
 begin
   Key := LowerCase(Key);
-  Result := (FGraphicList.IndexOf(Key) <> -1);
+  Result := FGraphics.ContainsKey(Key);
 end;
 
 function PNXManager.GetGraphic(Key: String): TGraphic;
 var
-  Index: Integer;
+  Graphic: TGraphic;
 begin
   Key := LowerCase(Key);
-  Index := FGraphicList.IndexOf(Key);
-  ERaise(Index >= 0, 0, Key+' image does not exist.');
-
-  Result := FGraphicList.Objects[Index] as TGraphic;
+  if FGraphics.TryGetValue(Key, Graphic) = True then
+    Result := Graphic
+  else begin
+    Result := nil;
+    ERaise(False, 0, Key+' image does not exist.');
+  end;
 end;
 
 { PNXEvaluator }
@@ -2389,7 +2380,7 @@ begin
           end;
         end
         else if (Ext = BMP_FILE) then begin
-          FGraphic := Graphics.TBitmap.Create;
+          FGraphic := Vcl.Graphics.TBitmap.Create;
           (FGraphic as TBitmap).TransparentColor := clFuchsia;
           (FGraphic as TBitmap).TransparentMode := tmAuto;
           FGraphic.Transparent := Transparent;
@@ -2924,9 +2915,9 @@ end;
 
 { PNXReader }
 
-function PNXReader.Read(FilePath: String): PNXExpr;
+function PNXReader.Read(FilePath: String): PNXNotationExpr;
 var
-  NXExpr: PNXExpr;
+  NXExpr: PNXNotationExpr;
   Success: Boolean;
   Node: Integer;
   P: Integer;
@@ -2948,8 +2939,8 @@ begin
       Node := Pgmr.Find('expr', Pgmr.GetRoot);
       Assert(Node <> NOT_EXISTS);
 
-      // traverse parsing tree and make PNXExpr
-      NXExpr := TraverseNode(Node);
+      // traverse parse tree and make PNXNotationExpr out of top node
+      NXExpr := TraverseNode(Node) as PNXNotationExpr;
     end
     else begin
       if Pgmr.Status = pgStatusError then begin
