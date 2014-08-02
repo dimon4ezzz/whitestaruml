@@ -229,6 +229,7 @@ type
     procedure ArrangeObject(Canvas: PCanvas); override;
   public
     constructor Create; override;
+    function IsDrawDeferred: Boolean; override;
     function MOF_GetAttribute(Name: string): string; override;
     procedure MOF_SetAttribute(Name, Value: string); override;
     property Text: string read FText write SetText;
@@ -395,7 +396,9 @@ end;
 
 procedure PExtensibleView.Draw(Canvas: PCanvas);
 var
-  I: Integer;
+  SubView: PView;
+  TopLevelDiagramView: PDiagramView;
+  //I: Integer;
 begin
   if Visible then begin
     Arrange(Canvas);
@@ -406,11 +409,20 @@ begin
       DrawExtendedView(Canvas)
     else begin
       DrawObject(Canvas);
-      for I := 0 to SubViewCount - 1 do
-        SubView[I].Draw(Canvas);
+      for SubView in SubViews do begin
+        if SubView.IsDrawDeferred then begin
+          TopLevelDiagramView := GetTopLevelDiagramView;
+          if Assigned(TopLevelDiagramView) then
+            TopLevelDiagramView.AddDeferredDrawView(SubView)
+        end
+        else
+          SubView.Draw(Canvas)
+      end
     end;
+
     if Model = nil then
-      DrawNoModeledMark(Canvas);
+      DrawNoModeledMark(Canvas)
+
   end;
 end;
 
@@ -1428,6 +1440,11 @@ begin
     end;
     Canvas.TextOut(X, Y, Text, True);
   end;
+end;
+
+function PLabelView.IsDrawDeferred: Boolean;
+begin
+  Result := True;
 end;
 
 procedure PLabelView.ArrangeObject(Canvas: PCanvas);
