@@ -1035,7 +1035,8 @@ begin
   if Assigned(FOnWMDropFiles) then FOnWMDropFiles(Msg);
 end;
 
-procedure TMainForm.MainFormMouseWheelHandler(Sender: TObject; Shift: TShiftState; WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
+procedure TMainForm.MainFormMouseWheelHandler(Sender: TObject; Shift: TShiftState;
+  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
 begin
   if dxDockingController.ActiveDockControl = WorkingAreaDockPanel then begin
     // Zoom working area
@@ -1045,8 +1046,15 @@ begin
       else
         FOnViewMenuClicked(ViewZoomZoomOut) // Same as zoom out click
     end
-    else if WorkingAreaFrame.ActiveDiagramEditor <> nil then
-      WorkingAreaFrame.ActiveDiagramEditor.ScrollBy(0, -(WheelDelta div DEFAULT_WHEEL_DIVIDER));
+    else if WorkingAreaFrame.ActiveDiagramEditor <> nil then begin
+      if (ssShift in Shift) then
+         WorkingAreaFrame.ActiveDiagramEditor.ScrollBy(-(WheelDelta div DEFAULT_WHEEL_DIVIDER), 0)
+      else
+        WorkingAreaFrame.ActiveDiagramEditor.ScrollBy(0, -(WheelDelta div DEFAULT_WHEEL_DIVIDER));
+    end;
+
+    Handled := True;
+
   end;
 end;
 
