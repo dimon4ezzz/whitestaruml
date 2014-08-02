@@ -712,6 +712,7 @@ type
   protected
     procedure AssignStyleToCanvas(Canvas: PCanvas);
     procedure AssignFontToCanvas(Canvas: PCanvas);
+    function GetTopLevelDiagramView: PDiagramView;
     procedure DrawObject(Canvas: PCanvas); virtual;
     procedure DrawSelection(Canvas: PCanvas); virtual;
     procedure DrawNoModeledMark(Canvas: PCanvas); virtual;
@@ -758,6 +759,9 @@ type
     function OverlapRect(Canvas: PCanvas; R: TRect): Boolean; overload; virtual;
     function OverlapRect(Canvas: PCanvas; X1, Y1, X2, Y2: Integer): Boolean;
       overload;
+
+    function IsDrawDeferred: Boolean; virtual;
+
     function MOF_GetAttribute(Name: string): string; override;
     procedure MOF_SetAttribute(Name, Value: string); override;
     function MOF_GetReference(Name: string): PElement; override;
@@ -857,11 +861,14 @@ type
     FCanvas: PCanvas;
     FOwnedViews: PViewOrderedSet;
     FSelectedViews: PViewOrderedSet;
+    FDeferredDrawViews: PViewOrderedSet;
     procedure SetDiagram(Value: PDiagram);
     function GetSelectedView(Index: Integer): PView;
     function GetSelectedCount: Integer;
     function GetOwnedView(Index: Integer): PView;
     function GetOwnedViewCount: Integer;
+    procedure InitDeferredDrawViews;
+
   protected
     procedure DrawObject(Canvas: PCanvas); override;
   public
@@ -893,6 +900,9 @@ type
     function CanDeleteViews: Boolean; virtual;
     function CanPasteViews(Kind, CopyContext: string): Boolean; virtual;
     function CanAcceptModel(Model: PModel): Boolean; virtual;
+
+    procedure AddDeferredDrawView(AView: PView);
+
     function MOF_GetReference(Name: string): PElement; override;
     procedure MOF_SetReference(Name: string; Value: PElement); override;
     procedure MOF_AddCollectionItem(Name: string; Value: PElement); override;
@@ -3973,6 +3983,24 @@ begin
   Result := FSubViews.Count;
 end;
 
+function PView.GetTopLevelDiagramView: PDiagramView;
+var
+   ParentView: PView;
+   TopLevelDiagramView: PDiagramView;
+begin
+  TopLevelDiagramView := OwnerDiagramView;
+  if not Assigned(TopLevelDiagramView) then begin
+   ParentView := FParent;
+    while Assigned(ParentView) and not Assigned(TopLevelDiagramView) do begin
+      ParentView := ParentView.FParent;
+      if Assigned(ParentView) then
+        TopLevelDiagramView := ParentView.OwnerDiagramView;
+    end;
+  end;
+
+  Result := TopLevelDiagramView;
+end;
+
 function PView.GetContainedView(Index: Integer): PView;
 begin
   Result := FContainedViews[Index];
@@ -4361,6 +4389,11 @@ end;
 function PView.IndexOfContainedView(V: PView): Integer;
 begin
   Result := FContainedViews.IndexOf(V);
+end;
+
+function PView.IsDrawDeferred: Boolean;
+begin
+  Result := False;
 end;
 
 function PView.IsOneOfTheContainerViews(V: PView): Boolean;
@@ -4868,16 +4901,16 @@ begin
   FCanvas := nil;
   FOwnedViews := PViewOrderedSet.Create;
   FSelectedViews := PViewOrderedSet.Create;
+  FDeferredDrawViews := PViewOrderedSet.Create;
 end;
 
 destructor PDiagramView.Destroy;
 begin
   FDiagram := nil;
   FCanvas := nil;
-  FOwnedViews.Free;
-  FOwnedViews := nil;
-  FSelectedViews.Free;
-  FSelectedViews := nil;
+  FreeAndNil(FOwnedViews);
+  FreeAndNil(FSelectedViews);
+  FreeAndNil(FDeferredDrawViews);
   inherited;
 end;
 
@@ -4938,14 +4971,17 @@ begin
 
 procedure PDiagramView.Draw(Canvas: PCanvas);
 var
-  OwnedView: PView;
+  View: PView;
 begin
   if FVisible then
   begin
     Arrange(Canvas);
     DrawObject(Canvas);
-    for OwnedView in FOwnedViews do 
-      OwnedView.Draw(Canvas);
+    InitDeferredDrawViews;
+    for View in FOwnedViews do // Normal draw and registration of deferred drawing
+      View.Draw(Canvas);
+    for View in FDeferredDrawViews do // Execution of deferred drawing
+       View.Draw(Canvas);
   end;
 end;
 
@@ -5120,6 +5156,14 @@ begin
     DeleteOwnedView(I);
 end;
 
+procedure PDiagramView.AddDeferredDrawView(AView: PView);
+begin
+if (AView <> nil) and (not FDeferredDrawViews.Contains(AView)) then
+  begin
+    FDeferredDrawViews.Add(AView);
+  end;
+end;
+
 procedure PDiagramView.AddOwnedView(AView: PView);
 begin
   if (AView <> nil) and (not FOwnedViews.Contains(AView)) then
@@ -5171,6 +5215,11 @@ end;
 function PDiagramView.IndexOfOwnedView(AView: PView): Integer;
 begin
   Result := FOwnedViews.IndexOf(AView);
+end;
+
+procedure PDiagramView.InitDeferredDrawViews;
+begin
+  FDeferredDrawViews.Clear;
 end;
 
 function PDiagramView.CanOwnView(View: PView): Boolean;
