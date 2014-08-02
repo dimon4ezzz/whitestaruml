@@ -321,14 +321,14 @@ type
     FChildren: TList;
     FTagDefinitionSet: PTagDefinitionSet;
     FImageIndex: Integer;
-    FNotationExpr: PNXExpr;
+    FNotationExpr: PNXNotationExpr;
     FIcon: TGraphic;
     function GetBaseClassCount: Integer;
     function GetBaseClass(Index: Integer): string;
     function GetChildCount: Integer;
     function GetChild(Index: Integer): PStereotype;
     function GetDerivedTagDefinitionSet: PTagDefinitionSet;
-    function GetNotationExpr: PNXExpr;
+    function GetNotationExpr: PNXNotationExpr;
     procedure LoadIconFile;
   public
     constructor Create; override;
@@ -349,7 +349,7 @@ type
     property TagDefinitionSet: PTagDefinitionSet read FTagDefinitionSet;
     property DerivedTagDefinitionSet: PTagDefinitionSet read GetDerivedTagDefinitionSet;
     property ImageIndex: Integer read FImageIndex write FImageIndex;
-    property NotationExpr: PNXExpr read GetNotationExpr;
+    property NotationExpr: PNXNotationExpr read GetNotationExpr;
     property Icon: TGraphic read FIcon;
   end;
 
@@ -1875,7 +1875,7 @@ begin
     end;
 end;
 
-function PStereotype.GetNotationExpr: PNXExpr;
+function PStereotype.GetNotationExpr: PNXNotationExpr;
 begin
   if FNotationExpr <> nil then
     Result := FNotationExpr
