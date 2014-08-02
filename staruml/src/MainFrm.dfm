@@ -146,6 +146,8 @@ object MainForm: TMainForm
             Height = 256
             Align = alClient
             TabOrder = 0
+            ExplicitWidth = 163
+            ExplicitHeight = 256
             inherited PaletteNavBar: TCategoryButtons
               Width = 157
               Height = 250
@@ -840,6 +842,8 @@ object MainForm: TMainForm
                       Action = PaletteNavBarFrame.ConnectorAction
                     end>
                 end>
+              ExplicitWidth = 157
+              ExplicitHeight = 250
             end
           end
         end

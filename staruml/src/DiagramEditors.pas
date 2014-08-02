@@ -67,7 +67,7 @@ uses
 
 const
   DEFAULT_SCROLL_TIME_INTERVAL = 50; // milisec
-  DEFAULT_WHEEL_DIVIDER = 40;
+  DEFAULT_WHEEL_DIVIDER = 10;
 
 type
   // forawrd declare
