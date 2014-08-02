@@ -250,9 +250,10 @@ function PTagDefinitionSetJvclInspector.SetUpTextRow
   (SuperNode: TJvInspectorCustomCategoryItem; TD: PTagDefinition;
   ImageIndex: Integer; AFlags: TInspectorItemFlags = []): TJvInspectorElemBase;
 begin
-  if TD.Lock then
+  if TD.Lock or (TD.TagType = tkCollection) then begin
     Result := TJvInspectorElem<TStringItemWithNameImage>.CreateElem
-      (SuperNode, TagTypeToStr(TD.TagType))
+      (SuperNode, TagTypeToStr(TD.TagType));
+    end
   else
     Result := TJvInspectorElem<TMultiStringItemWithNameImage>.CreateElem
       (SuperNode, TagTypeToStr(TD.TagType));
@@ -262,6 +263,8 @@ begin
     FElemsHolder.AddElem(Result);
     begin
       Flags := Flags + AFlags;
+      if TD.TagType = tkCollection then
+        Flags := Flags + [iifEditFixed];
       DisplayName := TD.Name;
 
       if Result.Item is TJvInspectorStringItemWithNameImage then begin
