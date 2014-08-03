@@ -542,6 +542,7 @@ type
     procedure InsertFragment(Index: Integer; Value: PUMLInteractionFragment);
     procedure DeleteFragment(Index: Integer);
     function IndexOfFragment(Value: PUMLInteractionFragment): Integer;
+    function IsDrawDeferred: Boolean; override;
     function MOF_GetAttribute(Name: string): string; override;
     procedure MOF_SetAttribute(Name, Value: string); override;
     function MOF_GetReference(Name: string): PElement; override;
@@ -6766,6 +6767,11 @@ begin
     Value.FEnclosingOperand := Self;
     InsertVirtualOwnedModel(Index, Value);
   end;
+end;
+
+function PUMLInteractionOperand.IsDrawDeferred: Boolean;
+begin
+  Result := True;
 end;
 
 procedure PUMLInteractionOperand.DeleteFragment(Index: Integer);
