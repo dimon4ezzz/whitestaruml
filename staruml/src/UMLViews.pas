@@ -1297,6 +1297,7 @@ type
     constructor Create; override;
     procedure Setup; override;
     procedure Update; override;
+    function IsDrawDeferred: Boolean; override;
     function MOF_GetReference(Name: string): PElement; override;
     procedure MOF_SetReference(Name: string; Value: PElement); override;
     property GuardLabel: PLabelView read FGuardLabel write SetGuardLabel;
@@ -7902,6 +7903,11 @@ begin
     if FGuardLabel <> nil then InitializeGuardLabel(FGuardLabel);
     AddSubView(FGuardLabel);
   end;
+end;
+
+function PUMLInteractionOperandView.IsDrawDeferred: Boolean;
+begin
+  Result := True;
 end;
 
 function PUMLInteractionOperandView.IsTopInterationOperandView: Boolean;
