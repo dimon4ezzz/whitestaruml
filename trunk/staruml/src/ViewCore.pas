@@ -229,7 +229,6 @@ type
     procedure ArrangeObject(Canvas: PCanvas); override;
   public
     constructor Create; override;
-    function IsDrawDeferred: Boolean; override;
     function MOF_GetAttribute(Name: string): string; override;
     procedure MOF_SetAttribute(Name, Value: string); override;
     property Text: string read FText write SetText;
@@ -1440,11 +1439,6 @@ begin
     end;
     Canvas.TextOut(X, Y, Text, True);
   end;
-end;
-
-function PLabelView.IsDrawDeferred: Boolean;
-begin
-  Result := True;
 end;
 
 procedure PLabelView.ArrangeObject(Canvas: PCanvas);
