@@ -12,11 +12,11 @@ unit ParserCore_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 16/02/2014 12:22:10 from Type Library described below.
+// File generated on 03/08/2014 17:22:26 from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarDevInstall\ParserCore.tlb (1)
-// LIBID: {1ED9044F-4A24-3F3B-9818-AB8D3D6BE960}
+// Type Lib: C:\JS\Delphi\WhiteStarDevInstall\ParserCore.dll (1)
+// LIBID: {126B74EC-67BB-3565-AA48-1D0F2D0FBDF1}
 // LCID: 0
 // Helpfile: 
 // HelpString: 
@@ -24,6 +24,16 @@ unit ParserCore_TLB;
 //   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
 //   (2) v2.0 mscorlib, (C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.tlb)
 // SYS_KIND: SYS_WIN32
+// Errors:
+//   Error creating palette bitmap of (TGrammarIndependentParserBase) : Server mscoree.dll contains no icons
+//   Error creating palette bitmap of (TParserCoreImpl) : Server mscoree.dll contains no icons
+//   Error creating palette bitmap of (TNameExprParserCoreImpl) : Server mscoree.dll contains no icons
+//   Error creating palette bitmap of (TAttrExprParserCoreImpl) : Server mscoree.dll contains no icons
+//   Error creating palette bitmap of (TMsgExprParserCoreImpl) : Server mscoree.dll contains no icons
+//   Error creating palette bitmap of (TObjExprParserCoreImpl) : Server mscoree.dll contains no icons
+//   Error creating palette bitmap of (TOperExprParserCoreImpl) : Server mscoree.dll contains no icons
+//   Error creating palette bitmap of (TRoleExprParserCoreImpl) : Server mscoree.dll contains no icons
+//   Error creating palette bitmap of (TTransExprParserCoreImpl) : Server mscoree.dll contains no icons
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers. 
 {$WARN SYMBOL_PLATFORM OFF}
@@ -49,10 +59,11 @@ const
   ParserCoreMajorVersion = 1;
   ParserCoreMinorVersion = 1;
 
-  LIBID_ParserCore: TGUID = '{1ED9044F-4A24-3F3B-9818-AB8D3D6BE960}';
+  LIBID_ParserCore: TGUID = '{126B74EC-67BB-3565-AA48-1D0F2D0FBDF1}';
 
+  IID__GrammarIndependentParserBase: TGUID = '{4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}';
   IID_IParserCore: TGUID = '{C2D5AA24-3633-479B-9EA2-5AADBECE1ECE}';
-  CLASS_ParserCoreImpl: TGUID = '{72AB6FAC-1910-3F59-AF48-6FDEDC6EB6B7}';
+  IID__ParserCoreImpl: TGUID = '{184FD627-C5E7-3284-ABC2-530F126B9FEC}';
   CLASS_NameExprParserCoreImpl: TGUID = '{41B17622-6FBA-4683-AACD-402F7F021D17}';
   CLASS_AttrExprParserCoreImpl: TGUID = '{90971B47-C855-4E13-96C0-4B2896D03E45}';
   CLASS_MsgExprParserCoreImpl: TGUID = '{822AEBDE-A58E-4A2F-8D21-C676237A8F9A}';
@@ -60,19 +71,24 @@ const
   CLASS_OperExprParserCoreImpl: TGUID = '{0A4BD2B2-518C-48AA-A472-FB8A02296FC6}';
   CLASS_RoleExprParserCoreImpl: TGUID = '{E4D99203-E233-4961-B2C3-9E728E92D980}';
   CLASS_TransExprParserCoreImpl: TGUID = '{958DCE18-DB33-4F20-8ADE-B3B6D97260BF}';
+  CLASS_GrammarIndependentParserBase: TGUID = '{B398519F-A08D-3304-9553-46792BB9848D}';
+  CLASS_ParserCoreImpl: TGUID = '{530AD2AA-818F-35B9-B08D-A52C1D20E601}';
 type
 
 // *********************************************************************//
 // Forward declaration of types defined in TypeLibrary                    
 // *********************************************************************//
+  _GrammarIndependentParserBase = interface;
+  _GrammarIndependentParserBaseDisp = dispinterface;
   IParserCore = interface;
   IParserCoreDisp = dispinterface;
+  _ParserCoreImpl = interface;
+  _ParserCoreImplDisp = dispinterface;
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library                       
 // (NOTE: Here we map each CoClass to its Default Interface)              
 // *********************************************************************//
-  ParserCoreImpl = _Object;
   NameExprParserCoreImpl = IParserCore;
   AttrExprParserCoreImpl = IParserCore;
   MsgExprParserCoreImpl = IParserCore;
@@ -80,7 +96,27 @@ type
   OperExprParserCoreImpl = IParserCore;
   RoleExprParserCoreImpl = IParserCore;
   TransExprParserCoreImpl = IParserCore;
+  GrammarIndependentParserBase = _GrammarIndependentParserBase;
+  ParserCoreImpl = _ParserCoreImpl;
 
+
+// *********************************************************************//
+// Interface: _GrammarIndependentParserBase
+// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
+// GUID:      {4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}
+// *********************************************************************//
+  _GrammarIndependentParserBase = interface(IDispatch)
+    ['{4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}']
+  end;
+
+// *********************************************************************//
+// DispIntf:  _GrammarIndependentParserBaseDisp
+// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
+// GUID:      {4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}
+// *********************************************************************//
+  _GrammarIndependentParserBaseDisp = dispinterface
+    ['{4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}']
+  end;
 
 // *********************************************************************//
 // Interface: IParserCore
@@ -107,46 +143,21 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoParserCoreImpl provides a Create and CreateRemote method to          
-// create instances of the default interface _Object exposed by              
-// the CoClass ParserCoreImpl. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
+// Interface: _ParserCoreImpl
+// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
+// GUID:      {184FD627-C5E7-3284-ABC2-530F126B9FEC}
 // *********************************************************************//
-  CoParserCoreImpl = class
-    class function Create: _Object;
-    class function CreateRemote(const MachineName: string): _Object;
+  _ParserCoreImpl = interface(IDispatch)
+    ['{184FD627-C5E7-3284-ABC2-530F126B9FEC}']
   end;
 
-
 // *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TParserCoreImpl
-// Help String      : 
-// Default Interface: _Object
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (0)
+// DispIntf:  _ParserCoreImplDisp
+// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
+// GUID:      {184FD627-C5E7-3284-ABC2-530F126B9FEC}
 // *********************************************************************//
-  TParserCoreImpl = class(TOleServer)
-  private
-    FIntf: _Object;
-    function GetDefaultInterface: _Object;
-  protected
-    procedure InitServerData; override;
-    function Get_ToString: WideString;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: _Object);
-    procedure Disconnect; override;
-    function Equals(obj: OleVariant): WordBool;
-    function GetHashCode: Integer;
-    function GetType: _Type;
-    property DefaultInterface: _Object read GetDefaultInterface;
-    property ToString: WideString read Get_ToString;
-  published
+  _ParserCoreImplDisp = dispinterface
+    ['{184FD627-C5E7-3284-ABC2-530F126B9FEC}']
   end;
 
 // *********************************************************************//
@@ -436,6 +447,82 @@ type
   published
   end;
 
+// *********************************************************************//
+// The Class CoGrammarIndependentParserBase provides a Create and CreateRemote method to          
+// create instances of the default interface _GrammarIndependentParserBase exposed by              
+// the CoClass GrammarIndependentParserBase. The functions are intended to be used by             
+// clients wishing to automate the CoClass objects exposed by the         
+// server of this typelibrary.                                            
+// *********************************************************************//
+  CoGrammarIndependentParserBase = class
+    class function Create: _GrammarIndependentParserBase;
+    class function CreateRemote(const MachineName: string): _GrammarIndependentParserBase;
+  end;
+
+
+// *********************************************************************//
+// OLE Server Proxy class declaration
+// Server Object    : TGrammarIndependentParserBase
+// Help String      : 
+// Default Interface: _GrammarIndependentParserBase
+// Def. Intf. DISP? : No
+// Event   Interface: 
+// TypeFlags        : (2) CanCreate
+// *********************************************************************//
+  TGrammarIndependentParserBase = class(TOleServer)
+  private
+    FIntf: _GrammarIndependentParserBase;
+    function GetDefaultInterface: _GrammarIndependentParserBase;
+  protected
+    procedure InitServerData; override;
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor  Destroy; override;
+    procedure Connect; override;
+    procedure ConnectTo(svrIntf: _GrammarIndependentParserBase);
+    procedure Disconnect; override;
+    property DefaultInterface: _GrammarIndependentParserBase read GetDefaultInterface;
+  published
+  end;
+
+// *********************************************************************//
+// The Class CoParserCoreImpl provides a Create and CreateRemote method to          
+// create instances of the default interface _ParserCoreImpl exposed by              
+// the CoClass ParserCoreImpl. The functions are intended to be used by             
+// clients wishing to automate the CoClass objects exposed by the         
+// server of this typelibrary.                                            
+// *********************************************************************//
+  CoParserCoreImpl = class
+    class function Create: _ParserCoreImpl;
+    class function CreateRemote(const MachineName: string): _ParserCoreImpl;
+  end;
+
+
+// *********************************************************************//
+// OLE Server Proxy class declaration
+// Server Object    : TParserCoreImpl
+// Help String      : 
+// Default Interface: _ParserCoreImpl
+// Def. Intf. DISP? : No
+// Event   Interface: 
+// TypeFlags        : (0)
+// *********************************************************************//
+  TParserCoreImpl = class(TOleServer)
+  private
+    FIntf: _ParserCoreImpl;
+    function GetDefaultInterface: _ParserCoreImpl;
+  protected
+    procedure InitServerData; override;
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor  Destroy; override;
+    procedure Connect; override;
+    procedure ConnectTo(svrIntf: _ParserCoreImpl);
+    procedure Disconnect; override;
+    property DefaultInterface: _ParserCoreImpl read GetDefaultInterface;
+  published
+  end;
+
 procedure Register;
 
 resourcestring
@@ -446,91 +533,6 @@ resourcestring
 implementation
 
 uses System.Win.ComObj;
-
-class function CoParserCoreImpl.Create: _Object;
-begin
-  Result := CreateComObject(CLASS_ParserCoreImpl) as _Object;
-end;
-
-class function CoParserCoreImpl.CreateRemote(const MachineName: string): _Object;
-begin
-  Result := CreateRemoteComObject(MachineName, CLASS_ParserCoreImpl) as _Object;
-end;
-
-procedure TParserCoreImpl.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{72AB6FAC-1910-3F59-AF48-6FDEDC6EB6B7}';
-    IntfIID:   '{65074F7F-63C0-304E-AF0A-D51741CB4A8D}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TParserCoreImpl.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as _Object;
-  end;
-end;
-
-procedure TParserCoreImpl.ConnectTo(svrIntf: _Object);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TParserCoreImpl.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TParserCoreImpl.GetDefaultInterface: _Object;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
-  Result := FIntf;
-end;
-
-constructor TParserCoreImpl.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-end;
-
-destructor TParserCoreImpl.Destroy;
-begin
-  inherited Destroy;
-end;
-
-function TParserCoreImpl.Get_ToString: WideString;
-begin
-  Result := DefaultInterface.ToString;
-end;
-
-function TParserCoreImpl.Equals(obj: OleVariant): WordBool;
-begin
-  Result := DefaultInterface.Equals(obj);
-end;
-
-function TParserCoreImpl.GetHashCode: Integer;
-begin
-  Result := DefaultInterface.GetHashCode;
-end;
-
-function TParserCoreImpl.GetType: _Type;
-begin
-  Result := DefaultInterface.GetType;
-end;
 
 class function CoNameExprParserCoreImpl.Create: IParserCore;
 begin
@@ -1092,10 +1094,140 @@ begin
   Result := DefaultInterface.GetFailMessage;
 end;
 
+class function CoGrammarIndependentParserBase.Create: _GrammarIndependentParserBase;
+begin
+  Result := CreateComObject(CLASS_GrammarIndependentParserBase) as _GrammarIndependentParserBase;
+end;
+
+class function CoGrammarIndependentParserBase.CreateRemote(const MachineName: string): _GrammarIndependentParserBase;
+begin
+  Result := CreateRemoteComObject(MachineName, CLASS_GrammarIndependentParserBase) as _GrammarIndependentParserBase;
+end;
+
+procedure TGrammarIndependentParserBase.InitServerData;
+const
+  CServerData: TServerData = (
+    ClassID:   '{B398519F-A08D-3304-9553-46792BB9848D}';
+    IntfIID:   '{4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}';
+    EventIID:  '';
+    LicenseKey: nil;
+    Version: 500);
+begin
+  ServerData := @CServerData;
+end;
+
+procedure TGrammarIndependentParserBase.Connect;
+var
+  punk: IUnknown;
+begin
+  if FIntf = nil then
+  begin
+    punk := GetServer;
+    Fintf:= punk as _GrammarIndependentParserBase;
+  end;
+end;
+
+procedure TGrammarIndependentParserBase.ConnectTo(svrIntf: _GrammarIndependentParserBase);
+begin
+  Disconnect;
+  FIntf := svrIntf;
+end;
+
+procedure TGrammarIndependentParserBase.DisConnect;
+begin
+  if Fintf <> nil then
+  begin
+    FIntf := nil;
+  end;
+end;
+
+function TGrammarIndependentParserBase.GetDefaultInterface: _GrammarIndependentParserBase;
+begin
+  if FIntf = nil then
+    Connect;
+  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
+  Result := FIntf;
+end;
+
+constructor TGrammarIndependentParserBase.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+end;
+
+destructor TGrammarIndependentParserBase.Destroy;
+begin
+  inherited Destroy;
+end;
+
+class function CoParserCoreImpl.Create: _ParserCoreImpl;
+begin
+  Result := CreateComObject(CLASS_ParserCoreImpl) as _ParserCoreImpl;
+end;
+
+class function CoParserCoreImpl.CreateRemote(const MachineName: string): _ParserCoreImpl;
+begin
+  Result := CreateRemoteComObject(MachineName, CLASS_ParserCoreImpl) as _ParserCoreImpl;
+end;
+
+procedure TParserCoreImpl.InitServerData;
+const
+  CServerData: TServerData = (
+    ClassID:   '{530AD2AA-818F-35B9-B08D-A52C1D20E601}';
+    IntfIID:   '{184FD627-C5E7-3284-ABC2-530F126B9FEC}';
+    EventIID:  '';
+    LicenseKey: nil;
+    Version: 500);
+begin
+  ServerData := @CServerData;
+end;
+
+procedure TParserCoreImpl.Connect;
+var
+  punk: IUnknown;
+begin
+  if FIntf = nil then
+  begin
+    punk := GetServer;
+    Fintf:= punk as _ParserCoreImpl;
+  end;
+end;
+
+procedure TParserCoreImpl.ConnectTo(svrIntf: _ParserCoreImpl);
+begin
+  Disconnect;
+  FIntf := svrIntf;
+end;
+
+procedure TParserCoreImpl.DisConnect;
+begin
+  if Fintf <> nil then
+  begin
+    FIntf := nil;
+  end;
+end;
+
+function TParserCoreImpl.GetDefaultInterface: _ParserCoreImpl;
+begin
+  if FIntf = nil then
+    Connect;
+  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
+  Result := FIntf;
+end;
+
+constructor TParserCoreImpl.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+end;
+
+destructor TParserCoreImpl.Destroy;
+begin
+  inherited Destroy;
+end;
+
 procedure Register;
 begin
-  RegisterComponents(dtlServerPage, [TParserCoreImpl, TNameExprParserCoreImpl, TAttrExprParserCoreImpl, TMsgExprParserCoreImpl, 
-    TObjExprParserCoreImpl, TOperExprParserCoreImpl, TRoleExprParserCoreImpl, TTransExprParserCoreImpl]);
+  RegisterComponents(dtlServerPage, [TNameExprParserCoreImpl, TAttrExprParserCoreImpl, TMsgExprParserCoreImpl, TObjExprParserCoreImpl, 
+    TOperExprParserCoreImpl, TRoleExprParserCoreImpl, TTransExprParserCoreImpl, TGrammarIndependentParserBase, TParserCoreImpl]);
 end;
 
 end.

@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 
 namespace ParserCore
 {
-    [ClassInterface(ClassInterfaceType.None)]
     public abstract class ParserCoreImpl : ParserBase.GrammarIndependentParserBase
     {
 
