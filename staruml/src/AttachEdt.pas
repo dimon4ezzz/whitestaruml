@@ -108,13 +108,11 @@ type
     procedure SetTargetModel(Value: PModel);
     function IndexOf(Value: string): Integer;
     function IsURL(Str: string): Boolean;
-    function IsElement(Str: string): Boolean;
     procedure AppendAttachment(Value: string);
     procedure ListViewChange(Sender: TObject; Item: TListItem; Change: TItemChange);
     procedure EnterHandler(Sender: TObject);
     procedure SetReadOnly(Value: Boolean);
     function GetSelectedIndex: Integer;
-    procedure ReplaceModelNameWithGuid(var Attachment: string);
     procedure UpdateAttachmentPopupMenuStatus;
     procedure UpdateUIState;
     procedure SetImageList(Value: TCustomImageList);
@@ -147,6 +145,13 @@ type
     property ImageList: TCustomImageList write SetImageList;
   end;
 
+  // Utility functions
+  function GetModelFromGuid(aValue: string): PModel;
+  function GetModelCaption(AModel: PModel): string;
+  function GetModelParamsFromGuid(aValue: string;
+    var aModelCaption: string; var aModelUrl: string): Boolean;
+  function GetModelUrlFromGuid(aValue: string): string;
+
 implementation
 
 {$R *.dfm}
@@ -161,6 +166,83 @@ const
   ICON_IDX_URL = 1;
   ICON_IDX_ELEMENT = 2;
   //ELEMENT_MARK = 'element://';
+
+
+// Utility functions
+function IsElement(Str: string): Boolean;
+begin
+  Result := (Pos(LowerCase(ELEMENT_MARK), Str) > 0);
+end;
+
+procedure ReplaceModelNameWithGuid(var Attachment: string);
+var
+  M: PModel;
+begin
+  if IsElement(Attachment) then begin
+    M := StarUMLApplication.Project.FindByRelativePathname
+      (Copy(Attachment, Length(ELEMENT_MARK)+1, Length(Attachment) - Length(ELEMENT_MARK)));
+    if M <> nil then
+      Attachment := ELEMENT_MARK + M.GUID;
+  end;
+  end;
+
+function GetModelFromGuid(aValue: string): PModel;
+var
+  ElementId: string;
+begin
+  Result := nil;
+  if IsElement(aValue) then begin
+
+    ElementId := Copy(aValue, Length(ELEMENT_MARK)+1, Length(aValue)
+      - Length(ELEMENT_MARK));
+
+    // Is it GUID?
+    Result := MetaModel.FindInstanceByGuid(ElementId) as PModel;
+    if Result = nil then  // Not Guid, try to decode it as relative path
+      Result := StarUMLApplication.Project.FindByRelativePathname(ElementId);
+  end;
+end;
+
+function GetModelUrl(AModel: PModel): string;
+begin
+  if Assigned(AModel) then
+    Result := ELEMENT_MARK + ExtractTailPath(AModel.Pathname)
+  else
+    Result := '';
+end;
+
+function GetModelCaption(AModel: PModel): string;
+begin
+  if Assigned(AModel) then
+    Result := AModel.Name + ' (' + AModel.MetaClass.Name + ')'
+  else
+    Result := ''
+end;
+
+function GetModelParamsFromGuid(aValue: string;
+  var aModelCaption: string; var aModelUrl: string): Boolean;
+var
+  M: PModel;
+begin
+  M := GetModelFromGuid(aValue);
+  if Assigned(M) then begin
+    aModelCaption := GetModelCaption(M);
+    aModelUrl := GetModelUrl(M);
+    Result := True;
+  end
+  else
+    Result := False;
+
+end;
+
+function GetModelUrlFromGuid(aValue: string): string;
+var
+  M: PModel;
+begin
+  M := GetModelFromGuid(aValue);
+  Result := GetModelUrl(M);
+ end;
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // TAttachmentEditor
@@ -235,34 +317,25 @@ begin
   Result := (Pos('://', Str) > 0);
 end;
 
-function TAttachmentEditor.IsElement(Str: string): Boolean;
-begin
-  Result := (Pos(LowerCase(ELEMENT_MARK), Str) > 0);
-end;
-
 procedure TAttachmentEditor.AppendAttachment(Value: string);
 var
   FileInfo: TSHFileInfo;
   ListItem: TListItem;
-  M: PModel;
-  ElementId: string;
+  ItemCaption: string;
+  ItemUrl: string;
+  AreParamsOk: Boolean;
 begin
   ListItem := AttachmentListView.Items.Add;
-  if IsElement(Value) then begin
-    //M := StarUMLApplication.Project.FindByRelativePathname(Copy(Value, 11, Length(Value) - 10));
-    ElementId := Copy(Value, Length(ELEMENT_MARK)+1, Length(Value) - Length(ELEMENT_MARK));
-   // Is it GUID?
-    M := MetaModel.FindInstanceByGuid(ElementId) as PModel;
-    if M = nil then  // Not Guid, try decode it as relative path
-      M := StarUMLApplication.Project.FindByRelativePathname(ElementId);
 
-    if M <> nil then
-    begin
-      ListItem.Caption := M.Name + ' (' + M.MetaClass.Name + ')';
-      Value := ELEMENT_MARK + ExtractTailPath(M.Pathname);
+  if IsElement(Value) then begin
+    AreParamsOk := GetModelParamsFromGuid(Value, ItemCaption, ItemUrl);
+    if AreParamsOk then begin
+      ListItem.Caption := ItemCaption;
+      Value := ItemUrl;
     end
     else
       ListItem.Caption := '(element does not exist)';
+
     ListItem.ImageIndex := ICON_IDX_ELEMENT;
   end
   else if IsURL(Value) then begin
@@ -305,18 +378,6 @@ begin
     Result := AttachmentListView.Selected.Index
   else
     Result := -1;
-end;
-
-procedure TAttachmentEditor.ReplaceModelNameWithGuid(var Attachment: string);
-var
-  M: PModel;
-begin
-  if IsElement(Attachment) then begin
-    M := StarUMLApplication.Project.FindByRelativePathname
-      (Copy(Attachment, Length(ELEMENT_MARK)+1, Length(Attachment) - Length(ELEMENT_MARK)));
-    if M <> nil then
-      Attachment := ELEMENT_MARK + M.GUID;
-  end;
 end;
 
 procedure TAttachmentEditor.SetEnabled(Value: Boolean);
@@ -450,7 +511,6 @@ end;
 procedure TAttachmentEditor.AddAttachment;
 var
   Attachment: string;
-  M: PModel;
 begin
   AttachmentItemEditForm.Location := 'http://';
   if AttachmentItemEditForm.Execute then begin
