@@ -146,8 +146,6 @@ object MainForm: TMainForm
             Height = 256
             Align = alClient
             TabOrder = 0
-            ExplicitWidth = 163
-            ExplicitHeight = 256
             inherited PaletteNavBar: TCategoryButtons
               Width = 157
               Height = 250
@@ -842,8 +840,6 @@ object MainForm: TMainForm
                       Action = PaletteNavBarFrame.ConnectorAction
                     end>
                 end>
-              ExplicitWidth = 157
-              ExplicitHeight = 250
             end
           end
         end
@@ -2473,12 +2469,13 @@ object MainForm: TMainForm
       Caption = 'G&o To'
       Category = 3
       Hint = 'Go To'
-      Visible = ivNever
+      Visible = ivAlways
       ItemLinks = <
         item
           Visible = True
           ItemName = 'EditGoToItemList'
         end>
+      OnPopup = EditGoToPopup
     end
     object EditGoToItemList: TdxBarListItem
       Caption = 'Go To Items'

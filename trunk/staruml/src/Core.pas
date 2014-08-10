@@ -602,6 +602,7 @@ type
     function CanDelete: Boolean; virtual;
     function CanPaste(Kind, CopyContext: string): Boolean; virtual;
     function ContainsName(AName: string): Boolean;
+    function HasAttachedLinks: Boolean; virtual;
     function GenerateAvailableName(Model: PModel;
       Postfix: string = '_'): string;
     function FindByName(AName: string): PModel;
@@ -3517,6 +3518,11 @@ end;
 function PModel.GetAttachmentCount: Integer;
 begin
   Result := FAttachments.Count;
+end;
+
+function PModel.HasAttachedLinks: Boolean;
+begin
+  Result := GetAttachmentCount > 0;
 end;
 
 function PModel.MOF_GetAttribute(Name: string): string;
