@@ -265,6 +265,12 @@ type
 
     // (for AddInManager)
     procedure AddInManagerMessageHandler(str: string);
+
+    // Go to item list
+    procedure MainSetupGoToItemListPopUp(Sender: TObject);
+    procedure MainEditGoToItemListClickHandler(Sender: TObject);
+
+
   private
     // Utility Methods connecting Event Handler
     procedure ConnectHandlersOnApplicationEvents;
@@ -2338,17 +2344,6 @@ begin
     ConstraintEditorForm.Inspect;
     TaggedValueEditorForm.Inspect;
 
-    // Setting Go To Items
-    if StarUMLApplication.SelectedModelCount = 1 then
-    begin
-      M := StarUMLApplication.SelectedModels[0];
-      MainForm.EditGoToItemList.Items.Clear;
-      for I := 0 to M.Attachments.Count - 1 do
-      begin
-        MainForm.EditGoToItemList.Items.AddObject(M.Attachments.Strings[I], nil)
-      end;
-    end;
-
     // Setting Menu Status
     MenuStateHandler.BeginUpdate;
 
@@ -3173,6 +3168,37 @@ begin
   end;
 end;
 
+procedure PMain.MainSetupGoToItemListPopUp(Sender: TObject);
+var
+  M: PModel;
+  Attachment: string;
+  ItemCaption: string;
+begin
+   // Setting Go To Items
+    if (StarUMLApplication.SelectedModelCount = 1) then begin
+     M := StarUMLApplication.SelectedModels[0];
+      MainForm.EditGoToItemList.Items.Clear;
+      MainForm.EditGoToItemList.OnClick := MainEditGoToItemListClickHandler;
+     for Attachment in M.Attachments do begin
+        M := GetModelFromGuid(Attachment);
+        if Assigned(M) then begin
+          ItemCaption := GetModelCaption(M);
+          MainForm.EditGoToItemList.Items.AddObject(ItemCaption, M);
+        end;
+      end;
+   end;
+end;
+
+procedure PMain.MainEditGoToItemListClickHandler(Sender: TObject);
+var
+  ListItem: TdxBarListItem;
+  Model: PModel;
+begin
+  ListItem := Sender as TdxBarListItem;
+  Model := ListItem.Items.Objects[ListItem.ItemIndex] as PModel;
+  BrowseElement(Model);
+end;
+
 ////////////////////////////////////////////////////////////////////////////////
 // Inner utility methods
 
@@ -3213,6 +3239,7 @@ begin
     OnFileMenuClicked := MainFormFileMenuClickedHandler;
     OnEditFindDiagramsWithSelectedModelClicked := MainFormEditFindDiagramsWithSelectedModelClickedHandler;
     OnEditMenuClicked := MainFormEditMenuClickedHandler;
+    OnEditGoToPopup := MainSetupGoToItemListPopUp;
     OnFormatMenuClicked := MainFormFormatMenuClickedHandler;
     OnFormatCheckTypeMenuClicked := MainFormFormatCheckTypeMenuClickedHandler;
     OnFontFaceChanged := MainFormFormatFontFaceChangedHandler;
@@ -4501,7 +4528,8 @@ begin
     end;
     // Determine Go To
     EditGoTo.Enabled :=
-      MainForm.IsActivated and (MC = 1);
+      MainForm.IsActivated and (MC = 1)
+      and StarUMLApplication.SelectedModels[0].HasAttachedLinks;
   end;
 end;
 

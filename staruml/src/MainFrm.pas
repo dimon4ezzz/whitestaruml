@@ -430,6 +430,7 @@ type
     procedure ExclusiveFileOpenClick(Sender: TObject);
     procedure EditFindDiagramsWithSelectedModelClick(Sender: TObject);
     procedure WindowsMessageHandler(var Msg: TMsg; var Handled: Boolean);
+    procedure EditGoToPopup(Sender: TObject);
   private
     AllowToTriggerFontFaceChangedEvent: Boolean;
     AllowToTriggerFontSizeChangedEvent: Boolean;
@@ -454,6 +455,7 @@ type
     FOnFileMenuClicked: TNotifyEvent;
     FOnEditFindDiagramsWithSelectedModelClicked: TNotifyEvent;
     FOnEditMenuClicked: TNotifyEvent;
+    FOnEditGoToPopup: TNotifyEvent;
     FOnFormatMenuClicked: TNotifyEvent;
     FOnFormatCheckTypeMenuClicked: PCheckTypeMenuClickEvent;
     FOnFontFaceChanged: PFontFaceEvent;
@@ -633,6 +635,7 @@ type
     property OnFileMenuClicked: TNotifyEvent write FOnFileMenuClicked;
     property OnEditFindDiagramsWithSelectedModelClicked: TNotifyEvent write FOnEditFindDiagramsWithSelectedModelClicked;
     property OnEditMenuClicked: TNotifyEvent write FOnEditMenuClicked;
+    property OnEditGoToPopup: TNotifyEvent write FOnEditGoToPopup;
     property OnFormatMenuClicked: TNotifyEvent write FOnFormatMenuClicked;
     property OnFormatCheckTypeMenuClicked: PCheckTypeMenuClickEvent write FOnFormatCheckTypeMenuClicked;
     property OnFontFaceChanged: PFontFaceEvent read FOnFontFaceChanged write FOnFontFaceChanged;
@@ -1489,6 +1492,11 @@ procedure TMainForm.EditFindDiagramsWithSelectedModelClick(Sender: TObject);
 begin
   if Assigned(FOnEditFindDiagramsWithSelectedModelClicked) then
     FOnEditFindDiagramsWithSelectedModelClicked(Sender);
+end;
+
+procedure TMainForm.EditGoToPopup(Sender: TObject);
+begin
+  if Assigned(FOnEditGoToPopup) then FOnEditGoToPopup(Sender);
 end;
 
 procedure TMainForm.EditMenuClick(Sender: TObject);
