@@ -47,8 +47,6 @@ type
       : TJvInspectorElemBase;
     function SetUpTextButtonRow(SuperNode: TJvInspectorCustomCategoryItem;
       TD: PTagDefinition; ImageIndex: Integer): TJvInspectorElemBase;
-    function SetUpModifiableTextButtonRow(SuperNode: TJvInspectorCustomCategoryItem;
-      TD: PTagDefinition; ImageIndex: Integer): TJvInspectorElemBase;
     function SetUpCheckRow(SuperNode: TJvInspectorCustomCategoryItem;
       TD: PTagDefinition; ImageIndex: Integer): TJvInspectorElemBase;
     function SetUpChoiceRow(SuperNode: TJvInspectorCustomCategoryItem;
@@ -152,9 +150,7 @@ begin
   else
     Exit;
 
-  if Assigned(FOnDataTaggedValueChange) then
-    FOnDataTaggedValueChange(Self, FModel, Profile.Name,
-      T.TagDefinitionSet.Name, T.Name, Value);
+  ChangeDataTaggedValue(Row, Value);
 end;
 
 procedure PTagDefinitionSetJvclInspector.ChangeDataTaggedValue
@@ -250,23 +246,27 @@ function PTagDefinitionSetJvclInspector.SetUpTextRow
   (SuperNode: TJvInspectorCustomCategoryItem; TD: PTagDefinition;
   ImageIndex: Integer; AFlags: TInspectorItemFlags = []): TJvInspectorElemBase;
 begin
-  if TD.Lock or (TD.TagType = tkCollection) or (TD.TagType = tkReference) then begin
+  // Create item basing on its TagType value
+  if TD.Lock or (TD.TagType <> tkString) then // Single line editor
     Result := TJvInspectorElem<TStringItemWithNameImage>.CreateElem
-      (SuperNode, TagTypeToStr(TD.TagType));
-    end
-  else
+      (SuperNode, TagTypeToStr(TD.TagType))
+  else // Proper string type, create multi line editor
     Result := TJvInspectorElem<TMultiStringItemWithNameImage>.CreateElem
       (SuperNode, TagTypeToStr(TD.TagType));
-  if Result <> nil then
-  with Result.Item do
-  begin
-    FElemsHolder.AddElem(Result);
-    begin
-      Flags := Flags + AFlags;
-      if (TD.TagType = tkCollection) or (TD.TagType = tkReference) then
-        Flags := Flags + [iifEditFixed];
+
+  if Assigned(Result) then begin // Element was created now setup the underlying item
+    FElemsHolder.AddElem(Result); // Memory management
+
+    with Result.Item do begin
       DisplayName := TD.Name;
 
+      // Setting flags
+      Flags := Flags + AFlags;
+      // Do not allow inplace editing for collections and references
+      if TD.TagType in [tkCollection, tkReference] then
+        Flags := Flags + [iifEditFixed];
+
+      // Setting single line string item
       if Result.Item is TJvInspectorStringItemWithNameImage then begin
         Data.AsString := TD.DefaultValue;
         with Result.Item as TJvInspectorStringItemWithNameImage do begin
@@ -274,10 +274,10 @@ begin
           if TD.Lock then
             NameImageIdx := 1
           else
-            NameImageIdx := ImageIndex;
-        end;
+            NameImageIdx := ImageIndex
+        end
       end
-      else
+      else // Setting multi line string item
         with Result.Item as TJvInspectorMultiStringItemWithNameImage do begin
           NewString := TD.DefaultValue;
           OnTextModifiedWithEditor := MultiLineTextChanged;
@@ -288,21 +288,13 @@ begin
           else
             NameImageIdx := ImageIndex;
         end;
-      end;
 
+      // Setting Readonly flag
       ReadOnly := TD.Lock or FReadOnly;
-      if (not ReadOnly) then
+      if not ReadOnly then
         OnValueChanged := InspectorEdited;
-    end;
-
-    {with Result.Item as TJvInspectorStringItemWithNameImage do
-    begin
-      NameImages := Form.RowImageList;
-      if TD.Lock then
-        NameImageIdx := 1
-      else
-        NameImageIdx := ImageIndex;
-    end;}
+    end; // End of with Result.Item
+  end; // End of if Result <> nil
 end;
 
 function PTagDefinitionSetJvclInspector.SetUpTextButtonRow
@@ -311,13 +303,6 @@ function PTagDefinitionSetJvclInspector.SetUpTextButtonRow
 begin
   Result := SetUpTextRow(SuperNode, TD, ImageIndex,
   [iifEditButton{, iifEditFixed}]);
-end;
-
-function PTagDefinitionSetJvclInspector.SetUpModifiableTextButtonRow
-  (SuperNode: TJvInspectorCustomCategoryItem;
-  TD: PTagDefinition; ImageIndex: Integer): TJvInspectorElemBase;
-begin
-  Result := SetUpTextRow(SuperNode, TD, ImageIndex, [iifEditButton]);
 end;
 
 function PTagDefinitionSetJvclInspector.SetUpCheckRow
@@ -492,15 +477,9 @@ end;
 procedure PTagDefinitionSetJvclInspector.MultiLineTextChanged(NewText: string);
 var
   Row: TJvCustomInspectorItem;
-  T: PTagDefinition;
 begin
   Row := Form.Inspector.Selected;
-  T := GetTagDefinition(Row);
-
-  if Assigned(T) and Assigned(FOnDataTaggedValueChange) then
-    FOnDataTaggedValueChange(Self, FModel, Profile.Name,
-      T.TagDefinitionSet.Name, T.Name, NewText);
-
+  ChangeDataTaggedValue(Row, NewText);
 end;
 
 /// /////////////////////////////////////////////////////////////////////////////
@@ -540,5 +519,3 @@ begin
 end;
 
 end.
-
-
