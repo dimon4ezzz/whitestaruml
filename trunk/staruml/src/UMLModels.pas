@@ -747,6 +747,7 @@ type
     procedure DeletePlayedRole(Index: Integer);
     function IndexOfPlayedRole(Value: PUMLClassifierRole): Integer;
     function CanRelocateTo(Model: PModel): Boolean; override;
+    function HasAttachedLinks: Boolean; override;
     function MOF_GetAttribute(Name: string): string; override;
     procedure MOF_SetAttribute(Name, Value: string); override;
     function MOF_GetReference(Name: string): PElement; override;
@@ -7619,6 +7620,11 @@ end;
 function PUMLInstance.GetSlotCount: Integer;
 begin
   Result := FSlots.Count;
+end;
+
+function PUMLInstance.HasAttachedLinks: Boolean;
+begin
+  Result := True; // Instance has always attached classifier link
 end;
 
 function PUMLInstance.GetSendingStimulus(Index: Integer): PUMLStimulus;
