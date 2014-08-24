@@ -888,8 +888,7 @@ end;
 procedure PAddIn.SetupAddInInfo(XMLNode: IXMLNode; Path: String);
 var
   I: Integer;
-  Str: String;
-  RootNode, ModuleNode: IXMLNode;
+  RootNode: IXMLNode;
 begin
   FAddInName := ReadChildStringValue(XMLNode, 'NAME', '');
   FRegKey := FAddInName;
@@ -907,28 +906,15 @@ begin
     for I := 0 to RootNode.ChildNodes.Count-1 do
       FModulePath.Add(RootNode.ChildNodes.Nodes[I].Text);
 
-(*
-  Str := GetRegValue(Reg, RegValues, VN_ISACTIVE);           // IsActive
-  if Str <> '' then begin
-    if (LowerCase(Str) = 'true') or (LowerCase(Str) = 'yes') then
-      FIsActive := True
-    else FIsActive := False;
-  end else begin
-    Reg.WriteString(VN_ISACTIVE, 'False');
-    FIsActive := False;
-  end;
-*)
-
   FIsActive := LowerCase(ReadChildStringValue(XMLNode, 'ISACTIVE', 'True')) = 'true';
 end;
 
 procedure PAddIn.SetupAuxiliaryData;
 var
-  Ext, Msg: string;
+  Ext: string;
   ABitmap: TBitmap;
   ImgList: TImageList;
   Idx: Integer;
-  AHelpFileName: string;
 begin
   // Icon
   if FIconFileName <> '' then begin
@@ -1194,7 +1180,6 @@ procedure PStarUMLAddIn.SetupCOMObject(ActiveFlag: Boolean);
 
 var
   Msg: string;
-  I: Integer;
   R: Boolean;
   ClassID: TGUID;
   Module: string;
@@ -1644,7 +1629,7 @@ begin
   function AddAddIn(Path, FilePath: String): Boolean;
   var
     XMLDoc: TXMLDocument;
-    RootNode, Node: IXMLNode;
+    RootNode: IXMLNode;
     AddIn: PAddIn;
     IsFrameWindow: Boolean;
   begin
