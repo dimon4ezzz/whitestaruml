@@ -1323,12 +1323,12 @@ object MainForm: TMainForm
       'Default'
       'Menus'
       'File'
-      'Edit'
       'Model'
       'View'
+      'Edit'
       'Tools'
-      'Help'
       'Status'
+      'Help'
       'Attachments(Inspector)'
       'Messages(Information)'
       'Format')
@@ -1873,10 +1873,6 @@ object MainForm: TMainForm
           ItemName = 'EditFind'
         end
         item
-          Visible = True
-          ItemName = 'EditGoTo'
-        end
-        item
           BeginGroup = True
           Visible = True
           ItemName = 'EditSelectAll'
@@ -2363,128 +2359,9 @@ object MainForm: TMainForm
       Visible = ivAlways
       OnClick = ExclusiveFileOpenClick
     end
-    object EditUndo: TdxBarButton
-      Caption = '&Undo'
-      Category = 3
-      Hint = 'Undo'
-      Visible = ivAlways
-      ImageIndex = 109
-      ShortCut = 16474
-      OnClick = EditMenuClick
-    end
-    object EditRedo: TdxBarButton
-      Caption = '&Redo'
-      Category = 3
-      Hint = 'Redo'
-      Visible = ivAlways
-      ImageIndex = 110
-      ShortCut = 16473
-      OnClick = EditMenuClick
-    end
-    object EditCut: TdxBarButton
-      Caption = 'Cu&t'
-      Category = 3
-      Hint = 'Cut'
-      Visible = ivAlways
-      ImageIndex = 105
-      ShortCut = 16472
-      OnClick = EditMenuClick
-    end
-    object EditCopy: TdxBarButton
-      Caption = '&Copy'
-      Category = 3
-      Hint = 'Copy'
-      Visible = ivAlways
-      ImageIndex = 106
-      ShortCut = 16451
-      OnClick = EditMenuClick
-    end
-    object EditCopyDiagram: TdxBarButton
-      Caption = 'Copy Dia&gram'
-      Category = 3
-      Hint = 'Copy Diagram'
-      Visible = ivAlways
-      ShortCut = 24643
-      OnClick = EditMenuClick
-    end
-    object EditCopyDiagramAsBitmap: TdxBarButton
-      Caption = 'Copy Diagram As &Bitmap'
-      Category = 3
-      Hint = 'Copy Diagram As Bitmap'
-      Visible = ivAlways
-      ShortCut = 24642
-      OnClick = EditMenuClick
-    end
-    object EditPaste: TdxBarButton
-      Caption = '&Paste'
-      Category = 3
-      Hint = 'Paste'
-      Visible = ivAlways
-      ImageIndex = 107
-      ShortCut = 16470
-      OnClick = EditMenuClick
-    end
-    object EditDelete: TdxBarButton
-      Caption = '&Delete'
-      Category = 3
-      Hint = 'Delete'
-      Visible = ivAlways
-      ImageIndex = 108
-      ShortCut = 46
-      OnClick = EditMenuClick
-    end
-    object EditDeleteFromModel: TdxBarButton
-      Caption = 'Delete From &Model'
-      Category = 3
-      Hint = 'Delete From Model'
-      Visible = ivAlways
-      ShortCut = 16430
-      OnClick = EditMenuClick
-    end
-    object EditFind: TdxBarButton
-      Caption = '&Find...'
-      Category = 3
-      Hint = 'Find'
-      Visible = ivAlways
-      ImageIndex = 111
-      ShortCut = 16454
-      OnClick = EditMenuClick
-    end
-    object EditFindDiagramsWithSelectedModel: TdxBarButton
-      Caption = 'Find Diagrams With Selected Model'
-      Category = 3
-      Hint = 'Find Diagrams With Selected Model'
-      Visible = ivAlways
-      OnClick = EditFindDiagramsWithSelectedModelClick
-    end
-    object EditSelectAll: TdxBarButton
-      Caption = 'Select &All'
-      Category = 3
-      Hint = 'Select All'
-      Visible = ivAlways
-      ShortCut = 16449
-      OnClick = EditMenuClick
-    end
-    object EditGoTo: TdxBarSubItem
-      Caption = 'G&o To'
-      Category = 3
-      Hint = 'Go To'
-      Visible = ivAlways
-      ItemLinks = <
-        item
-          Visible = True
-          ItemName = 'EditGoToItemList'
-        end>
-      OnPopup = EditGoToPopup
-    end
-    object EditGoToItemList: TdxBarListItem
-      Caption = 'Go To Items'
-      Category = 3
-      Visible = ivAlways
-    end
     object ModelAdd: TdxBarSubItem
       Caption = '&Add'
-      Category = 4
+      Category = 3
       Hint = 'Add'
       Visible = ivAlways
       ItemLinks = <
@@ -2736,7 +2613,7 @@ object MainForm: TMainForm
     end
     object ModelAddDiagram: TdxBarSubItem
       Caption = 'Add &Diagram'
-      Category = 4
+      Category = 3
       Hint = 'Add Diagram'
       Visible = ivAlways
       ItemLinks = <
@@ -2787,7 +2664,7 @@ object MainForm: TMainForm
     end
     object ModelAddModel: TdxBarButton
       Caption = 'Model'
-      Category = 4
+      Category = 3
       Hint = 'Model'
       Visible = ivAlways
       ImageIndex = 7
@@ -2795,7 +2672,7 @@ object MainForm: TMainForm
     end
     object ModelAddSubsystem: TdxBarButton
       Caption = 'Subsystem'
-      Category = 4
+      Category = 3
       Hint = 'Subsystem'
       Visible = ivAlways
       ImageIndex = 10
@@ -2803,7 +2680,7 @@ object MainForm: TMainForm
     end
     object ModelAddPackage: TdxBarButton
       Caption = 'Package'
-      Category = 4
+      Category = 3
       Hint = 'Package'
       Visible = ivAlways
       ImageIndex = 13
@@ -2811,7 +2688,7 @@ object MainForm: TMainForm
     end
     object ModelAddClass: TdxBarButton
       Caption = 'Class'
-      Category = 4
+      Category = 3
       Hint = 'Class'
       Visible = ivAlways
       ImageIndex = 16
@@ -2819,7 +2696,7 @@ object MainForm: TMainForm
     end
     object ModelAddInterface: TdxBarButton
       Caption = 'Interface'
-      Category = 4
+      Category = 3
       Hint = 'Interface'
       Visible = ivAlways
       ImageIndex = 17
@@ -2827,7 +2704,7 @@ object MainForm: TMainForm
     end
     object ModelAddEnumeration: TdxBarButton
       Caption = 'Enumeration'
-      Category = 4
+      Category = 3
       Hint = 'Enumeration'
       Visible = ivAlways
       ImageIndex = 18
@@ -2835,7 +2712,7 @@ object MainForm: TMainForm
     end
     object ModelAddComponent: TdxBarButton
       Caption = 'Component'
-      Category = 4
+      Category = 3
       Hint = 'Component'
       Visible = ivAlways
       ImageIndex = 21
@@ -2843,7 +2720,7 @@ object MainForm: TMainForm
     end
     object ModelAddComponentInstance: TdxBarButton
       Caption = 'Component Instance'
-      Category = 4
+      Category = 3
       Hint = 'Component Instance'
       Visible = ivAlways
       ImageIndex = 22
@@ -2851,7 +2728,7 @@ object MainForm: TMainForm
     end
     object ModelAddNode: TdxBarButton
       Caption = 'Node'
-      Category = 4
+      Category = 3
       Hint = 'Node'
       Visible = ivAlways
       ImageIndex = 23
@@ -2859,7 +2736,7 @@ object MainForm: TMainForm
     end
     object ModelAddNodeInstance: TdxBarButton
       Caption = 'Node Instance'
-      Category = 4
+      Category = 3
       Hint = 'Node Instance'
       Visible = ivAlways
       ImageIndex = 24
@@ -2867,7 +2744,7 @@ object MainForm: TMainForm
     end
     object ModelAddUseCase: TdxBarButton
       Caption = 'Use Case'
-      Category = 4
+      Category = 3
       Hint = 'Use Case'
       Visible = ivAlways
       ImageIndex = 25
@@ -2875,7 +2752,7 @@ object MainForm: TMainForm
     end
     object ModelAddActor: TdxBarButton
       Caption = 'Actor'
-      Category = 4
+      Category = 3
       Hint = 'Actor'
       Visible = ivAlways
       ImageIndex = 26
@@ -2883,7 +2760,7 @@ object MainForm: TMainForm
     end
     object ModelAddAttribute: TdxBarButton
       Caption = 'Attribute'
-      Category = 4
+      Category = 3
       Hint = 'Attribute'
       Visible = ivAlways
       ImageIndex = 46
@@ -2891,7 +2768,7 @@ object MainForm: TMainForm
     end
     object ModelAddOperation: TdxBarButton
       Caption = 'Operation'
-      Category = 4
+      Category = 3
       Hint = 'Operation'
       Visible = ivAlways
       ImageIndex = 50
@@ -2899,7 +2776,7 @@ object MainForm: TMainForm
     end
     object ModelAddParameter: TdxBarButton
       Caption = 'Parameter'
-      Category = 4
+      Category = 3
       Hint = 'Parameter'
       Visible = ivAlways
       ImageIndex = 54
@@ -2907,7 +2784,7 @@ object MainForm: TMainForm
     end
     object ModelAddTemplateParameter: TdxBarButton
       Caption = 'Template Parameter'
-      Category = 4
+      Category = 3
       Hint = 'Template Parameter'
       Visible = ivAlways
       ImageIndex = 55
@@ -2915,7 +2792,7 @@ object MainForm: TMainForm
     end
     object ModelAddEnumerationLiteral: TdxBarButton
       Caption = 'Enumeration Literal'
-      Category = 4
+      Category = 3
       Hint = 'Enumeration Literal'
       Visible = ivAlways
       ImageIndex = 56
@@ -2923,7 +2800,7 @@ object MainForm: TMainForm
     end
     object ModelAddSignal: TdxBarButton
       Caption = 'Signal'
-      Category = 4
+      Category = 3
       Hint = 'Signal'
       Visible = ivAlways
       ImageIndex = 19
@@ -2931,7 +2808,7 @@ object MainForm: TMainForm
     end
     object ModelAddObject: TdxBarButton
       Caption = 'Object'
-      Category = 4
+      Category = 3
       Hint = 'Object'
       Visible = ivAlways
       ImageIndex = 73
@@ -2939,7 +2816,7 @@ object MainForm: TMainForm
     end
     object ModelAddCollaboration: TdxBarButton
       Caption = 'Collaboration'
-      Category = 4
+      Category = 3
       Hint = 'Collaboration'
       Visible = ivAlways
       ImageIndex = 30
@@ -2947,7 +2824,7 @@ object MainForm: TMainForm
     end
     object ModelAddCollaborationInstanceSet: TdxBarButton
       Caption = 'Collaboration Instance Set'
-      Category = 4
+      Category = 3
       Hint = 'Collaboration Instance Set'
       Visible = ivAlways
       ImageIndex = 31
@@ -2955,7 +2832,7 @@ object MainForm: TMainForm
     end
     object ModelAddClassifierRole: TdxBarButton
       Caption = 'Classifier Role'
-      Category = 4
+      Category = 3
       Hint = 'Classifier Role'
       Visible = ivAlways
       ImageIndex = 72
@@ -2963,7 +2840,7 @@ object MainForm: TMainForm
     end
     object ModelAddInteraction: TdxBarButton
       Caption = 'Interaction'
-      Category = 4
+      Category = 3
       Hint = 'Interaction'
       Visible = ivAlways
       ImageIndex = 32
@@ -2971,7 +2848,7 @@ object MainForm: TMainForm
     end
     object ModelAddInteractionInstanceSet: TdxBarButton
       Caption = 'Interaction Instance Set'
-      Category = 4
+      Category = 3
       Hint = 'Interaction Instance Set'
       Visible = ivAlways
       ImageIndex = 33
@@ -2979,7 +2856,7 @@ object MainForm: TMainForm
     end
     object ModelAddStateMachine: TdxBarButton
       Caption = 'State Machine'
-      Category = 4
+      Category = 3
       Hint = 'State Machine'
       Visible = ivAlways
       ImageIndex = 28
@@ -2987,7 +2864,7 @@ object MainForm: TMainForm
     end
     object ModelAddState: TdxBarButton
       Caption = 'State'
-      Category = 4
+      Category = 3
       Hint = 'State'
       Visible = ivAlways
       ImageIndex = 29
@@ -2995,7 +2872,7 @@ object MainForm: TMainForm
     end
     object ModelAddSubmachineState: TdxBarButton
       Caption = 'Submachine State'
-      Category = 4
+      Category = 3
       Hint = 'Submachine State'
       Visible = ivAlways
       ImageIndex = 45
@@ -3003,7 +2880,7 @@ object MainForm: TMainForm
     end
     object ModelAddInitialState: TdxBarButton
       Caption = 'Initial State'
-      Category = 4
+      Category = 3
       Hint = 'Initial State'
       Visible = ivAlways
       ImageIndex = 37
@@ -3011,7 +2888,7 @@ object MainForm: TMainForm
     end
     object ModelAddFinalState: TdxBarButton
       Caption = 'Final State'
-      Category = 4
+      Category = 3
       Hint = 'Final State'
       Visible = ivAlways
       ImageIndex = 43
@@ -3019,7 +2896,7 @@ object MainForm: TMainForm
     end
     object ModelAddDecision: TdxBarButton
       Caption = 'Decision'
-      Category = 4
+      Category = 3
       Hint = 'Decision'
       Visible = ivAlways
       ImageIndex = 36
@@ -3027,7 +2904,7 @@ object MainForm: TMainForm
     end
     object ModelAddSynchronization: TdxBarButton
       Caption = 'Synchronization'
-      Category = 4
+      Category = 3
       Hint = 'Synchronization'
       Visible = ivAlways
       ImageIndex = 38
@@ -3035,7 +2912,7 @@ object MainForm: TMainForm
     end
     object ModelAddJunctionPoint: TdxBarButton
       Caption = 'Junction Point'
-      Category = 4
+      Category = 3
       Hint = 'Junction Point'
       Visible = ivAlways
       ImageIndex = 39
@@ -3043,7 +2920,7 @@ object MainForm: TMainForm
     end
     object ModelAddChoicePoint: TdxBarButton
       Caption = 'Choice Point'
-      Category = 4
+      Category = 3
       Hint = 'Choice Point'
       Visible = ivAlways
       ImageIndex = 40
@@ -3051,7 +2928,7 @@ object MainForm: TMainForm
     end
     object ModelAddShallowHistory: TdxBarButton
       Caption = 'Shallow History'
-      Category = 4
+      Category = 3
       Hint = 'Shallow History'
       Visible = ivAlways
       ImageIndex = 41
@@ -3059,7 +2936,7 @@ object MainForm: TMainForm
     end
     object ModelAddDeepHistory: TdxBarButton
       Caption = 'Deep History'
-      Category = 4
+      Category = 3
       Hint = 'Deep History'
       Visible = ivAlways
       ImageIndex = 42
@@ -3067,7 +2944,7 @@ object MainForm: TMainForm
     end
     object ModelAddSwimlane: TdxBarButton
       Caption = 'Swimlane'
-      Category = 4
+      Category = 3
       Hint = 'Swimlane'
       Visible = ivAlways
       ImageIndex = 44
@@ -3075,7 +2952,7 @@ object MainForm: TMainForm
     end
     object ModelAddEffect: TdxBarButton
       Caption = 'Effect'
-      Category = 4
+      Category = 3
       Hint = 'Effect'
       Visible = ivAlways
       ImageIndex = 64
@@ -3083,7 +2960,7 @@ object MainForm: TMainForm
     end
     object ModelAddEntryAction: TdxBarButton
       Caption = 'Entry Action'
-      Category = 4
+      Category = 3
       Hint = 'Entry Action'
       Visible = ivAlways
       ImageIndex = 65
@@ -3091,7 +2968,7 @@ object MainForm: TMainForm
     end
     object ModelAddDoAction: TdxBarButton
       Caption = 'Do Action'
-      Category = 4
+      Category = 3
       Hint = 'Do Action'
       Visible = ivAlways
       ImageIndex = 66
@@ -3099,7 +2976,7 @@ object MainForm: TMainForm
     end
     object ModelAddExitAction: TdxBarButton
       Caption = 'Exit Action'
-      Category = 4
+      Category = 3
       Hint = 'Exit Action'
       Visible = ivAlways
       ImageIndex = 67
@@ -3107,7 +2984,7 @@ object MainForm: TMainForm
     end
     object ModelAddActivityGraph: TdxBarButton
       Caption = 'Activity Graph'
-      Category = 4
+      Category = 3
       Hint = 'Activity Graph'
       Visible = ivAlways
       ImageIndex = 27
@@ -3115,7 +2992,7 @@ object MainForm: TMainForm
     end
     object ModelAddActionState: TdxBarButton
       Caption = 'Action State (Activity)'
-      Category = 4
+      Category = 3
       Hint = 'Action State (Activity)'
       Visible = ivAlways
       ImageIndex = 34
@@ -3123,7 +3000,7 @@ object MainForm: TMainForm
     end
     object ModelAddSubactivityState: TdxBarButton
       Caption = 'Subactivity State'
-      Category = 4
+      Category = 3
       Hint = 'Subactivity State'
       Visible = ivAlways
       ImageIndex = 35
@@ -3131,7 +3008,7 @@ object MainForm: TMainForm
     end
     object ModelAddSignalEvent: TdxBarButton
       Caption = 'Signal Event'
-      Category = 4
+      Category = 3
       Hint = 'Signal Event'
       Visible = ivAlways
       ImageIndex = 68
@@ -3139,7 +3016,7 @@ object MainForm: TMainForm
     end
     object ModelAddCallEvent: TdxBarButton
       Caption = 'Call Event'
-      Category = 4
+      Category = 3
       Hint = 'Call Event'
       Visible = ivAlways
       ImageIndex = 69
@@ -3147,7 +3024,7 @@ object MainForm: TMainForm
     end
     object ModelAddTimeEvent: TdxBarButton
       Caption = 'Time Event'
-      Category = 4
+      Category = 3
       Hint = 'Time Event'
       Visible = ivAlways
       ImageIndex = 70
@@ -3155,7 +3032,7 @@ object MainForm: TMainForm
     end
     object ModelAddChangeEvent: TdxBarButton
       Caption = 'ChangeEvent'
-      Category = 4
+      Category = 3
       Hint = 'Change Event'
       Visible = ivAlways
       ImageIndex = 71
@@ -3163,7 +3040,7 @@ object MainForm: TMainForm
     end
     object ModelAddException: TdxBarButton
       Caption = 'Exception'
-      Category = 4
+      Category = 3
       Hint = 'Exception'
       Visible = ivAlways
       ImageIndex = 20
@@ -3171,7 +3048,7 @@ object MainForm: TMainForm
     end
     object ModelAddObjectFlowState: TdxBarButton
       Caption = 'Object Flow State'
-      Category = 4
+      Category = 3
       Hint = 'Object Flow State'
       Visible = ivAlways
       ImageIndex = 171
@@ -3179,7 +3056,7 @@ object MainForm: TMainForm
     end
     object ModelAddFlowFinalState: TdxBarButton
       Caption = 'Flow Final State'
-      Category = 4
+      Category = 3
       Hint = 'Flow Final State'
       Visible = ivAlways
       ImageIndex = 166
@@ -3187,7 +3064,7 @@ object MainForm: TMainForm
     end
     object ModelAddSignalAcceptState: TdxBarButton
       Caption = 'Signal Accept State'
-      Category = 4
+      Category = 3
       Hint = 'Signal Accept State'
       Visible = ivAlways
       ImageIndex = 159
@@ -3195,7 +3072,7 @@ object MainForm: TMainForm
     end
     object ModelAddSignalSendState: TdxBarButton
       Caption = 'Signal Send State'
-      Category = 4
+      Category = 3
       Hint = 'Signal Send State'
       Visible = ivAlways
       ImageIndex = 160
@@ -3203,7 +3080,7 @@ object MainForm: TMainForm
     end
     object ModelAddArtifact: TdxBarButton
       Caption = 'Artifact'
-      Category = 4
+      Category = 3
       Hint = 'Artifact'
       Visible = ivAlways
       ImageIndex = 176
@@ -3211,7 +3088,7 @@ object MainForm: TMainForm
     end
     object ModelAddAttributeLink: TdxBarButton
       Caption = 'Attribute Link'
-      Category = 4
+      Category = 3
       Hint = 'Attribute Link'
       Visible = ivAlways
       ImageIndex = 178
@@ -3219,7 +3096,7 @@ object MainForm: TMainForm
     end
     object ModelAddPort: TdxBarButton
       Caption = 'Port'
-      Category = 4
+      Category = 3
       Hint = 'Port'
       Visible = ivAlways
       ImageIndex = 173
@@ -3227,7 +3104,7 @@ object MainForm: TMainForm
     end
     object ModelAddExtensionPoint: TdxBarButton
       Caption = 'Extension Point'
-      Category = 4
+      Category = 3
       Hint = 'Extension Point'
       Visible = ivAlways
       ImageIndex = 177
@@ -3235,7 +3112,7 @@ object MainForm: TMainForm
     end
     object ModelAddCombinedFragment: TdxBarButton
       Caption = 'Combined Fragment'
-      Category = 4
+      Category = 3
       Hint = 'Combined Fragment'
       Visible = ivAlways
       ImageIndex = 163
@@ -3243,7 +3120,7 @@ object MainForm: TMainForm
     end
     object ModelAddInteractionOperand: TdxBarButton
       Caption = 'Interaction Operand'
-      Category = 4
+      Category = 3
       Hint = 'Interaction Operand'
       Visible = ivAlways
       ImageIndex = 169
@@ -3251,7 +3128,7 @@ object MainForm: TMainForm
     end
     object ModelAddFrame: TdxBarButton
       Caption = 'Frame'
-      Category = 4
+      Category = 3
       Hint = 'Frame'
       Visible = ivAlways
       ImageIndex = 167
@@ -3260,7 +3137,7 @@ object MainForm: TMainForm
     object ModelAddDiagramUsecaseDiagram: TdxBarButton
       Tag = 1
       Caption = 'Use Case Diagram'
-      Category = 4
+      Category = 3
       Hint = 'Use Case Diagram'
       Visible = ivAlways
       ImageIndex = 92
@@ -3269,7 +3146,7 @@ object MainForm: TMainForm
     object ModelAddDiagramClassDiagram: TdxBarButton
       Tag = 2
       Caption = 'Class Diagram'
-      Category = 4
+      Category = 3
       Hint = 'Class Diagram'
       Visible = ivAlways
       ImageIndex = 91
@@ -3277,7 +3154,7 @@ object MainForm: TMainForm
     end
     object ModelAddDiagramSequenceRoleDiagram: TdxBarButton
       Caption = 'Sequence Diagram (Role)'
-      Category = 4
+      Category = 3
       Hint = 'Sequence Diagram (Role)'
       Visible = ivAlways
       ImageIndex = 94
@@ -3286,7 +3163,7 @@ object MainForm: TMainForm
     object ModelAddDiagramSequenceDiagram: TdxBarButton
       Tag = 3
       Caption = 'Sequence Diagram'
-      Category = 4
+      Category = 3
       Hint = 'Sequence Diagram'
       Visible = ivAlways
       ImageIndex = 93
@@ -3294,7 +3171,7 @@ object MainForm: TMainForm
     end
     object ModelAddDiagramCollaborationRoleDiagram: TdxBarButton
       Caption = 'Collaboration Diagram (Role)'
-      Category = 4
+      Category = 3
       Hint = 'Collaboration Diagram (Role)'
       Visible = ivAlways
       ImageIndex = 96
@@ -3303,7 +3180,7 @@ object MainForm: TMainForm
     object ModelAddDiagramCollaborationDiagram: TdxBarButton
       Tag = 4
       Caption = 'Collaboration Diagram'
-      Category = 4
+      Category = 3
       Hint = 'Collaboration Diagram'
       Visible = ivAlways
       ImageIndex = 95
@@ -3312,7 +3189,7 @@ object MainForm: TMainForm
     object ModelAddDiagramStatechartDiagram: TdxBarButton
       Tag = 5
       Caption = 'Statechart Diagram'
-      Category = 4
+      Category = 3
       Hint = 'Statechart Diagram'
       Visible = ivAlways
       ImageIndex = 97
@@ -3321,7 +3198,7 @@ object MainForm: TMainForm
     object ModelAddDiagramActivityDiagram: TdxBarButton
       Tag = 6
       Caption = 'Activity Diagram'
-      Category = 4
+      Category = 3
       Hint = 'Activity Diagram'
       Visible = ivAlways
       ImageIndex = 98
@@ -3330,7 +3207,7 @@ object MainForm: TMainForm
     object ModelAddDiagramComponentDiagram: TdxBarButton
       Tag = 7
       Caption = 'Component Diagram'
-      Category = 4
+      Category = 3
       Hint = 'Component Diagram'
       Visible = ivAlways
       ImageIndex = 99
@@ -3339,7 +3216,7 @@ object MainForm: TMainForm
     object ModelAddDiagramDeploymentDiagram: TdxBarButton
       Tag = 8
       Caption = 'Deployment Diagram'
-      Category = 4
+      Category = 3
       Hint = 'Deployment Diagram'
       Visible = ivAlways
       ImageIndex = 100
@@ -3348,7 +3225,7 @@ object MainForm: TMainForm
     object ModelAddDiagramCompositeStructureDiagram: TdxBarButton
       Tag = 9
       Caption = 'Composite Structure Diagram'
-      Category = 4
+      Category = 3
       Hint = 'Composite Structure Diagram'
       Visible = ivAlways
       ImageIndex = 179
@@ -3356,7 +3233,7 @@ object MainForm: TMainForm
     end
     object ModelCollectionEditor: TdxBarButton
       Caption = 'C&ollection Editor...'
-      Category = 4
+      Category = 3
       Hint = 'Collection Editor'
       Visible = ivAlways
       ImageIndex = 148
@@ -3365,7 +3242,7 @@ object MainForm: TMainForm
     end
     object ModelConstraints: TdxBarButton
       Caption = '&Constraints...'
-      Category = 4
+      Category = 3
       Hint = 'Constraints'
       Visible = ivAlways
       ImageIndex = 149
@@ -3374,7 +3251,7 @@ object MainForm: TMainForm
     end
     object ModelTaggedValues: TdxBarButton
       Caption = '&Tagged Values...'
-      Category = 4
+      Category = 3
       Hint = 'Tagged Values'
       Visible = ivAlways
       ImageIndex = 150
@@ -3383,7 +3260,7 @@ object MainForm: TMainForm
     end
     object ModelProfiles: TdxBarButton
       Caption = '&Profiles...'
-      Category = 4
+      Category = 3
       Hint = 'Profiles'
       Visible = ivAlways
       ImageIndex = 146
@@ -3392,7 +3269,7 @@ object MainForm: TMainForm
     end
     object ModelModelVerification: TdxBarButton
       Caption = '&Verify Model...'
-      Category = 4
+      Category = 3
       Hint = 'Verify Model'
       Visible = ivAlways
       ImageIndex = 145
@@ -3401,21 +3278,21 @@ object MainForm: TMainForm
     end
     object ModelProperty: TdxBarButton
       Caption = 'Show P&roperties'
-      Category = 4
+      Category = 3
       Hint = 'Show Properties'
       Visible = ivAlways
       OnClick = ModelMenuClick
     end
     object ModelAttachments: TdxBarButton
       Caption = 'Show Attachments (&Links)'
-      Category = 4
+      Category = 3
       Hint = 'Show Attachments (Links)'
       Visible = ivAlways
       OnClick = ModelMenuClick
     end
     object ViewCloseDiagram: TdxBarButton
       Caption = '&Close Diagram'
-      Category = 5
+      Category = 4
       Hint = 'Close Diagram'
       Visible = ivAlways
       ShortCut = 16499
@@ -3423,7 +3300,7 @@ object MainForm: TMainForm
     end
     object ViewCloseAllDiagrams: TdxBarButton
       Caption = 'Close &All Diagrams'
-      Category = 5
+      Category = 4
       Hint = 'Close All Diagrams'
       Visible = ivAlways
       ShortCut = 24691
@@ -3431,7 +3308,7 @@ object MainForm: TMainForm
     end
     object ViewSelectInModelExplorer: TdxBarButton
       Caption = '&Select In Model Explorer'
-      Category = 5
+      Category = 4
       Hint = 'Select In Model Explorer'
       Visible = ivAlways
       ShortCut = 16461
@@ -3439,7 +3316,7 @@ object MainForm: TMainForm
     end
     object ViewRefresh: TdxBarButton
       Caption = '&Refresh'
-      Category = 5
+      Category = 4
       Hint = 'Refresh'
       Visible = ivAlways
       ImageIndex = 136
@@ -3448,7 +3325,7 @@ object MainForm: TMainForm
     end
     object ViewZoom: TdxBarSubItem
       Caption = '&Zoom'
-      Category = 5
+      Category = 4
       Hint = 'Zoom'
       Visible = ivAlways
       ItemLinks = <
@@ -3496,7 +3373,7 @@ object MainForm: TMainForm
     end
     object ViewZoomZoomIn: TdxBarButton
       Caption = 'Zoom &In'
-      Category = 5
+      Category = 4
       Hint = 'Zoom In'
       Visible = ivAlways
       ImageIndex = 133
@@ -3504,7 +3381,7 @@ object MainForm: TMainForm
     end
     object ViewZoomZoomOut: TdxBarButton
       Caption = 'Zoom &Out'
-      Category = 5
+      Category = 4
       Hint = 'Zoom Out'
       Visible = ivAlways
       ImageIndex = 134
@@ -3512,7 +3389,7 @@ object MainForm: TMainForm
     end
     object ViewZoomFitInWindow: TdxBarButton
       Caption = '&Fit To Window'
-      Category = 5
+      Category = 4
       Hint = 'Fit To Window'
       Visible = ivAlways
       ImageIndex = 135
@@ -3520,55 +3397,55 @@ object MainForm: TMainForm
     end
     object ViewZoom50: TdxBarButton
       Caption = '50%'
-      Category = 5
+      Category = 4
       Hint = '50%'
       Visible = ivAlways
       OnClick = ViewZoomMenuClick
     end
     object ViewZoom75: TdxBarButton
       Caption = '75%'
-      Category = 5
+      Category = 4
       Hint = '75%'
       Visible = ivAlways
       OnClick = ViewZoomMenuClick
     end
     object ViewZoom100: TdxBarButton
       Caption = '100%'
-      Category = 5
+      Category = 4
       Visible = ivAlways
       OnClick = ViewZoomMenuClick
     end
     object ViewZoom125: TdxBarButton
       Caption = '125%'
-      Category = 5
+      Category = 4
       Hint = '125%'
       Visible = ivAlways
       OnClick = ViewZoomMenuClick
     end
     object ViewZoom150: TdxBarButton
       Caption = '150%'
-      Category = 5
+      Category = 4
       Hint = '150%'
       Visible = ivAlways
       OnClick = ViewZoomMenuClick
     end
     object ViewZoom175: TdxBarButton
       Caption = '175%'
-      Category = 5
+      Category = 4
       Hint = '175%'
       Visible = ivAlways
       OnClick = ViewZoomMenuClick
     end
     object ViewZoom200: TdxBarButton
       Caption = '200%'
-      Category = 5
+      Category = 4
       Hint = '200%'
       Visible = ivAlways
       OnClick = ViewZoomMenuClick
     end
     object ViewToolbars: TdxBarSubItem
       Caption = '&Toolbars'
-      Category = 5
+      Category = 4
       Hint = 'Toolbars'
       Visible = ivAlways
       ItemLinks = <
@@ -3595,7 +3472,7 @@ object MainForm: TMainForm
     end
     object ViewToolbarsStandard: TdxBarButton
       Caption = '&Standard'
-      Category = 5
+      Category = 4
       Hint = 'Standard'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3603,7 +3480,7 @@ object MainForm: TMainForm
     end
     object ViewToolbarsFormat: TdxBarButton
       Caption = '&Format'
-      Category = 5
+      Category = 4
       Hint = 'Format'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3611,7 +3488,7 @@ object MainForm: TMainForm
     end
     object ViewToolbarsView: TdxBarButton
       Caption = '&View'
-      Category = 5
+      Category = 4
       Hint = 'View'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3619,7 +3496,7 @@ object MainForm: TMainForm
     end
     object ViewToolbarsAlignment: TdxBarButton
       Caption = '&Alignment'
-      Category = 5
+      Category = 4
       Hint = 'Alignment'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3627,7 +3504,7 @@ object MainForm: TMainForm
     end
     object ViewToolbarsStatusBar: TdxBarButton
       Caption = 'Status &Bar'
-      Category = 5
+      Category = 4
       Hint = 'Status Bar'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3635,7 +3512,7 @@ object MainForm: TMainForm
     end
     object ViewZoomCombo: TdxBarCombo
       Caption = 'Zoom'
-      Category = 5
+      Category = 4
       Hint = 'Zoom'
       Visible = ivAlways
       OnChange = ViewZoomComboChange
@@ -3651,7 +3528,7 @@ object MainForm: TMainForm
     end
     object ViewModelExplorer: TdxBarButton
       Caption = 'Model Explorer'
-      Category = 5
+      Category = 4
       Hint = 'Model Explorer'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3659,7 +3536,7 @@ object MainForm: TMainForm
     end
     object ViewDiagramExplorer: TdxBarButton
       Caption = 'Diagram Explorer'
-      Category = 5
+      Category = 4
       Hint = 'Diagram Explorer'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3667,7 +3544,7 @@ object MainForm: TMainForm
     end
     object ViewPropertyEditor: TdxBarButton
       Caption = 'Properties'
-      Category = 5
+      Category = 4
       Hint = 'Properties'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3675,7 +3552,7 @@ object MainForm: TMainForm
     end
     object ViewDocumentationEditor: TdxBarButton
       Caption = 'Documentations'
-      Category = 5
+      Category = 4
       Hint = 'Documentations'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3683,7 +3560,7 @@ object MainForm: TMainForm
     end
     object ViewAttachmentEditor: TdxBarButton
       Caption = 'Attachments'
-      Category = 5
+      Category = 4
       Hint = 'Attachments'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3691,7 +3568,7 @@ object MainForm: TMainForm
     end
     object ViewOutputWindow: TdxBarButton
       Caption = 'Output'
-      Category = 5
+      Category = 4
       Hint = 'Output'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3699,7 +3576,7 @@ object MainForm: TMainForm
     end
     object ViewMessageWindow: TdxBarButton
       Caption = 'Messages'
-      Category = 5
+      Category = 4
       Hint = 'Messages'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3707,7 +3584,7 @@ object MainForm: TMainForm
     end
     object ViewToolbox: TdxBarButton
       Caption = 'Toolbox'
-      Category = 5
+      Category = 4
       Hint = 'Toolbox'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3715,7 +3592,7 @@ object MainForm: TMainForm
     end
     object ViewDiagramPages: TdxBarSubItem
       Caption = 'Pages'
-      Category = 5
+      Category = 4
       Hint = 'Pages'
       Visible = ivAlways
       ItemLinks = <
@@ -3726,7 +3603,7 @@ object MainForm: TMainForm
     end
     object ViewDiagramPageList: TdxBarListItem
       Caption = 'Diagram Page List'
-      Category = 5
+      Category = 4
       Visible = ivAlways
       OnClick = ViewMenuClick
       ShowCheck = True
@@ -3734,7 +3611,7 @@ object MainForm: TMainForm
     end
     object ViewUITheme: TdxBarSubItem
       Caption = '&UI Theme'
-      Category = 5
+      Category = 4
       Visible = ivAlways
       ItemLinks = <
         item
@@ -3752,7 +3629,7 @@ object MainForm: TMainForm
     end
     object ViewUIThemeModern: TdxBarButton
       Caption = '&Modern (Office 2003)'
-      Category = 5
+      Category = 4
       Hint = 'Modern (Office 2003)'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3761,7 +3638,7 @@ object MainForm: TMainForm
     end
     object ViewUIThemeClassic: TdxBarButton
       Caption = '&Classic (StarUML)'
-      Category = 5
+      Category = 4
       Hint = 'Classic (StarUML)'
       Visible = ivAlways
       ButtonStyle = bsChecked
@@ -3770,12 +3647,131 @@ object MainForm: TMainForm
     end
     object ViewUIThemeNative: TdxBarButton
       Caption = '&Native'
-      Category = 5
+      Category = 4
       Hint = 'Native'
       Visible = ivAlways
       ButtonStyle = bsChecked
       GroupIndex = 10
       OnClick = ViewUIThemeNativeClick
+    end
+    object EditUndo: TdxBarButton
+      Caption = '&Undo'
+      Category = 5
+      Hint = 'Undo'
+      Visible = ivAlways
+      ImageIndex = 109
+      ShortCut = 16474
+      OnClick = EditMenuClick
+    end
+    object EditRedo: TdxBarButton
+      Caption = '&Redo'
+      Category = 5
+      Hint = 'Redo'
+      Visible = ivAlways
+      ImageIndex = 110
+      ShortCut = 16473
+      OnClick = EditMenuClick
+    end
+    object EditCut: TdxBarButton
+      Caption = 'Cu&t'
+      Category = 5
+      Hint = 'Cut'
+      Visible = ivAlways
+      ImageIndex = 105
+      ShortCut = 16472
+      OnClick = EditMenuClick
+    end
+    object EditCopy: TdxBarButton
+      Caption = '&Copy'
+      Category = 5
+      Hint = 'Copy'
+      Visible = ivAlways
+      ImageIndex = 106
+      ShortCut = 16451
+      OnClick = EditMenuClick
+    end
+    object EditCopyDiagram: TdxBarButton
+      Caption = 'Copy Dia&gram'
+      Category = 5
+      Hint = 'Copy Diagram'
+      Visible = ivAlways
+      ShortCut = 24643
+      OnClick = EditMenuClick
+    end
+    object EditCopyDiagramAsBitmap: TdxBarButton
+      Caption = 'Copy Diagram As &Bitmap'
+      Category = 5
+      Hint = 'Copy Diagram As Bitmap'
+      Visible = ivAlways
+      ShortCut = 24642
+      OnClick = EditMenuClick
+    end
+    object EditPaste: TdxBarButton
+      Caption = '&Paste'
+      Category = 5
+      Hint = 'Paste'
+      Visible = ivAlways
+      ImageIndex = 107
+      ShortCut = 16470
+      OnClick = EditMenuClick
+    end
+    object EditDelete: TdxBarButton
+      Caption = '&Delete'
+      Category = 5
+      Hint = 'Delete'
+      Visible = ivAlways
+      ImageIndex = 108
+      ShortCut = 46
+      OnClick = EditMenuClick
+    end
+    object EditDeleteFromModel: TdxBarButton
+      Caption = 'Delete From &Model'
+      Category = 5
+      Hint = 'Delete From Model'
+      Visible = ivAlways
+      ShortCut = 16430
+      OnClick = EditMenuClick
+    end
+    object EditFind: TdxBarButton
+      Caption = '&Find...'
+      Category = 5
+      Hint = 'Find'
+      Visible = ivAlways
+      ImageIndex = 111
+      ShortCut = 16454
+      OnClick = EditMenuClick
+    end
+    object EditFindDiagramsWithSelectedModel: TdxBarButton
+      Caption = 'Find Diagrams With Selected Model'
+      Category = 5
+      Hint = 'Find Diagrams With Selected Model'
+      Visible = ivAlways
+      OnClick = EditFindDiagramsWithSelectedModelClick
+    end
+    object EditSelectAll: TdxBarButton
+      Caption = 'Select &All'
+      Category = 5
+      Hint = 'Select All'
+      Visible = ivAlways
+      ShortCut = 16449
+      OnClick = EditMenuClick
+    end
+    object EditGoTo: TdxBarSubItem
+      Caption = 'Go To'
+      Category = 5
+      Hint = 'Go To'
+      Visible = ivAlways
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'EditGoToItemList'
+        end>
+      OnPopup = EditGoToPopup
+    end
+    object EditGoToItemList: TdxBarListItem
+      Caption = 'Go To Items'
+      Category = 5
+      Visible = ivAlways
     end
     object ToolsOptions: TdxBarButton
       Caption = '&Options...'
@@ -3791,9 +3787,30 @@ object MainForm: TMainForm
       Visible = ivAlways
       OnClick = ToolsMenuClick
     end
+    object StatusBarInfo: TdxBarStatic
+      Align = iaClient
+      Category = 7
+      Visible = ivAlways
+      Alignment = taLeftJustify
+      BorderStyle = sbsLowered
+    end
+    object StatusBarProgress: TdxBarProgressItem
+      Category = 7
+      Visible = ivAlways
+      RightIndent = 2
+      ShowCaption = False
+      Width = 100
+    end
+    object StatusBarModifiedInfo: TdxBarStatic
+      Category = 7
+      Visible = ivAlways
+      BorderStyle = sbsLowered
+      RightIndent = 2
+      Width = 70
+    end
     object HelpContents: TdxBarButton
       Caption = '&Contents...'
-      Category = 7
+      Category = 8
       Hint = 'Contents'
       Visible = ivAlways
       ImageIndex = 143
@@ -3802,31 +3819,10 @@ object MainForm: TMainForm
     end
     object HelpAbout: TdxBarButton
       Caption = '&About...'
-      Category = 7
+      Category = 8
       Hint = 'About'
       Visible = ivAlways
       OnClick = HelpMenuClick
-    end
-    object StatusBarInfo: TdxBarStatic
-      Align = iaClient
-      Category = 8
-      Visible = ivAlways
-      Alignment = taLeftJustify
-      BorderStyle = sbsLowered
-    end
-    object StatusBarProgress: TdxBarProgressItem
-      Category = 8
-      Visible = ivAlways
-      RightIndent = 2
-      ShowCaption = False
-      Width = 100
-    end
-    object StatusBarModifiedInfo: TdxBarStatic
-      Category = 8
-      Visible = ivAlways
-      BorderStyle = sbsLowered
-      RightIndent = 2
-      Width = 70
     end
     object InspectorAttachmentOpen: TdxBarButton
       Caption = '&Open'
