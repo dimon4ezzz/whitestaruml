@@ -250,9 +250,11 @@ type
     ToolsMenu: TdxBarSubItem;
     ToolsOptions: TdxBarButton;
     ToolsAddInManager: TdxBarButton;
+    { Help menu Items }
     HelpMenu: TdxBarSubItem;
     HelpAbout: TdxBarButton;
     HelpContents: TdxBarButton;
+    { Groups }
     AllModelsGroup: TdxBarGroup;
     NamespacesGroup: TdxBarGroup;
     ClassifiersGroup: TdxBarGroup;
@@ -1396,6 +1398,8 @@ end;
 procedure TMainForm.LoadWindowPositionFromRegistry;
 var
   Reg: TRegistry;
+  Rect: TRect;
+  Monitor: TMonitor;
 begin
   Reg := TRegistry.Create;
   try
@@ -1404,10 +1408,22 @@ begin
     if Reg.OpenKey(RK_LOCATION + RK_MAIN, False) then
     begin
       WindowState := wsNormal;
-      Left := Reg.ReadInteger('Left');
-      Top := Reg.ReadInteger('Top');
-      Width := Reg.ReadInteger('Width');
-      Height := Reg.ReadInteger('Height');
+
+      // Read previously saved main form position
+      Rect.Left := Reg.ReadInteger('Left');
+      Rect.Top := Reg.ReadInteger('Top');
+      Rect.Width := Reg.ReadInteger('Width');
+      Rect.Height := Reg.ReadInteger('Height');
+
+      // Restore it if the values are compatible with current desktop settings
+      Monitor := Screen.MonitorFromRect(Rect);
+      if Assigned(Monitor) and Monitor.BoundsRect.IntersectsWith(Rect) then begin
+        Left := Rect.Left;
+        Top := Rect.Top;
+        Width := Rect.Width;
+        Height := Rect.Height;
+      end;
+
       WindowState := TWindowState(Reg.ReadInteger('WindowState'));
       Reg.CloseKey;
     end else
