@@ -3169,8 +3169,12 @@ begin
 end;
 
 procedure PMain.MainSetupGoToItemListPopUp(Sender: TObject);
+const
+  ATTACHMENT_MONIKER = 'Attachment: ';
+  CLASSIFIER_MONIKER = 'Classifier: ';
 var
   M: PModel;
+  Classifier: PUMLClassifier;
   Attachment: string;
   ItemCaption: string;
 begin
@@ -3179,10 +3183,19 @@ begin
      M := StarUMLApplication.SelectedModels[0];
       MainForm.EditGoToItemList.Items.Clear;
       MainForm.EditGoToItemList.OnClick := MainEditGoToItemListClickHandler;
-     for Attachment in M.Attachments do begin
+
+      // Handle classifer of a UML instance type
+      if M is PUMLInstance then begin
+        Classifier := PUMLInstance(M).Classifier;
+        ItemCaption := CLASSIFIER_MONIKER + GetModelCaption(Classifier);
+        MainForm.EditGoToItemList.Items.AddObject(ItemCaption, Classifier);
+      end;
+
+      // Handle attachments
+      for Attachment in M.Attachments do begin
         M := GetModelFromGuid(Attachment);
         if Assigned(M) then begin
-          ItemCaption := GetModelCaption(M);
+          ItemCaption := ATTACHMENT_MONIKER + GetModelCaption(M);
           MainForm.EditGoToItemList.Items.AddObject(ItemCaption, M);
         end;
       end;
