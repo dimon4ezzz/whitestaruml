@@ -128,9 +128,9 @@ end;
 procedure TAttachmentItemEditForm.ElementSelectButtonClick(
   Sender: TObject);
 begin
-  ElementSelectorForm.Filter(FULL_FILTERINGSET);
+  ElementSelectorForm.Filter(DEFAULT_FILTERINGSET);
   ElementSelectorForm.ClearSelectableModels;
-  ElementSelectorForm.AddSelectableModels(FULL_FILTERINGSET);
+  ElementSelectorForm.AddSelectableModels(DEFAULT_FILTERINGSET);
   if ElementSelectorForm.Execute('Select Element') then
   begin
     FLocation := ELEMENT_MARK + ExtractTailPath(ElementSelectorForm.SelectedModel.Pathname);
