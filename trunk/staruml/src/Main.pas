@@ -3187,8 +3187,10 @@ begin
       // Handle classifer of a UML instance type
       if M is PUMLInstance then begin
         Classifier := PUMLInstance(M).Classifier;
-        ItemCaption := CLASSIFIER_MONIKER + GetModelCaption(Classifier);
-        MainForm.EditGoToItemList.Items.AddObject(ItemCaption, Classifier);
+        if Assigned(Classifier) then begin
+          ItemCaption := CLASSIFIER_MONIKER + GetModelCaption(Classifier);
+          MainForm.EditGoToItemList.Items.AddObject(ItemCaption, Classifier);
+        end;
       end;
 
       // Handle attachments
