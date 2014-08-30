@@ -169,11 +169,6 @@ const
 
 
 // Utility functions
-function IsElement(Str: string): Boolean;
-begin
-  Result := (Pos(LowerCase(ELEMENT_MARK), Str) > 0);
-end;
-
 procedure ReplaceModelNameWithGuid(var Attachment: string);
 var
   M: PModel;

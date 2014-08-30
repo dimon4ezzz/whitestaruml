@@ -1194,6 +1194,7 @@ function ExtractHeadName(Pathname: string): string;
 function ExtractTailPath(Pathname: string): string;
 
 // Utility Functions
+function IsElement(Str: string): Boolean;
 procedure CheckNameValidity(Name: string);
 procedure CheckReadOnly(ElementSet: POrderedSet); overload;
 procedure CheckReadOnly(ElementSet: PModelOrderedSet); overload;
@@ -1208,6 +1209,17 @@ implementation
 uses
   System.UITypes, Dialogs, Controls, Variants, Forms, ComServ, {HTTPApp,} HTTPUtil,
   NLS_StarUML, OptionDeps, LogMgr;
+
+const
+  ELEMENT_MARK = 'element://';
+
+// ------------------------------------------------------------
+// Verifies if given string is a reference to an element type
+// -------------------------------------------------------------
+function IsElement(Str: string): Boolean;
+begin
+  Result := (Pos(LowerCase(ELEMENT_MARK), Str) > 0);
+end;
 
 // -----------------------------------------------------------------------------
 // IsCollectionKey
@@ -3521,8 +3533,16 @@ begin
 end;
 
 function PModel.HasAttachedLinks: Boolean;
+var
+  Attachment: string;
 begin
-  Result := GetAttachmentCount > 0;
+  for Attachment in Attachments do begin
+    if IsElement(Attachment) then begin
+      Result := True;
+      Exit;
+    end;
+  end;
+  Result := False;
 end;
 
 function PModel.MOF_GetAttribute(Name: string): string;
