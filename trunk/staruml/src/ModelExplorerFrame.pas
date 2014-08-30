@@ -149,7 +149,7 @@ type
     FModelClass: PClass;
     FCaption: string;
     FImageIndex: Integer;
-    FFiltered: Boolean;
+    FFiltered: Boolean; // True if node is filtered in
     FIndex: Integer;
 
   public
