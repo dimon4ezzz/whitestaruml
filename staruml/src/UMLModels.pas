@@ -7624,7 +7624,7 @@ end;
 
 function PUMLInstance.HasAttachedLinks: Boolean;
 begin
-  Result := True; // Instance has always attached classifier link
+  Result := Assigned(Classifier) or inherited HasAttachedLinks; // Instance has attached classifier link if one is defined
 end;
 
 function PUMLInstance.GetSendingStimulus(Index: Integer): PUMLStimulus;
