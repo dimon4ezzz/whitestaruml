@@ -91,9 +91,9 @@ object ModelExplorerFilterForm: TModelExplorerFilterForm
   object DefaultSettingButton: TButton
     Left = 8
     Top = 284
-    Width = 95
+    Width = 137
     Height = 23
-    Caption = 'Set As &Default'
+    Caption = 'Restore &Default Selection'
     TabOrder = 5
     OnClick = DefaultSettingButtonClick
   end
