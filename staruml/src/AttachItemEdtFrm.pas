@@ -73,9 +73,6 @@ type
     property Location: string read FLocation write SetLocation;
   end;
 
-const
-  ELEMENT_MARK = 'element://';
-
 var
   AttachmentItemEditForm: TAttachmentItemEditForm;
 
