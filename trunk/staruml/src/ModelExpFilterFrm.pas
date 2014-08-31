@@ -48,10 +48,9 @@ unit ModelExpFilterFrm;
 interface
 
 uses
-  BasicClasses, ModelExplorerFrame,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ComCtrls, ExtCtrls, ImgList;
-
+  Dialogs, StdCtrls, ComCtrls, ExtCtrls, ImgList, Generics.Collections,
+  BasicClasses, ModelExplorerFrame;
 type
   // TModelExplorerFilterForm
   TModelExplorerFilterForm = class(TForm)
@@ -73,11 +72,16 @@ type
     procedure DeselectRelationsButtonClick(Sender: TObject);
     procedure DefaultSettingButtonClick(Sender: TObject);
     procedure HelpButtonClick(Sender: TObject);
+  private type
+    PNodeToItemMap = TDictionary<string,TListItem>;
   private
     FModelExplorer: TModelExplorerPanel;
+    FNodeToItemMap: PNodeToItemMap;
     procedure SetModelExplorer(Value: TModelExplorerPanel);
     procedure BuildFilterItems;
-    procedure UpdateFilterChecks;
+    procedure UpdateFilterChecks; overload;
+    procedure UpdateFilterChecks(Classes: array of PClass; State: Boolean); overload;
+    procedure SetAllChecks(State: Boolean);
   public
     function Execute: Boolean;
     procedure ApplyFilterChecks;
@@ -102,8 +106,23 @@ begin
   if FModelExplorer <> Value then
   begin
     FModelExplorer := Value;
-    if FModelExplorer <> nil then
+    if Assigned(FModelExplorer) then
       FilterItemsListView.SmallImages := FModelExplorer.ImageList;
+  end;
+end;
+
+procedure TModelExplorerFilterForm.UpdateFilterChecks(Classes: array of PClass; State: Boolean);
+var
+  MetaNode: PMetaNode;
+  Item: TListItem;
+  NodeClass: PClass;
+begin
+  if Assigned(FModelExplorer) then begin
+    for NodeClass in Classes do begin
+      MetaNode := FModelExplorer.FindMetaNodeByClass(NodeClass);
+      Item := FNodeToItemMap[MetaNode.Caption];
+      Item.Checked := State;
+    end;
   end;
 end;
 
@@ -113,7 +132,7 @@ var
   MetaNode: PMetaNode;
   Item: TListItem;
 begin
-  if FModelExplorer <> nil then
+  if Assigned(FModelExplorer) then
   begin
     FilterItemsListView.Clear;
     FilterItemsListView.Items.BeginUpdate;
@@ -126,6 +145,7 @@ begin
         Item.Caption := MetaNode.Caption;
         Item.Data := MetaNode;
         Item.ImageIndex := MetaNode.ImageIndex;
+        FNodeToItemMap.Add(MetaNode.Caption,Item);
       end;
     end;
     FilterItemsListView.Items.EndUpdate;
@@ -134,15 +154,13 @@ end;
 
 procedure TModelExplorerFilterForm.UpdateFilterChecks;
 var
-  I: Integer;
   MetaNode: PMetaNode;
   Item: TListItem;
 begin
-  if FModelExplorer <> nil then
+  if Assigned(FModelExplorer) then
   begin
-    for I := 0 to FilterItemsListView.Items.Count - 1 do
+    for Item in FilterItemsListView.Items do
     begin
-      Item := FilterItemsListView.Items.Item[I];
       MetaNode := Item.Data;
       if MetaNode <> nil then
         Item.Checked := MetaNode.Filtered;
@@ -152,24 +170,23 @@ end;
 
 function TModelExplorerFilterForm.Execute: Boolean;
 begin
+  FNodeToItemMap := PNodeToItemMap.Create;
   BuildFilterItems;
   UpdateFilterChecks;
   Result := (ShowModal = mrOK);
+  FreeAndNil(FNodeToItemMap);
 end;
 
 procedure TModelExplorerFilterForm.ApplyFilterChecks;
 var
-  I: Integer;
   MetaNode: PMetaNode;
   Item: TListItem;
 begin
-  if FModelExplorer <> nil then
+  if Assigned(FModelExplorer) then
   begin
-    for I := 0 to FilterItemsListView.Items.Count - 1 do
-    begin
-      Item := FilterItemsListView.Items.Item[I];
+    for Item in FilterItemsListView.Items do begin
       MetaNode := Item.Data;
-      if MetaNode <> nil then
+      if Assigned(MetaNode) then
         MetaNode.Filtered := Item.Checked;
     end;
   end;
@@ -179,25 +196,21 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 
 procedure TModelExplorerFilterForm.SelectAllButtonClick(Sender: TObject);
-var
-  I: Integer;
-  AnItem: TListItem;
 begin
-  for I := 0 to FilterItemsListView.Items.Count - 1 do begin
-    AnItem := FilterItemsListView.Items[I];
-    AnItem.Checked := True;
-  end;
+  SetAllChecks(True);
 end;
 
 procedure TModelExplorerFilterForm.DeselectAllButtonClick(Sender: TObject);
+begin
+  SetAllChecks(False);
+end;
+
+procedure TModelExplorerFilterForm.SetAllChecks(State: Boolean);
 var
-  I: Integer;
   AnItem: TListItem;
 begin
-  for I := 0 to FilterItemsListView.Items.Count - 1 do begin
-    AnItem := FilterItemsListView.Items[I];
+  for AnItem in FilterItemsListView.Items do
     AnItem.Checked := False;
-  end;
 end;
 
 procedure TModelExplorerFilterForm.FormCreate(Sender: TObject);
@@ -210,31 +223,23 @@ end;
 procedure TModelExplorerFilterForm.SelectRelationsButtonClick(
   Sender: TObject);
 begin
-  if ModelExplorer <> nil then
-  begin
-    ModelExplorer.AddToFilter(RELATION_FILTERINGSET);
-    UpdateFilterChecks;
-  end;
+  if Assigned(FModelExplorer) then
+    UpdateFilterChecks(RELATION_FILTERINGSET, True);
 end;
 
 procedure TModelExplorerFilterForm.DeselectRelationsButtonClick(
   Sender: TObject);
 begin
-  if ModelExplorer <> nil then
-  begin
-    ModelExplorer.DeleteFromFilter(RELATION_FILTERINGSET);
-    UpdateFilterChecks;
-  end;
+  if Assigned(FModelExplorer) then
+    UpdateFilterChecks(RELATION_FILTERINGSET, False);
 end;
 
 procedure TModelExplorerFilterForm.DefaultSettingButtonClick(
   Sender: TObject);
 begin
-  if ModelExplorer <> nil then
-  begin
-    ModelExplorer.ClearFilter;
-    ModelExplorer.AddToFilter(DEFAULT_FILTERINGSET);
-    UpdateFilterChecks;
+  if Assigned(FModelExplorer) then begin
+    SetAllChecks(False);
+    UpdateFilterChecks(DEFAULT_FILTERINGSET, True);
   end;
 end;
 
