@@ -45,19 +45,13 @@ unit ModelExplorerFrame;
 { possible to release a modified version which carries forward this exception. }
 {******************************************************************************}
 
-// Note ------------------------------------------------------------------------
-// 1. while modifing to Virtual Treeview, Tree's Node is changed from TObject
-//    to pointer of record. Because Objects in NodeHashTable must be not Object
-//    but Pointer, Pointer is casted to TObject.
-// -----------------------------------------------------------------------------
-
 interface
 
 uses
-  BasicClasses, Core, UMLModels,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, VirtualTrees, ExtCtrls, IniFiles, ImgList, dxBar, FlatPanel,
-  ActiveX, {TB2Item, TB2Dock, TB2Toolbar,} ComCtrls, ToolWin;
+  Dialogs, VirtualTrees, ExtCtrls, IniFiles, ImgList, dxBar,
+  ActiveX, ComCtrls, ToolWin, Generics.Collections,
+  FlatPanel, BasicClasses, Core, UMLModels;
 
 const
   DEFAULT_FILTERINGSET: array [0..67] of PClass = (
@@ -218,9 +212,11 @@ type
     procedure ModelTreeEdited(Sender: TBaseVirtualTree; Node: PVirtualNode;
       Column: TColumnIndex);
     procedure DragTimeTimerTimer(Sender: TObject);
+  private type
+    PNodeHashTable = TDictionary<string,PVirtualNode>;
   private
     FProject: PUMLProject;
-    NodeHashTable: THashedStringList;
+    NodeHashTable: PNodeHashTable;
     FDragSourceNode: PVirtualNode;
     FDropTargetNode: PVirtualNode;
     FMetaNodes: THashedStringList;
@@ -275,8 +271,8 @@ type
     procedure DeleteModels(Models: PModelOrderedSet);
     procedure UpdateModels(Models: PModelOrderedSet);
     procedure RebuildAll(CompletelyRebuild: Boolean = True; UseUpdateLock: Boolean = True);
-    procedure Select(AModel: PModel);
-    procedure SelectWithFocus(AModel: PModel);
+    function Select(AModel: PModel): Boolean;
+    function SelectWithFocus(AModel: PModel): Boolean;
     procedure SetNameEditingMode(AModel: PModel);
     procedure ClearFilter;
     procedure AddToFilter(Classes: array of PClass);
@@ -337,7 +333,7 @@ begin
   inherited;
   ModelTree.NodeDataSize := SizeOf(TNodeData);
   ModelTree.DoubleBuffered := True;
-  NodeHashTable := THashedStringList.Create;
+  NodeHashTable := PNodeHashTable.Create;
   FMetaNodes := THashedStringList.Create;
   FMetaNodes.CaseSensitive := True;
   FSortType := stStorage;
@@ -524,7 +520,6 @@ var
   Node: PVirtualNode;
   NodeData: PNodeData;
   MetaNode: PMetaNode;
-  AddNodeResult: Integer;
 begin
   Node := nil;
   MetaNode := FindMetaNode(Model);
@@ -545,7 +540,7 @@ begin
       NodeData.MetaNode := MetaNode;
     end;
 
-    AddNodeResult := NodeHashTable.AddObject(Model.GUID, TObject(Node));
+    NodeHashTable.Add(Model.GUID, Node);
   end;
   Result := Node;
 end;
@@ -568,7 +563,7 @@ begin
     end;
     NodeData := ModelTree.GetNodeData(Node);
     if NodeData.Model <> nil then
-      NodeHashTable.Delete(NodeHashTable.IndexOf(NodeData.Model.GUID));
+      NodeHashTable.Remove(NodeData.Model.GUID);
     ModelTree.DeleteNode(Node);
   end;
 end;
@@ -580,18 +575,9 @@ begin
 end;
 
 function TModelExplorerPanel.FindNode(Model: PModel): PVirtualNode;
-var
-  Idx: Integer;
 begin
-  if Assigned(Model) then begin
-    Idx := NodeHashTable.IndexOf(Model.GUID);
-    if Idx < 0 then
-      Result := nil
-    else
-      Result := PVirtualNode(NodeHashTable.Objects[Idx]);
-  end
-  else
-    Result := nil;
+  if Assigned(Model) then
+    NodeHashTable.TryGetValue(Model.GUID, Result);
 end;
 
 procedure TModelExplorerPanel.BuildNodes(BaseModel: PModel; BaseNode: PVirtualNode; CompletelyRebuild: Boolean = True);
@@ -860,10 +846,11 @@ begin
   if UseUpdateLock then ModelTree.EndUpdate;
 end;
 
-procedure TModelExplorerPanel.Select(AModel: PModel);
+function TModelExplorerPanel.Select(AModel: PModel): Boolean;
 var
   Node: PVirtualNode;
 begin
+  Result := False;
   if AModel <> nil then
   begin
     Node := FindNode(AModel);
@@ -871,14 +858,16 @@ begin
     begin
       ModelTree.Selected[Node] := True;
       ModelTree.FocusedNode := Node;
+      Result := True;
     end;
   end;
 end;
 
-procedure TModelExplorerPanel.SelectWithFocus(AModel: PModel);
+function TModelExplorerPanel.SelectWithFocus(AModel: PModel): Boolean;
 begin
+  Result := False;
   if Visible and Enabled then begin
-    Select(AModel);
+    Result := Select(AModel);
     if ModelTree.Visible and ModelTree.Enabled then
       ModelTree.SetFocus;
   end;
@@ -1364,10 +1353,10 @@ end;
 procedure TModelExplorerPanel.FilterElementsItemClick(Sender: TObject);
 begin
   ModelExplorerFilterForm.ModelExplorer := Self;
-  if ModelExplorerFilterForm.Execute then
-  begin
+  if ModelExplorerFilterForm.Execute then begin
     ModelExplorerFilterForm.ApplyFilterChecks;
     RebuildAll;
+    Expand(Project);
   end;
 end;
 
