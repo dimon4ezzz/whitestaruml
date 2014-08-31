@@ -2048,7 +2048,8 @@ end;
 procedure PMain.InspectorFormCollectionItemSelected(Sender: TObject; AOwner: PModel; ACollectionName: string; AModel: PModel);
 begin
   try
-    StarUMLApplication.SelectModel(AModel);
+    if not MainForm.ModelExplorer.Select(AModel) then // Model is present in Model explorer
+      StarUMLApplication.SelectModel(AModel); // Otherwise (filtred out etc.)
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
