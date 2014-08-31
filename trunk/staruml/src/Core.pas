@@ -106,6 +106,7 @@ const
   MAX_ASYNC_LOAD_STATE = 4;
 
   RK_BASE_LOCATION = '\SOFTWARE\WhiteStarUML\';
+  ELEMENT_MARK = 'element://';
 
 type
   // Forward Declarations
@@ -1210,8 +1211,6 @@ uses
   System.UITypes, Dialogs, Controls, Variants, Forms, ComServ, {HTTPApp,} HTTPUtil,
   NLS_StarUML, OptionDeps, LogMgr;
 
-const
-  ELEMENT_MARK = 'element://';
 
 // ------------------------------------------------------------
 // Verifies if given string is a reference to an element type
