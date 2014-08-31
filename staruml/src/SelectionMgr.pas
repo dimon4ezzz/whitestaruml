@@ -178,10 +178,13 @@ var
   View: PView;
   FirstViewSelected: Boolean;
 begin
+  // Initial setup
+  FirstViewSelected := False;
   Changed := True;
-  if (SelectedModelCount + SelectedViewCount = 0) and
-     (AModel = nil) then
+
+  if (SelectedModelCount + SelectedViewCount = 0) and (AModel = nil) then
     Changed := False;
+
   if (SelectedModelCount = 1) and
      {(SelectedViewCount = 0) and}
      (SelectedModels[0] = AModel) then
@@ -196,8 +199,6 @@ begin
   // Select corresponding view on the active diagram
   //if (not AContextMenuLaunched) and (SelectedViewCount = 0)
     if (AModel <> nil) then begin
-      FirstViewSelected := False;
-
       for View in AModel.Views do begin
         if View.OwnerDiagramView = ActiveDiagram then begin
           if not FirstViewSelected then begin
@@ -211,7 +212,7 @@ begin
 
     end; // End of if
 
-  if Changed then
+  if Changed and not FirstViewSelected then // No notifications sent so far
     SelectionChanged;
 end;
 
