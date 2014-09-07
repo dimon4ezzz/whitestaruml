@@ -303,7 +303,7 @@ type
   // PNXEvaluator
   PNXEvaluator = class
   public
-    procedure Evaluate(Canvas: PCanvas; View: PView; Expr: PNXExpr);
+    procedure Evaluate(Canvas: PCanvas; View: PView; Expr: PNXNotationExpr);
   end;
 
 
@@ -864,7 +864,7 @@ end;
 
 { PNXEvaluator }
 
-procedure PNXEvaluator.Evaluate(Canvas: PCanvas; View: PView; Expr: PNXExpr);
+procedure PNXEvaluator.Evaluate(Canvas: PCanvas; View: PView; Expr: PNXNotationExpr);
 var
   SymbolTable: PNXSymbolTable;
 begin
@@ -894,7 +894,7 @@ begin
     end;
 
   // start evaluation
-  (Expr as PNXNotationExpr).Evaluate(Canvas, SymbolTable);
+  Expr.Evaluate(Canvas, SymbolTable);
 
   // restore current view status from SymbolTable
   if View is PNodeView then
@@ -2331,7 +2331,7 @@ constructor PNXDrawBitmapExpr.Create(Position: Integer; Filepath: String);
 begin
   inherited Create(Position);
   FGraphic := nil;
-  FFilepath := Filepath;
+  FFilepath := ExtractFilepath(Filepath);
 end;
 
 procedure PNXDrawBitmapExpr.Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable);
@@ -2926,7 +2926,7 @@ begin
 
   try
 
-    FFilePath := ExtractFilepath(FilePath);
+    FFilePath := FilePath;
 
     // parse schema
     Pgmr := TPgmr.Create(Application);
