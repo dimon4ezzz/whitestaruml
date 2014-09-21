@@ -50,13 +50,14 @@ unit NXMgr;
 interface
 
 uses
-  System.SysUtils, System.Variants, Vcl.Graphics, Generics.Collections,
+  System.SysUtils, System.Classes, System.Variants, Vcl.Graphics, Generics.Collections,
   Core, GraphicClasses;
 
 type
   { class forward declarations }
 
   PNXSymbolTable = class;
+  PNXVisitor = interface;
 
   // Principal Base Expression Classes ...................................................
 
@@ -71,7 +72,7 @@ type
     FType: PValueType;  // Flags whether FPrimitiveValue or FObjectValue is used
     FPos: Integer; // Line in input source at which expression is located
  public
-    constructor Create(Position: Integer); virtual;
+    constructor Create(Position: Integer);
     class function NewValue(Position: Integer; Value: Variant): PNXExpr; // for value type
     class function NewRef(Position: Integer; Value: TObject): PNXExpr; // for reference type
 
@@ -82,6 +83,7 @@ type
     procedure SetValueType(Value: PValueType);
     function GetValue: Variant;
     function GetReference: TObject;
+    procedure Accept(Visitor: PNXVisitor); virtual;
 
     property Position: Integer read FPos;
     property Value: Variant read GetValue write SetValue;
@@ -98,10 +100,12 @@ type
     function GetExprCount: Integer;
   protected
   public
-    constructor Create(Position: Integer); override;
+    constructor Create(Position: Integer); overload;
+    constructor Create(); overload;
     destructor Destroy; override;
     procedure Add(Expr: PNXExpr);
     procedure Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable); override;
+    procedure Accept(Visitor: PNXVisitor); override;
     property Exprs[Index: Integer]: PNXExpr read GetExprs;
     property Count: Integer read GetExprCount;
   end;
@@ -113,6 +117,7 @@ type
   public
     constructor Create(Position: Integer; Filepath: String); reintroduce;
     procedure Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable); override;
+    procedure Accept(Visitor: PNXVisitor); override;
     property Filename: String read FFilename write FFilename;
   end;
 
@@ -154,6 +159,18 @@ type
     function GetGraphic(Key: String): TGraphic;
   end;
 
+  // Public visitor interface
+  PNXVisitor = interface
+  ['{73DDC1FF-78E7-4C4D-BDC7-7F28C7806D4E}']
+    procedure VisitExpr(Expr: PNXExpr);
+    procedure VisitGroupExpr(Expr: PNXGroupExpr);
+    procedure VisitNotationExpr(Expr: PNXNotationExpr);
+  end;
+
+  // Utility to create a visitor dumping expression tree to given file
+  function CreateObjDumpVisitor (OutputStream: TStream): PNXVisitor;
+
+
 
 var
   NXManager: PNXManager;
@@ -163,8 +180,8 @@ var
 implementation
 
 uses
-  System.Types, System.UITypes, System.Classes, System.StrUtils, System.Math,
-  XML.XMLDoc, XML.XMLIntf, VCL.Forms,
+  System.Types, System.UITypes, System.StrUtils, System.Math, VCL.Forms,
+  XML.XMLDoc, XML.XMLIntf,
   PGMR101Lib_TLB, LogMgr, ExtCore, ViewCore;
 
 const
@@ -554,7 +571,7 @@ type
   protected
     FEvaluated: Boolean;
   public
-    constructor Create(Position: Integer); override;
+    constructor Create(Position: Integer);
     procedure Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable); override;
   end;
 
@@ -671,6 +688,7 @@ type
   public
     constructor Create(Position: Integer; Filepath: String);  reintroduce;
     procedure Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable); override;
+    procedure Accept(Visitor: PNXVisitor); override;
   end;
 
   // PNXLineExpr
@@ -775,6 +793,44 @@ type
     procedure Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable); override;
   end;
 
+  /////////////////////////////////////////////////////////////////////
+  // Visitors
+
+  // Visitor interface augmented with internal functions
+  PNXVisitorComplete = class (TInterfacedObject, PNXVisitor)
+  public
+    // Redeclaration of PNXVisitor
+    procedure VisitExpr(Expr: PNXExpr); virtual; abstract;
+    procedure VisitGroupExpr(Expr: PNXGroupExpr); virtual; abstract;
+    procedure VisitNotationExpr(Expr: PNXNotationExpr); virtual; abstract;
+
+  private
+    // Handling of internal expression types
+    procedure VisitDrawBitmapExpr(Expr: PNXDrawBitmapExpr); virtual; abstract;
+  end;
+
+
+  // Visitor dumping expression tree to a file
+  PNXObjDumpVisitor = class(PNXVisitorComplete)
+  private
+    FOutputStream: TStream;
+    FOutputStreamWriter: TStreamWriter;
+    FIndent: string;
+  public
+    // Implementation of PNXVisitor
+    procedure VisitExpr(Expr: PNXExpr); override;
+    procedure VisitGroupExpr(Expr: PNXGroupExpr); override;
+    procedure VisitNotationExpr(Expr: PNXNotationExpr); override;
+
+    constructor Create(OutputStream: TStream);
+    destructor Destroy; override;
+
+  private
+    procedure VisitDrawBitmapExpr(Expr: PNXDrawBitmapExpr); override;
+
+  end;
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // implementation definition
 
@@ -800,6 +856,8 @@ function PNXManager.ReadExpr(FilePath: String): PNXNotationExpr;
 var
   Reader: PNXReader;
   Expr: PNXNotationExpr;
+  ObjDumpVisitor: PNXVisitor;
+  FileStream : TFileStream;
 begin
   Reader := nil;
   Expr := nil;
@@ -812,8 +870,15 @@ begin
     Result := Expr;
     Reader.Free;
     Reader := nil;
+
+{$IFDEF DEBUGNX}
+      FileStream := TFileStream.Create(Expr.Filename + '.Dump.txt',fmCreate);
+      ObjDumpVisitor := NXMgr.CreateObjDumpVisitor(FileStream);
+      Expr.Accept(ObjDumpVisitor);
+      FileStream.Free;
+{$ENDIF DEBUGNX}
   except
-    LogManager.Log('Loading is failed: ' + ExtractFilename(Filepath));
+    LogManager.Log('Failed loading of file: ' + ExtractFilename(Filepath));
     if Expr <> nil then Expr.Free;
   end;
   if Reader <> nil then Reader.Free;
@@ -1048,6 +1113,11 @@ end;
 
 { PNXExpr }
 
+procedure PNXExpr.Accept(Visitor: PNXVisitor);
+begin
+  Visitor.VisitExpr(Self);
+end;
+
 constructor PNXExpr.Create(Position: Integer);
 begin
   FPos := Position;
@@ -1110,6 +1180,12 @@ end;
 
 { PNXNotationExpr }
 
+procedure PNXNotationExpr.Accept(Visitor: PNXVisitor);
+begin
+  Visitor.VisitNotationExpr(Self);
+  inherited;
+end;
+
 constructor PNXNotationExpr.Create(Position: Integer; Filepath: String);
 begin
   inherited Create(Position);
@@ -1129,6 +1205,12 @@ begin
   FExprList := TExprList.Create;
 end;
 
+constructor PNXGroupExpr.Create;
+begin
+  inherited Create(-1);
+  FExprList := TExprList.Create;
+end;
+
 destructor PNXGroupExpr.Destroy;
 var
   Expr: PNXExpr;
@@ -1138,6 +1220,11 @@ begin
 
   FExprList.Free;
   inherited;
+end;
+
+procedure PNXGroupExpr.Accept(Visitor: PNXVisitor);
+begin
+   Visitor.VisitGroupExpr(Self);
 end;
 
 procedure PNXGroupExpr.Add(Expr: PNXExpr);
@@ -2326,6 +2413,12 @@ begin
 end;
 
 { PNXDrawBitmapExpr }
+
+procedure PNXDrawBitmapExpr.Accept(Visitor: PNXVisitor);
+begin
+  (Visitor as PNXVisitorComplete).VisitDrawBitmapExpr(Self);
+  inherited;
+end;
 
 constructor PNXDrawBitmapExpr.Create(Position: Integer; Filepath: String);
 begin
@@ -3663,6 +3756,65 @@ end;
 function PNXReader.TraverseSetDefaultStyleNode(Node: Integer): PNXExpr;
 begin
   Result := traverseOperandNodes(PNXSetDefaultStyleExpr.Create(GetPos(Node)), Node);
+end;
+
+
+{ PNXObjDumpVisitor }
+
+constructor PNXObjDumpVisitor.Create(OutputStream: TStream);
+begin
+  FOutputStream := OutputStream;
+  FOutputStreamWriter := TStreamWriter.Create(FOutputStream);
+end;
+
+destructor PNXObjDumpVisitor.Destroy;
+begin
+  FOutputStreamWriter.Flush;
+  FOutputStreamWriter.Free;
+  inherited;
+end;
+
+procedure PNXObjDumpVisitor.VisitDrawBitmapExpr(Expr: PNXDrawBitmapExpr);
+begin
+  FOutputStreamWriter.WriteLine(FIndent + 'Visiting PNXDrawBitmapExpr');
+  FOutputStreamWriter.WriteLine(FIndent + 'File path: ' + Expr.FFilepath);
+end;
+
+procedure PNXObjDumpVisitor.VisitExpr(Expr: PNXExpr);
+var
+  Text: string;
+begin
+  Text := Format('%sVisiting PNXExpr (line:%s) : ',[FIndent,IntToStr(Expr.Position)]);
+  FOutputStreamWriter.Write(Text);
+
+  if Expr.IsValueType then
+    FOutputStreamWriter.WriteLine(VarToStr(Expr.Value))
+  else
+    FOutputStreamWriter.WriteLine('Ref value');
+end;
+
+procedure PNXObjDumpVisitor.VisitGroupExpr(Expr: PNXGroupExpr);
+var
+  GroupedExpr: PNXExpr;
+begin
+  FOutputStreamWriter.WriteLine(FIndent + 'Visiting PNXGroupExpr: ' + Expr.ToString);
+  FIndent := FIndent + '  ';
+  for GroupedExpr in Expr.FExprList do
+     GroupedExpr.Accept(Self);
+  FIndent := FIndent.Substring(2);
+
+end;
+
+procedure PNXObjDumpVisitor.VisitNotationExpr(Expr: PNXNotationExpr);
+begin
+  FOutputStreamWriter.WriteLine(FIndent + 'Visiting PNXNotationExpr');
+  FOutputStreamWriter.WriteLine(FIndent + 'File name: ' + Expr.Filename);
+end;
+
+
+function CreateObjDumpVisitor (OutputStream: TStream): PNXVisitor;
+begin
+  Result := PNXObjDumpVisitor.Create(OutputStream);
 end;
 
 initialization
