@@ -1,0 +1,51 @@
+"Name"     = 'NxGrammar'
+"Author"   = 'Janusz Szpilewski'
+"Version"  = '1.0'
+"About"    = 'StarUML NXGrammar'
+
+"Start Symbol" = <notation_expr>
+"Case Sensitive" = False
+
+! -------------------------------------------------
+! Character Sets
+! -------------------------------------------------
+
+{String Chars} = {Printable} + {HT} - ['']
+{Ident Special Chars} = [_\?\.]
+{Ident Followng Chars} = {AlphaNumeric} + {Ident Special Chars}
+{Ident Starting Chars} = {Letter} + [_]
+{Plus Minus} = [+-]
+{Decimal Separator} = [.]             
+! -------------------------------------------------
+! Terminals
+! -------------------------------------------------
+
+nil = 'nil'
+math_oper = '+' | '-' | '*' | '/' | '=' | '!=' | '>' | '>=' | '<' | '<='
+bool = 'true' | 'false'
+ident = {Ident Starting Chars}+ {Ident Followng Chars}*
+int = {Plus Minus}? {Number}+
+flt = {Plus Minus}? {Number}+ {Decimal Separator} {Number}+
+str = '' {String Chars}* ''
+
+  
+Comment Start = '/*'
+Comment End   = '*/'
+Comment Line  = '//'                 
+
+! -------------------------------------------------
+! Rules
+! -------------------------------------------------
+
+! The grammar starts below
+<notation_expr> ::= <functional_expr_start> 'notation' <onarrange_expr> <ondraw_expr> <functional_expr_end>
+<onarrange_expr> ::= <functional_expr_start> 'onarrange' <expr_list> <functional_expr_end>
+<ondraw_expr> ::= <functional_expr_start> 'ondraw' <expr_list> <functional_expr_end>                  
+<functional_expr> ::= <oper> <expr_list> <functional_expr_end>
+<functional_expr_start> ::= '('
+<functional_expr_end> ::= ')'                   
+<oper> ::= <functional_expr_start> ident 
+        | <functional_expr_start> math_oper
+<expr_list> ::= <expr_list> <expr>
+             | <>
+<expr> ::= flt | int | nil | str | bool | ident | <functional_expr> 
