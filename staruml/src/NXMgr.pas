@@ -50,8 +50,9 @@ unit NXMgr;
 interface
 
 uses
-  System.SysUtils, System.Classes, System.Variants, Vcl.Graphics, Generics.Collections,
-  Core, GraphicClasses;
+  System.SysUtils, System.Classes, System.Variants, Vcl.Graphics,
+  Winapi.ActiveX, System.Win.ComObj, Generics.Collections,
+  Core, GraphicClasses, WhiteStarUML_TLB, StdVcl;
 
 type
   { class forward declarations }
@@ -148,6 +149,10 @@ type
   private
     FGraphics: PGraphics;
     FFilename: String;
+
+    function ReadExprWithProGrammarParser(FilePath: String): PNXNotationExpr;
+    function ReadExprWithGoldParser(FilePath: String): PNXNotationExpr;
+
   public
     constructor Create;
     destructor Destroy; override;
@@ -158,6 +163,48 @@ type
     procedure AddGraphic(Key: String; Value: TGraphic);
     function GetGraphic(Key: String): TGraphic;
   end;
+
+  PNXBuilder = class
+  private type
+    PCurrentGroupExprStack = TStack<PNXGroupExpr>;
+  private
+    FCurrentGroupExprStack: PCurrentGroupExprStack;
+    FNotationTree: PNXNotationExpr;
+
+  public
+    procedure BuildNotationExpr(Filepath: string; Pos: Integer);
+    procedure BuildGroupExpr<ExprType: constructor,PNXGroupExpr>(Pos:Integer);
+    procedure BuildIdentExpr(Id: string; Pos: Integer);
+    procedure BuildPrimExpr(Value: Variant; Pos: Integer);
+    procedure BuildDrawBitmapExpr(Filepath: string; Pos: Integer);
+
+    procedure NewOperation(Oper: string; Pos: Integer);
+    procedure EndOperation;
+
+    constructor Create;
+    destructor Destroy; override;
+    procedure FreeNotationTree;
+    property NotationTree: PNXNotationExpr read FNotationTree;
+  end;
+
+  // Implementation of COM interface ITExprBuilder to PNXBuilder
+  TTExprBuilder = class(TTypedComObject, IExprBuilder)
+  private
+    FNXBuilder: PNXBuilder;
+    function GetNotationTree: PNXNotationExpr;
+  protected
+    function NewOperation(const Oper: WideString; Pos: SYSINT): HResult; stdcall;
+    function NewNotationOperation(const Filepath: WideString; Pos: SYSINT): HResult; stdcall;
+    function EndOperation: HResult; stdcall;
+    function PrimExpr(Value: OleVariant; Pos: SYSINT): HResult; stdcall;
+    function IdentExpr(const Id: WideString; Pos: SYSINT): HResult; stdcall;
+    function NewDrawBitmapOperation(const FilePath: WideString; Pos: SYSINT): HResult; stdcall;
+  public
+    property NotationTree: PNXNotationExpr read GetNotationTree;
+    procedure FreeNotationTree;
+    destructor Destroy; override;
+  end;
+
 
   // Public visitor interface
   PNXVisitor = interface
@@ -181,8 +228,14 @@ implementation
 
 uses
   System.Types, System.UITypes, System.StrUtils, System.Math, VCL.Forms,
-  XML.XMLDoc, XML.XMLIntf,
-  PGMR101Lib_TLB, LogMgr, ExtCore, ViewCore;
+  System.Win.ComServ, XML.XMLDoc, XML.XMLIntf,
+
+//{$IFDEF USE_PROGRAMMAR_PARSER}
+  PGMR101Lib_TLB,
+//{$ENDIF USE_PROGRAMMAR_PARSER}
+  ParserCore_TLB,
+
+  LogMgr, ExtCore, ViewCore;
 
 const
   NOT_EXISTS = 0;
@@ -853,6 +906,50 @@ begin
 end;
 
 function PNXManager.ReadExpr(FilePath: String): PNXNotationExpr;
+begin
+{$IFDEF USE_PROGRAMMAR_PARSER}
+  Result := ReadExprWithProGrammarParser(FilePath)
+{$ELSE}
+  Result := ReadExprWithGoldParser(FilePath)
+{$ENDIF USE_PROGRAMMAR_PARSER}
+
+
+end;
+
+function PNXManager.ReadExprWithGoldParser(FilePath: String): PNXNotationExpr;
+var
+  Builder: IExprBuilder;
+  BuilderInstance: TTExprBuilder; // Shortcut to object implementing ITExprBuilder
+  Parser: TNxParser;
+  ParseStatus: WordBool;
+  ObjDumpVisitor: PNXVisitor;
+  FileStream : TFileStream;
+begin
+    Builder := CoTExprBuilder.Create;
+    BuilderInstance := Builder as TTExprBuilder;
+    //Builder := TTExprBuilder.Create;
+    Parser := TNxParser.Create(nil);
+    ParseStatus := Parser.Parse(FilePath, Builder);
+    Parser.Free;
+    if not ParseStatus then begin
+      BuilderInstance.FreeNotationTree;
+      LogManager.Log('Failed loading of file: ' + ExtractFilename(Filepath))
+    end
+    else begin
+      Result := BuilderInstance.NotationTree;
+{$IFDEF DEBUGNX}
+      FileStream := TFileStream.Create(Result.Filename + '.Dump.txt',fmCreate);
+      ObjDumpVisitor := NXMgr.CreateObjDumpVisitor(FileStream);
+      Result.Accept(ObjDumpVisitor);
+      FileStream.Free;
+{$ENDIF DEBUGNX}
+    end;
+
+
+end;
+
+function PNXManager.ReadExprWithProGrammarParser(
+  FilePath: String): PNXNotationExpr;
 var
   Reader: PNXReader;
   Expr: PNXNotationExpr;
@@ -3758,6 +3855,253 @@ begin
   Result := traverseOperandNodes(PNXSetDefaultStyleExpr.Create(GetPos(Node)), Node);
 end;
 
+{ PNXBuilder }
+
+procedure PNXBuilder.BuildDrawBitmapExpr(Filepath: string; Pos: Integer);
+var
+  Expr: PNXDrawBitmapExpr;
+begin
+  Expr := PNXDrawBitmapExpr.Create(Pos, Filepath);
+  FCurrentGroupExprStack.Push(Expr);
+end;
+
+
+procedure PNXBuilder.BuildGroupExpr<ExprType>(Pos: Integer);
+var
+  Expr: ExprType;
+begin
+  Expr := ExprType.Create;
+  Expr.FPos := Pos;
+  FCurrentGroupExprStack.Push(Expr);
+end;
+
+
+procedure PNXBuilder.BuildIdentExpr(Id: string; Pos: Integer);
+var
+  Expr: PNXGetExpr;
+begin
+  Expr := PNXGetExpr.Create(Pos);
+  Expr.Add(PNXExpr.NewValue(Pos, Id));
+  FCurrentGroupExprStack.Peek.Add(Expr);
+end;
+
+
+
+procedure PNXBuilder.BuildNotationExpr(Filepath: string; Pos: Integer);
+var
+  NotationExpr: PNXNotationExpr;
+begin
+  NotationExpr := PNXNotationExpr.Create(Pos, Filepath);
+  FCurrentGroupExprStack.Push(NotationExpr);
+end;
+
+
+procedure PNXBuilder.BuildPrimExpr(Value: Variant; Pos: Integer);
+var
+  Expr: PNXExpr;
+begin
+  if VarType(Value) = varEmpty then
+    Expr := PNXExpr.NewRef(Pos, nil)
+  else
+    Expr := PNXExpr.NewValue(Pos, Value);
+
+  FCurrentGroupExprStack.Peek.Add(Expr);
+end;
+
+
+procedure PNXBuilder.EndOperation;
+var
+  GroupExpr: PNXGroupExpr;
+  NewStackTop: PNXGroupExpr;
+begin
+   GroupExpr := FCurrentGroupExprStack.Pop;
+
+  // Was it the last one?
+  if FCurrentGroupExprStack.Count = 0 then
+    FNotationTree := GroupExpr as PNXNotationExpr
+  else begin
+    NewStackTop := FCurrentGroupExprStack.Peek;
+    NewStackTop.Add(GroupExpr);
+  end;
+end;
+
+procedure PNXBuilder.FreeNotationTree;
+begin
+  FreeAndNil(FNotationTree);
+end;
+
+procedure PNXBuilder.NewOperation(Oper: string; Pos: Integer);
+var
+  OperName: String;
+begin
+  OperName := LowerCase(Oper);
+
+  if OperName = 'onarrange' then BuildGroupExpr<PNXGroupExpr>(Pos)
+  else if OperName = 'ondraw' then BuildGroupExpr<PNXGroupExpr>(Pos)
+
+  else if OperName = 'sequence' then BuildGroupExpr<PNXGroupExpr>(Pos)
+
+  else if OperName = '+' then  BuildGroupExpr<PNXAddExpr>(Pos)
+  else if OperName = '-' then BuildGroupExpr<PNXSubtractExpr>(Pos)
+  else if OperName = '*' then BuildGroupExpr<PNXMultiplyExpr>(Pos)
+  else if OperName = '/' then BuildGroupExpr<PNXDivideExpr>(Pos)
+  else if OperName = 'and' then BuildGroupExpr<PNXAndExpr>(Pos)
+  else if OperName = 'or' then BuildGroupExpr<PNXOrExpr>(Pos)
+  else if OperName = 'not' then BuildGroupExpr<PNXNotExpr>(Pos)
+  else if OperName = '=' then BuildGroupExpr<PNXEQExpr>(Pos)
+  else if OperName = '!=' then BuildGroupExpr<PNXNEQExpr>(Pos)
+  else if OperName = '>' then BuildGroupExpr<PNXGTExpr>(Pos)
+  else if OperName = '>=' then BuildGroupExpr<PNXGEExpr>(Pos)
+  else if OperName = '<' then BuildGroupExpr<PNXLTExpr>(Pos)
+  else if OperName = '<=' then BuildGroupExpr<PNXLEExpr>(Pos)
+
+  else if OperName = 'sin' then BuildGroupExpr<PNXSinExpr>(Pos)
+  else if OperName = 'cos' then BuildGroupExpr<PNXCosExpr>(Pos)
+  else if OperName = 'tan' then BuildGroupExpr<PNXTanExpr>(Pos)
+
+  else if OperName = 'concat' then BuildGroupExpr<PNXConcatExpr>(Pos)
+  else if OperName = 'trunc' then BuildGroupExpr<PNXTruncExpr>(Pos)
+  else if OperName = 'round' then BuildGroupExpr<PNXRoundExpr>(Pos)
+  else if OperName = 'trim' then BuildGroupExpr<PNXTrimExpr>(Pos)
+  else if OperName = 'length' then BuildGroupExpr<PNXLengthExpr>(Pos)
+  else if OperName = 'tokenize' then BuildGroupExpr<PNXTokenizeExpr>(Pos)
+
+  else if OperName = 'mofattr' then BuildGroupExpr<PNXMOFAttrExpr>(Pos)
+  else if OperName = 'mofsetattr' then BuildGroupExpr<PNXMOFSetAttrExpr>(Pos)
+  else if OperName = 'mofref' then BuildGroupExpr<PNXMOFRefExpr>(Pos)
+  else if OperName = 'mofcolat' then BuildGroupExpr<PNXMOFColAtExpr>(Pos)
+  else if OperName = 'mofcolcount' then BuildGroupExpr<PNXMOFColCountExpr>(Pos)
+
+  else if OperName = 'constraintval' then BuildGroupExpr<PNXConstraintValExpr>(Pos)
+
+  else if OperName = 'tagval' then BuildGroupExpr<PNXTagValExpr>(Pos)
+  else if OperName = 'tagref' then BuildGroupExpr<PNXTagRefExpr>(Pos)
+  else if OperName = 'tagcolat' then BuildGroupExpr<PNXTagRefAtExpr>(Pos)
+  else if OperName = 'tagcolcount' then BuildGroupExpr<PNXTagRefCountExpr>(Pos)
+
+  else if OperName = 'set' then BuildGroupExpr<PNXSetExpr>(Pos)
+  else if OperName = 'if' then BuildGroupExpr<PNXifExpr>(Pos)
+  else if OperName = 'for' then BuildGroupExpr<PNXForExpr>(Pos)
+
+  else if OperName = 'list' then BuildGroupExpr<PNXListExpr>(Pos)
+  else if OperName = 'append' then BuildGroupExpr<PNXAppendExpr>(Pos)
+  else if OperName = 'itemat' then BuildGroupExpr<PNXItemAtExpr>(Pos)
+  else if OperName = 'itemcount' then BuildGroupExpr<PNXItemCountExpr>(Pos)
+
+  else if OperName = 'setpencolor' then BuildGroupExpr<PNXSetPenColorExpr>(Pos)
+  else if OperName = 'setpenstyle' then BuildGroupExpr<PNXSetPenStyleExpr>(Pos)
+  else if OperName = 'setbrushcolor' then BuildGroupExpr<PNXSetBrushColorExpr>(Pos)
+  else if OperName = 'setbrushstyle' then BuildGroupExpr<PNXSetBrushStyleExpr>(Pos)
+  else if OperName = 'setfontface' then BuildGroupExpr<PNXSetFontFaceExpr>(Pos)
+  else if OperName = 'setfontcolor' then BuildGroupExpr<PNXSetFontColorExpr>(Pos)
+  else if OperName = 'setfontsize' then BuildGroupExpr<PNXSetFontSizeExpr>(Pos)
+  else if OperName = 'setfontstyle' then BuildGroupExpr<PNXSetFontStyleExpr>(Pos)
+
+  else if OperName = 'textheight' then BuildGroupExpr<PNXTextHeightExpr>(Pos)
+  else if OperName = 'textwidth' then BuildGroupExpr<PNXTextWidthExpr>(Pos)
+  else if OperName = 'pt' then BuildGroupExpr<PNXPointExpr>(Pos)
+  else if OperName = 'moveto' then BuildGroupExpr<PNXMoveToExpr>(Pos)
+  else if OperName = 'lineto' then BuildGroupExpr<PNXLineToExpr>(Pos)
+  else if OperName = 'textout' then BuildGroupExpr<PNXTextOutExpr>(Pos)
+  else if OperName = 'textbound' then BuildGroupExpr<PNXTextBoundExpr>(Pos)
+  else if OperName = 'line' then BuildGroupExpr<PNXLineExpr>(Pos)
+  else if OperName = 'rect' then BuildGroupExpr<PNXRectExpr>(Pos)
+  else if OperName = 'filerect' then BuildGroupExpr<PNXFillRectExpr>(Pos) // Backward bug compatibility
+  else if OperName = 'fillrect' then BuildGroupExpr<PNXFillRectExpr>(Pos)
+  else if OperName = 'ellipse' then BuildGroupExpr<PNXEllipseExpr>(Pos)
+  else if OperName = 'roundrect' then BuildGroupExpr<PNXRoundRectExpr>(Pos)
+  else if OperName = 'textrect' then BuildGroupExpr<PNXTextRectExpr>(Pos)
+  else if OperName = 'arc' then BuildGroupExpr<PNXArcExpr>(Pos)
+  else if OperName = 'pie' then BuildGroupExpr<PNXPieExpr>(Pos)
+  else if OperName = 'ptatx' then BuildGroupExpr<PNXPtAtXExpr>(Pos)
+  else if OperName = 'ptaty' then BuildGroupExpr<PNXPtAtYExpr>(Pos)
+  else if OperName = 'ptcount' then BuildGroupExpr<PNXPtCountExpr>(Pos)
+  else if OperName = 'drawedge' then BuildGroupExpr<PNXDrawEdgeExpr>(Pos)
+  else if OperName = 'drawobject' then BuildGroupExpr<PNXDrawObjectExpr>(Pos)
+  else if OperName = 'arrangeobject' then BuildGroupExpr<PNXArrangeObjectExpr>(Pos)
+  else if OperName = 'polyline' then BuildGroupExpr<PNXPolylineExpr>(Pos)
+  else if OperName = 'polygon' then BuildGroupExpr<PNXPolygonExpr>(Pos)
+  else if OperName = 'polybezier' then BuildGroupExpr<PNXPolyBezierExpr>(Pos)
+  else if OperName = 'setdefaultstyle' then BuildGroupExpr<PNXSetDefaultStyleExpr>(Pos)
+
+  else
+   Assert(False,'Unknown Operation')
+end;
+
+constructor PNXBuilder.Create;
+begin
+  if not Assigned(FCurrentGroupExprStack) then
+    FCurrentGroupExprStack := PCurrentGroupExprStack.Create;
+end;
+
+destructor PNXBuilder.Destroy;
+begin
+  FCurrentGroupExprStack.Free;
+  //FreeNotationTree;
+  inherited;
+end;
+
+{TTExprBuilder }
+
+destructor TTExprBuilder.Destroy;
+begin
+  FNXBuilder.Free;
+  inherited;
+end;
+
+function TTExprBuilder.EndOperation: HResult;
+begin
+  FNXBuilder.EndOperation;
+  Result := S_OK;
+end;
+
+procedure TTExprBuilder.FreeNotationTree;
+begin
+  if Assigned(FNXBuilder) then
+    FNXBuilder.FreeNotationTree;
+end;
+
+function TTExprBuilder.GetNotationTree: PNXNotationExpr;
+begin
+  if Assigned(FNXBuilder) then
+    Result := FNXBuilder.NotationTree
+  else
+    Result := nil;
+end;
+
+function TTExprBuilder.NewOperation(const Oper: WideString; Pos: SYSINT): HResult;
+begin
+  FNXBuilder.NewOperation(Oper,Pos);
+  Result := S_OK;
+end;
+
+function TTExprBuilder.PrimExpr(Value: OleVariant; Pos: SYSINT): HResult;
+begin
+  FNXBuilder.BuildPrimExpr(Value,Pos);
+  Result := S_OK;
+end;
+
+function TTExprBuilder.NewNotationOperation(const Filepath: WideString; Pos: SYSINT): HResult;
+begin
+  if not Assigned(FNXBuilder) then
+    FNXBuilder := PNXBuilder.Create;
+
+  FNXBuilder.BuildNotationExpr(Filepath, Pos);
+  Result := S_OK;
+end;
+
+function TTExprBuilder.IdentExpr(const Id: WideString; Pos: SYSINT): HResult;
+begin
+  FNXBuilder.BuildIdentExpr(Id, Pos);
+  Result := S_OK;
+end;
+
+function TTExprBuilder.NewDrawBitmapOperation(const FilePath: WideString; Pos: SYSINT): HResult;
+begin
+   FNXBuilder.BuildDrawBitmapExpr(Filepath, Pos);
+   Result := S_OK;
+end;
+
 
 { PNXObjDumpVisitor }
 
@@ -3819,6 +4163,8 @@ end;
 
 initialization
   NXManager := PNXManager.Create;
+  TTypedComObjectFactory.Create(ComServer, TTExprBuilder, Class_TExprBuilder,
+    ciMultiInstance, tmApartment);
 
 finalization
   NXManager.Free;

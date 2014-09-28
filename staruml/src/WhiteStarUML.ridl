@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 16/02/2014 12:24:37 (- $Rev: 12980 $, 5550546).
+// File generated on 9/28/2014 1:18:30 PM (- $Rev: 12980 $, 2212187).
 
 [
   uuid(4D5F69B3-73FC-4C09-A1CE-73D1A677A0E7),
@@ -269,6 +269,8 @@ library WhiteStarUML
   interface IUMLReturnAction;
   interface IUMLCompositeStructureDiagram;
   interface IStarUMLAddIn;
+  interface IExprBuilder;
+  coclass TExprBuilder;
 
 
   [
@@ -6752,6 +6754,27 @@ library WhiteStarUML
   };
 
   [
+    uuid(414633E5-89AA-440F-8B07-F8EFD4B6F539),
+    helpstring("Interface to build a TNX expression"),
+    hidden
+  ]
+  interface IExprBuilder: IUnknown
+  {
+    [id(0x00000069)]
+    HRESULT _stdcall NewNotationOperation([in] BSTR Filepath, [in] int Pos);
+    [id(0x00000066)]
+    HRESULT _stdcall NewOperation([in] BSTR Oper, [in] int Pos);
+    [id(0x00000067)]
+    HRESULT _stdcall EndOperation(void);
+    [id(0x00000068)]
+    HRESULT _stdcall PrimExpr([in] VARIANT Value, [in] int Pos);
+    [id(0x0000006A)]
+    HRESULT _stdcall IdentExpr([in] BSTR Id, [in] int Pos);
+    [id(0x0000006B)]
+    HRESULT _stdcall NewDrawBitmapOperation([in] BSTR FilePath, [in] int Pos);
+  };
+
+  [
     uuid(E155F938-9A1D-4555-9831-7E3C18B27F83),
     version(1.0),
     helpstring("WhiteStarUMLApplication Object")
@@ -6759,6 +6782,17 @@ library WhiteStarUML
   coclass WhiteStarUMLApplication
   {
     [default] interface IStarUMLApplication;
+  };
+
+  [
+    uuid(E5833835-D56A-4973-8547-7255208BF164),
+    helpstring("TExprBuilder"),
+    noncreatable,
+    hidden
+  ]
+  coclass TExprBuilder
+  {
+    [default] interface IExprBuilder;
   };
 
 };
