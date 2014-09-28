@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Resources;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 // Registration for 32 bit Deplhi access
@@ -101,6 +99,42 @@ namespace ParserCore
             return Parse(new StringReader(parserInputData));
         }
 
+    }
+
+    [Guid("DD062285-0F54-4871-9F59-42A3BA4C46AF")]
+    public interface INxParser
+    {
+        bool Parse(string fileName, WhiteStarUML.IExprBuilder builder);
+        string GetFailMessage();
+    }
+
+    // IExprBuilder implementation as a wrapper over COM object
+    class ExprBuilderWrapper : NxParserImpl.IExprBuilder
+    { 
+        private WhiteStarUML.IExprBuilder m_builder;
+        internal ExprBuilderWrapper(WhiteStarUML.IExprBuilder builder) { m_builder = builder; }
+
+        public void EndOperation() { m_builder.EndOperation(); }
+        public void IdentExpr(string Id, int Pos) { m_builder.IdentExpr(Id, Pos); }
+        public void NewDrawBitmapOperation(string Filepath, int Pos) { m_builder.NewDrawBitmapOperation(Filepath, Pos); }
+        public void NewNotationOperation(string Filepath, int Pos) { m_builder.NewNotationOperation(Filepath, Pos); }
+        public void NewOperation(string Oper, int Pos) { m_builder.NewOperation(Oper, Pos); }
+        public void PrimExpr(object Value, int Pos) { m_builder.PrimExpr(Value, Pos); }
+    }
+
+    [Guid("88EDE9D0-6E37-4b00-86D7-B689C9748661")]
+    [ClassInterface(ClassInterfaceType.None)]
+    public class NxParser : NxParserImpl.NxParserImpl, INxParser
+    {
+
+        public bool Parse(string fileName, WhiteStarUML.IExprBuilder builder)
+        {
+            ExprBuilderWrapper wrapper = new ExprBuilderWrapper(builder);
+            bool result = Parse(fileName, wrapper);
+            Marshal.ReleaseComObject(builder);
+            return result;
+        }
+    
     }
 
 }
