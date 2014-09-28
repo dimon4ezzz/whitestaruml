@@ -46,8 +46,8 @@ program WhiteStarUML;
 {******************************************************************************}
 
 uses
-  SysUtils,
-  Forms,
+  Vcl.Forms,
+  System.Win.ComServ,
   BasicClasses in 'BasicClasses.pas',
   Core in 'Core.pas',
   GraphicClasses in 'GraphicClasses.pas',
@@ -110,8 +110,6 @@ uses
   EventPub in 'EventPub.pas',
   HtmlHlp in 'HtmlHlp.pas',
   TagColEdtFrm in 'TagColEdtFrm.pas' {TaggedValueCollectionEditorForm},
-  ComServ,
-  Dialogs,
   NLS_StarUML in 'NLS_StarUML.pas',
   NLS in 'NLS.pas',
   DiagramExplorerFrame in 'DiagramExplorerFrame.pas' {DiagramExplorerPanel: TFrame},
@@ -127,19 +125,19 @@ uses
   TagEdtFrmWithJvclInspector in 'TagEdtFrmWithJvclInspector.pas' {TaggedValueEditorFormWithJvclInspector},
   PropEdtWithJvclInspector in 'PropEdtWithJvclInspector.pas' {PropertyEditorWithJvclInspector: TFrame},
   NavBarFrame in 'NavBarFrame.pas' {PaletteNavBarFrame: TFrame},
-  NavBarFrameVclImpl in 'NavBarFrameVclImpl.pas' {PaletteNavBarFrameVclImpl: TFrame},
   MenuManager in 'MenuManager.pas',
   MenuManagerTdxImpl in 'MenuManagerTdxImpl.pas',
   QuickDialogFrmTdxBase in 'QuickDialogFrmTdxBase.pas' {QuickDialogFormTdxBase},
   MainFrm in 'MainFrm.pas' {MainForm},
   WhiteStarUML_TLB in 'WhiteStarUML_TLB.pas',
   PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas',
+  NavBarFrameVclImpl in 'NavBarFrameVclImpl.pas' {PaletteNavBarFrameVclImpl: TFrame},
   ParserCore_TLB in 'ParserCore_TLB.pas';
 
 {$IFDEF RELEASE}
   {$WEAKLINKRTTI ON}
   {$RTTI EXPLICIT METHODS([]) PROPERTIES([]) FIELDS([])}
-  {$ENDIF RELEASE}
+{$ENDIF RELEASE}
 
   {$R 'WhiteStarUMLManifest.res' 'WhiteStarUMLManifest.rc'}
   {$R WhiteStarUML.res}
