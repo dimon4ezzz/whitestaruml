@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\..\WhiteStarDevInstall\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,10 +30,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\..\..\..\WhiteStarDevInstall\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GOLD Engine, Version=5.0.4532.36735, Culture=neutral, PublicKeyToken=0b0236cd11048e2a, processorArchitecture=MSIL">
@@ -41,10 +42,10 @@
       <HintPath>dependencies\GOLD Engine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NxGrammarParser.cs" />
+    <Compile Include="NxParserImpl.cs" />
     <Compile Include="ParserBase.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -63,6 +64,7 @@
     <None Include="Resources\AttrExpr.egt" />
     <None Include="Resources\MsgExpr.egt" />
     <None Include="Resources\NameExpr.egt" />
+    <None Include="Resources\NxGrammar.egt" />
     <None Include="Resources\ObjExpr.egt" />
     <None Include="Resources\OperExpr.egt" />
     <None Include="Resources\RoleExpr.egt" />
@@ -73,6 +75,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WhiteStarUML">
+      <Guid>{4D5F69B3-73FC-4C09-A1CE-73D1A677A0E7}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
