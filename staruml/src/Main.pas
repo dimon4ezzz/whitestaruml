@@ -400,6 +400,17 @@ begin
   Result:= string (B64Encode(AnsiString(S)));
 end;
 
+function SelectTargetModel: PModel;
+begin
+// Identify selected model
+  if StarUMLApplication.SelectedViewCount > 0 then
+    Result := StarUMLApplication.SelectedViews[0].Model
+  else if StarUMLApplication.SelectedModelCount > 0 then
+    Result := StarUMLApplication.SelectedModels[0]
+  else
+    Result := nil;
+end;
+
 ////////////////////////////////////////////////////////////////////////////////
 // PMain
 
@@ -1021,7 +1032,7 @@ begin
         if MainForm.ModelExplorerDockPanel.Visible then
         begin
           dxDockingController.ActiveDockControl := MainForm.ModelExplorerDockPanel;
-          MainForm.ModelExplorer.SelectWithFocus(StarUMLApplication.SelectedModels[0]);
+          MainForm.ModelExplorer.SelectWithFocus(SelectTargetModel);
         end;
       end
       else if Sender = ViewRefresh then ExecuteViewRefresh
@@ -2318,11 +2329,7 @@ begin
     TaggedValueEditorForm.Model := nil;
 
     // Inspect
-    M := nil;
-    if StarUMLApplication.SelectedViewCount = 1 then
-      M := StarUMLApplication.SelectedViews[0].Model
-    else if StarUMLApplication.SelectedModelCount = 1 then
-      M := StarUMLApplication.SelectedModels[0];
+    M := SelectTargetModel;
 
     if M <> nil then begin
       if M is PUMLModelElement then begin
@@ -3180,8 +3187,8 @@ var
   ItemCaption: string;
 begin
    // Setting Go To Items
-    if (StarUMLApplication.SelectedModelCount = 1) then begin
-     M := StarUMLApplication.SelectedModels[0];
+    M := SelectTargetModel;
+    if Assigned(M) then begin
       MainForm.EditGoToItemList.Items.Clear;
       MainForm.EditGoToItemList.OnClick := MainEditGoToItemListClickHandler;
 
@@ -4426,31 +4433,30 @@ end;
 procedure PMainFormMenuStateHandler.UpdateFileMenus;
 var
   Doc: PDocument;
+  M: PModel;
 begin
   with MainForm do
   begin
-    FileUnitsSeparateUnit.Enabled :=
-      (StarUMLApplication.SelectedModelCount = 1) and
-      (StarUMLApplication.SelectedModels[0] is PUMLPackage) and
-      (not StarUMLApplication.SelectedModels[0].IsDocumentElement);
+    M := SelectTargetModel;
+    if Assigned(M) then begin
 
-    FileUnitsOpenUnit.Enabled :=
-      (StarUMLApplication.SelectedModelCount = 1) and
-      (StarUMLApplication.SelectedModels[0] is PUMLPackage) and
+      FileUnitsSeparateUnit.Enabled :=
+        (M is PUMLPackage) and (not M.IsDocumentElement);
 
-      (
-        not StarUMLApplication.SelectedModels[0].IsDocumentElement // Is not a document
+      FileUnitsOpenUnit.Enabled :=
+        (M is PUMLPackage) and
+        (not M.IsDocumentElement // Is not a document
         or
-        (StarUMLApplication.SelectedModels[0].Document is PUMLUnitStubDocument) // Is a stub document
-      );
+        (M.Document is PUMLUnitStubDocument)); // Is a stub document
 
-    FileExportModelFragment.Enabled :=
-      (StarUMLApplication.SelectedModelCount = 1) and
-      (StarUMLApplication.SelectedModels[0] is PUMLPackage) and
-      (not (StarUMLApplication.SelectedModels[0] is PUMLProject));
-    if StarUMLApplication.DocumentElementCount <> 0 then begin
-      Doc := (StarUMLApplication.DocumentElements[0]).Document;
-      FileSave.Enabled := (Doc.ReadOnly = False);
+
+      FileExportModelFragment.Enabled :=
+        (M is PUMLPackage) and (not (M is PUMLProject));
+
+      if StarUMLApplication.DocumentElementCount <> 0 then begin
+        Doc := (StarUMLApplication.DocumentElements[0]).Document;
+        FileSave.Enabled := (Doc.ReadOnly = False);
+      end;
     end;
   end;
 end;
@@ -4462,7 +4468,11 @@ var
   CBKind: PClipboardDataKind;
   CBElemKind: string;
   CBCopyContext: string;
+  SelectedModel: PModel;
 begin
+
+  SelectedModel := SelectTargetModel;
+
   MC := StarUMLApplication.SelectedModelCount;
   AD := StarUMLApplication.ActiveDiagram;
   with MainForm do
@@ -4538,14 +4548,17 @@ begin
         EditPaste.Enabled :=
           GeneralEditMenuEnabled and
           {MainForm.IsActivated and}
-          (MC = 1) and
-          StarUMLApplication.SelectedModels[0].CanPaste(CBElemKind, CBCopyContext);
+          //(MC = 1) and
+          //StarUMLApplication.SelectedModels[0].CanPaste(CBElemKind, CBCopyContext);
+          Assigned(SelectedModel) and
+          SelectedModel.CanPaste(CBElemKind, CBCopyContext);
       end;
     end;
     // Determine Go To
     EditGoTo.Enabled :=
-      MainForm.IsActivated and (MC = 1)
-      and StarUMLApplication.SelectedModels[0].HasAttachedLinks;
+      MainForm.IsActivated and //(MC = 1)
+      //and StarUMLApplication.SelectedModels[0].HasAttachedLinks;
+      Assigned(SelectedModel) and SelectedModel.HasAttachedLinks;
   end;
 end;
 
@@ -4565,21 +4578,27 @@ begin
 end;
 
 function PMainFormMenuStateHandler.IsEditCutEnabled: Boolean;
+var
+  M: PModel;
 begin
+  M := SelectTargetModel;
   with StarUMLApplication do
     Result := GeneralEditMenuEnabled {and MainForm.IsActivated} and
-      (((SelectedModelCount = 1) and (SelectedModels[0].CanCopy) and
-          (SelectedModels[0].CanDelete)) or
+      ((Assigned(M) and (M.CanCopy) and
+          (M.CanDelete)) or
         ((ActiveDiagram <> nil) and (ActiveDiagram.CanCopyViews)
         and (ActiveDiagram.CanDeleteViews)));
 
   end;
 
 function PMainFormMenuStateHandler.IsEditCopyEnabled: Boolean;
+var
+  M: PModel;
 begin
+  M := SelectTargetModel;
   with StarUMLApplication do
     Result := GeneralEditMenuEnabled {and MainForm.IsActivated} and
-      (((SelectedModelCount = 1) and (SelectedModels[0].CanCopy)) or
+      ((Assigned(M) and (M.CanCopy)) or
         ((ActiveDiagram <> nil) and (ActiveDiagram.CanCopyViews)));
 
 end;
@@ -4864,9 +4883,10 @@ begin
     AllModelsGroup.Visible := ivNever;
     AllDiagramsGroup.Visible := ivAlways;
     AllDiagramsGroup.Visible := ivNever;
-    if StarUMLApplication.SelectedModelCount = 1 then
+    M := SelectTargetModel;
+    if Assigned(M) then
     begin
-      M := StarUMLApplication.SelectedModels[0];
+      //M := StarUMLApplication.SelectedModels[0];
       if M is PUMLProject then begin
         ModelAdd.Enabled := True;
         NamespacesGroup.Visible := ivAlways;
