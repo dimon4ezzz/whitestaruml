@@ -100,9 +100,7 @@
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <DCC_Define>DEBUGNX;USE_PROGRAMMAR_PARSER_;$(DCC_Define)</DCC_Define>
         <DCC_DebugInfoInExe>false</DCC_DebugInfoInExe>
-        <DCC_ExeOutput>C:\JS\Delphi\WhiteStarDevInstall</DCC_ExeOutput>
         <BCC_DebugLineNumbers>true</BCC_DebugLineNumbers>
         <BCC_SourceDebuggingOn>true</BCC_SourceDebuggingOn>
         <ILINK_FullDebugInfo>true</ILINK_FullDebugInfo>
