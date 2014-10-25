@@ -210,7 +210,7 @@ var
   AnItem: TListItem;
 begin
   for AnItem in FilterItemsListView.Items do
-    AnItem.Checked := False;
+    AnItem.Checked := State;
 end;
 
 procedure TModelExplorerFilterForm.FormCreate(Sender: TObject);
