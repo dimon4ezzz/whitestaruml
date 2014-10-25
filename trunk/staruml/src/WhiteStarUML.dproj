@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{6800C90C-8B49-4B15-8E46-9015DA5876D8}</ProjectGuid>
         <MainSource>WhiteStarUML.dpr</MainSource>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
         <ProjectVersion>15.3</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
@@ -41,16 +41,17 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <VerInfo_Build>1</VerInfo_Build>
         <Icon_MainIcon>WhiteStarUML_Icon.ico</Icon_MainIcon>
         <DCC_UsePackage>rtl;vcl;vclx;cxLibraryRS19;dxComnRS19;dxCoreRS19;dxGDIPlusRS19;dxThemeRS19;dxBarRS19;elpackD19;$(DCC_UsePackage)</DCC_UsePackage>
         <UsePackages>true</UsePackages>
-        <VerInfo_Release>3</VerInfo_Release>
+        <VerInfo_Release>6</VerInfo_Release>
         <DCC_Define>NO_INSTALL_;$(DCC_Define)</DCC_Define>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <Manifest_File>None</Manifest_File>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=5.5.3.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=WhiteStarUML;ProductVersion=5.5.2;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=5.5.6.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=WhiteStarUML;ProductVersion=5.5.6;Comments=</VerInfo_Keys>
         <VerInfo_MajorVer>5</VerInfo_MajorVer>
         <VerInfo_MinorVer>5</VerInfo_MinorVer>
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;System.Win;Winapi;Xml.Win;IW.Content;$(DCC_Namespace)</DCC_Namespace>
@@ -74,7 +75,6 @@
         <DCC_AssertionsAtRuntime>false</DCC_AssertionsAtRuntime>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <Icon_MainIcon>WhiteStarUML_Icon.ico</Icon_MainIcon>
         <DCC_DcpOutput>$(BDSCOMMONDIR)\Dcp</DCC_DcpOutput>
         <DCC_Namespace>Data.Win;Datasnap.Win;Web.Win;Soap.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
@@ -100,7 +100,9 @@
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <DCC_Define>DEBUGNX;USE_PROGRAMMAR_PARSER_;$(DCC_Define)</DCC_Define>
         <DCC_DebugInfoInExe>false</DCC_DebugInfoInExe>
+        <DCC_ExeOutput>C:\JS\Delphi\WhiteStarDevInstall</DCC_ExeOutput>
         <BCC_DebugLineNumbers>true</BCC_DebugLineNumbers>
         <BCC_SourceDebuggingOn>true</BCC_SourceDebuggingOn>
         <ILINK_FullDebugInfo>true</ILINK_FullDebugInfo>
@@ -304,11 +306,6 @@
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
-        <DCCReference Include="NavBarFrameVclImpl.pas">
-            <Form>PaletteNavBarFrameVclImpl</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
         <DCCReference Include="MenuManager.pas"/>
         <DCCReference Include="MenuManagerTdxImpl.pas"/>
         <DCCReference Include="QuickDialogFrmTdxBase.pas">
@@ -321,6 +318,11 @@
         </DCCReference>
         <DCCReference Include="WhiteStarUML_TLB.pas"/>
         <DCCReference Include="PGMR101Lib_TLB.pas"/>
+        <DCCReference Include="NavBarFrameVclImpl.pas">
+            <Form>PaletteNavBarFrameVclImpl</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <DCCReference Include="ParserCore_TLB.pas"/>
         <RcCompile Include="WhiteStarUMLManifest.rc">
             <Form>WhiteStarUMLManifest.res</Form>
@@ -359,7 +361,7 @@
                     <VersionInfo Name="MajorVer">5</VersionInfo>
                     <VersionInfo Name="MinorVer">4</VersionInfo>
                     <VersionInfo Name="Release">8</VersionInfo>
-                    <VersionInfo Name="Build">3</VersionInfo>
+                    <VersionInfo Name="Build">5</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -371,7 +373,7 @@
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName"/>
                     <VersionInfoKeys Name="FileDescription"/>
-                    <VersionInfoKeys Name="FileVersion">5.4.8.3</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">5.4.8.5</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName"/>
                     <VersionInfoKeys Name="LegalCopyright"/>
                     <VersionInfoKeys Name="LegalTrademarks"/>

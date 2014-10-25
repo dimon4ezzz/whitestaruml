@@ -1656,6 +1656,7 @@ begin
                       Exprs[1].GetValue,
                       Exprs[2].GetValue,
                       Exprs[3].GetValue);
+
     if (TaggedValue <> nil) and (TaggedValue.DataValue <> '') then
       SetValue(TaggedValue.DataValue)
     else
@@ -1685,7 +1686,12 @@ begin
                       Exprs[1].GetValue,
                       Exprs[2].GetValue,
                       Exprs[3].GetValue);
-    SetReference(TaggedValue.ReferenceValues[0]);
+
+    if Assigned(TaggedValue) and (TaggedValue.ReferenceValueCount > 0) then
+      SetReference(TaggedValue.ReferenceValues[0])
+    else
+      SetReference(nil)
+
   except
     ERaise(false, FPos, 'Error exists in TagRef expression.');
   end;
@@ -1703,7 +1709,12 @@ begin
                        Exprs[1].GetValue,
                        Exprs[2].GetValue,
                        Exprs[3].GetValue);
-    SetReference(TaggedValue.ReferenceValues[Exprs[4].GetValue]);
+
+    if Assigned(TaggedValue) and (TaggedValue.ReferenceValueCount > Exprs[4].GetValue) then
+      SetReference(TaggedValue.ReferenceValues[Exprs[4].GetValue])
+    else
+      SetReference(nil)
+
   except
     ERaise(false, FPos, 'Error exists in TagRefAt expression.');
   end;
@@ -1721,7 +1732,12 @@ begin
                        Exprs[1].GetValue,
                        Exprs[2].GetValue,
                        Exprs[3].GetValue);
-    SetValue(TaggedValue.ReferenceValueCount);
+
+    if Assigned(TaggedValue) then
+      SetValue(TaggedValue.ReferenceValueCount)
+    else
+      SetValue(0)
+
   except
     ERaise(false, FPos, 'Error exists in TagRefCount expression.');
   end;
