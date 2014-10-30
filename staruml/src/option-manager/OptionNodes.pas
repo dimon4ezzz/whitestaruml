@@ -1207,18 +1207,19 @@ end;
 function PEnumerationOptionItem.ReadFromXMLElement(Element: IXMLNode): Boolean;
 var
   I: Integer;
-  R: Boolean;
+  NodeName: string;
+  NodeValue: string;
 begin
   for I := 0 to Element.ChildNodes.Count - 1 do begin
-    if Element.ChildNodes[I].NodeName = XOD_ELEMENT_ENUMURATION_ITEM then begin
-      FEnumerationItems.Add(Element.ChildNodes[I].NodeValue);
+    NodeName := Element.ChildNodes[I].NodeName;
+    if NodeName = XOD_ELEMENT_ENUMURATION_ITEM then begin
+      NodeValue := Element.ChildNodes[I].NodeValue;
+      FEnumerationItems.Add(NodeValue);
     end;
   end;
-  R := inherited ReadFromXMLElement(Element);
-  if R then
+  Result := inherited ReadFromXMLElement(Element);
+  if Result then
     Result := IsValidValue(Value)
-  else
-    Result := False;
 end;
 
 function PEnumerationOptionItem.IndexOfItem(Value: string): Integer;

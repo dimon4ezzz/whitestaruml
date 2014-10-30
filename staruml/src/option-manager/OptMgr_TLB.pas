@@ -11,26 +11,28 @@ unit OptMgr_TLB;
 // manual modifications will be lost.
 // ************************************************************************ //
 
-// $Rev: 17244 $
-// File generated on 1/1/2012 3:42:58 PM from Type Library described below.
+// $Rev: 52393 $
+// File generated on 10/30/2014 1:18:21 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforge\staruml\src\option-manager\OptMgr (1)
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml\src\option-manager\OptMgr (1)
 // LIBID: {84BEB7B3-6221-43ED-B410-E83A5D83CED9}
 // LCID: 0
 // Helpfile:
 // HelpString: General Option Manager Library
 // DepndLst:
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
+// SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
 {$WARN SYMBOL_PLATFORM OFF}
 {$WRITEABLECONST ON}
 {$VARPROPSETTER ON}
 {$ALIGN 4}
+
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, Winapi.ActiveX;
 
 
 // *********************************************************************//
@@ -298,7 +300,7 @@ type
 
 implementation
 
-uses ComObj;
+uses System.Win.ComObj;
 
 class function CoOptionManager.Create: IOptionManager;
 begin
