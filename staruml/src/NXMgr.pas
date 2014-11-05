@@ -1181,6 +1181,7 @@ begin
       varWord: R := true;
       varLongWord: R := true;
       varInt64: R := true;
+      varOleStr: R := true;
       varString: R := true;
       varUString: R := true;
       varBoolean : R := true;
@@ -1198,6 +1199,7 @@ begin
         varWord: R := true;
         varLongWord: R := true;
         varInt64: R := true;
+        varOleStr: R := true;
         varString: R := true;
         varUString: R := true;
         varBoolean : R := true;
@@ -3918,6 +3920,9 @@ var
 begin
   if VarType(Value) = varEmpty then
     Expr := PNXExpr.NewRef(Pos, nil)
+  else if VarType(Value) = varOleStr then
+    Expr := PNXExpr.NewValue(Pos, VarAsType(Value, varUString))  // Convert OLE strings
+
   else
     Expr := PNXExpr.NewValue(Pos, Value);
 
