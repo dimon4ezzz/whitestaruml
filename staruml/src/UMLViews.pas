@@ -371,7 +371,7 @@ type
   PUMLSwimlaneDirectionKind = (slkVertical, slkHorizontal);
   PLineKind = (lkSolid, lkDash, lkDot, lkDashDot, lkDashDotDot, lkInsideFrame);
   PArrowheadStyleKind = (askNone, askTriangle, askOpen, askStealth, askDiamond, askOval);
-  PImageKind = (ikNone, ikBitmap, ikMetafile);
+  PImageKind = (ikNone, ikBitmap, ikJpg, ikPng, ikGif, ikMetafile);
 
   // Delegation Types
   PDrawingProcedure = procedure(Canvas: PCanvas; R: TRect) of object;
@@ -1806,7 +1806,7 @@ type
   private
     Picture: TGraphic;
     FType: PImageKind;
-    FImageData: string;
+    FImageData: AnsiString;
     FMaintainAspectRatio: Boolean;
     procedure SetType(Value: PImageKind);
     function GetImageData: string;
@@ -1821,6 +1821,8 @@ type
     procedure Update; override;
     function MOF_GetAttribute(Name: string): string; override;
     procedure MOF_SetAttribute(Name, Value: string); override;
+    procedure ResetImageData; // Discard current image data
+    function ImageDataValid: Boolean; // True if current image data corresponds to an image
     property Type_: PImageKind read FType write SetType;
     property ImageData: string read GetImageData write SetImageData;
     property MaintainAspectRatio: Boolean read FMaintainAspectRatio write SetMaintainAspectRatio; 
@@ -1972,8 +1974,13 @@ type
 implementation
 
 uses
-  System.UITypes, Math, Dialogs, JvStrings;
+  System.UITypes, Math, Dialogs, JvStrings, Generics.Defaults, Generics.Collections,
+  Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Vcl.Imaging.GIFImg;
 
+
+type
+  PUMLCustomSeqMessageViewList = TList<PUMLCustomSeqMessageView>;
+  PUMLInteractionOperandViewList = TList<PUMLInteractionOperandView>;
 ////////////////////////////////////////////////////////////////////////////////
 // Procedures and Functions
 
@@ -7165,6 +7172,14 @@ var
   end;
 
 begin
+  // Dummy initialization
+  Sti := nil;
+  SN := 0;
+  Msg :=  nil;
+  InterIns := nil;
+  Inter := nil;
+
+
   FromLifeLine := Tail as PUMLLifeLineView;
   FromActivation := FromLifeLine.GetActivationAt(Points.Points[0].Y);
   DgmView := GetDiagramView;
@@ -7526,7 +7541,9 @@ begin
   if Model is PUMLStimulus then
     Action := (Model as PUMLStimulus).Action
   else if Model is PUMLMessage then
-    Action := (Model as PUMLMessage).Action;
+    Action := (Model as PUMLMessage).Action
+  else
+    Action := nil;
 
   Activation.Visible := ShowActivation and ((Action is PUMLCallAction) or (Action is PUMLCreateAction) or
     (Action is PUMLDestroyAction));
@@ -7800,12 +7817,8 @@ begin
   end;
 end;
 
-function CompareInteractionOperandViewYPosition(Item1, Item2: Pointer): Integer;
-var
-  V1, V2: PUMLInteractionOperandView;
+function CompareInteractionOperandViewYPosition(V1, V2: PUMLInteractionOperandView): Integer;
 begin
-  V1 := Item1;
-  V2 := Item2;
   if V1.Top < V2.Top then Result := -1
   else if V1.Top = V2.Top then Result := 0
   else Result := 1;
@@ -7813,22 +7826,31 @@ end;
 
 procedure PUMLCombinedFragmentView.CarryOnInteractionOperandViews;
 var
-  InterOpViews: TList;
+  InterOpViews: PUMLInteractionOperandViewList;
   FirstIOV, LastIOV: PUMLInteractionOperandView;
   I: Integer;
 begin
   if ContainedViewCount > 0 then begin
-    InterOpViews := TList.Create;
+    InterOpViews := PUMLInteractionOperandViewList.Create;
     try
       for I := 0 to ContainedViewCount - 1 do
         if ContainedViews[I] is PUMLInteractionOperandView then
-          InterOpViews.Add(ContainedViews[I]);
+          InterOpViews.Add(PUMLInteractionOperandView(ContainedViews[I]));
       if InterOpViews.Count > 0 then begin
-        InterOpViews.Sort(CompareInteractionOperandViewYPosition);
+        //InterOpViews.Sort(CompareInteractionOperandViewYPosition);
+
+        InterOpViews.Sort(TComparer<PUMLInteractionOperandView>.Construct(
+        function (const V1, V2: PUMLInteractionOperandView): Integer
+        begin
+          if V1.Top < V2.Top then Result := -1
+          else if V1.Top = V2.Top then Result := 0
+          else Result := 1;
+        end)
+        );
         FirstIOV := InterOpViews[0];
         FirstIOV.Top := Max(FrameTypeLabel.Bottom, NameLabel.Bottom) + COMPARTMENT_BOTTOM_MARGIN;
         for I := 1 to InterOpViews.Count - 1 do
-          PUMLInteractionOperandView(InterOpViews[I]).Top := PUMLInteractionOperandView(InterOpViews[I - 1]).Bottom;
+          InterOpViews[I].Top := PUMLInteractionOperandView(InterOpViews[I - 1]).Bottom;
         LastIOV := InterOpViews[InterOpViews.Count - 1];
         LastIOV.Bottom := Bottom;
         MinHeight := LastIOV.Top + LastIOV.MinHeight - Top;
@@ -8775,7 +8797,9 @@ begin
   end
   else if Model is PUMLMessage then begin
     Action := (Model as PUMLMessage).Action;
-  end;
+  end
+  else
+    Action := nil;
   // Message body
   if Action is PUMLReturnAction then
     Canvas.Pen.Style := psDot
@@ -8875,7 +8899,9 @@ begin
   if Model is PUMLStimulus then
     Action := (Model as PUMLStimulus).Action
   else if Model is PUMLMessage then
-    Action := (Model as PUMLMessage).Action;
+    Action := (Model as PUMLMessage).Action
+  else
+    Action := nil;
 
   if Action is PUMLCreateAction then
     StereotypeLabel.Text := '<<create>>'
@@ -10609,6 +10635,7 @@ end;
 
 function PShapeView.LineKindToPenStyle(Value: PLineKind): TPenStyle;
 begin
+  Result := psSolid; // Initial dummy value
   case Value of
     lkSolid: Result := psSolid;
     lkDash: Result := psDash;
@@ -10882,6 +10909,7 @@ begin
   Picture := nil;
   FType := ikNone;
   FMaintainAspectRatio := True;
+  ResetImageData;
 end;
 
 destructor PImageView.Destroy;
@@ -10901,22 +10929,28 @@ end;
 function PImageView.GetImageData: string;
 begin
   if FImageData = '' then
-    Result := FImageData
+    Result := ''
   else
-    Result := B64Encode(FImageData);
+    Result := string (B64Encode(FImageData));
 end;
 
 procedure PImageView.SetImageData(Value: string);
 var
-  S: string;
+  S: AnsiString;
 begin
   if Value = '' then
-    S := Value
+    S := ''
   else
-    S := B64Decode(Value);
+    S := B64Decode(AnsiString(Value));
+
   if S <> FImageData then begin
     FImageData := S;
   end;
+end;
+
+function PImageView.ImageDataValid: Boolean;
+begin
+  Result := (ImageData <> '');
 end;
 
 procedure PImageView.SetMaintainAspectRatio(Value: Boolean);
@@ -10973,30 +11007,26 @@ procedure PImageView.Update;
 var
   Stream: TStringStream;
 begin
-  if Picture <> nil then begin
-    Picture.Free;
-    Picture := nil;
-  end;
-  if ImageData <> '' then begin
-    if FType = ikBitmap then begin
-      Picture := TBitmap.Create;
-      Stream := TStringStream.Create(FImageData);
-      try
-        Stream.Position := 0;
-        (Picture as TBitmap).LoadFromStream(Stream);
-      finally
-        Stream.Free;
-      end;
-    end
-    else if FType = ikMetafile then begin
-      Picture := TMetafile.Create;
-      Stream := TStringStream.Create(FImageData);
-      try
-        Stream.Position := 0;
-        (Picture as TMetafile).LoadFromStream(Stream);
-      finally
-        Stream.Free;
-      end;
+  if Picture <> nil then
+    FreeAndNil(Picture);
+
+  if ImageDataValid then begin
+
+    case Ftype of
+      ikBitmap: Picture := TBitmap.Create;
+      ikJpg: Picture := TJPEGImage.Create;
+      ikPng: Picture := TPngImage.Create;
+      ikGif: Picture := TGIFImage.Create;
+      ikMetafile: Picture := TMetafile.Create;
+      else Assert(False,'Unknown file type');
+    end;
+
+    Stream := TStringStream.Create(FImageData);
+    try
+      Stream.Position := 0;
+      Picture.LoadFromStream(Stream);
+    finally
+      Stream.Free;
     end;
   end;
 end;
@@ -11031,6 +11061,11 @@ begin
   else begin
     inherited MOF_SetAttribute(Name, Value);
   end;
+end;
+
+procedure PImageView.ResetImageData;
+begin
+  ImageData := ''
 end;
 
 // PImageView
@@ -11285,16 +11320,16 @@ end;
 
 procedure PUMLSequenceDiagramView.ArrangeObject(Canvas: PCanvas);
 var
-  L: TList;
+  L: PUMLCustomSeqMessageViewList;
   I: Integer;
 begin
   // Regulate sequence number of stimulus view
-  L := TList.Create;
+  L := PUMLCustomSeqMessageViewList.Create;
   for I := 0 to OwnedViewCount - 1 do
     if OwnedView[I] is PUMLCustomSeqMessageView then
-      L.Add(OwnedView[I]);
+      L.Add(PUMLCustomSeqMessageView(OwnedView[I]));
   for I := 0 to L.Count - 1 do
-    PUMLCustomSeqMessageView(L.Items[I]).RegulateSequenceNumber;
+    L.Items[I].RegulateSequenceNumber;
   L.Free;
 
   ReorderByViewKind([PUMLFrameView, PUMLCombinedFragmentView, PUMLSeqObjectView]);
@@ -11347,16 +11382,16 @@ end;
 
 procedure PUMLSequenceRoleDiagramView.ArrangeObject(Canvas: PCanvas);
 var
-  L: TList;
+  L: PUMLCustomSeqMessageViewList;
   I: Integer;
 begin
   // Regulate sequence number of stimulus view
-  L := TList.Create;
+  L := PUMLCustomSeqMessageViewList.Create;
   for I := 0 to OwnedViewCount - 1 do
     if OwnedView[I] is PUMLCustomSeqMessageView then
-      L.Add(OwnedView[I]);
+      L.Add(PUMLCustomSeqMessageView(OwnedView[I]));
   for I := 0 to L.Count - 1 do
-    PUMLCustomSeqMessageView(L.Items[I]).RegulateSequenceNumber;
+    L.Items[I].RegulateSequenceNumber;
   L.Free;
 
   ReorderByViewKind([PUMLFrameView, PUMLCombinedFragmentView, PUMLSeqClassifierRoleView]);
@@ -12043,14 +12078,15 @@ end;
 
 function ImageKindToString(Value: PImageKind): string;
 begin
-  if Value = ikNone then
-    Result := 'ikNone'
-  else if Value = ikBitmap then
-    Result := 'ikBitmap'
-  else if Value = ikMetafile then
-    Result := 'ikMetafile'
-  else
-    Result := 'ikNone';
+  case Value of
+    ikNone: Result := 'ikNone';
+    ikBitmap: Result := 'ikBitmap';
+    ikJpg: Result := 'ikJpg';
+    ikPng: Result := 'ikPng';
+    ikGif: Result := 'ikGif';
+    ikMetafile: Result := 'ikMetafile';
+    else Result := 'ikNone'
+  end;
 end;
 
 function StringToImageKind(Value: string): PImageKind;
@@ -12059,6 +12095,12 @@ begin
     Result := ikNone
   else if Value = 'ikBitmap' then
     Result := ikBitmap
+  else if Value = 'ikJpg' then
+    Result := ikJpg
+  else if Value = 'ikPng' then
+    Result := ikPng
+  else if Value = 'ikGif' then
+    Result := ikGif
   else if Value = 'ikMetafile' then
     Result := ikMetafile
   else
