@@ -332,6 +332,7 @@ type
     procedure BrowseElement(AModel: PModel); overload;
     procedure BrowseElement(PathName: string); overload;
     procedure SelectModelExplorerDockPanel(AModel: PModel);
+    procedure LoadImageFromFile(AImageView: PImageView);
   public
     constructor Create;
     destructor Destroy; override;
@@ -378,16 +379,17 @@ var
 implementation
 
 uses
-  System.Types, System.UITypes,
+  Dialogs, Math, ExtCtrls, SysUtils, Registry, CompactFontDlg,
+
+  Graphics, Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Vcl.Imaging.GIFImg,
+  ExtDlgs, JVStrings, System.Types, System.UITypes, ShellAPI, ComServ, XMLDom,
+
   StarUMLApp, FrwMgr, LogMgr, UMLFacto, CmdExec, HtmlHlp, ApprMgr, InteractionMgr,
   ContributorMgr, MainFrm, InspectorFrm, ColEdtFrm, AboutFrm, MessageFrame,
   ProfileMgrFrm, OptionDeps, NewProjFrm, ImportFrameworkFrm, AddInMgr, ConstEdtFrm,
   AddInMgrFrm, FindFrm, ElemSelFrm, PrintFrm, PageSetupFrm, ModelVerifierFrm,
   ElemLstFrm, DiagramMapFrm, EventPub, TagEdtFrm, TagColEdtFrm, NLS_StarUML,
-  Dialogs, Math, ExtCtrls, SysUtils, Registry, Graphics, JPEG, CompactFontDlg,
-  ShellAPI, ComServ, NLS, SaveDialogEx, XMLDom, MenuManager, ModelExplorerFrame,
-  // for test
-  ExtDlgs, JVStrings;
+  NLS, SaveDialogEx, MenuManager, ModelExplorerFrame;
 
 const
   FILE_EXT_JS = '.JS';
@@ -409,6 +411,50 @@ begin
     Result := StarUMLApplication.SelectedModels[0]
   else
     Result := nil;
+end;
+
+function CreateGraphic(const InputFileName: string; var ImageType: string): TGraphic;
+var
+  FS: TFileStream;
+  FirstBytes: AnsiString;
+  Graphic: TGraphic;
+begin
+  Graphic := nil;
+  FS := TFileStream.Create(InputFileName, fmOpenRead);
+  try
+    SetLength(FirstBytes, 8);
+    FS.Read(FirstBytes[1], 8);
+
+    if Copy(FirstBytes, 1, 2) = 'BM' then begin
+      Graphic := TBitmap.Create;
+      ImageType := 'ikBitmap';
+    end
+    else if Copy(FirstBytes, 1, 2) = #$FF#$D8 then begin
+      Graphic := TJPEGImage.Create;
+      ImageType := 'ikJpg';
+    end
+    else if FirstBytes = #137'PNG'#13#10#26#10 then begin
+      Graphic := TPngImage.Create;
+      ImageType := 'ikPng';
+    end
+    else if Copy(FirstBytes, 1, 3) =  'GIF' then begin
+      Graphic := TGIFImage.Create;
+      ImageType := 'ikGif';
+    end
+    else begin
+      ImageType := 'ikNone';
+      raise Exception.Create(Format(C_ERR_FILE_LOADING_FAILED,[InputFileName]));
+    end;
+
+    if Assigned(Graphic) then
+    begin
+      FS.Seek(0, soFromBeginning);
+       Graphic.LoadFromStream(FS);
+    end;
+  finally
+    FS.Free;
+  end; // End of try
+  Result := Graphic;
 end;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1213,45 +1259,14 @@ procedure PMain.InteractionManagerElementCreatingHandler(Sender: TObject; Elemen
   Argument: Integer; X1, Y1, X2, Y2: Integer);
 var
   V: PView;
-  // for test
-  ImageDlg: TOpenPictureDialog;
-  Stream: TStringStream;
-  Bitmap: TBitmap;
-  Metafile: TMetafile;
-  FileExt: string;
 begin
   try
     if StarUMLApplication.ActiveDiagram <> nil then begin
       V := StarUMLApplication.NewElement(StarUMLApplication.ActiveDiagram, X1, Y1, X2, Y2, ElementKind, Argument);
 
-      // for test
-      if V is PImageView then begin
-        ImageDlg := TOpenPictureDialog.Create(Application);
-        ImageDlg.Filter := 'All image files (*.bmp;*.emf;*.wmf)|*.bmp;*.emf;*.wmf';
-        if ImageDlg.Execute then begin
-          Stream := TStringStream.Create('');
-          FileExt := LowerCase(ExtractFileExt(ImageDlg.FileName));
-          if (FileExt = '.emf') or (FileExt = '.wmf') then begin
-            Metafile := TMetafile.Create;
-            Metafile.LoadFromFile(ImageDlg.FileName);
-            Metafile.SaveToStream(Stream);
-            StarUMLApplication.ChangeViewAttribute(V, 'Type_', 'ikMetafile');
-            StarUMLApplication.ChangeViewAttribute(V, 'ImageData', B64EncodeUnicodeIntf(Stream.DataString));
-            Metafile.Free;
-          end
-          else if FileExt = '.bmp' then begin
-            Bitmap := TBitmap.Create;
-            Bitmap.LoadFromFile(ImageDlg.FileName);
-            Bitmap.SaveToStream(Stream);
-            StarUMLApplication.ChangeViewAttribute(V, 'Type_', 'ikBitmap');
-            StarUMLApplication.ChangeViewAttribute(V, 'ImageData', B64EncodeUnicodeIntf(Stream.DataString));
-            Bitmap.Free;
-          end;
-          Stream.Free;
-        end;
-      end;
-
-      if V <> nil then
+      if V is PImageView then
+        LoadImageFromFile(V as PImageView)
+      else if V <> nil then
         PopupQuickDialog(V, X1, Y1, True);
     end;
   except on
@@ -2991,6 +3006,49 @@ begin
   end;
 end;
 
+procedure PMain.LoadImageFromFile(AImageView: PImageView);
+var
+  ImageDlg: TOpenPictureDialog;
+  Stream: TStringStream;
+  Graphic: TGraphic;
+  //Bitmap: TBitmap;
+  //Metafile: TMetafile;
+  ImageType: string;
+  ImageFileName: string;
+  FileExt: string;
+begin
+  // Initialization to avoid problems with exceptions
+  ImageDlg := nil;
+  try
+    ImageDlg := TOpenPictureDialog.Create(Application);
+    ImageDlg.Filter := 'All image files (*.jpg;*.png;*.gif;*.bmp;*.emf;*.wmf)|*.jpg;*.png;*.gif;*.bmp;*.emf;*.wmf';
+
+    if ImageDlg.Execute then begin
+      AImageView.ResetImageData;
+      ImageFileName := ImageDlg.FileName;
+      FileExt := LowerCase(ExtractFileExt(ImageFileName));
+      if (FileExt = '.emf') or (FileExt = '.wmf') then begin
+        Graphic := TMetafile.Create;
+        Graphic.LoadFromFile(ImageFileName);
+        StarUMLApplication.ChangeViewAttribute(AImageView, 'Type_', 'ikMetafile');
+      end
+      else begin
+        Graphic := CreateGraphic(ImageFileName,ImageType);
+        StarUMLApplication.ChangeViewAttribute(AImageView, 'Type_', ImageType);
+      end;
+
+      Stream := TStringStream.Create('');
+      Graphic.SaveToStream(Stream);
+      StarUMLApplication.ChangeViewAttribute(AImageView, 'ImageData', B64EncodeUnicodeIntf(Stream.DataString));
+      Graphic.Free;
+      Stream.Free;
+    end; // End of if ImageDlg.Execute
+  except on
+    E: Exception do MessageDlg(E.Message, mtWarning, [mbOK], 0);
+  end; // End of try
+  ImageDlg.Free;
+end;
+
 procedure PMain.LoadingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
 var
   P: Integer;
@@ -4276,9 +4334,10 @@ end;
 
 procedure PMain.ProcessDoubleClickAction(AView: PView; X, Y: Integer);
 begin
-  if AView = nil then
-    Exit;
-  PopupQuickDialog(AView, X, Y);
+  if AView is PImageView then
+    LoadImageFromFile(AView as PImageView)
+  else
+    PopupQuickDialog(AView, X, Y);
   // reserved for double click action customization
 end;
 
@@ -4463,18 +4522,15 @@ end;
 
 procedure PMainFormMenuStateHandler.UpdateEditMenus;
 var
-  MC: Integer;
   AD: PDiagramView;
   CBKind: PClipboardDataKind;
   CBElemKind: string;
   CBCopyContext: string;
   SelectedModel: PModel;
 begin
-
   SelectedModel := SelectTargetModel;
-
-  MC := StarUMLApplication.SelectedModelCount;
   AD := StarUMLApplication.ActiveDiagram;
+
   with MainForm do
   begin
     // Determine Undo
@@ -4482,20 +4538,20 @@ begin
       GeneralEditMenuEnabled and
       MainForm.IsActivated and
       StarUMLApplication.CanUndo;
+
     // Determine Redo
     EditRedo.Enabled :=
       GeneralEditMenuEnabled and
       MainForm.IsActivated and
       StarUMLApplication.CanRedo;
+
     // Determine Delete
     EditDelete.Enabled :=
       GeneralEditMenuEnabled and
       MainForm.IsActivated and
       ((AD <> nil) and (AD.CanDeleteViews));
+
     // Determine Delete from Model
-    {EditDeleteFromModel.Enabled :=
-      MainForm.IsActivated and
-      ((MC > 0) and StarUMLApplication.SelectedModels[0].CanDelete);}
     EditDeleteFromModel.Enabled := IsEditDeleteFromModelEnabled;
 
     // Determine Find Diagrams With Selected Model
@@ -4506,31 +4562,20 @@ begin
       GeneralEditMenuEnabled and
       MainForm.IsActivated and
       (AD <> nil);
+
     // Determine CopyDiagram
     EditCopyDiagram.Enabled :=
       MainForm.IsActivated and
       (AD <> nil) and
       (AD.OwnedViewCount > 0);
+
     // Delermine CopyDiagramAsBitmap
     EditCopyDiagramAsBitmap.Enabled :=
       MainForm.IsActivated and
       (AD <> nil) and
       (AD.OwnedViewCount > 0);
-    // Determine Copy
-    {EditCopy.Enabled :=
-      GeneralEditMenuEnabled and
-      MainForm.IsActivated and
-      (((MC = 1) and (StarUMLApplication.SelectedModels[0].CanCopy)) or
-      ((AD <> nil) and (AD.CanCopyViews)));}
 
     EditCopy.Enabled := IsEditCopyEnabled;
-    // Determine Cut
-    {EditCut.Enabled :=
-      GeneralEditMenuEnabled and
-      MainForm.IsActivated and
-      (((MC = 1) and (StarUMLApplication.SelectedModels[0].CanCopy)  and (StarUMLApplication.SelectedModels[0].CanDelete)) or
-      ((AD <> nil) and (AD.CanCopyViews) and (AD.CanDeleteViews)));}
-    // Determine Paste
     EditCut.Enabled := IsEditCutEnabled;
     EditPaste.Enabled := False;
     CBKind := StarUMLApplication.ClipboardDataKind;
@@ -4540,24 +4585,19 @@ begin
       ckView: begin
         EditPaste.Enabled :=
           GeneralEditMenuEnabled and
-          {MainForm.IsActivated and}
           (AD <> nil) and
           AD.CanPasteViews(CBElemKind, CBCopyContext);
       end;
       ckModel: begin
         EditPaste.Enabled :=
           GeneralEditMenuEnabled and
-          {MainForm.IsActivated and}
-          //(MC = 1) and
-          //StarUMLApplication.SelectedModels[0].CanPaste(CBElemKind, CBCopyContext);
           Assigned(SelectedModel) and
           SelectedModel.CanPaste(CBElemKind, CBCopyContext);
       end;
     end;
     // Determine Go To
     EditGoTo.Enabled :=
-      MainForm.IsActivated and //(MC = 1)
-      //and StarUMLApplication.SelectedModels[0].HasAttachedLinks;
+      MainForm.IsActivated and
       Assigned(SelectedModel) and SelectedModel.HasAttachedLinks;
   end;
 end;
