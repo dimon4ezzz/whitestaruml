@@ -4365,23 +4365,23 @@ var
   R: TRect;
   B, C, P, Q: TPoint;
   IR, RR: Integer;
-  H, W, X, Y: Integer;
+  //H, W, X, Y: Integer;
   T: Integer;
   I: Integer;
 begin
   RR := (Right - Left) * 100 div (NameCompartment.Top - Top);
   IR := 100;
   if RR >= IR then begin
-    H := (NameCompartment.Top - Top);
-    W := H * IR div 100;
-    X := Left + (Right - Left - W) div 2;
-    Y := Top;
+    //H := (NameCompartment.Top - Top);
+    //W := H * IR div 100;
+    //X := Left + (Right - Left - W) div 2;
+    //Y := Top;
   end
   else begin
-    W := (Right - Left);
-    H := W * 100 div IR;
-    Y := Top + (NameCompartment.Top - Top - H) div 2;
-    X := Left;
+    //W := (Right - Left);
+    //H := W * 100 div IR;
+    //Y := Top + (NameCompartment.Top - Top - H) div 2;
+    //X := Left;
   end;
   // R := Rect(X, Y, X + W, Y + H);
   R := self.GetIconRect;  // trial
@@ -4549,11 +4549,12 @@ end;
 
 procedure DrawArtifact(Canvas: PCanvas; R: TRect);
 var
-  W, H: Integer;
+  //W, H: Integer;
+  W: Integer;
   X, Y: Integer;
 begin
   W := R.Right - R.Left;
-  H := R.Bottom - R.Top;
+  //H := R.Bottom - R.Top;
   X := R.Right - W * 30 div 100;
   Y := R.Top + W * 30 div 100;
   Canvas.Polygon([Point(R.Left, R.Top), Point(X, R.Top), Point(R.Right, Y), Point(R.Right, R.Bottom), Point(R.Left, R.Bottom)]);
@@ -7140,8 +7141,8 @@ end;
 
 procedure PUMLCustomSeqMessageView.RegulateSequenceNumber;
 var
-  FromLifeLine: PUMLLifeLineView;
-  FromActivation: PUMLActivationView;
+  //FromLifeLine: PUMLLifeLineView;
+  //FromActivation: PUMLActivationView;
   Sti: PUMLStimulus;
   Msg: PUMLMessage;
   Inter: PUMLInteraction;
@@ -7180,8 +7181,8 @@ begin
   Inter := nil;
 
 
-  FromLifeLine := Tail as PUMLLifeLineView;
-  FromActivation := FromLifeLine.GetActivationAt(Points.Points[0].Y);
+  //FromLifeLine := Tail as PUMLLifeLineView;
+  //FromActivation := FromLifeLine.GetActivationAt(Points.Points[0].Y);
   DgmView := GetDiagramView;
   if Model is PUMLStimulus then begin
     Sti := Model as PUMLStimulus;
@@ -7495,6 +7496,11 @@ begin
     Branch := (MessageOrStimulus as PUMLMessage).Branch;
     Return := (MessageOrStimulus as PUMLMessage).Return;
     Arguments := (MessageOrStimulus as PUMLMessage).Arguments;
+  end
+  else begin
+    Assert(False,'Unrecognized message type'); // Debug build
+    Result := 'Unrecognized message type';
+    Exit;
   end;
 
   // Sequence Number & Recurrence Part
@@ -8206,8 +8212,6 @@ end;
 // PUMLCustomColObjectView
 
 procedure PUMLCustomColObjectView.DrawObject(Canvas: PCanvas);
-var
-  R: TRect;
 begin
   AssignStyleToCanvas(Canvas);
   Canvas.Rectangle(Left, Top, Right, Bottom);
@@ -8285,7 +8289,7 @@ var
   M: PUMLObject;
 begin
   Result := False;
-  if (Model <> nil) and (M is PUMLObject) then begin
+  if Model is PUMLObject then begin
     M := Model as PUMLObject;
     if (M.Classifier <> nil) and (M.Classifier is PUMLClass) then
       Result := (M.Classifier as PUMLClass).IsActive;
@@ -8308,24 +8312,27 @@ var
   R: TRect;
 begin
   AssignStyleToCanvas(Canvas);
-  if Model <> nil then begin
+  if Assigned(Model) then begin
     M := Model as PUMLObject;
     if (M.Classifier <> nil) and (M.Classifier is PUMLActor) then begin
       DrawActorShapeObject(Canvas);
       Exit;
     end;
-  end;
+  end
+  else
+    M := nil;
+
   R.Left := Left;
   R.Top := Top;
   R.Right := Right;
   R.Bottom := Bottom;
-  if Model <> nil then begin
-    if M.IsMultiInstance then begin
-      Canvas.Rectangle(R.Left + MULTI_OBJECT_MARGIN, R.Top + MULTI_OBJECT_MARGIN,
-        R.Right + MULTI_OBJECT_MARGIN, R.Bottom + MULTI_OBJECT_MARGIN);
-    end;
-  end;
+
+  if Assigned(M) and M.IsMultiInstance then
+    Canvas.Rectangle(R.Left + MULTI_OBJECT_MARGIN, R.Top + MULTI_OBJECT_MARGIN,
+      R.Right + MULTI_OBJECT_MARGIN, R.Bottom + MULTI_OBJECT_MARGIN);
+
   Canvas.Rectangle(R.Left, R.Top, R.Right, R.Bottom);
+
   if IsActiveObject then begin
     Canvas.MoveTo(Left + CLASS_ACTIVE_VERTLINE_WIDTH, Top);
     Canvas.LineTo(Left + CLASS_ACTIVE_VERTLINE_WIDTH, Bottom);
@@ -8743,6 +8750,13 @@ begin
       tempHPointX := tempMiddleX - tempX;
       tempHPointY := tempMiddleY + tempY;
     end;
+  end
+  else begin
+    Assert(False, 'Unrecognized message type'); // Stop debug build
+    tempTPointX := 0; // Dummy values
+    tempTPointY := 0;
+    tempHPointX := 0;
+    tempHPointY := 0;
   end;
 
   FHeadPoint.X := Trunc(tempHPointX);
@@ -10950,7 +10964,7 @@ end;
 
 function PImageView.ImageDataValid: Boolean;
 begin
-  Result := (ImageData <> '');
+  Result := (FImageData <> '');
 end;
 
 procedure PImageView.SetMaintainAspectRatio(Value: Boolean);
