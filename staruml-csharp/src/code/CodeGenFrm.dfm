@@ -284,10 +284,10 @@ object CodeGenForm: TCodeGenForm
           Width = 233
           Height = 17
           Caption = 'Generate unnamed AssociationEnd'
-          Font.Charset = DEFAULT_CHARSET
+          Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = #44404#47548
+          Font.Height = -11
+          Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
           TabOrder = 0
@@ -298,25 +298,25 @@ object CodeGenForm: TCodeGenForm
           Width = 233
           Height = 17
           Caption = 'Generate documentation as C# Doc'
-          Font.Charset = DEFAULT_CHARSET
+          Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = #44404#47548
+          Font.Height = -11
+          Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
           TabOrder = 1
           OnClick = DocToDocChkBoxClick
         end
         object NilDocChk: TCheckBox
-          Left = 40
-          Top = 99
+          Left = 16
+          Top = 96
           Width = 209
           Height = 17
           Caption = 'Generate empty C# Doc'
-          Font.Charset = DEFAULT_CHARSET
+          Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = #44404#47548
+          Font.Height = -11
+          Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
           TabOrder = 2
@@ -370,6 +370,14 @@ object CodeGenForm: TCodeGenForm
           Height = 17
           Caption = 'Place opening curly brace "{" in the new line'
           TabOrder = 2
+        end
+        object OutputFileFormatUtf8ChkBox: TCheckBox
+          Left = 16
+          Top = 104
+          Width = 241
+          Height = 17
+          Caption = 'Create output file in Visual C# format (UTF-8)'
+          TabOrder = 3
         end
       end
       object HeaderCommentMemo: TMemo
@@ -511,7 +519,7 @@ object CodeGenForm: TCodeGenForm
     Left = 104
     Top = 384
     Bitmap = {
-      494C0101040009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -786,7 +794,7 @@ object CodeGenForm: TCodeGenForm
     Left = 72
     Top = 384
     Bitmap = {
-      494C0101070009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

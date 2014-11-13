@@ -80,7 +80,7 @@ function GetProgramName: string;
     procedure Write(const S: string); overload;
     procedure Write(const FormatStr: string; const Args: array of const); overload;
     procedure Append(Writer: PStringWriter);
-    procedure SaveToFile(FileName: string; DirectoryCreation: Boolean = True);
+    procedure SaveToFile(FileName: string; GenerateUtf8: Boolean = True; DirectoryCreation: Boolean = True);
     property IndentationCount: Integer read FIndentationCount write FIndentationCount;
     property TabToSpace: Boolean read FTabToSpace write FTabToSpace ;
     property SpaceCnt: Integer read FSpaceCnt write FSpaceCnt;
@@ -178,10 +178,7 @@ begin
 end;
 
 procedure PStringWriter.Write(const S: string);
-var
-  XStr : string;
 begin
-
   if not OnCurLine then
     Buffer.Add(GetIntentationStr + S)
   else begin
@@ -208,16 +205,26 @@ begin
     WriteLine(Writer.Buffer[I]);
 end;
 
-procedure PStringWriter.SaveToFile(FileName: string; DirectoryCreation: Boolean = True);
+procedure PStringWriter.SaveToFile(FileName: string; GenerateUtf8: Boolean = True;DirectoryCreation: Boolean = True);
 var
   Dir: string;
+  Writer: TStreamWriter;
 begin
  Dir := ExtractFilePath(FileName);
   if DirectoryCreation and not DirectoryExists(Dir) then
     if not ForceDirectories(Dir) then
       raise Exception.Create('Directory Create Error');
 
-  Buffer.SaveToFile(FileName);
+
+ if GenerateUtf8 then begin
+   // Create and use a stream writer
+   Writer := TStreamWriter.Create(FileName, False, TEncoding.UTF8);
+   Writer.Write(Buffer.Text);
+   Writer.Free();
+ end
+ else
+  Buffer.SaveToFile(FileName); // Classic ASCII save routine
+
 end;
 
 //  PStringWriter
