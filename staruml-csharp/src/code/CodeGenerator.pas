@@ -88,6 +88,7 @@ type
     FDocToDoc: Boolean;
     FNilDoc: Boolean;
     FTabToSpace: Boolean;
+    FGenerateUtf8: Boolean;
     FSpaceCnt: Integer;
     FBraceAtNewLine: Boolean;
     FCSharpFileExt: string;
@@ -188,6 +189,7 @@ type
     property DocToDoc: Boolean read FDocToDoc write FDocToDoc;
     property NilDoc: Boolean read FNilDoc write FNilDoc;
     property TabToSpace: Boolean read FTabToSpace write FTabToSpace;
+    property GenerateUtf8: Boolean read FGenerateUtf8 write FGenerateUtf8;
     property SpaceCnt: Integer read FSpaceCnt write FSpaceCnt;
     property HeaderComment: string read FHeaderComment write FHeaderComment;
     property CSharpFileExt: string read FCSharpFileExt write FCSharpFileExt;
@@ -1327,7 +1329,7 @@ procedure PCodeGenerator.CloseWriter(AClassifier: IUMLClassifier);
 begin
   if FMemberByFile then
   begin
-    FWriter.SaveToFile(GetOutputFilePath(AClassifier));
+    FWriter.SaveToFile(GetOutputFilePath(AClassifier),GenerateUtf8);
     FWriter.Clear;
   end
   else
@@ -1539,7 +1541,7 @@ begin
   if not FMemberByFile then
   begin
     if IsCancel then exit;
-    FWriter.SaveToFile(FBaseDirectory + '\' +FBasePackageElement.Name + FCSharpFileExt, True);
+    FWriter.SaveToFile(FBaseDirectory + '\' +FBasePackageElement.Name + FCSharpFileExt, GenerateUtf8, True);
     FWriter.Clear;
   end;
 

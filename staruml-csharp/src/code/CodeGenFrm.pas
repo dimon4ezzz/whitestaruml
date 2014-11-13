@@ -100,6 +100,7 @@ type
     CommentDescLabel: TLabel;
     CommentFlatPanel: TFlatPanel;
     HeaderDescMemo: TMemo;
+    OutputFileFormatUtf8ChkBox: TCheckBox;
     { Event Handlers for CodeGenForm }
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -301,6 +302,7 @@ begin
   NilDocChk.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPTION_CREATE_CSHARP_DOC_EMPTY);
   NewBraceChkBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPTION_BRACE_PUT_NEWLINE);
   TabSpaceChkBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPTION_SPACE_INSTEAD_TAB);
+  OutputFileFormatUtf8ChkBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPTION_GENERATE_UTF8);
   SpaceCntSpinEdit.Value := GetOptionValueAsInteger(OPTION_SCHEMA, OPTION_SPACE_MAGNITUDE);
   HeaderCommentMemo.Lines.Text := GetOptionValueAsString(OPTION_SCHEMA, OPTION_HEADER_COMMENT);
 end;
@@ -336,6 +338,7 @@ begin
   CodeGen.NilDoc := NilDocChk.Checked;
   CodeGen.BraceAtNewLine := NewBraceChkBox.Checked;
   CodeGen.TabToSpace := TabSpaceChkBox.Checked;
+  CodeGen.GenerateUtf8 := OutputFileFormatUtf8ChkBox.Checked;
   CodeGen.SpaceCnt := SpaceCntSpinEdit.Value;
   CodeGen.HeaderComment := HeaderCommentMemo.Text;
 end;
