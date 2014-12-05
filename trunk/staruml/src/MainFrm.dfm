@@ -4601,7 +4601,7 @@ object MainForm: TMainForm
     Filter = 'StarUML Project File(*.uml)|*.uml'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Title = 'Save As'
-    Left = 436
+    Left = 412
     Top = 104
   end
   object OpenDialog: TOpenDialog
@@ -10840,7 +10840,7 @@ object MainForm: TMainForm
     Filter = 'StarUML Model Fragment File(*.mfg)|*.mfg'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Title = 'Save Model Fragment'
-    Left = 516
+    Left = 524
     Top = 104
   end
   object ImportModelFragmentDialog: TOpenDialog
@@ -11014,11 +11014,12 @@ object MainForm: TMainForm
   object ExportDiagramDialog: TSaveDialogEx
     DefaultExt = 'jpg'
     Filter = 
-      'JPEG Image(*.jpg)|*.jpg|JPEG Image(*.jpeg)|*.jpeg|Bitmap Image(*' +
-      '.bmp)|*.bmp|Enhanced Metafile(*.emf)|*.emf|Metafile(*.wmf)|*.wmf'
+      'JPEG Image(*.jpg)|*.jpg|JPEG Image(*.jpeg)|*.jpeg|PNG Image(*.pn' +
+      'g)|*.png|Bitmap Image(*.bmp)|*.bmp|Enhanced Metafile(*.emf)|*.em' +
+      'f|Metafile(*.wmf)|*.wmf'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Title = 'Export Diagram'
-    Left = 556
+    Left = 596
     Top = 104
   end
   object OpenUnitDialog: TOpenDialog
