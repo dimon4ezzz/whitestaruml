@@ -311,9 +311,10 @@ type
     procedure LayoutDiagram(ADiagramView: PDiagramView);
     procedure LayoutActiveDiagram;
     procedure LayoutActiveDiagramWithValidation;
-    function SaveDiagramImageToBitmap(ADiagramView: PDiagramView; FileName: string): Boolean;
-    function SaveDiagramImageToJPEG(ADiagramView: PDiagramView; FileName: string): Boolean;
-    function SaveDiagramImageToMetafile(ADiagramView: PDiagramView; FileName: string; Enhanced: Boolean = False): Boolean;
+    class function SaveDiagramImageToBitmap(ADiagramView: PDiagramView; FileName: string; ConvertedImage: TGraphic = nil): Boolean;
+    class function SaveDiagramImageToJPEG(ADiagramView: PDiagramView; FileName: string): Boolean;
+    class function SaveDiagramImageToPNG(ADiagramView: PDiagramView; FileName: string): Boolean;
+    class function SaveDiagramImageToMetafile(ADiagramView: PDiagramView; FileName: string; Enhanced: Boolean = False): Boolean;
     // Model Related
     procedure ChangeModelName(AModel: PModel; Name: string);
     procedure ChangeModelStereotype(AExtensibleModel: PExtensibleModel; Profile, Stereotype: string);
@@ -429,8 +430,8 @@ var
 implementation
 
 uses
-  Windows, Dialogs, ShellAPI, System.UITypes, Jpeg, LogMgr, UMLVerify,
-  NLS_StarUML, MainFrm, MessageFrame;
+  Windows, Dialogs, ShellAPI, System.UITypes, Vcl.Imaging.Jpeg, Vcl.Imaging.pngimage,
+  LogMgr, UMLVerify, NLS_StarUML, MainFrm, MessageFrame;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -2544,7 +2545,7 @@ begin
  end;
 end;
 
- function PStarUMLApplication.SaveDiagramImageToBitmap(ADiagramView: PDiagramView; FileName: string): Boolean;
+class function PStarUMLApplication.SaveDiagramImageToBitmap(ADiagramView: PDiagramView; FileName: string; ConvertedImage: TGraphic = nil): Boolean;
 var
   ABitmap: Graphics.TBitmap;
 begin
@@ -2557,40 +2558,46 @@ begin
     ShowMessage(ERR_BITMAP_GEN_ERROR)
   else begin
     try
-      ABitmap.SaveToFile(FileName);
+      if Assigned(ConvertedImage) then begin
+        ConvertedImage.Assign(ABitmap);
+        ConvertedImage.SaveToFile(FileName);
+      end
+      else
+        ABitmap.SaveToFile(FileName);
       Result := True;
     finally
-      if ABitmap <> nil then ABitmap.Free;
+      ABitmap.Free;
     end;
   end;
 end;
 
-function PStarUMLApplication.SaveDiagramImageToJPEG(ADiagramView: PDiagramView; FileName: string): Boolean;
+class function PStarUMLApplication.SaveDiagramImageToJPEG(ADiagramView: PDiagramView; FileName: string): Boolean;
 var
   AJPEGImage: TJPEGImage;
-  ABitmap: Graphics.TBitmap;
 begin
-  Result := False;
-  if not Assigned(ADiagramView) then Exit;
-  if ADiagramView.OwnedViewCount <= 0 then Exit;
-  if FileName = '' then Exit;
-  AJPEGImage := TJPEGImage.Create;
-  ABitmap := BitmapFromDiagram(ADiagramView);
-  if ABitmap = nil then
-    ShowMessage(ERR_BITMAP_GEN_ERROR)
-  else begin
-    try
-      AJPEGImage.Assign(ABitmap);
-      AJPEGImage.SaveToFile(FileName);
-      Result := True;
-    finally
-      if ABitmap <> nil then ABitmap.Free;
-      AJPEGImage.Free;
-    end;
+  AJPEGImage := nil;
+  try
+    AJPEGImage := TJPEGImage.Create;
+    Result := SaveDiagramImageToBitmap(ADiagramView,FileName,AJPEGImage);
+  finally
+    AJPEGImage.Free;
   end;
 end;
 
-function PStarUMLApplication.SaveDiagramImageToMetafile(ADiagramView: PDiagramView;
+class function PStarUMLApplication.SaveDiagramImageToPNG(ADiagramView: PDiagramView; FileName: string): Boolean;
+var
+  APNGImage: TPngImage;
+begin
+  APNGImage := nil;
+  try
+    APNGImage := TPngImage.Create;
+    Result := SaveDiagramImageToBitmap(ADiagramView,FileName,APNGImage);
+  finally
+    APNGImage.Free;
+  end;
+end;
+
+class function PStarUMLApplication.SaveDiagramImageToMetafile(ADiagramView: PDiagramView;
     FileName: string; Enhanced: Boolean = False): Boolean;
 var
   AMetafile: TMetafile;

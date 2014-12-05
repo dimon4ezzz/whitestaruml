@@ -3950,14 +3950,15 @@ begin
     try
       if MainForm.ExportDiagramDialog.Execute then begin
         Idx := MainForm.ExportDiagramDialog.FilterIndex;
-        if (Idx = 1) or (Idx = 2) then // JPEG
-          StarUMLApplication.SaveDiagramImageToJPEG(ADiagramView, MainForm.ExportDiagramDialog.FileName)
-        else if Idx = 3 then           // BITMAP
-          StarUMLApplication.SaveDiagramImageToBitmap(ADiagramView, MainForm.ExportDiagramDialog.FileName)
-        else if Idx = 4 then           // METAFILE (Enhanced)
-          StarUMLApplication.SaveDiagramImageToMetafile(ADiagramView, MainForm.ExportDiagramDialog.FileName, True)
-        else if Idx = 5 then           // METAFILE
-          StarUMLApplication.SaveDiagramImageToMetafile(ADiagramView, MainForm.ExportDiagramDialog.FileName, False);
+        case Idx of
+          {JPEG} 1,2: StarUMLApplication.SaveDiagramImageToJPEG(ADiagramView, MainForm.ExportDiagramDialog.FileName);
+          {PNG} 3: StarUMLApplication.SaveDiagramImageToPNG(ADiagramView, MainForm.ExportDiagramDialog.FileName);
+          {BITMAP} 4: StarUMLApplication.SaveDiagramImageToBitmap(ADiagramView, MainForm.ExportDiagramDialog.FileName);
+          {METAFILE (Enhanced)} 5: StarUMLApplication.SaveDiagramImageToMetafile(ADiagramView, MainForm.ExportDiagramDialog.FileName, True);
+          {METAFILE} 6: StarUMLApplication.SaveDiagramImageToMetafile(ADiagramView, MainForm.ExportDiagramDialog.FileName, False)
+          else
+            Assert(False,'Unknown image export format');
+        end;
       end;
     except
       on SaveDialogEx.EDirectoryNotFound do MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
