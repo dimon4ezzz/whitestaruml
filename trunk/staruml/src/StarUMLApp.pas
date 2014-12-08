@@ -2550,19 +2550,22 @@ var
   ABitmap: Graphics.TBitmap;
 begin
   Result := False;
+  // Input data validation
   if not Assigned(ADiagramView) then Exit;
   if ADiagramView.OwnedViewCount <= 0 then Exit;
   if FileName = '' then Exit;
+
   ABitmap := BitmapFromDiagram(ADiagramView);
   if ABitmap = nil then
     ShowMessage(ERR_BITMAP_GEN_ERROR)
   else begin
     try
+      // If conversion object is provided, save image converting its format
       if Assigned(ConvertedImage) then begin
         ConvertedImage.Assign(ABitmap);
         ConvertedImage.SaveToFile(FileName);
       end
-      else
+      else // No conversion, plain bitmap
         ABitmap.SaveToFile(FileName);
       Result := True;
     finally
@@ -2611,7 +2614,7 @@ begin
     AMetafile.SaveToFile(FileName);
     Result := True;
   finally
-    if AMetafile <> nil then AMetafile.Free;
+    AMetafile.Free;
   end;
 end;
 
