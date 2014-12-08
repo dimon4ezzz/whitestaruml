@@ -48,9 +48,10 @@ unit DiagramExplorerFrame;
 interface
 
 uses
-  BasicClasses, Core, UMLModels,
+
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, FlatPanel, IniFiles, VirtualTrees, Menus, MenuManager;
+  Dialogs, ExtCtrls, Generics.Collections, VirtualTrees, Menus,
+  BasicClasses, Core, UMLModels, FlatPanel, MenuManager;
 
 type
   // PDiagramNodeData
@@ -88,8 +89,10 @@ type
     procedure PopupCutClick(Sender: TObject);
     procedure PopupCopyClick(Sender: TObject);
     procedure PopupDeleteFromModeClick(Sender: TObject);
+  private type
+    PNodeHashTable = TDictionary<string,PVirtualNode>;
   private
-    NodeHashTable: THashedStringList;
+    NodeHashTable: PNodeHashTable;
     ClassDiagramGroupNode: PVirtualNode;
     UseCaseDiagramGroupNode: PVirtualNode;
     SequenceDiagramGroupNode: PVirtualNode;
@@ -171,7 +174,7 @@ begin
   DiagramTree.NodeDataSize := SizeOf(TDiagramNodeData);
   DiagramTree.DoubleBuffered := True;
   InitializeNodes;
-  NodeHashTable := THashedStringList.Create;
+  NodeHashTable := PNodeHashTable.Create;
   NodeHashTable.Clear;
 end;
 
@@ -243,14 +246,10 @@ end;
 
 
 function TDiagramExplorerPanel.FindDiagramNode(ADiagram: PUMLDiagram): PVirtualNode;
-var
-  Idx: Integer;
 begin
-  Idx := NodeHashTable.IndexOf(ADiagram.GUID);
-  if Idx < 0 then
-    Result := nil
-  else
-    Result := PVirtualNode(NodeHashTable.Objects[Idx]);
+  Result := nil;
+  if Assigned(ADiagram) then
+    NodeHashTable.TryGetValue(ADiagram.GUID, Result);
 end;
 
 procedure TDiagramExplorerPanel.CreateDiagramNode(DiagramGroupNode: PVirtualNode; ADiagram: PUMLDiagram);
@@ -265,19 +264,17 @@ begin
     NodeData.Text := ADiagram.Name;
     NodeData.ImageIndex := GetDiagramNodeImageIndex(ADiagram);
     NodeData.Diagram := ADiagram;
-    NodeHashTable.AddObject(ADiagram.GUID, TObject(Node));
+    NodeHashTable.Add(ADiagram.GUID, Node);
   end;
 end;
 
 procedure TDiagramExplorerPanel.DeleteDiagramNode(ADiagram: PUMLDiagram);
 var
   Node: PVirtualNode;
-  Idx: Integer;
 begin
   Node := FindDiagramNode(ADiagram);
   DiagramTree.DeleteNode(Node);
-  Idx := NodeHashTable.IndexOf(ADiagram.GUID);
-  NodeHashTable.Delete(Idx);
+  NodeHashTable.Remove(ADiagram.GUID);
 end;
 
 procedure TDiagramExplorerPanel.PopupDeleteFromModeClick(Sender: TObject);
