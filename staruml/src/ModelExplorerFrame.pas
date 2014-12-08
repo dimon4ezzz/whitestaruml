@@ -562,7 +562,7 @@ begin
       DeleteNode(FirstChild);
     end;
     NodeData := ModelTree.GetNodeData(Node);
-    if NodeData.Model <> nil then
+    if Assigned(NodeData.Model) then
       NodeHashTable.Remove(NodeData.Model.GUID);
     ModelTree.DeleteNode(Node);
   end;
