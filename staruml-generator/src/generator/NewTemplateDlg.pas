@@ -47,8 +47,9 @@ unit NewTemplateDlg;
 
 interface
 
-uses Windows, SysUtils, Classes, Graphics, Forms, Controls, StdCtrls, 
-  Buttons, ExtCtrls, FlatPanel, ImgList, SsBase, StBrowsr;
+uses
+  Vcl.Forms, Vcl.Controls, Vcl.StdCtrls,  Vcl.ImgList, System.Classes,
+  Vcl.Buttons, Vcl.ExtCtrls, Vcl.Dialogs, JvBaseDlg, JvBrowseFolder;
 
 type
   TNewTemplateDialog = class(TForm)
@@ -57,12 +58,12 @@ type
     OKButton: TButton;
     CancelButton: TButton;
     BottomBevel: TBevel;
-    FolderBrowser: TStBrowser;
     TemplateNameLabel: TLabel;
     TemplateNameEdit: TEdit;
     FolderLabel: TLabel;
     FolderEdit: TEdit;
     SpeedButton1: TSpeedButton;
+    FolderBrowser: TJvBrowseForFolderDialog;
     procedure TemplateNameEditKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure FolderTBItemClick(Sender: TObject);
@@ -92,16 +93,18 @@ implementation
 
 procedure TNewTemplateDialog.ChangePath;
 begin
-  FPath := FolderBrowser.SelectedFolder + '\' + TemplateNameEdit.Text;
+  FPath := FolderBrowser.Directory + '\' + TemplateNameEdit.Text;
   FolderEdit.Text := FPath;
+
 end;
 
 function TNewTemplateDialog.Execute: Boolean;
 begin
   TemplateNameEdit.Text := '';
   FolderEdit.Text := RootDir;
-  FolderBrowser.RootFolder := RootDir;
-  FolderBrowser.SelectedFolder := RootDir;
+  FolderBrowser.RootDirectoryPath := RootDir;
+  FolderBrowser.Directory := RootDir;
+
   Result := (ShowModal = mrOK);
 end;
 
@@ -122,7 +125,7 @@ procedure TNewTemplateDialog.FolderTBItemClick(Sender: TObject);
 begin
 //  FolderBrowser.
   if not FolderBrowser.Execute then
-    FolderBrowser.SelectedFolder := FolderBrowser.RootFolder
+    FolderBrowser.Directory := FolderBrowser.RootDirectoryPath
   else
     ChangePath;
 end;

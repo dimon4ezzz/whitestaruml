@@ -46,8 +46,7 @@ library Generator;
 {******************************************************************************}
 
 uses
-  ComServ,
-  WSGenerator_TLB in 'WSGenerator_TLB.pas',
+  System.Win.ComServ,
   DirectMDAProc in 'DirectMDAProc.pas' {GeneratorProcessor: CoClass},
   HashTable in 'HashTable.pas' {HashTable: CoClass},
   DirectMDAObjects in 'DirectMDAObjects.pas',
