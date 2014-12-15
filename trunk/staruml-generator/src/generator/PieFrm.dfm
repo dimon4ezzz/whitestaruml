@@ -746,7 +746,7 @@ object PieForm: TPieForm
             OnClick = CloneTemplateButtonClick
           end
           object ModifyTemplateButton: TButton
-            Left = 464
+            Left = 465
             Top = 8
             Width = 129
             Height = 23

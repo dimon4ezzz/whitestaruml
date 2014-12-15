@@ -56,7 +56,7 @@ uses
   dxBar, Menus, ShellAPI, JvExControls, JvComponent, cxPCdxBarPopupMenu,
   cxControls, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, cxClasses,
   Winapi.ShlObj, cxShellCommon, cxContainer, cxEdit, cxTreeView, cxShellTreeView,
-  cxShellListView;
+  cxShellListView, dxBarBuiltInMenu;
 
 const
   ERR_ERROR_ON_PROCESSOR = 'Error occurs for executing document translator.'
@@ -392,7 +392,7 @@ begin
   BatchFrame.Name := IssueFrameName;
   BatchFrame.Parent := BatchTabSheet;
   BatchFrame.StarUMLApp := FStarUMLApp;
-  BatchFrame.OnUpdateUIStates := HandleBatchPageUpdateUIStates;  
+  BatchFrame.OnUpdateUIStates := HandleBatchPageUpdateUIStates;
   BatchFrame.Initialize(DirectMDAProcessor, ABatch);
   Result := BatchTabSheet;
 end;
@@ -432,10 +432,20 @@ end;
 procedure TPieForm.SetupBatches;
 var
   I: Integer;
+  Batch: PBatch;
+  TabSheet: TcxTabSheet;
 begin
   UpdateDefaultBatchPage;
-  for I := 0 to DirectMDAProcessor.BatchCount - 1 do
-    AddBatchPage(DirectMDAProcessor.Batches[I]);
+  for I := 0 to DirectMDAProcessor.BatchCount - 1 do begin
+    Batch := DirectMDAProcessor.Batches[I];
+    Assert(Batch <> nil,'Inconsistent batch number');
+    TabSheet := FindBatchPage(Batch);
+    if Assigned(TabSheet) then begin // Clean old tabsheets
+      BatchPageControl.RemoveControl(TabSheet);
+      TabSheet.Free;
+    end;
+    AddBatchPage(Batch);
+  end;
 end;
 
 function TPieForm.FindBatchPage(ABatch: PBatch): TcxTabSheet;
@@ -896,7 +906,7 @@ begin
         except
           on E: Exception do begin
             ErrorMessage(Format(ERR_FAILED_TO_MODIFY_BATCH, [E.Message]));
-          end;    
+          end;
         end;
       end;
     finally
@@ -922,7 +932,7 @@ begin
     except
       on E: Exception do begin
         ErrorMessage(Format(ERR_FAILED_TO_DELETE_BATCH, [E.Message]));
-      end;    
+      end;
     end;
   end;
 end;
@@ -1138,8 +1148,8 @@ begin
           Initialize;
           SetupBatches;
           UpdateUIStates;
-        except
-          MessageDlg('Template can''t be copied.', mtError, [mbOk], 0);
+        except on E:Exception do
+          MessageDlg('Template cannot be copied: ' + E.Message, mtError, [mbOk], 0);
         end;
       end;
       Free;
@@ -1154,7 +1164,7 @@ var
   ScriptObj: Variant;
 begin
   if (TasksGrid.SelectedCount = 1) and (TasksGrid.SelectedRow <> -1) then
-    if MessageDlg('Do you delete all the file related to selected templates?',
+    if MessageDlg('Do you want to delete all files related to selected templates?',
                   mtInformation, [mbYes, mbNo], 0) = mrYes then begin
 
       try
@@ -1228,11 +1238,11 @@ end;
 
 procedure TPieForm.OpenTemplate;
 var
-  RootPath, Path: String;
+  Path: String;
   GenUnit: PGenerationUnit;
-  I, C: Integer;
+  I: Integer;
 //  A: array[0..1000] of Char;
-  Ext, command: String;
+  Ext: string;
   T: PTask;
 begin
   if (TasksGrid.SelectedCount = 1) and (TasksGrid.SelectedRow <> -1) then begin

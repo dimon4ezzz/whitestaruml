@@ -55,7 +55,7 @@ uses
   WhiteStarUML_TLB;
 
 const
-  QUERY_DELETE_SELECTED_TASKS = 'Do you delete the selected templates from current batch?';
+  QUERY_DELETE_SELECTED_TASKS = 'Do you want to delete the selected templates from current batch?';
 
 type
   // TBatchFrame
