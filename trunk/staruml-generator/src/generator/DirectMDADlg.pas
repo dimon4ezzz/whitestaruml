@@ -73,7 +73,7 @@ var
 implementation
 
 uses
-  Forms, ComServ, Dialogs, Symbols,
+  Forms, System.Win.ComServ, Dialogs, Symbols,
   PieFrm, Utilities;
 
 procedure TGeneratorApplication.Initialize;

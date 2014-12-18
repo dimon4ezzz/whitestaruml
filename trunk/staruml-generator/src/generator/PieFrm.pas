@@ -55,29 +55,29 @@ uses
   JvWizard, ComCtrls, ShellCtrls, ImgList, ExtCtrls, WhiteStarUML_TLB, FlatPanel,
   dxBar, Menus, ShellAPI, JvExControls, JvComponent, cxPCdxBarPopupMenu,
   cxControls, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, cxClasses,
-  Winapi.ShlObj, cxShellCommon, cxContainer, cxEdit, cxTreeView, cxShellTreeView,
-  cxShellListView, dxBarBuiltInMenu;
+  dxBarBuiltInMenu, Winapi.ShlObj, Vcl.ButtonGroup, Vcl.Mask,
+  JvExMask, JvToolEdit;
 
 const
-  ERR_ERROR_ON_PROCESSOR = 'Error occurs for executing document translator.'
+  ERR_ERROR_ON_PROCESSOR = 'Error occured while executing document translator.'
         + #13#10 + 'Reason : %s';
   TXT_ALL_GROUP = '(all group)';
   TXT_ALL_CATEGORY = '(all category)';
   TXT_ALL_DOCTYPE = '(all doc. type)';
   TXT_ALL_FORMAT = '(all format)';
   TXT_WAITING = 'Standing by...';
-  ERR_CANNOT_FOUND_TDF = 'Template definition file is not found. (%s)';
-  ERR_FAILED_TO_REGISTER_BATCH = 'Registering Batch is failed.' + #13#10 + 'Reason : %s';
-  ERR_FAILED_TO_ADD_BATCH_ITEM = 'Adding item is failed.' + #13#10 + 'Reason : %s';
-  ERR_REGISTER_TEMPLATE = 'Registering new template is failed.' + #13#10 + 'Reason : %s';
-  ERR_ON_GENERATING = 'Error occurs for generating document.' + #13#10 + 'Reason : %s';
+  ERR_CANNOT_FOUND_TDF = 'Template definition file not found. (%s)';
+  ERR_FAILED_TO_REGISTER_BATCH = 'Registering Batch failed.' + #13#10 + 'Reason : %s';
+  ERR_FAILED_TO_ADD_BATCH_ITEM = 'Adding item failed.' + #13#10 + 'Reason : %s';
+  ERR_REGISTER_TEMPLATE = 'Registering new template failed.' + #13#10 + 'Reason : %s';
+  ERR_ON_GENERATING = 'Error occured while generating document.' + #13#10 + 'Reason : %s';
   MSG_GENERATION_COMPLETE = 'Document generation is done.';
-  ERR_CANNOT_CREATE_NEW_FOLDER = 'New folder can''t be created.';
-  ERR_FAILED_TO_NEW_BATCH = 'Creating new batch is failed.' + #13#10 + 'Reason : %s';
-  ERR_FAILED_TO_MODIFY_BATCH = 'Modifying batch is failed.' + #13#10 + 'Reason : %s';
-  ERR_FAILED_TO_DELETE_BATCH = 'Deleting batch is failed.' + #13#10 + 'Reason : %s';
-  QUERY_ABORT_GENERATING = 'Do you cancel to generate document?'
-    + #13#10 + 'Already generated document is not deleted.';
+  ERR_CANNOT_CREATE_NEW_FOLDER = 'New folder cannot be created.';
+  ERR_FAILED_TO_NEW_BATCH = 'Creating new batch failed.' + #13#10 + 'Reason : %s';
+  ERR_FAILED_TO_MODIFY_BATCH = 'Modifying batch failed.' + #13#10 + 'Reason : %s';
+  ERR_FAILED_TO_DELETE_BATCH = 'Deleting batch failed.' + #13#10 + 'Reason : %s';
+  QUERY_ABORT_GENERATING = 'Do you want to cancel document generation?'
+    + #13#10 + 'Already generated documents will not be deleted.';
   MSG_GENERATION_ABORTED = 'Document generation is canceled by user request.';
   ERR_CANNOT_OPEN_FILE = '%s file can''t be opened.' + #13#10 + 'Reason : %s';
   TXT_ON_GENERATING = 'Generating...';
@@ -96,7 +96,6 @@ type
     MainTabSheet: TcxTabSheet;
     OutDirectorySelectionPage: TJvWizardInteriorPage;
     Label2: TLabel;
-    NewFolderButton: TButton;
     ExecutionPage: TJvWizardInteriorPage;
     ExecTasksGrid: TNextGrid;
     GenerationItemsLabel: TLabel;
@@ -156,7 +155,9 @@ type
     FormatColumn: TNxTextColumn;
     TutorialColumn: TNxImageColumn;
     ParametersColumn: TNxImageColumn;
-    OutputDirShellTreeView: TcxShellTreeView;
+    OutputDirEdit: TJvDirectoryEdit;
+    GroupBox1: TGroupBox;
+    QuickDirButtonGroup: TButtonGroup;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TasksGridDblClick(Sender: TObject);
@@ -164,8 +165,6 @@ type
     procedure AppendToBatchButtonClick(Sender: TObject);
     procedure TasksGridChange(Sender: TObject; ACol, ARow: Integer);
     procedure RegisterTemplateButtonClick(Sender: TObject);
-    procedure OutDirectorySelectionPageNextButtonClick(Sender: TObject;
-      var Stop: Boolean);
     procedure ExecutionPagePage(Sender: TObject);
     procedure TasksGridCellClick(Sender: TObject; ACol, ARow: Integer);
     procedure BatchPageControlChange(Sender: TObject);
@@ -177,7 +176,6 @@ type
     procedure ExecutionPageFinishButtonClick(Sender: TObject;
       var Stop: Boolean);
     procedure HeartBeatTimerTimer(Sender: TObject);
-    procedure NewFolderButtonClick(Sender: TObject);
     procedure ExecutionPageNextButtonClick(Sender: TObject;
       var Stop: Boolean);
     procedure FormShow(Sender: TObject);
@@ -195,9 +193,15 @@ type
     procedure DeleteTemplatePopUpMenuItemClick(Sender: TObject);
     procedure OpenTemplatePopUpMenuItemClick(Sender: TObject);
     procedure OutputDirShellTreeViewChange(Sender: TObject; Node: TTreeNode);
-    procedure OutputDirShellTreeViewEnter(Sender: TObject);
-  private type
-    TcxShellTreeViewAccess = class(TcxShellTreeView);
+    procedure OutputDirEditMouseEnter(Sender: TObject);
+    procedure OutputDirEditChange(Sender: TObject);
+    procedure QuickDirButtonGroupItems0Click(Sender: TObject);
+    procedure QuickDirButtonGroupItems1Click(Sender: TObject);
+    procedure QuickDirButtonGroupItems2Click(Sender: TObject);
+    procedure OutDirectorySelectionPageEnterPage(Sender: TObject;
+      const FromPage: TJvWizardCustomPage);
+    procedure OutDirectorySelectionPageExitPage(Sender: TObject;
+      const FromPage: TJvWizardCustomPage);
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -205,7 +209,8 @@ type
     ActiveTaskRow: Integer;
     InGenerating: Boolean;
     FStarUMLApp: IStarUMLApplication;
-    class var LastDirPIDL: PItemIDList;
+    //class var LastDirPIDL: PItemIDList;
+    class var LastOutputDir: string;
 
     { initialization & finalization methods }
     procedure Initialize;
@@ -242,7 +247,6 @@ type
     procedure ShowTaskProperties;
     procedure ShowTaskDescription;
     procedure PreviewTemplate;
-    procedure CreateNewFolder;
     procedure CreateNewBatch;
     procedure EditBatch;
     procedure DeleteBatch;
@@ -272,6 +276,12 @@ type
     procedure UpdateUIStatesOutDirectorySelectionPage;
     procedure UpdateUIStatesExecutionPage;
     procedure UpdateUIStates;
+
+    function FolderIsValid: Boolean;
+    procedure ValidateOutDirectorySelectionPageNextButton;
+    procedure SelectSpecialFolderDesktop;
+    procedure SelectSpecialFolderMyDocs;
+    procedure SelectSpecialFolderHome;
   public
     property StarUMLApp: IStarUMLApplication read FStarUMLApp write FStarUMLApp;
   end;
@@ -281,8 +291,24 @@ implementation
 {$R *.dfm}
 
 uses
+  Winapi.ActiveX,
   TaskInfoFrm, TemplateRegFrm, BatchRegisterFrm, BatchSelFrm, PreviewFrm,
   NewFolderFrm, Utilities, Symbols, NewTemplateDlg, Serializers;
+
+
+function GetSpecialFolderPath(const FolderGuid: TGUID): string;
+var
+  OutPtr : PWideChar;
+  CallResult: HRESULT;
+begin
+  CallResult := SHGetKnownFolderPath(FolderGuid, 0, 0, OutPtr);
+  if CallResult = S_OK then begin
+    Result := OutPtr;
+    CoTaskMemFree(OutPtr);
+  end
+  else
+    Result := '';
+end;
 
 ////////////////////////////////////////////////////////////////////////////////
 // TPieForm
@@ -756,6 +782,28 @@ begin
   UpdateTasksGrid;
 end;
 
+procedure TPieForm.SelectSpecialFolderDesktop;
+const
+  FOLDERID_Desktop : TGUID = '{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}';
+begin
+  OutputDirEdit.Directory := GetSpecialFolderPath(FOLDERID_Desktop);
+end;
+
+procedure TPieForm.SelectSpecialFolderHome;
+const
+  FOLDERID_Profile : TGUID = '{5E6C858F-0E22-4760-9AFE-EA3317B67173}';
+begin
+  // Home
+  OutputDirEdit.Directory := GetSpecialFolderPath(FOLDERID_Profile);
+end;
+
+procedure TPieForm.SelectSpecialFolderMyDocs;
+const
+  FOLDERID_Documents : TGUID = '{FDD39AD0-238F-46AF-ADB4-6C85480369C7}';
+begin
+  OutputDirEdit.Directory := GetSpecialFolderPath(FOLDERID_Documents);
+end;
+
 procedure TPieForm.DeselectAllTasks;
 var
   T: PTask;
@@ -817,40 +865,6 @@ begin
       PreviewForm.Free;
       Images.Free;
     end;
-  end;
-end;
-
-procedure TPieForm.CreateNewFolder;
-var
-  NewFolderForm: TNewFolderForm;
-  NewDir: string;
-
-  ANewFolderName, ANewFolderPath: string;
-  ANewFolderRelativePidl: PItemIDList;
-  AShellFolder: IShellFolder;
-begin
-  NewFolderForm := TNewFolderForm.Create(Self);
-  try
-    if NewFolderForm.Execute then begin
-      try
-        ANewFolderName := NewFolderForm.FolderName;
-        ANewFolderPath := IncludeTrailingPathDelimiter(OutputDirShellTreeView.Path) + ANewFolderName;
-        if not ForceDirectories(ANewFolderPath) then
-           raise exception.createFmt('New Folder "%s" could not be created.', [NewDir]);
-      except
-        ErrorMessage(ERR_CANNOT_CREATE_NEW_FOLDER);
-      end;
-
-      OutputDirShellTreeView.UpdateContent;
-      Application.ProcessMessages;
-      AShellFolder := OutputDirShellTreeView.Folders[OutputDirShellTreeView.InnerTreeView.Selected.AbsoluteIndex].ShellFolder;
-      ANewFolderRelativePidl := InternalParseDisplayName(AShellFolder, ANewFolderName, TcxShellTreeViewAccess(OutputDirShellTreeView).GetViewOptions);
-      OutputDirShellTreeView.AbsolutePIDL := ConcatenatePidls(OutputDirShellTreeView.AbsolutePIDL, ANewFolderRelativePidl);
-      OutputDirShellTreeView.SetFocus;
-
-    end;
-  finally
-    NewFolderForm.Free;
   end;
 end;
 
@@ -1073,12 +1087,17 @@ begin
     TemplateSelectionPage.EnabledButtons := TemplateSelectionPage.EnabledButtons - [bkNext];
 end;
 
+procedure TPieForm.ValidateOutDirectorySelectionPageNextButton;
+begin
+  if FolderIsValid then
+    OutDirectorySelectionPage.EnabledButtons := ExecutionPage.EnabledButtons + [bkNext]
+  else
+    OutDirectorySelectionPage.EnabledButtons := ExecutionPage.EnabledButtons - [bkNext];
+end;
+
 procedure TPieForm.UpdateUIStatesOutDirectorySelectionPage;
 begin
-  if (OutputDirShellTreeView.Path <> '')  then
-    OutDirectorySelectionPage.EnabledButtons := OutDirectorySelectionPage.EnabledButtons + [bkNext]
-  else
-    OutDirectorySelectionPage.EnabledButtons := OutDirectorySelectionPage.EnabledButtons - [bkNext];
+  ValidateOutDirectorySelectionPageNextButton;
 end;
 
 procedure TPieForm.UpdateUIStatesExecutionPage;
@@ -1164,8 +1183,8 @@ var
   ScriptObj: Variant;
 begin
   if (TasksGrid.SelectedCount = 1) and (TasksGrid.SelectedRow <> -1) then
-    if MessageDlg('Do you want to delete all files related to selected templates?',
-                  mtInformation, [mbYes, mbNo], 0) = mrYes then begin
+    if MessageDlg('Do you want to delete selected template and all related files?',
+                  mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
 
       try
         // Clone selected template to new path
@@ -1183,11 +1202,9 @@ begin
         SetupBatches;
         UpdateUIStates;
       except
-        MessageDlg('Template can''t be deleted.', mtError, [mbOk], 0);
+        MessageDlg('Template cannot be deleted.', mtError, [mbOk], 0);
       end;
     end
-  else
-    MessageDlg('Select template to be deleted.', mtWarning, [mbOk], 0);
 end;
 
 procedure TPieForm.ModifyTemplate;
@@ -1369,26 +1386,38 @@ begin
   UpdateUIStates;
 end;
 
-procedure TPieForm.OutDirectorySelectionPageNextButtonClick(
-  Sender: TObject; var Stop: Boolean);
+procedure TPieForm.OutDirectorySelectionPageEnterPage(Sender: TObject;
+  const FromPage: TJvWizardCustomPage);
 begin
-  DirectMDAProcessor.TargetDir := OutputDirShellTreeView.Path;
-  LastDirPIDL := OutputDirShellTreeView.AbsolutePIDL;
-  // need more consideration
+  OutputDirEdit.Directory := LastOutputDir;
+  ValidateOutDirectorySelectionPageNextButton;
+end;
+
+procedure TPieForm.OutDirectorySelectionPageExitPage(Sender: TObject;
+  const FromPage: TJvWizardCustomPage);
+begin
+  LastOutputDir := OutputDirEdit.Directory;
+  if FolderIsValid then
+    DirectMDAProcessor.TargetDir := LastOutputDir;
+end;
+
+procedure TPieForm.OutputDirEditChange(Sender: TObject);
+begin
+  ValidateOutDirectorySelectionPageNextButton;
+end;
+
+procedure TPieForm.OutputDirEditMouseEnter(Sender: TObject);
+begin
+  if FolderIsValid then
+    OutputDirEdit.Hint := 'Folder is valid'
+  else
+    OutputDirEdit.Hint := 'Folder is invalid';
 end;
 
 procedure TPieForm.OutputDirShellTreeViewChange(Sender: TObject;
   Node: TTreeNode);
 begin
   UpdateUIStatesOutDirectorySelectionPage;
-end;
-
-procedure TPieForm.OutputDirShellTreeViewEnter(Sender: TObject);
-begin
-  if Assigned(LastDirPIDL) then begin
-    OutputDirShellTreeView.AbsolutePIDL := ConcatenatePidls(OutputDirShellTreeView.AbsolutePIDL, LastDirPIDL);
-    OutputDirShellTreeView.SetFocus;
-  end;
 end;
 
 procedure TPieForm.ExecutionPagePage(Sender: TObject);
@@ -1459,6 +1488,11 @@ begin
   UpdateUIStates;
 end;
 
+function TPieForm.FolderIsValid: Boolean;
+begin
+  Result := System.SysUtils.DirectoryExists(OutputDirEdit.Directory);
+end;
+
 procedure TPieForm.FormatComboBoxChange(Sender: TObject);
 begin
   UpdateTasksGrid;
@@ -1477,17 +1511,27 @@ begin
   Application.ProcessMessages;
 end;
 
-procedure TPieForm.NewFolderButtonClick(Sender: TObject);
-begin
-  CreateNewFolder;
-  UpdateUIStates;
-end;
-
 procedure TPieForm.BatchPageControlMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   if Button = mbRight then
     BatchPopupMenu.PopupFromCursorPos;
+end;
+
+procedure TPieForm.QuickDirButtonGroupItems0Click(Sender: TObject);
+begin
+  SelectSpecialFolderDesktop;
+end;
+
+procedure TPieForm.QuickDirButtonGroupItems1Click(Sender: TObject);
+begin
+  SelectSpecialFolderMyDocs;
+end;
+
+procedure TPieForm.QuickDirButtonGroupItems2Click(Sender: TObject);
+begin
+  // Home
+  SelectSpecialFolderHome;
 end;
 
 procedure TPieForm.AddBatchMenuClick(Sender: TObject);
@@ -1548,7 +1592,5 @@ begin
   OpenTemplate;
 end;
 
-initialization
-TPieForm.LastDirPIDL := nil;
 
 end.

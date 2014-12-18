@@ -188,7 +188,7 @@ implementation
 
 uses
   Serializers, Symbols, Utilities,
-  ComServ, SysUtils, Dialogs, Forms, DateUtils, ShellAPI, Windows,
+  System.Win.ComServ, SysUtils, Dialogs, Forms, DateUtils, ShellAPI, Windows,
   WSExcelTranslator_TLB, WSPowerPointTranslator_TLB,
   WSTextTranslator_TLB, WSWordTranslator_TLB;
 

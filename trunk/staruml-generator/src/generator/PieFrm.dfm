@@ -1,7 +1,7 @@
 object PieForm: TPieForm
   Left = 285
   Top = 142
-  ActiveControl = BatchPageControl
+  ActiveControl = OutputDirEdit
   BorderStyle = bsDialog
   Caption = 'WhiteStarUML Generator'
   ClientHeight = 498
@@ -26,7 +26,7 @@ object PieForm: TPieForm
     Top = 0
     Width = 721
     Height = 498
-    ActivePage = TemplateSelectionPage
+    ActivePage = OutDirectorySelectionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = '<< &Start page'
     ButtonStart.NumGlyphs = 1
@@ -485,6 +485,8 @@ object PieForm: TPieForm
             Top = 65
             Width = 697
             Height = 201
+            Touch.InteractiveGestures = [igPan, igPressAndTap]
+            Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
             AppearanceOptions = [aoAlphaBlendedSelection, aoIndicateSortedColumn]
             AutoScroll = True
             Caption = ''
@@ -500,8 +502,6 @@ object PieForm: TPieForm
             PopupMenu = TemplatePopupMenu
             TabOrder = 3
             TabStop = True
-            Touch.InteractiveGestures = [igPan, igPressAndTap]
-            Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
             OnCellClick = TasksGridCellClick
             OnChange = TasksGridChange
             OnDblClick = TasksGridDblClick
@@ -514,6 +514,11 @@ object PieForm: TPieForm
               Font.Name = 'Tahoma'
               Font.Style = []
               Header.DisplayMode = dmImageOnly
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = -11
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
               Options = [coCanClick, coCanInput, coEditing, coEditorAutoSelect, coFixedSize]
               ParentFont = False
               Position = 0
@@ -529,6 +534,11 @@ object PieForm: TPieForm
               Font.Name = 'Tahoma'
               Font.Style = []
               Header.Caption = 'Group'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = -11
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
               Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
               ParentFont = False
               Position = 1
@@ -544,6 +554,11 @@ object PieForm: TPieForm
               Font.Name = 'Tahoma'
               Font.Style = []
               Header.Caption = 'Category'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = -11
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
               Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
               ParentFont = False
               Position = 2
@@ -587,6 +602,11 @@ object PieForm: TPieForm
                 C8D0D4C8D0D4C8D0D4C8D0D4C9D1D4C5AEA7C69B8ACA9982CC9B82CBA08EC6AC
                 A6C9D1D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8
                 D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = -11
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
               Options = [coCanClick, coCanInput, coEditorAutoSelect, coFixedSize]
               ParentFont = False
               Position = 3
@@ -602,7 +622,12 @@ object PieForm: TPieForm
               Font.Height = 14
               Font.Name = 'Tahoma'
               Font.Style = []
-              Header.Caption = 'Document Name'
+              Header.Caption = 'Template Name'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = -11
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
               Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
               ParentFont = False
               Position = 4
@@ -619,6 +644,11 @@ object PieForm: TPieForm
               Font.Name = 'Tahoma'
               Font.Style = []
               Header.Caption = 'Doc. Type'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = -11
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
               Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
               ParentFont = False
               Position = 5
@@ -634,6 +664,11 @@ object PieForm: TPieForm
               Font.Name = 'Tahoma'
               Font.Style = []
               Header.Caption = 'Format'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = -11
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
               Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
               ParentFont = False
               Position = 6
@@ -648,6 +683,11 @@ object PieForm: TPieForm
               Font.Name = 'Tahoma'
               Font.Style = []
               Header.Caption = 'Tutorial'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = -11
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
               ParentFont = False
               Position = 7
               SortType = stNumeric
@@ -661,6 +701,11 @@ object PieForm: TPieForm
               Font.Name = 'Tahoma'
               Font.Style = []
               Header.Caption = 'Opt.'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = -11
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
               ParentFont = False
               Position = 8
               SortType = stNumeric
@@ -786,12 +831,11 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Height = 12
       Header.Subtitle.Font.Name = #44404#47548
       Header.Subtitle.Font.Style = []
-      OnNextButtonClick = OutDirectorySelectionPageNextButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
+      OnEnterPage = OutDirectorySelectionPageEnterPage
+      OnExitPage = OutDirectorySelectionPageExitPage
       object Label2: TLabel
-        Left = 8
-        Top = 88
+        Left = 26
+        Top = 104
         Width = 70
         Height = 14
         Caption = 'Target Path:'
@@ -1148,32 +1192,56 @@ object PieForm: TPieForm
           00002701FFFF030000000000}
         Stretch = True
       end
-      object NewFolderButton: TButton
-        Left = 3
-        Top = 422
-        Width = 100
-        Height = 23
-        Caption = 'New Folder...'
-        TabOrder = 1
-        OnClick = NewFolderButtonClick
-      end
-      object OutputDirShellTreeView: TcxShellTreeView
-        Left = 8
-        Top = 108
-        Width = 710
-        Height = 308
-        HideSelection = False
-        Indent = 19
-        Options.ShowNonFolders = False
-        RightClickSelect = True
-        Style.BorderStyle = cbsNone
-        Style.LookAndFeel.Kind = lfStandard
-        StyleDisabled.LookAndFeel.Kind = lfStandard
-        StyleFocused.LookAndFeel.Kind = lfStandard
-        StyleHot.LookAndFeel.Kind = lfStandard
+      object OutputDirEdit: TJvDirectoryEdit
+        Left = 26
+        Top = 124
+        Width = 609
+        Height = 22
+        AcceptFiles = False
+        DialogKind = dkWin32
+        DialogOptionsWin32 = [odOnlyDirectory, odFileSystemDirectoryOnly, odStatusAvailable, odNewDialogStyle]
+        ButtonHint = 'Select or create folder'
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 0
-        OnChange = OutputDirShellTreeViewChange
-        OnEnter = OutputDirShellTreeViewEnter
+        Text = ''
+        OnChange = OutputDirEditChange
+        OnMouseEnter = OutputDirEditMouseEnter
+      end
+      object GroupBox1: TGroupBox
+        Left = 26
+        Top = 184
+        Width = 121
+        Height = 105
+        Caption = 'Quick Directories'
+        TabOrder = 1
+        object QuickDirButtonGroup: TButtonGroup
+          Left = 2
+          Top = 27
+          Width = 117
+          Height = 76
+          Align = alBottom
+          ButtonOptions = [gboAllowReorder, gboFullSize, gboShowCaptions]
+          Items = <
+            item
+              Caption = 'Desktop'
+              Hint = 'Create document on the desktop'
+              OnClick = QuickDirButtonGroupItems0Click
+            end
+            item
+              Caption = 'My Documents'
+              Hint = 'Create document in the '#39'My Documents'#39' folder '
+              OnClick = QuickDirButtonGroupItems1Click
+            end
+            item
+              Caption = 'Home Folder'
+              Hint = 'Create document in the user home folder '
+              OnClick = QuickDirButtonGroupItems2Click
+            end>
+          ShowHint = True
+          TabOrder = 0
+          ExplicitWidth = 143
+        end
       end
     end
     object ExecutionPage: TJvWizardInteriorPage
@@ -1200,8 +1268,6 @@ object PieForm: TPieForm
       OnPage = ExecutionPagePage
       OnNextButtonClick = ExecutionPageNextButtonClick
       OnFinishButtonClick = ExecutionPageFinishButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object GenerationItemsLabel: TLabel
         Left = 8
         Top = 88
@@ -1587,12 +1653,12 @@ object PieForm: TPieForm
         Top = 108
         Width = 705
         Height = 185
+        Touch.InteractiveGestures = [igPan, igPressAndTap]
+        Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
         Caption = ''
         Options = [goGrid, goHeader, goSelectFullRow]
         TabOrder = 0
         TabStop = True
-        Touch.InteractiveGestures = [igPan, igPressAndTap]
-        Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
         OnDblClick = ExecTasksGridDblClick
         object ExecStateColumn: TNxImageColumn
           DefaultValue = '0'
@@ -1603,6 +1669,11 @@ object PieForm: TPieForm
           Font.Name = 'Tahoma'
           Font.Style = []
           Header.DisplayMode = dmImageOnly
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = -11
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
           Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coFixedSize]
           ParentFont = False
           Position = 0
@@ -1617,6 +1688,11 @@ object PieForm: TPieForm
           Font.Name = 'Tahoma'
           Font.Style = []
           Header.Caption = 'Group'
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = -11
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
           Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
           ParentFont = False
           Position = 1
@@ -1629,6 +1705,11 @@ object PieForm: TPieForm
           Font.Name = 'Tahoma'
           Font.Style = []
           Header.Caption = 'Category'
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = -11
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
           Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
           ParentFont = False
           Position = 2
@@ -1641,7 +1722,12 @@ object PieForm: TPieForm
           Font.Height = 14
           Font.Name = 'Tahoma'
           Font.Style = []
-          Header.Caption = 'Document Name'
+          Header.Caption = 'Template Name'
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = -11
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
           Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
           ParentFont = False
           Position = 3
@@ -1656,6 +1742,11 @@ object PieForm: TPieForm
           Font.Name = 'Tahoma'
           Font.Style = []
           Header.Caption = 'Target File'
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = -11
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
           Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
           ParentFont = False
           Position = 4
@@ -1671,6 +1762,11 @@ object PieForm: TPieForm
           Font.Name = 'Tahoma'
           Font.Style = []
           Header.Caption = 'Status'
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = -11
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
           Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect]
           ParentFont = False
           Position = 5
@@ -1687,6 +1783,11 @@ object PieForm: TPieForm
           Font.Height = 14
           Font.Name = 'Tahoma'
           Font.Style = []
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = -11
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
           Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
           ParentFont = False
           Position = 6
