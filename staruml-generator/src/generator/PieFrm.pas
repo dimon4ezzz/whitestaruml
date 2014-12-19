@@ -56,7 +56,8 @@ uses
   dxBar, Menus, ShellAPI, JvExControls, JvComponent, cxPCdxBarPopupMenu,
   cxControls, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, cxClasses,
   dxBarBuiltInMenu, Winapi.ShlObj, Vcl.ButtonGroup, Vcl.Mask,
-  JvExMask, JvToolEdit;
+  JvExMask, JvToolEdit, System.Actions, Vcl.ActnList,
+  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup;
 
 const
   ERR_ERROR_ON_PROCESSOR = 'Error occured while executing document translator.'
@@ -136,14 +137,6 @@ type
     MessageLabel: TLabel;
     CloneTemplateButton: TButton;
     ModifyTemplateButton: TButton;
-    TemplatePopupMenu: TPopupMenu;
-    CloneTemplatePopUpMenuItem: TMenuItem;
-    ModifyTemplatePopUpMenuItem: TMenuItem;
-    DeleteTemplatePopUpMenuItem: TMenuItem;
-    N4: TMenuItem;
-    OpenTemplatePopUpMenuItem: TMenuItem;
-    R1: TMenuItem;
-    N1: TMenuItem;
     OpenTemplateButton: TButton;
     TasksGrid: TNextGrid;
     CheckColumn: TNxCheckBoxColumn;
@@ -158,6 +151,20 @@ type
     OutputDirEdit: TJvDirectoryEdit;
     GroupBox1: TGroupBox;
     QuickDirButtonGroup: TButtonGroup;
+    PieActionList: TActionList;
+    ActionModifyTemplate: TAction;
+    ActionRegisterTemplate: TAction;
+    ActionCloneTemplate: TAction;
+    ActionOpenTemplate: TAction;
+    ActionDeleteTemplate: TAction;
+    TemplatePopupActionBar: TPopupActionBar;
+    emplateProperties1: TMenuItem;
+    OpenTemplate1: TMenuItem;
+    N2: TMenuItem;
+    RegisterTemplate1: TMenuItem;
+    CloneTemplate1: TMenuItem;
+    N3: TMenuItem;
+    DeleteTemplate1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TasksGridDblClick(Sender: TObject);
@@ -186,12 +193,6 @@ type
     procedure DeleteBatchMenuClick(Sender: TObject);
     procedure DirectMDAWizardCancelButtonClick(Sender: TObject);
     procedure ExecTasksGridDblClick(Sender: TObject);
-    procedure CloneTemplateButtonClick(Sender: TObject);
-    procedure ModifyTemplateButtonClick(Sender: TObject);
-    procedure CloneTemplatePopUpMenuItemClick(Sender: TObject);
-    procedure ModifyTemplatePopUpMenuItemClick(Sender: TObject);
-    procedure DeleteTemplatePopUpMenuItemClick(Sender: TObject);
-    procedure OpenTemplatePopUpMenuItemClick(Sender: TObject);
     procedure OutputDirShellTreeViewChange(Sender: TObject; Node: TTreeNode);
     procedure OutputDirEditMouseEnter(Sender: TObject);
     procedure OutputDirEditChange(Sender: TObject);
@@ -202,6 +203,11 @@ type
       const FromPage: TJvWizardCustomPage);
     procedure OutDirectorySelectionPageExitPage(Sender: TObject;
       const FromPage: TJvWizardCustomPage);
+    procedure ActionModifyTemplateExecute(Sender: TObject);
+    procedure ActionRegisterTemplateExecute(Sender: TObject);
+    procedure ActionCloneTemplateExecute(Sender: TObject);
+    procedure ActionOpenTemplateExecute(Sender: TObject);
+    procedure ActionDeleteTemplateExecute(Sender: TObject);
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -1534,6 +1540,31 @@ begin
   SelectSpecialFolderHome;
 end;
 
+procedure TPieForm.ActionCloneTemplateExecute(Sender: TObject);
+begin
+  CloneTemplate;
+end;
+
+procedure TPieForm.ActionDeleteTemplateExecute(Sender: TObject);
+begin
+  DeleteTemplate;
+end;
+
+procedure TPieForm.ActionModifyTemplateExecute(Sender: TObject);
+begin
+  ModifyTemplate;
+end;
+
+procedure TPieForm.ActionOpenTemplateExecute(Sender: TObject);
+begin
+  OpenTemplate;
+end;
+
+procedure TPieForm.ActionRegisterTemplateExecute(Sender: TObject);
+begin
+  RegisterTemplate;
+end;
+
 procedure TPieForm.AddBatchMenuClick(Sender: TObject);
 begin
   CreateNewBatch;
@@ -1561,36 +1592,5 @@ procedure TPieForm.ExecTasksGridDblClick(Sender: TObject);
 begin
   ExecuteDocument;
 end;
-
-procedure TPieForm.CloneTemplateButtonClick(Sender: TObject);
-begin
-  CloneTemplate;
-end;
-
-procedure TPieForm.ModifyTemplateButtonClick(Sender: TObject);
-begin
-  ModifyTemplate;
-end;
-
-procedure TPieForm.CloneTemplatePopUpMenuItemClick(Sender: TObject);
-begin
-  CloneTemplate;
-end;
-
-procedure TPieForm.ModifyTemplatePopUpMenuItemClick(Sender: TObject);
-begin
-  ModifyTemplate;
-end;
-
-procedure TPieForm.DeleteTemplatePopUpMenuItemClick(Sender: TObject);
-begin
-  DeleteTemplate;
-end;
-
-procedure TPieForm.OpenTemplatePopUpMenuItemClick(Sender: TObject);
-begin
-  OpenTemplate;
-end;
-
 
 end.

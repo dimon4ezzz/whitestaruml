@@ -1,7 +1,7 @@
 object PieForm: TPieForm
   Left = 285
   Top = 142
-  ActiveControl = OutputDirEdit
+  ActiveControl = BatchPageControl
   BorderStyle = bsDialog
   Caption = 'WhiteStarUML Generator'
   ClientHeight = 498
@@ -26,7 +26,7 @@ object PieForm: TPieForm
     Top = 0
     Width = 721
     Height = 498
-    ActivePage = OutDirectorySelectionPage
+    ActivePage = TemplateSelectionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = '<< &Start page'
     ButtonStart.NumGlyphs = 1
@@ -476,9 +476,8 @@ object PieForm: TPieForm
             Top = 8
             Width = 113
             Height = 23
-            Caption = 'Register &Template'
+            Action = ActionRegisterTemplate
             TabOrder = 2
-            OnClick = RegisterTemplateButtonClick
           end
           object TasksGrid: TNextGrid
             Left = 9
@@ -499,7 +498,7 @@ object PieForm: TPieForm
             Options = [goDisableColumnMoving, goGrid, goHeader, goSelectFullRow]
             RowSize = 18
             ParentFont = False
-            PopupMenu = TemplatePopupMenu
+            PopupMenu = TemplatePopupActionBar
             TabOrder = 3
             TabStop = True
             OnCellClick = TasksGridCellClick
@@ -786,27 +785,24 @@ object PieForm: TPieForm
             Top = 8
             Width = 105
             Height = 23
-            Caption = '&Clone Template'
+            Action = ActionCloneTemplate
             TabOrder = 10
-            OnClick = CloneTemplateButtonClick
           end
           object ModifyTemplateButton: TButton
             Left = 465
             Top = 8
             Width = 129
             Height = 23
-            Caption = 'Template &Properties'
+            Action = ActionModifyTemplate
             TabOrder = 11
-            OnClick = ModifyTemplateButtonClick
           end
           object OpenTemplateButton: TButton
-            Left = 600
+            Left = 601
             Top = 8
             Width = 105
             Height = 23
-            Caption = '&Open Template'
+            Action = ActionOpenTemplate
             TabOrder = 12
-            OnClick = OpenTemplatePopUpMenuItemClick
           end
         end
       end
@@ -1240,7 +1236,6 @@ object PieForm: TPieForm
             end>
           ShowHint = True
           TabOrder = 0
-          ExplicitWidth = 143
         end
       end
     end
@@ -7959,8 +7954,8 @@ object PieForm: TPieForm
     PopupMenuLinks = <>
     Style = bmsFlat
     UseSystemFont = True
-    Left = 240
-    Top = 24
+    Left = 40
+    Top = 40
     DockControlHeights = (
       0
       0
@@ -8004,37 +7999,61 @@ object PieForm: TPieForm
         ItemName = 'DeleteBatchMenu'
       end>
     UseOwnFont = False
-    Left = 344
-    Top = 24
+    Left = 96
+    Top = 40
   end
-  object TemplatePopupMenu: TPopupMenu
-    Left = 416
-    Top = 264
-    object ModifyTemplatePopUpMenuItem: TMenuItem
-      Caption = 'Show Template &Properties'
-      OnClick = ModifyTemplatePopUpMenuItemClick
+  object PieActionList: TActionList
+    Left = 464
+    Top = 32
+    object ActionModifyTemplate: TAction
+      Category = 'CategoryTemplate'
+      Caption = 'Template &Properties'
+      OnExecute = ActionModifyTemplateExecute
     end
-    object OpenTemplatePopUpMenuItem: TMenuItem
-      Caption = 'Open &Template'
-      OnClick = OpenTemplatePopUpMenuItemClick
+    object ActionRegisterTemplate: TAction
+      Category = 'CategoryTemplate'
+      Caption = 'Register &Template'
+      OnExecute = ActionRegisterTemplateExecute
     end
-    object N4: TMenuItem
-      Caption = '-'
-    end
-    object R1: TMenuItem
-      Caption = '&Register Template'
-      OnClick = RegisterTemplateButtonClick
-    end
-    object CloneTemplatePopUpMenuItem: TMenuItem
+    object ActionCloneTemplate: TAction
+      Category = 'CategoryTemplate'
       Caption = '&Clone Template'
-      OnClick = CloneTemplatePopUpMenuItemClick
+      OnExecute = ActionCloneTemplateExecute
     end
-    object N1: TMenuItem
+    object ActionOpenTemplate: TAction
+      Category = 'CategoryTemplate'
+      Caption = '&Open Template'
+      OnExecute = ActionOpenTemplateExecute
+    end
+    object ActionDeleteTemplate: TAction
+      Category = 'CategoryTemplate'
+      Caption = 'Delete Template'
+      OnExecute = ActionDeleteTemplateExecute
+    end
+  end
+  object TemplatePopupActionBar: TPopupActionBar
+    Left = 504
+    Top = 32
+    object emplateProperties1: TMenuItem
+      Action = ActionModifyTemplate
+    end
+    object OpenTemplate1: TMenuItem
+      Action = ActionOpenTemplate
+    end
+    object N2: TMenuItem
       Caption = '-'
     end
-    object DeleteTemplatePopUpMenuItem: TMenuItem
-      Caption = '&Delete Template'
-      OnClick = DeleteTemplatePopUpMenuItemClick
+    object RegisterTemplate1: TMenuItem
+      Action = ActionRegisterTemplate
+    end
+    object CloneTemplate1: TMenuItem
+      Action = ActionCloneTemplate
+    end
+    object N3: TMenuItem
+      Caption = '-'
+    end
+    object DeleteTemplate1: TMenuItem
+      Action = ActionDeleteTemplate
     end
   end
 end
