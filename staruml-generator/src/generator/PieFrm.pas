@@ -53,10 +53,8 @@ uses
   Dialogs, ComObj, NxColumnClasses, NxColumns, NxScrollControl,
   NxCustomGridControl, NxCustomGrid, NxGrid, StdCtrls, cxPC,
   JvWizard, ComCtrls, ShellCtrls, ImgList, ExtCtrls, WhiteStarUML_TLB, FlatPanel,
-  dxBar, Menus, ShellAPI, JvExControls, JvComponent, cxPCdxBarPopupMenu,
-  cxControls, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, cxClasses,
-  dxBarBuiltInMenu, Winapi.ShlObj, Vcl.ButtonGroup, Vcl.Mask,
-  JvExMask, JvToolEdit, System.Actions, Vcl.ActnList,
+  Menus, ShellAPI, JvExControls, JvComponent, Winapi.ShlObj,
+  Vcl.ButtonGroup, Vcl.Mask, JvExMask, JvToolEdit, System.Actions, Vcl.ActnList,
   Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup;
 
 const
@@ -93,8 +91,8 @@ type
   TPieForm = class(TForm)
     DirectMDAWizard: TJvWizard;
     TemplateSelectionPage: TJvWizardInteriorPage;
-    BatchPageControl: TcxPageControl;
-    MainTabSheet: TcxTabSheet;
+    BatchPageControl: TPageControl;
+    MainTabSheet: TTabSheet;
     OutDirectorySelectionPage: TJvWizardInteriorPage;
     Label2: TLabel;
     ExecutionPage: TJvWizardInteriorPage;
@@ -128,11 +126,6 @@ type
     HeartBeatTimer: TTimer;
     GenerationUnitDescPanel: TFlatPanel;
     GenerationUnitDescMemo: TMemo;
-    BarManager: TdxBarManager;
-    BatchPopupMenu: TdxBarPopupMenu;
-    AddBatchMenu: TdxBarButton;
-    EditBatchMenu: TdxBarButton;
-    DeleteBatchMenu: TdxBarButton;
     ExecFullPathColumn: TNxTextColumn;
     MessageLabel: TLabel;
     CloneTemplateButton: TButton;
@@ -165,6 +158,13 @@ type
     CloneTemplate1: TMenuItem;
     N3: TMenuItem;
     DeleteTemplate1: TMenuItem;
+    ActionNewBatch: TAction;
+    ActionModifyBatch: TAction;
+    ActionDeleteBatch: TAction;
+    BatchPopupActionBar: TPopupActionBar;
+    NewBatch1: TMenuItem;
+    ModifyBatch1: TMenuItem;
+    DeleteBatch1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TasksGridDblClick(Sender: TObject);
@@ -186,8 +186,6 @@ type
     procedure ExecutionPageNextButtonClick(Sender: TObject;
       var Stop: Boolean);
     procedure FormShow(Sender: TObject);
-    procedure BatchPageControlMouseDown(Sender: TObject;
-      Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure AddBatchMenuClick(Sender: TObject);
     procedure EditBatchMenuClick(Sender: TObject);
     procedure DeleteBatchMenuClick(Sender: TObject);
@@ -215,7 +213,6 @@ type
     ActiveTaskRow: Integer;
     InGenerating: Boolean;
     FStarUMLApp: IStarUMLApplication;
-    //class var LastDirPIDL: PItemIDList;
     class var LastOutputDir: string;
 
     { initialization & finalization methods }
@@ -224,14 +221,14 @@ type
     { page set up & finding methods - TemplateSelectionPage }
     function IsFiltered(AGenerationUnit: PGenerationUnit): Boolean;
     procedure AddTaskRow(ATask: PTask);
-    function AddBatchPage(ABatch: PBatch): TcxTabSheet;
+    function AddBatchPage(ABatch: PBatch): TTabSheet;
     procedure SetupBatches;
     procedure UpdateBatchPage(ABatch: PBatch);
     procedure UpdateTasksGrid;
     procedure UpdateDefaultBatchPage;
-    function FindBatchPage(ABatch: PBatch): TcxTabSheet;
-    function FindBatchFrame(ATabSheet: TcxTabSheet): TBatchFrame;
-    function FindBatchOfPage(ABatchPage: TcxTabSheet): PBatch;
+    function FindBatchPage(ABatch: PBatch): TTabSheet;
+    function FindBatchFrame(ATabSheet: TTabSheet): TBatchFrame;
+    function FindBatchOfPage(ABatchPage: TTabSheet): PBatch;
     procedure HandleBatchPageUpdateUIStates(Sender: TObject);
 
     procedure UpdateGroupComboBox;
@@ -297,24 +294,9 @@ implementation
 {$R *.dfm}
 
 uses
-  Winapi.ActiveX,
   TaskInfoFrm, TemplateRegFrm, BatchRegisterFrm, BatchSelFrm, PreviewFrm,
   NewFolderFrm, Utilities, Symbols, NewTemplateDlg, Serializers;
 
-
-function GetSpecialFolderPath(const FolderGuid: TGUID): string;
-var
-  OutPtr : PWideChar;
-  CallResult: HRESULT;
-begin
-  CallResult := SHGetKnownFolderPath(FolderGuid, 0, 0, OutPtr);
-  if CallResult = S_OK then begin
-    Result := OutPtr;
-    CoTaskMemFree(OutPtr);
-  end
-  else
-    Result := '';
-end;
 
 ////////////////////////////////////////////////////////////////////////////////
 // TPieForm
@@ -398,7 +380,7 @@ begin
     ATask.Selected := False;
 end;
 
-function TPieForm.AddBatchPage(ABatch: PBatch): TcxTabSheet;
+function TPieForm.AddBatchPage(ABatch: PBatch): TTabSheet;
 
   function IssueFrameName: string;
   var
@@ -414,10 +396,10 @@ function TPieForm.AddBatchPage(ABatch: PBatch): TcxTabSheet;
   end;
 
 var
-  BatchTabSheet: TcxTabSheet;
+  BatchTabSheet: TTabSheet;
   BatchFrame: TBatchFrame;
 begin
-  BatchTabSheet := TcxTabSheet.Create(BatchPageControl);
+  BatchTabSheet := TTabSheet.Create(BatchPageControl);
   BatchTabSheet.PageControl := BatchPageControl;
   BatchTabSheet.Caption := ABatch.Name;
   BatchFrame := TBatchFrame.Create(BatchTabSheet);
@@ -431,7 +413,7 @@ end;
 
 procedure TPieForm.UpdateBatchPage(ABatch: PBatch);
 var
-  TabSheet: TcxTabSheet;
+  TabSheet: TTabSheet;
   Frame: TBatchFrame;
 begin
   TabSheet := FindBatchPage(ABatch);
@@ -465,7 +447,7 @@ procedure TPieForm.SetupBatches;
 var
   I: Integer;
   Batch: PBatch;
-  TabSheet: TcxTabSheet;
+  TabSheet: TTabSheet;
 begin
   UpdateDefaultBatchPage;
   for I := 0 to DirectMDAProcessor.BatchCount - 1 do begin
@@ -480,7 +462,7 @@ begin
   end;
 end;
 
-function TPieForm.FindBatchPage(ABatch: PBatch): TcxTabSheet;
+function TPieForm.FindBatchPage(ABatch: PBatch): TTabSheet;
 var
   I: Integer;
 begin
@@ -492,7 +474,7 @@ begin
     end;
 end;
 
-function TPieForm.FindBatchFrame(ATabSheet: TcxTabSheet): TBatchFrame;
+function TPieForm.FindBatchFrame(ATabSheet: TTabSheet): TBatchFrame;
 var
   I: Integer;
 begin
@@ -504,7 +486,7 @@ begin
     end;
 end;
 
-function TPieForm.FindBatchOfPage(ABatchPage: TcxTabSheet): PBatch;
+function TPieForm.FindBatchOfPage(ABatchPage: TTabSheet): PBatch;
 var
   I: Integer;
 begin
@@ -639,7 +621,7 @@ var
   BatchRegForm: TBatchRegisterForm;
   Batch: PBatch;
   RefObj: TObject;
-  TabSheet: TcxTabSheet;
+  TabSheet: TTabSheet;
   T: PTask;
   I: Integer;
 begin
@@ -878,7 +860,7 @@ procedure TPieForm.CreateNewBatch;
 var
   BatchRegForm: TBatchRegisterForm;
   Batch: PBatch;
-  TabSheet: TcxTabSheet;
+  TabSheet: TTabSheet;
 begin
   BatchRegForm := TBatchRegisterForm.Create(Self);
   try
@@ -908,7 +890,7 @@ end;
 procedure TPieForm.EditBatch;
 var
   BatchRegForm: TBatchRegisterForm;
-  Page: TcxTabSheet;
+  Page: TTabSheet;
 begin
   if (SelectedBatch <> nil) and (SelectedBatch <> DirectMDAProcessor.DefaultBatch) then begin
     BatchRegForm := TBatchRegisterForm.Create(Self);
@@ -937,21 +919,26 @@ end;
 
 procedure TPieForm.DeleteBatch;
 var
-  Page: TcxTabSheet;
+  Page: TTabSheet;
   B: PBatch;
 begin
   B := SelectedBatch;
   if (B <> nil) and (B <> DirectMDAProcessor.DefaultBatch) then begin
-    try
-      Page := FindBatchPage(B);
-      Assert(Page <> nil);
-      BatchPageControl.RemoveControl(Page);
-      Page.Free;
-      DirectMDAProcessor.DeleteBatchFromFile(B);
-      SelectedBatch := FindBatchOfPage(BatchPageControl.ActivePage);
-    except
-      on E: Exception do begin
-        ErrorMessage(Format(ERR_FAILED_TO_DELETE_BATCH, [E.Message]));
+    if MessageDlg('Do you want to delete selected batch "' + B.Name +
+      '" and all related files?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    begin
+      try
+        Page := FindBatchPage(B);
+        Assert(Page <> nil);
+        BatchPageControl.RemoveControl(Page);
+        Page.Free;
+        DirectMDAProcessor.DeleteBatchFromFile(B);
+        SelectedBatch := FindBatchOfPage(BatchPageControl.ActivePage);
+      except
+        on E: Exception do
+        begin
+          ErrorMessage(Format(ERR_FAILED_TO_DELETE_BATCH, [E.Message]));
+        end;
       end;
     end;
   end;
@@ -1085,8 +1072,10 @@ begin
       Frm.UpdateUIStates;
   end;
   Assert(SelectedBatch <> nil);
-  EditBatchMenu.Enabled := (SelectedBatch <> nil) and (SelectedBatch <> DirectMDAProcessor.DefaultBatch);
-  DeleteBatchMenu.Enabled := (SelectedBatch <> nil) and (SelectedBatch <> DirectMDAProcessor.DefaultBatch);
+
+  ActionModifyBatch.Enabled := (SelectedBatch <> nil) and (SelectedBatch <> DirectMDAProcessor.DefaultBatch);
+  ActionDeleteBatch.Enabled := ActionModifyBatch.Enabled;
+
   if SelectedBatch.GetSelectedTaskCount > 0 then
     TemplateSelectionPage.EnabledButtons := TemplateSelectionPage.EnabledButtons + [bkNext]
   else
@@ -1187,13 +1176,14 @@ procedure TPieForm.DeleteTemplate;
 var
   DstDirName: String;
   ScriptObj: Variant;
+  TemplateName: string;
 begin
   if (TasksGrid.SelectedCount = 1) and (TasksGrid.SelectedRow <> -1) then
-    if MessageDlg('Do you want to delete selected template and all related files?',
-                  mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
-
+    TemplateName := DirectMDAProcessor.GenerationUnits[TasksGrid.SelectedRow].Name;
+    if MessageDlg('Do you want to delete selected template "' + TemplateName +
+    '" and all related files?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    begin
       try
-        // Clone selected template to new path
         ScriptObj := CreateOleObject('Scripting.FileSystemObject');
         ScriptObj.DeleteFolder(
           ExtractFileDir(
@@ -1515,13 +1505,6 @@ end;
 procedure TPieForm.HeartBeatTimerTimer(Sender: TObject);
 begin
   Application.ProcessMessages;
-end;
-
-procedure TPieForm.BatchPageControlMouseDown(Sender: TObject;
-  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-begin
-  if Button = mbRight then
-    BatchPopupMenu.PopupFromCursorPos;
 end;
 
 procedure TPieForm.QuickDirButtonGroupItems0Click(Sender: TObject);

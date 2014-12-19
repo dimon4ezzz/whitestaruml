@@ -430,21 +430,16 @@ object PieForm: TPieForm
           00002701FFFF030000000000}
         Stretch = True
       end
-      object BatchPageControl: TcxPageControl
+      object BatchPageControl: TPageControl
         Left = 4
         Top = 85
         Width = 717
         Height = 364
+        ActivePage = MainTabSheet
+        PopupMenu = BatchPopupActionBar
         TabOrder = 0
-        Properties.ActivePage = MainTabSheet
-        Properties.CustomButtons.Buttons = <>
         OnChange = BatchPageControlChange
-        OnMouseDown = BatchPageControlMouseDown
-        ClientRectBottom = 360
-        ClientRectLeft = 4
-        ClientRectRight = 713
-        ClientRectTop = 25
-        object MainTabSheet: TcxTabSheet
+        object MainTabSheet: TTabSheet
           Caption = 'List of templates'
           object GenerationUnitDescLabel: TLabel
             Left = 8
@@ -7939,71 +7934,8 @@ object PieForm: TPieForm
     Left = 160
     Top = 456
   end
-  object BarManager: TdxBarManager
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    Categories.Strings = (
-      'BatchMenu')
-    Categories.ItemsVisibles = (
-      2)
-    Categories.Visibles = (
-      True)
-    PopupMenuLinks = <>
-    Style = bmsFlat
-    UseSystemFont = True
-    Left = 40
-    Top = 40
-    DockControlHeights = (
-      0
-      0
-      0
-      0)
-    object AddBatchMenu: TdxBarButton
-      Caption = 'New Batch'
-      Category = 0
-      Hint = 'New Batch'
-      Visible = ivAlways
-      OnClick = AddBatchMenuClick
-    end
-    object EditBatchMenu: TdxBarButton
-      Caption = 'Modify Batch'
-      Category = 0
-      Hint = 'Modify Batch'
-      Visible = ivAlways
-      OnClick = EditBatchMenuClick
-    end
-    object DeleteBatchMenu: TdxBarButton
-      Caption = 'Delete Batch'
-      Category = 0
-      Hint = 'Delete Batch'
-      Visible = ivAlways
-      OnClick = DeleteBatchMenuClick
-    end
-  end
-  object BatchPopupMenu: TdxBarPopupMenu
-    BarManager = BarManager
-    ItemLinks = <
-      item
-        Visible = True
-        ItemName = 'AddBatchMenu'
-      end
-      item
-        Visible = True
-        ItemName = 'EditBatchMenu'
-      end
-      item
-        Visible = True
-        ItemName = 'DeleteBatchMenu'
-      end>
-    UseOwnFont = False
-    Left = 96
-    Top = 40
-  end
   object PieActionList: TActionList
-    Left = 464
+    Left = 312
     Top = 32
     object ActionModifyTemplate: TAction
       Category = 'CategoryTemplate'
@@ -8030,9 +7962,24 @@ object PieForm: TPieForm
       Caption = 'Delete Template'
       OnExecute = ActionDeleteTemplateExecute
     end
+    object ActionNewBatch: TAction
+      Category = 'CategoryBatch'
+      Caption = 'New Batch'
+      OnExecute = AddBatchMenuClick
+    end
+    object ActionModifyBatch: TAction
+      Category = 'CategoryBatch'
+      Caption = 'Modify Batch'
+      OnExecute = EditBatchMenuClick
+    end
+    object ActionDeleteBatch: TAction
+      Category = 'CategoryBatch'
+      Caption = 'Delete Batch'
+      OnExecute = DeleteBatchMenuClick
+    end
   end
   object TemplatePopupActionBar: TPopupActionBar
-    Left = 504
+    Left = 408
     Top = 32
     object emplateProperties1: TMenuItem
       Action = ActionModifyTemplate
@@ -8054,6 +8001,19 @@ object PieForm: TPieForm
     end
     object DeleteTemplate1: TMenuItem
       Action = ActionDeleteTemplate
+    end
+  end
+  object BatchPopupActionBar: TPopupActionBar
+    Left = 528
+    Top = 32
+    object NewBatch1: TMenuItem
+      Action = ActionNewBatch
+    end
+    object ModifyBatch1: TMenuItem
+      Action = ActionModifyBatch
+    end
+    object DeleteBatch1: TMenuItem
+      Action = ActionDeleteBatch
     end
   end
 end
