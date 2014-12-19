@@ -112,11 +112,12 @@ function ExecuteFile(const FilePath: string): Boolean;
 function GetDllFileName: string;
 function IsFileNameOnly(Path: string): Boolean;
 function RegulatedPath(APath: string; RefPath: string): string;
+function GetSpecialFolderPath(const FolderGuid: TGUID): string;
 
 implementation
 
 uses
-  Symbols, Registry, Windows, Forms, HttpApp, ShellAPI, ShlObj;
+  Symbols, Registry, Windows, Forms, HttpApp, ShellAPI, ShlObj, Winapi.ActiveX;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -386,5 +387,20 @@ begin
   else
     Result := APath;
 end;
+
+function GetSpecialFolderPath(const FolderGuid: TGUID): string;
+var
+  OutPtr : PWideChar;
+  CallResult: HRESULT;
+begin
+  CallResult := SHGetKnownFolderPath(FolderGuid, 0, 0, OutPtr);
+  if CallResult = S_OK then begin
+    Result := OutPtr;
+    CoTaskMemFree(OutPtr);
+  end
+  else
+    Result := '';
+end;
+
 
 end.
