@@ -50,7 +50,7 @@ unit DirectMDAProc;
 interface
 
 uses
-  Classes, ComObj, ExtCtrls, MSScriptControl_TLB,
+  Classes, ComObj, ExtCtrls, Generics.Collections, MSScriptControl_TLB,
   DirectMDAObjects, WSGenerator_TLB, StdVcl;
 
 const
@@ -98,11 +98,12 @@ type
     property OnNotify: PMessageEvent read FOnNotify write FOnNotify;
   end;
 
+  PBatchList = TList<PBatch>;
   // TGeneratorProcessor
   TGeneratorProcessor = class(TAutoObject, IGeneratorProcessor)
   private
     FGenerationUnits: TList;
-    FBatches: TList;
+    FBatches: PBatchList;
     FDefaultBatch: PBatch;
     FTargetDir: string;
     LogAdaptor: PLogAdaptor;
@@ -131,6 +132,7 @@ type
     function LoadGenerationUnit(Path: string): PGenerationUnit;
     function LoadBatch(Path: string): PBatch;
     procedure NotifyAddingGenerationUnit(AGenerationUnit: PGenerationUnit);
+    procedure NotifyDeletingGenerationUnit(AGenerationUnit: PGenerationUnit);
     { task executing related methods }
     function RegulateString(ATask: PTask; Str: string): string;
     procedure AssignArguments(ATask: PTask; Args: IHashTable);
@@ -154,6 +156,7 @@ type
     procedure Initialize; override;
     { services }
     procedure AddGenerationUnit(AGenerationUnit: PGenerationUnit);
+    procedure DeleteGenerationUnit(AGenerationUnit: PGenerationUnit);
     procedure AddBatch(ABatch: PBatch);
     procedure RemoveBatch(ABatch: PBatch);
     procedure DeleteBatchFromFile(ABatch: PBatch);
@@ -171,7 +174,8 @@ type
     property GenerationUnitCount: Integer read GetGenerationUnitCount;
     property GenerationUnits[Index: Integer]: PGenerationUnit read GetGenerationUnit;
     property BatchCount: Integer read GetBatchCount;
-    property Batches[Index: Integer]: PBatch read GetBatch;
+    property Batch[Index: Integer]: PBatch read GetBatch;
+    property Batches: PBatchList read FBatches;
     property DefaultBatch: PBatch read FDefaultBatch;
     property TargetDir: string read FTargetDir write FTargetDir;
     { events }
@@ -223,7 +227,7 @@ procedure TGeneratorProcessor.Initialize;
 begin
   inherited;
   FGenerationUnits := TList.Create;
-  FBatches := TList.Create;
+  FBatches := PBatchList.Create;
   FDefaultBatch := PBatch.Create;
   FDefaultBatch.Name := BATCH_DEFAULT;
   FDefaultBatch.Description := TXT_DEFULT_BATCH;
@@ -264,7 +268,7 @@ var
   I: Integer;
 begin
   for I := FBatches.Count - 1 downto 0 do
-    PBatch(FBatches.Items[I]).Free;
+    FBatches[I].Free;
   FBatches.Clear;
 end;
 
@@ -295,6 +299,15 @@ begin
     NotifyAddingGenerationUnit(AGenerationUnit);
   end;
 end;
+
+procedure TGeneratorProcessor.DeleteGenerationUnit(AGenerationUnit: PGenerationUnit);
+begin
+  Assert(FGenerationUnits.IndexOf(AGenerationUnit) > -1);
+  FGenerationUnits.Remove(AGenerationUnit);
+  NotifyDeletingGenerationUnit(AGenerationUnit);
+  AGenerationUnit.Free;
+end;
+
 
 procedure TGeneratorProcessor.AddBatch(ABatch: PBatch);
 begin
@@ -381,6 +394,29 @@ begin
   for I := 0 to AGenerationUnit.ParameterCount - 1 do
     Task.AddParameter(AGenerationUnit.Parameters[I].Clone);
 end;
+
+procedure TGeneratorProcessor.NotifyDeletingGenerationUnit(AGenerationUnit: PGenerationUnit);
+var
+  Task: PTask;
+  Batch: PBatch;
+
+  procedure FreeTask(Batch: PBatch);
+  var
+    Task: PTask;
+  begin
+    Task := Batch.FindTask(AGenerationUnit);
+    if Assigned(Task) then begin
+      Batch.RemoveTask(Task);
+      Task.Free;
+    end;
+  end;
+
+begin
+  FreeTask(FDefaultBatch);
+  for Batch in FBatches do
+    FreeTask(Batch);
+end;
+
 
 function TGeneratorProcessor.RegulateString(ATask: PTask; Str: string): string;
 var
@@ -808,8 +844,8 @@ var
 begin
   Result := nil;
   for I := 0 to BatchCount - 1 do
-    if Batches[I].Name = Name then begin
-      Result := Batches[I];
+    if Batch[I].Name = Name then begin
+      Result := Batch[I];
       Exit;
     end;
 end;
@@ -820,8 +856,8 @@ var
 begin
   Result := nil;
   for I := 0 to BatchCount - 1 do
-    if Batches[I].Path = Path then begin
-      Result := Batches[I];
+    if Batch[I].Path = Path then begin
+      Result := Batch[I];
       Exit;
     end;
 end;
@@ -831,7 +867,7 @@ var
   I: Integer;
 begin
   for I := 0 to BatchCount - 1 do
-    SL.Add(Batches[I].Name);
+    SL.Add(Batch[I].Name);
 end;
 
 procedure TGeneratorProcessor.Execute(ABatch: PBatch);

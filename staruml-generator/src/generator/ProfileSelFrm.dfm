@@ -116,15 +116,21 @@ object ProfileSelectorForm: TProfileSelectorForm
     Top = 24
     Width = 249
     Height = 161
+    Touch.InteractiveGestures = [igPan, igPressAndTap]
+    Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
     AppearanceOptions = [aoAlphaBlendedSelection, aoHideFocus, aoHideSelection]
     AutoScroll = True
     Caption = ''
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
     HighlightedTextColor = clWindowText
     Options = [goSelectFullRow]
+    ParentFont = False
     TabOrder = 0
     TabStop = True
-    Touch.InteractiveGestures = [igPan, igPressAndTap]
-    Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
     object CheckColumn: TNxCheckBoxColumn
       Alignment = taCenter
       DefaultWidth = 26
@@ -161,6 +167,11 @@ object ProfileSelectorForm: TProfileSelectorForm
         C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0
         D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8
         D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
       Options = [coCanClick, coCanInput, coCanSort, coEditing, coEditorAutoSelect]
       ParentFont = False
       Position = 0
@@ -175,6 +186,11 @@ object ProfileSelectorForm: TProfileSelectorForm
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
       Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect]
       ParentFont = False
       Position = 1
@@ -191,6 +207,11 @@ object ProfileSelectorForm: TProfileSelectorForm
       Font.Name = #44404#47548
       Font.Style = []
       Header.Caption = #54532#47196#54028#51068#47749
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
       Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
       ParentFont = False
       Position = 2

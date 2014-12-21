@@ -50,6 +50,8 @@ object BatchFrame: TBatchFrame
     Top = 51
     Width = 697
     Height = 217
+    Touch.InteractiveGestures = [igPan, igPressAndTap]
+    Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
     AppearanceOptions = [aoAlphaBlendedSelection, aoIndicateSortedColumn]
     AutoScroll = True
     Caption = ''
@@ -64,8 +66,6 @@ object BatchFrame: TBatchFrame
     ParentFont = False
     TabOrder = 2
     TabStop = True
-    Touch.InteractiveGestures = [igPan, igPressAndTap]
-    Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
     OnCellClick = TasksGridCellClick
     OnChange = TasksGridChange
     OnDblClick = TasksGridDblClick
@@ -78,6 +78,11 @@ object BatchFrame: TBatchFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       Header.DisplayMode = dmImageOnly
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
       Options = [coCanClick, coCanInput, coEditing, coEditorAutoSelect, coFixedSize]
       ParentFont = False
       Position = 0
@@ -93,6 +98,11 @@ object BatchFrame: TBatchFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       Header.Caption = 'Group'
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
       Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
       ParentFont = False
       Position = 1
@@ -108,6 +118,11 @@ object BatchFrame: TBatchFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       Header.Caption = 'Category'
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
       Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
       ParentFont = False
       Position = 2
@@ -151,6 +166,11 @@ object BatchFrame: TBatchFrame
         C8D0D4C8D0D4C8D0D4C8D0D4C9D1D4C5AEA7C69B8ACA9982CC9B82CBA08EC6AC
         A6C9D1D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8
         D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
       Options = [coCanClick, coCanInput, coEditorAutoSelect, coFixedSize]
       ParentFont = False
       Position = 3
@@ -167,6 +187,11 @@ object BatchFrame: TBatchFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       Header.Caption = 'Document Name'
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
       Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
       ParentFont = False
       Position = 4
@@ -182,6 +207,11 @@ object BatchFrame: TBatchFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       Header.Caption = 'Doc. Type'
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
       Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
       ParentFont = False
       Position = 5
@@ -197,6 +227,11 @@ object BatchFrame: TBatchFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       Header.Caption = 'Format'
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
       Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
       ParentFont = False
       Position = 6
@@ -213,6 +248,11 @@ object BatchFrame: TBatchFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       Header.Caption = 'Tutorial'
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
       Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coFixedSize]
       ParentFont = False
       Position = 7
@@ -231,6 +271,11 @@ object BatchFrame: TBatchFrame
       Font.Name = 'Tahoma'
       Font.Style = []
       Header.Caption = 'Opt.'
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
       Options = [coCanClick, coCanInput, coEditorAutoSelect, coFixedSize]
       ParentFont = False
       Position = 8
