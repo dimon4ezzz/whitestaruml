@@ -165,11 +165,11 @@ type
     NewBatch1: TMenuItem;
     ModifyBatch1: TMenuItem;
     DeleteBatch1: TMenuItem;
+    ActionRegisterBatch: TAction;
+    ActionAddToBatch: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TasksGridDblClick(Sender: TObject);
-    procedure RegisterBatchButtonClick(Sender: TObject);
-    procedure AppendToBatchButtonClick(Sender: TObject);
     procedure TasksGridChange(Sender: TObject; ACol, ARow: Integer);
     procedure RegisterTemplateButtonClick(Sender: TObject);
     procedure ExecutionPagePage(Sender: TObject);
@@ -206,6 +206,8 @@ type
     procedure ActionCloneTemplateExecute(Sender: TObject);
     procedure ActionOpenTemplateExecute(Sender: TObject);
     procedure ActionDeleteTemplateExecute(Sender: TObject);
+    procedure ActionRegisterBatchExecute(Sender: TObject);
+    procedure ActionAddToBatchExecute(Sender: TObject);
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -294,6 +296,7 @@ implementation
 {$R *.dfm}
 
 uses
+  System.IOUtils,
   TaskInfoFrm, TemplateRegFrm, BatchRegisterFrm, BatchSelFrm, PreviewFrm,
   NewFolderFrm, Utilities, Symbols, NewTemplateDlg, Serializers;
 
@@ -451,14 +454,14 @@ var
 begin
   UpdateDefaultBatchPage;
   for I := 0 to DirectMDAProcessor.BatchCount - 1 do begin
-    Batch := DirectMDAProcessor.Batches[I];
+    Batch := DirectMDAProcessor.Batch[I];
     Assert(Batch <> nil,'Inconsistent batch number');
     TabSheet := FindBatchPage(Batch);
-    if Assigned(TabSheet) then begin // Clean old tabsheets
-      BatchPageControl.RemoveControl(TabSheet);
-      TabSheet.Free;
-    end;
-    AddBatchPage(Batch);
+    if not Assigned(TabSheet) then
+      AddBatchPage(Batch)
+    else
+      Assert(False,'Duplicated tabsheet');
+
   end;
 end;
 
@@ -495,8 +498,8 @@ begin
     Result := DirectMDAProcessor.DefaultBatch
   else begin
     for I := 0 to DirectMDAProcessor.BatchCount - 1 do
-      if ABatchPage.Caption = DirectMDAProcessor.Batches[I].Name then begin
-        Result := DirectMDAProcessor.Batches[I];
+      if ABatchPage.Caption = DirectMDAProcessor.Batch[I].Name then begin
+        Result := DirectMDAProcessor.Batch[I];
         Exit;
       end;
   end;
@@ -1056,8 +1059,16 @@ var
 begin
   MainPageActivated := (BatchPageControl.ActivePage = MainTabSheet);
   TaskChecked := (DirectMDAProcessor.DefaultBatch.GetSelectedTaskCount > 0);
-  RegisterBatchButton.Enabled := MainPageActivated and TaskChecked;
-  AppendToBatchButton.Enabled := MainPageActivated and TaskChecked;
+
+  // Batch actions
+  ActionRegisterBatch.Enabled := MainPageActivated and TaskChecked;
+  ActionAddToBatch.Enabled := MainPageActivated and TaskChecked;
+
+  // Template actions, do not synchonize well
+  (*ActionCloneTemplate.Enabled := (TasksGrid.SelectedCount = 1) and (TasksGrid.SelectedRow <> -1);
+  ActionModifyTemplate.Enabled := ActionCloneTemplate.Enabled;
+  ActionOpenTemplate.Enabled := ActionCloneTemplate.Enabled;*)
+
 end;
 
 procedure TPieForm.UpdateUIStatesTemplateSelectionPage;
@@ -1112,16 +1123,14 @@ end;
 
 procedure TPieForm.CloneTemplate;
 var
-  SrcFileName, TarFileName: String;
-  SrcFile, TarFile: TFileStream;
-  ScriptObj: Variant;
   Serializer: PGenerationUnitSerializer;
   GenUnit: PGenerationUnit;
-  SrcPath: String;
-
+  SrcPath: string;
+  TgtPath: String;
   T: PTask;
 begin
   if (TasksGrid.SelectedCount = 1) and (TasksGrid.SelectedRow <> -1) then
+
     with TNewTemplateDialog.Create(Self) do begin
 
       RootDir := GetDirectMDAPath + '\' + DIR_GENERATION_UNITS;
@@ -1132,24 +1141,20 @@ begin
           // copy selected template to new path
           T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
           Assert(T <> nil);
-
-//          SrcPath := DirectMDAProcessor.GenerationUnits[TasksGrid.SelectedRow].Path;
           SrcPath := T.GenerationUnit.Path;
-          ScriptObj := CreateOleObject('Scripting.FileSystemObject');
-          ScriptObj.CopyFolder(ExtractFileDir(SrcPath), Path);
+          TDirectory.Copy(ExtractFileDir(SrcPath) + '\', Path);
 
-          ScriptObj := Unassigned;
-
-          GenUnit := PGenerationUnit.Create;
           Serializer := PGenerationUnitSerializer.Create;
           try
             GenUnit := PGenerationUnit.Create;
             try
               Serializer.ReadGenerationUnit(GenUnit, SrcPath);
-
-//              GenUnit.Name := GenUnit.Name + TimeToStr(GetTime);
               GenUnit.Name := TemplateName;
-              Serializer.WriteGenerationUnit(GenUnit, Path+'\'+ExtractFileName(SrcPath));
+              TgtPath := Path + '\' + ExtractFileName(SrcPath);
+              GenUnit.Path := TgtPath;
+              Serializer.WriteGenerationUnit(GenUnit, TgtPath);
+              DirectMDAProcessor.AddGenerationUnit(GenUnit);
+              Assert(DirectMDAProcessor.DefaultBatch.HasTask(GenUnit));
             except
               GenUnit.Free;
             end;
@@ -1158,9 +1163,7 @@ begin
           end;
 
           // rearrange grid to contain the inserted template
-          Finalize;
-          Initialize;
-          SetupBatches;
+          UpdateTasksGrid;
           UpdateUIStates;
         except on E:Exception do
           MessageDlg('Template cannot be copied: ' + E.Message, mtError, [mbOk], 0);
@@ -1174,41 +1177,38 @@ end;
 
 procedure TPieForm.DeleteTemplate;
 var
-  DstDirName: String;
-  ScriptObj: Variant;
-  TemplateName: string;
+  Batch: PBatch;
+  GenUnit: PGenerationUnit;
 begin
-  if (TasksGrid.SelectedCount = 1) and (TasksGrid.SelectedRow <> -1) then
-    TemplateName := DirectMDAProcessor.GenerationUnits[TasksGrid.SelectedRow].Name;
-    if MessageDlg('Do you want to delete selected template "' + TemplateName +
+  if (TasksGrid.SelectedCount = 1) and (TasksGrid.SelectedRow <> -1) then begin
+    GenUnit := DirectMDAProcessor.GenerationUnits[TasksGrid.SelectedRow];
+    if MessageDlg('Do you want to delete selected template "' + GenUnit.Name +
     '" and all related files?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     begin
       try
-        ScriptObj := CreateOleObject('Scripting.FileSystemObject');
-        ScriptObj.DeleteFolder(
-          ExtractFileDir(
-            DirectMDAProcessor.GenerationUnits[TasksGrid.SelectedRow].Path
-          ));
+        TDirectory.Delete(ExtractFileDir(GenUnit.Path), True);
+        DirectMDAProcessor.DeleteGenerationUnit(GenUnit);
 
-        ScriptObj := Unassigned;
 
-        // rearrange grid to contain inserted template
-        Finalize;
-        Initialize;
-        SetupBatches;
+        // rearrange grid
+        UpdateTasksGrid;
+        for Batch in  DirectMDAProcessor.Batches do
+          UpdateBatchPage(Batch);
         UpdateUIStates;
       except
         MessageDlg('Template cannot be deleted.', mtError, [mbOk], 0);
       end;
-    end
+    end;
+  end;
 end;
 
 procedure TPieForm.ModifyTemplate;
 var
   TemplateRegForm: TTemplateRegisterForm;
-  Path: String;
-
   T: PTask;
+  TaskToRestore: PTask;
+  Batch: PBatch;
+  BatchesToRestore: PBatchList;
 begin
   if (TasksGrid.SelectedCount = 1) and (TasksGrid.SelectedRow <> -1) then begin
     TemplateRegForm := TTemplateRegisterForm.Create(Self);
@@ -1226,15 +1226,34 @@ begin
       // Path name - if pathname exists, modifing current template
       if TemplateRegForm.Execute then begin
         try
+
+          // Clean older data
+
+          //TDirectory.Delete(ExtractFileDir(T.GenerationUnit.Path), True);
+
+          // Find modified task in batches
+          BatchesToRestore := PBatchList.Create;
+          for Batch in  DirectMDAProcessor.Batches do begin
+            if Batch.HasTask(T.GenerationUnit) then
+              BatchesToRestore.Add(Batch);
+          end;
+
+          DirectMDAProcessor.DeleteGenerationUnit(T.GenerationUnit);
+
+          // Set new data
           DirectMDAProcessor.SaveGenerationUnit(TemplateRegForm.GenerationUnit, TemplateRegForm.GenerationUnitPath);
+          DirectMDAProcessor.AddGenerationUnit(TemplateRegForm.GenerationUnit);
 
-          //UpdateTasksGrid;
-          Finalize;
-          Initialize;
-          SetupBatches;
+          // Restore changed tasks in batches
+          for Batch in BatchesToRestore do begin
+            TaskToRestore := DirectMDAProcessor.DefaultBatch.FindTask(TemplateRegForm.GenerationUnit);
+            Batch.AddTask(TaskToRestore.Clone);
+            UpdateBatchPage(Batch);
+          end;
+          BatchesToRestore.Free;
+
+          UpdateTasksGrid;
           UpdateUIStates;
-
-          BatchPageControl.ActivePage := MainTabSheet;
         except
           on E: Exception do begin
             ErrorMessage(Format(ERR_REGISTER_TEMPLATE, [E.Message]));
@@ -1350,18 +1369,6 @@ end;
 procedure TPieForm.TasksGridDblClick(Sender: TObject);
 begin
   ShowTaskProperties;
-end;
-
-procedure TPieForm.RegisterBatchButtonClick(Sender: TObject);
-begin
-  RegisterBatch;
-  UpdateUIStates;
-end;
-
-procedure TPieForm.AppendToBatchButtonClick(Sender: TObject);
-begin
-  AppendSelectedTasksToBatch;
-  UpdateUIStates;
 end;
 
 procedure TPieForm.TasksGridChange(Sender: TObject; ACol, ARow: Integer);
@@ -1523,6 +1530,12 @@ begin
   SelectSpecialFolderHome;
 end;
 
+procedure TPieForm.ActionAddToBatchExecute(Sender: TObject);
+begin
+  AppendSelectedTasksToBatch;
+  UpdateUIStates;
+end;
+
 procedure TPieForm.ActionCloneTemplateExecute(Sender: TObject);
 begin
   CloneTemplate;
@@ -1541,6 +1554,12 @@ end;
 procedure TPieForm.ActionOpenTemplateExecute(Sender: TObject);
 begin
   OpenTemplate;
+end;
+
+procedure TPieForm.ActionRegisterBatchExecute(Sender: TObject);
+begin
+  RegisterBatch;
+  UpdateUIStates;
 end;
 
 procedure TPieForm.ActionRegisterTemplateExecute(Sender: TObject);

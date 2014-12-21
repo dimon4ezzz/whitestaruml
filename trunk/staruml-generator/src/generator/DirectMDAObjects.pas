@@ -163,6 +163,7 @@ type
     procedure RemoveTask(Value: PTask);
     function GetNormalizedString(Str: string): string;
     function HasTask(AGenerationUnit: PGenerationUnit): Boolean;
+    function FindTask(AGenerationUnit: PGenerationUnit): PTask;
     function GetSelectedTaskCount: Integer;
     procedure DeleteSelectedTasks;
     procedure CopySelectedTasksToBatch(ABatch: PBatch);
@@ -457,6 +458,18 @@ begin
   for I := 0 to TaskCount - 1 do
     if Tasks[I].GenerationUnit = AGenerationUnit then begin
       Result := True;
+      Exit;
+    end;
+end;
+
+function PBatch.FindTask(AGenerationUnit: PGenerationUnit): PTask;
+var
+  I: Integer;
+begin
+  Result := nil;
+  for I := 0 to TaskCount - 1 do
+    if Tasks[I].GenerationUnit = AGenerationUnit then begin
+      Result := Tasks[I];
       Exit;
     end;
 end;

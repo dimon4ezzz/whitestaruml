@@ -9,13 +9,13 @@ object BatchSelectionForm: TBatchSelectionForm
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
-  Font.Name = #44404#47548
+  Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 12
+  TextHeight = 14
   object TitleLabel: TLabel
     Left = 8
     Top = 8
@@ -38,18 +38,18 @@ object BatchSelectionForm: TBatchSelectionForm
   end
   object BatchesListBox: TListBox
     Left = 8
-    Top = 32
+    Top = 33
     Width = 225
     Height = 137
     ImeName = 'Microsoft IME 2003'
-    ItemHeight = 12
+    ItemHeight = 14
     TabOrder = 0
     OnClick = BatchesListBoxClick
     OnKeyDown = BatchesListBoxKeyDown
   end
   object AcceptButton: TButton
     Left = 44
-    Top = 188
+    Top = 187
     Width = 90
     Height = 23
     Caption = '&OK'

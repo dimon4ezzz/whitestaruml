@@ -453,18 +453,16 @@ object PieForm: TPieForm
             Top = 8
             Width = 105
             Height = 23
-            Caption = '&Register to Batch'
+            Action = ActionRegisterBatch
             TabOrder = 0
-            OnClick = RegisterBatchButtonClick
           end
           object AppendToBatchButton: TButton
-            Left = 120
+            Left = 119
             Top = 8
             Width = 105
             Height = 23
-            Caption = '&Add to Batch'
+            Action = ActionAddToBatch
             TabOrder = 1
-            OnClick = AppendToBatchButtonClick
           end
           object RegisterTemplateButton: TButton
             Left = 232
@@ -1204,7 +1202,7 @@ object PieForm: TPieForm
         Top = 184
         Width = 121
         Height = 105
-        Caption = 'Quick Directories'
+        Caption = 'Quick Directories:'
         TabOrder = 1
         object QuickDirButtonGroup: TButtonGroup
           Left = 2
@@ -1646,7 +1644,13 @@ object PieForm: TPieForm
         Touch.InteractiveGestures = [igPan, igPressAndTap]
         Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
         Caption = ''
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
         Options = [goGrid, goHeader, goSelectFullRow]
+        ParentFont = False
         TabOrder = 0
         TabStop = True
         OnDblClick = ExecTasksGridDblClick
@@ -7976,6 +7980,16 @@ object PieForm: TPieForm
       Category = 'CategoryBatch'
       Caption = 'Delete Batch'
       OnExecute = DeleteBatchMenuClick
+    end
+    object ActionRegisterBatch: TAction
+      Category = 'CategoryBatch'
+      Caption = '&Register to Batch'
+      OnExecute = ActionRegisterBatchExecute
+    end
+    object ActionAddToBatch: TAction
+      Category = 'CategoryBatch'
+      Caption = '&Add To Batch'
+      OnExecute = ActionAddToBatchExecute
     end
   end
   object TemplatePopupActionBar: TPopupActionBar
