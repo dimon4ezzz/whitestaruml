@@ -2,7 +2,7 @@
 namespace NxSyntaxValidator
 {
     // Dummy iplementation of IExprBuilder
-    class ExprBuilderDummy : NxParserImpl.IExprBuilder
+    class ExprBuilderDummy : ParserCore.IPrivateExprBuilder
     {
         public void EndOperation() { }
         public void IdentExpr(string Id, int Pos) { }
@@ -24,8 +24,8 @@ namespace NxSyntaxValidator
                 string fileName = args[0];
                 System.Console.WriteLine("Testing file: {0}", fileName);
 
-                NxParserImpl.NxParserImpl parser = new NxParserImpl.NxParserImpl();
-                NxParserImpl.IExprBuilder builder = new ExprBuilderDummy();
+                ParserCore.NxParserImpl parser = new ParserCore.NxParserImpl();
+                ParserCore.IPrivateExprBuilder builder = new ExprBuilderDummy();
 
                 bool parseStatus = parser.Parse(fileName, builder);
 
