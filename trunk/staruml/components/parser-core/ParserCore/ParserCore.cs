@@ -109,7 +109,7 @@ namespace ParserCore
     }
 
     // IExprBuilder implementation as a wrapper over COM object
-    class ExprBuilderWrapper : NxParserImpl.IExprBuilder
+    class ExprBuilderWrapper : ParserCore.IPrivateExprBuilder
     { 
         private WhiteStarUML.IExprBuilder m_builder;
         internal ExprBuilderWrapper(WhiteStarUML.IExprBuilder builder) { m_builder = builder; }
@@ -124,7 +124,7 @@ namespace ParserCore
 
     [Guid("88EDE9D0-6E37-4b00-86D7-B689C9748661")]
     [ClassInterface(ClassInterfaceType.None)]
-    public class NxParser : NxParserImpl.NxParserImpl, INxParser
+    public class NxParser : NxParserImpl, INxParser
     {
 
         public bool Parse(string fileName, WhiteStarUML.IExprBuilder builder)
