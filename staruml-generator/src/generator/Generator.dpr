@@ -66,7 +66,8 @@ uses
   ParamDefFrm in 'ParamDefFrm.pas' {ParameterDefinitionForm},
   NewFolderFrm in 'NewFolderFrm.pas' {NewFolderForm},
   NewParamFrm in 'NewParamFrm.pas' {NewParameterForm},
-  NewTemplateDlg in 'NewTemplateDlg.pas' {NewTemplateDialog};
+  NewTemplateDlg in 'NewTemplateDlg.pas' {NewTemplateDialog},
+  WSGenerator_TLB in 'WSGenerator_TLB.pas';
 
 exports
   DllGetClassObject,
@@ -81,7 +82,7 @@ exports
 
 {$R *.TLB}
 
-{$R *.RES}
+//{$R *.RES}
 
 begin
 end.
