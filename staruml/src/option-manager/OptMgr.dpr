@@ -46,7 +46,7 @@ library OptMgr;
 {******************************************************************************}
 
 uses
-  ComServ,
+  System.Win.ComServ,
   OptionMgr in 'OptionMgr.pas',
   OptionDialogFrm in 'OptionDialogFrm.pas' {OptionDialogForm},
   OptionMgrAux in 'OptionMgrAux.pas',
