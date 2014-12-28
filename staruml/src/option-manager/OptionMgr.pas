@@ -118,7 +118,7 @@ implementation
 
 uses
   OptionDialogFrm, OptionMgrAux, NLS_OPTMGR,
-  ComServ, Dialogs, Forms, Registry, Variants, Xmldom, XMLIntf, Msxmldom, XMLDoc,
+  System.Win.ComServ, Dialogs, Forms, Registry, Variants, Xmldom, XMLIntf, Msxmldom, XMLDoc,
   OptionDialogFrmWithJvclInspector;
 
 ////////////////////////////////////////////////////////////////////////////////
