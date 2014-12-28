@@ -390,7 +390,7 @@ implementation
 
 uses
   PVariants, NLS_OPTMGR,
-  ComServ, SysUtils, Variants, Graphics, Dialogs;
+  System.Win.ComServ, SysUtils, Variants, Graphics, Dialogs;
 
 ////////////////////////////////////////////////////////////////////////////////
 // POptionItem

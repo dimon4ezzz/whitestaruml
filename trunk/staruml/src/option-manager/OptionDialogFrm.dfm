@@ -15,7 +15,6 @@ object OptionDialogForm: TOptionDialogForm
   OldCreateOrder = False
   Position = poScreenCenter
   OnCreate = FormCreate
-  ExplicitHeight = 240
   DesignSize = (
     563
     367)
@@ -119,7 +118,7 @@ object OptionDialogForm: TOptionDialogForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
-    Font.Name = #44404#47548
+    Font.Name = 'Tahoma'
     Font.Style = []
     HideSelection = False
     Images = CategoryImageList
@@ -140,8 +139,8 @@ object OptionDialogForm: TOptionDialogForm
       545
       57)
     object DescriptionMemo: TMemo
-      Left = 5
-      Top = 5
+      Left = 0
+      Top = 3
       Width = 535
       Height = 47
       Anchors = [akLeft, akTop, akRight]
@@ -150,7 +149,7 @@ object OptionDialogForm: TOptionDialogForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
-      Font.Name = #44404#47548
+      Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
       ReadOnly = True
