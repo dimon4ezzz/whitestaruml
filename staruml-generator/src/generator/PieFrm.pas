@@ -51,7 +51,7 @@ uses
   DirectMDAProc, DirectMDAObjects, BatchFrm, WSGenerator_TLB,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComObj, NxColumnClasses, NxColumns, NxScrollControl,
-  NxCustomGridControl, NxCustomGrid, NxGrid, StdCtrls, cxPC,
+  NxCustomGridControl, NxCustomGrid, NxGrid, StdCtrls,
   JvWizard, ComCtrls, ShellCtrls, ImgList, ExtCtrls, WhiteStarUML_TLB, FlatPanel,
   Menus, ShellAPI, JvExControls, JvComponent, Winapi.ShlObj,
   Vcl.ButtonGroup, Vcl.Mask, JvExMask, JvToolEdit, System.Actions, Vcl.ActnList,
