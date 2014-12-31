@@ -53,6 +53,11 @@ object PieForm: TPieForm
     ShowRouteMap = False
     HeaderImages = HeaderImageList
     OnCancelButtonClick = DirectMDAWizardCancelButtonClick
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = 14
+    Font.Name = 'Tahoma'
+    Font.Style = []
     DesignSize = (
       721
       498)
@@ -65,8 +70,8 @@ object PieForm: TPieForm
       Header.Title.Anchors = [akLeft, akTop, akRight]
       Header.Title.Font.Charset = DEFAULT_CHARSET
       Header.Title.Font.Color = clWindowText
-      Header.Title.Font.Height = 16
-      Header.Title.Font.Name = #44404#47548
+      Header.Title.Font.Height = -19
+      Header.Title.Font.Name = 'Tahoma'
       Header.Title.Font.Style = [fsBold]
       Header.Subtitle.Color = clNone
       Header.Subtitle.Text = 
@@ -75,9 +80,15 @@ object PieForm: TPieForm
       Header.Subtitle.Anchors = [akLeft, akTop, akRight, akBottom]
       Header.Subtitle.Font.Charset = DEFAULT_CHARSET
       Header.Subtitle.Font.Color = clWindowText
-      Header.Subtitle.Font.Height = 12
-      Header.Subtitle.Font.Name = #44404#47548
+      Header.Subtitle.Font.Height = -15
+      Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ExplicitLeft = 3
       object Image1: TImage
         Left = 0
         Top = 70
@@ -809,17 +820,22 @@ object PieForm: TPieForm
       Header.Title.Anchors = [akLeft, akTop, akRight]
       Header.Title.Font.Charset = DEFAULT_CHARSET
       Header.Title.Font.Color = clWindowText
-      Header.Title.Font.Height = 16
-      Header.Title.Font.Name = #44404#47548
+      Header.Title.Font.Height = -19
+      Header.Title.Font.Name = 'Tahoma'
       Header.Title.Font.Style = [fsBold]
       Header.Subtitle.Color = clNone
       Header.Subtitle.Text = '[2/3] Select the target path to generate document in.'
       Header.Subtitle.Anchors = [akLeft, akTop, akRight, akBottom]
       Header.Subtitle.Font.Charset = DEFAULT_CHARSET
       Header.Subtitle.Font.Color = clWindowText
-      Header.Subtitle.Font.Height = 12
-      Header.Subtitle.Font.Name = #44404#47548
+      Header.Subtitle.Font.Height = -15
+      Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'Tahoma'
+      Font.Style = []
       OnEnterPage = OutDirectorySelectionPageEnterPage
       OnExitPage = OutDirectorySelectionPageExitPage
       object Label2: TLabel
@@ -1241,18 +1257,23 @@ object PieForm: TPieForm
       Header.Title.Anchors = [akLeft, akTop, akRight]
       Header.Title.Font.Charset = DEFAULT_CHARSET
       Header.Title.Font.Color = clWindowText
-      Header.Title.Font.Height = 16
-      Header.Title.Font.Name = #44404#47548
+      Header.Title.Font.Height = -19
+      Header.Title.Font.Name = 'Tahoma'
       Header.Title.Font.Style = [fsBold]
       Header.Subtitle.Color = clNone
       Header.Subtitle.Text = '[3/3] Documents for Selected templates are generated.'
       Header.Subtitle.Anchors = [akLeft, akTop, akRight, akBottom]
       Header.Subtitle.Font.Charset = DEFAULT_CHARSET
       Header.Subtitle.Font.Color = clWindowText
-      Header.Subtitle.Font.Height = 12
-      Header.Subtitle.Font.Name = #44404#47548
+      Header.Subtitle.Font.Height = -15
+      Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
       VisibleButtons = [bkNext, bkFinish, bkCancel]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'Tahoma'
+      Font.Style = []
       OnPage = ExecutionPagePage
       OnNextButtonClick = ExecutionPageNextButtonClick
       OnFinishButtonClick = ExecutionPageFinishButtonClick
