@@ -26,7 +26,7 @@ object AboutForm: TAboutForm
     Picture.Data = {
       0B546478504E47496D61676589504E470D0A1A0A0000000D49484452000001A4
       000001040802000000E832D78C000000017352474200AECE1CE9000000046741
-      4D410000B18F0BFC6105000000097048597300000EC100000EC101B8916BED00
+      4D410000B18F0BFC6105000000097048597300000EBC00000EBC0195BC724900
       00000774494D4507DD08040B3801B1AB1A4B0000000774455874417574686F72
       00A9AECC480000000C744558744465736372697074696F6E0013092123000000
       0A74455874436F7079726967687400AC0FCC3A0000000E744558744372656174
@@ -973,7 +973,7 @@ object AboutForm: TAboutForm
     ExplicitHeight = 199
   end
   object VersionLabel: TfshVersionLabel
-    Left = 264
+    Left = 257
     Top = 180
     Width = 155
     Height = 11
@@ -995,7 +995,7 @@ object AboutForm: TAboutForm
   end
   object AuthorLabel: TLabel
     Left = 46
-    Top = 150
+    Top = 153
     Width = 351
     Height = 13
     Caption = 
@@ -1013,6 +1013,19 @@ object AboutForm: TAboutForm
     Font.Height = -13
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object EditionLabel: TLabel
+    Left = 224
+    Top = 134
+    Width = 57
+    Height = 13
+    Caption = 'EditionLabel'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clAqua
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
     ParentFont = False
   end
 end

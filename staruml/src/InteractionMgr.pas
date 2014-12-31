@@ -279,11 +279,57 @@ var
 implementation
 
 uses
-  UMLFacto,
-  Math, CommCtrl, ImgList;
+  Vcl.ImgList, Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, System.Math, Winapi.CommCtrl,
+  UMLFacto;
 
 const
-  POSTFIX_HANDLER = 'Handler';
+  HANDLER_POSTFIX = 'Handler';
+
+
+
+function AddBitmap (ImageList: TCustomImageList; const FileName: string): Integer;
+var
+  FileExtension: string;
+  Bitmap: TBitmap;
+  JpgImage: TJPEGImage;
+  PngImage: TPngImage;
+
+begin
+  Result := -1;
+  Bitmap := nil;
+  JpgImage := nil;
+  PngImage := nil;
+  if FileExists(FileName) then begin
+    try
+      FileExtension := UpperCase(ExtractFileExt(FileName));
+      Bitmap := TBitmap.Create;
+
+      if  FileExtension = FILE_EXT_BMP then
+        Bitmap.LoadFromFile(FileName)
+
+      else if (FileExtension = FILE_EXT_JPG) or (FileExtension = FILE_EXT_JPEG) then begin
+        JpgImage := TJpegImage.Create;
+        JpgImage.LoadFromFile(FileName);
+        Bitmap.Assign(JpgImage);
+      end
+
+      else if (FileExtension = FILE_EXT_PNG) then begin
+        PngImage := TPngImage.Create;
+        PngImage.LoadFromFile(FileName);
+        Bitmap.Assign(PngImage);
+      end;
+
+      Result := ImageList.AddMasked(Bitmap, Bitmap.TransparentColor);
+
+  finally
+    Bitmap.Free;
+    JpgImage.Free;
+    PngImage.Free;
+  end;
+end;
+
+end;
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // PDiagramMenuInteraction
@@ -858,7 +904,7 @@ var
   NavBarItem: TNavBarItem;
   HandlerName: string;
 begin
-  HandlerName := AElementPrototype.Name + POSTFIX_HANDLER;
+  HandlerName := AElementPrototype.Name + HANDLER_POSTFIX;
   MainForm.AddCreateHandler(HandlerName, [], DragTypeToSkeletonPaintKind(AElementPrototype.DragType));
   //NavBarItem := MainForm.PaletteNavBarFrame.PaletteNavBar.Items.Add;
   NavBarItem := MainForm.PaletteNavBarFrame.CreateNavBarItem;
@@ -1180,70 +1226,25 @@ var
   Stereotype: PStereotype;
   ElemPrototype: PElementPrototype;
   ModelPrototype: PModelPrototype;
-  Bitmap: TBitmap;
   I, J: Integer;
 begin
   for I := 0 to ExtensionManager.AvailableProfileCount - 1 do begin
     Profile := ExtensionManager.AvailableProfiles[I];
     for J := 0 to Profile.StereotypeCount - 1 do begin
       Stereotype := Profile.Stereotypes[J];
-      if (Stereotype.SmallIconFile <> '') and FileExists(Stereotype.SmallIconFile)
-        and (UpperCase(ExtractFileExt(Stereotype.SmallIconFile)) = FILE_EXT_BMP) then begin
-        Stereotype.ImageIndex := -1;
-        Bitmap := TBitmap.Create;
-        try
-          Bitmap.LoadFromFile(Stereotype.SmallIconFile);
-          Stereotype.ImageIndex := MainForm.TotalImageList.AddMasked(Bitmap, Bitmap.TransparentColor);
-        except
-          Stereotype.ImageIndex := -1;
-        end;
-        Bitmap.Free;
-      end;
+      Stereotype.ImageIndex := AddBitmap(MainForm.TotalImageList, Stereotype.SmallIconFile);
     end;
     for J := 0 to Profile.DiagramTypeCount - 1 do begin
       DiagramType := Profile.DiagramTypes[J];
-      if (DiagramType.IconFile <> '') and FileExists(DiagramType.IconFile)
-        and (UpperCase(ExtractFileExt(DiagramType.IconFile)) = FILE_EXT_BMP) then begin
-        DiagramType.ImageIndex := -1;
-        Bitmap := TBitmap.Create;
-        try
-          Bitmap.LoadFromFile(DiagramType.IconFile);
-          DiagramType.ImageIndex := MainForm.TotalImageList.AddMasked(Bitmap, Bitmap.TransparentColor);
-        except
-          DiagramType.ImageIndex := -1;
-        end;
-        Bitmap.Free;
-      end;
+      DiagramType.ImageIndex := AddBitmap(MainForm.TotalImageList, DiagramType.IconFile);
     end;
     for J := 0 to Profile.ElementPrototypeCount - 1 do begin
       ElemPrototype := Profile.ElementPrototypes[J];
-      if (ElemPrototype.IconFile <> '') and FileExists(ElemPrototype.IconFile)
-        and (UpperCase(ExtractFileExt(ElemPrototype.IconFile)) = FILE_EXT_BMP) then begin
-        ElemPrototype.ImageIndex := -1;
-        Bitmap := TBitmap.Create;
-        try
-          Bitmap.LoadFromFile(ElemPrototype.IconFile);
-          ElemPrototype.ImageIndex := MainForm.TotalImageList.AddMasked(Bitmap, Bitmap.TransparentColor);
-        except
-          ElemPrototype.ImageIndex := -1;
-        end;
-        Bitmap.Free;
-      end;
+      ElemPrototype.ImageIndex := AddBitmap(MainForm.TotalImageList, ElemPrototype.IconFile);
     end;
     for J := 0 to Profile.ModelPrototypeCount - 1 do begin
       ModelPrototype := Profile.ModelPrototypes[J];
-      if (ModelPrototype.IconFile <> '') and FileExists(ModelPrototype.IconFile)
-        and (UpperCase(ExtractFileExt(ModelPrototype.IconFile)) = FILE_EXT_BMP) then begin
-        ModelPrototype.ImageIndex := -1;
-        Bitmap := TBitmap.Create;
-        try
-          Bitmap.LoadFromFile(ModelPrototype.IconFile);
-          ModelPrototype.ImageIndex := MainForm.TotalImageList.AddMasked(Bitmap, Bitmap.TransparentColor);
-        except
-          ModelPrototype.ImageIndex := -1;
-        end;
-        Bitmap.Free;
-      end;
+      ModelPrototype.ImageIndex := AddBitmap(MainForm.TotalImageList, ModelPrototype.IconFile);
     end;
   end;
 end;

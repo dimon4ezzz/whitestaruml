@@ -58,7 +58,7 @@ const
   C_TXT_PROGRAM_NAME = 'WhiteStarUML';
   C_TXT_UNTITILED_PRJ = 'Untitled';
   C_TXT_DECIMAL_SEPARATOR = '.';
-  C_ERR_FILE_NOT_FOUND = 'File not found (%s)';
+  C_ERR_FILE_NOT_FOUND = 'File %s not found';
   C_ERR_INVALID_VALUE = 'Invalid value.';
   C_ERR_INTERNAL_ERROR = 'Internal error';
   C_ERR_OUT_OF_RANGE = 'Out of range';
