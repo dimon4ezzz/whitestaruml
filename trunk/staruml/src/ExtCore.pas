@@ -389,6 +389,8 @@ type
     function GetViewPropertyValue(Index: Integer): string;
     function GetTaggedValueCount: Integer;
     function GetTaggedValue(Profile: string; TagDefinitionSet: string; TagDefinition: string): string;
+    procedure SetIconFile(AIconFile: string);
+    function GetIconFile: string;
   public
     constructor Create; override;
     destructor Destroy; override;
@@ -399,7 +401,7 @@ type
     property DisplayName: string read FDisplayName write FDisplayName;
     property BaseElement: string read FBaseElement write FBaseElement;
     property Argument: Integer read FArgument write FArgument;
-    property IconFile: string read FIconFile write FIconFile;
+    property IconFile: string read FIconFile write SetIconFile;
     property DragType: PDragTypeKind read FDragType write FDragType;
     property StereotypeName: string read FStereotypeName write FStereotypeName;
     property StereotypeDisplay: string read FStereotypeDisplay write FStereotypeDisplay;
@@ -661,7 +663,8 @@ implementation
 
 uses
   LogMgr,
-  Windows, Variants, Forms, Registry, NLS_StarUML;
+  Windows, Variants, Forms, Registry, Vcl.imaging.jpeg, Vcl.Imaging.pngimage,
+  NLS_StarUML;
 
 const
   //PROFILES_REGPATH = '\Software\StarUML\Profiles';
@@ -781,6 +784,9 @@ const
   EMF_FILE = '.emf';
   WMF_FILE = '.wmf';
   BMP_FILE = '.bmp';
+  JPG_FILE = '.jpg';
+  JPEG_FILE = '.jpeg';
+  PNG_FILE = '.png';
 
 ////////////////////////////////////////////////////////////////////////////////
 // PExtensibleModel
@@ -1891,6 +1897,7 @@ var
 begin
   if (FIconFile <> '') and FileExists(FIconFile) then begin
     Ext := LowerCase(ExtractFileExt(FIconFile));
+
     if (Ext = WMF_FILE) or (Ext = EMF_FILE) then begin
       FIcon := TMetaFile.Create;
       try
@@ -1900,6 +1907,7 @@ begin
         FIcon := nil;
       end;
     end
+
     else if (Ext = BMP_FILE) then begin
       FIcon := Graphics.TBitmap.Create;
       try
@@ -1908,7 +1916,28 @@ begin
         FIcon.Free;
         FIcon := nil;
       end;
-    end;
+    end
+
+    else if (Ext = JPG_FILE) or (Ext = JPEG_FILE) then begin
+      FIcon := TJPEGImage.Create;
+      try
+        FIcon.LoadFromFile(FIconFile);
+      except
+        FIcon.Free;
+        FIcon := nil;
+      end;
+    end
+
+    else if (Ext = PNG_FILE) then begin
+      FIcon := TPNGImage.Create;
+      try
+        FIcon.LoadFromFile(FIconFile);
+      except
+        FIcon.Free;
+        FIcon := nil;
+      end;
+    end
+
   end;
 end;
 
@@ -1953,6 +1982,11 @@ begin
   inherited;
 end;
 
+function PElementPrototype.GetIconFile: string;
+begin
+  Result := FIconFile;
+end;
+
 function PElementPrototype.GetModelPropertyCount: Integer;
 begin
   Result := FModelProperties.Count;
@@ -1981,6 +2015,11 @@ end;
 function PElementPrototype.GetViewPropertyValue(Index: Integer): string;
 begin
   Result := FViewProperties.Values[GetViewPropertyName(Index)];
+end;
+
+procedure PElementPrototype.SetIconFile(AIconFile: string);
+begin
+  FIconFile := AIconFile;
 end;
 
 function PElementPrototype.GetTaggedValueCount: Integer;
@@ -2879,7 +2918,7 @@ begin
 
   F := ReadChildStringValue(Node, PRF_ELEMENTPROTOTYPE_ICON);
   if (F <> '') and (FileExists(AProfile.Path + '\' + F)) then
-    AElementPrototype.FIconFile := AProfile.Path + '\' + F;
+    AElementPrototype.IconFile := AProfile.Path + '\' + F;
 
   AElementPrototype.FDragType := StrToDragType(ReadChildStringValue(Node, PRF_ELEMENTPROTOTYPE_DRAGTYPE));
   AElementPrototype.FStereotypeName := ReadChildStringValue(Node, PRF_ELEMENTPROTOTYPE_STEREOTYPENAME);

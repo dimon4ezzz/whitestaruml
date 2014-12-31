@@ -144,7 +144,7 @@ type
   private
     //DOT: TDOT;
     //NEATO: TNEATO;
-    FGvcIntfDllHandle : cardinal;
+    FGvcIntfDllHandle : HModule;
     FLayoutGraphFunc: PLayoutGraphFunc;
     FDeleteOutputGraphFunc: PDeleteOutputGraphFunc;
     GraphvizPlainOutputParser: PGraphvizPlainOutputParser;
@@ -397,8 +397,8 @@ end;
 function PDiagramLayout.ValidateGvcIntfDllBindings: Boolean;
 begin
   if FGvcIntfDllHandle = 0 then begin // Try to load the dll
-     Result := False;
-    FGvcIntfDllHandle := LoadLibrary('gvc_intf') ;
+    Result := False;
+    FGvcIntfDllHandle := LoadLibrary(GvcIntfDll);
     if FGvcIntfDllHandle <> 0 then
     begin
       @FLayoutGraphFunc := GetProcAddress(FGvcIntfDllHandle, LayoutGraphFuncName);
@@ -413,8 +413,10 @@ begin
  else
   Result := True; // Dll already loaded
 
-  if (Result = False) and (FGvcIntfDllHandle <> 0) then// Unload dll if binding not successful
+  if (Result = False) and (FGvcIntfDllHandle <> 0) then begin// Unload dll if binding not successful
     FreeLibrary(FGvcIntfDllHandle);
+    FGvcIntfDllHandle := 0;
+  end;
 
 
 end;
