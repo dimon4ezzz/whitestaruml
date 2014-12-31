@@ -62,6 +62,9 @@ uses
 
 const
   FILE_EXT_BMP = '.BMP';
+  FILE_EXT_JPG = '.JPG';
+  FILE_EXT_JPEG = '.JPEG';
+  FILE_EXT_PNG = '.PNG';
 
   MENU_BAR = 0;
   STANDARD_BAR = 1;

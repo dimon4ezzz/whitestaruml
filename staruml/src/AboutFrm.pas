@@ -57,6 +57,7 @@ type
     SplashImage: TImage;
     AuthorLabel: TLabel;
     AcknowledgeLabel: TLabel;
+    EditionLabel: TLabel;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -75,8 +76,14 @@ uses
 {$R *.dfm}
 
 procedure TAboutForm.FormCreate(Sender: TObject);
-
+const
+{$IFDEF WIN64}
+  Edition = '64';
+{$ELSE}
+  Edition = '32';
+{$ENDIF}
 begin
+  EditionLabel.Caption := Edition + ' bit edition';
   NLSManager.SetFile(ExtractFilePath(Application.ExeName) + 'NLS\ABOUT.LNG');
   NLSManager.TranslateComponent(Self, []);
 end;

@@ -150,7 +150,6 @@ type
     FGraphics: PGraphics;
     FFilename: String;
 
-    function ReadExprWithProGrammarParser(FilePath: String): PNXNotationExpr;
     function ReadExprWithGoldParser(FilePath: String): PNXNotationExpr;
 
   public
@@ -228,14 +227,8 @@ implementation
 
 uses
   System.Types, System.UITypes, System.StrUtils, System.Math, VCL.Forms,
-  System.Win.ComServ, XML.XMLDoc, XML.XMLIntf,
-
-//{$IFDEF USE_PROGRAMMAR_PARSER}
-  PGMR101Lib_TLB,
-//{$ENDIF USE_PROGRAMMAR_PARSER}
-  ParserCore_TLB,
-
-  LogMgr, ExtCore, ViewCore;
+  System.Win.ComServ, XML.XMLDoc, XML.XMLIntf, Vcl.Imaging.jpeg, Vcl.Imaging.pngimage,
+  ParserCore_TLB, LogMgr, ExtCore, ViewCore, NLS_StarUML;
 
 const
   NOT_EXISTS = 0;
@@ -244,6 +237,9 @@ const
   EMF_FILE = '.emf';
   WMF_FILE = '.wmf';
   BMP_FILE = '.bmp';
+  JPG_FILE = '.jpg';
+  JPEG_FILE = '.jpeg';
+  PNG_FILE = '.png';
 
 procedure ERaise(Condition: Boolean; LineNo: Integer; Message: String); forward;
 function SimilarType(V1, V2: Variant): Boolean; forward;
@@ -251,124 +247,6 @@ function SimilarType(V1, V2: Variant): Boolean; forward;
 type
   // Controller Classes ........................................................
 
-  // PNXReader
-  PNXReader = class
-  private
-    Pgmr: TPgmr;
-    FErrorLine: Integer;
-    FErrorLinePos: Integer;
-    FErrorNumChars: Integer;
-    FErrorDescription: String;
-    FFilepath: String;
-
-    function FindChild(Node: Integer; OperName: String): Integer;
-    function FindChildAt(Node: Integer; At: Integer): Integer;
-    function ChildCount(Node: Integer): Integer;
-    function NodeName(Node: Integer): String;
-    function NodeValue(Node: Integer): String;
-    function ExprNodeValue(Node: Integer): String;
-    function GetPos(Node: Integer): Integer;
-
-    function TraverseNode(Node: Integer): PNXExpr;
-    function TraverseNotationNode(Node: Integer): PNXExpr;
-    function TraverseSequenceNode(Node: Integer): PNXExpr;
-
-    function TraverseIntNode(Node: Integer): PNXExpr;
-    function TraverseFloatNode(Node: Integer): PNXExpr;
-    function TraverseStringNode(Node: Integer): PNXExpr;
-    function TraverseBooleanNode(Node: Integer): PNXExpr;
-    function TraverseNilNode(Node: Integer): PNXExpr;
-    function TraverseGetNode(Node: Integer): PNXExpr;
-
-    function TraverseSetNode(Node: Integer): PNXExpr;
-    function TraverseIfNode(Node: Integer): PNXExpr;
-    function TraverseForNode(Node: Integer): PNXExpr;
-
-    function TraverseListNode(Node: Integer): PNXExpr;
-    function TraverseAppendNode(Node: Integer): PNXExpr;
-    function TraverseItemAtNode(Node: Integer): PNXExpr;
-    function TraverseItemCountNode(Node: Integer): PNXExpr;
-    function TraverseTokenizeNode(Node: Integer): PNXExpr;
-
-    function TraverseOperandNodes(OpExpr: PNXGroupExpr; Node: Integer): PNXExpr;
-    function TraverseAddNode(Node: Integer): PNXExpr;
-    function TraverseSubtractNode(Node: Integer): PNXExpr;
-    function TraverseMultiplyNode(Node: Integer): PNXExpr;
-    function TraverseDivideNode(Node: Integer): PNXExpr;
-    function TraverseAndNode(Node: Integer): PNXExpr;
-    function TraverseOrNode(Node: Integer): PNXExpr;
-    function TraverseConcatNode(Node: Integer): PNXExpr;
-    function TraverseSinNode(Node: Integer): PNXExpr;
-    function TraverseCosNode(Node: Integer): PNXExpr;
-    function TraverseTanNode(Node: Integer): PNXExpr;
-    function TraverseTruncNode(Node: Integer): PNXExpr;
-    function TraverseRoundNode(Node: Integer): PNXExpr;
-    function TraverseTrimNode(Node: Integer): PNXExpr;
-    function TraverseLengthNode(Node: Integer): PNXExpr;
-    function TraverseTextHeightNode(Node: Integer): PNXExpr;
-    function TraverseTextWidthNode(Node: Integer): PNXExpr;
-    function TraverseNotNode(Node: Integer): PNXExpr;
-    function TraverseEQNode(Node: Integer): PNXExpr;
-    function TraverseNEQNode(Node: Integer): PNXExpr;
-    function TraverseGTNode(Node: Integer): PNXExpr;
-    function TraverseGENode(Node: Integer): PNXExpr;
-    function TraverseLTNode(Node: Integer): PNXExpr;
-    function TraverseLENode(Node: Integer): PNXExpr;
-
-    function TraverseMOFAttrNode(Node: Integer): PNXExpr;
-    function TraverseMOFSetAttrNode(Node: Integer): PNXExpr;
-    function TraverseMOFRefNode(Node: Integer): PNXExpr;
-    function TraverseMOFColAtNode(Node: Integer): PNXExpr;
-    function TraverseMOFColCountNode(Node: Integer): PNXExpr;
-
-    function TraverseConstraintValNode(Node: Integer): PNXExpr;
-
-    function TraverseTagValNode(Node: Integer): PNXExpr;
-    function TraverseTagRefNode(Node: Integer): PNXExpr;
-    function TraverseTagRefAtNode(Node: Integer): PNXExpr;
-    function TraverseTagRefCountNode(Node: Integer): PNXExpr;
-
-    function TraverseSetPenStyleNode(Node: Integer): PNXExpr;
-    function TraverseSetPenColorNode(Node: Integer): PNXExpr;
-    function TraverseSetBrushStyleNode(Node: Integer): PNXExpr;
-    function TraverseSetBrushColorNode(Node: Integer): PNXExpr;
-    function TraverseSetFontFaceNode(Node: Integer): PNXExpr;
-    function TraverseSetFontSizeNode(Node: Integer): PNXExpr;
-    function TraverseSetFontColorNode(Node: Integer): PNXExpr;
-    function TraverseSetFontStyleNode(Node: Integer): PNXExpr;
-    function TraverseSetDefaultStyleNode(Node: Integer): PNXExpr;
-
-    function TraversePointNode(Node: Integer): PNXExpr;
-    function TraversePtAtXNode(Node: Integer): PNXExpr;
-    function TraversePtAtYNode(Node: Integer): PNXExpr;
-    function TraversePtCountNode(Node: Integer): PNXExpr;
-
-    function TraverseMoveToNode(Node: Integer): PNXExpr;
-    function TraverseLineToNode(Node: Integer): PNXExpr;
-    function TraverseTextOutNode(Node: Integer): PNXExpr;
-    function TraverseTextBoundNode(Node: Integer): PNXExpr;
-    function TraverseLineNode(Node: Integer): PNXExpr;
-    function TraverseRectNode(Node: Integer): PNXExpr;
-    function TraverseFillRectNode(Node: Integer): PNXExpr;
-    function TraverseEllipseNode(Node: Integer): PNXExpr;
-    function TraverseRoundRectNode(Node: Integer): PNXExpr;
-    function TraverseTextRectNode(Node: Integer): PNXExpr;
-    function TraverseArcNode(Node: Integer): PNXExpr;
-    function TraversePieNode(Node: Integer): PNXExpr;
-
-    function TraverseDrawEdgeNode(Node: Integer): PNXExpr;
-    function TraverseDrawObjectNode(Node: Integer): PNXExpr;
-    function TraverseArrangeObjectNode(Node: Integer): PNXExpr;
-
-    function TraversePolylineNode(Node: Integer): PNXExpr;
-    function TraversePolygonNode(Node: Integer): PNXExpr;
-    function TraversePolyBezierNode(Node: Integer): PNXExpr;
-
-    function TraverseDrawBitmapNode(Node: Integer): PNXExpr;
-
-  public
-    function Read(FilePath: String): PNXNotationExpr;
-  end;
 
   // PNXEvaluator
   PNXEvaluator = class
@@ -907,13 +785,7 @@ end;
 
 function PNXManager.ReadExpr(FilePath: String): PNXNotationExpr;
 begin
-{$IFDEF USE_PROGRAMMAR_PARSER}
-  Result := ReadExprWithProGrammarParser(FilePath)
-{$ELSE}
   Result := ReadExprWithGoldParser(FilePath)
-{$ENDIF USE_PROGRAMMAR_PARSER}
-
-
 end;
 
 function PNXManager.ReadExprWithGoldParser(FilePath: String): PNXNotationExpr;
@@ -922,9 +794,12 @@ var
   BuilderInstance: TTExprBuilder; // Shortcut to object implementing ITExprBuilder
   Parser: TNxParser;
   ParseStatus: WordBool;
+{$IFDEF DEBUGNX}
   ObjDumpVisitor: PNXVisitor;
   FileStream : TFileStream;
+{$ENDIF DEBUGNX}
 begin
+    Result := nil;
     Builder := CoTExprBuilder.Create;
     BuilderInstance := Builder as TTExprBuilder;
     //Builder := TTExprBuilder.Create;
@@ -948,39 +823,6 @@ begin
 
 end;
 
-function PNXManager.ReadExprWithProGrammarParser(
-  FilePath: String): PNXNotationExpr;
-var
-  Reader: PNXReader;
-  Expr: PNXNotationExpr;
-  ObjDumpVisitor: PNXVisitor;
-  FileStream : TFileStream;
-begin
-  Reader := nil;
-  Expr := nil;
-  Result := nil;
-  try
-    Reader := PNXReader.Create;
-    Expr := Reader.Read(FilePath);
-    if Expr <> nil then
-      Expr.Filename := ExtractFilename(Filepath);
-    Result := Expr;
-    Reader.Free;
-    Reader := nil;
-
-{$IFDEF DEBUGNX}
-      FileStream := TFileStream.Create(Expr.Filename + '.Dump.txt',fmCreate);
-      ObjDumpVisitor := NXMgr.CreateObjDumpVisitor(FileStream);
-      Expr.Accept(ObjDumpVisitor);
-      FileStream.Free;
-{$ENDIF DEBUGNX}
-  except
-    LogManager.Log('Failed loading of file: ' + ExtractFilename(Filepath));
-    if Expr <> nil then Expr.Free;
-  end;
-  if Reader <> nil then Reader.Free;
-  inherited;
-end;
 
 procedure PNXManager.DrawExpr(Canvas: PCanvas; View: PView; Expr: PNXNotationExpr);
 var
@@ -2584,23 +2426,44 @@ begin
             // Invalid Meta File Format
             FGraphic.Free;
             FGraphic := nil;
-            ERaise(false, FPos, Fullpath+' image is not found.');
+            ERaise(false, FPos, Format(C_ERR_FILE_NOT_FOUND,[Fullpath]));
           end;
         end
-        else if (Ext = BMP_FILE) then begin
-          FGraphic := Vcl.Graphics.TBitmap.Create;
-          (FGraphic as TBitmap).TransparentColor := clFuchsia;
-          (FGraphic as TBitmap).TransparentMode := tmAuto;
-          FGraphic.Transparent := Transparent;
+        else if (Ext = BMP_FILE) or (Ext = JPG_FILE) or (Ext = JPEG_FILE)
+        or (Ext = PNG_FILE) then begin
           try
+            if (Ext = BMP_FILE) then begin
+              FGraphic := Vcl.Graphics.TBitmap.Create;
+              (FGraphic as TBitmap).TransparentColor := clFuchsia;
+              (FGraphic as TBitmap).TransparentMode := tmAuto;
+              FGraphic.Transparent := Transparent;
+              FGraphic.LoadFromFile(Fullpath);
+            end
+
+            else if (Ext = JPG_FILE) or (Ext = JPEG_FILE) then begin
+              // Jpg does not handle transparency
+              FGraphic := Vcl.Imaging.jpeg.TJPEGImage.Create;
+            end
+
+            else if (Ext = PNG_FILE) then begin
+              // Png allows to set transparent color in image
+              FGraphic := Vcl.Imaging.pngimage.TPngImage.Create;
+            end
+            else
+              Assert (False);
+
+            FGraphic.Transparent := Transparent;
             FGraphic.LoadFromFile(Fullpath);
+
           except
-            // Invalid BMP File Format
+            // Invalid Graphic File Format
             FGraphic.Free;
             FGraphic := nil;
-            ERaise(false, FPos, Fullpath+' image is not found.');
+            ERaise(false, FPos, Format(C_ERR_FILE_NOT_FOUND,[Fullpath]));
           end;
         end;
+
+
         NXManager.AddGraphic(Fullpath, FGraphic);
       end;
     end;
@@ -3121,757 +2984,6 @@ begin
   end;
 end;
 
-{ PNXReader }
-
-function PNXReader.Read(FilePath: String): PNXNotationExpr;
-var
-  NXExpr: PNXNotationExpr;
-  Success: Boolean;
-  Node: Integer;
-  P: Integer;
-begin
-  NXExpr := nil;
-
-  try
-
-    FFilePath := FilePath;
-
-    // parse schema
-    Pgmr := TPgmr.Create(Application);
-    Pgmr.SetGrammar(ExtractFilePath(Application.ExeName)+'\pns.gmr');
-    Pgmr.SetInputFilename(FilePath);
-    Pgmr.Parse;
-
-    Success := (Pgmr.Status = pgStatusComplete) and (Pgmr.GetNumErrors = 0);
-    if Success then begin
-      Node := Pgmr.Find('expr', Pgmr.GetRoot);
-      Assert(Node <> NOT_EXISTS);
-
-      // traverse parse tree and make PNXNotationExpr out of top node
-      NXExpr := TraverseNode(Node) as PNXNotationExpr;
-    end
-    else begin
-      if Pgmr.Status = pgStatusError then begin
-        FErrorLine := -1;
-        FErrorLinePos := -1;
-        FErrorNumChars := 0;
-      end
-      else begin
-        P := StrToIntDef(Pgmr.GetErrorDetail(0, 'StartPos'), -1);
-        FErrorLine := Pgmr.GetInputLineNumber(P);
-        FErrorLinePos := P - Pgmr.GetInputLinePos(FErrorLine);
-        FErrorNumChars := StrToIntDef(Pgmr.GetErrorDetail(0, 'NumChars'), 0);
-      end;
-      ERaise(false, FErrorLine, 'Syntax Errors exist.');
-      FErrorDescription := Pgmr.GetErrorDescription(0);
-    end;
-
-    // return PNXExpr
-    Pgmr.SetInputFilename('');
-    Pgmr.Free;
-    Pgmr := nil;
-    Result := NXExpr;
-  except
-    if Pgmr <> nil then begin
-      Pgmr.SetInputFilename('');
-      Pgmr.Free;
-      Pgmr := nil;
-    end;
-  end;
-  Result := NXExpr;
-end;
-
-function PNXReader.FindChild(Node: Integer; OperName: String): Integer;
-var
-  I, C: Integer;
-  OperNode, ChildNode: Integer;
-  P, Value: String;
-begin
-  OperName := LowerCase(OperName);
-  C := ChildCount(Node);
-  for I := 0 to C-1 do begin
-    P := '.' + IntToStr(I);
-    ChildNode := Pgmr.Find(P, Node);
-
-    OperNode := Pgmr.Find('.oper', ChildNode);
-    if OperNode = 0 then
-      Continue;
-
-    Value := Pgmr.GetValue(OperNode);
-
-    if LowerCase(Value) = OperName then begin
-      Result := ChildNode;
-      Exit;
-    end;
-  end;
-
-  Result := NOT_EXISTS;
-end;
-
-function PNXReader.FindChildAt(Node: Integer; At: Integer): Integer;
-var
-  ChildNode: Integer;
-  P: String;
-begin
-  P := '.' + IntToStr(At);
-  ChildNode := Pgmr.Find(P, Node);
-  Result := ChildNode;
-end;
-
-function PNXReader.ChildCount(Node: Integer): Integer;
-begin
-  Result := Pgmr.GetNumChildren(Node);
-end;
-
-function PNXReader.NodeName(Node: Integer): String;
-begin
-  Result := Pgmr.GetLabel(Node);
-end;
-
-function PNXReader.NodeValue(Node: Integer): String;
-begin
-  Result := Pgmr.GetValue(Node);
-end;
-
-function PNXReader.ExprNodeValue(Node: Integer): String;
-begin
-  try
-    Result := NodeValue(FindChildAt(Node, 0));
-  except
-    ERaise(false, GetPos(Node), 'required value or symble.');
-    Result := '';
-  end;
-end;
-
-
-function PNXReader.GetPos(Node: Integer): Integer;
-begin
-  Result := Pgmr.GetInputLineNumber(Pgmr.GetValuePos(Node));
-end;
-
-function PNXReader.TraverseNode(Node: Integer): PNXExpr;
-var
-  Name: String;
-  N: Integer;
-begin
-  Result := nil;
-  N := Pgmr.Find('.oper', Node);
-
-  // in case of having operator
-  if N <> NOT_EXISTS then begin
-    Name := LowerCase(Pgmr.GetValue(N));
-    if      Name = 'notation'     then Result := TraverseNotationNode(Node)
-    else if Name = 'onarrange'    then Result := TraverseSequenceNode(Node)
-    else if Name = 'ondraw'       then Result := TraverseSequenceNode(Node)
-
-    else if Name = 'sequence'     then Result := TraverseSequenceNode(Node)
-
-    else if Name = '+'            then Result := TraverseAddNode(Node)
-    else if Name = '-'            then Result := TraverseSubtractNode(Node)
-    else if Name = '*'            then Result := TraverseMultiplyNode(Node)
-    else if Name = '/'            then Result := TraverseDivideNode(Node)
-    else if Name = 'and'          then Result := TraverseAndNode(Node)
-    else if Name = 'or'           then Result := TraverseOrNode(Node)
-    else if Name = 'not'          then Result := TraverseNotNode(Node)
-    else if Name = '='            then Result := TraverseEQNode(Node)
-    else if Name = '!='           then Result := TraverseNEQNode(Node)
-    else if Name = '>'            then Result := TraverseGTNode(Node)
-    else if Name = '>='           then Result := TraverseGENode(Node)
-    else if Name = '<'            then Result := TraverseLTNode(Node)
-    else if Name = '<='           then Result := TraverseLENode(Node)
-
-    else if Name = 'sin'          then Result := TraverseSinNode(Node)
-    else if Name = 'cos'          then Result := TraverseCosNode(Node)
-    else if Name = 'tan'          then Result := TraverseTanNode(Node)
-
-    else if Name = 'concat'       then Result := TraverseConcatNode(Node)
-    else if Name = 'trunc'        then Result := TraverseTruncNode(Node)
-    else if Name = 'round'        then Result := TraverseRoundNode(Node)
-    else if Name = 'trim'         then Result := TraverseTrimNode(Node)
-    else if Name = 'length'       then Result := TraverseLengthNode(Node)
-    else if Name = 'tokenize'     then Result := TraverseTokenizeNode(Node)
-
-    else if Name = 'mofattr'      then Result := TraverseMOFAttrNode(Node)
-    else if Name = 'mofsetattr'   then Result := TraverseMOFSetAttrNode(Node)
-    else if Name = 'mofref'       then Result := TraverseMOFRefNode(Node)
-    else if Name = 'mofcolat'     then Result := TraverseMOFColAtNode(Node)
-    else if Name = 'mofcolcount'  then Result := TraverseMOFColCountNode(Node)
-
-    else if Name = 'constraintval' then Result := TraverseConstraintValNode(Node)
-
-    else if Name = 'tagval'       then Result := TraverseTagValNode(Node)
-    else if Name = 'tagref'       then Result := TraverseTagRefNode(Node)
-    else if Name = 'tagcolat'     then Result := TraverseTagRefAtNode(Node)
-    else if Name = 'tagcolcount'  then Result := TraverseTagRefCountNode(Node)
-
-    else if Name = 'set'          then Result := TraverseSetNode(Node)
-    else if Name = 'if'           then Result := TraverseIfNode(Node)
-    else if Name = 'for'          then Result := TraverseForNode(Node)
-
-    else if Name = 'list'         then Result := TraverseListNode(Node)
-    else if Name = 'append'       then Result := TraverseAppendNode(Node)
-    else if Name = 'itemat'       then Result := TraverseItemAtNode(Node)
-    else if Name = 'itemcount'    then Result := TraverseItemCountNode(Node)
-
-    else if Name = 'setpencolor'  then Result := TraverseSetPenColorNode(Node)
-    else if Name = 'setpenstyle'  then Result := TraverseSetPenStyleNode(Node)
-    else if Name = 'setbrushcolor'then Result := TraverseSetBrushColorNode(Node)
-    else if Name = 'setbrushstyle'then Result := TraverseSetBrushStyleNode(Node)
-    else if Name = 'setfontface'  then Result := TraverseSetFontFaceNode(Node)
-    else if Name = 'setfontcolor' then Result := TraverseSetFontColorNode(Node)
-    else if Name = 'setfontsize'  then Result := TraverseSetFontSizeNode(Node)
-    else if Name = 'setfontstyle' then Result := TraverseSetFontStyleNode(Node)
-
-    else if Name = 'textheight'   then Result := TraverseTextHeightNode(Node)
-    else if Name = 'textwidth'    then Result := TraverseTextWidthNode(Node)
-    else if Name = 'pt'           then Result := TraversePointNode(Node)
-    else if Name = 'moveto'       then Result := TraverseMoveToNode(Node)
-    else if Name = 'lineto'       then Result := TraverseLineToNode(Node)
-    else if Name = 'textout'      then Result := TraverseTextOutNode(Node)
-    else if Name = 'textbound'    then Result := TraverseTextBoundNode(Node)
-    else if Name = 'line'         then Result := TraverseLineNode(Node)
-    else if Name = 'rect'         then Result := TraverseRectNode(Node)
-    else if Name = 'filerect'     then Result := TraverseFillRectNode(Node)
-    else if Name = 'ellipse'      then Result := TraverseEllipseNode(Node)
-    else if Name = 'roundrect'    then Result := TraverseRoundRectNode(Node)
-    else if Name = 'textrect'     then Result := TraverseTextRectNode(Node)
-    else if Name = 'arc'          then Result := TraverseArcNode(Node)
-    else if Name = 'pie'          then Result := TraversePieNode(Node)
-    else if Name = 'ptatx'        then Result := TraversePtAtXNode(Node)
-    else if Name = 'ptaty'        then Result := TraversePtAtYNode(Node)
-    else if Name = 'ptcount'      then Result := TraversePtCountNode(Node)
-    else if Name = 'drawedge'     then Result := TraverseDrawEdgeNode(Node)
-    else if Name = 'drawobject'   then Result := TraverseDrawObjectNode(Node)
-    else if Name = 'arrangeobject'   then Result := TraverseArrangeObjectNode(Node)
-    else if Name = 'polyline'     then Result := TraversePolylineNode(Node)
-    else if Name = 'polygon'      then Result := TraversePolygonNode(Node)
-    else if Name = 'polybezier'   then Result := TraversePolyBezierNode(Node)
-    else if Name = 'drawbitmap'   then Result := TraverseDrawBitmapNode(Node)
-//    else if Name = 'stretchbitmap'   then Result := TraverseStretchBitmapNode(Node)
-    else if Name = 'setdefaultstyle' then Result := TraverseSetDefaultStyleNode(Node)
-    else ERaise(false, GetPos(Node), Name + ' unidentified operator');
-  end
-  // symbol or value
-  else begin
-    N := FindChildAt(Node, 0);
-    ERaise(N <> NOT_EXISTS, GetPos(Node), 'Symbol or Value does not exist.');
-
-    Name := LowerCase(NodeName(N));
-
-    if Name = 'ident'             then Result := TraverseGetNode(Node)
-    else if Name = 'int'          then Result := TraverseIntNode(Node)
-    else if Name = 'flt'          then Result := TraverseFloatNode(Node)
-    else if Name = 'str'          then Result := TraverseStringNode(Node)
-    else if Name = 'bool'         then Result := TraverseBooleanNode(Node)
-    else if Name = 'nil'          then Result := TraverseNilNode(Node)
-    else ERaise(false, GetPos(Node), 'Unidentified type value.');
-  end;
-end;
-
-function PNXReader.TraverseNotationNode(Node: Integer): PNXExpr;
-var
-  NotationExpr: PNXNotationExpr;
-  ChildNode: Integer;
-  Expr: PNXExpr;
-begin
-  NotationExpr := PNXNotationExpr.Create(GetPos(Node), Self.FFilepath);
-
-  ChildNode := FindChild(Node, 'onArrange');
-  ERaise(ChildNode <> NOT_EXISTS, GetPos(Node), 'onArrange expression does not exist.');
-
-  Expr := traverseNode(ChildNode);
-  NotationExpr.Add(Expr);
-
-  ChildNode := FindChild(Node, 'onDraw');
-  ERaise(ChildNode <> NOT_EXISTS, GetPos(Node), 'onDraw expression does not exist.');
-
-  Expr := traverseNode(ChildNode);
-  NotationExpr.Add(Expr);
-
-  Result := NotationExpr;
-end;
-
-function PNXReader.TraverseSequenceNode(Node: Integer): PNXExpr;
-var
-  I: Integer;
-  ChildNode: Integer;
-  GroupExpr: PNXGroupExpr;
-begin
-  GroupExpr := PNXGroupExpr.Create(GetPos(Node));
-  for I := 1 to ChildCount(Node)-1 do begin
-    ChildNode := FindChildAt(Node, I);
-    ERaise(ChildNode <> NOT_EXISTS, GetPos(Node), IntToStr(I)+'th arguement expression does not exist.');
-    GroupExpr.Add(traverseNode(ChildNode));
-  end;
-  Result := GroupExpr;
-end;
-
-function PNXReader.TraverseIntNode(Node: Integer): PNXExpr;
-var Value: Integer;
-begin
-  Result := nil;
-  try
-    Value := StrToInt(Trim( ExprNodeValue(Node) ));
-  except
-    ERaise(false, GetPos(Node), 'int value does not exist.');
-    Value := 0;
-  end;
-  Result := PNXExpr.NewValue(GetPos(Node), Value);
-end;
-
-function PNXReader.TraverseFloatNode(Node: Integer): PNXExpr;
-var Value: Real;
-begin
-  Result := nil;
-  try
-    Value := StrToFloat(Trim(ExprNodeValue(Node)));
-  except
-    ERaise(false, GetPos(Node), 'float value does not exist.');
-    Value := 0.0;
-  end;
-
-  Result := PNXExpr.NewValue(GetPos(Node), Value);
-end;
-
-function PNXReader.TraverseStringNode(Node: Integer): PNXExpr;
-var Value: String;
-begin
-  Result := nil;
-  try
-    Value := Trim( ExprNodeValue(Node) );
-    Value := Copy(Value, 2, Length(Value)-2);
-
-    Value := StringReplace(Value, '''''', '''', [rfReplaceAll]);
-    Value := StringReplace(Value, '\t', #9, [rfReplaceAll, rfIgnoreCase]);
-    Value := StringReplace(Value, '\n', #13, [rfReplaceAll, rfIgnoreCase]);
-    Value := StringReplace(Value, '\r', #10, [rfReplaceAll, rfIgnoreCase]);
-
-  except
-    ERaise(false, GetPos(Node), 'string value does not exist.');
-    Value := '';
-  end;
-
-  Result := PNXExpr.NewValue(GetPos(Node), Value);
-end;
-
-function PNXReader.TraverseBooleanNode(Node: Integer): PNXExpr;
-var Value: Boolean;
-begin
-  Result := nil;
-  try
-    Value := StrToBool(Trim( ExprNodeValue(Node) ));
-  except
-    ERaise(false, GetPos(Node), 'boolean value does not exist.');
-    Value := false;
-  end;
-
-  Result := PNXExpr.NewValue(GetPos(Node), Value);
-end;
-
-function PNXReader.TraverseNilNode(Node: Integer): PNXExpr;
-begin
-  Result := nil;
-  Result := PNXExpr.NewRef(GetPos(Node), nil);
-end;
-
-function PNXReader.TraverseGetNode(Node: Integer): PNXExpr;
-var
-  Id: String;
-  Expr: PNXGetExpr;
-begin
-  Result := nil;
-  try
-    Id := ExprNodeValue(Node);
-  except
-    ERaise(false, GetPos(Node), 'identifier is required.');
-    Id := '';
-  end;
-
-  Expr := PNXGetExpr.Create(GetPos(Node));
-  Expr.Add(PNXExpr.NewValue(GetPos(Node), Id));
-
-  Result := Expr;
-end;
-
-function PNXReader.TraverseOperandNodes(OpExpr: PNXGroupExpr; Node: Integer): PNXExpr;
-var
-  ArgExpr: PNXExpr;
-  I, ChildNode: Integer;
-begin
-  Result := nil;
-  for I := 1 to ChildCount(Node)-1 do begin
-    ChildNode := FindChildAt(Node, I);
-    ERaise(ChildNode <> NOT_EXISTS, GetPos(Node), IntToStr(I)+'th arguement expression does not exist.');
-    ArgExpr := traverseNode(ChildNode);
-    OpExpr.Add(ArgExpr);
-  end;
-  Result := OpExpr;
-end;
-
-function PNXReader.TraverseAddNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXAddExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseSubtractNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXSubtractExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseMultiplyNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXMultiplyExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseDivideNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXDivideExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseAndNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXAndExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseOrNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXOrExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseConcatNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXConcatExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseSinNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXSinExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseCosNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXCosExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTanNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTanExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTruncNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTruncExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseRoundNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXRoundExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTrimNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTrimExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseLengthNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXLengthExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTextHeightNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTextHeightExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTextWidthNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTextWidthExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseNotNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXNotExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseEQNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXEQExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseNEQNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXNEQExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseGTNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXGTExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseGENode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXGEExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseLTNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXLTExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseLENode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXLEExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseMOFAttrNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXMOFAttrExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseMOFSetAttrNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXMOFSetAttrExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseMOFRefNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXMOFRefExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseMOFColAtNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXMOFColAtExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseMOFColCountNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXMOFColCountExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseConstraintValNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXConstraintValExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTagValNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTagValExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTagRefNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTagRefExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTagRefAtNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTagRefAtExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTagRefCountNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTagRefCountExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseSetNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXSetExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseIfNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXIfExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseForNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXForExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseListNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXListExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseAppendNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXAppendExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseItemAtNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXItemAtExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseItemCountNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXItemCountExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTokenizeNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTokenizeExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseSetPenColorNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXSetPenColorExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseSetPenStyleNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXSetPenStyleExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseSetBrushColorNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXSetBrushColorExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseSetBrushStyleNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXSetBrushStyleExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseSetFontFaceNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXSetFontFaceExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseSetFontColorNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXSetFontColorExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseSetFontStyleNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXSetFontStyleExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseSetFontSizeNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXSetFontSizeExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraversePointNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXPointExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseMoveToNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXMoveToExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseLineToNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXLineToExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTextOutNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTextOutExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTextBoundNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTextBoundExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseLineNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXLineExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseRectNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXRectExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseFillRectNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXFillRectExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseEllipseNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXEllipseExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseRoundRectNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXRoundRectExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseTextRectNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXTextRectExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseArcNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXArcExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraversePieNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXPieExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraversePtAtXNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXPtAtXExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraversePtAtYNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXPtAtYExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraversePtCountNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXPtCountExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseDrawEdgeNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXDrawEdgeExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseDrawObjectNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXDrawObjectExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseArrangeObjectNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXArrangeObjectExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraversePolylineNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXPolylineExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraversePolygonNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXPolygonExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraversePolyBezierNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXPolyBezierExpr.Create(GetPos(Node)), Node);
-end;
-
-function PNXReader.TraverseDrawBitmapNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXDrawBitmapExpr.Create(GetPos(Node), FFilepath), Node);
-end;
-
-function PNXReader.TraverseSetDefaultStyleNode(Node: Integer): PNXExpr;
-begin
-  Result := traverseOperandNodes(PNXSetDefaultStyleExpr.Create(GetPos(Node)), Node);
-end;
 
 { PNXBuilder }
 
