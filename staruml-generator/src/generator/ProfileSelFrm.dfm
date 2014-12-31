@@ -206,7 +206,7 @@ object ProfileSelectorForm: TProfileSelectorForm
       Font.Height = -12
       Font.Name = #44404#47548
       Font.Style = []
-      Header.Caption = #54532#47196#54028#51068#47749
+      Header.Caption = 'Profile name'
       Header.Font.Charset = DEFAULT_CHARSET
       Header.Font.Color = clWindowText
       Header.Font.Height = -11
