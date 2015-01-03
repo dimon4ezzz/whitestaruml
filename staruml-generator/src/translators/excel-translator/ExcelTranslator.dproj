@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{DD24C958-B968-4CB6-B2DD-692DEABC6268}</ProjectGuid>
         <MainSource>ExcelTranslator.dpr</MainSource>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
         <ProjectVersion>15.3</ProjectVersion>
         <FrameworkType>None</FrameworkType>
@@ -53,7 +53,7 @@
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_ExeOutput>..\..\..\deploy\staruml-generator\translators\excel\</DCC_ExeOutput>
-        <DCC_UnitSearchPath>..\..\generator;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\generator\$(Platform)\$(Config);..\..\generator;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_DependencyCheckOutputName>..\..\..\deploy\staruml-generator\translators\excel\ExcelTranslator.dll</DCC_DependencyCheckOutputName>
         <GenDll>true</GenDll>
         <DCC_ImageBase>00400000</DCC_ImageBase>

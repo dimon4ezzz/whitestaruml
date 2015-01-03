@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{0F950939-0C41-4B1C-9742-4B214D409E3F}</ProjectGuid>
         <MainSource>PowerPointTranslator.dpr</MainSource>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
         <ProjectVersion>15.3</ProjectVersion>
         <FrameworkType>None</FrameworkType>
@@ -42,7 +42,7 @@
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_ExeOutput>..\..\..\deploy\staruml-generator\translators\powerpoint\</DCC_ExeOutput>
-        <DCC_UnitSearchPath>..\..\generator;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\generator\$(Platform)\$(Config);..\..\generator;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_DependencyCheckOutputName>..\..\..\deploy\staruml-generator\translators\powerpoint\PowerPointTranslator.dll</DCC_DependencyCheckOutputName>
         <GenDll>true</GenDll>
         <DCC_ImageBase>00400000</DCC_ImageBase>
@@ -131,7 +131,11 @@
                     <VersionInfoKeys Name="ProductVersion">1.1</VersionInfoKeys>
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
-                <Excluded_Packages/>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\DevExpress VCL\Library\RS19\dcldxDBXServerModeRS19.bpl">dbExpress Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\DevExpress VCL\Library\RS19\dcldxFireDACServerModeRS19.bpl">FireDAC Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\DevExpress VCL\Library\RS19\dcldxADOServerModeRS19.bpl">ADO Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <ActiveXProjectInfo>
                 <version>1</version>

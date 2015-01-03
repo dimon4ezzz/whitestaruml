@@ -1,7 +1,7 @@
 object PieForm: TPieForm
   Left = 285
   Top = 142
-  ActiveControl = BatchPageControl
+  ActiveControl = ExecTasksGrid
   BorderStyle = bsDialog
   Caption = 'WhiteStarUML Generator'
   ClientHeight = 498
@@ -26,7 +26,7 @@ object PieForm: TPieForm
     Top = 0
     Width = 721
     Height = 498
-    ActivePage = TemplateSelectionPage
+    ActivePage = ExecutionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = '<< &Start page'
     ButtonStart.NumGlyphs = 1
@@ -53,11 +53,6 @@ object PieForm: TPieForm
     ShowRouteMap = False
     HeaderImages = HeaderImageList
     OnCancelButtonClick = DirectMDAWizardCancelButtonClick
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = 14
-    Font.Name = 'Tahoma'
-    Font.Style = []
     DesignSize = (
       721
       498)
@@ -83,12 +78,6 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Height = -15
       Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = 14
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ExplicitLeft = 3
       object Image1: TImage
         Left = 0
         Top = 70
@@ -831,20 +820,8 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Height = -15
       Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = 14
-      Font.Name = 'Tahoma'
-      Font.Style = []
       OnEnterPage = OutDirectorySelectionPageEnterPage
       OnExitPage = OutDirectorySelectionPageExitPage
-      object Label2: TLabel
-        Left = 26
-        Top = 104
-        Width = 70
-        Height = 14
-        Caption = 'Target Path:'
-      end
       object Image2: TImage
         Left = 0
         Top = 70
@@ -1197,54 +1174,62 @@ object PieForm: TPieForm
           00002701FFFF030000000000}
         Stretch = True
       end
-      object OutputDirEdit: TJvDirectoryEdit
-        Left = 26
-        Top = 124
-        Width = 609
-        Height = 22
-        AcceptFiles = False
-        DialogKind = dkWin32
-        DialogOptionsWin32 = [odOnlyDirectory, odFileSystemDirectoryOnly, odStatusAvailable, odNewDialogStyle]
-        ButtonHint = 'Select or create folder'
-        ParentShowHint = False
-        ShowHint = True
+      object TargetPathGroupBox: TGroupBox
+        Left = 8
+        Top = 88
+        Width = 681
+        Height = 209
+        Caption = 'Target Path:'
         TabOrder = 0
-        Text = ''
-        OnChange = OutputDirEditChange
-        OnMouseEnter = OutputDirEditMouseEnter
-      end
-      object GroupBox1: TGroupBox
-        Left = 26
-        Top = 184
-        Width = 121
-        Height = 105
-        Caption = 'Quick Directories:'
-        TabOrder = 1
-        object QuickDirButtonGroup: TButtonGroup
-          Left = 2
-          Top = 27
-          Width = 117
-          Height = 76
-          Align = alBottom
-          ButtonOptions = [gboAllowReorder, gboFullSize, gboShowCaptions]
-          Items = <
-            item
-              Caption = 'Desktop'
-              Hint = 'Create document on the desktop'
-              OnClick = QuickDirButtonGroupItems0Click
-            end
-            item
-              Caption = 'My Documents'
-              Hint = 'Create document in the '#39'My Documents'#39' folder '
-              OnClick = QuickDirButtonGroupItems1Click
-            end
-            item
-              Caption = 'Home Folder'
-              Hint = 'Create document in the user home folder '
-              OnClick = QuickDirButtonGroupItems2Click
-            end>
-          ShowHint = True
+        object QuickDirectoriesGroupBox: TGroupBox
+          Left = 23
+          Top = 80
+          Width = 121
+          Height = 105
+          Caption = 'Quick Directories:'
           TabOrder = 0
+          object QuickDirButtonGroup: TButtonGroup
+            Left = 2
+            Top = 27
+            Width = 117
+            Height = 76
+            Align = alBottom
+            ButtonOptions = [gboAllowReorder, gboFullSize, gboShowCaptions]
+            Items = <
+              item
+                Caption = 'Desktop'
+                Hint = 'Create document on the desktop'
+                OnClick = QuickDirButtonGroupItems0Click
+              end
+              item
+                Caption = 'My Documents'
+                Hint = 'Create document in the '#39'My Documents'#39' folder '
+                OnClick = QuickDirButtonGroupItems1Click
+              end
+              item
+                Caption = 'Home Folder'
+                Hint = 'Create document in the user home folder '
+                OnClick = QuickDirButtonGroupItems2Click
+              end>
+            ShowHint = True
+            TabOrder = 0
+          end
+        end
+        object OutputDirEdit: TJvDirectoryEdit
+          Left = 23
+          Top = 36
+          Width = 609
+          Height = 22
+          AcceptFiles = False
+          DialogKind = dkWin32
+          DialogOptionsWin32 = [odOnlyDirectory, odFileSystemDirectoryOnly, odStatusAvailable, odNewDialogStyle]
+          ButtonHint = 'Select or create folder'
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 1
+          Text = ''
+          OnChange = OutputDirEditChange
+          OnMouseEnter = OutputDirEditMouseEnter
         end
       end
     end
@@ -1261,7 +1246,7 @@ object PieForm: TPieForm
       Header.Title.Font.Name = 'Tahoma'
       Header.Title.Font.Style = [fsBold]
       Header.Subtitle.Color = clNone
-      Header.Subtitle.Text = '[3/3] Documents for Selected templates are generated.'
+      Header.Subtitle.Text = '[3/3] Documents for selected templates are generated.'
       Header.Subtitle.Anchors = [akLeft, akTop, akRight, akBottom]
       Header.Subtitle.Font.Charset = DEFAULT_CHARSET
       Header.Subtitle.Font.Color = clWindowText
@@ -1269,11 +1254,6 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
       VisibleButtons = [bkNext, bkFinish, bkCancel]
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = 14
-      Font.Name = 'Tahoma'
-      Font.Style = []
       OnPage = ExecutionPagePage
       OnNextButtonClick = ExecutionPageNextButtonClick
       OnFinishButtonClick = ExecutionPageFinishButtonClick
@@ -1287,9 +1267,9 @@ object PieForm: TPieForm
       object MainMessageLabel: TLabel
         Left = 8
         Top = 405
-        Width = 93
+        Width = 86
         Height = 14
-        Caption = 'Whole Progress: '
+        Caption = 'Total progress: '
       end
       object LogLabel: TLabel
         Left = 8
