@@ -1,7 +1,7 @@
 object RevEngineForm: TRevEngineForm
   Left = 284
   Top = 198
-  ActiveControl = ShellTreeView
+  ActiveControl = SelectTreeFrame.SelectTree
   BorderStyle = bsDialog
   Caption = 'C++ Reverse Engineering'
   ClientHeight = 418
@@ -24,7 +24,7 @@ object RevEngineForm: TRevEngineForm
     Top = 0
     Width = 585
     Height = 418
-    ActivePage = SourceFileSelectionPage
+    ActivePage = PackageSelectionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start page'
     ButtonStart.NumGlyphs = 1
@@ -73,8 +73,6 @@ object RevEngineForm: TRevEngineForm
       Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
       OnCancelButtonClick = SourceFileSelectionPageCancelButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SourceFileListLabel: TLabel
         Left = 8
         Top = 248
@@ -231,7 +229,7 @@ object RevEngineForm: TRevEngineForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = #44404#47548
+        Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
         TabOrder = 0
