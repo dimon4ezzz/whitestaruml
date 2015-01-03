@@ -1,7 +1,7 @@
 object RevEngWizardForm: TRevEngWizardForm
   Left = 346
   Top = 200
-  ActiveControl = ReverseJavaDocCheckBox
+  ActiveControl = SelectTreeFrame.SelectTree
   BorderStyle = bsDialog
   Caption = 'Java Reverse Engineering'
   ClientHeight = 420
@@ -95,7 +95,7 @@ object RevEngWizardForm: TRevEngWizardForm
     Top = 0
     Width = 585
     Height = 420
-    ActivePage = SetupOptionPage
+    ActivePage = SelectPackagePage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start page'
     ButtonStart.NumGlyphs = 1
@@ -249,7 +249,7 @@ object RevEngWizardForm: TRevEngWizardForm
         AutoNavigate = False
         ObjectTypes = [otNonFolders]
         Root = 'rfDesktop'
-        ShellTreeView = RevEngWizardForm.ShellTreeView
+        ShellTreeView = ShellTreeView
         Sorted = True
         OnAddFolder = ShellListViewAddFolder
         OnDblClick = ShellListViewDblClick
@@ -301,7 +301,7 @@ object RevEngWizardForm: TRevEngWizardForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = #44404#47548
+        Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
         TabOrder = 0
@@ -340,6 +340,8 @@ object RevEngWizardForm: TRevEngWizardForm
       OnEnterPage = SetupOptionPageEnterPage
       OnExitPage = SetupOptionPageExitPage
       OnCancelButtonClick = SetupOptionPageCancelButtonClick
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DiagramGroupBox: TGroupBox
         Left = 264
         Top = 168
@@ -549,6 +551,8 @@ object RevEngWizardForm: TRevEngWizardForm
       VisibleButtons = [bkFinish]
       OnPage = RunPagePage
       OnFinishButtonClick = RunPageFinishButtonClick
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object MessageLabel: TLabel
         Left = 16
         Top = 296
@@ -624,7 +628,7 @@ object RevEngWizardForm: TRevEngWizardForm
     Left = 92
     Top = 384
     Bitmap = {
-      494C0101060009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010106000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -899,7 +903,7 @@ object RevEngWizardForm: TRevEngWizardForm
     Left = 144
     Top = 384
     Bitmap = {
-      494C0101040009000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
