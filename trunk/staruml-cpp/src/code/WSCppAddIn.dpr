@@ -46,7 +46,7 @@ library WSCppAddIn;
 {******************************************************************************}
 
 uses
-  ComServ,
+  System.Win.ComServ,
   WSCppAddIn_TLB in 'WSCppAddIn_TLB.pas',
   CppAddInObj in 'CppAddInObj.pas',
   CppElements in 'CppElements.pas',

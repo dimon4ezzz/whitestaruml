@@ -1,7 +1,7 @@
 object CodeGenForm: TCodeGenForm
   Left = 384
   Top = 210
-  ActiveControl = OptionPageControl
+  ActiveControl = SelectElemFrame.SelectTree
   BorderStyle = bsDialog
   Caption = 'C++ Code Generation'
   ClientHeight = 419
@@ -24,7 +24,7 @@ object CodeGenForm: TCodeGenForm
     Top = 0
     Width = 585
     Height = 419
-    ActivePage = SetOptionPage
+    ActivePage = SelectElemPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -49,6 +49,11 @@ object CodeGenForm: TCodeGenForm
     ButtonHelp.NumGlyphs = 1
     ButtonHelp.Width = 75
     ShowRouteMap = False
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
     DesignSize = (
       585
       419)
@@ -72,6 +77,11 @@ object CodeGenForm: TCodeGenForm
       Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
       VisibleButtons = [bkNext, bkCancel]
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       OnEnterPage = SelectRootElemPageEnterPage
       OnNextButtonClick = SelectRootElemPageNextButtonClick
       OnCancelButtonClick = WizardPageCancelButtonClick
@@ -91,7 +101,7 @@ object CodeGenForm: TCodeGenForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = #44404#47548
+        Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
         TabOrder = 0
@@ -146,7 +156,7 @@ object CodeGenForm: TCodeGenForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = #44404#47548
+        Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
         TabOrder = 0
@@ -537,6 +547,12 @@ object CodeGenForm: TCodeGenForm
             Height = 13
             Caption = 'Initial &implementation #includes:'
             FocusControl = DefaultBodyIncludeMemo
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
           end
           object HeaderCommentMemo: TMemo
             Left = 4
@@ -546,7 +562,7 @@ object CodeGenForm: TCodeGenForm
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
-            Font.Name = #44404#47548#52404
+            Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
             ScrollBars = ssBoth
@@ -561,7 +577,7 @@ object CodeGenForm: TCodeGenForm
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
-            Font.Name = #44404#47548#52404
+            Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
             TabOrder = 1
@@ -575,7 +591,7 @@ object CodeGenForm: TCodeGenForm
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
-            Font.Name = #44404#47548#52404
+            Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
             TabOrder = 2
