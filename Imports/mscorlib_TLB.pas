@@ -12,7 +12,7 @@ unit mscorlib_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 12/26/2014 11:06:15 PM from Type Library described below.
+// File generated on 1/1/2015 5:01:00 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.tlb (1)
@@ -23,7 +23,7 @@ unit mscorlib_TLB;
 // DepndLst: 
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
 // Parent TypeLibrary:
-//   (0) v1.2 ParserCore, (C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml\components\parser-core\ParserCore\bin\Release\ParserCore.tlb)
+//   (0) v1.2 ParserCore, (C:\JS\Delphi\WhiteStarDevInstall\ParserCore.dll)
 // SYS_KIND: SYS_WIN32
 // Errors:
 //   Hint: Symbol 'Object' renamed to 'CLRObject'
