@@ -92,7 +92,7 @@ object CodeGenWizardForm: TCodeGenWizardForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = #44404#47548
+        Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
         TabOrder = 0
@@ -147,7 +147,7 @@ object CodeGenWizardForm: TCodeGenWizardForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = #44404#47548
+        Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
         TabOrder = 0
@@ -359,7 +359,7 @@ object CodeGenWizardForm: TCodeGenWizardForm
         Font.Charset = HANGEUL_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = #44404#47548#52404
+        Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
         ScrollBars = ssBoth
@@ -496,7 +496,7 @@ object CodeGenWizardForm: TCodeGenWizardForm
     Left = 72
     Top = 384
     Bitmap = {
-      494C010106000900080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010106000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -771,7 +771,7 @@ object CodeGenWizardForm: TCodeGenWizardForm
     Left = 168
     Top = 384
     Bitmap = {
-      494C010104000900080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
