@@ -100,7 +100,7 @@ implementation
 
 uses
   NLS,
-  Classes, SysUtils, Windows, ElTree, ShellCtrls, JvWizard;
+  Classes, SysUtils, Windows, ShellCtrls, JvWizard;
 
 const
   NLS_STR_SECTION = 'Strings';
@@ -121,7 +121,7 @@ end;
 // -----------------------------------------------------------------------------
 
 // TElTree .....................................................................
-
+(*
 procedure NLS_ElTree_Import(NLSValues: TNLSValues; AComponent: TComponent);
 begin
   with AComponent as TElTree do
@@ -150,7 +150,7 @@ begin
     NLSValues.WriteFont(AComponent, Font);
   end;
 end;
-
+ *)
 // TShellTreeView...............................................................
 
 procedure NLS_ShellTreeView_Import(NLSValues: TNLSValues; AComponent: TComponent);
@@ -275,7 +275,7 @@ initialization
   { Translate Strings }
   NLSManager.SetFile(GetDllPath + '\' + NLS_FILE_NAME);
 
-  NLSManager.RegisterNLSComponent(TElTree, False, NLS_ElTree_Import, NLS_ElTree_Export);
+  //NLSManager.RegisterNLSComponent(TElTree, False, NLS_ElTree_Import, NLS_ElTree_Export);
   NLSManager.RegisterNLSComponent(TShellTreeView, False, NLS_ShellTreeView_Import, NLS_ShellTreeView_Export);
   NLSManager.RegisterNLSComponent(TJvWizard, True, NLS_JvWizard_Import, NLS_JvWizard_Export);
   NLSManager.RegisterNLSComponent(TJvWizardInteriorPage, True, NLS_JvWizardInteriorPage_Import, NLS_JvWizardInteriorPage_Export);
