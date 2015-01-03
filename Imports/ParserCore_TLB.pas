@@ -12,10 +12,10 @@ unit ParserCore_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 12/26/2014 11:06:17 PM from Type Library described below.
+// File generated on 1/1/2015 5:01:03 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml\components\parser-core\ParserCore\bin\Release\ParserCore.tlb (1)
+// Type Lib: C:\JS\Delphi\WhiteStarDevInstall\ParserCore.dll (1)
 // LIBID: {A5D0740F-EC13-4236-BBC6-9FD1D78BD0AA}
 // LCID: 0
 // Helpfile: 
@@ -23,12 +23,13 @@ unit ParserCore_TLB;
 // DepndLst: 
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
 //   (2) v2.0 mscorlib, (C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.tlb)
-//   (3) v1.0 WhiteStarUML, (C:\JS\Delphi\WhiteStarDevInstall64\WhiteStarUML.exe)
+//   (3) v1.0 WhiteStarUML, (C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML.exe)
 // SYS_KIND: SYS_WIN32
 // Errors:
 //   Error creating palette bitmap of (TGrammarIndependentParserBase) : Server mscoree.dll contains no icons
 //   Error creating palette bitmap of (TNxGrammarParserBase) : Server mscoree.dll contains no icons
 //   Error creating palette bitmap of (TNxGrammarParserWithTreeProcessing) : Server mscoree.dll contains no icons
+//   Error creating palette bitmap of (TNxParserImpl) : Server mscoree.dll contains no icons
 //   Error creating palette bitmap of (TParserCoreImpl) : Server mscoree.dll contains no icons
 //   Error creating palette bitmap of (TNameExprParserCoreImpl) : Server mscoree.dll contains no icons
 //   Error creating palette bitmap of (TAttrExprParserCoreImpl) : Server mscoree.dll contains no icons
@@ -37,7 +38,6 @@ unit ParserCore_TLB;
 //   Error creating palette bitmap of (TOperExprParserCoreImpl) : Server mscoree.dll contains no icons
 //   Error creating palette bitmap of (TRoleExprParserCoreImpl) : Server mscoree.dll contains no icons
 //   Error creating palette bitmap of (TTransExprParserCoreImpl) : Server mscoree.dll contains no icons
-//   Error creating palette bitmap of (TNxParserImpl) : Server mscoree.dll contains no icons
 //   Error creating palette bitmap of (TNxParser) : Server mscoree.dll contains no icons
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers. 
@@ -69,6 +69,8 @@ const
   IID__GrammarIndependentParserBase: TGUID = '{4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}';
   IID__NxGrammarParserBase: TGUID = '{519F8D2F-8100-39C5-9A75-155B9C1CF2B9}';
   IID__NxGrammarParserWithTreeProcessing: TGUID = '{19583DCC-5E76-31FF-ACFF-F9A4056B6913}';
+  IID_IPrivateExprBuilder: TGUID = '{F422A39C-A397-3735-A74A-B5158736061A}';
+  IID__NxParserImpl: TGUID = '{F4534179-0322-3DE2-A995-FE01E684ECCC}';
   IID_IParserCore: TGUID = '{C2D5AA24-3633-479B-9EA2-5AADBECE1ECE}';
   IID__ParserCoreImpl: TGUID = '{184FD627-C5E7-3284-ABC2-530F126B9FEC}';
   CLASS_NameExprParserCoreImpl: TGUID = '{41B17622-6FBA-4683-AACD-402F7F021D17}';
@@ -79,14 +81,12 @@ const
   CLASS_RoleExprParserCoreImpl: TGUID = '{E4D99203-E233-4961-B2C3-9E728E92D980}';
   CLASS_TransExprParserCoreImpl: TGUID = '{958DCE18-DB33-4F20-8ADE-B3B6D97260BF}';
   IID_INxParser: TGUID = '{DD062285-0F54-4871-9F59-42A3BA4C46AF}';
-  IID_IPrivateExprBuilder: TGUID = '{F422A39C-A397-3735-A74A-B5158736061A}';
-  IID__NxParserImpl: TGUID = '{F4534179-0322-3DE2-A995-FE01E684ECCC}';
   CLASS_NxParser: TGUID = '{88EDE9D0-6E37-4B00-86D7-B689C9748661}';
   CLASS_GrammarIndependentParserBase: TGUID = '{867BBF00-4F9A-3E4B-AAD1-BC9AD06BB199}';
   CLASS_NxGrammarParserBase: TGUID = '{D1162811-3AD2-394D-BF76-5CDFF21BB374}';
   CLASS_NxGrammarParserWithTreeProcessing: TGUID = '{62DC1D57-7DE4-3932-8780-E5184E7B1DDD}';
-  CLASS_ParserCoreImpl: TGUID = '{C7913CD3-9298-3C77-90BF-17AC72A02914}';
   CLASS_NxParserImpl: TGUID = '{65968273-CFFF-313A-9588-6A258DC21526}';
+  CLASS_ParserCoreImpl: TGUID = '{C7913CD3-9298-3C77-90BF-17AC72A02914}';
 type
 
 // *********************************************************************//
@@ -98,16 +98,16 @@ type
   _NxGrammarParserBaseDisp = dispinterface;
   _NxGrammarParserWithTreeProcessing = interface;
   _NxGrammarParserWithTreeProcessingDisp = dispinterface;
+  IPrivateExprBuilder = interface;
+  IPrivateExprBuilderDisp = dispinterface;
+  _NxParserImpl = interface;
+  _NxParserImplDisp = dispinterface;
   IParserCore = interface;
   IParserCoreDisp = dispinterface;
   _ParserCoreImpl = interface;
   _ParserCoreImplDisp = dispinterface;
   INxParser = interface;
   INxParserDisp = dispinterface;
-  IPrivateExprBuilder = interface;
-  IPrivateExprBuilderDisp = dispinterface;
-  _NxParserImpl = interface;
-  _NxParserImplDisp = dispinterface;
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library                       
@@ -124,8 +124,8 @@ type
   GrammarIndependentParserBase = _GrammarIndependentParserBase;
   NxGrammarParserBase = _NxGrammarParserBase;
   NxGrammarParserWithTreeProcessing = _NxGrammarParserWithTreeProcessing;
-  ParserCoreImpl = _ParserCoreImpl;
   NxParserImpl = _NxParserImpl;
+  ParserCoreImpl = _ParserCoreImpl;
 
 
 // *********************************************************************//
@@ -180,6 +180,54 @@ type
 // *********************************************************************//
   _NxGrammarParserWithTreeProcessingDisp = dispinterface
     ['{19583DCC-5E76-31FF-ACFF-F9A4056B6913}']
+  end;
+
+// *********************************************************************//
+// Interface: IPrivateExprBuilder
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {F422A39C-A397-3735-A74A-B5158736061A}
+// *********************************************************************//
+  IPrivateExprBuilder = interface(IDispatch)
+    ['{F422A39C-A397-3735-A74A-B5158736061A}']
+    procedure EndOperation; safecall;
+    procedure IdentExpr(const Id: WideString; Pos: Integer); safecall;
+    procedure NewDrawBitmapOperation(const Filepath: WideString; Pos: Integer); safecall;
+    procedure NewNotationOperation(const Filepath: WideString; Pos: Integer); safecall;
+    procedure NewOperation(const Oper: WideString; Pos: Integer); safecall;
+    procedure PrimExpr(Value: OleVariant; Pos: Integer); safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IPrivateExprBuilderDisp
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {F422A39C-A397-3735-A74A-B5158736061A}
+// *********************************************************************//
+  IPrivateExprBuilderDisp = dispinterface
+    ['{F422A39C-A397-3735-A74A-B5158736061A}']
+    procedure EndOperation; dispid 1610743808;
+    procedure IdentExpr(const Id: WideString; Pos: Integer); dispid 1610743809;
+    procedure NewDrawBitmapOperation(const Filepath: WideString; Pos: Integer); dispid 1610743810;
+    procedure NewNotationOperation(const Filepath: WideString; Pos: Integer); dispid 1610743811;
+    procedure NewOperation(const Oper: WideString; Pos: Integer); dispid 1610743812;
+    procedure PrimExpr(Value: OleVariant; Pos: Integer); dispid 1610743813;
+  end;
+
+// *********************************************************************//
+// Interface: _NxParserImpl
+// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
+// GUID:      {F4534179-0322-3DE2-A995-FE01E684ECCC}
+// *********************************************************************//
+  _NxParserImpl = interface(IDispatch)
+    ['{F4534179-0322-3DE2-A995-FE01E684ECCC}']
+  end;
+
+// *********************************************************************//
+// DispIntf:  _NxParserImplDisp
+// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
+// GUID:      {F4534179-0322-3DE2-A995-FE01E684ECCC}
+// *********************************************************************//
+  _NxParserImplDisp = dispinterface
+    ['{F4534179-0322-3DE2-A995-FE01E684ECCC}']
   end;
 
 // *********************************************************************//
@@ -244,54 +292,6 @@ type
     ['{DD062285-0F54-4871-9F59-42A3BA4C46AF}']
     function Parse(const fileName: WideString; const builder: IExprBuilder): WordBool; dispid 1610743808;
     function GetFailMessage: WideString; dispid 1610743809;
-  end;
-
-// *********************************************************************//
-// Interface: IPrivateExprBuilder
-// Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {F422A39C-A397-3735-A74A-B5158736061A}
-// *********************************************************************//
-  IPrivateExprBuilder = interface(IDispatch)
-    ['{F422A39C-A397-3735-A74A-B5158736061A}']
-    procedure EndOperation; safecall;
-    procedure IdentExpr(const Id: WideString; Pos: Integer); safecall;
-    procedure NewDrawBitmapOperation(const Filepath: WideString; Pos: Integer); safecall;
-    procedure NewNotationOperation(const Filepath: WideString; Pos: Integer); safecall;
-    procedure NewOperation(const Oper: WideString; Pos: Integer); safecall;
-    procedure PrimExpr(Value: OleVariant; Pos: Integer); safecall;
-  end;
-
-// *********************************************************************//
-// DispIntf:  IPrivateExprBuilderDisp
-// Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {F422A39C-A397-3735-A74A-B5158736061A}
-// *********************************************************************//
-  IPrivateExprBuilderDisp = dispinterface
-    ['{F422A39C-A397-3735-A74A-B5158736061A}']
-    procedure EndOperation; dispid 1610743808;
-    procedure IdentExpr(const Id: WideString; Pos: Integer); dispid 1610743809;
-    procedure NewDrawBitmapOperation(const Filepath: WideString; Pos: Integer); dispid 1610743810;
-    procedure NewNotationOperation(const Filepath: WideString; Pos: Integer); dispid 1610743811;
-    procedure NewOperation(const Oper: WideString; Pos: Integer); dispid 1610743812;
-    procedure PrimExpr(Value: OleVariant; Pos: Integer); dispid 1610743813;
-  end;
-
-// *********************************************************************//
-// Interface: _NxParserImpl
-// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
-// GUID:      {F4534179-0322-3DE2-A995-FE01E684ECCC}
-// *********************************************************************//
-  _NxParserImpl = interface(IDispatch)
-    ['{F4534179-0322-3DE2-A995-FE01E684ECCC}']
-  end;
-
-// *********************************************************************//
-// DispIntf:  _NxParserImplDisp
-// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
-// GUID:      {F4534179-0322-3DE2-A995-FE01E684ECCC}
-// *********************************************************************//
-  _NxParserImplDisp = dispinterface
-    ['{F4534179-0322-3DE2-A995-FE01E684ECCC}']
   end;
 
 // *********************************************************************//
@@ -736,44 +736,6 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoParserCoreImpl provides a Create and CreateRemote method to          
-// create instances of the default interface _ParserCoreImpl exposed by              
-// the CoClass ParserCoreImpl. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
-// *********************************************************************//
-  CoParserCoreImpl = class
-    class function Create: _ParserCoreImpl;
-    class function CreateRemote(const MachineName: string): _ParserCoreImpl;
-  end;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TParserCoreImpl
-// Help String      : 
-// Default Interface: _ParserCoreImpl
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (0)
-// *********************************************************************//
-  TParserCoreImpl = class(TOleServer)
-  private
-    FIntf: _ParserCoreImpl;
-    function GetDefaultInterface: _ParserCoreImpl;
-  protected
-    procedure InitServerData; override;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: _ParserCoreImpl);
-    procedure Disconnect; override;
-    property DefaultInterface: _ParserCoreImpl read GetDefaultInterface;
-  published
-  end;
-
-// *********************************************************************//
 // The Class CoNxParserImpl provides a Create and CreateRemote method to          
 // create instances of the default interface _NxParserImpl exposed by              
 // the CoClass NxParserImpl. The functions are intended to be used by             
@@ -808,6 +770,44 @@ type
     procedure ConnectTo(svrIntf: _NxParserImpl);
     procedure Disconnect; override;
     property DefaultInterface: _NxParserImpl read GetDefaultInterface;
+  published
+  end;
+
+// *********************************************************************//
+// The Class CoParserCoreImpl provides a Create and CreateRemote method to          
+// create instances of the default interface _ParserCoreImpl exposed by              
+// the CoClass ParserCoreImpl. The functions are intended to be used by             
+// clients wishing to automate the CoClass objects exposed by the         
+// server of this typelibrary.                                            
+// *********************************************************************//
+  CoParserCoreImpl = class
+    class function Create: _ParserCoreImpl;
+    class function CreateRemote(const MachineName: string): _ParserCoreImpl;
+  end;
+
+
+// *********************************************************************//
+// OLE Server Proxy class declaration
+// Server Object    : TParserCoreImpl
+// Help String      : 
+// Default Interface: _ParserCoreImpl
+// Def. Intf. DISP? : No
+// Event   Interface: 
+// TypeFlags        : (0)
+// *********************************************************************//
+  TParserCoreImpl = class(TOleServer)
+  private
+    FIntf: _ParserCoreImpl;
+    function GetDefaultInterface: _ParserCoreImpl;
+  protected
+    procedure InitServerData; override;
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor  Destroy; override;
+    procedure Connect; override;
+    procedure ConnectTo(svrIntf: _ParserCoreImpl);
+    procedure Disconnect; override;
+    property DefaultInterface: _ParserCoreImpl read GetDefaultInterface;
   published
   end;
 
@@ -1652,71 +1652,6 @@ begin
   inherited Destroy;
 end;
 
-class function CoParserCoreImpl.Create: _ParserCoreImpl;
-begin
-  Result := CreateComObject(CLASS_ParserCoreImpl) as _ParserCoreImpl;
-end;
-
-class function CoParserCoreImpl.CreateRemote(const MachineName: string): _ParserCoreImpl;
-begin
-  Result := CreateRemoteComObject(MachineName, CLASS_ParserCoreImpl) as _ParserCoreImpl;
-end;
-
-procedure TParserCoreImpl.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{C7913CD3-9298-3C77-90BF-17AC72A02914}';
-    IntfIID:   '{184FD627-C5E7-3284-ABC2-530F126B9FEC}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TParserCoreImpl.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as _ParserCoreImpl;
-  end;
-end;
-
-procedure TParserCoreImpl.ConnectTo(svrIntf: _ParserCoreImpl);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TParserCoreImpl.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TParserCoreImpl.GetDefaultInterface: _ParserCoreImpl;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
-  Result := FIntf;
-end;
-
-constructor TParserCoreImpl.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-end;
-
-destructor TParserCoreImpl.Destroy;
-begin
-  inherited Destroy;
-end;
-
 class function CoNxParserImpl.Create: _NxParserImpl;
 begin
   Result := CreateComObject(CLASS_NxParserImpl) as _NxParserImpl;
@@ -1782,11 +1717,76 @@ begin
   inherited Destroy;
 end;
 
+class function CoParserCoreImpl.Create: _ParserCoreImpl;
+begin
+  Result := CreateComObject(CLASS_ParserCoreImpl) as _ParserCoreImpl;
+end;
+
+class function CoParserCoreImpl.CreateRemote(const MachineName: string): _ParserCoreImpl;
+begin
+  Result := CreateRemoteComObject(MachineName, CLASS_ParserCoreImpl) as _ParserCoreImpl;
+end;
+
+procedure TParserCoreImpl.InitServerData;
+const
+  CServerData: TServerData = (
+    ClassID:   '{C7913CD3-9298-3C77-90BF-17AC72A02914}';
+    IntfIID:   '{184FD627-C5E7-3284-ABC2-530F126B9FEC}';
+    EventIID:  '';
+    LicenseKey: nil;
+    Version: 500);
+begin
+  ServerData := @CServerData;
+end;
+
+procedure TParserCoreImpl.Connect;
+var
+  punk: IUnknown;
+begin
+  if FIntf = nil then
+  begin
+    punk := GetServer;
+    Fintf:= punk as _ParserCoreImpl;
+  end;
+end;
+
+procedure TParserCoreImpl.ConnectTo(svrIntf: _ParserCoreImpl);
+begin
+  Disconnect;
+  FIntf := svrIntf;
+end;
+
+procedure TParserCoreImpl.DisConnect;
+begin
+  if Fintf <> nil then
+  begin
+    FIntf := nil;
+  end;
+end;
+
+function TParserCoreImpl.GetDefaultInterface: _ParserCoreImpl;
+begin
+  if FIntf = nil then
+    Connect;
+  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
+  Result := FIntf;
+end;
+
+constructor TParserCoreImpl.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+end;
+
+destructor TParserCoreImpl.Destroy;
+begin
+  inherited Destroy;
+end;
+
 procedure Register;
 begin
   RegisterComponents(dtlServerPage, [TNameExprParserCoreImpl, TAttrExprParserCoreImpl, TMsgExprParserCoreImpl, TObjExprParserCoreImpl, 
     TOperExprParserCoreImpl, TRoleExprParserCoreImpl, TTransExprParserCoreImpl, TNxParser, TGrammarIndependentParserBase, 
-    TNxGrammarParserBase, TNxGrammarParserWithTreeProcessing, TParserCoreImpl, TNxParserImpl]);
+    TNxGrammarParserBase, TNxGrammarParserWithTreeProcessing, TNxParserImpl, TParserCoreImpl]);
 end;
 
 end.
