@@ -118,8 +118,8 @@ object TemplateRegisterForm: TTemplateRegisterForm
     Height = 49
     TabOrder = 3
     object GenerationUnitDescMemo: TMemo
-      Left = 7
-      Top = 5
+      Left = 1
+      Top = 3
       Width = 346
       Height = 39
       BorderStyle = bsNone
@@ -172,7 +172,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
       ValueFont.Charset = ANSI_CHARSET
       ValueFont.Color = clWindowText
       ValueFont.Height = -12
-      ValueFont.Name = #44404#47548
+      ValueFont.Name = 'Tahoma'
       ValueFont.Style = []
       ParentIndex = -1
       object DocumentTypeRow: TNxComboBoxItem
@@ -269,21 +269,22 @@ object TemplateRegisterForm: TTemplateRegisterForm
   object OpenDialog: TOpenDialog
     Filter = 'All files(*.*)|*.*'
     Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
-    Title = #54028#51068' '#50676#44592
-    Left = 128
+    Title = 'Open file'
+    Left = 96
     Top = 32
   end
   object SaveDialog: TSaveDialog
     DefaultExt = 'tdf'
     Filter = 'Template files(*.tdf)|*.tdf|All files(*.*)|*.*'
-    Left = 224
+    Title = 'Save template'
+    Left = 272
     Top = 32
   end
   object OpenScriptDialog: TOpenDialog
     DefaultExt = 'js'
     Filter = 'Script files(*.js;*.vbs)|*.js;*.vbs|All files(*.*)|*.*'
     Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
-    Title = #49373#49457#44592' '#51648#51221
+    Title = 'Open script'
     Left = 160
     Top = 32
   end
@@ -291,8 +292,8 @@ object TemplateRegisterForm: TTemplateRegisterForm
     DefaultExt = 'js'
     Filter = 'Executables(*.exe)|*.exe|All files(*.*)|*.*'
     Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
-    Title = #49373#49457#44592' '#51648#51221
-    Left = 192
+    Title = 'Open executable'
+    Left = 216
     Top = 32
   end
 end

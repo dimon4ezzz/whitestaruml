@@ -117,7 +117,8 @@ function GetSpecialFolderPath(const FolderGuid: TGUID): string;
 implementation
 
 uses
-  Symbols, Registry, Windows, Forms, HttpApp, ShellAPI, ShlObj, Winapi.ActiveX;
+  Symbols, Registry, Windows, Forms, Dialogs, HttpApp, ShellAPI, ShlObj,
+  Winapi.ActiveX;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -393,13 +394,20 @@ var
   OutPtr : PWideChar;
   CallResult: HRESULT;
 begin
-  CallResult := SHGetKnownFolderPath(FolderGuid, 0, 0, OutPtr);
-  if CallResult = S_OK then begin
-    Result := OutPtr;
-    CoTaskMemFree(OutPtr);
-  end
-  else
+  try
+    CallResult := SHGetKnownFolderPath(FolderGuid, 0, 0, OutPtr);
+    if CallResult = S_OK then begin
+      Result := OutPtr;
+      CoTaskMemFree(OutPtr);
+    end
+    else begin
+      Result := '';
+      MessageDlg('Function was not executed correctly on current system', mtWarning,[mbOK],1);
+    end;
+  except
+    MessageDlg('Function not supported on current system',mtWarning,[mbOK],1);
     Result := '';
+  end;
 end;
 
 

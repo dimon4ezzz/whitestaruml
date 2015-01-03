@@ -108,7 +108,6 @@ type
     CaptionSampleLabel: TLabel;
     CaptionValidatorLabel: TLabel;
     LowerBevel: TBevel;
-    Label26: TLabel;
     //ParameterInspector: TdxInspector;
     SetAsDefaultButton: TButton;
     ParameterLabel: TLabel;

@@ -137,7 +137,7 @@ object ProfileSelectorForm: TProfileSelectorForm
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
-      Font.Name = #44404#47548
+      Font.Name = 'Tahoma'
       Font.Style = []
       Header.DisplayMode = dmImageOnly
       Header.Glyph.Data = {
@@ -184,7 +184,7 @@ object ProfileSelectorForm: TProfileSelectorForm
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
-      Font.Name = #44404#47548
+      Font.Name = 'Tahoma'
       Font.Style = []
       Header.Font.Charset = DEFAULT_CHARSET
       Header.Font.Color = clWindowText
@@ -204,7 +204,7 @@ object ProfileSelectorForm: TProfileSelectorForm
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
-      Font.Name = #44404#47548
+      Font.Name = 'Tahoma'
       Font.Style = []
       Header.Caption = 'Profile name'
       Header.Font.Charset = DEFAULT_CHARSET
