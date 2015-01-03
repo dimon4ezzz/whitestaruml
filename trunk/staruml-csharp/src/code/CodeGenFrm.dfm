@@ -93,7 +93,7 @@ object CodeGenForm: TCodeGenForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = #44404#47548
+        Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
         TabOrder = 0
@@ -149,7 +149,7 @@ object CodeGenForm: TCodeGenForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = #44404#47548
+        Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
         TabOrder = 0
@@ -204,6 +204,11 @@ object CodeGenForm: TCodeGenForm
       Header.Subtitle.Font.Height = -12
       Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       OnEnterPage = SelectTargetDirPageEnterPage
       OnNextButtonClick = SelectTargetDirPageNextButtonClick
       OnCancelButtonClick = SelectTargetDirPageCancelButtonClick
@@ -214,6 +219,12 @@ object CodeGenForm: TCodeGenForm
         Height = 13
         Caption = 'Output &Directory:'
         FocusControl = SelectTargetDirTreeView
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
       end
       object SelectTargetDirTreeView: TShellTreeView
         Left = 8
@@ -226,9 +237,15 @@ object CodeGenForm: TCodeGenForm
         UseShellImages = True
         AutoRefresh = False
         ChangeDelay = 5000
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
         HideSelection = False
         Indent = 19
         ParentColor = False
+        ParentFont = False
         RightClickSelect = True
         ShowRoot = False
         TabOrder = 0
@@ -388,7 +405,7 @@ object CodeGenForm: TCodeGenForm
         Font.Charset = HANGEUL_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = #44404#47548#52404
+        Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
         ScrollBars = ssBoth

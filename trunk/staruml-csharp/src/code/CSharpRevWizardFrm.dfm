@@ -1,7 +1,7 @@
 object RevEngineForm: TRevEngineForm
   Left = 304
   Top = 235
-  ActiveControl = ShellTreeView
+  ActiveControl = SelectTreeFrame.SelectTree
   BorderStyle = bsDialog
   Caption = 'C# Reverse Engineering'
   ClientHeight = 420
@@ -24,7 +24,7 @@ object RevEngineForm: TRevEngineForm
     Top = 0
     Width = 581
     Height = 420
-    ActivePage = RevSrcSelectJvWizardPage
+    ActivePage = RevModelSelectJvWizardPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -127,7 +127,7 @@ object RevEngineForm: TRevEngineForm
         AutoContextMenus = False
         ObjectTypes = [otFolders]
         Root = 'rfDesktop'
-        ShellListView = RevEngineForm.ShellListView
+        ShellListView = ShellListView
         UseShellImages = True
         AutoRefresh = False
         ChangeDelay = 500
@@ -235,7 +235,7 @@ object RevEngineForm: TRevEngineForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -12
-        Font.Name = #44404#47548
+        Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
         TabOrder = 0
