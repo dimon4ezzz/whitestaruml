@@ -17,13 +17,6 @@ object TaskInformationForm: TTaskInformationForm
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
-  object Label26: TLabel
-    Left = 136
-    Top = 200
-    Width = 64
-    Height = 14
-    Caption = #44288#47144' '#51217#44540#48277
-  end
   object CloseButton: TButton
     Left = 336
     Top = 437
@@ -63,13 +56,13 @@ object TaskInformationForm: TTaskInformationForm
     object GenUnitNameLabel: TLabel
       Left = 84
       Top = 16
-      Width = 110
-      Height = 13
+      Width = 98
+      Height = 16
       Caption = 'Template Name'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
-      Font.Name = #44404#47548
+      Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
     end
@@ -79,6 +72,12 @@ object TaskInformationForm: TTaskInformationForm
       Width = 361
       Height = 41
       AutoSize = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       WordWrap = True
     end
   end
@@ -87,7 +86,13 @@ object TaskInformationForm: TTaskInformationForm
     Top = 88
     Width = 437
     Height = 337
-    ActivePage = ParameterTabSheet
+    ActivePage = PropertyTabSheet
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 2
     object PropertyTabSheet: TTabSheet
       Caption = 'Properties'
@@ -345,8 +350,8 @@ object TaskInformationForm: TTaskInformationForm
         OnClick = SetAsDefaultButtonClick
       end
       object ParameterInspector: TNextInspector
-        Left = 8
-        Top = 24
+        Left = 3
+        Top = 26
         Width = 409
         Height = 248
         Font.Charset = ANSI_CHARSET

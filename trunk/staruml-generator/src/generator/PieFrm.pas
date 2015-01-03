@@ -94,7 +94,6 @@ type
     BatchPageControl: TPageControl;
     MainTabSheet: TTabSheet;
     OutDirectorySelectionPage: TJvWizardInteriorPage;
-    Label2: TLabel;
     ExecutionPage: TJvWizardInteriorPage;
     ExecTasksGrid: TNextGrid;
     GenerationItemsLabel: TLabel;
@@ -142,7 +141,7 @@ type
     TutorialColumn: TNxImageColumn;
     ParametersColumn: TNxImageColumn;
     OutputDirEdit: TJvDirectoryEdit;
-    GroupBox1: TGroupBox;
+    QuickDirectoriesGroupBox: TGroupBox;
     QuickDirButtonGroup: TButtonGroup;
     PieActionList: TActionList;
     ActionModifyTemplate: TAction;
@@ -167,6 +166,7 @@ type
     DeleteBatch1: TMenuItem;
     ActionRegisterBatch: TAction;
     ActionAddToBatch: TAction;
+    TargetPathGroupBox: TGroupBox;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TasksGridDblClick(Sender: TObject);
