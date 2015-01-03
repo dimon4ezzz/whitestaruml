@@ -129,10 +129,10 @@ uses
   MenuManagerTdxImpl in 'MenuManagerTdxImpl.pas',
   QuickDialogFrmTdxBase in 'QuickDialogFrmTdxBase.pas' {QuickDialogFormTdxBase},
   MainFrm in 'MainFrm.pas' {MainForm},
-  WhiteStarUML_TLB in 'WhiteStarUML_TLB.pas',
-  PGMR101Lib_TLB in 'PGMR101Lib_TLB.pas',
   NavBarFrameVclImpl in 'NavBarFrameVclImpl.pas' {PaletteNavBarFrameVclImpl: TFrame},
-  ParserCore_TLB in 'ParserCore_TLB.pas';
+  WhiteStarUML_TLB in 'WhiteStarUML_TLB.pas';
+
+{PaletteNavBarFrameVclImpl: TFrame}
 
 {$IFDEF RELEASE}
   {$WEAKLINKRTTI ON}

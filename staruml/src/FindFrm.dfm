@@ -72,7 +72,12 @@ object FindForm: TFindForm
       Width = 105
       Height = 21
       Style = csDropDownList
-      ImeName = #54620#44397#50612'('#54620#44544') (MS-IME98)'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 0
       Items.Strings = (
         'All'
@@ -105,7 +110,12 @@ object FindForm: TFindForm
     Width = 438
     Height = 21
     Anchors = [akLeft, akTop, akRight]
-    ImeName = #54620#44397#50612'('#54620#44544') (MS-IME98)'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 0
   end
   object HelpButton: TButton

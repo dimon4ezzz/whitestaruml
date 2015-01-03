@@ -1,5 +1,9 @@
+#ifdef WIN64
+1 24 "WhiteStarUML64.manifest"
+#else
 #ifdef NO_INSTALL
 1 24 "WhiteStarUML.NoInstall.manifest"
 #else
 1 24 "WhiteStarUML.manifest"
-#endif
+#endif // NO_INSTALL
+#endif // WIN64
