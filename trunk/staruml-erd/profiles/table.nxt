@@ -151,7 +151,7 @@
                 (set attrName (concat attrName ' (' keys ')')))
 
             // draw PK
-            (drawbitmap x y 'primarykey.bmp' true)
+            (drawbitmap x y 'primarykey.png' true)
             (textout (+ x 16) y attrName)
             (setdefaultstyle)
             
@@ -224,8 +224,8 @@
             (if (!= keys '')
               (sequence
                 (set attrName (concat attrName ' (' keys ')'))
-                (drawbitmap x y 'keygroups.bmp' true))
-              (drawbitmap x y 'column.bmp' true))
+                (drawbitmap x y 'keygroups.png' true))
+              (drawbitmap x y 'column.png' true))
               
             // draw column
             (textout (+ x 16) y attrName)

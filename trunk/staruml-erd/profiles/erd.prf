@@ -286,7 +286,7 @@
       <ELEMENTPROTOTYPE>
 		    <NAME>Table</NAME>
 		    <DISPLAYNAME>Table</DISPLAYNAME>
-		    <ICON>Table.bmp</ICON>
+		    <ICON>Table.png</ICON>
         <DRAGTYPE>Rect</DRAGTYPE>
 		    <BASEELEMENT>Class</BASEELEMENT>
 		    <STEREOTYPENAME>table</STEREOTYPENAME>
@@ -296,7 +296,7 @@
       <ELEMENTPROTOTYPE>
 		    <NAME>identifying</NAME>
 		    <DISPLAYNAME>identifying</DISPLAYNAME>
-		    <ICON>identifying-IE.bmp</ICON>
+		    <ICON>identifying-IE.png</ICON>
         <DRAGTYPE>Line</DRAGTYPE>
 		    <BASEELEMENT>Association</BASEELEMENT>
 		    <STEREOTYPENAME>identifying</STEREOTYPENAME>
@@ -306,7 +306,7 @@
 		  <ELEMENTPROTOTYPE>
 		    <NAME>non-identifying</NAME>
 		    <DISPLAYNAME>non-identifying</DISPLAYNAME>
-		    <ICON>non-identifying-IE.bmp</ICON>
+		    <ICON>non-identifying-IE.png</ICON>
         <DRAGTYPE>Line</DRAGTYPE>
 		    <BASEELEMENT>Association</BASEELEMENT>
 		    <STEREOTYPENAME>non-identifying</STEREOTYPENAME>
