@@ -157,8 +157,14 @@ object ImportFrameworkForm: TImportFrameworkForm
       item
         AutoSize = True
       end>
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
     LargeImages = FrameworksLargeImageList
     ReadOnly = True
+    ParentFont = False
     ShowColumnHeaders = False
     SmallImages = FrameworksSmallImageList
     TabOrder = 2
@@ -178,7 +184,7 @@ object ImportFrameworkForm: TImportFrameworkForm
     Left = 400
     Top = 4
     Width = 46
-    Height = 25
+    Height = 23
     Align = alNone
     Anchors = [akTop, akRight]
     AutoSize = True
@@ -190,7 +196,7 @@ object ImportFrameworkForm: TImportFrameworkForm
     TabOrder = 4
     object LargeIconButton: TToolButton
       Left = 0
-      Top = 2
+      Top = 0
       Hint = 'Large Icon'
       AutoSize = True
       Caption = 'Large Icon'
@@ -201,7 +207,7 @@ object ImportFrameworkForm: TImportFrameworkForm
     end
     object SmallIconButton: TToolButton
       Left = 23
-      Top = 2
+      Top = 0
       Hint = 'Small Icon'
       AutoSize = True
       Caption = 'Small Icon'
@@ -229,7 +235,12 @@ object ImportFrameworkForm: TImportFrameworkForm
       BevelInner = bvNone
       BorderStyle = bsNone
       Color = clBtnFace
-      ImeName = #54620#44397#50612'('#54620#44544') (MS-IME98)'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       ReadOnly = True
       TabOrder = 0
     end
@@ -241,7 +252,7 @@ object ImportFrameworkForm: TImportFrameworkForm
     Left = 52
     Top = 252
     Bitmap = {
-      494C010101000400080020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101000500040020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000002000000001002000000000000040
       000000000000000000000000000000000000FFF7F700FFF7F700FFF7F700FFF7
       F700FFF7F700FFF7F700FFF7F700FFF7F700FFF7F700FFF7F700FFF7F700FFF7
@@ -780,7 +791,7 @@ object ImportFrameworkForm: TImportFrameworkForm
     Left = 304
     Top = 8
     Bitmap = {
-      494C010102000400080010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102000500040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

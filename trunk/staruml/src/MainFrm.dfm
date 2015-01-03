@@ -1359,6 +1359,7 @@ object MainForm: TMainForm
       True
       True)
     ImageOptions.Images = TotalImageList
+    ImageOptions.StretchGlyphs = False
     LookAndFeel.Kind = lfOffice11
     LookAndFeel.NativeStyle = False
     MenusShowRecentItemsFirst = False

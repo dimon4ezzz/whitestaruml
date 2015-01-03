@@ -144,7 +144,6 @@ object ProfileManagerForm: TProfileManagerForm
     Default = True
     TabOrder = 4
     OnClick = CloseButtonClick
-    ExplicitLeft = 428
   end
   object ExcludeButton: TButton
     Left = 325
@@ -248,7 +247,6 @@ object ProfileManagerForm: TProfileManagerForm
     Caption = '&Help'
     TabOrder = 6
     OnClick = HelpButtonClick
-    ExplicitLeft = 521
   end
   object DescPanel: TFlatPanel
     Left = 8
@@ -257,7 +255,6 @@ object ProfileManagerForm: TProfileManagerForm
     Height = 58
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 7
-    ExplicitWidth = 602
     DesignSize = (
       699
       58)
@@ -270,10 +267,14 @@ object ProfileManagerForm: TProfileManagerForm
       BevelInner = bvNone
       BorderStyle = bsNone
       Color = clBtnFace
-      ImeName = #54620#44397#50612'('#54620#44544') (MS-IME98)'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       ReadOnly = True
       TabOrder = 0
-      ExplicitWidth = 596
     end
   end
   object ProfilesSmallImageList: TImageList
@@ -284,7 +285,7 @@ object ProfileManagerForm: TProfileManagerForm
     Left = 468
     Top = 4
     Bitmap = {
-      494C010102000400100010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102000500040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

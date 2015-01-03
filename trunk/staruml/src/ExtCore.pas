@@ -495,13 +495,15 @@ type
     FImageIndex: Integer;
     function GetAvailablePaletteCount: Integer;
     function GetAvailablePalette(Index: Integer): string;
+    procedure SetIconFile(AIconFile: string);
+    function GetIconFile: string;
   public
     constructor Create; override;
     destructor Destroy; override;
     property Name: string read FName write FName;
     property DisplayName: string read FDisplayName write FDisplayName;
     property BaseDiagram: string read FBaseDiagram write FBaseDiagram;
-    property IconFile: string read FIconFile write FIconFile;
+    property IconFile: string read GetIconFile write SetIconFile;
     property AvailablePaletteCount: Integer read GetAvailablePaletteCount;
     property AvailablePalettes[Index: Integer]: string read GetAvailablePalette;
     property Profile: PProfile read FProfile;
@@ -2197,6 +2199,16 @@ begin
   Result := FAvailablePalettes.Count;
 end;
 
+function PDiagramType.GetIconFile: string;
+begin
+  Result := FIconFile;
+end;
+
+procedure PDiagramType.SetIconFile(AIconFile: string);
+begin
+  FIconFile := AIconFile;
+end;
+
 function PDiagramType.GetAvailablePalette(Index: Integer): string;
 begin
   Result := FAvailablePalettes[Index];
@@ -3082,7 +3094,7 @@ begin
 
   F := ReadChildStringValue(Node, PRF_DIAGRAMTYPE_ICON);
   if (F <> '') and (FileExists(AProfile.Path + '\' + F)) then
-    ADiagramType.FIconFile := AProfile.Path + '\' + F;
+    ADiagramType.IconFile := AProfile.Path + '\' + F;
 
   L := FindChild(Node, PRF_DIAGRAMTYPE_AVAILABLEPALETTELIST);
   if L <> nil then begin
