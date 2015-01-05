@@ -1356,9 +1356,7 @@ begin
   for I := 0 to DiagramMenuInteractionCount - 1 do begin
     if DiagramMenuInteractions[I] is PExtendedDiagramMenuInteraction then begin
       DI := DiagramMenuInteractions[I] as PExtendedDiagramMenuInteraction;
-      if not ExtensionManager.IsIncluded(DI.DiagramType.Profile) then
-        //DI.MenuButton.Visible := ivNever;
-        DI.MenuButton.Visible := False;
+      DI.MenuButton.Visible := ExtensionManager.IsIncluded(DI.DiagramType.Profile);
     end;
   end;
 end;
