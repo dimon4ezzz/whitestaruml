@@ -814,7 +814,7 @@ var
   I: Integer;
 begin
   for I := 0 to FPoints.Count-1 do
-    DrawHighlighter(Canvas, FPoints.Points[I].X, FPoints.Points[I].Y, DEFAULT_HALF_HIGHLIGHTER_SIZE, not ReadOnly, SELECTION_COLOR);
+    DrawHighlighter(Canvas, FPoints.PointData[I].X, FPoints.PointData[I].Y, DEFAULT_HALF_HIGHLIGHTER_SIZE, not ReadOnly, SELECTION_COLOR);
 end;
 
 procedure PEdgeView.MovePosition(Canvas: PCanvas; DX, DY: Integer);
@@ -823,8 +823,8 @@ var
 begin
   // move all points so much DX, DY
   for I := 0 to FPoints.Count-1 do
-    FPoints.Points[I] := Point( FPoints.Points[I].X + DX,
-                                FPoints.Points[I].Y + DY );
+    FPoints.PointData[I] := Point( FPoints.PointData[I].X + DX,
+                                FPoints.PointData[I].Y + DY );
 end;
 
 procedure PEdgeView.ChangePoints(APoints: PPoints);
@@ -844,21 +844,21 @@ begin
   else
     with (Tail as PEdgeView).FPoints do begin
       I := (Count-1) div 2;
-      TB := Rect(Points[I].X, Points[I].Y, Points[I+1].X, Points[I+1].Y);
+      TB := Rect(PointData[I].X, PointData[I].Y, PointData[I+1].X, PointData[I+1].Y);
     end;
-  FPoints.Points[0] := GetCenter(TB);
+  FPoints.PointData[0] := GetCenter(TB);
    if not (Head is PEdgeView) then
     HB := Head.GetBoundingBox(Canvas)
   else
     with (Head as PEdgeView).FPoints do begin
       I := (Count-1) div 2;
-      HB := Rect(Points[I].X, Points[I].Y, Points[I+1].X, Points[I+1].Y);
+      HB := Rect(PointData[I].X, PointData[I].Y, PointData[I+1].X, PointData[I+1].Y);
     end;
-  Points.Points[Points.Count-1] := GetCenter(HB);
+  Points.PointData[Points.Count-1] := GetCenter(HB);
    if not (Tail is PEdgeView) then
-    Points.Points[0] := Junction(TB, Points.Points[1]);
+    Points.PointData[0] := Junction(TB, Points.PointData[1]);
    if not (Head is PEdgeView) then
-    Points.Points[Points.Count-1] := Junction(HB, Points.Points[FPoints.Count-2]);
+    Points.PointData[Points.Count-1] := Junction(HB, Points.PointData[FPoints.Count-2]);
 end;
 
 procedure PEdgeView.RecalcRectilinear(Canvas: PCanvas);
@@ -876,9 +876,9 @@ begin
         W := BB.Right - BB.Left;
         H := BB.Bottom - BB.Top;
         Add(GetCenter(BB));
-        Add(Point(Points[0].X, Points[0].Y-(H div 2)-SELF_EDGE_VERTI_INTERVAL));
-        Add(Point(Points[0].X+(W div 2)+SELF_EDGE_HORIZ_INTERVAL, Points[0].Y-(H div 2)-SELF_EDGE_VERTI_INTERVAL));
-        Add(Point(Points[0].X+(W div 2)+SELF_EDGE_HORIZ_INTERVAL, Points[0].Y));
+        Add(Point(PointData[0].X, PointData[0].Y-(H div 2)-SELF_EDGE_VERTI_INTERVAL));
+        Add(Point(PointData[0].X+(W div 2)+SELF_EDGE_HORIZ_INTERVAL, PointData[0].Y-(H div 2)-SELF_EDGE_VERTI_INTERVAL));
+        Add(Point(PointData[0].X+(W div 2)+SELF_EDGE_HORIZ_INTERVAL, PointData[0].Y));
         Add(GetCenter(BB));
       end;
   end;
@@ -889,7 +889,7 @@ begin
   else
     with (Tail as PEdgeView).FPoints do begin
       I := (Count-1) div 2;
-      BT := Rect(Points[I].X, Points[I].Y, Points[I+1].X, Points[I+1].Y);
+      BT := Rect(PointData[I].X, PointData[I].Y, PointData[I+1].X, PointData[I+1].Y);
       BT := Rect(GetCenter(BT).X, GetCenter(BT).Y, GetCenter(BT).X, GetCenter(BT).Y);
     end;
   if not (Head is PEdgeView) then
@@ -897,57 +897,57 @@ begin
   else
     with (Head as PEdgeView).FPoints do begin
       I := (Count-1) div 2;
-      BH := Rect(Points[I].X, Points[I].Y, Points[I+1].X, Points[I+1].Y);
+      BH := Rect(PointData[I].X, PointData[I].Y, PointData[I+1].X, PointData[I+1].Y);
       BH := Rect(GetCenter(BH).X, GetCenter(BH).Y, GetCenter(BH).X, GetCenter(BH).Y);
     end;
 
   with FPoints do begin
     // Add new point, if have not enough points.
     if Count = 2 then begin
-      P := OrthoJunction(BT, Points[1]);
+      P := OrthoJunction(BT, PointData[1]);
       if (P.X = -100) and (P.Y = -100) then
-        Insert(0, OrthoJunction(BT, Points[0]))
+        Insert(0, OrthoJunction(BT, PointData[0]))
       else
-        Points[0] := P;
-      P := OrthoJunction(BH, Points[Count-2]);
+        PointData[0] := P;
+      P := OrthoJunction(BH, PointData[Count-2]);
       if (P.X = -100) and (P.Y = -100) then
-        Add(OrthoJunction(BH, Points[Count-1]))
+        Add(OrthoJunction(BH, PointData[Count-1]))
       else
-        Points[Count-1] := P;
+        PointData[Count-1] := P;
     end;
 
     // Replace 0-indexed point with junction point to TailView
-    P := OrthoJunction(BT, Points[1]);
+    P := OrthoJunction(BT, PointData[1]);
     if (P.X = -100) and (P.Y = -100) then
-      if Points[1].Y = Points[2].Y then
-        Points[1] := Point(GetCenter(BT).X, Points[1].Y)
+      if PointData[1].Y = PointData[2].Y then
+        PointData[1] := Point(GetCenter(BT).X, PointData[1].Y)
       else
-        Points[1] := Point(Points[1].X, GetCenter(BT).Y);
-    Points[0] := OrthoJunction(BT, Points[1]);
+        PointData[1] := Point(PointData[1].X, GetCenter(BT).Y);
+    PointData[0] := OrthoJunction(BT, PointData[1]);
 
     // Replace highest-indexed point with junction point to HeadView
-    P := OrthoJunction(BH, Points[Count-2]);
+    P := OrthoJunction(BH, PointData[Count-2]);
     if (P.X = -100) and (P.Y = -100) then
-      if Points[Count-2].Y = Points[Count-3].Y then
-        Points[Count-2] := Point(GetCenter(BH).X, Points[Count-2].Y)
+      if PointData[Count-2].Y = PointData[Count-3].Y then
+        PointData[Count-2] := Point(GetCenter(BH).X, PointData[Count-2].Y)
       else
-        Points[Count-2] := Point(Points[Count-2].X, GetCenter(BH).Y);
-    Points[Count-1] := OrthoJunction(BH, Points[Count-2]);
+        PointData[Count-2] := Point(PointData[Count-2].X, GetCenter(BH).Y);
+    PointData[Count-1] := OrthoJunction(BH, PointData[Count-2]);
 
     // Must be removed, and calculate this in another module (Handlers)
     // FitToGrid(GraphicClasses.GridFactor(5, 5));
     ReduceOrthoLine;
     ReducePoints(Canvas);
 
-    P := Points[0];
-    Points[0] := OrthoJunction(BT, Points[1]);
-    if (Points[0].X = -100) or (Points[0].Y = -100) then
-      Points[0] := P;
+    P := PointData[0];
+    PointData[0] := OrthoJunction(BT, PointData[1]);
+    if (PointData[0].X = -100) or (PointData[0].Y = -100) then
+      PointData[0] := P;
 
-    P := Points[Count-1];
-    Points[Count-1] := OrthoJunction(BH, Points[Count-2]);
-    if (Points[Count-1].X = -100) or (Points[Count-1].Y = -100) then
-      Points[Count-1] := P;
+    P := PointData[Count-1];
+    PointData[Count-1] := OrthoJunction(BH, PointData[Count-2]);
+    if (PointData[Count-1].X = -100) or (PointData[Count-1].Y = -100) then
+      PointData[Count-1] := P;
   end;
 end;
 
@@ -961,7 +961,7 @@ begin
     B := Tail.GetBoundingBox(Canvas);
     I := 1;
     while I < FPoints.Count-1 do begin
-      if PointInRect(B, FPoints.Points[I]) then begin
+      if PointInRect(B, FPoints.PointData[I]) then begin
         // remove previous
         for J := 1 to I do
           FPoints.Remove(1);
@@ -976,7 +976,7 @@ begin
     B := Head.GetBoundingBox(Canvas);
     I := 1;
     while I < FPoints.Count-1 do begin
-      if PointInRect(B, FPoints.Points[I]) then begin
+      if PointInRect(B, FPoints.PointData[I]) then begin
         // remove nexts
         for J := 1 to FPoints.Count-I-1 do
           FPoints.Remove(I);
@@ -996,7 +996,7 @@ begin
     B := Tail.GetBoundingBox(Canvas);
     I := 0;
     while I <= FPoints.Count-1 do begin
-      if PointInRect(B, FPoints.Points[I]) then
+      if PointInRect(B, FPoints.PointData[I]) then
         FPoints.Remove(I)
       else
         Inc(I);
@@ -1013,11 +1013,11 @@ begin
   if Value = esFlat then Exit;
   with Points do begin
     if IsHead then
-      RT := Rect(Points[Count-1].X, Points[Count-1].Y,
-                 Points[Count-2].X, Points[Count-2].Y)
+      RT := Rect(PointData[Count-1].X, PointData[Count-1].Y,
+                 PointData[Count-2].X, PointData[Count-2].Y)
     else
-      RT := Rect(Points[0].X, Points[0].Y,
-                 Points[1].X, Points[1].Y);
+      RT := Rect(PointData[0].X, PointData[0].Y,
+                 PointData[1].X, PointData[1].Y);
 
     A := RT.Bottom - RT.Top;
     B := (RT.Right - RT.Left + 0.00001);
@@ -1093,12 +1093,12 @@ var
   X, Y: Integer;
 begin
   if (Points.Count mod 2) = 0 then begin
-    X := (Points.Points[Points.Count div 2 - 1].X + Points.Points[Points.Count div 2].X) div 2;
-    Y := (Points.Points[Points.Count div 2 - 1].Y + Points.Points[Points.Count div 2].Y) div 2;
+    X := (Points.PointData[Points.Count div 2 - 1].X + Points.PointData[Points.Count div 2].X) div 2;
+    Y := (Points.PointData[Points.Count div 2 - 1].Y + Points.PointData[Points.Count div 2].Y) div 2;
   end
   else begin
-    X := Points.Points[Points.Count div 2].X;
-    Y := Points.Points[Points.Count div 2].Y;
+    X := Points.PointData[Points.Count div 2].X;
+    Y := Points.PointData[Points.Count div 2].Y;
   end;
   DrawModelExcludedMark(Canvas, X, Y);
 end;
@@ -1119,8 +1119,8 @@ begin
   // Modified because end of edge must be fit to BoundingBox of node
   for I := 1 to FPoints.Count - 2 do
     with FPoints do
-      Points[I] := Point(Points[I].X - Points[I].X mod GF.Width,
-                         Points[I].Y - Points[I].Y mod GF.Height);
+      PointData[I] := Point(PointData[I].X - PointData[I].X mod GF.Width,
+                         PointData[I].Y - PointData[I].Y mod GF.Height);
 end;
 
 procedure PEdgeView.RecalcPoints(Canvas: PCanvas);
@@ -1136,11 +1136,11 @@ var
   I: Integer;
   R: TRect;
 begin
-  R := Rect(FPoints.Points[0].X, FPoints.Points[0].Y,
-            FPoints.Points[0].X, FPoints.Points[0].Y);
+  R := Rect(FPoints.PointData[0].X, FPoints.PointData[0].Y,
+            FPoints.PointData[0].X, FPoints.PointData[0].Y);
   for I := 1 to FPoints.Count - 1 do
-    R := GraphicClasses.UnionRect(R, Rect(FPoints.Points[I].X, FPoints.Points[I].Y,
-                                          FPoints.Points[I].X+1, FPoints.Points[I].Y+1));
+    R := GraphicClasses.UnionRect(R, Rect(FPoints.PointData[I].X, FPoints.PointData[I].Y,
+                                          FPoints.PointData[I].X+1, FPoints.PointData[I].Y+1));
   for I := 0 to SubViewCount - 1 do
     if SubView[I].Visible then
       R := GraphicClasses.UnionRect(R, SubView[I].GetBoundingBox(Canvas));
@@ -1162,8 +1162,8 @@ begin
   Result := False;
 
   for I := 0 to FPoints.Count - 2 do
-    if RectInLine(R, Point(FPoints.Points[I].X, FPoints.Points[I].Y),
-                     Point(FPoints.Points[I+1].X, FPoints.Points[I+1].Y)) then begin
+    if RectInLine(R, Point(FPoints.PointData[I].X, FPoints.PointData[I].Y),
+                     Point(FPoints.PointData[I+1].X, FPoints.PointData[I+1].Y)) then begin
       Result := True;
       Exit;
     end;
@@ -1225,8 +1225,8 @@ begin
     MinDis := RECOG_MIN_DIS;
     MinDisIndex := -1;
     for I := 0 to FPoints.Count-2 do begin
-      PT := FPoints.Points[I];
-      PH := FPoints.Points[I+1];
+      PT := FPoints.PointData[I];
+      PH := FPoints.PointData[I+1];
 
       D := DisToOthoLine(PH, PT, P);
       if D <= MinDis then begin
@@ -1240,8 +1240,8 @@ begin
   else begin
     Result := -1;
     for I := 0 to FPoints.Count-2 do begin
-      PT := FPoints.Points[I];
-      PH := FPoints.Points[I+1];
+      PT := FPoints.PointData[I];
+      PH := FPoints.PointData[I+1];
       if PtInLine(Rect(PT.X, PT.Y, PH.X, PH.Y), P) then
         Result := I;
     end;
@@ -1258,7 +1258,7 @@ begin
 //  for I := 1 to FPoints.Count-2 do begin
 // Replaced with following
   for I := 0 to FPoints.Count - 1 do begin
-    if EqualPt(FPoints.Points[I], P) then
+    if EqualPt(FPoints.PointData[I], P) then
       Result := I;
   end;
 end;
@@ -1640,19 +1640,19 @@ begin
   with Edge.Points do begin
     case FEdgePosition of
       epHead: begin
-        P1 := Points[Count-1];
-        P2 := Points[Count-2];
+        P1 := PointData[Count-1];
+        P2 := PointData[Count-2];
       end;
       epTail: begin
-        P1 := Points[0];
-        P2 := Points[1];
+        P1 := PointData[0];
+        P2 := PointData[1];
       end;
       epMiddle: begin
         MidPointIndex := Count div 2;
         if Count mod 2 = 0 then MidPointIndex := MidPointIndex - 1;
 
-        P1 := Points[MidPointIndex];
-        P2 := Points[MidPointIndex+1];
+        P1 := PointData[MidPointIndex];
+        P2 := PointData[MidPointIndex+1];
 
         if Count mod 2 = 0 then begin
           P1.X := Trunc((P1.X + P2.X) / 2);
@@ -1973,9 +1973,9 @@ var
 begin
   S := '';
   if Value.Count > 0 then begin
-    S := PtToStr(Value.Points[0]);
+    S := PtToStr(Value.PointData[0]);
     for I := 1 to Value.Count - 1 do
-      S := S + ';' + PtToStr(Value.Points[I]);
+      S := S + ';' + PtToStr(Value.PointData[I]);
   end;
   Result := S;
 end;

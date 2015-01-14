@@ -4288,7 +4288,7 @@ end;
 
 procedure PNewViewsByCopyPasteCommand.SetParameter(Views: PViewOrderedSet; Target: PDiagramView);
 var
-  I, J: Integer;
+  J: Integer;
   AView: PView;
   ANodeView: PNodeView;
   AEdgeView: PEdgeView;
@@ -4297,8 +4297,9 @@ begin
   ModelSet.Clear;
   ViewSet.Clear;
   Target.DeselectAll;
-  for I := 0 to Views.Count - 1 do begin
-    AView := Views.Items[I] as PView;
+
+  for AView in Views do begin
+
     if AView is PNodeView then begin
       ANodeView := AView as PNodeView;
       ANodeView.Left := ANodeView.Left + 10;
@@ -4308,7 +4309,7 @@ begin
     else if AView is PEdgeView then begin
       AEdgeView := AView as PEdgeView;
       for J := 0 to AEdgeView.Points.Count - 1 do begin
-        Point := AEdgeView.Points.Points[J];
+        Point := AEdgeView.Points[J];
         Point.X := Point.X + 10;
         Point.Y := Point.Y + 10;
       end;
@@ -6173,8 +6174,8 @@ var
 begin
   for I := 0 to ViewSet.Count - 1 do begin
     Node := ViewSet.Items[I] as PNodeView;
-    Node.Left := OldPositions.Points[I].X;
-    Node.Top := OldPositions.Points[I].Y;
+    Node.Left := OldPositions.PointData[I].X;
+    Node.Top := OldPositions.PointData[I].Y;
   end;
   // fire view change event
   ViewsChanged;
@@ -6298,8 +6299,8 @@ begin
 
   for I := 0 to Nodes.Count - 1 do begin
     N := Nodes[I];
-    N.Left := OldNodePositions.Points[I].X;
-    N.Top := OldNodePositions.Points[I].Y;
+    N.Left := OldNodePositions.PointData[I].X;
+    N.Top := OldNodePositions.PointData[I].Y;
   end;
 
   for I := 0 to Edges.Count - 1 do begin

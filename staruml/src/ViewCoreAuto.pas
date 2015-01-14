@@ -487,17 +487,17 @@ end;
 function PPointsAuto.GetPointX(Index: Integer): Integer;
 begin
   if LockUpdate then
-    Result := Points.Points[Index].X
+    Result := Points.PointData[Index].X
   else
-    Result := EdgeView.Points.Points[Index].X;
+    Result := EdgeView.Points.PointData[Index].X;
 end;
 
 function PPointsAuto.GetPointY(Index: Integer): Integer;
 begin
   if LockUpdate then
-    Result := Points.Points[Index].Y
+    Result := Points.PointData[Index].Y
   else
-    Result := EdgeView.Points.Points[Index].Y;
+    Result := EdgeView.Points.PointData[Index].Y;
 end;
 
 function PPointsAuto.GetPointCount: Integer;

@@ -2620,8 +2620,8 @@ begin
       P := Exprs[0].GetReference as PPoints;
       C := P.Count;
       for I := 0 to C-1 do begin
-        Points[I].X := P.Points[I].X;
-        Points[I].Y := P.Points[I].Y;
+        Points[I].X := P.PointData[I].X;
+        Points[I].Y := P.PointData[I].Y;
       end;
       Canvas.PolyLine(Slice(Points, C));
     end;
@@ -2652,8 +2652,8 @@ begin
       P := Exprs[0].GetReference as PPoints;
       C := P.Count;
       for I := 0 to C-1 do begin
-        Points[I].X := P.Points[I].X;
-        Points[I].Y := P.Points[I].Y;
+        Points[I].X := P.PointData[I].X;
+        Points[I].Y := P.PointData[I].Y;
       end;
       Canvas.Polygon(Slice(Points, C));
     end;
@@ -2714,8 +2714,8 @@ begin
       P := Exprs[0].GetReference as PPoints;
       C := P.Count;
       for I := 0 to C-1 do begin
-        Points[I].X := P.Points[I].X;
-        Points[I].Y := P.Points[I].Y;
+        Points[I].X := P.PointData[I].X;
+        Points[I].Y := P.PointData[I].Y;
       end;
       AC := AddPoints(C);
       Canvas.PolyBezier(Slice(Points, AC));
@@ -2736,7 +2736,7 @@ begin
     inherited;
     Value := SymbolTable.GetValue('points');
     Index := Exprs[0].GetValue;
-    SetValue((Value.GetReference as PPoints).Points[Index].X);
+    SetValue((Value.GetReference as PPoints).PointData[Index].X);
   except
     ERaise(false, FPos, 'Error exists in PtAtX expression.');
   end;
@@ -2753,7 +2753,7 @@ begin
     inherited;
     Value := SymbolTable.GetValue('points');
     Index := Exprs[0].GetValue;
-    SetValue((Value.GetReference as PPoints).Points[Index].Y);
+    SetValue((Value.GetReference as PPoints).PointData[Index].Y);
   except
     ERaise(false, FPos, 'Error exists in PtAtY expression.');
   end;
@@ -2799,27 +2799,27 @@ begin
 
     with (SymbolTable.GetValue('points').GetReference as PPoints) do begin
       if HeadValue = 'head' then
-        RT := Rect(Points[Count-1].X, Points[Count-1].Y,
-                   Points[Count-2].X, Points[Count-2].Y)
+        RT := Rect(PointData[Count-1].X, PointData[Count-1].Y,
+                   PointData[Count-2].X, PointData[Count-2].Y)
       else if HeadValue = 'tail' then
-        RT := Rect(Points[0].X, Points[0].Y,
-                   Points[1].X, Points[1].Y)
+        RT := Rect(PointData[0].X, PointData[0].Y,
+                   PointData[1].X, PointData[1].Y)
       else begin
         if (Count mod 2) = 0 then begin
           P := (Count div 2)-1;
           RT := Rect(
-                (Points[P].X + Points[P+1].X) div 2,
-                (Points[P].Y + Points[P+1].Y) div 2,
-                Points[P+1].X,
-                Points[P+1].Y);
+                (PointData[P].X + PointData[P+1].X) div 2,
+                (PointData[P].Y + PointData[P+1].Y) div 2,
+                PointData[P+1].X,
+                PointData[P+1].Y);
         end
         else begin
           P := Count div 2;
           RT := Rect(
-                Points[P].X,
-                Points[P].Y,
-                Points[P+1].X,
-                Points[P+1].Y);
+                PointData[P].X,
+                PointData[P].Y,
+                PointData[P+1].X,
+                PointData[P+1].Y);
         end;
       end;
     end;

@@ -325,7 +325,7 @@ type
 
     // Auxiliary methods
     procedure PopupQuickDialog(AView: PView; X, Y: Integer; OnElementCreating: Boolean = False);
-    procedure PopupQuickDialogForSubElement(OwnerModel: PModel; ModelKind: string; Argument: Integer);
+    function PopupQuickDialogForSubElement(OwnerModel: PModel; ModelKind: string; Argument: Integer): Boolean;
     procedure ProcessDoubleClickAction(AView: PView; X, Y: Integer);
     procedure ProcessPropertyAction;
     procedure ProcessAttachmentsAction;
@@ -1195,10 +1195,16 @@ begin
   try
     Owner := StarUMLApplication.SelectedModels[0];
     StarUMLApplication.NewModel(Owner, ModelKind, Argument);
-    // set created element(TreeNode)'s name editable
-    if MainForm.ModelExplorerDockPanel.Visible then
-      MainForm.ModelExplorer.SetNameEditingMode(nil);
-    PopupQuickDialogForSubElement(Owner, ModelKind, Argument);
+
+    // set created element(TreeNode)'s name editable if Model Explorer panel is being used
+    if MainForm.ModelExplorerDockPanel.Visible
+      and (dxDockingController.ActiveDockControl = MainForm.ModelExplorerDockPanel) then
+      MainForm.ModelExplorer.SetNameEditingMode(nil)
+    else begin // Otherwise try to activate an editor inside of current model view
+      if not PopupQuickDialogForSubElement(Owner, ModelKind, Argument)
+        and MainForm.ModelExplorerDockPanel.Visible then
+          MainForm.ModelExplorer.SetNameEditingMode(nil) // Finally try to activate inactive Model Explorer
+    end;
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
@@ -4287,7 +4293,7 @@ begin
   if OnElementCreating then begin
     if AView is PUMLCustomSeqMessageView then begin
       C := (AView as PEdgeView).Points.Count;
-      P := (AView as PEdgeView).Points.Points[C - 1];
+      P := (AView as PEdgeView).Points.PointData[C - 1];
       MainForm.ShowQuickDialog(AView, P, True);
     end
     else if (AView is PNodeView) and not (AView is PUMLCustomColMessageView) then
@@ -4297,13 +4303,14 @@ begin
     MainForm.ShowQuickDialog(AView, Point(X, Y));
 end;
 
-procedure PMain.PopupQuickDialogForSubElement(OwnerModel: PModel; ModelKind: string; Argument: Integer);
+function PMain.PopupQuickDialogForSubElement(OwnerModel: PModel; ModelKind:
+  string; Argument: Integer): Boolean;
 var
   DgmView: PDiagramView;
   SelView: PView;
   ArgModel: PModel;
-  P, P_LT, P_RB: TPoint;
 begin
+  Result := False;
   if (ModelKind = 'Operation') or
      (ModelKind = 'Attribute') or
      (ModelKind = 'EnumerationLiteral') or
@@ -4311,21 +4318,13 @@ begin
   then begin
     DgmView := StarUMLApplication.ActiveDiagram;
     if DgmView <> nil then begin
-      GetCursorPos(P);
-      with MainForm.WorkingAreaFrame do begin
-        P_LT := MainForm.WorkingAreaFrame.ClientToScreen(Point(Left, Top));
-        P_RB := MainForm.WorkingAreaFrame.ClientToScreen(Point(Left + Width, Top + Height));
-        if (P.X >= P_LT.X) and (P.X <= P_RB.X) and
-           (P.Y >= P_LT.Y) and (P.Y <= P_RB.Y) then
-        begin
-          if StarUMLApplication.SelectedViewCount = 1 then begin
-            SelView := StarUMLApplication.SelectedViews[0];
-            if SelView.Model = OwnerModel then begin
-              if StarUMLApplication.EventArgModelCount = 1 then begin
-                ArgModel := StarUMLApplication.EventArgModels[0];
-                MainForm.ShowQuickDialogByModelCreation(SelView, ArgModel);
-              end;
-            end;
+      if StarUMLApplication.SelectedViewCount = 1 then begin
+        SelView := StarUMLApplication.SelectedViews[0];
+        if SelView.Model = OwnerModel then begin
+          if StarUMLApplication.EventArgModelCount > 0 then begin
+            ArgModel := StarUMLApplication.EventArgModels[StarUMLApplication.EventArgModelCount-1];
+            MainForm.ShowQuickDialogByModelCreation(SelView, ArgModel);
+            Result := True;
           end;
         end;
       end;
