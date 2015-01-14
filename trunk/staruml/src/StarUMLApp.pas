@@ -817,7 +817,7 @@ end;
 
 function PStarUMLApplication.GetEventArgModel(Index: Integer): PModel;
 begin
-  Result := FEventArgModels.Items[Index] as PModel;
+  Result := FEventArgModels[Index];
 end;
 
 function PStarUMLApplication.GetEventArgModelCount: Integer;
@@ -827,7 +827,7 @@ end;
 
 function PStarUMLApplication.GetEventArgView(Index: Integer): PView;
 begin
-  Result := FEventArgViews.Items[Index] as PView;
+  Result := FEventArgViews[Index];
 end;
 
 function PStarUMLApplication.GetEventArgViewCount: Integer;
@@ -1163,12 +1163,9 @@ end;
 
 procedure PStarUMLApplication.CheckUndeletableViews(Views: PViewOrderedSet);
 var
-  I: Integer;
   V: PView;
 begin
-  for I := 0 to Views.Count - 1 do
-  begin
-    V := Views.Items[I] as PView;
+  for V in Views do begin
     if (V.OwnerDiagramView = nil) and not ViewSet.Contains(V.Parent) and (V.ContainerView = nil) then
       raise EUndeletableElement.Create(ERR_SUBVIEW_CANNOT_BE_DELETED);
   end;
@@ -1180,14 +1177,13 @@ var
   E: PElement;
   R: Integer;
 
-  function UnitExists(ASet: POrderedSet): Boolean; overload;
+  function UnitExists(ASet: PElementOrderedSet): Boolean; overload;
   var
-    I: Integer;
+    Element: PElement;
   begin
     Result := False;
-    for I := 0 to ASet.Count - 1 do
-      if (ASet.Items[I] as PElement).IsDocumentElement then
-      begin
+    for Element in ASet do
+      if Element.IsDocumentElement then begin
         Result := True;
         Exit;
       end;
@@ -1213,9 +1209,7 @@ begin
   begin
     R := Application.MessageBox(PChar(QUERY_DELETE_UNITS), PChar(Application.Title), MB_ICONQUESTION or MB_YESNO);
     if R = IDYES then
-      for I := 0 to ElementSet.Count - 1 do
-      begin
-        E := ElementSet.Items[I] as PElement;
+      for E in ElementSet do begin
         if E.IsDocumentElement then
           ProjectManager.MergeUnit(E as PUMLPackage);
       end

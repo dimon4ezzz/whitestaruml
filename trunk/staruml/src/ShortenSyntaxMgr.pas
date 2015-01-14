@@ -320,8 +320,8 @@ var
 begin
   PS := PPoints.Create;
   PS.Assign(EdgeView.Points);
-  PS.Points[0] := Point(EdgeView.Points.Points[0].X, SourceView.Top + (V_INT));
-  PS.Points[1] := Point(EdgeView.Points.Points[1].X, SourceView.Top + (V_INT));
+  PS.PointData[0] := Point(EdgeView.Points.PointData[0].X, SourceView.Top + (V_INT));
+  PS.PointData[1] := Point(EdgeView.Points.PointData[1].X, SourceView.Top + (V_INT));
   StarUMLApplication.ChangeViewAttribute(EdgeView, 'Points', PointsToString(PS));
   PS.Free;
 
@@ -337,7 +337,7 @@ begin
 
         MsgView := View as PEdgeView;
 
-        if EdgeView.Points.Points[0].Y <= MsgView.Points.Points[0].Y then begin
+        if EdgeView.Points.PointData[0].Y <= MsgView.Points.PointData[0].Y then begin
 (*
           EdgeView.Points.Points[0] := Point(EdgeView.Points.Points[0].X, MsgView.Points.Points[0].Y + (V_INT div 2));
           EdgeView.Points.Points[1] := Point(EdgeView.Points.Points[1].X, MsgView.Points.Points[0].Y + (V_INT div 2));
@@ -345,8 +345,8 @@ begin
 
           PS := PPoints.Create;
           PS.Assign(EdgeView.Points);
-          PS.Points[0] := Point(EdgeView.Points.Points[0].X, MsgView.Points.Points[0].Y + (V_INT div 2));
-          PS.Points[1] := Point(EdgeView.Points.Points[1].X, MsgView.Points.Points[0].Y + (V_INT div 2));
+          PS.PointData[0] := Point(EdgeView.Points.PointData[0].X, MsgView.Points.PointData[0].Y + (V_INT div 2));
+          PS.PointData[1] := Point(EdgeView.Points.PointData[1].X, MsgView.Points.PointData[0].Y + (V_INT div 2));
           StarUMLApplication.ChangeViewAttribute(EdgeView, 'Points', PointsToString(PS));
           PS.Free;
         end;
@@ -364,8 +364,8 @@ begin
 
     PS := PPoints.Create;
     PS.Assign(ReturnEdgeView.Points);
-    PS.Points[0] := Point(EdgeView.Points.Points[1].X, EdgeView.Points.Points[0].Y+H);
-    PS.Points[1] := Point(EdgeView.Points.Points[0].X, EdgeView.Points.Points[0].Y+H);
+    PS.PointData[0] := Point(EdgeView.Points.PointData[1].X, EdgeView.Points.PointData[0].Y+H);
+    PS.PointData[1] := Point(EdgeView.Points.PointData[0].X, EdgeView.Points.PointData[0].Y+H);
     StarUMLApplication.ChangeViewAttribute(ReturnEdgeView, 'Points', PointsToString(PS));
     PS.Free;
   end;
@@ -798,8 +798,8 @@ begin
 
       PS := PPoints.Create;
       PS.Assign(Points);
-      PS.Points[0] := Point(Points.Points[0].X, NextMsgY + (V_INT) * (I+1));
-      PS.Points[1] := Point(Points.Points[1].X, NextMsgY + (V_INT) * (I+1));
+      PS.PointData[0] := Point(Points.PointData[0].X, NextMsgY + (V_INT) * (I+1));
+      PS.PointData[1] := Point(Points.PointData[1].X, NextMsgY + (V_INT) * (I+1));
       StarUMLApplication.ChangeViewAttribute(EdgeView, 'Points', PointsToString(PS));
       PS.Free;
     end;
@@ -819,8 +819,8 @@ begin
 *)
         PS := PPoints.Create;
         PS.Assign(Points);
-        PS.Points[0] := Point((EdgeView as PEdgeView).Points.Points[1].X, (EdgeView as PEdgeView).Points.Points[1].Y+H);
-        PS.Points[1] := Point((EdgeView as PEdgeView).Points.Points[0].X, (EdgeView as PEdgeView).Points.Points[0].Y+H);
+        PS.PointData[0] := Point((EdgeView as PEdgeView).Points.PointData[1].X, (EdgeView as PEdgeView).Points.PointData[1].Y+H);
+        PS.PointData[1] := Point((EdgeView as PEdgeView).Points.PointData[0].X, (EdgeView as PEdgeView).Points.PointData[0].Y+H);
         StarUMLApplication.ChangeViewAttribute(ReturnEdgeView, 'Points', PointsToString(PS));
         PS.Free;
       end;
@@ -843,8 +843,8 @@ begin
 *)
       PS := PPoints.Create;
       PS.Assign(ReturnMsgView.Points);
-      PS.Points[0] := Point(ReturnMsgView.Points.Points[0].X, H);
-      PS.Points[1] := Point(ReturnMsgView.Points.Points[1].X, H);
+      PS.PointData[0] := Point(ReturnMsgView.Points.PointData[0].X, H);
+      PS.PointData[1] := Point(ReturnMsgView.Points.PointData[1].X, H);
       StarUMLApplication.ChangeViewAttribute(ReturnMsgView, 'Points', PointsToString(PS));
       PS.Free;
     end;
@@ -962,8 +962,8 @@ begin
     with LinkView do
       EdgeView := StarUMLApplication.NewElement(
         DiagramView,
-        Points.Points[0].X, Points.Points[0].Y,
-        Points.Points[1].X, Points.Points[1].Y,
+        Points.PointData[0].X, Points.PointData[0].Y,
+        Points.PointData[1].X, Points.PointData[1].Y,
         EdgeType, EdgeArgument);
 
     if OutGoing then begin
@@ -1380,7 +1380,7 @@ begin
 
           EdgeView := OwnedView[I] as PEdgeView;
           if (EdgeView.Model.MOF_GetReference('Action') is PUMLReturnAction) and
-             (GetActivation(EdgeView.Tail as PNodeView, EdgeView.Points.Points[0].Y) = ActivationView) then
+             (GetActivation(EdgeView.Tail as PNodeView, EdgeView.Points.PointData[0].Y) = ActivationView) then
             ReturnMsgView := EdgeView;
         end;
   end;
@@ -1412,7 +1412,7 @@ begin
     for I := 0 to OwnedViewCount-1 do
       if (OwnedView[I] is PUMLSeqStimulusView) or
          (OwnedView[I] is PUMLSeqMessageView) then
-        if ((OwnedView[I] as PEdgeView).Points.Points[0].Y > Top) and
+        if ((OwnedView[I] as PEdgeView).Points.PointData[0].Y > Top) and
            (LastReturnMsgView <> OwnedView[I]) then
           OwnedView[I].Selected := True;
 //          StarUMLApplication.ChangeViewAttribute(OwnedViews[I], 'Selected', BooleanToString(True));
@@ -1434,10 +1434,10 @@ begin
 //    if LastMsgView.Head = LastMsgView.Tail then
 //      Result := GetActivationView(LastMsgView).Top
 //    else
-    Result := LastMsgView.Points.Points[0].Y
+    Result := LastMsgView.Points.PointData[0].Y
   end
   else
-    Result := CurMsgView.Points.Points[0].Y;
+    Result := CurMsgView.Points.PointData[0].Y;
 end;
 
 function PShortenSyntaxManager.GetLastMessageView(
@@ -1451,7 +1451,7 @@ begin
   // exclude ReturnMsgView correspond to CurMsgView
 
   // if doesn't exist, return CurMsgView's Y
-  Value := CurMsgView.Points.Points[0].Y;
+  Value := CurMsgView.Points.PointData[0].Y;
   Result := nil;
 
   // get Activation connected to current selected message
@@ -1471,7 +1471,7 @@ begin
 
             AV := GetActivation(
                   (OwnedView[I] as PEdgeView).Tail as PNodeView,
-                  (OwnedView[I] as PEdgeView).Points.Points[0].Y);
+                  (OwnedView[I] as PEdgeView).Points.PointData[0].Y);
 
             if (AV <> nil) and Overlap(
 //                  Rect(ActivationView.Left-20, ActivationView.Top, ActivationView.Right+20, ActivationView.Bottom),
@@ -1479,15 +1479,15 @@ begin
                   Rect(AV.Left, AV.Top, AV.Right, AV.Bottom)
                 ) then
 
-              if (OwnedView[I] as PEdgeView).Points.Points[0].Y > Value then begin
-                Value := (OwnedView[I] as PEdgeView).Points.Points[0].Y;
+              if (OwnedView[I] as PEdgeView).Points.PointData[0].Y > Value then begin
+                Value := (OwnedView[I] as PEdgeView).Points.PointData[0].Y;
                 Result := (OwnedView[I] as PEdgeView);
               end;
 
 
             AV := GetActivation(
                   (OwnedView[I] as PEdgeView).Head as PNodeView,
-                  (OwnedView[I] as PEdgeView).Points.Points[0].Y);
+                  (OwnedView[I] as PEdgeView).Points.PointData[0].Y);
 
             if (AV <> nil) and
                (not (OwnedView[I].Model.MOF_GetReference('Action') is PUMLReturnAction)) and
@@ -1497,8 +1497,8 @@ begin
                   Rect(AV.Left, AV.Top, AV.Right, AV.Bottom)
                 ) then
 
-              if (OwnedView[I] as PEdgeView).Points.Points[0].Y > Value then begin
-                Value := (OwnedView[I] as PEdgeView).Points.Points[0].Y;
+              if (OwnedView[I] as PEdgeView).Points.PointData[0].Y > Value then begin
+                Value := (OwnedView[I] as PEdgeView).Points.PointData[0].Y;
                 Result := (OwnedView[I] as PEdgeView);
               end;
 
@@ -1543,8 +1543,8 @@ begin
 *)
     PS := PPoints.Create;
     PS.Assign(ReturnMsgView.Points);
-    PS.Points[0] := Point(ReturnMsgView.Points.Points[0].X, B-1);
-    PS.Points[1] := Point(ReturnMsgView.Points.Points[1].X, B-1);
+    PS.PointData[0] := Point(ReturnMsgView.Points.PointData[0].X, B-1);
+    PS.PointData[1] := Point(ReturnMsgView.Points.PointData[1].X, B-1);
     StarUMLApplication.ChangeViewAttribute(ReturnMsgView, 'Points', PointsToString(PS));
     PS.Free;
 
@@ -1631,7 +1631,7 @@ function PShortenSyntaxManager.MakeSeqMsgView2(Model: PModel; Rel1,
 *)
                   // MsgView connected to ActivationView
                   if (CurMsgView.Head = EdgeView.Head) or (CurMsgView.Head = EdgeView.Tail) then begin
-                    Y := EdgeView.Points.Points[0].Y;
+                    Y := EdgeView.Points.PointData[0].Y;
 
                     // MsgView in ActivaitonView's range
                     if (ActivationView.Top <= Y) and (Y <= ActivationView.Bottom) then
@@ -1647,7 +1647,7 @@ function PShortenSyntaxManager.MakeSeqMsgView2(Model: PModel; Rel1,
   begin
     if Pos('~', Relation)>0 then
 //      Result := (CurMsgView.MOF_GetReference('Activation') as PUMLActivationView).Top - 1
-      Result := CurMsgView.Points.Points[0].Y - 1
+      Result := CurMsgView.Points.PointData[0].Y - 1
     else if Pos('_', Relation)>0 then
 //      Result := (CurMsgView.MOF_GetReference('Activation') as PUMLActivationView).Top
       Result := (GetLastMessageView(DiagramView, CurMsgView).MOF_GetReference('Activation') as PUMLActivationView).Top
@@ -1661,7 +1661,7 @@ function PShortenSyntaxManager.MakeSeqMsgView2(Model: PModel; Rel1,
   begin
     if Pos('~', Relation)>0 then
 //      Result := (CurMsgView.MOF_GetReference('Activation') as PUMLActivationView).Top
-      Result := CurMsgView.Points.Points[0].Y
+      Result := CurMsgView.Points.PointData[0].Y
     else if Pos('_', Relation)>0 then
 //      Result := (CurMsgView.MOF_GetReference('Activation') as PUMLActivationView).Top + V_INT
       Result := (GetLastMessageView(DiagramView, CurMsgView).MOF_GetReference('Activation') as PUMLActivationView).Top + V_INT
@@ -1714,7 +1714,7 @@ function PShortenSyntaxManager.MakeSeqMsgView2(Model: PModel; Rel1,
     with DiagramView do
       for I := 0 to OwnedViewCount-1 do
         if (OwnedView[I] is PUMLSeqStimulusView) or (OwnedView[I] is PUMLSeqMessageView) then
-          if ((OwnedView[I] as PEdgeView).Points.Points[0].Y > Top) then
+          if ((OwnedView[I] as PEdgeView).Points.PointData[0].Y > Top) then
             OwnedView[I].Selected := True;
 //            StarUMLApplication.ChangeViewAttribute(OwnedViews[I], 'Selected', BoolToStr(True));
 
@@ -1900,8 +1900,8 @@ begin
 *)
       PS := PPoints.Create;
       PS.Assign(Points);
-      PS.Points[0] := Point(Points.Points[0].X, InsertPos);
-      PS.Points[1] := Point(Points.Points[1].X, InsertPos);
+      PS.PointData[0] := Point(Points.PointData[0].X, InsertPos);
+      PS.PointData[1] := Point(Points.PointData[1].X, InsertPos);
       StarUMLApplication.ChangeViewAttribute(EdgeView, 'Points', PointsToString(PS));
       PS.Free;
     end;
@@ -1916,7 +1916,7 @@ begin
 
         PS := PPoints.Create;
         PS.Assign(Points);
-        PS.Points[0] := Point((EdgeView as PEdgeView).Points.Points[1].X, H);
+        PS.PointData[0] := Point((EdgeView as PEdgeView).Points.PointData[1].X, H);
         StarUMLApplication.ChangeViewAttribute(ReturnEdgeView, 'Points', PointsToString(PS));
         PS.Free;
 

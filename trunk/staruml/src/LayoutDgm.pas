@@ -443,10 +443,10 @@ var
     NewPoints.Clear;
     if Ps.Count >= 3 then
     begin
-      NewPoints.Add(Ps.Points[0]);
+      NewPoints.Add(Ps.PointData[0]);
       for I := 1 to Ps.Count - 1 do
-        NewPoints.Add(MidPoint(Ps.Points[I - 1], Ps.Points[I]));
-      NewPoints.Add(Ps.Points[Ps.Count - 1]);
+        NewPoints.Add(MidPoint(Ps.PointData[I - 1], Ps.PointData[I]));
+      NewPoints.Add(Ps.PointData[Ps.Count - 1]);
     end;
     Ps.Assign(NewPoints);
     NewPoints.Free;
@@ -477,9 +477,9 @@ begin
   begin
     Idx := 1;
     repeat
-      P0 := APoints.Points[Idx - 1];
-      P1 := APoints.Points[Idx];
-      P2 := APoints.Points[Idx + 1];
+      P0 := APoints.PointData[Idx - 1];
+      P1 := APoints.PointData[Idx];
+      P2 := APoints.PointData[Idx + 1];
       if Distance(P0, P2) <> 0 then
       begin
         Rate := (Distance(P0, P1) + Distance(P1, P2)) / Distance(P0, P2);
@@ -610,8 +610,8 @@ begin
       EdgeView.Points.Clear;
       for J := 0 to Edge.Points.Count - 1 do
         EdgeView.Points.Add(
-          Point(Edge.Points.Points[J].X + LAYOUT_LEFT_MARGIN,
-                Edge.Points.Points[J].Y + LAYOUT_TOP_MARGIN));
+          Point(Edge.Points.PointData[J].X + LAYOUT_LEFT_MARGIN,
+                Edge.Points.PointData[J].Y + LAYOUT_TOP_MARGIN));
       SmoothPoints(EdgeView.Points, 10);
       RoughPoints(EdgeView.Points, 1.015);
       EdgeView.RecalcPoints(ADiagramView.Canvas);

@@ -4392,7 +4392,7 @@ begin
     // ASSERTIONS
     //Assert(V.Tail = Self);
     // ASSERTIONS
-    B := Junction(R, V.Points.Points[V.Points.Count - 1]);
+    B := Junction(R, V.Points.PointData[V.Points.Count - 1]);
     if (B.X = R.Right) and (B.Y >= R.Top) and (B.Y <= R.Bottom) then begin
       T := C.Y - B.Y;
       P := Point(C.X + T, R.Bottom);
@@ -5088,15 +5088,15 @@ begin
 
       // trial
       C := Points.Count;
-      P := Junction(V.IconRect, self.Points.Points[C-1]);
-      Points.Points[C-1] := P;
+      P := Junction(V.IconRect, self.Points.PointData[C-1]);
+      Points.PointData[C-1] := P;
       if (LineStyle = lsRectilinear) and (C >= 2) then begin
-        P2 := Points.Points[C-2];
+        P2 := Points.PointData[C-2];
         if abs(P2.X - P.X) > abs(P2.Y - P.Y) then
           P2.Y := P.Y
         else
           P2.X := P.X;
-        Points.Points[C-2] := P2;
+        Points.PointData[C-2] := P2;
       end;
 
     end;
@@ -5133,15 +5133,15 @@ begin
 
       // trial
       C := Points.Count;
-      P := Junction(V.IconRect, self.Points.Points[C-1]);
-      Points.Points[C-1] := P;
+      P := Junction(V.IconRect, self.Points.PointData[C-1]);
+      Points.PointData[C-1] := P;
       if (LineStyle = lsRectilinear) and (C >= 2) then begin
-        P2 := Points.Points[C-2];
+        P2 := Points.PointData[C-2];
         if abs(P2.X - P.X) > abs(P2.Y - P.Y) then
           P2.Y := P.Y
         else
           P2.X := P.X;
-        Points.Points[C-2] := P2;
+        Points.PointData[C-2] := P2;
       end;
 
     end;
@@ -5374,13 +5374,13 @@ procedure PUMLAssociationView.ArrangeObject(Canvas: PCanvas);
     if ConnectionNum = 0 then begin // tail
       QV := FTailQualifierCompartment;
       NV := Tail as PNodeView;
-      P1 := Points.Points[1];
+      P1 := Points.PointData[1];
       JP := 0;
     end
     else begin  // head
       QV := FHeadQualifierCompartment;
       NV := Head as PNodeView;
-      P1 := Points.Points[Points.Count - 2];
+      P1 := Points.PointData[Points.Count - 2];
       JP := Points.Count - 1;
     end;
     if QV.Visible then begin
@@ -5410,7 +5410,7 @@ procedure PUMLAssociationView.ArrangeObject(Canvas: PCanvas);
       end;
 
       P := Junction(QV.GetBoundingBox(Canvas), P1);
-      Points.Points[JP] := P;
+      Points.PointData[JP] := P;
 
       QV.Width := QV.MinWidth;
       QV.Height := QV.MinHeight;
@@ -6979,7 +6979,7 @@ begin
   MessageView := Parent as PUMLCustomSeqMessageView;
   LifeLine := MessageView.Head as PUMLLifeLineView;
   ParentActivation := LifeLine.GetActivationAt(Top - 1);
-  Top := MessageView.Points.Points[MessageView.Points.Count - 1].Y;
+  Top := MessageView.Points.PointData[MessageView.Points.Count - 1].Y;
   Width := ACTIVATION_MINWIDTH;
   // Left position extrudes a little right than Parent Activation
   if ParentActivation <> nil then
@@ -7006,7 +7006,7 @@ begin
       if GetDiagramView.OwnedView[I] is PUMLCustomSeqMessageView then begin
         Msg := GetDiagramView.OwnedView[I] as PUMLCustomSeqMessageView;
         if (Msg.Head = LifeLine) and (Msg <> MessageView) then begin
-          Y := Msg.Points.Points[Msg.Points.Count - 1].Y;
+          Y := Msg.Points.PointData[Msg.Points.Count - 1].Y;
           if (Top <= Y) and (Bottom > Y) then begin
             if Msg.Activation.Visible and (Msg.Activation.Bottom > MinimumBottom) then
               MinimumBottom := Msg.Activation.Bottom;
@@ -7161,11 +7161,11 @@ var
     for I := 0 to GetDiagramView.OwnedViewCount - 1 do begin
       if GetDiagramView.OwnedView[I] is PUMLCustomSeqMessageView then begin
         V := GetDiagramView.OwnedView[I] as PUMLCustomSeqMessageView;
-        if V.Points.Points[0].Y < YPos then begin
+        if V.Points.PointData[0].Y < YPos then begin
           SeqNum := SeqNum + 1;
         end
-        else if V.Points.Points[0].Y = YPos then begin
-          if V.Points.Points[0].X < XPos then SeqNum := SeqNum + 1;
+        else if V.Points.PointData[0].Y = YPos then begin
+          if V.Points.PointData[0].X < XPos then SeqNum := SeqNum + 1;
         end;
       end;
     end;
@@ -7196,7 +7196,7 @@ begin
   end;
 
   // determine SequenceNumber
-  SN2 := GetSequenceNumberByPos(Points.Points[0].X, Points.Points[0].Y);
+  SN2 := GetSequenceNumberByPos(Points.PointData[0].X, Points.PointData[0].Y);
   if SN <> SN2 then begin // if SequenceNumber is changed
     if Model is PUMLStimulus then begin
       // move at OwnerView's Indext to correspond to SequenceNumber
@@ -7238,7 +7238,7 @@ end;
 procedure PUMLCustomSeqMessageView.ChangePoints(APoints: PPoints);
 begin
   inherited;
-  Activation.Top := APoints.Points[0].Y;
+  Activation.Top := APoints.PointData[0].Y;
 end;
 
 procedure PUMLCustomSeqMessageView.ArrangeObject(Canvas: PCanvas);
@@ -7264,47 +7264,47 @@ begin
   LineStyle := lsRectilinear;
 
   FromLifeLine := Tail as PUMLLifeLineView;
-  FromActivation := FromLifeLine.GetActivationAt(Points.Points[0].Y);
+  FromActivation := FromLifeLine.GetActivationAt(Points.PointData[0].Y);
   ToLifeLine := Head as PUMLLifeLineView;
-  ToActivation := ToLifeLine.GetActivationAt(Points.Points[Points.Count - 1].Y);
+  ToActivation := ToLifeLine.GetActivationAt(Points.PointData[Points.Count - 1].Y);
 
   // (1) in case of Self message
   if Head = Tail then begin
-    FixPointCount(4, Points.Points[0].X, Points.Points[0].Y);
+    FixPointCount(4, Points.PointData[0].X, Points.PointData[0].Y);
     if (FromActivation <> nil) and FromActivation.Visible then
-      Points.Points[0] := Point(FromActivation.Right, Points.Points[0].Y)
+      Points.PointData[0] := Point(FromActivation.Right, Points.PointData[0].Y)
     else
-      Points.Points[0] := Point(FromLifeLine.Right, Points.Points[0].Y);
-    Points.Points[1] := Point(Points.Points[0].X + SELF_MESSAGE_WIDTH, Points.Points[0].Y);
-    Points.Points[2] := Point(Points.Points[0].X + SELF_MESSAGE_WIDTH, Points.Points[0].Y + SELF_MESSAGE_HEIGHT);
+      Points.PointData[0] := Point(FromLifeLine.Right, Points.PointData[0].Y);
+    Points.PointData[1] := Point(Points.PointData[0].X + SELF_MESSAGE_WIDTH, Points.PointData[0].Y);
+    Points.PointData[2] := Point(Points.PointData[0].X + SELF_MESSAGE_WIDTH, Points.PointData[0].Y + SELF_MESSAGE_HEIGHT);
     if (ToActivation <> nil) and ToActivation.Visible then
-      Points.Points[3] := Point(Activation.Right, Points.Points[0].Y + SELF_MESSAGE_HEIGHT)
+      Points.PointData[3] := Point(Activation.Right, Points.PointData[0].Y + SELF_MESSAGE_HEIGHT)
     else
-      Points.Points[3] := Point((Tail as PUMLLifeLineView).Right, Points.Points[0].Y + SELF_MESSAGE_HEIGHT)
+      Points.PointData[3] := Point((Tail as PUMLLifeLineView).Right, Points.PointData[0].Y + SELF_MESSAGE_HEIGHT)
   end
   // (2) in case of left-to-right directed message
-  else if Points.Points[1].X > Points.Points[0].X then begin
-    FixPointCount(2, Points.Points[0].X, Points.Points[0].Y);
+  else if Points.PointData[1].X > Points.PointData[0].X then begin
+    FixPointCount(2, Points.PointData[0].X, Points.PointData[0].Y);
     if (FromActivation <> nil) and FromActivation.Visible then
-      Points.Points[0] := Point(FromActivation.Right, Points.Points[0].Y)
+      Points.PointData[0] := Point(FromActivation.Right, Points.PointData[0].Y)
     else
-      Points.Points[0] := Point(FromLifeLine.Right, Points.Points[0].Y);
+      Points.PointData[0] := Point(FromLifeLine.Right, Points.PointData[0].Y);
     if (ToActivation <> nil) and ToActivation.Visible then
-      Points.Points[1] := Point(Activation.Left, Points.Points[0].Y)
+      Points.PointData[1] := Point(Activation.Left, Points.PointData[0].Y)
     else
-      Points.Points[1] := Point((Head as PUMLLifeLineView).Left, Points.Points[0].Y)
+      Points.PointData[1] := Point((Head as PUMLLifeLineView).Left, Points.PointData[0].Y)
   end
   // (3) in case of right-to-left direced message
   else begin
-    FixPointCount(2, Points.Points[0].X, Points.Points[0].Y);
+    FixPointCount(2, Points.PointData[0].X, Points.PointData[0].Y);
     if (FromActivation <> nil) and FromActivation.Visible then
-      Points.Points[0] := Point(FromActivation.Left, Points.Points[0].Y)
+      Points.PointData[0] := Point(FromActivation.Left, Points.PointData[0].Y)
     else
-      Points.Points[0] := Point(FromLifeLine.Left, Points.Points[0].Y);
+      Points.PointData[0] := Point(FromLifeLine.Left, Points.PointData[0].Y);
     if (ToActivation <> nil) and ToActivation.Visible then
-      Points.Points[1] := Point(Activation.Right, Points.Points[0].Y)
+      Points.PointData[1] := Point(Activation.Right, Points.PointData[0].Y)
     else
-      Points.Points[1] := Point((Head as PUMLLifeLineView).Right, Points.Points[0].Y)
+      Points.PointData[1] := Point((Head as PUMLLifeLineView).Right, Points.PointData[0].Y)
   end;
 
   // call Update here because Action's changes are not reflected
@@ -8699,8 +8699,8 @@ var
 begin
   MidPointIndex := HostEdge.Points.Count div 2;
   if HostEdge.Points.Count mod 2 = 0 then MidPointIndex := MidPointIndex - 1;
-  P1 := HostEdge.Points.Points[MidPointIndex];
-  P2 := HostEdge.Points.Points[MidPointIndex+1];
+  P1 := HostEdge.Points.PointData[MidPointIndex];
+  P2 := HostEdge.Points.PointData[MidPointIndex+1];
   tempP1 := P1;
   tempP2 := P2;
   // Calc Theta of Link
@@ -10787,10 +10787,10 @@ var
   R: TRect;
   X1, Y1, X2, Y2: Integer;
 begin
-  X1 := FPoints.Points[0].X;
-  Y1 := FPoints.Points[0].Y;
-  X2 := FPoints.Points[1].X;
-  Y2 := FPoints.Points[1].Y;
+  X1 := FPoints.PointData[0].X;
+  Y1 := FPoints.PointData[0].Y;
+  X2 := FPoints.PointData[1].X;
+  Y2 := FPoints.PointData[1].Y;
   R := Rect(X1, Y1, X2, Y2);
   Result := PtInLine(R, P);
 end;
@@ -10801,8 +10801,8 @@ var
 begin
   Result := False;
   for I := 0 to FPoints.Count - 2 do
-    if RectInLine(R, Point(FPoints.Points[I].X, FPoints.Points[I].Y),
-                     Point(FPoints.Points[I + 1].X, FPoints.Points[I + 1].Y)) then begin
+    if RectInLine(R, Point(FPoints.PointData[I].X, FPoints.PointData[I].Y),
+                     Point(FPoints.PointData[I + 1].X, FPoints.PointData[I + 1].Y)) then begin
       Result := True;
       Exit;
     end;
@@ -10839,15 +10839,15 @@ var
   I: Integer;
 begin
   for I := 0 to FPoints.Count - 1 do
-    DrawHighlighter(Canvas, FPoints.Points[I].X, FPoints.Points[I].Y, DEFAULT_HALF_HIGHLIGHTER_SIZE, not ReadOnly, SELECTION_COLOR);
+    DrawHighlighter(Canvas, FPoints.PointData[I].X, FPoints.PointData[I].Y, DEFAULT_HALF_HIGHLIGHTER_SIZE, not ReadOnly, SELECTION_COLOR);
 end;
 
 procedure PLineView.DrawObject(Canvas: PCanvas);
 begin
   AssignStyleToCanvas(Canvas);
   AssignShapeStyleToCanvas(Canvas);
-  Canvas.MoveTo(FPoints.Points[0].X, FPoints.Points[0].Y);
-  Canvas.LineTo(FPoints.Points[1].X, FPoints.Points[1].Y);
+  Canvas.MoveTo(FPoints.PointData[0].X, FPoints.PointData[0].Y);
+  Canvas.LineTo(FPoints.PointData[1].X, FPoints.PointData[1].Y);
 end;
 
 procedure PLineView.MovePosition(Canvas: PCanvas; DX, DY: Integer);
@@ -10857,9 +10857,9 @@ var
 begin
   if (DX <> 0) or (DY <> 0) then begin
     for I := 0 to FPoints.Count - 1 do begin
-      Point.X := FPoints.Points[I].X + DX;
-      Point.Y := FPoints.Points[I].Y + DY;
-      FPoints.Points[I] := Point;
+      Point.X := FPoints.PointData[I].X + DX;
+      Point.Y := FPoints.PointData[I].Y + DY;
+      FPoints.PointData[I] := Point;
     end;
   end;
 end;
@@ -10868,10 +10868,10 @@ procedure PLineView.ArrangeObject(Canvas: PCanvas);
 var
   X1, Y1, X2, Y2: Integer;
 begin
-  X1 := FPoints.Points[0].X;
-  Y1 := FPoints.Points[0].Y;
-  X2 := FPoints.Points[1].X;
-  Y2 := FPoints.Points[1].Y;
+  X1 := FPoints.PointData[0].X;
+  Y1 := FPoints.PointData[0].Y;
+  X2 := FPoints.PointData[1].X;
+  Y2 := FPoints.PointData[1].Y;
   //GraphicClasses.NormalizeRect(X1, Y1, X2, Y2);
   Left := X1;
   Top := Y1;

@@ -48,7 +48,8 @@ unit GraphicClasses;
 interface
 
 uses
-  Types, Classes, Windows, Forms, Graphics, Math, ExtCtrls, Controls;
+  Types, Classes, Windows, Forms, Graphics, Math, ExtCtrls,
+  Controls, Generics.Collections;
 
 const
   MAXPOINTS = 1024;
@@ -123,7 +124,8 @@ type
     function InRect(X1, Y1, X2, Y2: Integer): Boolean;
     function GetEncloseRange: TRect;
     function Equal(Points: PPoints): Boolean;
-    property Points[Index: Integer]: TPoint read GetPoint write SetPoint; default;
+    property PointData[Index: Integer]: TPoint read GetPoint write SetPoint; default;
+    property Points: PPointArr read FPoints;
     property Count: Integer read FCount;
   end;
 
@@ -313,7 +315,7 @@ var
 begin
   if Ps <> nil then begin
     for I := 0 to Ps.Count - 1 do
-      FPoints[I] := Ps.Points[I];
+      FPoints[I] := Ps.PointData[I];
     FCount := Ps.Count;
   end;
 end;
@@ -420,6 +422,7 @@ begin
   Result := R;
 end;
 
+
 function PPoints.Equal(Points: PPoints): Boolean;
 var
   I: Integer;
@@ -430,7 +433,7 @@ begin
   end;
 
   for I := 0 to Count do
-    if not IsEqualPoints(FPoints[I], Points.Points[I]) then begin
+    if not IsEqualPoints(FPoints[I], Points.PointData[I]) then begin
       Result := False;
       Exit;
     end;

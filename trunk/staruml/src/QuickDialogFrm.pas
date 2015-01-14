@@ -1017,11 +1017,11 @@ begin
   Points := AView.Points;
   if Points.Count > 2 then MidPointIndex := Trunc(Points.Count / 2)
   else MidPointIndex := 0;
-  MidPoint.X := Trunc((Points.Points[MidPointIndex].X + Points.Points[MidPointIndex+1].X)/2);
-  MidPoint.Y := Trunc((Points.Points[MidPointIndex].Y + Points.Points[MidPointIndex+1].Y)/2);
+  MidPoint.X := Trunc((Points.PointData[MidPointIndex].X + Points.PointData[MidPointIndex+1].X)/2);
+  MidPoint.Y := Trunc((Points.PointData[MidPointIndex].Y + Points.PointData[MidPointIndex+1].Y)/2);
   with Points do begin
-    L1 := Trunc(sqrt(sqr(Points[0].X - FZoomRatedMousePos.X) + sqr(Points[0].Y - FZoomRatedMousePos.Y)));
-    L2 := Trunc(sqrt(sqr(Points[Count-1].X - FZoomRatedMousePos.X) + sqr(Points[Count-1].Y - FZoomRatedMousePos.Y)));
+    L1 := Trunc(sqrt(sqr(PointData[0].X - FZoomRatedMousePos.X) + sqr(PointData[0].Y - FZoomRatedMousePos.Y)));
+    L2 := Trunc(sqrt(sqr(PointData[Count-1].X - FZoomRatedMousePos.X) + sqr(PointData[Count-1].Y - FZoomRatedMousePos.Y)));
     L3 := Trunc(sqrt(sqr(MidPoint.X - FZoomRatedMousePos.X) + sqr(MidPoint.Y - FZoomRatedMousePos.Y)));
   end;
   MinValue := Min(Min(L1, L2), L3);
@@ -1059,11 +1059,11 @@ begin
   Points := AView.Points;
   if Points.Count > 2 then MidPointIndex := Trunc(Points.Count / 2)
   else MidPointIndex := 0;
-  MidPoint.X := Trunc((Points.Points[MidPointIndex].X + Points.Points[MidPointIndex+1].X)/2);
-  MidPoint.Y := Trunc((Points.Points[MidPointIndex].Y + Points.Points[MidPointIndex+1].Y)/2);
+  MidPoint.X := Trunc((Points.PointData[MidPointIndex].X + Points.PointData[MidPointIndex+1].X)/2);
+  MidPoint.Y := Trunc((Points.PointData[MidPointIndex].Y + Points.PointData[MidPointIndex+1].Y)/2);
   with Points do begin
-    L1 := Trunc(sqrt(sqr(Points[0].X - FZoomRatedMousePos.X) + sqr(Points[0].Y - FZoomRatedMousePos.Y)));
-    L2 := Trunc(sqrt(sqr(Points[Count-1].X - FZoomRatedMousePos.X) + sqr(Points[Count-1].Y - FZoomRatedMousePos.Y)));
+    L1 := Trunc(sqrt(sqr(PointData[0].X - FZoomRatedMousePos.X) + sqr(PointData[0].Y - FZoomRatedMousePos.Y)));
+    L2 := Trunc(sqrt(sqr(PointData[Count-1].X - FZoomRatedMousePos.X) + sqr(PointData[Count-1].Y - FZoomRatedMousePos.Y)));
     L3 := Trunc(sqrt(sqr(MidPoint.X - FZoomRatedMousePos.X) + sqr(MidPoint.Y - FZoomRatedMousePos.Y)));
   end;
   MinValue := Min(Min(L1, L2), L3);
@@ -3836,9 +3836,9 @@ begin
     end else begin
       C := (FView as PUMLCustomSeqMessageView).Points.Count;
       if C = 0 then Inc(C);
-      X := ((FView as PUMLCustomSeqMessageView).Points.Points[0].X +
-            (FView as PUMLCustomSeqMessageView).Points.Points[C - 1].X) div 2;
-      Y := (FView as PUMLCustomSeqMessageView).Points.Points[0].Y;
+      X := ((FView as PUMLCustomSeqMessageView).Points.PointData[0].X +
+            (FView as PUMLCustomSeqMessageView).Points.PointData[C - 1].X) div 2;
+      Y := (FView as PUMLCustomSeqMessageView).Points.PointData[0].Y;
       Y := Y - BasePanel.Height;
     end;
   end;
