@@ -1047,8 +1047,8 @@ procedure PSelectHandler.KeyUp(Sender: PDiagramEditor; Canvas: PCanvas; var Key:
     P1, P2: TPoint;
     X, Y, X1, Y1, X2, Y2: Integer;
   begin
-    P1 := EdgeView.Points.Points[(EdgeView.Points.Count - 1) div 2];
-    P2 := EdgeView.Points.Points[(EdgeView.Points.Count - 1) div 2 + 1];
+    P1 := EdgeView.Points.PointData[(EdgeView.Points.Count - 1) div 2];
+    P2 := EdgeView.Points.PointData[(EdgeView.Points.Count - 1) div 2 + 1];
     X1 := P1.X; Y1 := P1.Y; X2 := P2.X; Y2 := P2.Y;
     NormalizeRect(X1, Y1, X2, Y2);
     X := X1 + (X2 - X1) div 2;
@@ -1961,8 +1961,8 @@ var
 begin
   // Because end of edge must be fit to BoundingBox of node and not be under influence of grid
   for I := 1 to APoints.Count - 2 do
-    APoints.Points[I] := Point(APoints.Points[I].X - APoints.Points[I].X mod AGridFactor.Width,
-                        APoints.Points[I].Y - APoints.Points[I].Y mod AGridFactor.Height);
+    APoints.PointData[I] := Point(APoints.PointData[I].X - APoints.PointData[I].X mod AGridFactor.Width,
+                        APoints.PointData[I].Y - APoints.PointData[I].Y mod AGridFactor.Height);
 
 end;
 
@@ -1997,9 +1997,9 @@ begin
     // select point or line or add point
     FSelectedIndex := L.SelectedPoint(Canvas, Point(ZX, ZY));
     if FSelectedIndex <> 0 then
-      FPoints.Points[0] := GetCenter(L.Tail.GetBoundingBox(Canvas));
+      FPoints.PointData[0] := GetCenter(L.Tail.GetBoundingBox(Canvas));
     if FSelectedIndex <> FPoints.Count - 1 then
-      FPoints.Points[FPoints.Count - 1] := GetCenter(L.Head.GetBoundingBox(Canvas));
+      FPoints.PointData[FPoints.Count - 1] := GetCenter(L.Head.GetBoundingBox(Canvas));
     if FSelectedIndex = -1 then begin
       FSelectedIndex := L.ContainedIndex(Canvas, Point(ZX, ZY));
       Inc(FSelectedIndex);
@@ -2055,16 +2055,16 @@ var
 begin
   if FStyle = lsRectilinear then begin
     // Get points at end of the selected line
-    P1 := FPoints.Points[FSelectedIndex];
+    P1 := FPoints.PointData[FSelectedIndex];
     if FEdgeSelectLocation = slHead then
-      P2 := FPoints.Points[FSelectedIndex - 1]
+      P2 := FPoints.PointData[FSelectedIndex - 1]
     else
-      P2 := FPoints.Points[FSelectedIndex + 1];
-    OP1 := FOriginPoints.Points[FSelectedIndex];
+      P2 := FPoints.PointData[FSelectedIndex + 1];
+    OP1 := FOriginPoints.PointData[FSelectedIndex];
     if FEdgeSelectLocation = slHead then
-      OP2 := FOriginPoints.Points[FSelectedIndex - 1]
+      OP2 := FOriginPoints.PointData[FSelectedIndex - 1]
     else
-      OP2 := FOriginPoints.Points[FSelectedIndex + 1];
+      OP2 := FOriginPoints.PointData[FSelectedIndex + 1];
 
     // if move front-end or rear-end point
     if (FEdgeSelectLocation = slTail) or (FEdgeSelectLocation = slHead) then begin
@@ -2122,14 +2122,14 @@ begin
 
     if ((FEdgeSelectLocation = slLine) and (FSelectedIndex = 0)) or
       ((FEdgeSelectLocation = slHead) and (FPoints.Count = 2)) then begin
-      FPoints.Insert(0, FPoints.Points[0]);
-      FOriginPoints.Insert(0, FPoints.Points[0]);
+      FPoints.Insert(0, FPoints.PointData[0]);
+      FOriginPoints.Insert(0, FPoints.PointData[0]);
       Inc(FSelectedIndex);
     end
     else if ((FEdgeSelectLocation = slLine) and (FSelectedIndex = FPoints.Count - 2)) or
       ((FEdgeSelectLocation = slTail) and (FPoints.Count = 2)) then begin
-      FPoints.Insert(FSelectedIndex + 1, FPoints.Points[FSelectedIndex + 1]);
-      FOriginPoints.Insert(FSelectedIndex + 1, FPoints.Points[FSelectedIndex + 1]);
+      FPoints.Insert(FSelectedIndex + 1, FPoints.PointData[FSelectedIndex + 1]);
+      FOriginPoints.Insert(FSelectedIndex + 1, FPoints.PointData[FSelectedIndex + 1]);
     end;
 
     // Modify points not to stray from Canvas
@@ -2137,16 +2137,16 @@ begin
     PutPointBoundsOnCanvas(P2);
 
     // Re-assign selected points to modified.
-    FPoints.Points[FSelectedIndex] := P1;
+    FPoints.PointData[FSelectedIndex] := P1;
     if FEdgeSelectLocation = slHead then
-      FPoints.Points[FSelectedIndex - 1] := P2
+      FPoints.PointData[FSelectedIndex - 1] := P2
     else
-      FPoints.Points[FSelectedIndex + 1] := P2;
+      FPoints.PointData[FSelectedIndex + 1] := P2;
   end
   else begin
     // Get selected point
-    P := Point(FPoints.Points[FSelectedIndex].X, FPoints.Points[FSelectedIndex].Y);
-    OP := Point(FOriginPoints.Points[FSelectedIndex].X, FOriginPoints.Points[FSelectedIndex].Y);
+    P := Point(FPoints.PointData[FSelectedIndex].X, FPoints.PointData[FSelectedIndex].Y);
+    OP := Point(FOriginPoints.PointData[FSelectedIndex].X, FOriginPoints.PointData[FSelectedIndex].Y);
 
     // Move skeleton
     if (P.X + DX >= OP.X) and (P.X + DX <= GridFitX(OP.X) + ADiagramEditor.GridFactor.Width) then begin
@@ -2171,7 +2171,7 @@ begin
     PutPointBoundsOnCanvas(P);
 
     // Re-assign selected point to modified.
-    FPoints.Points[FSelectedIndex] := P;
+    FPoints.PointData[FSelectedIndex] := P;
   end;
 end;
 
@@ -2188,7 +2188,7 @@ begin
         FHandler.ModifyEdge(AView as PEdgeView, FPoints)
       else begin
         V := ADiagramEditor.DiagramView.GetBottomViewAt(Canvas,
-          FPoints.Points[FSelectedIndex].X, FPoints.Points[FSelectedIndex].Y);
+          FPoints.PointData[FSelectedIndex].X, FPoints.PointData[FSelectedIndex].Y);
         if FEdgeSelectLocation = slTail then
           OldPart := (AView as PEdgeView).Tail
         else
@@ -2240,19 +2240,19 @@ begin
     with Edge.Points do begin
       case AEdgeParasiticView.EdgePosition of
         epHead: begin
-          P1 := Points[Count-1];
-          P2 := Points[Count-2];
+          P1 := PointData[Count-1];
+          P2 := PointData[Count-2];
         end;
         epTail: begin
-          P1 := Points[0];
-          P2 := Points[1];
+          P1 := PointData[0];
+          P2 := PointData[1];
         end;
         epMiddle: begin
           MidPointIndex := Count div 2;
           if Count mod 2 = 0 then MidPointIndex := MidPointIndex - 1;
 
-          P1 := Points[MidPointIndex];
-          P2 := Points[MidPointIndex+1];
+          P1 := PointData[MidPointIndex];
+          P2 := PointData[MidPointIndex+1];
 
           if Count mod 2 = 0 then begin
             P1.X := Trunc((P1.X + P2.X) / 2);
@@ -2282,10 +2282,10 @@ begin
   CoordRevTransform(ADiagramEditor.ZoomFactor, NOGRID, ZX, ZY);
 
   SeqMsg := AView as PUMLCustomSeqMessageView;
-  X1 := SeqMsg.Points.Points[0].X;
-  Y1 := SeqMsg.Points.Points[0].Y;
-  X2 := SeqMsg.Points.Points[SeqMsg.Points.Count - 1].X;
-  Y2 := SeqMsg.Points.Points[SeqMsg.Points.Count - 1].Y;
+  X1 := SeqMsg.Points.PointData[0].X;
+  Y1 := SeqMsg.Points.PointData[0].Y;
+  X2 := SeqMsg.Points.PointData[SeqMsg.Points.Count - 1].X;
+  Y2 := SeqMsg.Points.PointData[SeqMsg.Points.Count - 1].Y;
 
   FSelectedIndex := SeqMsg.SelectedPoint(Canvas, Point(ZX, ZY));
 end;
@@ -2398,8 +2398,8 @@ begin
   with Edge.Points do begin
     MidPointIndex := Count div 2;
     if Count mod 2 = 0 then MidPointIndex := MidPointIndex - 1;
-    P1 := Points[MidPointIndex];
-    P2 := Points[MidPointIndex+1];
+    P1 := PointData[MidPointIndex];
+    P2 := PointData[MidPointIndex+1];
     P1.X := Trunc((P1.X + P2.X) / 2);
     P1.Y := Trunc((P1.Y + P2.Y) / 2);
   end;
@@ -2445,15 +2445,15 @@ begin
     FSelectedIndex := L.SelectedPoint(Canvas, Point(ZX, ZY));
     if FSelectedIndex <> 0 then begin
       if L.TailQualifierCompartment.Visible then
-        FPoints.Points[0] := GetCenter(L.TailQualifierCompartment.GetBoundingBox(Canvas))
+        FPoints.PointData[0] := GetCenter(L.TailQualifierCompartment.GetBoundingBox(Canvas))
       else
-        FPoints.Points[0] := GetCenter(L.Tail.GetBoundingBox(Canvas));
+        FPoints.PointData[0] := GetCenter(L.Tail.GetBoundingBox(Canvas));
     end;
     if FSelectedIndex <> FPoints.Count - 1 then begin
       if L.HeadQualifierCompartment.Visible then
-        FPoints.Points[FPoints.Count-1] := GetCenter(L.HeadQualifierCompartment.GetBoundingBox(Canvas))
+        FPoints.PointData[FPoints.Count-1] := GetCenter(L.HeadQualifierCompartment.GetBoundingBox(Canvas))
       else
-        FPoints.Points[FPoints.Count-1] := GetCenter(L.Head.GetBoundingBox(Canvas));
+        FPoints.PointData[FPoints.Count-1] := GetCenter(L.Head.GetBoundingBox(Canvas));
     end;
 
     if FSelectedIndex = -1 then begin
@@ -2528,8 +2528,8 @@ var
 begin
   // Because end of edge must be fit to BoundingBox of node and not be under influence of grid
   for I := 1 to APoints.Count - 2 do
-    APoints.Points[I] := Point(APoints.Points[I].X - APoints.Points[I].X mod AGridFactor.Width,
-                        APoints.Points[I].Y - APoints.Points[I].Y mod AGridFactor.Height);
+    APoints.PointData[I] := Point(APoints.PointData[I].X - APoints.PointData[I].X mod AGridFactor.Width,
+                        APoints.PointData[I].Y - APoints.PointData[I].Y mod AGridFactor.Height);
 
 end;
 
@@ -2547,9 +2547,9 @@ begin
   FPoints.Assign(L.Points);
 
   ProbedPoint := Point(ZX + DEFAULT_HALF_HIGHLIGHTER_SIZE, ZY + DEFAULT_HALF_HIGHLIGHTER_SIZE);
-  if EqualPt(ProbedPoint,FPoints.Points[0]) then
+  if EqualPt(ProbedPoint,FPoints.PointData[0]) then
     FSelectedIndex := 0
-  else if EqualPt(ProbedPoint, FPoints.Points[1]) then
+  else if EqualPt(ProbedPoint, FPoints.PointData[1]) then
     FSelectedIndex := 1
   else
     FSelectedIndex := NO_ENDPOINT_SELECTED;
@@ -2592,7 +2592,7 @@ procedure PLineManipulator.MoveSkeleton(ADiagramEditor: PDiagramEditor; Canvas: 
     OP: TPoint;
   begin
    // Get selected point
-    P := Point(FPoints.Points[PointIndex].X, FPoints[PointIndex].Y);
+    P := Point(FPoints.PointData[PointIndex].X, FPoints[PointIndex].Y);
     OP := Point(FOriginPoints[PointIndex].X, FOriginPoints[PointIndex].Y);
 
     // Move skeleton
@@ -2752,8 +2752,8 @@ begin
 
   if V is PLineView then begin
     LV := V as PLineView;
-    ZP1 := LV.Points.Points[0];
-    ZP2 := LV.Points.Points[LV.Points.Count - 1];
+    ZP1 := LV.Points.PointData[0];
+    ZP2 := LV.Points.PointData[LV.Points.Count - 1];
     CoordTransform(Sender.ZoomFactor, NOGRID, ZP1);
     CoordTransform(Sender.ZoomFactor, NOGRID, ZP2);
 
@@ -2822,8 +2822,8 @@ begin
 
   else if V is PEdgeView then begin
     EV := V as PEdgeView;
-    ZP1 := EV.Points.Points[0];
-    ZP2 := EV.Points.Points[EV.Points.Count - 1];
+    ZP1 := EV.Points.PointData[0];
+    ZP2 := EV.Points.PointData[EV.Points.Count - 1];
     CoordTransform(Sender.ZoomFactor, NOGRID, ZP1);
     CoordTransform(Sender.ZoomFactor, NOGRID, ZP2);
 
@@ -2944,8 +2944,8 @@ function GetCenterPoint(AMsgView: PUMLCustomSeqMessageView): TPoint;
 var
   P: TPoint;
 begin
-  P.X := (AMsgView.Points.Points[0].X + AMsgView.Points.Points[AMsgView.Points.Count - 1].X) div 2;
-  P.Y := AMsgView.Points.Points[0].Y;
+  P.X := (AMsgView.Points.PointData[0].X + AMsgView.Points.PointData[AMsgView.Points.Count - 1].X) div 2;
+  P.Y := AMsgView.Points.PointData[0].Y;
   Result := P;
 end;
 
