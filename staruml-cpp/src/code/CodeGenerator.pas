@@ -92,6 +92,7 @@ type
     FHeaderComment: string;
     FDefaultHeaderIncludes: string;
     FDefaultBodyIncludes: string;
+    FGenerateOperImpl: Boolean;
     { Events }
     FOnLog: PLogEvent;
     FOnGeneratingCode: PCodeGeneratingEvent;
@@ -221,6 +222,7 @@ type
     property HeaderComment: string read FHeaderComment write FHeaderComment;
     property DefaultHeaderIncludes: string read FDefaultHeaderIncludes write FDefaultHeaderIncludes;
     property DefaultBodyIncludes: string read FDefaultBodyIncludes write FDefaultBodyIncludes;
+    property GenerateOperImpl: Boolean read FGenerateOperImpl write FGenerateOperImpl;
     { Events }
     property OnLog: PLogEvent read FOnLog write FOnLog;
     property OnGeneratingCode: PCodeGeneratingEvent read FOnGeneratingCode write FOnGeneratingCode;
@@ -1383,6 +1385,7 @@ begin
     end
     else
       Writer.WriteLine('%s%s %s%s {', ['', GetClassTypeKindStr(AClass), AClass.Name, GetInheritenceSpecStr(AClass)]);
+
     WriteDeclMember(Writer, AClass);
     Writer.WriteLine('};');
 
@@ -1507,6 +1510,8 @@ begin
 end;
 
 procedure PCodeGenerator.WriteDefOperation(Writer: PStringWriter; AOperation: IUMLOperation; ABase: IUMLClassifier = nil);
+var
+  OperImpl: string;
 begin
   if (AOperation.StereotypeName = STEREOTYPE_CPP_DELEGATE)
     or (AOperation.StereotypeName = STEREOTYPE_CPP_MACRO) then
@@ -1529,7 +1534,14 @@ begin
     else
       Writer.WriteLine(' {');
   end;
-  Writer.WriteLine;
+
+  if GenerateOperImpl then begin  // Add implementation
+    OperImpl := GetStringTaggedValue(AOperation, PROFILE_STANDARD, TAGSET_DEFAULT, TAG_STANDARD_IMPLEMENTATION);
+    if OperImpl <> '' then
+      Writer.WriteLine(OperImpl);
+  end;
+
+
   Writer.WriteLine('}');
 end;
 
