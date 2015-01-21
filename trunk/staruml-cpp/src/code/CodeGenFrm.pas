@@ -121,6 +121,7 @@ type
     NamingLabel: TLabel;
     NamingComboBox: TComboBox;
     GenerateCommentCheckBox: TCheckBox;
+    GenerateOperImplCheckBox: TCheckBox;
     { Event Handlers for CodeGenForm }
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -382,6 +383,7 @@ begin
   HeaderCommentMemo.Lines.Text := GetOptionValueAsString(OPTION_SCHEMA_CPP, OPT_HEADER_COMMENT);
   DefaultHeaderIncludeMemo.Lines.Text := GetOptionValueAsString(OPTION_SCHEMA_CPP, OPT_DEFAULT_HEADER_INCLUDE);
   DefaultBodyIncludeMemo.Lines.Text := GetOptionValueAsString(OPTION_SCHEMA_CPP, OPT_DEFAULT_BODY_INCLUDE);
+  GenerateOperImplCheckBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA_CPP, OPT_GENERATE_OPERATION_IMPLEMENTATION);
 //  OPT_CREATE_WITH_NO_PROFILE = 'CREATE_WITH_NO_PROFILE';
 end;
 
@@ -426,6 +428,7 @@ begin
   CodeGen.HeaderComment := HeaderCommentMemo.Text;
   CodeGen.DefaultHeaderIncludes := DefaultHeaderIncludeMemo.Text;
   CodeGen.DefaultBodyIncludes := DefaultBodyIncludeMemo.Text;
+  CodeGen.GenerateOperImpl := GenerateOperImplCheckBox.Checked;
 end;
 
 { Auxiliary Methods }
