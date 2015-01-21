@@ -1,10 +1,10 @@
 object CodeGenForm: TCodeGenForm
   Left = 384
   Top = 210
-  ActiveControl = SelectElemFrame.SelectTree
+  ActiveControl = OptionPageControl
   BorderStyle = bsDialog
   Caption = 'C++ Code Generation'
-  ClientHeight = 419
+  ClientHeight = 449
   ClientWidth = 585
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -23,8 +23,8 @@ object CodeGenForm: TCodeGenForm
     Left = 0
     Top = 0
     Width = 585
-    Height = 419
-    ActivePage = SelectElemPage
+    Height = 449
+    ActivePage = SetOptionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -49,14 +49,10 @@ object CodeGenForm: TCodeGenForm
     ButtonHelp.NumGlyphs = 1
     ButtonHelp.Width = 75
     ShowRouteMap = False
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
+    ExplicitHeight = 419
     DesignSize = (
       585
-      419)
+      449)
     object SelectRootElemPage: TJvWizardInteriorPage
       Header.ParentFont = False
       Header.Title.Color = clNone
@@ -77,14 +73,10 @@ object CodeGenForm: TCodeGenForm
       Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
       VisibleButtons = [bkNext, bkCancel]
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
       OnEnterPage = SelectRootElemPageEnterPage
       OnNextButtonClick = SelectRootElemPageNextButtonClick
       OnCancelButtonClick = WizardPageCancelButtonClick
+      ExplicitHeight = 377
       object SelectRootElemLabel: TLabel
         Left = 8
         Top = 80
@@ -140,6 +132,7 @@ object CodeGenForm: TCodeGenForm
       OnEnterPage = SelectElemPageEnterPage
       OnNextButtonClick = SelectElemPageNextButtonClick
       OnCancelButtonClick = WizardPageCancelButtonClick
+      ExplicitHeight = 377
       object SelectElemLabel: TLabel
         Left = 8
         Top = 80
@@ -213,6 +206,7 @@ object CodeGenForm: TCodeGenForm
       OnEnterPage = SelectTargetDirPageEnterPage
       OnNextButtonClick = SelectTargetDirPageNextButtonClick
       OnCancelButtonClick = WizardPageCancelButtonClick
+      ExplicitHeight = 377
       object SelectTargetLabel: TLabel
         Left = 8
         Top = 80
@@ -263,22 +257,25 @@ object CodeGenForm: TCodeGenForm
       OnEnterPage = SetOptionPageEnterPage
       OnNextButtonClick = SetOptionPageNextButtonClick
       OnCancelButtonClick = WizardPageCancelButtonClick
+      ExplicitHeight = 377
       object OptionPageControl: TPageControl
         Left = 0
         Top = 70
         Width = 585
-        Height = 307
-        ActivePage = CommentTabSheet
+        Height = 337
+        ActivePage = OptionTabSheet
         Align = alClient
         TabOrder = 0
         TabPosition = tpBottom
+        ExplicitHeight = 307
         object OptionTabSheet: TTabSheet
           Caption = 'Code Generation Options'
+          ExplicitHeight = 281
           object CodingStyleGroupBox: TGroupBox
             Left = 3
-            Top = 128
+            Top = 127
             Width = 278
-            Height = 145
+            Height = 170
             Caption = ' Code Style '
             TabOrder = 0
             object IndentSizeLabel: TLabel
@@ -454,12 +451,12 @@ object CodeGenForm: TCodeGenForm
             Left = 290
             Top = 128
             Width = 281
-            Height = 145
+            Height = 169
             Caption = ' Code Generation '
             TabOrder = 2
             object MemberOrderLabel: TLabel
-              Left = 13
-              Top = 116
+              Left = 16
+              Top = 140
               Width = 82
               Height = 13
               Caption = 'Member in order:'
@@ -474,7 +471,7 @@ object CodeGenForm: TCodeGenForm
             end
             object MemberOrderComboBox: TComboBox
               Left = 104
-              Top = 112
+              Top = 137
               Width = 153
               Height = 21
               Style = csDropDownList
@@ -488,7 +485,7 @@ object CodeGenForm: TCodeGenForm
             end
             object MsSpecificCheckBox: TCheckBox
               Left = 16
-              Top = 42
+              Top = 41
               Width = 225
               Height = 17
               Caption = 'Use Microsoft Visual C++ grammar'
@@ -505,17 +502,26 @@ object CodeGenForm: TCodeGenForm
             end
             object GenerateCommentCheckBox: TCheckBox
               Left = 16
-              Top = 88
+              Top = 87
               Width = 225
               Height = 17
-              Caption = 'Generate documentation to comment'
+              Caption = 'Generate documentation in comments'
               TabOrder = 4
+            end
+            object GenerateOperImplCheckBox: TCheckBox
+              Left = 16
+              Top = 110
+              Width = 225
+              Height = 17
+              Caption = 'Generate implementation of operations'
+              TabOrder = 5
             end
           end
         end
         object CommentTabSheet: TTabSheet
           Caption = 'File Header Comment and Default Include'
           ImageIndex = 1
+          ExplicitHeight = 281
           object HeaderCommentLabel: TLabel
             Left = 8
             Top = 8
@@ -649,6 +655,7 @@ object CodeGenForm: TCodeGenForm
       OnPage = ExecuteActionPagePage
       OnCancelButtonClick = WizardPageCancelButtonClick
       OnFinishButtonClick = ExecuteActionPageFinishButtonClick
+      ExplicitHeight = 377
       object CodeGenElemLabel: TLabel
         Left = 8
         Top = 80
