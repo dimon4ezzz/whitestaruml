@@ -704,7 +704,7 @@ function PAddIn.GetExistingBase(Base: string): TdxBarSubItem;
 begin
   if Base = TN_FILE then Result := MainForm.FileMenu
   else if Base = TN_EDIT then Result := MainForm.EditMenu
-  else if Base = TN_FORMAT then Result := MainForm.FormatMenu
+  else if Base = TN_FORMAT then Result := MainForm.FormatMenux
   else if Base = TN_MODEL then Result := MainForm.ModelMenu
   else if Base = TN_VIEW then Result := MainForm.ViewMenu
   else if Base = TN_TOOLS then Result := MainForm.ToolsMenu

@@ -146,6 +146,8 @@ object MainForm: TMainForm
             Height = 256
             Align = alClient
             TabOrder = 0
+            ExplicitWidth = 163
+            ExplicitHeight = 256
             inherited PaletteNavBar: TCategoryButtons
               Width = 157
               Height = 250
@@ -840,6 +842,8 @@ object MainForm: TMainForm
                       Action = PaletteNavBarFrame.ConnectorAction
                     end>
                 end>
+              ExplicitWidth = 157
+              ExplicitHeight = 250
             end
           end
         end
@@ -1398,7 +1402,7 @@ object MainForm: TMainForm
         end
         item
           Visible = True
-          ItemName = 'FormatMenu'
+          ItemName = 'FormatMenux'
         end
         item
           Visible = True
@@ -1862,6 +1866,10 @@ object MainForm: TMainForm
         end
         item
           Visible = True
+          ItemName = 'EditPasteFormat'
+        end
+        item
+          Visible = True
           ItemName = 'EditDelete'
         end
         item
@@ -1879,7 +1887,7 @@ object MainForm: TMainForm
           ItemName = 'EditSelectAll'
         end>
     end
-    object FormatMenu: TdxBarSubItem
+    object FormatMenux: TdxBarSubItem
       Caption = 'F&ormat'
       Category = 1
       Hint = 'Format'
@@ -3714,6 +3722,14 @@ object MainForm: TMainForm
       Visible = ivAlways
       ImageIndex = 107
       ShortCut = 16470
+      OnClick = EditMenuClick
+    end
+    object EditPasteFormat: TdxBarButton
+      Caption = 'Paste Formatting'
+      Category = 5
+      Hint = 'Paste Formatting'
+      Visible = ivAlways
+      ShortCut = 24646
       OnClick = EditMenuClick
     end
     object EditDelete: TdxBarButton
@@ -11053,7 +11069,7 @@ object MainForm: TMainForm
       item
         BeginGroup = True
         Visible = True
-        ItemName = 'FormatMenu'
+        ItemName = 'FormatMenux'
       end
       item
         BeginGroup = True

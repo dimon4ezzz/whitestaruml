@@ -112,6 +112,7 @@ const
   OPT_WORD_WRAP_BY_DEFAULT = 'WORD_WRAP_BY_DEFAULT';
   OPT_FORCE_DECIMAL_SEPARATOR = 'FORCE_DECIMAL_SEPARATOR';
   OPT_AUTO_LOAD_UNITS = 'AUTO_LOAD_UNITS';
+  OPT_USE_DIRECT2D = 'USE_DIRECT2D';
 
 type
   POptionValueChangeEvent = procedure(Sender: TObject; SchemaID: string; OptionName: string; Value: Variant) of object;
@@ -182,6 +183,7 @@ type
     FWordWrapByDefault: Boolean;
     FForceDecimalSeparator: string;
     FAutoLoadUnits: Boolean;
+    FUseDirect2D: Boolean;
 
     // option management procedure
     procedure SetDefaultOptionProperties;
@@ -240,6 +242,7 @@ type
     procedure SetWordWrapByDefault(Value: Boolean);
     procedure SetForceDecimalSeparator(Value: string);
     procedure SetAutoLoadUnits(Value: Boolean);
+    procedure SetUseDirect2D(Value: Boolean);
   public
     constructor Create;
     destructor Destroy; override;
@@ -302,6 +305,7 @@ type
     property WordWrapByDefault: Boolean read FWordWrapByDefault write SetWordWrapByDefault;
     property ForceDecimalSeparator: string read FForceDecimalSeparator write SetForceDecimalSeparator;
     property AutoLoadUnits: Boolean read FAutoLoadUnits write SetAutoLoadUnits;
+    property UseDirect2D: Boolean read FUseDirect2D write SetUseDirect2D;
   end;
 
   // Utilities
@@ -392,6 +396,7 @@ begin
   FWordWrapByDefault := False;
   FForceDecimalSeparator := '';
   FAutoLoadUnits := True;
+  FUseDirect2D := False;
 end;
 
 procedure POptionDepository.SetOptionProperties;
@@ -823,6 +828,14 @@ begin
     AutoLoadUnits := V;
   end;
 
+  V := OptionManager.GetOptionValue(OPT_SCHEMA_ENVIRONMENT, OPT_USE_DIRECT2D);
+  if VarIsNull(V) then begin
+    // Basic OptionSchema file is damaged.
+  end
+  else begin
+    UseDirect2D := V;
+  end;
+
   for I := 0 to OptionManager.GetOptionSchemaCount - 1 do begin
     OS := OptionManager.GetOptionSchemaAt(I);
     if OS.ID <> OPT_SCHEMA_ENVIRONMENT then
@@ -1089,6 +1102,15 @@ begin
     FAutoLoadUnits := Value;
     if Assigned(FOnOptionValueChange) then
       FOnOptionValueChange(Self, OPT_SCHEMA_ENVIRONMENT, OPT_AUTO_LOAD_UNITS, Value);
+  end;
+end;
+
+procedure POptionDepository.SetUseDirect2D(Value: Boolean);
+begin
+  if FUseDirect2D <> Value then begin
+    FUseDirect2D := Value;
+    if Assigned(FOnOptionValueChange) then
+      FOnOptionValueChange(Self, OPT_SCHEMA_ENVIRONMENT, OPT_USE_DIRECT2D, Value);
   end;
 end;
 

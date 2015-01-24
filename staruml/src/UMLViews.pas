@@ -10846,8 +10846,9 @@ procedure PLineView.DrawObject(Canvas: PCanvas);
 begin
   AssignStyleToCanvas(Canvas);
   AssignShapeStyleToCanvas(Canvas);
-  Canvas.MoveTo(FPoints.PointData[0].X, FPoints.PointData[0].Y);
-  Canvas.LineTo(FPoints.PointData[1].X, FPoints.PointData[1].Y);
+  //Canvas.MoveTo(FPoints.PointData[0].X, FPoints.PointData[0].Y);
+  //Canvas.LineTo(FPoints.PointData[1].X, FPoints.PointData[1].Y);
+  Canvas.PolyLine([FPoints.PointData[0], FPoints.PointData[1]]);
 end;
 
 procedure PLineView.MovePosition(Canvas: PCanvas; DX, DY: Integer);
