@@ -94,6 +94,7 @@ type
     FCSharpFileExt: string;
     FHeaderComment: string;
     FIsCancel : Boolean;
+    FGenerateOperImpl: Boolean;
     { Getter/Setter }
     function GetTargetElementCount: Integer;
     function GetTargetElement(Index: Integer): IUMLModelElement;
@@ -167,6 +168,7 @@ type
     function GetStringTaggedValue(AExtModel: IExtensibleModel; Profile,
       TagDefSet, TagName: string): string;
     procedure WriteCSharpDoc(AModel: IModel);
+    procedure AddOperationImplementation (AOperation: IUMLOperation);
   public
 		{ Constructor/Destructor }
     constructor Create;
@@ -197,6 +199,7 @@ type
     property IsCancel: Boolean read FIsCancel write FIsCancel;
     property OnGenerateCode: PCodeGenerateEvent read FOnGenerateCode write FOnGenerateCode;
     property OnLog: PLogEvent read FOnLog write FOnLog;
+    property GenerateOperImpl: Boolean read FGenerateOperImpl write FGenerateOperImpl;
   end;
 
 implementation
@@ -795,6 +798,7 @@ begin
     if isNotInterface then
     begin
       SetBrace;
+      AddOperationImplementation(AOperation);
       CloseBrace;
     end
     else
@@ -813,6 +817,7 @@ begin
     if isNotInterface then
     begin
       SetBrace;
+      AddOperationImplementation(AOperation);
       CloseBrace;
     end
     else
@@ -826,6 +831,7 @@ begin
     if isNotInterface then
     begin
       SetBrace;
+      AddOperationImplementation(AOperation);
       CloseBrace;
     end
     else
@@ -838,6 +844,7 @@ begin
     if isNotInterface or Not IsNotParentOpreation then
     begin
       SetBrace;
+      AddOperationImplementation(AOperation);
       CloseBrace;
     end
     else
@@ -1440,6 +1447,27 @@ procedure PCodeGenerator.Log(Msg: string);
 begin
   if Assigned(FOnLog) then
     FOnLog(Self, Msg);
+end;
+
+procedure PCodeGenerator.AddOperationImplementation(AOperation: IUMLOperation);
+var
+  OperImpl: string;
+  DelimitedOperImpl: TStrings;
+  OperImplLine: string;
+begin
+  if GenerateOperImpl then begin  // Add implementation
+    OperImpl := GetStringTaggedValue(AOperation, PROFILE_STANDARD, TAGSET_DEFAULT, TAG_STANDARD_IMPLEMENTATION);
+    if OperImpl <> '' then begin
+      // Split implementation into separate lines
+      DelimitedOperImpl := TStringList.Create;
+      DelimitedOperImpl.StrictDelimiter := True;
+      DelimitedOperImpl.Delimiter := #10;
+      DelimitedOperImpl.DelimitedText := OperImpl;
+      for OperImplLine in DelimitedOperImpl do
+        Writer.WriteLine(OperImplLine);
+      DelimitedOperImpl.Free;
+    end
+  end;
 end;
 
 procedure PCodeGenerator.AddTargetElement(Value: IUMLModelElement);
