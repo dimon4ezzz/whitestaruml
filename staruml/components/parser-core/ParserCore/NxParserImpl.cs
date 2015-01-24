@@ -1,9 +1,10 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
+using System.Runtime.InteropServices;
 
 namespace ParserCore
 {
     // Interfacing COM independent IExprBuilder Implementation
+    [ComVisible(false)]
     public interface IPrivateExprBuilder
     {
         void EndOperation();
@@ -13,7 +14,8 @@ namespace ParserCore
         void NewOperation(string Oper, int Pos);
         void PrimExpr(object Value, int Pos);
     }
-    
+
+    [ComVisible(false)]
     public class NxParserImpl : ParserBase.NxGrammarParserWithTreeProcessing
     {
         public NxParserImpl()
@@ -128,7 +130,7 @@ namespace ParserCore
             GOLD.Token boolToken = productionNode[0];
             string boolText = (string)boolToken.Data;
 
-            m_builder.PrimExpr(Boolean.Parse(boolText), CurrentLine(boolToken));
+            m_builder.PrimExpr(System.Boolean.Parse(boolText), CurrentLine(boolToken));
         }
 
         private void HandleNil(GOLD.Reduction productionNode)

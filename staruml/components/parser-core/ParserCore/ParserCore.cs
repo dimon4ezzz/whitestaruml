@@ -1,8 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.InteropServices;
 
-// Registration for 32 bit Deplhi access
+// Registration for 32 bit Delphi access
 //c:\windows\Microsoft.NET\Framework\v2.0.50727\regasm /codebase ParserCore.dll /tlb:ParserCore.tlb
 
 namespace ParserCore
