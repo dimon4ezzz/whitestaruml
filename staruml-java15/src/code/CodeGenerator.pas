@@ -86,6 +86,7 @@ type
     FHeaderComment: string;
     FGenJavaDoc: Boolean;
     FGenEmptyJavaDoc: Boolean;
+    FGenerateOperImpl: Boolean;
     { Events }
     FOnLog: PLogEvent;
     FOnGeneratingCode: PCodeGeneratingEvent;
@@ -141,6 +142,7 @@ type
     procedure WriteMembers(Writer: PStringWriter; AClassifier: IUMLClassifier);
     procedure WriteClassDefinition(Writer: PStringWriter; AClass: IUMLClass);
     procedure WriteInterfaceDefinition(Writer: PStringWriter; AInterface: IUMLInterface);
+    procedure AddOperationImplementation(Writer: PStringWriter; AOperation: IUMLOperation);
     {CODE MINION HELPER FUNCTIONS}
     function StripGeneric(typeWithGenerics: string):string;
   public
@@ -169,6 +171,7 @@ type
     property OnLog: PLogEvent read FOnLog write FOnLog;
     property OnGeneratingCode: PCodeGeneratingEvent read FOnGeneratingCode write FOnGeneratingCode;
     property OnGenerateCode: PCodeGenerateEvent read FOnGenerateCode write FOnGenerateCode;
+    property GenerateOperImpl: Boolean read FGenerateOperImpl write FGenerateOperImpl;
   end;
 
 implementation
@@ -1064,7 +1067,7 @@ begin
     Writer.Write('static ');
   if AOperation.IsLeaf then
     Writer.Write('final ');
-  if GetBooleanTaggedValue(AOperation, PROFILE_JAVA, TAGSET_OPERATION, TAG_NATIVE) then
+  if GetBooleanTaggedValue(AOperation, PROFILE_JAVA15, TAGSET_OPERATION, TAG_NATIVE) then
     Writer.Write('native ');
   if GetBooleanTaggedValue(AOperation, PROFILE_JAVA15, TAGSET_STRICTFP, TAG_STRICTFP) then
     Writer.Write('strictfp ');
@@ -1081,7 +1084,9 @@ begin
     else
       Writer.Write(' ');
     Writer.WriteLine('{');
-    Writer.WriteLine;
+
+    AddOperationImplementation(Writer,AOperation);
+
     Writer.WriteLine('}');
     DefWrited := True;
   end
@@ -1198,6 +1203,29 @@ begin
   WriteMembers(Writer, AInterface);
   Writer.Outdent;
   Writer.WriteLine('}');
+end;
+
+procedure PCodeGenerator.AddOperationImplementation(Writer: PStringWriter; AOperation: IUMLOperation);
+var
+  OperImpl: string;
+  DelimitedOperImpl: TStrings;
+  OperImplLine: string;
+begin
+  if GenerateOperImpl then begin  // Add implementation
+    OperImpl := GetStringTaggedValue(AOperation, PROFILE_STANDARD, TAGSET_DEFAULT, TAG_STANDARD_IMPLEMENTATION);
+    if OperImpl <> '' then begin
+      // Split implementation into separate lines and handle indentation
+      DelimitedOperImpl := TStringList.Create;
+      DelimitedOperImpl.StrictDelimiter := True;
+      DelimitedOperImpl.Delimiter := #10;
+      DelimitedOperImpl.DelimitedText := OperImpl;
+      Writer.Indent;
+      for OperImplLine in DelimitedOperImpl do
+        Writer.WriteLine(OperImplLine);
+      Writer.Outdent;
+      DelimitedOperImpl.Free;
+    end
+  end;
 end;
 
 { Public Methods }

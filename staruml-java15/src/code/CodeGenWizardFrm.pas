@@ -98,6 +98,7 @@ type
     CommentFlatPanel: TFlatPanel;
     HeaderDescMemo: TMemo;
     CommentDescLabel: TLabel;
+    GenerateOperImplCheckBox: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -351,6 +352,7 @@ begin
   UseSpaceCheckBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPTION_KEY_SPACE);
   SpaceMagEditSpin.Position := GetOptionValueAsInteger(OPTION_SCHEMA, OPTION_KEY_SPACE_MAG);
   HeaderCommentMemo.Lines.Text := GetOptionValueAsString(OPTION_SCHEMA, OPTION_HEADER_COMMENT);
+  GenerateOperImplCheckBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPT_GENERATE_OPERATION_IMPLEMENTATION);
 //  OPT_CREATE_WITH_NO_PROFILE = 'CREATE_WITH_NO_PROFILE';
 end;
 
@@ -363,6 +365,7 @@ begin
   CodeGen.UseTab := not UseSpaceCheckBox.Checked;
   CodeGen.IdentationSize := SpaceMagEditSpin.Position;
   CodeGen.HeaderComment := HeaderCommentMemo.Lines.Text;
+  CodeGen.GenerateOperImpl := GenerateOperImplCheckBox.Checked;
 end;
 
 function TCodeGenWizardForm.QuestionCancel: Boolean;

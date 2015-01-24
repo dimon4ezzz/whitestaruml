@@ -39,6 +39,11 @@
            <DESCRIPTION>If checked, Java Doc is generated even when the modeling element documentation does not have any values (empty).</DESCRIPTION>
            <DEFAULTVALUE>False</DEFAULTVALUE>
         </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="GENERATE_OPERATION_IMPLEMENTATION">
+           <CAPTION>Generate implementation of operations</CAPTION>
+           <DESCRIPTION>Generates implementation of operations from the Implementation Tagged Value</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
       </OPTIONCLASSIFICATION>
 
       <OPTIONCLASSIFICATION>
