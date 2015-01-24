@@ -1,5 +1,8 @@
-﻿namespace ParserCore
+﻿using System.Runtime.InteropServices;
+
+namespace ParserCore
 {
+    [ComVisible(false)]
     public abstract class ParserCoreImpl : ParserBase.GrammarIndependentParserBase
     {
 
