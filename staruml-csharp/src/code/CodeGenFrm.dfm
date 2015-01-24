@@ -204,11 +204,6 @@ object CodeGenForm: TCodeGenForm
       Header.Subtitle.Font.Height = -12
       Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
       OnEnterPage = SelectTargetDirPageEnterPage
       OnNextButtonClick = SelectTargetDirPageNextButtonClick
       OnCancelButtonClick = SelectTargetDirPageCancelButtonClick
@@ -288,16 +283,16 @@ object CodeGenForm: TCodeGenForm
         Height = 13
         Caption = 'Description:'
       end
-      object GroupBox1: TGroupBox
+      object GenerationOptionsGroupBox: TGroupBox
         Left = 7
-        Top = 80
+        Top = 72
         Width = 282
-        Height = 129
+        Height = 137
         Caption = ' Generation Options '
         TabOrder = 0
         object NoNameAssocChkBox: TCheckBox
           Left = 16
-          Top = 47
+          Top = 48
           Width = 233
           Height = 17
           Caption = 'Generate unnamed AssociationEnd'
@@ -311,7 +306,7 @@ object CodeGenForm: TCodeGenForm
         end
         object DocToDocChkBox: TCheckBox
           Left = 16
-          Top = 73
+          Top = 71
           Width = 233
           Height = 17
           Caption = 'Generate documentation as C# Doc'
@@ -326,7 +321,7 @@ object CodeGenForm: TCodeGenForm
         end
         object NilDocChk: TCheckBox
           Left = 16
-          Top = 96
+          Top = 94
           Width = 209
           Height = 17
           Caption = 'Generate empty C# Doc'
@@ -340,23 +335,31 @@ object CodeGenForm: TCodeGenForm
         end
         object MemberCreateChkBox: TCheckBox
           Left = 16
-          Top = 22
+          Top = 25
           Width = 233
           Height = 17
           Caption = 'Generate one file for each element'
           TabOrder = 3
         end
+        object GenerateOperImplCheckBox: TCheckBox
+          Left = 16
+          Top = 117
+          Width = 233
+          Height = 17
+          Caption = 'Generate implementation of operations'
+          TabOrder = 4
+        end
       end
       object CodingStyleGroupBox: TGroupBox
         Left = 299
-        Top = 80
+        Top = 72
         Width = 282
-        Height = 129
+        Height = 137
         Caption = ' Code Style '
         TabOrder = 1
         object IndentSizeLabel: TLabel
-          Left = 32
-          Top = 55
+          Left = 16
+          Top = 48
           Width = 51
           Height = 13
           Caption = 'Tab width:'
@@ -371,8 +374,8 @@ object CodeGenForm: TCodeGenForm
           OnClick = TabSpaceChkBoxClick
         end
         object SpaceCntSpinEdit: TSpinEdit
-          Left = 96
-          Top = 51
+          Left = 73
+          Top = 48
           Width = 89
           Height = 22
           MaxValue = 0
@@ -382,7 +385,7 @@ object CodeGenForm: TCodeGenForm
         end
         object NewBraceChkBox: TCheckBox
           Left = 16
-          Top = 81
+          Top = 76
           Width = 241
           Height = 17
           Caption = 'Place opening curly brace "{" in the new line'
@@ -390,7 +393,7 @@ object CodeGenForm: TCodeGenForm
         end
         object OutputFileFormatUtf8ChkBox: TCheckBox
           Left = 16
-          Top = 104
+          Top = 99
           Width = 241
           Height = 17
           Caption = 'Create output file in Visual C# format (UTF-8)'

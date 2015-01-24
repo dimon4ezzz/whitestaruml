@@ -85,7 +85,7 @@ type
     CodeGenProgressbar: TProgressBar;
     StateMarkImageList: TImageList;
     SelectTreeImageList: TImageList;
-    GroupBox1: TGroupBox;
+    GenerationOptionsGroupBox: TGroupBox;
     NoNameAssocChkBox: TCheckBox;
     DocToDocChkBox: TCheckBox;
     NilDocChk: TCheckBox;
@@ -101,6 +101,7 @@ type
     CommentFlatPanel: TFlatPanel;
     HeaderDescMemo: TMemo;
     OutputFileFormatUtf8ChkBox: TCheckBox;
+    GenerateOperImplCheckBox: TCheckBox;
     { Event Handlers for CodeGenForm }
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -305,6 +306,7 @@ begin
   OutputFileFormatUtf8ChkBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPTION_GENERATE_UTF8);
   SpaceCntSpinEdit.Value := GetOptionValueAsInteger(OPTION_SCHEMA, OPTION_SPACE_MAGNITUDE);
   HeaderCommentMemo.Lines.Text := GetOptionValueAsString(OPTION_SCHEMA, OPTION_HEADER_COMMENT);
+  GenerateOperImplCheckBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPTION_GENERATE_OPERATION_IMPLEMENTATION);
 end;
 
 procedure TCodeGenForm.SetupCodeGenReportListView;
@@ -341,6 +343,7 @@ begin
   CodeGen.GenerateUtf8 := OutputFileFormatUtf8ChkBox.Checked;
   CodeGen.SpaceCnt := SpaceCntSpinEdit.Value;
   CodeGen.HeaderComment := HeaderCommentMemo.Text;
+  CodeGen.GenerateOperImpl := GenerateOperImplCheckBox.Checked;
 end;
 
 { Option Related Methods }

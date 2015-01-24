@@ -49,6 +49,11 @@
            <DESCRIPTION>If checked output C# files are generated in Visual C# UTF8 format. Otherwise in plain ASCII.</DESCRIPTION>
            <DEFAULTVALUE>True</DEFAULTVALUE>
         </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="GENERATE_OPERATION_IMPLEMENTATION">
+           <CAPTION>Generate implementation of operations</CAPTION>
+           <DESCRIPTION>Generates implementation of operations from the Implementation Tagged Value</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
       </OPTIONCLASSIFICATION>
 
       <OPTIONCLASSIFICATION>
