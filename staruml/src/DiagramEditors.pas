@@ -102,6 +102,7 @@ type
     FDiagramWidth: Integer;
     FDiagramHeight: Integer;
     FShowGrid: Boolean;
+    FUseDirect2D: Boolean;
     FOnMouseUp: TMouseEvent;
     FOnMouseMove: TMouseMoveEvent;
     FOnMouseDown: TMouseEvent;
@@ -133,6 +134,7 @@ type
     procedure PaintBoxMouseMoveHandler(Sender: TObject; Shift: TShiftState; X, Y: Integer);
     procedure PaintBoxMouseUpHandler(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure ScrollTimerMouseMoveHandler(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure OptionValueChangeHandler(Sender: TObject; SchemaID: string; OptionName: string; Value: Variant);
   public
     constructor Create(AOwner: TComponent; ADiagramView: PDiagramView); reintroduce;
     destructor Destroy; override;
@@ -188,7 +190,7 @@ type
 implementation
 
 uses
-  UMLModels, UMLAux, OptionDeps, DiagramMapFrm, LogMgr,
+  Vcl.Direct2D, UMLModels, UMLAux, OptionDeps, DiagramMapFrm, LogMgr,
   Windows, SysUtils, ComCtrls, Math, Messages;
 
 var
@@ -275,6 +277,12 @@ begin
   // PScrollTimer's properties
   FScrollTimer := PScrollTimer.Create(Self);
   FScrollTimer.OnMouseMove := ScrollTimerMouseMoveHandler;
+
+  if OptionDepository.UseDirect2D then
+    FUseDirect2D := TDirect2DCanvas.Supported
+  else
+    FUseDirect2D := False;
+  //OptionDepository.OnOptionValueChange :=
 end;
 
 procedure PDiagramEditor.FinalizeDiagramEditorEnv;
@@ -322,6 +330,7 @@ begin
 
   Clear(DoubleBufferingCanvas, Rect(0, 0, W, H));
   DoubleBufferingCanvas.ZoomFactor := FDiagramView.Canvas.ZoomFactor;
+  DoubleBufferingCanvas.UseDirect2D := FUseDirect2D;
   DrawGrid(DoubleBufferingCanvas, R);
   FDiagramView.DrawDiagram(DoubleBufferingCanvas);
 
@@ -492,6 +501,17 @@ begin
   DiagramMapForm.ShowForm(SP.X, SP.Y);
 end;
 
+procedure PDiagramEditor.OptionValueChangeHandler(Sender: TObject; SchemaID,
+  OptionName: string; Value: Variant);
+begin
+  if OptionName = 'USE_DIRECT2D' then begin
+    if Value then
+      FUseDirect2D := TDirect2DCanvas.Supported
+    else
+      FUseDirect2D := False;
+  end;
+end;
+
 procedure PDiagramEditor.SetCanvasMoveHandled(Value: Boolean);
 begin
   FCanvasMoveHandled := Value;
@@ -502,9 +522,18 @@ begin
 end;
 
 procedure PDiagramEditor.PaintBoxPaintHandler(Sender: TObject);
+var
+  D2DViewPort: TRect;
 begin
-  DrawGrid(FDiagramView.Canvas, ViewPort);
-  FDiagramView.DrawDiagram(FDiagramView.Canvas);
+
+  if FUseDirect2D then
+    RedrawDiagramView
+  else begin
+    FDiagramView.Canvas.UseDirect2D := False;
+    DrawGrid(FDiagramView.Canvas, ViewPort);
+    FDiagramView.DrawDiagram(FDiagramView.Canvas);
+  end;
+  //RedrawDiagramView;
   if FScrolled and Assigned(FHandlingPaintProc) then
     FHandlingPaintProc(Self, FCanvas);
 end;

@@ -777,7 +777,7 @@ var
   XMLDoc: TXMLDocument;
 begin
   Result := nil;
-  if FClipboardDataKind <> ckView then Exit;
+  //if FClipboardDataKind <> ckView then Exit;
   if FClipboardDataBuffer = '' then Exit;
 
   // there is views data in clipboard and execute this after reading clipboard data

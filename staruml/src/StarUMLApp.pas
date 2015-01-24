@@ -234,6 +234,7 @@ type
     procedure CopyActiveDiagram;
     procedure CopyActiveDiagramAsBitmap;
     procedure Paste;
+    procedure PasteFormat;
     function CanUndo: Boolean;
     function CanRedo: Boolean;
     function GetUndoName: string;
@@ -296,6 +297,7 @@ type
     procedure ChangeSelectedViewsFontSize(FontSize: Integer);
     procedure ChangeSelectedEdgesLineStyle(LineStyle: PLineStyleKind);
     procedure ChangeSelectedAnnotationsLineStyle(LineStyle: PLineKind);
+    procedure ChangeSelectedViewsFormat(FormatSource: PView);
     procedure ChangeSelectedViewsAttribute(Key: string; Value: string);
     procedure ChangeNoteViewStrings(AView: PUMLCustomTextView; Strs: string);
     procedure SendToBackSelectedViews;
@@ -1173,7 +1175,6 @@ end;
 
 function PStarUMLApplication.CheckDeleteUnits(ElementSet: PModelOrderedSet): Boolean;
 var
-  I: Integer;
   E: PElement;
   R: Integer;
 
@@ -1695,6 +1696,17 @@ begin
         NewModelByCopyPaste(AModel, AnOwnerModel);
     end else MessageDlg(ERR_MODEL_PASTE_EXCEEDED, mtError, [mbOK], 0);
   end;
+end;
+
+procedure PStarUMLApplication.PasteFormat;
+var
+  ClipbrdDataKind: PClipboardDataKind;
+  Views: PViewOrderedSet;
+begin
+  Views := ClipboardManager.GetViewsData;
+  if Assigned(Views) and (Views.Count > 0) then
+    ChangeSelectedViewsFormat(Views[0]);
+  Views.Free;
 end;
 
 function PStarUMLApplication.CanUndo: Boolean;
@@ -2319,6 +2331,8 @@ begin
 end;
 
 procedure PStarUMLApplication.ChangeSelectedViewsFont(Font: TFont; AChangedFontItems: PFontItemKinds);
+const
+  FontItemKinds: PFontItemKinds = [fiName, fiSize, fiStyle, fiEffect, fiColor];
 begin
   ViewSet.Clear;
   SelectionManager.CollectSelectedViews(ViewSet);
@@ -2359,6 +2373,29 @@ begin
     AFont.Free;
     ElementModified(ViewSet);
   end;
+end;
+
+procedure PStarUMLApplication.ChangeSelectedViewsFormat(FormatSource: PView);
+const
+  FontItemKinds: PFontItemKinds = [fiName, fiSize, fiStyle, fiEffect, fiColor];
+var
+  Font: TFont;
+begin
+  ChangeSelectedViewsLineColor(FormatSource.LineColor);
+  ChangeSelectedViewsFillColor(FormatSource.FillColor);
+
+  Font := TFont.Create;
+  Font.Name := FormatSource.FontFace;
+  Font.Size := FormatSource.FontSize;
+  Font.Style := FormatSource.FontStyle;
+  Font.Color := FormatSource.FontColor;
+  ChangeSelectedViewsFont(Font,FontItemKinds);
+  Font.Free;
+
+  if FormatSource is PEdgeView then
+    ChangeSelectedEdgesLineStyle((FormatSource as PEdgeView).LineStyle);
+  if FormatSource is PShapeView then
+    ChangeSelectedAnnotationsLineStyle((FormatSource as PShapeView).LineKind);
 end;
 
 procedure PStarUMLApplication.ChangeSelectedEdgesLineStyle(LineStyle: PLineStyleKind);

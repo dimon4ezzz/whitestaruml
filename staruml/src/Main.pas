@@ -86,7 +86,7 @@ type
     procedure MainFormFormatMenuClickedHandler(Sender: TObject);
     procedure MainFormFormatCheckTypeMenuClickedHandler(Sender: TObject; Checked: Boolean);
     procedure MainFormFormatFontFaceChangedHandler(Sender: TObject; FontFace: string);
-    procedure MainFormFormatFontSizeChangedHandler(Sender: TObject; FontSize: Integer);
+    procedure BarManagerx(Sender: TObject; FontSize: Integer);
     procedure MainFormModelMenuClickedHandler(Sender: TObject);
     procedure MainFormViewMenuClickedHandler(Sender: TObject);
     procedure MainFormViewCheckTypeMenuClickedHandler(Sender: TObject; Checked: Boolean);
@@ -860,6 +860,7 @@ begin
       else if Sender = EditCopyDiagram         then StarUMLApplication.CopyActiveDiagram
       else if Sender = EditCopyDiagramAsBitmap then StarUMLApplication.CopyActiveDiagramAsBitmap
       else if Sender = EditPaste               then StarUMLApplication.Paste
+      else if Sender = EditPasteFormat         then StarUMLApplication.PasteFormat
       else if Sender = EditDelete              then StarUMLApplication.DeleteSelectedViews
       else if Sender = EditDeleteFromModel     then StarUMLApplication.DeleteSelectedViewsWithModels
       else if Sender = EditFind                then FindForm.Execute
@@ -994,7 +995,7 @@ begin
   end;
 end;
 
-procedure PMain.MainFormFormatFontSizeChangedHandler(Sender: TObject; FontSize: Integer);
+procedure PMain.BarManagerx(Sender: TObject; FontSize: Integer);
 begin
   try
     StarUMLApplication.ChangeSelectedViewsFontSize(FontSize);
@@ -3330,7 +3331,7 @@ begin
     OnFormatMenuClicked := MainFormFormatMenuClickedHandler;
     OnFormatCheckTypeMenuClicked := MainFormFormatCheckTypeMenuClickedHandler;
     OnFontFaceChanged := MainFormFormatFontFaceChangedHandler;
-    OnFontSizeChanged := MainFormFormatFontSizeChangedHandler;
+    OnFontSizeChanged := BarManagerx;
     OnModelMenuClicked := MainFormModelMenuClickedHandler;
     OnViewMenuClicked := MainFormViewMenuClickedHandler;
     WorkingAreaFrame.OnViewMenuClicked := MainFormViewMenuClickedHandler;
@@ -4480,9 +4481,9 @@ begin
       ModelMenu.Visible := ivNever;
     end;
     if StarUMLApplication.ActiveDiagram <> nil then
-      FormatMenu.Visible := ivAlways
+      FormatMenux.Visible := ivAlways
     else
-      FormatMenu.Visible := ivNever;
+      FormatMenux.Visible := ivNever;
     ViewMenu.Visible := ivAlways;
     ToolsMenu.Visible := ivAlways;
     HelpMenu.Visible := ivAlways;
@@ -4569,12 +4570,13 @@ begin
       (AD <> nil) and
       (AD.OwnedViewCount > 0);
 
-    // Delermine CopyDiagramAsBitmap
+    // Determine CopyDiagramAsBitmap
     EditCopyDiagramAsBitmap.Enabled :=
       MainForm.IsActivated and
       (AD <> nil) and
       (AD.OwnedViewCount > 0);
 
+    // Determine Copy/Cut/Paste
     EditCopy.Enabled := IsEditCopyEnabled;
     EditCut.Enabled := IsEditCutEnabled;
     EditPaste.Enabled := False;
@@ -4595,6 +4597,10 @@ begin
           SelectedModel.CanPaste(CBElemKind, CBCopyContext);
       end;
     end;
+
+    // Determine Paste Formatting
+    EditPasteFormat.Enabled := (CBKind = ckView) and (StarUMLApplication.SelectedViewCount > 0);
+
     // Determine Go To
     EditGoTo.Enabled :=
       MainForm.IsActivated and

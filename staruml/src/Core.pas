@@ -5016,6 +5016,7 @@ var
 begin
   if FVisible then
   begin
+    //Canvas.StartDrawing(ViewPort);
     Draw(Canvas);
     for SelectedView in  FSelectedViews do 
       SelectedView.DrawSelection(Canvas);

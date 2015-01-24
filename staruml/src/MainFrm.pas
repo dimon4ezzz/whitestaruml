@@ -124,12 +124,16 @@ type
     EditCopy: TdxBarButton;
     EditCopyDiagram: TdxBarButton;
     EditPaste: TdxBarButton;
+    EditPasteFormat: TdxBarButton;
     EditDelete: TdxBarButton;
     EditDeleteFromModel: TdxBarButton;
     EditSelectAll: TdxBarButton;
     EditFind: TdxBarButton;
+    EditCopyDiagramAsBitmap: TdxBarButton;
+    EditFindDiagramsWithSelectedModel: TdxBarButton;
+
     { Format Menu Items }
-    FormatMenu: TdxBarSubItem;
+    FormatMenux: TdxBarSubItem;
     FormatFont: TdxBarButton;
     FormatLineColor: TdxBarButton;
     FormatFillColor: TdxBarButton;
@@ -344,7 +348,6 @@ type
     ViewMessageWindow: TdxBarButton;
     FormatStereotypeDisplayDecoration: TdxBarButton;
     ModelAddDiagramCompositeStructureDiagram: TdxBarButton;
-    EditCopyDiagramAsBitmap: TdxBarButton;
     ToolBoxDockPanel: TdxDockPanel;
     dxLayoutDockSite4: TdxLayoutDockSite;
     ViewDiagramPages: TdxBarSubItem;
@@ -384,7 +387,6 @@ type
     FormatAnnotationLineStyleDot: TdxBarButton;
     FormatAnnotationLineStyleDashDot: TdxBarButton;
     FormatAnnotationLineStyleDashDotDot: TdxBarButton;
-    EditFindDiagramsWithSelectedModel: TdxBarButton;
     dxLayoutDockSite3: TdxLayoutDockSite;
     ModelAttachments: TdxBarButton;
     FileUnitsOpenUnit: TdxBarButton;
