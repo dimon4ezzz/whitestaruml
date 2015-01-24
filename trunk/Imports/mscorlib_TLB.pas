@@ -12,7 +12,7 @@ unit mscorlib_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 1/1/2015 5:01:00 PM from Type Library described below.
+// File generated on 1/23/2015 5:20:36 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.tlb (1)
