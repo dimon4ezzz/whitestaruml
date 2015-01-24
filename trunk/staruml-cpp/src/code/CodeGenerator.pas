@@ -189,6 +189,7 @@ type
     { Miscellaneous Methods }
     procedure ImproperModel(Model: IUMLModelElement; Msg: string);
     procedure Log(Msg: string);
+    procedure AddOperationImplementation(Writer: PStringWriter; AOperation: IUMLOperation);
   public
 		{ Constructor/Destructor }
     constructor Create;
@@ -337,6 +338,31 @@ begin
   if Includes.IndexOf(FileName) = -1 then
     Includes.Add(FileName);
 end;
+
+procedure PCodeGenerator.AddOperationImplementation(Writer: PStringWriter;
+  AOperation: IUMLOperation);
+var
+  OperImpl: string;
+  DelimitedOperImpl: TStrings;
+  OperImplLine: string;
+begin
+  if GenerateOperImpl then begin  // Add implementation
+    OperImpl := GetStringTaggedValue(AOperation, PROFILE_STANDARD, TAGSET_DEFAULT, TAG_STANDARD_IMPLEMENTATION);
+    if OperImpl <> '' then begin
+      // Split implementation into separate lines and handle indentation
+      DelimitedOperImpl := TStringList.Create;
+      DelimitedOperImpl.StrictDelimiter := True;
+      DelimitedOperImpl.Delimiter := #10;
+      DelimitedOperImpl.DelimitedText := OperImpl;
+      Writer.Indent;
+      for OperImplLine in DelimitedOperImpl do
+        Writer.WriteLine(OperImplLine);
+      Writer.Outdent;
+      DelimitedOperImpl.Free;
+    end
+  end;
+end;
+
 
 procedure PCodeGenerator.AddInclude(IncludingClassifier, InclusionClassifier: IUMLClassifier);
 begin
@@ -1510,8 +1536,6 @@ begin
 end;
 
 procedure PCodeGenerator.WriteDefOperation(Writer: PStringWriter; AOperation: IUMLOperation; ABase: IUMLClassifier = nil);
-var
-  OperImpl: string;
 begin
   if (AOperation.StereotypeName = STEREOTYPE_CPP_DELEGATE)
     or (AOperation.StereotypeName = STEREOTYPE_CPP_MACRO) then
@@ -1535,12 +1559,7 @@ begin
       Writer.WriteLine(' {');
   end;
 
-  if GenerateOperImpl then begin  // Add implementation
-    OperImpl := GetStringTaggedValue(AOperation, PROFILE_STANDARD, TAGSET_DEFAULT, TAG_STANDARD_IMPLEMENTATION);
-    if OperImpl <> '' then
-      Writer.WriteLine(OperImpl);
-  end;
-
+  AddOperationImplementation(Writer,AOperation);
 
   Writer.WriteLine('}');
 end;
