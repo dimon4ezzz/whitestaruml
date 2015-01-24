@@ -278,7 +278,7 @@ object CodeGenWizardForm: TCodeGenWizardForm
         TabOrder = 0
         object AssocEndCheckBox: TCheckBox
           Left = 16
-          Top = 28
+          Top = 27
           Width = 233
           Height = 17
           Caption = 'Generate unnamed AssociationEnd'
@@ -286,7 +286,7 @@ object CodeGenWizardForm: TCodeGenWizardForm
         end
         object GenJavaDocCheckBox: TCheckBox
           Left = 16
-          Top = 58
+          Top = 50
           Width = 233
           Height = 16
           Caption = 'Generate the Documentation by JavaDoc'
@@ -294,17 +294,25 @@ object CodeGenWizardForm: TCodeGenWizardForm
           OnClick = GenJavaDocCheckBoxClick
         end
         object GenEmptyJavaDocCheckBox: TCheckBox
-          Left = 36
-          Top = 86
+          Left = 16
+          Top = 72
           Width = 213
           Height = 17
           Caption = 'Generate empty Java Doc'
           TabOrder = 2
         end
+        object GenerateOperImplCheckBox: TCheckBox
+          Left = 16
+          Top = 95
+          Width = 233
+          Height = 17
+          Caption = 'Generate implementation of operations'
+          TabOrder = 3
+        end
       end
       object EditingGroup: TGroupBox
-        Left = 280
-        Top = 79
+        Left = 279
+        Top = 80
         Width = 289
         Height = 122
         Caption = ' Code Style '
@@ -319,7 +327,7 @@ object CodeGenWizardForm: TCodeGenWizardForm
         end
         object UseSpaceCheckBox: TCheckBox
           Left = 16
-          Top = 58
+          Top = 51
           Width = 257
           Height = 17
           Caption = 'Insert tab as space'
@@ -327,8 +335,8 @@ object CodeGenWizardForm: TCodeGenWizardForm
           OnClick = UseSpaceCheckBoxClick
         end
         object SpaceMagEdit: TLabeledEdit
-          Left = 88
-          Top = 86
+          Left = 66
+          Top = 81
           Width = 44
           Height = 21
           EditLabel.Width = 51
@@ -340,8 +348,8 @@ object CodeGenWizardForm: TCodeGenWizardForm
           Text = '4'
         end
         object SpaceMagEditSpin: TUpDown
-          Left = 132
-          Top = 86
+          Left = 116
+          Top = 81
           Width = 15
           Height = 21
           Associate = SpaceMagEdit
