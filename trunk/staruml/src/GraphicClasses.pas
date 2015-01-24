@@ -137,6 +137,8 @@ type
     FOriginX: Integer;
     FOriginY: Integer;
     FDeviceFactor: Real;
+    FViewPort: TRect;
+    FUseDirect2D: Boolean;
     function GetPen: TPen;
     function GetBrush: TBrush;
     function GetFont: TFont;
@@ -167,6 +169,9 @@ type
     function TextExtent(const Text: string): TSize;
     function TextHeight(const Text: string): Integer;
     function TextWidth(const Text: string): Integer;
+    procedure DrawAntialiasedLine(const AX1, AY1, AX2, AY2: real);
+    procedure StartDrawing (AViewPort: TRect);
+
     // recommended functions not to use
     procedure TextRect(R: TRect; X, Y: Integer; const Text: string);
     procedure TextOutWithLen(X, Y, Len: Integer; const Text: string);
@@ -179,6 +184,7 @@ type
     property Canvas: TCanvas read FCanvas write FCanvas;
     property OriginX: Integer read FOriginX write FOriginX;
     property OriginY: Integer read FOriginY write FOriginY;
+    property UseDirect2D: Boolean read FUseDirect2D write FUseDirect2D;
   end;
 
   // procedures and  functions
@@ -237,7 +243,7 @@ var
 implementation
 
 uses
-  System.UITypes, ComCtrls, SysUtils;
+  System.UITypes, ComCtrls, SysUtils, Vcl.Direct2D, Winapi.D2D1;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PPoints
@@ -483,13 +489,27 @@ begin
 end;
 
 procedure PCanvas.StretchDraw(R: TRect; G: TGraphic);
+var
+  D2DCanvas: TDirect2DCanvas;
 begin
   CoordTransform(FZoomFactor, GridFactor(1, 1), R);
   R.Left := R.Left + OriginX;
   R.Right := R.Right + OriginX;
   R.Top := R.Top + OriginY;
   R.Bottom := R.Bottom + OriginY;
-  FCanvas.StretchDraw(R, G);
+
+  if UseDirect2D then begin
+    D2DCanvas := TDirect2DCanvas.Create(Canvas, Canvas.ClipRect);
+    try
+      D2DCanvas.RenderTarget.BeginDraw;
+      D2DCanvas.StretchDraw(R, G);
+      D2DCanvas.RenderTarget.EndDraw;
+    finally
+      D2DCanvas.Free;
+    end;
+  end
+  else
+    FCanvas.StretchDraw(R, G);
 end;
 
 procedure PCanvas.Draw(X, Y: Integer; G: TGraphic);
@@ -584,6 +604,8 @@ begin
 end;
 
 procedure PCanvas.Ellipse(X1, Y1, X2, Y2: Integer);
+var
+  D2DCanvas: TDirect2DCanvas;
 begin
   CoordTransform(FZoomFactor, GridFactor(1, 1), X1, Y1);
   CoordTransform(FZoomFactor, GridFactor(1, 1), X2, Y2);
@@ -591,7 +613,19 @@ begin
   Y1 := Y1 + OriginY;
   X2 := X2 + OriginX;
   Y2 := Y2 + OriginY;
-  FCanvas.Ellipse(X1, Y1, X2, Y2);
+
+  if UseDirect2D and (FCanvas.Pen.Style in [psSolid,psDash]) then begin
+    D2DCanvas := TDirect2DCanvas.Create(Canvas,Canvas.ClipRect);
+    try
+      D2DCanvas.RenderTarget.BeginDraw;
+      D2DCanvas.Ellipse(X1, Y1, X2, Y2);
+      D2DCanvas.RenderTarget.EndDraw;
+    finally
+      D2DCanvas.Free;
+    end;
+  end
+  else
+    FCanvas.Ellipse(X1, Y1, X2, Y2);
 end;
 
 procedure PCanvas.Pie(X1, Y1, X2, Y2, X3, Y3, X4, Y4: Integer);
@@ -688,25 +722,52 @@ end;
 procedure PCanvas.Polygon(Points: array of TPoint);
 var
   I: Integer;
+  D2DCanvas: TDirect2DCanvas;
 begin
   for I := 0 to High(Points) do begin
     CoordTransform(FZoomFactor, GridFactor(1, 1), Points[I]);
     Points[I].X := Points[I].X + OriginX;
     Points[I].Y := Points[I].Y + OriginY;
   end;
-  FCanvas.Polygon(Points)
+
+  if UseDirect2D and (FCanvas.Pen.Style in [psSolid,psDash]) then begin
+  D2DCanvas := TDirect2DCanvas.Create(Canvas,Canvas.ClipRect);
+    try
+      D2DCanvas.RenderTarget.BeginDraw;
+      D2DCanvas.Polygon(Points);
+      D2DCanvas.RenderTarget.EndDraw;
+    finally
+      D2DCanvas.Free;
+    end;
+  end
+  else
+    FCanvas.Polygon(Points)
 end;
 
 procedure PCanvas.PolyLine(Points: array of TPoint);
 var
   I: Integer;
+  D2DCanvas: TDirect2DCanvas;
 begin
   for I := 0 to High(Points) do begin
     CoordTransform(FZoomFactor, GridFactor(1, 1), Points[I]);
     Points[I].X := Points[I].X + OriginX;
     Points[I].Y := Points[I].Y + OriginY;
   end;
-  FCanvas.PolyLine(Points);
+
+  if UseDirect2D and (FCanvas.Pen.Style = psSolid) then
+  begin
+    D2DCanvas := TDirect2DCanvas.Create(Canvas, Canvas.ClipRect);
+    try
+      D2DCanvas.RenderTarget.BeginDraw;
+      D2DCanvas.Polyline(Points);
+      D2DCanvas.RenderTarget.EndDraw;
+    finally
+      D2DCanvas.Free;
+    end;
+  end
+  else
+    FCanvas.PolyLine(Points);
 end;
 
 function GetLOGFONT(AFont: TFont; Handle: HDC): LOGFONT;
@@ -841,6 +902,11 @@ begin
   Result := Trunc(FCanvas.TextWidth(Text) * DeviceFactor);
 end;
 
+procedure PCanvas.StartDrawing(AViewPort: TRect);
+begin
+  FViewPort := AViewPort;
+end;
+
 // Follwing functions are recommended not to use
 procedure PCanvas.TextRect(R: TRect; X, Y: Integer; const Text: string);
 begin
@@ -907,6 +973,103 @@ begin
       if (Y1 >= Y2) and Clipping then break;
     end;
   end;
+end;
+
+procedure PCanvas.DrawAntialiasedLine(const AX1, AY1, AX2, AY2: real);
+
+var
+  swapped: boolean;
+
+  procedure plot(const x, y, c: Extended);
+  var
+    resclr: TColor;
+  begin
+    if swapped then
+      resclr := FCanvas.Pixels[round(y), round(x)]
+    else
+      resclr := FCanvas.Pixels[round(x), round(y)];
+
+    resclr := RGB(round(GetRValue(resclr) * (1-c) + GetRValue(FCanvas.Pen.Color) * c),
+                  round(GetGValue(resclr) * (1-c) + GetGValue(FCanvas.Pen.Color) * c),
+                  round(GetBValue(resclr) * (1-c) + GetBValue(FCanvas.Pen.Color) * c));
+    if swapped then
+      FCanvas.Pixels[round(y), round(x)] := resclr
+    else
+      FCanvas.Pixels[round(x), round(y)] := resclr;
+  end;
+
+  function rfrac(const x: real): real; inline;
+  begin
+    rfrac := 1 - frac(x);
+  end;
+
+  procedure swap(var a, b: real);
+  var
+    tmp: real;
+  begin
+    tmp := a;
+    a := b;
+    b := tmp;
+  end;
+
+var
+  x1, x2, y1, y2, dx, dy, gradient, xend, yend, xgap, xpxl1, ypxl1,
+  xpxl2, ypxl2, intery: real;
+  x: integer;
+
+begin
+
+//  x1 := AX1 + OriginX;
+//  x2 := AX2 + OriginX;
+//  y1 := AY1 + OriginY;
+//  y2 := AY2 + OriginY;
+
+  x1 := AX1;
+  x2 := AX2;
+  y1 := AY1;
+  y2 := AY2;
+
+  dx := x2 - x1;
+  dy := y2 - y1;
+  swapped := abs(dx) < abs(dy);
+  if swapped then
+  begin
+    swap(x1, y1);
+    swap(x2, y2);
+    swap(dx, dy);
+  end;
+  if x2 < x1 then
+  begin
+    swap(x1, x2);
+    swap(y1, y2);
+  end;
+
+  gradient := dy / dx;
+
+  xend := round(x1);
+  yend := y1 + gradient * (xend - x1);
+  xgap := rfrac(x1 + 0.5);
+  xpxl1 := xend;
+  ypxl1 := floor(yend);
+  plot(xpxl1, ypxl1, rfrac(yend) * xgap);
+  plot(xpxl1, ypxl1 + 1, frac(yend) * xgap);
+  intery := yend + gradient;
+
+  xend := round(x2);
+  yend := y2 + gradient * (xend - x2);
+  xgap := frac(x2 + 0.5);
+  xpxl2 := xend;
+  ypxl2 := floor(yend);
+  plot(xpxl2, ypxl2, rfrac(yend) * xgap);
+  plot(xpxl2, ypxl2 + 1, frac(yend) * xgap);
+
+  for x := round(xpxl1) + 1 to round(xpxl2) - 1 do
+  begin
+    plot(x, floor(intery), rfrac(intery));
+    plot(x, floor(intery) + 1, frac(intery));
+    intery := intery + gradient;
+  end;
+
 end;
 
 // PCanvas
