@@ -498,6 +498,9 @@ begin
   R.Top := R.Top + OriginY;
   R.Bottom := R.Bottom + OriginY;
 
+  {$IFDEF WIN64} // There are problems with 64 bit build with Delphi XE5
+  FCanvas.StretchDraw(R, G);
+  {$ELSE}
   if UseDirect2D then begin
     D2DCanvas := TDirect2DCanvas.Create(Canvas, Canvas.ClipRect);
     try
@@ -510,6 +513,7 @@ begin
   end
   else
     FCanvas.StretchDraw(R, G);
+ {$ENDIF}
 end;
 
 procedure PCanvas.Draw(X, Y: Integer; G: TGraphic);
