@@ -46,7 +46,6 @@ namespace ParserCore
             return parseStatus;  
         }
 
-
         private void AnalyzeParseTree()
         {
             AddProductionHandler(ProductionIndex.@Functional_expr_end_Rparen, HandleRparen);
