@@ -1,4 +1,4 @@
-﻿// ParserBase ver 1.0
+﻿// ParserBase ver 1.1
 
 using System.IO;
 
@@ -100,14 +100,14 @@ namespace ParserBase
 
         // Hooks to override if required to handle parsing events
 
-        protected virtual void OnLexicalError()
+        protected void OnLexicalError()
         {
             FailMessage = "Lexical Error:\n" +
                      "Position: " + m_coreParser.CurrentPosition().Line + ", " + m_coreParser.CurrentPosition().Column + "\n" +
                      "Read: " + m_coreParser.CurrentToken().Data;
         }
 
-        protected virtual void OnSyntaxError()
+        protected void OnSyntaxError()
         {
             FailMessage = "Syntax Error:\n" +
                    "Position: " + m_coreParser.CurrentPosition().Line + ", " + m_coreParser.CurrentPosition().Column + "\n" +
@@ -115,16 +115,16 @@ namespace ParserBase
                    "Expecting: " + m_coreParser.ExpectedSymbols().Text();
         }
 
-        protected virtual void OnAccept()
+        protected void OnAccept()
         {
-            m_root = (GOLD.Reduction)m_coreParser.CurrentReduction;    //The root node! 
+            m_root = (GOLD.Reduction)m_coreParser.CurrentReduction;    // Save the root node 
         }
 
 
-        protected virtual void OnReduction() { }
-        protected virtual void OnInternalError() { }
-        protected virtual void OnNotLoadedError() { }
-        protected virtual void OnGroupError() { }
+        protected void OnReduction() { }
+        protected void OnInternalError() { }
+        protected void OnNotLoadedError() { }
+        protected void OnGroupError() { }
     }
 
     // Functions to pick values directly from the parse tree
