@@ -2,12 +2,12 @@
     <PropertyGroup>
         <ProjectGuid>{615B71D1-7245-4A8D-970D-088FCD1EF2C2}</ProjectGuid>
         <MainSource>WSXMIAddIn.dpr</MainSource>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
         <ProjectVersion>15.3</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Library</AppType>
     </PropertyGroup>
@@ -40,17 +40,23 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win64)'!=''">
+        <Cfg_2_Win64>true</Cfg_2_Win64>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_UsePackage>rtl;vcl;vclx;$(DCC_UsePackage)</DCC_UsePackage>
         <UsePackages>true</UsePackages>
         <VerInfo_MinorVer>2</VerInfo_MinorVer>
-        <VerInfo_Release>1</VerInfo_Release>
-        <VerInfo_Keys>CompanyName=Plastic Software, Inc.;FileDescription=;FileVersion=1.2.1.71;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.2;Comments=</VerInfo_Keys>
-        <Manifest_File>None</Manifest_File>
+        <VerInfo_Release>2</VerInfo_Release>
+        <VerInfo_Keys>CompanyName=Plastic Software, Inc.;FileDescription=;FileVersion=1.2.2.72;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.2;Comments=</VerInfo_Keys>
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;System.Win;Winapi;Vcl;Xml.Win;Vcl.Shell;Vcl.Imaging;Vcl.Touch;Vcl.Samples;$(DCC_Namespace)</DCC_Namespace>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Build>71</VerInfo_Build>
+        <VerInfo_Build>72</VerInfo_Build>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_ExeOutput>..\..\deploy\staruml-xmi</DCC_ExeOutput>
         <DCC_UnitSearchPath>..\..\..\staruml\src;..\..\..\staruml\components\plastic-components\src;..\..\..\eltree\Code\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
@@ -81,6 +87,12 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
+        <VerInfo_MinorVer>0</VerInfo_MinorVer>
+        <VerInfo_Release>0</VerInfo_Release>
+        <VerInfo_Build>0</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
