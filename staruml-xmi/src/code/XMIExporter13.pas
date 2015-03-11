@@ -329,6 +329,10 @@ var
   US: IUMLStateMachine;
   C: Integer;
 begin
+  Result := 0;
+  if not Assigned(Element) then
+    Exit;
+
   C := 0;
   if FRoseExtended and FExportViews and Element.IsKindOf(ELEM_MODEL) then
     C := C + GetCompositeCollectionCount(Element, UML_PROP_OWNED_DIAGRAMS);
@@ -415,6 +419,9 @@ begin
 
   Inc(CurrentIndex);
   StimulateProgressEvent(CurrentIndex, ElementCount, TXT_CREATE_XMI_ELEMENT);
+
+  if not Assigned(Element) then
+    Exit;
 
   MetaName := Element.GetClassName;
   // filter model not satisfy a UML 1.3 meta model. (not create)
@@ -671,6 +678,8 @@ procedure PXMIExporter13.ComposeDiagram(Element: IElement; RefXMIElement: PXMIEl
     V: IView;
     I: Integer;
   begin
+    if not Assigned(View) then
+      Exit;
     for I := 0 to View.GetContainedViewCount - 1 do begin
       V := View.GetContainedViewAt(I);
       ConstructXMIElement(V, RefXMIElement);
