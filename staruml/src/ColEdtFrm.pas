@@ -1313,7 +1313,7 @@ begin
     CollectionPageControl.ActivePage := SlotsPage
   else if PageName = 'EntryActions' then
     CollectionPageControl.ActivePage := EntryActionsPage
-  else if PageName = 'DoActivities' then
+  else if PageName = 'DoActions' then
     CollectionPageControl.ActivePage := DoActivitiesPage
   else if PageName = 'ExitActions' then
     CollectionPageControl.ActivePage := ExitActionsPage
