@@ -28,7 +28,7 @@ object CollectionEditorForm: TCollectionEditorForm
     Top = 3
     Width = 489
     Height = 226
-    ActivePage = RelationsPage
+    ActivePage = DoActivitiesPage
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
     OnChange = CollectionPageControlChange
@@ -1211,10 +1211,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object DoActivitiesPage: TTabSheet
       Caption = 'Do Actions'
       ImageIndex = 9
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DoActivitiesPanel: TPanel
         Left = 0
         Top = 0
@@ -1309,10 +1305,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object ExitActionsPage: TTabSheet
       Caption = 'Exit Actions'
       ImageIndex = 10
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object ExitActionsPanel: TPanel
         Left = 0
         Top = 0
@@ -1407,10 +1399,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object RaisedSignalsPage: TTabSheet
       Caption = 'Raised Signals'
       ImageIndex = 11
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object RaisedSignalsPanel: TPanel
         Left = 0
         Top = 0
@@ -1826,10 +1814,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object End2QualifiersPage: TTabSheet
       Caption = 'End2 Qualifiers'
       ImageIndex = 15
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object End2QualifiersPanel: TPanel
         Left = 0
         Top = 0
