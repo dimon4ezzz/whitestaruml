@@ -689,6 +689,8 @@ begin
 end;
 
 procedure PCanvas.RoundRect(X1, Y1, X2, Y2, X3, Y3: Integer);
+var
+  D2DCanvas: TDirect2DCanvas;
 begin
   CoordTransform(FZoomFactor, GridFactor(1, 1), X1, Y1);
   CoordTransform(FZoomFactor, GridFactor(1, 1), X2, Y2);
@@ -697,7 +699,19 @@ begin
   Y1 := Y1 + OriginY;
   X2 := X2 + OriginX;
   Y2 := Y2 + OriginY;
-  FCanvas.RoundRect(X1, Y1, X2, Y2, X3, Y3);
+
+  if UseDirect2D then begin
+    D2DCanvas := TDirect2DCanvas.Create(Canvas, Canvas.ClipRect);
+    try
+      D2DCanvas.RenderTarget.BeginDraw;
+      D2DCanvas.RoundRect(X1, Y1, X2, Y2, X3, Y3);
+      D2DCanvas.RenderTarget.EndDraw;
+    finally
+      D2DCanvas.Free;
+    end;
+  end
+  else
+    FCanvas.RoundRect(X1, Y1, X2, Y2, X3, Y3);
 end;
 
 procedure PCanvas.PolyBezier(Points: array of TPoint);
