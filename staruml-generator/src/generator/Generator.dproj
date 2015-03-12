@@ -70,7 +70,7 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.9.57;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Documentation  Generator;ProductVersion=1.2;Comments=</VerInfo_Keys>
-        <DCC_UnitSearchPath>..\..\..\staruml\components\plastic-components\src\$(Platform)\$(Config);..\..\..\staruml\src\$(Platform)\$(Config);..\translators\excel-translator\$(Platform)\$(Config);..\translators\powerpoint-translator\$(Platform)\$(Config);..\translators\word-translator\$(Platform)\$(Config);..\translators\text-translator\$(Platform)\$(Config);..\translators\powerpoint-translator;..\translators\excel-translator;..\translators\text-translator;..\translators\word-translator;..\..\Imports;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\..\staruml\components\plastic-components\src\$(Platform)\$(Config);..\..\..\staruml\src\$(Platform)\$(Config);..\translators\excel-translator\$(Platform)\$(Config);..\translators\powerpoint-translator\$(Platform)\$(Config);..\translators\word-translator\$(Platform)\$(Config);..\translators\text-translator\$(Platform)\$(Config);..\translators\powerpoint-translator;..\translators\excel-translator;..\translators\text-translator;..\translators\word-translator;..\..\..\Imports;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_ExeOutput>..\..\deploy\staruml-generator</DCC_ExeOutput>
         <DCC_DependencyCheckOutputName>..\..\deploy\staruml-generator\Generator.dll</DCC_DependencyCheckOutputName>
         <GenDll>true</GenDll>
