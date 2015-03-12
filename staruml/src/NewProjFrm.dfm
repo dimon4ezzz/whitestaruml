@@ -43,7 +43,7 @@ object NewProjectForm: TNewProjectForm
         FocusControl = DescriptionMemo
       end
       object BlankApproachImage: TImage
-        Left = 241
+        Left = 253
         Top = 213
         Width = 32
         Height = 32
@@ -124,7 +124,7 @@ object NewProjectForm: TNewProjectForm
         Visible = False
       end
       object DefaultApproachIconImage: TImage
-        Left = 280
+        Left = 304
         Top = 213
         Width = 32
         Height = 32
@@ -262,7 +262,7 @@ object NewProjectForm: TNewProjectForm
         Top = 219
         Width = 233
         Height = 15
-        Caption = '&Set As Default Approach'
+        Caption = '&Use this approach with New Project command'
         TabOrder = 1
         OnClick = SelectApproachCheckBoxClick
       end
