@@ -1407,7 +1407,7 @@ type
     function Precondition: Boolean; override;
     procedure Preprocess; override;
     function SymbolToUMLVisibilityKind(Value: string): PUMLVisibilityKind;
-    function GetProfile(M: PExtensibleModel; StreotypeStr: string): string;
+    function GetProfile(M: PExtensibleModel; StereotypeStr: string): string;
   public
     procedure SetParameter(AModelSet: PModelOrderedSet; Value: string); virtual;
     procedure Reexecute; override;
@@ -6348,14 +6348,22 @@ begin
   else raise Exception.Create(ERR_CMD_EXPRESSION_PARSING);
 end;
 
-function PAbstractApplyExpressionCommand.GetProfile(M: PExtensibleModel; StreotypeStr: string): string;
+function PAbstractApplyExpressionCommand.GetProfile(M: PExtensibleModel; StereotypeStr: string): string;
 var
   S: PStereotype;
 begin
   Result := '';
-  if StreotypeStr <> '' then begin
-    S := ExtensionManager.FindFirstStereotype(StreotypeStr, M.MetaClass.Name);
-    if S <> nil then Result := S.Profile.Name;
+  if M.StereotypeProfile <> '' then begin // Find stereotype in the same profile
+    S := ExtensionManager.FindStereotype(M.StereotypeProfile, StereotypeStr, M.MetaClass.Name);
+    if Assigned(S) then
+      Result := S.Profile.Name
+  end
+  else begin
+    if StereotypeStr <> '' then begin  // Search all profiles
+      S := ExtensionManager.FindFirstStereotype(StereotypeStr, M.MetaClass.Name);
+      if Assigned(S) then
+        Result := S.Profile.Name
+    end;
   end;
 end;
 

@@ -104,7 +104,7 @@ var
   ParentRow: TJvCustomInspectorItem;
 begin
   Result := nil;
-  if FModel <> nil then
+  if Model <> nil then
   begin
     // if Row.Node.Level = TAGGEDVALUEITEM_LEVEL then begin
     ParentRow := Row.Parent;
@@ -132,7 +132,7 @@ var
 begin
   T := GetTagDefinition(Row);
   if (T <> nil) and Assigned(FOnSetTaggedValueAsDefault) then
-    FOnSetTaggedValueAsDefault(Self, FModel, Profile.Name,
+    FOnSetTaggedValueAsDefault(Self, Model, Profile.Name,
       T.TagDefinitionSet.Name, T.Name);
 end;
 
@@ -160,7 +160,7 @@ var
 begin
   T := GetTagDefinition(Row);
   if IsDataTagType(T.TagType) and Assigned(FOnDataTaggedValueChange) then
-    FOnDataTaggedValueChange(Self, FModel, Profile.Name,
+    FOnDataTaggedValueChange(Self, Model, Profile.Name,
       T.TagDefinitionSet.Name, T.Name, Value);
 end;
 
@@ -172,7 +172,7 @@ var
 begin
   T := GetTagDefinition(Row);
   if (T.TagType = tkReference) and Assigned(FOnReferenceTaggedValueChange) then
-    FOnReferenceTaggedValueChange(Self, FModel, Profile.Name,
+    FOnReferenceTaggedValueChange(Self, Model, Profile.Name,
       T.TagDefinitionSet.Name, T.Name, Value);
 end;
 
@@ -189,7 +189,7 @@ procedure PTagDefinitionSetJvclInspector.SetupRows;
 begin
   Form.Inspector.BeginUpdate;
   ClearRows;
-  if (FModel <> nil) and (FTagDefinitionSet <> nil) then
+  if (Model <> nil) and (FTagDefinitionSet <> nil) then
     SetupTagDefintionSetCategory(FTagDefinitionSet);
   Form.Inspector.EndUpdate;
 end;
@@ -211,8 +211,8 @@ var
 begin
   CategoryNode := CreateCategoryItem(ATagDefinitionSet.Name);
 
-  if Assigned(FModel) then
-    ReadOnly := FModel.ReadOnly
+  if Assigned(Model) then
+    ReadOnly := Model.ReadOnly
   else
     ReadOnly := True;
 
@@ -370,32 +370,32 @@ var
   Row: TJvInspectorElemBase;
   NewRefValue: string;
 begin
-  if Assigned(FModel) then begin
+  if Assigned(Model) then begin
     ReadOnly := Model.ReadOnly;
     for Row in FElemsHolder do
     begin
       T := GetTagDefinition(Row.Item);
       if T <> nil then
       begin
-        TV := FModel.FindTaggedValue(Profile.Name, T.TagDefinitionSet.Name,
+        TV := Model.FindTaggedValue(Profile.Name, T.TagDefinitionSet.Name,
           T.Name);
         case T.TagType of
           tkInteger, tkReal:
-            Row.Item.Data.AsString := FModel.QueryDataTaggedValue(Profile.Name,
+            Row.Item.Data.AsString := Model.QueryDataTaggedValue(Profile.Name,
               T.TagDefinitionSet.Name, T.Name);
           tkBoolean:
             Row.Item.Data.AsOrdinal := Integer
-              (StrToBool(FModel.QueryDataTaggedValue(Profile.Name,
+              (StrToBool(Model.QueryDataTaggedValue(Profile.Name,
                   T.TagDefinitionSet.Name, T.Name)));
           tkEnumeration:
-            Row.Item.Data.AsString := FModel.QueryDataTaggedValue(Profile.Name,
+            Row.Item.Data.AsString := Model.QueryDataTaggedValue(Profile.Name,
               T.TagDefinitionSet.Name, T.Name);
           tkString:
             if Row.Item is TJvInspectorMultiStringItemWithNameImage then
               (Row.Item as TJvInspectorMultiStringItemWithNameImage).NewString :=
-                FModel.QueryDataTaggedValue(Profile.Name,T.TagDefinitionSet.Name, T.Name)
+                Model.QueryDataTaggedValue(Profile.Name,T.TagDefinitionSet.Name, T.Name)
             else
-              Row.Item.Data.AsString := FModel.QueryDataTaggedValue(Profile.Name,
+              Row.Item.Data.AsString := Model.QueryDataTaggedValue(Profile.Name,
                 T.TagDefinitionSet.Name, T.Name);
 
           tkReference:
@@ -460,7 +460,7 @@ begin
               ElementListForm.SelectedModel as PExtensibleModel);
         end;
       tkCollection:
-        TaggedValueCollectionEditorForm.ShowTaggedValueCollection(FModel,
+        TaggedValueCollectionEditorForm.ShowTaggedValueCollection(Model,
           GetTagDefinition(Item));
     end;
     DisplayStr := Item.Data.AsString;
