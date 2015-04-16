@@ -878,7 +878,7 @@ type
     destructor Destroy; override;
     procedure Accept(Visitor: PVisitor); override;
     procedure Draw(Canvas: PCanvas); override;
-    procedure DrawDiagram(Canvas: PCanvas); virtual;
+    procedure DrawDiagram(Canvas: PCanvas; ViewPort: TRect); virtual;
     procedure Update; override;
     function GetContainingDocument: PDocument; override;
     function GetViewAt(Canvas: PCanvas; X, Y: Integer): PView; override;
@@ -4998,8 +4998,7 @@ procedure PDiagramView.Draw(Canvas: PCanvas);
 var
   View: PView;
 begin
-  if FVisible then
-  begin
+  if FVisible then begin
     Arrange(Canvas);
     DrawObject(Canvas);
     InitDeferredDrawViews;
@@ -5010,13 +5009,12 @@ begin
   end;
 end;
 
-procedure PDiagramView.DrawDiagram(Canvas: PCanvas);
+procedure PDiagramView.DrawDiagram(Canvas: PCanvas; ViewPort: TRect);
 var
   SelectedView: PView;
 begin
-  if FVisible then
-  begin
-    //Canvas.StartDrawing(ViewPort);
+  if FVisible then begin
+    Canvas.StartDrawing(ViewPort);
     Draw(Canvas);
     for SelectedView in  FSelectedViews do 
       SelectedView.DrawSelection(Canvas);

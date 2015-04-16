@@ -1005,24 +1005,23 @@ begin
 end;
 
 procedure PMain.MainFormModelMenuClickedHandler(Sender: TObject);
+var
+  Model: PModel;
 begin
+  Model := SelectTargetModel;
   try
     with MainForm do begin
       if Sender = ModelCollectionEditor then
       begin
-        if (StarUMLApplication.SelectedModelCount = 1) and
-           (StarUMLApplication.SelectedModels[0] is PExtensibleModel)
-        then
+        if (Model is PExtensibleModel) then
           //-- MainForm.InspectorFrame.ShowCollectionEditor
-          CollectionEditorForm.ShowCollection(StarUMLApplication.SelectedModels[0])
+          CollectionEditorForm.ShowCollection(Model)
         else
           MessageDlg(ERR_DIAGRAM_NO_COLLECTIONS, mtError, [mbOK], 0);
       end
       else if Sender = ModelConstraints then
       begin
-        if (StarUMLApplication.SelectedModelCount = 1) and
-           (StarUMLApplication.SelectedModels[0] is PExtensibleModel)
-        then begin
+        if (Model is PExtensibleModel) then begin
           //-- MainForm.InspectorFrame.ShowConstraintsEditor
           ConstraintEditorForm.UpdateConstraints;
           ConstraintEditorForm.Show;
@@ -1033,11 +1032,9 @@ begin
       end
       else if Sender = ModelTaggedValues then
       begin
-        if (StarUMLApplication.SelectedModelCount = 1) and
-           (StarUMLApplication.SelectedModels[0] is PExtensibleModel)
-        then
+        if (Model is PExtensibleModel) then
           //-- MainForm.InspectorFrame.ShowTaggedValuesEditor
-          TaggedValueEditorForm.ShowTaggedValues(StarUMLApplication.SelectedModels[0] as PExtensibleModel)
+          TaggedValueEditorForm.ShowTaggedValues(Model as PExtensibleModel)
         else
           MessageDlg(ERR_DIAGRAM_NO_TAGGEDVALUES, mtError, [mbOK], 0);
       end

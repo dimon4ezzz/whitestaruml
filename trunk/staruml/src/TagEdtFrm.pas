@@ -69,11 +69,11 @@ type
   protected const
     CATEGORY_LEVEL = 0;
     TAGGEDVALUEITEM_LEVEL = 1;
-
+  private
+    FModel: PExtensibleModel;
   protected
     TextMemo: TMemo;
     FOwner: TComponent;
-    FModel: PExtensibleModel;
     FTagDefinitionSet: PTagDefinitionSet;
     FReadOnly: Boolean;
     FOnInspectorChange: TNotifyEvent;
@@ -271,7 +271,7 @@ end;
 
 function PTagDefinitionSetInspector.IsDefaultValue(ATagDefinition: PTagDefinition): Boolean;
 begin
-  Result := (FModel.FindTaggedValue(Profile.Name, ATagDefinition.TagDefinitionSet.Name, ATagDefinition.Name) = nil);
+  Result := (Model.FindTaggedValue(Profile.Name, ATagDefinition.TagDefinitionSet.Name, ATagDefinition.Name) = nil);
 end;
 
  procedure PTagDefinitionSetInspector.SetModel(Value: PExtensibleModel);
@@ -367,7 +367,7 @@ var
 begin
   TagDefinitionSetComboBox.Clear;
   for I := 0 to AProfile.TagDefinitionSetCount - 1 do
-    if AProfile.TagDefinitionSets[I].CanApplyTo(FModel.MetaClass.Name) then
+    if AProfile.TagDefinitionSets[I].CanApplyTo(Model.MetaClass.Name) then
       TagDefinitionSetComboBox.Items.AddObject(AProfile.TagDefinitionSets[I].Name,
         AProfile.TagDefinitionSets[I]);
   if TagDefinitionSetComboBox.Items.Count > 0 then begin
@@ -398,7 +398,7 @@ procedure TTaggedValueEditorForm.SetupTaggedTabControl;
   begin
     Result := False;
     for I := 0 to AProfile.TagDefinitionSetCount - 1 do
-      if AProfile.TagDefinitionSets[I].CanApplyTo(FModel.MetaClass.Name) then begin
+      if AProfile.TagDefinitionSets[I].CanApplyTo(Model.MetaClass.Name) then begin
         Result := True;
         Exit;
       end;
@@ -413,7 +413,7 @@ begin
   TagDefinitionSetComboBox.Items.Clear;
   TagDefinitionSetInspector.ClearRows;
 
-  if FModel <> nil then begin
+  if Model <> nil then begin
     // append tab sheets for include profiles
     for I := 0 to ExtensionManager.IncludedProfileCount - 1 do begin
       if ExistsAvailableTagDefinitionSet(ExtensionManager.IncludedProfiles[I]) then
@@ -421,12 +421,21 @@ begin
           ExtensionManager.IncludedProfiles[I]);
     end;
     // set active tab sheet
-    if (TaggedValueTabControl.Tabs.Count > 0){ and (FModel.StereotypeProfile <> '') }then begin
-      Idx := TaggedValueTabControl.Tabs.IndexOf(FModel.StereotypeProfile);
-      S := ExtensionManager.FindStereotype(FModel.StereotypeProfile, FModel.StereotypeName, FModel.MetaClass.Name);
-      if (Idx <> -1) and (S <> nil) and (S.TagDefinitionSet <> nil) then begin
+    if (TaggedValueTabControl.Tabs.Count > 0) then begin
+      if (FModel.StereotypeProfile = '') then begin
+        Idx := -1;
+        S := nil;
+      end
+      else begin
+        Idx := TaggedValueTabControl.Tabs.IndexOf(Model.StereotypeProfile);
+        S := ExtensionManager.FindStereotype(Model.StereotypeProfile, Model.StereotypeName, FModel.MetaClass.Name);
+      end;
+      if (Idx > -1) and Assigned(S) then begin
         TaggedValueTabControl.TabIndex := Idx;
-        SetupTaggedValueTab(TaggedValueTabControl.Tabs.Objects[Idx] as PProfile, S.TagDefinitionSet.Name);
+        if Assigned(S.TagDefinitionSet) then
+          SetupTaggedValueTab(TaggedValueTabControl.Tabs.Objects[Idx] as PProfile, S.TagDefinitionSet.Name)
+        else
+          SetupTaggedValueTab(TaggedValueTabControl.Tabs.Objects[Idx] as PProfile)
       end
       else begin
         TaggedValueTabControl.TabIndex := 0;
@@ -438,11 +447,11 @@ end;
 
 procedure TTaggedValueEditorForm.UpdateFormTitle;
 begin
-  if FModel = nil then
+  if Model = nil then
     Caption := TXT_TITLE_TAGGEDVALUEEDITORFORM + ' - (' + TAGGEDVALUEEDITORFORM_NOMODEL + ')'
   else
     Caption := TXT_TITLE_TAGGEDVALUEEDITORFORM + ' - ('
-      + Copy(FModel.ClassName, 2, Length(FModel.ClassName) - 1) + ') ' + FModel.Name;
+      + Copy(Model.ClassName, 2, Length(Model.ClassName) - 1) + ') ' + Model.Name;
 end;
 
 procedure TTaggedValueEditorForm.UpdateUIState;
@@ -450,9 +459,9 @@ var
   FD: PTagDefinition;
 begin
   FD := TagDefinitionSetInspector.FocusedTagDefinition;
-  DefaultButton.Enabled := (FModel <> nil) and (not FReadOnly) and (FD <> nil)
+  DefaultButton.Enabled := (Model <> nil) and (not FReadOnly) and (FD <> nil)
     and (not FD.Lock) and (CurrentProfile <> nil)
-    and (FModel.FindTaggedValue(CurrentProfile.Name, FD.TagDefinitionSet.Name, FD.Name) <> nil);
+    and (Model.FindTaggedValue(CurrentProfile.Name, FD.TagDefinitionSet.Name, FD.Name) <> nil);
 end;
 
 procedure TTaggedValueEditorForm.HandleDataTaggedValueChange(Sender: TObject; AModel: PExtensibleModel; AProfileName: string;
@@ -523,7 +532,7 @@ end;
 
 procedure TTaggedValueEditorForm.ShowTaggedValues(AModel: PExtensibleModel);
 begin
-  FModel := AModel;
+  Model := AModel;
   Show;
   Inspect;
 end;
