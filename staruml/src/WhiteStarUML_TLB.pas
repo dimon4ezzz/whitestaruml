@@ -12,7 +12,7 @@ unit WhiteStarUML_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 3/5/2015 1:50:40 PM from Type Library described below.
+// File generated on 4/6/2015 5:29:24 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml\src\WhiteStarUML (1)
@@ -297,7 +297,7 @@ const
   IID_IUMLCompositeStructureDiagram: TGUID = '{793DE345-9E62-4AAF-AB25-F035B55F8CEB}';
   IID_IStarUMLAddIn: TGUID = '{0F84CF65-8944-4ED4-8C57-49C96616FEBA}';
   IID_IExprBuilder: TGUID = '{414633E5-89AA-440F-8B07-F8EFD4B6F539}';
-  CLASS_TExprBuilder: TGUID = '{E5833835-D56A-4973-8547-7255208BF164}';
+  CLASS_ExprBuilder: TGUID = '{E5833835-D56A-4973-8547-7255208BF164}';
 
 // *********************************************************************//
 // Declaration of Enumerations defined in Type Library
@@ -1000,7 +1000,7 @@ type
 // (NOTE: Here we map each CoClass to its Default Interface)
 // *********************************************************************//
   WhiteStarUMLApplication = IStarUMLApplication;
-  TExprBuilder = IExprBuilder;
+  ExprBuilder = IExprBuilder;
 
 
 // *********************************************************************//
@@ -34623,13 +34623,13 @@ type
   end;
 
 // *********************************************************************//
-// The Class CoTExprBuilder provides a Create and CreateRemote method to
+// The Class CoExprBuilder provides a Create and CreateRemote method to
 // create instances of the default interface IExprBuilder exposed by
-// the CoClass TExprBuilder. The functions are intended to be used by
+// the CoClass ExprBuilder. The functions are intended to be used by
 // clients wishing to automate the CoClass objects exposed by the
 // server of this typelibrary.
 // *********************************************************************//
-  CoTExprBuilder = class
+  CoExprBuilder = class
     class function Create: IExprBuilder;
     class function CreateRemote(const MachineName: string): IExprBuilder;
   end;
@@ -34648,14 +34648,14 @@ begin
   Result := CreateRemoteComObject(MachineName, CLASS_WhiteStarUMLApplication) as IStarUMLApplication;
 end;
 
-class function CoTExprBuilder.Create: IExprBuilder;
+class function CoExprBuilder.Create: IExprBuilder;
 begin
-  Result := CreateComObject(CLASS_TExprBuilder) as IExprBuilder;
+  Result := CreateComObject(CLASS_ExprBuilder) as IExprBuilder;
 end;
 
-class function CoTExprBuilder.CreateRemote(const MachineName: string): IExprBuilder;
+class function CoExprBuilder.CreateRemote(const MachineName: string): IExprBuilder;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_TExprBuilder) as IExprBuilder;
+  Result := CreateRemoteComObject(MachineName, CLASS_ExprBuilder) as IExprBuilder;
 end;
 
 end.
