@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 3/5/2015 1:50:37 PM (- $Rev: 12980 $, 2417578).
+// File generated on 4/6/2015 5:54:38 PM (- $Rev: 12980 $, 5003170).
 
 [
   uuid(4D5F69B3-73FC-4C09-A1CE-73D1A677A0E7),
@@ -270,7 +270,7 @@ library WhiteStarUML
   interface IUMLCompositeStructureDiagram;
   interface IStarUMLAddIn;
   interface IExprBuilder;
-  coclass TExprBuilder;
+  coclass ExprBuilder;
 
 
   [
@@ -6786,11 +6786,12 @@ library WhiteStarUML
 
   [
     uuid(E5833835-D56A-4973-8547-7255208BF164),
-    helpstring("TExprBuilder"),
+    version(1.0),
+    helpstring("ExprBuilder Class"),
     noncreatable,
     hidden
   ]
-  coclass TExprBuilder
+  coclass ExprBuilder
   {
     [default] interface IExprBuilder;
   };

@@ -187,7 +187,7 @@ type
   end;
 
   // Implementation of COM interface ITExprBuilder to PNXBuilder
-  TTExprBuilder = class(TTypedComObject, IExprBuilder)
+  TExprBuilder = class(TTypedComObject, IExprBuilder)
   private
     FNXBuilder: PNXBuilder;
     function GetNotationTree: PNXNotationExpr;
@@ -791,7 +791,7 @@ end;
 function PNXManager.ReadExprWithGoldParser(FilePath: String): PNXNotationExpr;
 var
   Builder: IExprBuilder;
-  BuilderInstance: TTExprBuilder; // Shortcut to object implementing ITExprBuilder
+  BuilderInstance: TExprBuilder; // Shortcut to object implementing ITExprBuilder
   Parser: TNxParser;
   ParseStatus: WordBool;
 {$IFDEF DEBUGNX}
@@ -800,8 +800,8 @@ var
 {$ENDIF DEBUGNX}
 begin
     Result := nil;
-    Builder := CoTExprBuilder.Create;
-    BuilderInstance := Builder as TTExprBuilder;
+    Builder := CoExprBuilder.Create;
+    BuilderInstance := Builder as TExprBuilder;
     //Builder := TTExprBuilder.Create;
     Parser := TNxParser.Create(nil);
     ParseStatus := Parser.Parse(FilePath, Builder);
@@ -3176,25 +3176,25 @@ end;
 
 {TTExprBuilder }
 
-destructor TTExprBuilder.Destroy;
+destructor TExprBuilder.Destroy;
 begin
   FNXBuilder.Free;
   inherited;
 end;
 
-function TTExprBuilder.EndOperation: HResult;
+function TExprBuilder.EndOperation: HResult;
 begin
   FNXBuilder.EndOperation;
   Result := S_OK;
 end;
 
-procedure TTExprBuilder.FreeNotationTree;
+procedure TExprBuilder.FreeNotationTree;
 begin
   if Assigned(FNXBuilder) then
     FNXBuilder.FreeNotationTree;
 end;
 
-function TTExprBuilder.GetNotationTree: PNXNotationExpr;
+function TExprBuilder.GetNotationTree: PNXNotationExpr;
 begin
   if Assigned(FNXBuilder) then
     Result := FNXBuilder.NotationTree
@@ -3202,19 +3202,19 @@ begin
     Result := nil;
 end;
 
-function TTExprBuilder.NewOperation(const Oper: WideString; Pos: SYSINT): HResult;
+function TExprBuilder.NewOperation(const Oper: WideString; Pos: SYSINT): HResult;
 begin
   FNXBuilder.NewOperation(Oper,Pos);
   Result := S_OK;
 end;
 
-function TTExprBuilder.PrimExpr(Value: OleVariant; Pos: SYSINT): HResult;
+function TExprBuilder.PrimExpr(Value: OleVariant; Pos: SYSINT): HResult;
 begin
   FNXBuilder.BuildPrimExpr(Value,Pos);
   Result := S_OK;
 end;
 
-function TTExprBuilder.NewNotationOperation(const Filepath: WideString; Pos: SYSINT): HResult;
+function TExprBuilder.NewNotationOperation(const Filepath: WideString; Pos: SYSINT): HResult;
 begin
   if not Assigned(FNXBuilder) then
     FNXBuilder := PNXBuilder.Create;
@@ -3223,13 +3223,13 @@ begin
   Result := S_OK;
 end;
 
-function TTExprBuilder.IdentExpr(const Id: WideString; Pos: SYSINT): HResult;
+function TExprBuilder.IdentExpr(const Id: WideString; Pos: SYSINT): HResult;
 begin
   FNXBuilder.BuildIdentExpr(Id, Pos);
   Result := S_OK;
 end;
 
-function TTExprBuilder.NewDrawBitmapOperation(const FilePath: WideString; Pos: SYSINT): HResult;
+function TExprBuilder.NewDrawBitmapOperation(const FilePath: WideString; Pos: SYSINT): HResult;
 begin
    FNXBuilder.BuildDrawBitmapExpr(Filepath, Pos);
    Result := S_OK;
@@ -3296,7 +3296,7 @@ end;
 
 initialization
   NXManager := PNXManager.Create;
-  TTypedComObjectFactory.Create(ComServer, TTExprBuilder, Class_TExprBuilder,
+  TTypedComObjectFactory.Create(ComServer, TExprBuilder, Class_ExprBuilder,
     ciMultiInstance, tmApartment);
 
 finalization
