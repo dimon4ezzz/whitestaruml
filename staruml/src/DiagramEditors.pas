@@ -317,6 +317,7 @@ end;
 procedure PDiagramEditor.DrawByDoubleBuffering(R: TRect);
 var
   W, H: Integer;
+  VP: TRect;
 begin
   DoubleBufferingCanvas.OriginX := -R.Left;
   DoubleBufferingCanvas.OriginY := -R.Top;
@@ -328,13 +329,14 @@ begin
     DoubleBufferingBitmap.Height := Max(DoubleBufferingBitmap.Height, H);
   end;
 
-  Clear(DoubleBufferingCanvas, Rect(0, 0, W, H));
+  VP := Rect(0, 0, W, H);
+  Clear(DoubleBufferingCanvas, VP);
   DoubleBufferingCanvas.ZoomFactor := FDiagramView.Canvas.ZoomFactor;
   DoubleBufferingCanvas.UseDirect2D := FUseDirect2D;
   DrawGrid(DoubleBufferingCanvas, R);
-  FDiagramView.DrawDiagram(DoubleBufferingCanvas);
+  FDiagramView.DrawDiagram(DoubleBufferingCanvas, R);
 
-  FDiagramView.Canvas.Canvas.CopyRect(R, DoubleBufferingCanvas.Canvas, Rect(0, 0, W, H));
+  FDiagramView.Canvas.Canvas.CopyRect(R, DoubleBufferingCanvas.Canvas, VP);
 end;
 
 function PDiagramEditor.GetDiagramImageIndex: Integer;
@@ -523,16 +525,13 @@ end;
 
 procedure PDiagramEditor.PaintBoxPaintHandler(Sender: TObject);
 var
-  D2DViewPort: TRect;
+  VP: TRect;
 begin
+  FDiagramView.Canvas.UseDirect2D := FUseDirect2D;
+  VP := ViewPort;
+  DrawGrid(FDiagramView.Canvas, VP);
+  FDiagramView.DrawDiagram(FDiagramView.Canvas, VP);
 
-  if FUseDirect2D then
-    RedrawDiagramView
-  else begin
-    FDiagramView.Canvas.UseDirect2D := False;
-    DrawGrid(FDiagramView.Canvas, ViewPort);
-    FDiagramView.DrawDiagram(FDiagramView.Canvas);
-  end;
   //RedrawDiagramView;
   if FScrolled and Assigned(FHandlingPaintProc) then
     FHandlingPaintProc(Self, FCanvas);

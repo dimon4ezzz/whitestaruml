@@ -137,7 +137,7 @@ type
     FOriginX: Integer;
     FOriginY: Integer;
     FDeviceFactor: Real;
-    FViewPort: TRect;
+    FViewPort: TRect; // Represents clipping rectangle for Direct2D drawing
     FUseDirect2D: Boolean;
     function GetPen: TPen;
     function GetBrush: TBrush;
@@ -502,7 +502,7 @@ begin
   FCanvas.StretchDraw(R, G);
   {$ELSE}
   if UseDirect2D then begin
-    D2DCanvas := TDirect2DCanvas.Create(Canvas, Canvas.ClipRect);
+    D2DCanvas := TDirect2DCanvas.Create(Canvas, FViewPort);
     try
       D2DCanvas.RenderTarget.BeginDraw;
       D2DCanvas.StretchDraw(R, G);
@@ -619,7 +619,7 @@ begin
   Y2 := Y2 + OriginY;
 
   if UseDirect2D and (FCanvas.Pen.Style in [psSolid,psDash]) then begin
-    D2DCanvas := TDirect2DCanvas.Create(Canvas,Canvas.ClipRect);
+    D2DCanvas := TDirect2DCanvas.Create(Canvas, FViewPort);
     try
       D2DCanvas.RenderTarget.BeginDraw;
       D2DCanvas.Ellipse(X1, Y1, X2, Y2);
@@ -701,7 +701,7 @@ begin
   Y2 := Y2 + OriginY;
 
   if UseDirect2D then begin
-    D2DCanvas := TDirect2DCanvas.Create(Canvas, Canvas.ClipRect);
+    D2DCanvas := TDirect2DCanvas.Create(Canvas, FViewPort);
     try
       D2DCanvas.RenderTarget.BeginDraw;
       D2DCanvas.RoundRect(X1, Y1, X2, Y2, X3, Y3);
@@ -749,7 +749,7 @@ begin
   end;
 
   if UseDirect2D and (FCanvas.Pen.Style in [psSolid,psDash]) then begin
-  D2DCanvas := TDirect2DCanvas.Create(Canvas,Canvas.ClipRect);
+  D2DCanvas := TDirect2DCanvas.Create(Canvas, FViewPort);
     try
       D2DCanvas.RenderTarget.BeginDraw;
       D2DCanvas.Polygon(Points);
@@ -775,7 +775,7 @@ begin
 
   if UseDirect2D and (FCanvas.Pen.Style = psSolid) then
   begin
-    D2DCanvas := TDirect2DCanvas.Create(Canvas, Canvas.ClipRect);
+    D2DCanvas := TDirect2DCanvas.Create(Canvas, FViewPort);
     try
       D2DCanvas.RenderTarget.BeginDraw;
       D2DCanvas.Polyline(Points);
@@ -923,6 +923,16 @@ end;
 procedure PCanvas.StartDrawing(AViewPort: TRect);
 begin
   FViewPort := AViewPort;
+
+  // Adjust Vieport for Direct2D drawing
+  if FViewPort.Left > 0 then begin
+    FViewPort.Left := 0;
+    FViewPort.Right := FViewPort.Right - FViewPort.Left;
+  end;
+  if FViewPort.Top > 0 then begin
+    FViewPort.Top := 0;
+    FViewPort.Bottom := FViewPort.Bottom - FViewPort.Top;
+  end;
 end;
 
 // Follwing functions are recommended not to use
