@@ -221,7 +221,7 @@ object NewProjectForm: TNewProjectForm
           455
           49)
         object DescriptionMemo: TMemo
-          Left = 8
+          Left = 4
           Top = 5
           Width = 439
           Height = 39
@@ -240,8 +240,8 @@ object NewProjectForm: TNewProjectForm
         end
       end
       object ApproachesListView: TListView
-        Left = 2
-        Top = 29
+        Left = 3
+        Top = 30
         Width = 455
         Height = 109
         Columns = <
@@ -371,6 +371,10 @@ object NewProjectForm: TNewProjectForm
     object RFileOpenPage: TTabSheet
       Caption = 'Recent Files'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         461
         242)
