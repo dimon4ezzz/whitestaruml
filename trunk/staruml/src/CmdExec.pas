@@ -3115,10 +3115,14 @@ procedure PAbstractCommand.CollectSizesFromView(AView: PView);
 var
   V: PView;
 begin
-  V := AView;
-  SizePreservingViews.Add(V);
-  while V.OwnerDiagramView = nil do V := V.Parent;
-  SizePreservingViews.Add(V);
+  if Assigned(AView) then begin
+    V := AView;
+    SizePreservingViews.Add(V);
+    while Assigned(V) and not Assigned(V.OwnerDiagramView) do
+      V := V.Parent;
+    if Assigned(V) then
+      SizePreservingViews.Add(V);
+  end;
 end;
 
 procedure PAbstractCommand.CollectSizesFromModelSet(AModelSet: PModelOrderedSet);
@@ -3582,7 +3586,7 @@ begin
   if not Assigned(AView) or not Assigned(AView.Model) then Exit;
   if (DiagramView is PUMLSequenceDiagramView) or
      (DiagramView is PUMLSequenceRoleDiagramView)
-  then Exit; 
+  then Exit;
   M := AView.Model;
 
   ModelViewSet := PViewOrderedSet.Create;
@@ -4120,7 +4124,7 @@ begin
     ContainerView := FindViewInDiagramView(DiagramView, (Model as PUMLAttribute).Owner, X, Y);
     if ContainerView = nil then begin
       ContainerView := UMLFactory.CreateView(DiagramView, X, Y, X, Y, (Model as PUMLAttribute).Owner);
-      ViewSet.Add(ContainerView);      
+      ViewSet.Add(ContainerView);
     end;
     R := ContainerView.GetBoundingBox(DiagramView.Canvas);
     if PointInRect(R, Point(X, Y)) then
@@ -6327,7 +6331,7 @@ begin
   if B then begin
     if (FOldStereotype = FNewStereotype) and
        (FOldVisibility = FNewVisibility) and
-       (FOldName = FNewName) 
+       (FOldName = FNewName)
     then B := False;
   end;
   Result := B;
@@ -9291,6 +9295,3 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 
 end.
-
-
-
