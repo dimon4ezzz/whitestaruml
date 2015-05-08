@@ -489,8 +489,6 @@ begin
 end;
 
 procedure PCanvas.StretchDraw(R: TRect; G: TGraphic);
-var
-  D2DCanvas: TDirect2DCanvas;
 begin
   CoordTransform(FZoomFactor, GridFactor(1, 1), R);
   R.Left := R.Left + OriginX;
@@ -498,22 +496,7 @@ begin
   R.Top := R.Top + OriginY;
   R.Bottom := R.Bottom + OriginY;
 
-  {$IFDEF WIN64} // There are problems with 64 bit build with Delphi XE5
   FCanvas.StretchDraw(R, G);
-  {$ELSE}
-  if UseDirect2D then begin
-    D2DCanvas := TDirect2DCanvas.Create(Canvas, FViewPort);
-    try
-      D2DCanvas.RenderTarget.BeginDraw;
-      D2DCanvas.StretchDraw(R, G);
-      D2DCanvas.RenderTarget.EndDraw;
-    finally
-      D2DCanvas.Free;
-    end;
-  end
-  else
-    FCanvas.StretchDraw(R, G);
- {$ENDIF}
 end;
 
 procedure PCanvas.Draw(X, Y: Integer; G: TGraphic);
@@ -749,7 +732,7 @@ begin
   end;
 
   if UseDirect2D and (FCanvas.Pen.Style in [psSolid,psDash]) then begin
-  D2DCanvas := TDirect2DCanvas.Create(Canvas, FViewPort);
+    D2DCanvas := TDirect2DCanvas.Create(Canvas, FViewPort);
     try
       D2DCanvas.RenderTarget.BeginDraw;
       D2DCanvas.Polygon(Points);
@@ -773,8 +756,7 @@ begin
     Points[I].Y := Points[I].Y + OriginY;
   end;
 
-  if UseDirect2D and (FCanvas.Pen.Style = psSolid) then
-  begin
+  if UseDirect2D and (FCanvas.Pen.Style = psSolid) then begin
     D2DCanvas := TDirect2DCanvas.Create(Canvas, FViewPort);
     try
       D2DCanvas.RenderTarget.BeginDraw;
