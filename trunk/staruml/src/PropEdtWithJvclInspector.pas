@@ -98,12 +98,33 @@ end;
 procedure TPropertyEditorWithJvclInspector.ItemDataValueChanged(Sender: TObject);
 var
   InspectorItem: TJvCustomInspectorItem;
+  ElementsToUpdate: POrderedSet;
+  Element: PElement;
+  PropertyKey: string;
+  PropertyValue: string;
+  I: Integer;
 begin
-  InspectorItem := Sender as TJvCustomInspectorItem;
 
-  if not FUpdating then // If being updated programatically do not propagate event
-    PropertyAdaptor.SetPropertyValue(FInspectingElements, InspectorItem.Name,
-      InspectorItem.DisplayValue);
+  if not FUpdating then begin // If being updated programatically (without direct user action) do not propagate event
+    InspectorItem := Sender as TJvCustomInspectorItem;
+    PropertyKey := InspectorItem.Name;
+    PropertyValue := InspectorItem.DisplayValue;
+    ElementsToUpdate := POrderedSet.Create;
+    try
+      for I := 0 to FInspectingElements.Count - 1 do begin
+        Element := FInspectingElements[I] as PElement;
+        if PropertyAdaptor.GetPropertyValue(Element,PropertyKey) <> PropertyValue then
+          ElementsToUpdate.Add(Element);
+      end;
+
+      if ElementsToUpdate.Count > 0 then
+        PropertyAdaptor.SetPropertyValue(ElementsToUpdate, PropertyKey, PropertyValue);
+
+    finally
+      ElementsToUpdate.Free;
+    end;
+
+  end;  // not FUpdating
 end;
 
 
