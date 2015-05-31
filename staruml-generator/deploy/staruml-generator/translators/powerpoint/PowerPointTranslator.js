@@ -53,6 +53,45 @@ var inGenerating = false;
 var currentItem = null;
 var currentPos = 1;
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Script initialization through script handler object provided by Documantation Generator
+
+Init()
+
+function Init()
+{
+  var Shell = new ActiveXObject("WScript.Shell")
+  var scriptHandlerContainer = WScript.CreateObject("WhiteStarUML.ScriptHanderContainer")
+  if ( scriptHandlerContainer != null)
+  {
+      var scriptHandler = scriptHandlerContainer.FindScriptHandler("WSGenerator.GeneratorApplication")
+      if ( scriptHandler != null)
+      {
+          WScript.ConnectObject(scriptHandler, "ScriptHandler_")
+          SetLogger(scriptHandler.Logger())
+          return Execute(scriptHandler.Args())
+      }
+      else
+        Shell.Popup("Getting generator script handler object failed!")
+        
+  }
+  else
+    Shell.Popup("Getting script handler container object failed!")
+  
+  return false // Script connection did not go properly
+}
+
+function ScriptHandler_Abort(Code)
+{
+  Abort()
+}
+
+// End of script initialization code
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 /////////////////////////////////////////////////
 // Execute :
 //
@@ -87,6 +126,11 @@ function SetLogger(logger){
 function log(message) {
   if (dLogger != null)
     dLogger.log(message);
+}
+
+function notify(message) {
+  if (dLogger != null)
+    dLogger.notify(message);
 }
 
 /////////////////////////////////////////////////
@@ -158,17 +202,6 @@ function main() {
   }
 }
 
-
-/////////////////////////////////////////////////
-// initArguments : initialize variables
-//
-function initProperties() {
-  // 1. template file name
-  templateFilename = "C:\\Documents and Settings\\Administrator\\πŸ≈¡ »≠∏È\\ppt-20050512(2)\\aaa--.ppt";
-  
-  // 2. output file name
-  outputFilename = "C:\\Documents and Settings\\Administrator\\πŸ≈¡ »≠∏È\\ppt-20050512(2)\\aaa--1.ppt";
-}
 
 /////////////////////////////////////////////////
 // connectToWhiteStarUMLApplication : create StarUML COM Object

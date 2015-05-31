@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 22/02/2014 13:50:10 (- $Rev: 12980 $, 4199110).
+// File generated on 5/30/2015 6:11:25 PM (- $Rev: 12980 $, 23572640).
 
 [
   uuid(765EB911-BD2A-4E44-BA34-7284C4D265C3),
@@ -28,6 +28,9 @@ library WSGenerator
   interface IGeneratorApplication;
   coclass GeneratorApplication;
   coclass LogAdaptor;
+  interface IGeneratorScriptHandler;
+  dispinterface IGeneratorScriptHandlerEvents;
+  coclass GeneratorScriptHandler;
 
 
   [
@@ -117,8 +120,36 @@ library WSGenerator
   };
 
   [
+    uuid(F90B974D-CE8D-4CED-A7F8-AAF50BAEC101),
+    helpstring("Dispatch interface for GeneratorScriptHandler Object"),
+    dual,
+    oleautomation
+  ]
+  interface IGeneratorScriptHandler: IDispatch
+  {
+    [id(0x000000C9)]
+    HRESULT _stdcall Args([out, retval] IHashTable** ResultVal);
+    [id(0x000000CA)]
+    HRESULT _stdcall Logger([out, retval] ILogger** ResultVal);
+  };
+
+  [
+    uuid(63388723-F83C-4241-900F-07E63EFB02B9),
+    helpstring("Events interface for GeneratorScriptHandler Object")
+  ]
+  dispinterface IGeneratorScriptHandlerEvents
+  {
+    properties:
+    methods:
+    [id(0x000000C9)]
+    HRESULT Abort([in] long Code);
+  };
+
+  [
     uuid(144B4B1E-FBE1-44DE-A354-16F450FF7D8E),
-    version(1.0)
+    version(1.0),
+    noncreatable,
+    hidden
   ]
   coclass GeneratorProcessor
   {
@@ -127,7 +158,9 @@ library WSGenerator
 
   [
     uuid(0076C4C5-1528-4060-B8D2-883D5EF68998),
-    version(1.0)
+    version(1.0),
+    noncreatable,
+    hidden
   ]
   coclass HashTable
   {
@@ -136,7 +169,8 @@ library WSGenerator
 
   [
     uuid(6492BAC0-7973-4BE8-BB1F-D6D975077F5F),
-    version(1.0)
+    version(1.0),
+    appobject
   ]
   coclass GeneratorApplication
   {
@@ -145,11 +179,25 @@ library WSGenerator
 
   [
     uuid(E7364994-73B0-4837-B663-A1BA567CF906),
-    version(1.0)
+    version(1.0),
+    noncreatable,
+    hidden
   ]
   coclass LogAdaptor
   {
     [default] interface ILogger;
+  };
+
+  [
+    uuid(FC3213A1-CCBC-4D13-AFA4-75E3A44067D9),
+    helpstring("GeneratorScriptHandler Object"),
+    noncreatable,
+    hidden
+  ]
+  coclass GeneratorScriptHandler
+  {
+    [default] interface IGeneratorScriptHandler;
+    [default, source] dispinterface IGeneratorScriptHandlerEvents;
   };
 
 };

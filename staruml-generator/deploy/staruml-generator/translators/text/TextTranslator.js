@@ -66,6 +66,44 @@ var tabCount = 4;
 
 var fileExceptionOccurred;
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// Script initialization through script handler object provided by Documantation Generator
+
+Init()
+
+function Init()
+{
+  var Shell = new ActiveXObject("WScript.Shell")
+  var scriptHandlerContainer = WScript.CreateObject("WhiteStarUML.ScriptHanderContainer")
+  if ( scriptHandlerContainer != null)
+  {
+      var scriptHandler = scriptHandlerContainer.FindScriptHandler("WSGenerator.GeneratorApplication")
+      if ( scriptHandler != null)
+      {
+          WScript.ConnectObject(scriptHandler, "ScriptHandler_")
+          SetLogger(scriptHandler.Logger())
+          return Execute(scriptHandler.Args())
+      }
+      else
+        Shell.Popup("Getting generator script handler object failed!")
+        
+  }
+  else
+    Shell.Popup("Getting script handler container object failed!")
+  
+  return false // Script connection did not go properly
+}
+
+function ScriptHandler_Abort(Code)
+{
+  Abort()
+}
+
+// End of script initialization code
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 /////////////////////////////////////////////////
 // Execute : 
 //

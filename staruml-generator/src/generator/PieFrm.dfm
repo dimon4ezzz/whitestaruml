@@ -1,7 +1,7 @@
 object PieForm: TPieForm
   Left = 285
   Top = 142
-  ActiveControl = ExecTasksGrid
+  ActiveControl = BatchPageControl
   BorderStyle = bsDialog
   Caption = 'WhiteStarUML Generator'
   ClientHeight = 498
@@ -16,6 +16,7 @@ object PieForm: TPieForm
   FormStyle = fsStayOnTop
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
@@ -26,7 +27,7 @@ object PieForm: TPieForm
     Top = 0
     Width = 721
     Height = 498
-    ActivePage = ExecutionPage
+    ActivePage = TemplateSelectionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = '<< &Start page'
     ButtonStart.NumGlyphs = 1
@@ -78,6 +79,8 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Height = -15
       Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Image1: TImage
         Left = 0
         Top = 70
@@ -441,6 +444,10 @@ object PieForm: TPieForm
         OnChange = BatchPageControlChange
         object MainTabSheet: TTabSheet
           Caption = 'List of templates'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object GenerationUnitDescLabel: TLabel
             Left = 8
             Top = 274
@@ -822,6 +829,8 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Style = []
       OnEnterPage = OutDirectorySelectionPageEnterPage
       OnExitPage = OutDirectorySelectionPageExitPage
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Image2: TImage
         Left = 0
         Top = 70
@@ -1246,7 +1255,7 @@ object PieForm: TPieForm
       Header.Title.Font.Name = 'Tahoma'
       Header.Title.Font.Style = [fsBold]
       Header.Subtitle.Color = clNone
-      Header.Subtitle.Text = '[3/3] Documents for selected templates are generated.'
+      Header.Subtitle.Text = '[3/3] Documents for selected templates are being generated.'
       Header.Subtitle.Anchors = [akLeft, akTop, akRight, akBottom]
       Header.Subtitle.Font.Charset = DEFAULT_CHARSET
       Header.Subtitle.Font.Color = clWindowText
@@ -1257,6 +1266,8 @@ object PieForm: TPieForm
       OnPage = ExecutionPagePage
       OnNextButtonClick = ExecutionPageNextButtonClick
       OnFinishButtonClick = ExecutionPageFinishButtonClick
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GenerationItemsLabel: TLabel
         Left = 8
         Top = 88

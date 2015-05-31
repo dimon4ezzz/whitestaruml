@@ -50,15 +50,10 @@ unit DirectMDAProc;
 interface
 
 uses
-  Classes, ComObj, ExtCtrls, Generics.Collections, MSScriptControl_TLB,
-  DirectMDAObjects, WSGenerator_TLB, StdVcl;
+  Classes, ComObj, ExtCtrls, Generics.Collections,
+  DirectMDAObjects, GeneratorScriptHandler, WSGenerator_TLB, StdVcl;
 
 const
-  FILE_EXT_JS = '.JS';
-  FILE_EXT_VBS = '.VBS';
-  SCRIPT_JS = 'JScript';
-  SCRIPT_VBS = 'VBScript';
-
   TXT_DEFULT_BATCH = 'This is the default batch of StarUML.';
   ERR_CANNOT_CREATE_TRANSLATOR = 'Translator object creation is failed. (%s)';
   ERR_UNSPECIFIED_FAILURE = 'Fail reason is not displayed.';
@@ -107,7 +102,7 @@ type
     FDefaultBatch: PBatch;
     FTargetDir: string;
     LogAdaptor: PLogAdaptor;
-    ScriptCtrl: TScriptControl;
+    ScriptHandler: TGeneratorScriptHandler; // Last script handler created
     GenerationUnitLoaded: Boolean;
     { internal variables }
     CurTask: PTask;
@@ -170,6 +165,7 @@ type
     procedure AquireBatchNames(SL: TStringList);
     procedure Execute(ABatch: PBatch);
     procedure Abort;
+    function GetScriptHandler: TGeneratorScriptHandler;
     { properties }
     property GenerationUnitCount: Integer read GetGenerationUnitCount;
     property GenerationUnits[Index: Integer]: PGenerationUnit read GetGenerationUnit;
@@ -236,9 +232,7 @@ begin
   LogAdaptor.OnLog := HandleLog;
   LogAdaptor.OnProgress := HandleProgress;
   LogAdaptor.OnNotify := HandleNotify;
-  ScriptCtrl := TScriptControl.Create(Application);
-  ScriptCtrl.Timeout := -1;
-  GenerationUnitLoaded := False;  
+  GenerationUnitLoaded := False;
 end;
 
 destructor TGeneratorProcessor.Destroy;
@@ -250,7 +244,6 @@ begin
   FDefaultBatch.Free;
   LogAdaptor._Release;
   LogAdaptor := nil;
-  ScriptCtrl.Free;
   inherited;
 end;
 
@@ -275,6 +268,19 @@ end;
 function TGeneratorProcessor.GetGenerationUnitCount: Integer;
 begin
   Result := FGenerationUnits.Count;
+end;
+
+function TGeneratorProcessor.GetScriptHandler: TGeneratorScriptHandler;
+var
+  Args: IHashTable;
+begin
+  ScriptHandler := TGeneratorScriptHandler.Create;
+  ScriptHandler.SetLogger(LogAdaptor);
+  Args := CoHashTable.Create;
+  if Assigned(CurTask) then
+    AssignArguments(CurTask, Args);
+  ScriptHandler.SetArgs(Args);
+  Result := ScriptHandler;
 end;
 
 function TGeneratorProcessor.GetGenerationUnit(Index: Integer): PGenerationUnit;
@@ -397,7 +403,6 @@ end;
 
 procedure TGeneratorProcessor.NotifyDeletingGenerationUnit(AGenerationUnit: PGenerationUnit);
 var
-  Task: PTask;
   Batch: PBatch;
 
   procedure FreeTask(Batch: PBatch);
@@ -551,46 +556,11 @@ procedure TGeneratorProcessor.ExecuteTask(ATask: PTask);
     end;
   end;
 
-  function GetScriptLanguage(ScriptFile: string): string;
-  var
-    FileExt: string;
-  begin
-    FileExt := UpperCase(ExtractFileExt(ScriptFile));
-    if FileExt = FILE_EXT_JS then
-      Result := SCRIPT_JS
-    else if FileExt = FILE_EXT_VBS then
-      Result := SCRIPT_VBS
-    else
-      Result := SCRIPT_JS;
-  end;
-
-  function ExistingScriptFunction(FunctionName: string): Boolean;
-  var
-    I: Integer;
-  begin
-    Result := False;
-    for I := 1 to ScriptCtrl.Procedures.Count do
-      if ScriptCtrl.Procedures.Item[I].Name = FunctionName then begin
-        Result := True;
-        Exit;
-      end;
-  end;
-
-  function CheckScriptFunctions: Boolean;
-  begin
-    Result := ExistingScriptFunction('SetLogger') and ExistingScriptFunction('Execute')
-      and ExistingScriptFunction('GetGeneratedFileCount') and ExistingScriptFunction('GetGeneratedFileAt')
-      and ExistingScriptFunction('Abort');
-  end;
 
   function ExecuteScriptTask(ATask: PTask; SL: TStringList; var FailMsg: string): Boolean;
   var
-    ScriptCode: TStringList;
     ScriptPath: string;
     GenUnit: PGenerationUnit;
-    InArgs: IHashTable;
-    OutArgs: IHashTable;
-    Success: Boolean;
   begin
     Result := False;
     SL.Clear;
@@ -602,37 +572,14 @@ procedure TGeneratorProcessor.ExecuteTask(ATask: PTask);
       Exit;
     end;
     try
-      ScriptCtrl.Language := GetScriptLanguage(ScriptPath);
-      ScriptCode := TStringList.Create;
-      try
-        ScriptCode.LoadFromFile(ScriptPath);
-        ScriptCtrl.Reset;
-        ScriptCtrl.AddCode('var _EXECUTION_OUT_ARGUMENTS = null;');
-        ScriptCtrl.AddCode(ScriptCode.Text);
-        if CheckScriptFunctions then begin
-          ScriptCtrl.AddObject('_DIRECTMDA_LOGGER', LogAdaptor, True);
-          ScriptCtrl.Eval('SetLogger(_DIRECTMDA_LOGGER)');
-          InArgs := CoHashTable.Create;
-          AssignArguments(ATask, InArgs);
-          ScriptCtrl.AddObject('_EXECUTION_IN_ARGUMENTS', InArgs, True);
-          Success := ScriptCtrl.Eval('Execute(_EXECUTION_IN_ARGUMENTS, _EXECUTION_OUT_ARGUMENTS)');
-          if not Success then
-            FailMsg := ERR_UNSPECIFIED_FAILURE;
-        end
-        else begin
-          Success := False;
-          FailMsg := ERR_SUBSTANDARD_SCRIPT;
-        end;
-      finally
-        ScriptCode.Free;
-      end;
+      StartScriptAndWait(ScriptPath);
     except
       on E: Exception do begin
         FailMsg := Format(ERR_GENERATION_ERROR, [E.Message]);
         Exit;
       end;
     end;
-    Result := Success;
+    Result := True;
   end;
 
   function ExecuteExeTask(ATask: PTask; SL: TStringList; var FailMsg: string): Boolean;
@@ -881,9 +828,9 @@ begin
   try
     STime := Time;
     for I := 0 to ABatch.TaskCount - 1 do begin
-      if ABatch.Tasks[I].Selected and InGenerating then begin
-        CurTask := ABatch.Tasks[I];
-        ExecuteTask(ABatch.Tasks[I]);
+      if ABatch.Task[I].Selected and InGenerating then begin
+        CurTask := ABatch.Task[I];
+        ExecuteTask(CurTask);
       end;
     end;
     Elapsed := DateTimeToTimeStamp(Time - STime);
@@ -898,10 +845,8 @@ end;
 procedure TGeneratorProcessor.Abort;
 begin
   Assert(CurTask <> nil);
-  if CurGenerator <> nil then
-    CurGenerator.Abort
-  else if CurTask.GenerationUnit.TranslatorType = ttScript then
-    ScriptCtrl.Eval('Abort();');
+  if Assigned(ScriptHandler) then
+    ScriptHandler.Abort;
   InGenerating := False;
   Log(MSG_GENERATION_ABORTED, lmWarning);
   if Assigned(FOnAbortTask) then

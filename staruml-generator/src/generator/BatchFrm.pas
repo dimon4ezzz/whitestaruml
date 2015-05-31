@@ -232,7 +232,7 @@ var
 begin
   TasksGrid.ClearRows;
   for I := 0 to Batch.TaskCount - 1 do
-    AddTaskRow(Batch.Tasks[I]);
+    AddTaskRow(Batch.Task[I]);
 end;
 
 procedure TBatchFrame.UpdateUIStates;

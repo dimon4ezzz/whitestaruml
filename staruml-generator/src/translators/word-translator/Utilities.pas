@@ -49,12 +49,12 @@ interface
 
 function GetDllPath: string;
 function SetQualifiedFileName(var FileName: string): Boolean;
-
+procedure StartScriptAndWait(ScriptFileName: string);
 
 implementation
 
 uses
-  SysUtils, Windows, Symbols;
+  SysUtils, Windows, Symbols, ShellAPI;
 
 function GetDllPath: string;
 var
@@ -83,6 +83,22 @@ begin
   FileName := QualifiedFileName;
   Result := True;
 
+end;
+
+procedure StartScriptAndWait(ScriptFileName: string);
+var
+  Info: TShellExecuteInfo;
+begin
+  FillChar(info, sizeof(Info), 0);
+  Info.cbSize := sizeOf(Info);
+  Info.lpVerb := 'open';
+  Info.lpFile := PChar(ScriptFileName);
+  Info.nShow := SW_HIDE;
+  Info.fMask := SEE_MASK_NOCLOSEPROCESS;
+  //Info.lpParameters := '//d //x'; // Autostart debugging with Visual Studio
+
+  ShellExecuteEx(@Info);
+  WaitForSingleObject(Info.hProcess, Infinite);
 end;
 
 end.
