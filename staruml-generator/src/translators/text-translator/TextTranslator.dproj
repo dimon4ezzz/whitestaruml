@@ -117,7 +117,7 @@
                     <VersionInfo Name="MajorVer">1</VersionInfo>
                     <VersionInfo Name="MinorVer">1</VersionInfo>
                     <VersionInfo Name="Release">0</VersionInfo>
-                    <VersionInfo Name="Build">18</VersionInfo>
+                    <VersionInfo Name="Build">19</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -129,7 +129,7 @@
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName"/>
                     <VersionInfoKeys Name="FileDescription"/>
-                    <VersionInfoKeys Name="FileVersion">1.1.0.18</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">1.1.0.19</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName"/>
                     <VersionInfoKeys Name="LegalCopyright"/>
                     <VersionInfoKeys Name="LegalTrademarks"/>
@@ -138,11 +138,7 @@
                     <VersionInfoKeys Name="ProductVersion">1.1</VersionInfoKeys>
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\DevExpress VCL\Library\RS19\dcldxDBXServerModeRS19.bpl">dbExpress Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\DevExpress VCL\Library\RS19\dcldxFireDACServerModeRS19.bpl">FireDAC Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\DevExpress VCL\Library\RS19\dcldxADOServerModeRS19.bpl">ADO Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                </Excluded_Packages>
+                <Excluded_Packages/>
             </Delphi.Personality>
             <ActiveXProjectInfo>
                 <version>1</version>

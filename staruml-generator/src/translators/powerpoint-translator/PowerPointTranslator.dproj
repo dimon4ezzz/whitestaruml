@@ -32,13 +32,12 @@
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_UsePackage>rtl;vcl;vclx;$(DCC_UsePackage)</DCC_UsePackage>
         <UsePackages>true</UsePackages>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_MinorVer>2</VerInfo_MinorVer>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;System.Win;Winapi;Vcl;$(DCC_Namespace)</DCC_Namespace>
-        <VerInfo_Release>1</VerInfo_Release>
-        <VerInfo_Build>18</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.1.1.18;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=PowerPoint Generator;ProductVersion=1.1;Comments=</VerInfo_Keys>
+        <VerInfo_Build>20</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.0.20;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=PowerPoint Generator;ProductVersion=1.2;Comments=</VerInfo_Keys>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_ExeOutput>..\..\..\deploy\staruml-generator\translators\powerpoint\</DCC_ExeOutput>
@@ -131,11 +130,7 @@
                     <VersionInfoKeys Name="ProductVersion">1.1</VersionInfoKeys>
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\DevExpress VCL\Library\RS19\dcldxDBXServerModeRS19.bpl">dbExpress Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\DevExpress VCL\Library\RS19\dcldxFireDACServerModeRS19.bpl">FireDAC Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\DevExpress VCL\Library\RS19\dcldxADOServerModeRS19.bpl">ADO Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                </Excluded_Packages>
+                <Excluded_Packages/>
             </Delphi.Personality>
             <ActiveXProjectInfo>
                 <version>1</version>

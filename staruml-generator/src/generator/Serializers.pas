@@ -477,7 +477,7 @@ begin
     Writer.WriteLine('<TASKS>');
     Writer.Indent;
     for I := 0 to ABatch.TaskCount - 1 do
-      WriteTask(Writer, ABatch.Tasks[I]);
+      WriteTask(Writer, ABatch.Task[I]);
     Writer.Outdent;
     Writer.WriteLine('</TASKS>');
   end;

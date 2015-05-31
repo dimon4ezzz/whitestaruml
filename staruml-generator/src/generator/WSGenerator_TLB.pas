@@ -12,7 +12,7 @@ unit WSGenerator_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 22/02/2014 13:50:10 from Type Library described below.
+// File generated on 5/30/2015 6:11:20 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\generator\Generator (1)
@@ -21,7 +21,7 @@ unit WSGenerator_TLB;
 // Helpfile:
 // HelpString: WhiteStarUML Generator Library
 // DepndLst:
-//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
+//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
 // SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
@@ -58,6 +58,9 @@ const
   IID_IGeneratorApplication: TGUID = '{0DFD8452-B67D-47DA-BB3D-1E285F48AD86}';
   CLASS_GeneratorApplication: TGUID = '{6492BAC0-7973-4BE8-BB1F-D6D975077F5F}';
   CLASS_LogAdaptor: TGUID = '{E7364994-73B0-4837-B663-A1BA567CF906}';
+  IID_IGeneratorScriptHandler: TGUID = '{F90B974D-CE8D-4CED-A7F8-AAF50BAEC101}';
+  DIID_IGeneratorScriptHandlerEvents: TGUID = '{63388723-F83C-4241-900F-07E63EFB02B9}';
+  CLASS_GeneratorScriptHandler: TGUID = '{FC3213A1-CCBC-4D13-AFA4-75E3A44067D9}';
 
 // *********************************************************************//
 // Declaration of Enumerations defined in Type Library
@@ -86,6 +89,9 @@ type
   IHashTableDisp = dispinterface;
   IGeneratorApplication = interface;
   IGeneratorApplicationDisp = dispinterface;
+  IGeneratorScriptHandler = interface;
+  IGeneratorScriptHandlerDisp = dispinterface;
+  IGeneratorScriptHandlerEvents = dispinterface;
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library
@@ -95,6 +101,7 @@ type
   HashTable = IHashTable;
   GeneratorApplication = IGeneratorApplication;
   LogAdaptor = ILogger;
+  GeneratorScriptHandler = IGeneratorScriptHandler;
 
 
 // *********************************************************************//
@@ -212,6 +219,38 @@ type
   end;
 
 // *********************************************************************//
+// Interface: IGeneratorScriptHandler
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {F90B974D-CE8D-4CED-A7F8-AAF50BAEC101}
+// *********************************************************************//
+  IGeneratorScriptHandler = interface(IDispatch)
+    ['{F90B974D-CE8D-4CED-A7F8-AAF50BAEC101}']
+    function Args: IHashTable; safecall;
+    function Logger: ILogger; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IGeneratorScriptHandlerDisp
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {F90B974D-CE8D-4CED-A7F8-AAF50BAEC101}
+// *********************************************************************//
+  IGeneratorScriptHandlerDisp = dispinterface
+    ['{F90B974D-CE8D-4CED-A7F8-AAF50BAEC101}']
+    function Args: IHashTable; dispid 201;
+    function Logger: ILogger; dispid 202;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IGeneratorScriptHandlerEvents
+// Flags:     (0)
+// GUID:      {63388723-F83C-4241-900F-07E63EFB02B9}
+// *********************************************************************//
+  IGeneratorScriptHandlerEvents = dispinterface
+    ['{63388723-F83C-4241-900F-07E63EFB02B9}']
+    function Abort(Code: Integer): HResult; dispid 201;
+  end;
+
+// *********************************************************************//
 // The Class CoGeneratorProcessor provides a Create and CreateRemote method to
 // create instances of the default interface IGeneratorProcessor exposed by
 // the CoClass GeneratorProcessor. The functions are intended to be used by
@@ -259,6 +298,18 @@ type
     class function CreateRemote(const MachineName: string): ILogger;
   end;
 
+// *********************************************************************//
+// The Class CoGeneratorScriptHandler provides a Create and CreateRemote method to
+// create instances of the default interface IGeneratorScriptHandler exposed by
+// the CoClass GeneratorScriptHandler. The functions are intended to be used by
+// clients wishing to automate the CoClass objects exposed by the
+// server of this typelibrary.
+// *********************************************************************//
+  CoGeneratorScriptHandler = class
+    class function Create: IGeneratorScriptHandler;
+    class function CreateRemote(const MachineName: string): IGeneratorScriptHandler;
+  end;
+
 implementation
 
 uses System.Win.ComObj;
@@ -301,6 +352,16 @@ end;
 class function CoLogAdaptor.CreateRemote(const MachineName: string): ILogger;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_LogAdaptor) as ILogger;
+end;
+
+class function CoGeneratorScriptHandler.Create: IGeneratorScriptHandler;
+begin
+  Result := CreateComObject(CLASS_GeneratorScriptHandler) as IGeneratorScriptHandler;
+end;
+
+class function CoGeneratorScriptHandler.CreateRemote(const MachineName: string): IGeneratorScriptHandler;
+begin
+  Result := CreateRemoteComObject(MachineName, CLASS_GeneratorScriptHandler) as IGeneratorScriptHandler;
 end;
 
 end.

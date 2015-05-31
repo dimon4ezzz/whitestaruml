@@ -113,6 +113,7 @@ function GetDllFileName: string;
 function IsFileNameOnly(Path: string): Boolean;
 function RegulatedPath(APath: string; RefPath: string): string;
 function GetSpecialFolderPath(const FolderGuid: TGUID): string;
+procedure StartScriptAndWait(ScriptFileName: string);
 
 implementation
 
@@ -408,6 +409,22 @@ begin
     MessageDlg('Function not supported on current system',mtWarning,[mbOK],1);
     Result := '';
   end;
+end;
+
+procedure StartScriptAndWait(ScriptFileName: string);
+var
+  Info: TShellExecuteInfo;
+begin
+  FillChar(info, sizeof(Info), 0);
+  Info.cbSize := sizeOf(Info);
+  Info.lpVerb := 'open';
+  Info.lpFile := PChar(ScriptFileName);
+  Info.nShow := SW_HIDE;
+  Info.fMask := SEE_MASK_NOCLOSEPROCESS;
+  //Info.lpParameters := '//d //x'; // Autostart debugging with Visual Studio
+
+  ShellExecuteEx(@Info);
+  WaitForSingleObject(Info.hProcess, Infinite);
 end;
 
 

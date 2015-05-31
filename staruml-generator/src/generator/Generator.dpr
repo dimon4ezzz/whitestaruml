@@ -46,7 +46,7 @@ library Generator;
 {******************************************************************************}
 
 uses
-  System.Win.ComServ,
+  ComServ,
   DirectMDAProc in 'DirectMDAProc.pas' {GeneratorProcessor: CoClass},
   HashTable in 'HashTable.pas' {HashTable: CoClass},
   DirectMDAObjects in 'DirectMDAObjects.pas',
@@ -67,7 +67,8 @@ uses
   NewFolderFrm in 'NewFolderFrm.pas' {NewFolderForm},
   NewParamFrm in 'NewParamFrm.pas' {NewParameterForm},
   NewTemplateDlg in 'NewTemplateDlg.pas' {NewTemplateDialog},
-  WSGenerator_TLB in 'WSGenerator_TLB.pas';
+  WSGenerator_TLB in 'WSGenerator_TLB.pas',
+  GeneratorScriptHandler in 'GeneratorScriptHandler.pas' {GeneratorScriptHandler: CoClass};
 
 exports
   DllGetClassObject,

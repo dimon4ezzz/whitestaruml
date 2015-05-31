@@ -48,7 +48,7 @@ unit DirectMDAObjects;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, Generics.Collections;
 
 const
   TXT_DOCTYPE_DOCUMENT = 'DOCUMENT';
@@ -148,10 +148,12 @@ type
 
   // PBatch
   PBatch = class
+  private type
+    PTaskList = TObjectList<PTask>;
   private
     FName: string;
     FDescription: string;
-    FTasks: TList;
+    FTasks: PTaskList;
     FPath: string;
     function GetTaskCount: Integer;
     function GetTask(Index: Integer): PTask;
@@ -172,7 +174,8 @@ type
     property Name: string read FName write FName;
     property Description: string read FDescription write FDescription;
     property TaskCount: Integer read GetTaskCount;
-    property Tasks[Index: Integer]: PTask read GetTask;
+    property Task[Index: Integer]: PTask read GetTask;
+    property Tasks: PTaskList read FTasks;
     property Path: string read FPath write FPath;
   end;
 
@@ -403,7 +406,7 @@ end;
 
 constructor PBatch.Create;
 begin
-  FTasks := TList.Create;
+  FTasks := PTaskList.Create;
 end;
 
 destructor PBatch.Destroy;
@@ -423,12 +426,8 @@ begin
 end;
 
 procedure PBatch.ClearTasks;
-var
-  I: Integer;
 begin
-  for I := FTasks.Count - 1 downto 0 do
-    PTask(FTasks.Items[I]).Free;
-  FTasks.Clear;  
+  FTasks.Clear;
 end;
 
 procedure PBatch.AddTask(Value: PTask);
@@ -456,7 +455,7 @@ var
 begin
   Result := False;
   for I := 0 to TaskCount - 1 do
-    if Tasks[I].GenerationUnit = AGenerationUnit then begin
+    if Task[I].GenerationUnit = AGenerationUnit then begin
       Result := True;
       Exit;
     end;
@@ -468,8 +467,8 @@ var
 begin
   Result := nil;
   for I := 0 to TaskCount - 1 do
-    if Tasks[I].GenerationUnit = AGenerationUnit then begin
-      Result := Tasks[I];
+    if Task[I].GenerationUnit = AGenerationUnit then begin
+      Result := Task[I];
       Exit;
     end;
 end;
@@ -480,7 +479,7 @@ var
 begin
   Count := 0;
   for I := 0 to TaskCount - 1 do
-    if Tasks[I].Selected then
+    if Task[I].Selected then
       Inc(Count);
   Result := Count;
 end;
@@ -490,8 +489,8 @@ var
   I: Integer;
 begin
   for I := TaskCount - 1 downto 0 do
-    if Tasks[I].Selected then
-      RemoveTask(Tasks[I]);
+    if Task[I].Selected then
+      RemoveTask(Task[I]);
 end;
 
 procedure PBatch.CopySelectedTasksToBatch(ABatch: PBatch);
@@ -499,8 +498,8 @@ var
   I: Integer;
 begin
   for I := TaskCount - 1 downto 0 do
-    if Tasks[I].Selected and not ABatch.HasTask(Tasks[I].GenerationUnit) then
-      ABatch.AddTask(Tasks[I].Clone);
+    if Task[I].Selected and not ABatch.HasTask(Task[I].GenerationUnit) then
+      ABatch.AddTask(Task[I].Clone);
 end;
 
 procedure PBatch.SelectAllTasks;
@@ -508,7 +507,7 @@ var
   I: Integer;
 begin
   for I := 0 to TaskCount - 1 do
-    Tasks[I].Selected := True;
+    Task[I].Selected := True;
 end;
 
 procedure PBatch.DeselectAllTasks;
@@ -516,7 +515,7 @@ var
   I: Integer;
 begin
   for I := 0 to TaskCount - 1 do
-    Tasks[I].Selected := False;
+    Task[I].Selected := False;
 end;
 
 // PBatch

@@ -46,7 +46,7 @@ library PowerPointTranslator;
 {******************************************************************************}
 
 uses
-  System.Win.ComServ,
+  ComServ,
   WSPowerPointTranslator_TLB in 'WSPowerPointTranslator_TLB.pas',
   PowerPointTranslatorObj in 'PowerPointTranslatorObj.pas' {PowerPointTranslatorObj: CoClass},
   Symbols in 'Symbols.pas',

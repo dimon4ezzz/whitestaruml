@@ -50,16 +50,20 @@ unit DirectMDADlg;
 interface
 
 uses
-  ComObj, WSGenerator_TLB, WhiteStarUML_TLB, StdVcl;
+  System.Win.ComObj, PieFrm, WSGenerator_TLB, WhiteStarUML_TLB, StdVcl;
 
 type
-  TGeneratorApplication = class(TAutoObject, IGeneratorApplication, IStarUMLAddIn)
+  TGeneratorApplication = class(TAutoObject, IGeneratorApplication, IStarUMLAddIn, IScriptHandlerProvider)
   private
     StarUMLApp: IStarUMLApplication;
+    FPieForm: TPieForm;
   protected
+    // IStarUMLAddIn
     function InitializeAddIn: HResult; stdcall;
     function FinalizeAddIn: HResult; stdcall;
     function DoMenuAction(ActionID: Integer): HResult; stdcall;
+    // IScriptHandlerProvider
+    function GetScriptHandler: IDispatch; safecall;
   public
     procedure Initialize; override;
     destructor Destroy; override;
@@ -73,8 +77,7 @@ var
 implementation
 
 uses
-  Forms, System.Win.ComServ, Dialogs, Symbols,
-  PieFrm, Utilities;
+  Vcl.Forms, System.Win.ComServ, Vcl.Dialogs, System.SysUtils, Symbols, Utilities;
 
 procedure TGeneratorApplication.Initialize;
 begin
@@ -109,61 +112,25 @@ begin
   Result := S_OK;
 end;
 
-function TGeneratorApplication.DoMenuAction(ActionID: Integer): HResult;
-var
-  PieForm: TPieForm;
-//  RegInfo: PRegistrationInfo;
-//  RegPlasticInfo: PPlasticRegistrationInfo;
+function TGeneratorApplication.GetScriptHandler: IDispatch;
 begin
-(*
-  try
-    RegInfo := ReadRegistrationInfo;
-//    RegPlasticInfo := ReadPlasticRegisterationInfo;
+  if not Assigned(FPieForm) then
+     Result := nil
+  else
+    Result := FPieForm.GetScriptHandler;
+end;
 
-//    IsPersonalEdition := (RegInfo.ProductID = PID_AGORA_GENERATOR_PERSONAL);
-    IsTrialEdition := (RegInfo.ProductID = PID_AGORA_GENERATOR_TRIAL);
-//    ISPersonalEdition := (RegPlasticInfo.ProductID = PID_AGORA_PLASTIC_2005_PERSONAL);
-    if not RegInfo.IsValidRegistration then begin
-      ShowMessage(C_ERR_INVALID_REGISTRATION);
-      Result := S_OK;
-      Exit;
-    end;
-{
-    if IsPersonalEdition then begin
-      ShowMessage(C_ERR_PERSONAL_EDITION);
-      Result := S_OK;
-      Exit;
-    end;
-
-}   if IsTrialEdition then begin
-    try
-      Expire := PExpiredCoder.create;
-      if (Expire.GetExpirationCode() <= 0) or (Expire.GetExpirationCode > 31) then begin
-        ShowMessage(C_ERR_TRIAL_EDITION);
-        Result := S_OK;
-        Exit;
-      end;
-    finally
-      Expire.Free;
-    end;
-    end;
-
-  except
-    on E: EInvalidRegistrationData do begin
-      ShowMessage(C_ERR_INVALID_REGISTRATION);
-      Result := S_OK;
-      Exit;
-    end;
-  end;
-*)
+function TGeneratorApplication.DoMenuAction(ActionID: Integer): HResult;
+begin
   Result := S_OK;
-  if ActionID = 1 then begin
-    PieForm := TPieForm.Create(Application);
+  if (ActionID = 1) and not Assigned(FPieForm) then begin
+      FPieForm := TPieForm.Create(Application);
     try
-      PieForm.StarUMLApp := StarUMLApp;
-      PieForm.ShowModal;
+      FPieForm.StarUMLApp := StarUMLApp;
+      FPieForm.ShowModal;
+      //FPieForm.Show;
     finally
-      PieForm.Free;
+      FreeAndNil(FPieForm);
     end;
   end;
 end;

@@ -48,14 +48,15 @@ unit PieFrm;
 interface
 
 uses
-  DirectMDAProc, DirectMDAObjects, BatchFrm, WSGenerator_TLB,
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ComObj, NxColumnClasses, NxColumns, NxScrollControl,
-  NxCustomGridControl, NxCustomGrid, NxGrid, StdCtrls,
-  JvWizard, ComCtrls, ShellCtrls, ImgList, ExtCtrls, WhiteStarUML_TLB, FlatPanel,
-  Menus, ShellAPI, JvExControls, JvComponent, Winapi.ShlObj,
   Vcl.ButtonGroup, Vcl.Mask, JvExMask, JvToolEdit, System.Actions, Vcl.ActnList,
-  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup;
+  Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, ComObj, NxColumnClasses, NxColumns, NxScrollControl,
+  NxCustomGridControl, NxCustomGrid, NxGrid, StdCtrls,
+  JvWizard, ComCtrls, Vcl.ImgList, ExtCtrls,
+  Menus, JvExControls, JvComponent,
+  DirectMDAProc, DirectMDAObjects, BatchFrm, WhiteStarUML_TLB, FlatPanel,
+  GeneratorScriptHandler, WSGenerator_TLB;
+
 
 const
   ERR_ERROR_ON_PROCESSOR = 'Error occured while executing document translator.'
@@ -77,7 +78,7 @@ const
   ERR_FAILED_TO_DELETE_BATCH = 'Deleting batch failed.' + #13#10 + 'Reason : %s';
   QUERY_ABORT_GENERATING = 'Do you want to cancel document generation?'
     + #13#10 + 'Already generated documents will not be deleted.';
-  MSG_GENERATION_ABORTED = 'Document generation is canceled by user request.';
+  MSG_GENERATION_ABORTED = 'Document generation is cancelled by user request.';
   ERR_CANNOT_OPEN_FILE = '%s file can''t be opened.' + #13#10 + 'Reason : %s';
   TXT_ON_GENERATING = 'Generating...';
   TXT_EMPTY = '(Empty)';
@@ -208,6 +209,7 @@ type
     procedure ActionDeleteTemplateExecute(Sender: TObject);
     procedure ActionRegisterBatchExecute(Sender: TObject);
     procedure ActionAddToBatchExecute(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -241,12 +243,14 @@ type
     procedure AddExecTaskRow(ATask: PTask);
     procedure SetupExecTasks;
     function FindExecTaskRowIndex(ATask: PTask): Integer;
+    function NumberOfTasksToRun: Integer;
     { user actions processing methods }
     procedure RegisterBatch;
     procedure AppendSelectedTasksToBatch;
     procedure RegisterTemplate;
     procedure EditTaskParameters;
     procedure ExecuteTasks;
+    procedure ExecuteTasksInThread;
     procedure SelectAllTasks;
     procedure DeselectAllTasks;
     procedure ShowTaskProperties;
@@ -289,6 +293,7 @@ type
     procedure SelectSpecialFolderHome;
   public
     property StarUMLApp: IStarUMLApplication read FStarUMLApp write FStarUMLApp;
+    function GetScriptHandler: TGeneratorScriptHandler;
   end;
 
 implementation
@@ -296,7 +301,8 @@ implementation
 {$R *.dfm}
 
 uses
-  System.IOUtils,
+  Winapi.Windows, System.IOUtils, Winapi.ShellAPI, System.SysUtils,
+  Vcl.Dialogs,
   TaskInfoFrm, TemplateRegFrm, BatchRegisterFrm, BatchSelFrm, PreviewFrm,
   NewFolderFrm, Utilities, Symbols, NewTemplateDlg, Serializers;
 
@@ -433,7 +439,7 @@ var
 begin
   TasksGrid.ClearRows;
   for I := 0 to DirectMDAProcessor.DefaultBatch.TaskCount - 1 do
-    AddTaskRow(DirectMDAProcessor.DefaultBatch.Tasks[I]);
+    AddTaskRow(DirectMDAProcessor.DefaultBatch.Task[I]);
   TasksGrid.Refresh;
 end;
 
@@ -598,8 +604,8 @@ var
 begin
   ExecTasksGrid.ClearRows;
   for I := 0 to SelectedBatch.TaskCount - 1 do begin
-    if SelectedBatch.Tasks[I].Selected then
-      AddExecTaskRow(SelectedBatch.Tasks[I]);
+    if SelectedBatch.Task[I].Selected then
+      AddExecTaskRow(SelectedBatch.Task[I]);
     Application.ProcessMessages;
   end;
 end;
@@ -746,6 +752,9 @@ begin
   try
     try
       MessageLabel.Caption := '';
+      // Handling aborting multiple tasks is too complex
+      if NumberOfTasksToRun > 1 then
+        ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons - [bkCancel];
       DirectMDAProcessor.Execute(SelectedBatch);
     except
       on E: Exception do begin
@@ -759,6 +768,33 @@ begin
     HeartBeatTimer.Enabled := False;
     InGenerating := False;
   end;
+end;
+
+function StartTasksInThread(Parameter: Pointer): Integer;
+var
+  PieForm: TPieForm;
+begin
+  PieForm := TPieForm(Parameter);
+
+  try
+    //ExecuteTasks;
+    //ExecuteTasksInThread;
+    PieForm.ExecuteTasks;
+
+  finally
+    PieForm.ExecutionPage.EnabledButtons := PieForm.ExecutionPage.EnabledButtons + [bkFinish];
+    PieForm.ExecutionPage.EnabledButtons := PieForm.ExecutionPage.EnabledButtons - [bkCancel];
+  end;
+
+  Result := 0;
+  EndThread(0);
+end;
+
+procedure TPieForm.ExecuteTasksInThread;
+var
+  ThreadId: Cardinal;
+begin
+  BeginThread(nil,0,StartTasksInThread,Self,0,ThreadId);
 end;
 
 procedure TPieForm.SelectAllTasks;
@@ -823,6 +859,7 @@ begin
     TaskInfoForm.Free;
   end;
 end;
+
 
 procedure TPieForm.ShowTaskDescription;
 var
@@ -1048,8 +1085,20 @@ end;
 
 procedure TPieForm.Notify(Msg: string);
 begin
-  MessageLabel.Caption := Format('[%s] %s', [TimeToStr(Time) ,Msg]);
+  if InGenerating then
+    MessageLabel.Caption := Format('[%s] %s', [TimeToStr(Time) ,Msg]);
   Application.ProcessMessages;
+end;
+
+function TPieForm.NumberOfTasksToRun: Integer;
+var
+  Task: PTask;
+begin
+  Result := 0;
+  for Task in SelectedBatch.Tasks do begin
+    if Task.Selected then
+      Inc(Result);
+  end;
 end;
 
 procedure TPieForm.UpdateUIStatesMainTabSheet;
@@ -1350,6 +1399,17 @@ end;
 // TPieForm
 ////////////////////////////////////////////////////////////////////////////////
 
+procedure TPieForm.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if InGenerating then begin // Generating was cancelled, don't close the window yet
+    if NumberOfTasksToRun = 1 then
+      InGenerating := False;
+    Action := caNone;
+  end
+  else
+    Action := caFree; // Normal closing of the window
+end;
+
 procedure TPieForm.FormCreate(Sender: TObject);
 begin
   Initialize;
@@ -1436,12 +1496,13 @@ procedure TPieForm.ExecutionPageNextButtonClick(Sender: TObject; var Stop: Boole
 begin
   ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons - [bkNext, bkFinish];
   ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons + [bkCancel];
-  try
-    ExecuteTasks;
-  finally
-    ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons + [bkFinish];
-    ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons - [bkCancel];
-  end;
+  //try
+    //ExecuteTasks;
+    ExecuteTasksInThread;
+//  finally
+//    ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons + [bkFinish];
+//    ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons - [bkCancel];
+//  end;
 end;
 
 procedure TPieForm.TasksGridCellClick(Sender: TObject; ACol, ARow: Integer);
@@ -1471,6 +1532,11 @@ begin
   else
     DeselectAllTasks;
   UpdateUIStates;
+end;
+
+function TPieForm.GetScriptHandler: TGeneratorScriptHandler;
+begin
+  Result := DirectMDAProcessor.GetScriptHandler;
 end;
 
 procedure TPieForm.GroupComboBoxChange(Sender: TObject);
