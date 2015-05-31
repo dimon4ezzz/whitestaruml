@@ -130,7 +130,8 @@ uses
   QuickDialogFrmTdxBase in 'QuickDialogFrmTdxBase.pas' {QuickDialogFormTdxBase},
   MainFrm in 'MainFrm.pas' {MainForm},
   NavBarFrameVclImpl in 'NavBarFrameVclImpl.pas' {PaletteNavBarFrameVclImpl: TFrame},
-  WhiteStarUML_TLB in 'WhiteStarUML_TLB.pas';
+  WhiteStarUML_TLB in 'WhiteStarUML_TLB.pas',
+  ScriptHandlerContainer in 'ScriptHandlerContainer.pas' {ScriptHanderContainer: CoClass};
 
 {PaletteNavBarFrameVclImpl: TFrame}
 

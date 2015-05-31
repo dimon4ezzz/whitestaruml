@@ -12,7 +12,7 @@ unit WhiteStarUML_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 4/6/2015 5:29:24 PM from Type Library described below.
+// File generated on 5/30/2015 4:35:01 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml\src\WhiteStarUML (1)
@@ -298,6 +298,9 @@ const
   IID_IStarUMLAddIn: TGUID = '{0F84CF65-8944-4ED4-8C57-49C96616FEBA}';
   IID_IExprBuilder: TGUID = '{414633E5-89AA-440F-8B07-F8EFD4B6F539}';
   CLASS_ExprBuilder: TGUID = '{E5833835-D56A-4973-8547-7255208BF164}';
+  IID_IScriptHandlerProvider: TGUID = '{ABF0B10D-5171-435F-A04A-C661675FFF48}';
+  IID_IScriptHanderContainer: TGUID = '{EDB1145B-5521-4B16-BDB1-5779D907D34A}';
+  CLASS_ScriptHanderContainer: TGUID = '{AF7FD8EA-6F14-4354-83A2-046E98D406A9}';
 
 // *********************************************************************//
 // Declaration of Enumerations defined in Type Library
@@ -994,6 +997,10 @@ type
   IUMLCompositeStructureDiagramDisp = dispinterface;
   IStarUMLAddIn = interface;
   IExprBuilder = interface;
+  IScriptHandlerProvider = interface;
+  IScriptHandlerProviderDisp = dispinterface;
+  IScriptHanderContainer = interface;
+  IScriptHanderContainerDisp = dispinterface;
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library
@@ -1001,6 +1008,7 @@ type
 // *********************************************************************//
   WhiteStarUMLApplication = IStarUMLApplication;
   ExprBuilder = IExprBuilder;
+  ScriptHanderContainer = IScriptHanderContainer;
 
 
 // *********************************************************************//
@@ -34597,7 +34605,7 @@ type
 
 // *********************************************************************//
 // Interface: IExprBuilder
-// Flags:     (16) Hidden
+// Flags:     (0)
 // GUID:      {414633E5-89AA-440F-8B07-F8EFD4B6F539}
 // *********************************************************************//
   IExprBuilder = interface(IUnknown)
@@ -34608,6 +34616,46 @@ type
     function PrimExpr(Value: OleVariant; Pos: SYSINT): HResult; stdcall;
     function IdentExpr(const Id: WideString; Pos: SYSINT): HResult; stdcall;
     function NewDrawBitmapOperation(const FilePath: WideString; Pos: SYSINT): HResult; stdcall;
+  end;
+
+// *********************************************************************//
+// Interface: IScriptHandlerProvider
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {ABF0B10D-5171-435F-A04A-C661675FFF48}
+// *********************************************************************//
+  IScriptHandlerProvider = interface(IDispatch)
+    ['{ABF0B10D-5171-435F-A04A-C661675FFF48}']
+    function GetScriptHandler: IDispatch; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IScriptHandlerProviderDisp
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {ABF0B10D-5171-435F-A04A-C661675FFF48}
+// *********************************************************************//
+  IScriptHandlerProviderDisp = dispinterface
+    ['{ABF0B10D-5171-435F-A04A-C661675FFF48}']
+    function GetScriptHandler: IDispatch; dispid 101;
+  end;
+
+// *********************************************************************//
+// Interface: IScriptHanderContainer
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {EDB1145B-5521-4B16-BDB1-5779D907D34A}
+// *********************************************************************//
+  IScriptHanderContainer = interface(IDispatch)
+    ['{EDB1145B-5521-4B16-BDB1-5779D907D34A}']
+    function FindScriptHandler(const ScriptHandlerId: WideString): IDispatch; safecall;
+  end;
+
+// *********************************************************************//
+// DispIntf:  IScriptHanderContainerDisp
+// Flags:     (4416) Dual OleAutomation Dispatchable
+// GUID:      {EDB1145B-5521-4B16-BDB1-5779D907D34A}
+// *********************************************************************//
+  IScriptHanderContainerDisp = dispinterface
+    ['{EDB1145B-5521-4B16-BDB1-5779D907D34A}']
+    function FindScriptHandler(const ScriptHandlerId: WideString): IDispatch; dispid 203;
   end;
 
 // *********************************************************************//
@@ -34634,6 +34682,18 @@ type
     class function CreateRemote(const MachineName: string): IExprBuilder;
   end;
 
+// *********************************************************************//
+// The Class CoScriptHanderContainer provides a Create and CreateRemote method to
+// create instances of the default interface IScriptHanderContainer exposed by
+// the CoClass ScriptHanderContainer. The functions are intended to be used by
+// clients wishing to automate the CoClass objects exposed by the
+// server of this typelibrary.
+// *********************************************************************//
+  CoScriptHanderContainer = class
+    class function Create: IScriptHanderContainer;
+    class function CreateRemote(const MachineName: string): IScriptHanderContainer;
+  end;
+
 implementation
 
 uses System.Win.ComObj;
@@ -34656,6 +34716,16 @@ end;
 class function CoExprBuilder.CreateRemote(const MachineName: string): IExprBuilder;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_ExprBuilder) as IExprBuilder;
+end;
+
+class function CoScriptHanderContainer.Create: IScriptHanderContainer;
+begin
+  Result := CreateComObject(CLASS_ScriptHanderContainer) as IScriptHanderContainer;
+end;
+
+class function CoScriptHanderContainer.CreateRemote(const MachineName: string): IScriptHanderContainer;
+begin
+  Result := CreateRemoteComObject(MachineName, CLASS_ScriptHanderContainer) as IScriptHanderContainer;
 end;
 
 end.

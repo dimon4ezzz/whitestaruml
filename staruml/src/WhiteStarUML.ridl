@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 4/6/2015 5:54:38 PM (- $Rev: 12980 $, 5003170).
+// File generated on 5/30/2015 4:33:33 PM (- $Rev: 12980 $, 17700466).
 
 [
   uuid(4D5F69B3-73FC-4C09-A1CE-73D1A677A0E7),
@@ -271,6 +271,9 @@ library WhiteStarUML
   interface IStarUMLAddIn;
   interface IExprBuilder;
   coclass ExprBuilder;
+  interface IScriptHandlerProvider;
+  interface IScriptHanderContainer;
+  coclass ScriptHanderContainer;
 
 
   [
@@ -6755,8 +6758,7 @@ library WhiteStarUML
 
   [
     uuid(414633E5-89AA-440F-8B07-F8EFD4B6F539),
-    helpstring("Interface to build a TNX expression"),
-    hidden
+    helpstring("Interface to build a TNX expression")
   ]
   interface IExprBuilder: IUnknown
   {
@@ -6775,9 +6777,36 @@ library WhiteStarUML
   };
 
   [
+    uuid(ABF0B10D-5171-435F-A04A-C661675FFF48),
+    version(1.0),
+    helpstring("Provides interface to obtain a module specific script handler"),
+    dual,
+    oleautomation
+  ]
+  interface IScriptHandlerProvider: IDispatch
+  {
+    [id(0x00000065)]
+    HRESULT _stdcall GetScriptHandler([out, retval]  IDispatch** ReturnValue);
+  };
+
+  [
+    uuid(EDB1145B-5521-4B16-BDB1-5779D907D34A),
+    version(1.0),
+    helpstring("Dispatch interface for ScriptHanderContainer Object"),
+    dual,
+    oleautomation
+  ]
+  interface IScriptHanderContainer: IDispatch
+  {
+    [id(0x000000CB)]
+    HRESULT _stdcall FindScriptHandler([in] BSTR ScriptHandlerId, [out, retval]  IDispatch** ReturnValue);
+  };
+
+  [
     uuid(E155F938-9A1D-4555-9831-7E3C18B27F83),
     version(1.0),
-    helpstring("WhiteStarUMLApplication Object")
+    helpstring("WhiteStarUMLApplication Object"),
+    appobject
   ]
   coclass WhiteStarUMLApplication
   {
@@ -6794,6 +6823,15 @@ library WhiteStarUML
   coclass ExprBuilder
   {
     [default] interface IExprBuilder;
+  };
+
+  [
+    uuid(AF7FD8EA-6F14-4354-83A2-046E98D406A9),
+    helpstring("ScriptHanderContainer Object")
+  ]
+  coclass ScriptHanderContainer
+  {
+    [default] interface IScriptHanderContainer;
   };
 
 };
