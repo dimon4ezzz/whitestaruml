@@ -47,10 +47,10 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_MinorVer>2</VerInfo_MinorVer>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;System.Win;Winapi;Vcl;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Build>14</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=Plastic Software, Inc.;FileDescription=;FileVersion=1.1.0.14;InternalName=;LegalCopyright=Copyright(c)2005 Plastic Software, Inc. All rights reserved.;LegalTrademarks=;OriginalFilename=;ProductName=Word Generator;ProductVersion=1.1;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Plastic Software, Inc.;FileDescription=;FileVersion=1.2.0.14;InternalName=;LegalCopyright=Copyright(c)2005 Plastic Software, Inc. All rights reserved.;LegalTrademarks=;OriginalFilename=;ProductName=Word Generator;ProductVersion=1.2;Comments=</VerInfo_Keys>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_ExeOutput>..\..\..\deploy\staruml-generator\translators\word</DCC_ExeOutput>
@@ -78,6 +78,7 @@
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.1.0.14;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.1.0.0;Comments=</VerInfo_Keys>
         <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
@@ -150,11 +151,7 @@
                     <VersionInfoKeys Name="ProductVersion">1.1</VersionInfoKeys>
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\DevExpress VCL\Library\RS19\dcldxDBXServerModeRS19.bpl">dbExpress Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\DevExpress VCL\Library\RS19\dcldxFireDACServerModeRS19.bpl">FireDAC Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\DevExpress VCL\Library\RS19\dcldxADOServerModeRS19.bpl">ADO Data Source for ExpressDataController Server Mode by Developer Express Inc.</Excluded_Packages>
-                </Excluded_Packages>
+                <Excluded_Packages/>
             </Delphi.Personality>
             <ActiveXProjectInfo>
                 <version>1</version>

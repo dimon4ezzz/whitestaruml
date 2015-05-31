@@ -49,18 +49,15 @@ interface
 
 uses
   Dialogs,
-  Classes, MSScriptControl_TLB, SysUtils, WSGenerator_TLB, WSExcelTranslator_TLB;
+  Classes, SysUtils, WSGenerator_TLB, WSExcelTranslator_TLB;
 type
 
   PExcelTranslatorEngine = class
   private
     JScriptFileName: string;
-    JScript: TStringList;
-    SC: TScriptControl;
     FLogger: ILogger;
   public
     constructor Create;
-    destructor Destroy; override;
     function Execute(Args: IHashTable):Boolean;
     procedure Abort();
     property Logger: ILogger read FLogger write FLogger;
@@ -73,7 +70,6 @@ uses
 
 procedure PExcelTranslatorEngine.Abort;
 begin
-  SC.Eval('Abort()');
 end;
 
 constructor PExcelTranslatorEngine.Create;
@@ -81,36 +77,12 @@ begin
   JScriptFileName := GENERATOR_ENGINE_JS; // Initial file name
   if not SetQualifiedFileName(JScriptFileName) then
     raise Exception.Create(C_ERR_ENGINE_NOT_FOUND);
-  JScript := TStringList.Create;
-  SC := TScriptControl.Create(nil);
-end;
-
-destructor PExcelTranslatorEngine.Destroy;
-begin
-  JScript.Free;
-  SC.Free;
-  inherited;
 end;
 
 function PExcelTranslatorEngine.Execute(Args: IHashTable):Boolean;
-var
-  S, SS: string;
 begin
-  Result := False;
-  SC.Timeout := -1;
-  SC.Language := 'JScript';
-  SC.Reset;
-  if FileExists(JScriptFileName) then
-    JScript.LoadFromFile(JScriptFileName)
-  else
-    raise Exception.Create(C_ERR_ENGINE_NOT_FOUND);
-  SC.AddCode(JScript.Text);
-  if FLogger <> nil then begin
-    SC.AddObject('LoggerObj', FLogger, True);
-    SC.Eval('SetLogger(LoggerObj)');
-  end;
-  SC.AddObject('ExecuteObj', Args, True);
-  Result := SC.Eval('Execute(ExecuteObj)');
+  StartScriptAndWait(JScriptFileName);
+  Result := True
 end;
 
 end.
