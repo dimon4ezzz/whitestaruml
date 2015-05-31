@@ -48,8 +48,8 @@ unit AddInMgr;
 interface
 
 uses
-  Classes, XMLDoc, XMLIntf, ComCtrls, Windows, Registry, dxBar,
-  SysUtils, Graphics, Core, WhiteStarUML_TLB;
+  Classes, XMLDoc, XMLIntf, ComCtrls, Windows, Registry, Generics.Collections,
+  SysUtils, Graphics, dxBar, Core, WhiteStarUML_TLB;
 
 const
   EXT_DIR = 'modules';
@@ -178,8 +178,10 @@ type
 
   // PAddInManager
   PAddInManager = class
+  private type
+    PAddInList = TObjectList<PAddIn>;
   private
-    FAddIns: TList;
+    FAddIns: PAddInList;
     FOnMessage: PAddInRelMsgOccuredEvent;
     procedure MessageProc(str: string); overload;
     procedure MessageProc(str: string; const arr: array of const); overload;
@@ -1081,7 +1083,6 @@ procedure PAddIn.SetupMenus;
       FilePath: string;
       Msg: string;
     begin
-      Result := nil;
       FilePath := FInstalledDir + '\' + FMenuFileName;
       XMLDoc := TXMLDocument.Create(Application);
       try
@@ -1342,7 +1343,6 @@ procedure PFrameWindowAddIn.SetupFrameWindow(ActiveFlag: Boolean);
       OleObj: Variant;
       Msg: string;
     begin
-      Result := nil;
       Tab := TTabSheet.Create(ParentControl);
       Tab.Parent := ParentControl;
       Tab.PageControl := ParentControl;
@@ -1379,6 +1379,7 @@ begin
     raise EAddInLoadingValuesException.Create(Msg);
   end;
   if ActiveFlag then begin
+    PageControl := nil;
     // if FFrameWindowParent = pwInformation then
     //   PageControl := MainForm.InformationFrame.InformationPageControl
     // else if FFrameWindowParent = pwBrowser then
@@ -1386,14 +1387,13 @@ begin
     // if FFrameWindowParent = pwInspector then
     //   PageControl := MainForm.InspectorFrame.InspectorPageControl;
     FTab := CreateContainerWindow(PageControl);
-    if Assigned(FTab) then begin
-      FTab.Caption := Self.DisplayName;
-      if Assigned(FIcon) then begin
-        FTabImageIndex := PageControl.Images.AddIcon(FIcon);
-        FTab.ImageIndex := FTabImageIndex;
-      end;
+    FTab.Caption := Self.DisplayName;
+    if Assigned(FIcon) then begin
+      FTabImageIndex := PageControl.Images.AddIcon(FIcon);
+      FTab.ImageIndex := FTabImageIndex;
     end;
-  end else begin
+  end // if ActiveFlag
+  else begin
     FFrameWindowAddIn := nil;
     if Assigned(FTab) then begin
       FTab.PageControl := nil;
@@ -1509,23 +1509,12 @@ end;
 constructor PAddInManager.Create;
 begin
   inherited;
-  FAddIns := TList.Create;
-  FAddIns.Clear;
+  FAddIns := PAddInList.Create;
 end;
 
 destructor PAddInManager.Destroy;
-var
-  I: Integer;
-  AddIn: PAddIn;
 begin
-  try
-    for I := FAddIns.Count - 1 downto 0 do begin
-      AddIn := FAddIns.Items[I];
-      if Assigned(AddIn) then AddIn.Free;
-    end;
-  finally
-    FAddIns.Free;
-  end;
+  FAddIns.Free;
   inherited;
 end;
 
@@ -1543,7 +1532,7 @@ function PAddInManager.GetAddIn(Index: Integer): PAddIn;
 begin
   Result := nil;
   if (Index >= 0) and (Index < FAddIns.Count) then
-    Result := FAddIns.Items[Index];
+    Result := FAddIns[Index];
 end;
 
 function PAddInManager.GetAddInsCount: Integer;
@@ -1631,7 +1620,6 @@ begin
     XMLDoc: TXMLDocument;
     RootNode: IXMLNode;
     AddIn: PAddIn;
-    IsFrameWindow: Boolean;
   begin
     Result := true;
 
@@ -1698,7 +1686,7 @@ begin
       //MessageProc(MSG_START_MENUCONFIG);
       I := 0;
       while I < FAddIns.Count do begin
-        AddIn := FAddIns.Items[I];
+        AddIn := FAddIns[I];
         //MessageProc(MSG_ADDIN_NAME + AddIn.DisplayName);
         try
           AddIn.SetupMenus;
@@ -1725,15 +1713,12 @@ begin
 end;
 
 function PAddInManager.FindAddIn(COMObjectName: string): PAddIn;
-var
-  I: Integer;
 begin
-  Result := nil;
-  for I := 0 to AddInsCount - 1 do
-    if AddIn[I].COMSvrName = COMObjectName then begin
-      Result := AddIn[I];
+  for Result in FAddIns do begin
+    if Result.COMSvrName = COMObjectName then
       Exit;
-    end;
+  end;
+    Result := nil;
 end;
 
 // PAddInManager

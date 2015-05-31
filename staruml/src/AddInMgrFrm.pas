@@ -48,7 +48,7 @@ unit AddInMgrFrm;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Vcl.Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, ComCtrls,
   AddInMgr, ImgList;
 
@@ -75,7 +75,7 @@ type
     FOnMessage: PAddInRelMsgOccuredEvent;
     procedure MakeListViewItem(AnAddIn: PAddIn);
     procedure DisplayListItemHint(Sender: TObject; Item: TListItem; var InfoTip: string);
-    procedure FormShowHintHandler(var HintStr: string; var CanShow: Boolean; var HintInfo: THintInfo);
+    procedure FormShowHintHandler(var HintStr: string; var CanShow: Boolean; var HintInfo: Vcl.Controls.THintInfo);
   public
     property OnMessage: PAddInRelMsgOccuredEvent write FOnMessage;
   end;
@@ -166,7 +166,7 @@ begin
   end;
 end;
 
-procedure TAddInMgrForm.FormShowHintHandler(var HintStr: string; var CanShow: Boolean; var HintInfo: THintInfo);
+procedure TAddInMgrForm.FormShowHintHandler(var HintStr: string; var CanShow: Boolean; var HintInfo: Vcl.Controls.THintInfo);
 begin
   //HintInfo.HintColor := $9acd32;
   HintInfo.HintMaxWidth := HintWidth;
@@ -220,7 +220,6 @@ var
   AnItem: TListItem;
   AnAddIn: PAddIn;
 begin
-  AnAddIn := nil;
   try
     for I := 0 to AddInListView.Items.Count - 1 do begin
       AnItem := AddInListView.Items[I];
