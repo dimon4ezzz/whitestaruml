@@ -12,10 +12,10 @@ unit WSTextTranslator_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 6/6/2015 1:09:16 PM from Type Library described below.
+// File generated on 6/6/2015 3:26:40 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\translators\text-translator\WSTextTranslator_TLB (1)
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\translators\text-translator\WSTextTranslator (1)
 // LIBID: {929ACC4C-40C7-4BF9-B678-5CD3DE9C4E6E}
 // LCID: 0
 // Helpfile:

@@ -12,16 +12,17 @@ unit WSWordTranslator_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 22/02/2014 15:02:56 from Type Library described below.
+// File generated on 6/6/2015 3:07:24 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\translators\word-translator\WordTranslator (1)
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\translators\word-translator\WSWordTranslator (1)
 // LIBID: {B50752CF-E0EC-445E-BB82-B32E94A9C878}
 // LCID: 0
 // Helpfile:
 // HelpString: WordTranslator Library
 // DepndLst:
-//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
+//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
+//   (2) v1.0 WSGenerator, (C:\JS\Delphi\WhiteStarDevInstall64\modules\staruml-generator\Generator.dll)
 // SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
@@ -32,7 +33,8 @@ unit WSWordTranslator_TLB;
 
 interface
 
-uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, Winapi.ActiveX;
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, Winapi.ActiveX, WSGenerator_TLB;
+
 
 
 // *********************************************************************//
