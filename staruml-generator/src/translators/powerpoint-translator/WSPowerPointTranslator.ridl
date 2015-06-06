@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 22/02/2014 14:37:28 (- $Rev: 12980 $, 7037251).
+// File generated on 6/6/2015 3:03:09 PM (- $Rev: 12980 $, 11985042).
 
 [
   uuid(AC9DE618-78D1-483A-B543-5C25D203F893),
@@ -18,6 +18,7 @@ library WSPowerPointTranslator
 {
 
   importlib("stdole2.tlb");
+  importlib("Generator.dll");
 
   interface IPowerPointTranslatorObj;
   coclass PowerPointTranslatorObj;
@@ -42,6 +43,7 @@ library WSPowerPointTranslator
   coclass PowerPointTranslatorObj
   {
     [default] interface IPowerPointTranslatorObj;
+    interface ITranslator;
   };
 
 };

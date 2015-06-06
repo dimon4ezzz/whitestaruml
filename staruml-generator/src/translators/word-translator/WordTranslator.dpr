@@ -64,8 +64,8 @@ exports
 {$RTTI EXPLICIT METHODS([]) PROPERTIES([]) FIELDS([])}
 {$ENDIF RELEASE}
 
-{$R *.TLB}
 
+{$R *.TLB}
 {$R *.RES}
 
 begin

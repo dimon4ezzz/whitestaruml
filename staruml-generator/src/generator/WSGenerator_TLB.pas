@@ -12,7 +12,7 @@ unit WSGenerator_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 5/30/2015 6:11:20 PM from Type Library described below.
+// File generated on 5/31/2015 7:35:05 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\generator\Generator (1)
