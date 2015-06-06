@@ -83,7 +83,7 @@ exports
 
 {$R *.TLB}
 
-//{$R *.RES}
+{$R *.RES}
 
 begin
 end.

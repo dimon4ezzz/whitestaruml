@@ -12,16 +12,17 @@ unit WSExcelTranslator_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 22/02/2014 14:23:21 from Type Library described below.
+// File generated on 6/6/2015 2:12:30 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\translators\excel-translator\ExcelTranslator (1)
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\translators\excel-translator\WSExcelTranslator (1)
 // LIBID: {B2C6F7DF-3DD2-4D6B-9951-F608DC6360BD}
 // LCID: 0
 // Helpfile:
 // HelpString: ExcelTranslator Library
 // DepndLst:
-//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
+//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
+//   (2) v1.0 WSGenerator, (C:\JS\Delphi\WhiteStarDevInstall64\modules\staruml-generator\Generator.dll)
 // SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
@@ -32,7 +33,8 @@ unit WSExcelTranslator_TLB;
 
 interface
 
-uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, Winapi.ActiveX;
+uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Graphics, Vcl.OleServer, Winapi.ActiveX, WSGenerator_TLB;
+
 
 
 // *********************************************************************//

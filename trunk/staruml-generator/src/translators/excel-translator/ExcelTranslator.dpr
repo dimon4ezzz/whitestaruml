@@ -66,7 +66,6 @@ exports
 
 
 {$R *.TLB}
-
 {$R *.RES}
 
 begin
