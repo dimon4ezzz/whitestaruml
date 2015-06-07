@@ -12,7 +12,7 @@ unit WSTextTranslator_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 6/6/2015 3:26:40 PM from Type Library described below.
+// File generated on 6/6/2015 4:19:48 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\translators\text-translator\WSTextTranslator (1)
@@ -22,7 +22,7 @@ unit WSTextTranslator_TLB;
 // HelpString: TextTranslator Library
 // DepndLst:
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
-//   (2) v1.0 WSGenerator, (C:\JS\Delphi\WhiteStarDevInstall64\modules\staruml-generator\Generator.dll)
+//   (2) v1.0 WSGenerator, (C:\JS\Delphi\WhiteStarDevInstall\modules\staruml-generator\Generator.dll)
 // SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.

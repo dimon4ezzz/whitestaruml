@@ -54,7 +54,7 @@ uses
 
 type
 
-  TExcelTranslatorObj = class(TAutoObject, IExcelTranslatorObj, ITranslator)
+  TExcelTranslatorObj = class(TAutoObject, ITranslator)
   private
     ExcelEngine: PExcelTranslatorEngine;
     FilePath: string;

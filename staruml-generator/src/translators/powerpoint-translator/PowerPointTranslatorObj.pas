@@ -54,7 +54,7 @@ uses
   StdVcl, WSGenerator_TLB, PowerPointTranslatorEngine;
 
 type
-  TPowerPointTranslatorObj = class(TAutoObject, ITranslator, IPowerPointTranslatorObj)
+  TPowerPointTranslatorObj = class(TAutoObject, ITranslator)
   private
     PowerPointEngine: PPowerPointTranslatorEngine;
     FilePath: string;
