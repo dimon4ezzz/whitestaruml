@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 6/6/2015 2:57:47 PM (- $Rev: 12980 $, 11663601).
+// File generated on 6/7/2015 3:46:40 PM (- $Rev: 12980 $, 11059238).
 
 [
   uuid(B2C6F7DF-3DD2-4D6B-9951-F608DC6360BD),
@@ -20,20 +20,8 @@ library WSExcelTranslator
   importlib("stdole2.tlb");
   importlib("Generator.dll");
 
-  interface IExcelTranslatorObj;
   coclass ExcelTranslatorObj;
 
-
-  [
-    uuid(D518D1E5-2AB5-46AD-9E39-3BA61C47C8A8),
-    version(1.0),
-    helpstring("Dispatch interface for ExcelTranslatorObj Object"),
-    dual,
-    oleautomation
-  ]
-  interface IExcelTranslatorObj: IDispatch
-  {
-  };
 
   [
     uuid(36DA5BA0-B37E-49A0-8C59-6DACAD880BDE),
@@ -42,8 +30,7 @@ library WSExcelTranslator
   ]
   coclass ExcelTranslatorObj
   {
-    [default] interface IExcelTranslatorObj;
-    interface ITranslator;
+    [default] interface ITranslator;
   };
 
 };

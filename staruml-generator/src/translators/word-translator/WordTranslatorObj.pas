@@ -55,7 +55,7 @@ uses
 
 type
 
-  TWordTranslatorObj = class(TAutoObject, ITranslator, IWordTranslatorObj)
+  TWordTranslatorObj = class(TAutoObject, ITranslator)
   private
     WordEngine: PWordTranslatorEngine;
     FilePath: string;

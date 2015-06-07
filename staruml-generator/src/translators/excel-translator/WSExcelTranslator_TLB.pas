@@ -12,7 +12,7 @@ unit WSExcelTranslator_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 6/6/2015 2:12:30 PM from Type Library described below.
+// File generated on 6/7/2015 3:46:36 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\translators\excel-translator\WSExcelTranslator (1)
@@ -51,65 +51,40 @@ const
 
   LIBID_WSExcelTranslator: TGUID = '{B2C6F7DF-3DD2-4D6B-9951-F608DC6360BD}';
 
-  IID_IExcelTranslatorObj: TGUID = '{D518D1E5-2AB5-46AD-9E39-3BA61C47C8A8}';
   CLASS_ExcelTranslatorObj: TGUID = '{36DA5BA0-B37E-49A0-8C59-6DACAD880BDE}';
 type
-
-// *********************************************************************//
-// Forward declaration of types defined in TypeLibrary
-// *********************************************************************//
-  IExcelTranslatorObj = interface;
-  IExcelTranslatorObjDisp = dispinterface;
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library
 // (NOTE: Here we map each CoClass to its Default Interface)
 // *********************************************************************//
-  ExcelTranslatorObj = IExcelTranslatorObj;
+  ExcelTranslatorObj = ITranslator;
 
-
-// *********************************************************************//
-// Interface: IExcelTranslatorObj
-// Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {D518D1E5-2AB5-46AD-9E39-3BA61C47C8A8}
-// *********************************************************************//
-  IExcelTranslatorObj = interface(IDispatch)
-    ['{D518D1E5-2AB5-46AD-9E39-3BA61C47C8A8}']
-  end;
-
-// *********************************************************************//
-// DispIntf:  IExcelTranslatorObjDisp
-// Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {D518D1E5-2AB5-46AD-9E39-3BA61C47C8A8}
-// *********************************************************************//
-  IExcelTranslatorObjDisp = dispinterface
-    ['{D518D1E5-2AB5-46AD-9E39-3BA61C47C8A8}']
-  end;
 
 // *********************************************************************//
 // The Class CoExcelTranslatorObj provides a Create and CreateRemote method to
-// create instances of the default interface IExcelTranslatorObj exposed by
+// create instances of the default interface ITranslator exposed by
 // the CoClass ExcelTranslatorObj. The functions are intended to be used by
 // clients wishing to automate the CoClass objects exposed by the
 // server of this typelibrary.
 // *********************************************************************//
   CoExcelTranslatorObj = class
-    class function Create: IExcelTranslatorObj;
-    class function CreateRemote(const MachineName: string): IExcelTranslatorObj;
+    class function Create: ITranslator;
+    class function CreateRemote(const MachineName: string): ITranslator;
   end;
 
 implementation
 
 uses System.Win.ComObj;
 
-class function CoExcelTranslatorObj.Create: IExcelTranslatorObj;
+class function CoExcelTranslatorObj.Create: ITranslator;
 begin
-  Result := CreateComObject(CLASS_ExcelTranslatorObj) as IExcelTranslatorObj;
+  Result := CreateComObject(CLASS_ExcelTranslatorObj) as ITranslator;
 end;
 
-class function CoExcelTranslatorObj.CreateRemote(const MachineName: string): IExcelTranslatorObj;
+class function CoExcelTranslatorObj.CreateRemote(const MachineName: string): ITranslator;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_ExcelTranslatorObj) as IExcelTranslatorObj;
+  Result := CreateRemoteComObject(MachineName, CLASS_ExcelTranslatorObj) as ITranslator;
 end;
 
 end.

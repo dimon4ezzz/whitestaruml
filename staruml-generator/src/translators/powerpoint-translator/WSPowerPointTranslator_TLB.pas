@@ -12,7 +12,7 @@ unit WSPowerPointTranslator_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 6/6/2015 3:00:39 PM from Type Library described below.
+// File generated on 6/7/2015 3:45:56 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\translators\powerpoint-translator\WSPowerPointTranslator (1)
@@ -51,65 +51,40 @@ const
 
   LIBID_WSPowerPointTranslator: TGUID = '{AC9DE618-78D1-483A-B543-5C25D203F893}';
 
-  IID_IPowerPointTranslatorObj: TGUID = '{3AD006D8-8E12-4440-A3DC-BB722EDE5BB2}';
   CLASS_PowerPointTranslatorObj: TGUID = '{14E57C1D-24CA-4013-87E4-B5FA373A976D}';
 type
-
-// *********************************************************************//
-// Forward declaration of types defined in TypeLibrary
-// *********************************************************************//
-  IPowerPointTranslatorObj = interface;
-  IPowerPointTranslatorObjDisp = dispinterface;
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library
 // (NOTE: Here we map each CoClass to its Default Interface)
 // *********************************************************************//
-  PowerPointTranslatorObj = IPowerPointTranslatorObj;
+  PowerPointTranslatorObj = ITranslator;
 
-
-// *********************************************************************//
-// Interface: IPowerPointTranslatorObj
-// Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {3AD006D8-8E12-4440-A3DC-BB722EDE5BB2}
-// *********************************************************************//
-  IPowerPointTranslatorObj = interface(IDispatch)
-    ['{3AD006D8-8E12-4440-A3DC-BB722EDE5BB2}']
-  end;
-
-// *********************************************************************//
-// DispIntf:  IPowerPointTranslatorObjDisp
-// Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {3AD006D8-8E12-4440-A3DC-BB722EDE5BB2}
-// *********************************************************************//
-  IPowerPointTranslatorObjDisp = dispinterface
-    ['{3AD006D8-8E12-4440-A3DC-BB722EDE5BB2}']
-  end;
 
 // *********************************************************************//
 // The Class CoPowerPointTranslatorObj provides a Create and CreateRemote method to
-// create instances of the default interface IPowerPointTranslatorObj exposed by
+// create instances of the default interface ITranslator exposed by
 // the CoClass PowerPointTranslatorObj. The functions are intended to be used by
 // clients wishing to automate the CoClass objects exposed by the
 // server of this typelibrary.
 // *********************************************************************//
   CoPowerPointTranslatorObj = class
-    class function Create: IPowerPointTranslatorObj;
-    class function CreateRemote(const MachineName: string): IPowerPointTranslatorObj;
+    class function Create: ITranslator;
+    class function CreateRemote(const MachineName: string): ITranslator;
   end;
 
 implementation
 
 uses System.Win.ComObj;
 
-class function CoPowerPointTranslatorObj.Create: IPowerPointTranslatorObj;
+class function CoPowerPointTranslatorObj.Create: ITranslator;
 begin
-  Result := CreateComObject(CLASS_PowerPointTranslatorObj) as IPowerPointTranslatorObj;
+  Result := CreateComObject(CLASS_PowerPointTranslatorObj) as ITranslator;
 end;
 
-class function CoPowerPointTranslatorObj.CreateRemote(const MachineName: string): IPowerPointTranslatorObj;
+class function CoPowerPointTranslatorObj.CreateRemote(const MachineName: string): ITranslator;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_PowerPointTranslatorObj) as IPowerPointTranslatorObj;
+  Result := CreateRemoteComObject(MachineName, CLASS_PowerPointTranslatorObj) as ITranslator;
 end;
 
 end.

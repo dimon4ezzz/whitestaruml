@@ -82,7 +82,6 @@ exports
 {$ENDIF RELEASE}
 
 {$R *.TLB}
-
 {$R *.RES}
 
 begin

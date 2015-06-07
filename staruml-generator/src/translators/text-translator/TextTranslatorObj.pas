@@ -53,7 +53,7 @@ uses
   ComObj, ActiveX, WSTextTranslator_TLB, StdVcl, WSGenerator_TLB, TextTranslatorEngine;
 
 type
-  TTextTranslatorObj = class(TAutoObject, ITextTranslatorObj, ITranslator)
+  TTextTranslatorObj = class(TAutoObject, ITranslator)
   private
     TextEngine: PTextTranslatorEngine;
     FilePath: string;
