@@ -55,10 +55,12 @@ type
   TAboutForm = class(TForm)
     VersionLabel: TfshVersionLabel;
     SplashImage: TImage;
-    AuthorLabel: TLabel;
     AcknowledgeLabel: TLabel;
     EditionLabel: TLabel;
+    WebLinkLabel: TLinkLabel;
     procedure FormCreate(Sender: TObject);
+    procedure WebLinkLabelLinkClick(Sender: TObject; const Link: string;
+      LinkType: TSysLinkType);
   private
     { Private declarations }
   public
@@ -71,7 +73,7 @@ var
 implementation
 
 uses
-  NLS;
+  Winapi.ShellAPI, NLS;
 
 {$R *.dfm}
 
@@ -82,10 +84,18 @@ const
 {$ELSE}
   Edition = '32';
 {$ENDIF}
+  WebSite = 'sourceforge.net/projects/whitestaruml';
 begin
   EditionLabel.Caption := Edition + ' bit edition';
+  WebLinkLabel.Caption := '<a href="http://' + WebSite + '">http://' + Website + '</a>';
   NLSManager.SetFile(ExtractFilePath(Application.ExeName) + 'NLS\ABOUT.LNG');
   NLSManager.TranslateComponent(Self, []);
+end;
+
+procedure TAboutForm.WebLinkLabelLinkClick(Sender: TObject; const Link: string;
+  LinkType: TSysLinkType);
+begin
+  ShellExecute(0, 'open', PChar(Link), '', '', SW_SHOWNORMAL);
 end;
 
 end.
