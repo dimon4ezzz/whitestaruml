@@ -973,8 +973,8 @@ object AboutForm: TAboutForm
     ExplicitHeight = 199
   end
   object VersionLabel: TfshVersionLabel
-    Left = 257
-    Top = 180
+    Left = 289
+    Top = 188
     Width = 155
     Height = 11
     VersionResource = vrFileVersion
@@ -992,15 +992,6 @@ object AboutForm: TAboutForm
     Transparent = True
     DateTimeFormat = 'yyyy-MM-dd'
     FileSizeFormat = '#,#0" Bytes"'
-  end
-  object AuthorLabel: TLabel
-    Left = 46
-    Top = 153
-    Width = 351
-    Height = 13
-    Caption = 
-      'Maintained by Janusz Szpilewski <janszpilewski@users.sourceforge' +
-      '.net>'
   end
   object AcknowledgeLabel: TLabel
     Left = 119
@@ -1027,5 +1018,22 @@ object AboutForm: TAboutForm
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
+  end
+  object WebLinkLabel: TLinkLabel
+    Left = 144
+    Top = 165
+    Width = 107
+    Height = 17
+    Caption = '<a href="http://www.site.com"> http://www.site.com</a>'
+    Color = clBtnFace
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+    OnLinkClick = WebLinkLabelLinkClick
   end
 end
