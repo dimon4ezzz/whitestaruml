@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 6/6/2015 3:26:44 PM (- $Rev: 12980 $, 13400049).
+// File generated on 6/7/2015 3:43:21 PM (- $Rev: 12980 $, 10860368).
 
 [
   uuid(929ACC4C-40C7-4BF9-B678-5CD3DE9C4E6E),
@@ -20,20 +20,8 @@ library WSTextTranslator
   importlib("stdole2.tlb");
   importlib("Generator.dll");
 
-  interface ITextTranslatorObj;
   coclass TextTranslatorObj;
 
-
-  [
-    uuid(0603EA84-39B6-4671-8A4A-D010EAC16071),
-    version(1.0),
-    helpstring("Dispatch interface for TextTranslatorObj Object"),
-    dual,
-    oleautomation
-  ]
-  interface ITextTranslatorObj: IDispatch
-  {
-  };
 
   [
     uuid(D3ACBB57-8C1D-4DE4-BAEF-9248A1887D73),
@@ -42,8 +30,7 @@ library WSTextTranslator
   ]
   coclass TextTranslatorObj
   {
-    [default] interface ITextTranslatorObj;
-    interface ITranslator;
+    [default] interface ITranslator;
   };
 
 };

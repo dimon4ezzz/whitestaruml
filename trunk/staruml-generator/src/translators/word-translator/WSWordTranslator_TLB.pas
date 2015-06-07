@@ -12,7 +12,7 @@ unit WSWordTranslator_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 6/6/2015 3:07:24 PM from Type Library described below.
+// File generated on 6/7/2015 3:44:27 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-generator\src\translators\word-translator\WSWordTranslator (1)
@@ -51,65 +51,40 @@ const
 
   LIBID_WSWordTranslator: TGUID = '{B50752CF-E0EC-445E-BB82-B32E94A9C878}';
 
-  IID_IWordTranslatorObj: TGUID = '{64F82205-5A1A-482D-A643-1E6A0BAA11FC}';
   CLASS_WordTranslatorObj: TGUID = '{15EDB416-C580-42FF-925B-D7960AF693A3}';
 type
-
-// *********************************************************************//
-// Forward declaration of types defined in TypeLibrary
-// *********************************************************************//
-  IWordTranslatorObj = interface;
-  IWordTranslatorObjDisp = dispinterface;
 
 // *********************************************************************//
 // Declaration of CoClasses defined in Type Library
 // (NOTE: Here we map each CoClass to its Default Interface)
 // *********************************************************************//
-  WordTranslatorObj = IWordTranslatorObj;
+  WordTranslatorObj = ITranslator;
 
-
-// *********************************************************************//
-// Interface: IWordTranslatorObj
-// Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {64F82205-5A1A-482D-A643-1E6A0BAA11FC}
-// *********************************************************************//
-  IWordTranslatorObj = interface(IDispatch)
-    ['{64F82205-5A1A-482D-A643-1E6A0BAA11FC}']
-  end;
-
-// *********************************************************************//
-// DispIntf:  IWordTranslatorObjDisp
-// Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {64F82205-5A1A-482D-A643-1E6A0BAA11FC}
-// *********************************************************************//
-  IWordTranslatorObjDisp = dispinterface
-    ['{64F82205-5A1A-482D-A643-1E6A0BAA11FC}']
-  end;
 
 // *********************************************************************//
 // The Class CoWordTranslatorObj provides a Create and CreateRemote method to
-// create instances of the default interface IWordTranslatorObj exposed by
+// create instances of the default interface ITranslator exposed by
 // the CoClass WordTranslatorObj. The functions are intended to be used by
 // clients wishing to automate the CoClass objects exposed by the
 // server of this typelibrary.
 // *********************************************************************//
   CoWordTranslatorObj = class
-    class function Create: IWordTranslatorObj;
-    class function CreateRemote(const MachineName: string): IWordTranslatorObj;
+    class function Create: ITranslator;
+    class function CreateRemote(const MachineName: string): ITranslator;
   end;
 
 implementation
 
 uses System.Win.ComObj;
 
-class function CoWordTranslatorObj.Create: IWordTranslatorObj;
+class function CoWordTranslatorObj.Create: ITranslator;
 begin
-  Result := CreateComObject(CLASS_WordTranslatorObj) as IWordTranslatorObj;
+  Result := CreateComObject(CLASS_WordTranslatorObj) as ITranslator;
 end;
 
-class function CoWordTranslatorObj.CreateRemote(const MachineName: string): IWordTranslatorObj;
+class function CoWordTranslatorObj.CreateRemote(const MachineName: string): ITranslator;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_WordTranslatorObj) as IWordTranslatorObj;
+  Result := CreateRemoteComObject(MachineName, CLASS_WordTranslatorObj) as ITranslator;
 end;
 
 end.
