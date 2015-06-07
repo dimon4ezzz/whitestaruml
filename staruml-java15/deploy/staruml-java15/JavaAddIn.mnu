@@ -24,7 +24,7 @@
         <!-- reserved menu item for checking UML Model 
         <POPUPITEM caption="Syntax Check" actionId="1" />
         -->
-        <POPUPITEM caption="&amp;Generate Code......" actionId="2" />
+        <POPUPITEM caption="&amp;Generate Code..." actionId="2" />
         <POPUPITEM caption="&amp;Reverse Engineer..." actionId="3" />
       </POPUPITEM>
     </POPUPMENU>
