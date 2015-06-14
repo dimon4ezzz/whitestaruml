@@ -52,7 +52,7 @@ type
   private
     FSubMenu :TdxBarSubItem;
   public
-    procedure AddMenuElement(AMenuElement: TMenuElementHandle); override;
+    procedure AddMenuElement(AMenuElement: TMenuElementHandle; ANewGroup: Boolean = False); override;
   end;
 
   TMenuHandlesManagerTdxImpl = class (TMenuHandlesManager)
@@ -263,13 +263,14 @@ end;
 /////////////////////////////////
 // TSubmenuHandleTdxImpl
 
-procedure TSubmenuHandleTdxImpl.AddMenuElement(AMenuElement: TMenuElementHandle);
+procedure TSubmenuHandleTdxImpl.AddMenuElement(AMenuElement: TMenuElementHandle;
+  ANewGroup: Boolean = False);
 var
   MenuLink: TdxBarItemLink;
 begin
   MenuLink := FSubMenu.ItemLinks.Add;
   MenuLink.Item := (AMenuElement as TMenuElementHandleTdxImpl).FMenuButton;
-  MenuLink.BeginGroup := FContainedElems.Count > 0;
+  MenuLink.BeginGroup := ANewGroup;
   inherited;
 end;
 
