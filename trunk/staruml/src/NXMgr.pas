@@ -1923,7 +1923,7 @@ begin
     DoExpr := Exprs[3];
 
     // add indexer to symbol table
-    SymbolTable.Add(Id, PNXExpr.NewValue(Exprs[0].Position, 0));
+    SymbolTable.SetValue(Id, PNXExpr.NewValue(Exprs[0].Position, 0));
     // initialize
     FromExpr.Evaluate(Canvas, SymbolTable);
     EndExpr.Evaluate(Canvas, SymbolTable);
