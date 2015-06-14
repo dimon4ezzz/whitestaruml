@@ -1291,7 +1291,8 @@ begin
         PopupQuickDialog(V, X1, Y1, True);
     end;
   except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    //E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+     E: Exception do MainForm.ShowAlertMsg(C_ERR_DIAGRAM,E.Message);
   end;
 end;
 
