@@ -627,7 +627,7 @@ begin
       if Approach <> nil then begin
         AutoIncludeProfiles;      
         for I := 0 to Approach.ImportProfileCount - 1 do
-          ExtensionManager.IncludeProfile(Approach.ImportProfiles[I]);
+          IncludeProfile(Approach.ImportProfiles[I]);
         BuildModelStrNode(Approach, Approach.RootNode, FProject);
       end;
     end;

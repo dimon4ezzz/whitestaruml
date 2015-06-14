@@ -792,13 +792,13 @@ end;
 
 procedure PInteractionManager.AddExtDiagramMenuInteraction(ADiagramType: PDiagramType; IsFirst: Boolean = False);
 var
-  BaseDI: PPredefinedDiagramMenuInteraction;
+  //BaseDI: PPredefinedDiagramMenuInteraction;
   DI: PExtendedDiagramMenuInteraction;
   MenuButton: TMenuElementHandle;
   //MenuLink: TdxBarItemLink;
   //BarGroup: TdxBarGroup;
   //Submenu: TSubmenuHandle;
-  Category: TMenuElementGroup;
+  //Category: TMenuElementGroup;
   I: Integer;
 begin
   with MainForm do begin
@@ -806,7 +806,7 @@ begin
     MenuButton.Caption := ADiagramType.DisplayName;
     MenuButton.ImageIndex := ADiagramType.ImageIndex;
     MenuButton.OnClick := MainFormDiagramAddMenuClicked;
-    MenuManager.GetSubmenu(MODEL_ADD_DIAGRAM_SUBMENU).AddMenuElement(MenuButton);
+    MenuManager.GetSubmenu(MODEL_ADD_DIAGRAM_SUBMENU).AddMenuElement(MenuButton, IsFirst);
 
     {MenuButton := TdxBarButton.Create(MainForm);
     MenuButton.Caption := ADiagramType.DisplayName;
@@ -815,17 +815,17 @@ begin
     MenuLink := ModelAddDiagram.ItemLinks.Add;
     MenuLink.Item := MenuButton;
     MenuLink.BeginGroup := IsFirst;}
-    BaseDI := FindPredefinedDiagramMenuInteraction(ADiagramType.BaseDiagram);
+    //BaseDI := FindPredefinedDiagramMenuInteraction(ADiagramType.BaseDiagram);
     // ASSERTIONS
-    Assert(BaseDI <> nil);
+    //Assert(BaseDI <> nil);
     // ASSERTIONS
     //Submenu := GetContainerMenuBarGroup(BaseDI.MenuButton);
-    Category := MenuManager.GetGroup(BaseDI.MenuButton);
+    //Category := MenuManager.GetGroup(BaseDI.MenuButton);
     // ASSERTIONS
-    Assert(Category <> nil);
+    //Assert(Category <> nil);
     // ASSERTIONS
     //Submenu.AddMenuElement(MenuButton);
-    Category.AddElement(MenuButton);
+    //Category.AddElement(MenuButton);
   end;
   DI := PExtendedDiagramMenuInteraction.Create;
   DI.DiagramType := ADiagramType;
@@ -1195,10 +1195,10 @@ procedure PInteractionManager.BuildExtendedInteractions;
 var
   Profile: PProfile;
   Palette: PPalette;
-  DigramMenuAdded: Boolean;
+  DiagramMenuAdded: Boolean;
   I, J: Integer;
 begin
-  DigramMenuAdded := False;
+  DiagramMenuAdded := False;
   for I := 0 to ExtensionManager.AvailableProfileCount - 1 do begin
     Profile := ExtensionManager.AvailableProfiles[I];
     for J := 0 to Profile.ElementPrototypeCount - 1 do
@@ -1209,8 +1209,8 @@ begin
       CreatePaletteItemLinks(Palette);
     end;
     for J := 0 to Profile.DiagramTypeCount - 1 do begin
-      AddExtDiagramMenuInteraction(Profile.DiagramTypes[J], not DigramMenuAdded);
-      DigramMenuAdded := True;
+      AddExtDiagramMenuInteraction(Profile.DiagramTypes[J], not DiagramMenuAdded);
+      DiagramMenuAdded := True;
     end;
     MainForm.ModelAdd.ItemLinks[0].BeginGroup := True;
     for J := Profile.ModelPrototypeCount - 1 downto 0 do

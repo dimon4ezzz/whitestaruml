@@ -150,7 +150,8 @@ type
   public
     constructor Create;
     destructor Destroy; override;
-    procedure AddMenuElement(AMenuElement: TMenuElementHandle); virtual;
+    procedure AddMenuElement(AMenuElement: TMenuElementHandle;
+      ANewGroup: Boolean = False); virtual;
   end;
 
   TMainMenuHandle = class abstract
@@ -231,7 +232,8 @@ begin
    FContainedElems.Free;
 end;
 
-procedure TSubmenuHandle.AddMenuElement(AMenuElement: TMenuElementHandle);
+procedure TSubmenuHandle.AddMenuElement(AMenuElement: TMenuElementHandle;
+  ANewGroup: Boolean = False);
 begin
   FContainedElems.Add(AMenuElement);
 end;
