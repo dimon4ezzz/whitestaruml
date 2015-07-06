@@ -1271,9 +1271,16 @@ begin
   Val2 := Right.Values[CompareColumn];
   if CompareAsInteger then
   begin
-    Int1 := StrToInt(Val1);
-    Int2 := StrToInt(Val2);
-    if Int1 < Int2 then
+    if Val1 = '' then
+      Int1 := 0
+    else
+      Int1 := StrToInt(Val1);
+    if Val2 = '' then
+      Int2 := 0
+    else
+      Int2 := StrToInt(Val2);
+
+   if Int1 < Int2 then
       Result := -1
     else if Int1 > Int2 then
       Result := 1

@@ -633,6 +633,9 @@ begin
   with SubUnitsNode.ChildNodes do
     for I := 0 to Count - 1 do
     begin
+      if Nodes[I].NodeType = ntComment then
+        Continue; // Ignore comments
+
       if VarIsNull(Nodes[I].NodeValue) then
         UnitFileName := ''
       else
