@@ -12,7 +12,7 @@ unit WSPatternAddIn_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 23/02/2014 15:04:38 from Type Library described below.
+// File generated on 6/28/2015 1:44:59 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml-pattern\src\code\PatternAddIn (1)
@@ -21,7 +21,7 @@ unit WSPatternAddIn_TLB;
 // Helpfile:
 // HelpString: WSPatternAddIn Library
 // DepndLst:
-//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
+//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
 //   (2) v1.0 WhiteStarUML, (C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML.exe)
 // SYS_KIND: SYS_WIN32
 // ************************************************************************ //
