@@ -574,6 +574,8 @@ begin
 end;
 
 procedure PCanvas.Arc(X1, Y1, X2, Y2, X3, Y3, X4, Y4: Integer);
+var
+  D2DCanvas: TDirect2DCanvas;
 begin
   CoordTransform(FZoomFactor, GridFactor(1, 1), X1, Y1);
   CoordTransform(FZoomFactor, GridFactor(1, 1), X2, Y2);
@@ -587,7 +589,21 @@ begin
   Y3 := Y3 + OriginY;
   X4 := X4 + OriginX;
   Y4 := Y4 + OriginY;
-  FCanvas.Arc(X1, Y1, X2, Y2, X3, Y3, X4, Y4);
+
+  if UseDirect2D and (FCanvas.Pen.Style in [psSolid,psDash]) then begin
+    D2DCanvas := TDirect2DCanvas.Create(Canvas, FViewPort);
+    try
+      D2DCanvas.RenderTarget.BeginDraw;
+      D2DCanvas.Arc(X1, Y1, X2, Y2, X3, Y3, X4, Y4);
+      D2DCanvas.RenderTarget.EndDraw;
+    finally
+      D2DCanvas.Free;
+    end;
+  end
+  else
+    FCanvas.Arc(X1, Y1, X2, Y2, X3, Y3, X4, Y4);
+
+
 end;
 
 procedure PCanvas.Ellipse(X1, Y1, X2, Y2: Integer);
@@ -826,12 +842,8 @@ end;
 
 procedure PCanvas.TextOut(R: TRect; const Text: string; IsVertical: Boolean = False; Args: PTextOutArguments = []);
 var
-  OriginFont: TFont;
-  LF: LogFont;
-  F: HFONT;
   Flag: Cardinal;
   TR: TRect;
-  X, Y: Integer;
 begin
   TR := R;
   CoordTransform(FZoomFactor, GridFactor(1, 1), R);
@@ -865,7 +877,7 @@ var
   R: TRect;
   S: TSize;
   XCanvasLogical, YCanvasLogical: Integer;
-  XScreenLogical : Integer;
+  //XScreenLogical : Integer;
   Dpi : Integer;
   //ScreenWindow: HWND;
 begin
@@ -956,7 +968,7 @@ procedure PCanvas.TextBound(X1, Y1, X2, Y2, Space: Integer; Text: string; Clippi
 var
   B: Boolean;
   Size: TSize;
-  L, C, Len, Y: Integer;
+  L, C, Len: Integer;
 begin
   Len := Trunc((X2-X1) * (FZoomFactor.Numer / FZoomFactor.Denom));
 //  Y := Y1;
@@ -976,7 +988,7 @@ begin
       end
       else
         if Clipping then
-          TextRect(Rect(X1, Y1, X2, Y2), X1, Y, Text)
+          TextRect(Rect(X1, Y1, X2, Y2), X1, Y1, Text)
         else
           Textout(X1, Y1, Text);
       Y1 := Y1 + TextHeight(Text) + Space;
