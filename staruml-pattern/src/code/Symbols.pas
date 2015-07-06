@@ -72,8 +72,10 @@ const
                    'var metaModel = app.MetaModel;' + #13#10 +
                    'var dgm = app.SelectionManager.ActiveDiagram;' + #13#10 +
                    'var owner = dgm.DiagramOwner;' + #13#10 + #13#10 +
-                   'try{';
-  JSCRIPT_TAIL =   '}' + #13#10 +
+                   'try{' + #13#10 +
+                   'app.BeginGroupAction();';
+  JSCRIPT_TAIL =    'app.EndGroupAction();' + #13#10 +
+                    '} // End of try' + #13#10 + #13#10 +
                    'finally{' + #13#10 +
                    '  app = null;' + #13#10 +
                    '}';

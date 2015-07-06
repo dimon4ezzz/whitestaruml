@@ -49,12 +49,11 @@
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_UsePackage>rtl;vcl;vclx;elpackD19;$(DCC_UsePackage)</DCC_UsePackage>
         <UsePackages>true</UsePackages>
-        <VerInfo_Release>1</VerInfo_Release>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.1.1.75;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.1;Comments=</VerInfo_Keys>
+        <VerInfo_MinorVer>2</VerInfo_MinorVer>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.0.80;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.2;Comments=</VerInfo_Keys>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;System.Win;Winapi;Vcl;Xml.Win;Vcl.Shell;Vcl.Imaging;Vcl.Touch;Vcl.Samples;$(DCC_Namespace)</DCC_Namespace>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <VerInfo_Build>75</VerInfo_Build>
+        <VerInfo_Build>80</VerInfo_Build>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -84,6 +83,8 @@
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <Debugger_HostApplication>C:\JS\Delphi\WhiteStarDevInstall\\WhiteStarUML.exe</Debugger_HostApplication>
+        <DCC_ExeOutput>C:\JS\Delphi\WhiteStarDevInstall\modules\staruml-pattern\</DCC_ExeOutput>
         <Manifest_File>None</Manifest_File>
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
         <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>

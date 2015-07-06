@@ -49,7 +49,7 @@ interface
 
 uses
   WhiteStarUML_TLB,
-  Classes, SysUtils, comctrls, Forms, Windows, xmldom, XMLIntf, msxmldom, XMLDoc,
+  Classes, SysUtils, comctrls, Forms, xmldom, XMLIntf, msxmldom, XMLDoc,
   MSScriptControl_TLB;
 
 type
@@ -180,8 +180,62 @@ procedure SeparateStringByComma(Value: string; SL: TStringList);
 implementation
 
 uses
-  Dialogs,
+  Winapi.Windows, Dialogs, ShellAPI,
   Symbols, NLS_PatternAddIn;
+
+// Helper to run script in a separate process and wait for its completion
+procedure StartScriptAndWait(ScriptFileName: string);
+var
+  Info: TShellExecuteInfo;
+begin
+  FillChar(info, sizeof(Info), 0);
+  Info.cbSize := sizeOf(Info);
+  Info.lpVerb := 'open';
+  Info.lpFile := PChar(ScriptFileName);
+  Info.nShow := SW_HIDE;
+  Info.fMask := SEE_MASK_NOCLOSEPROCESS;
+  //Info.lpParameters := '//d //x'; // Autostart debugging with Visual Studio
+
+  ShellExecuteEx(@Info);
+  WaitForSingleObject(Info.hProcess, Infinite);
+end;
+
+// Helper to get system TMP dir
+function GetTmpDir: string;
+var
+  SysDir: array[0..MAX_PATH] Of Char;
+begin
+  if (Winapi.Windows.GetTempPath(MAX_PATH, SysDir) > 0) then
+    Result:= SysUtils.StrPas(SysDir)
+  else
+    Result:= '';
+end;
+
+// Code executing in a new thread
+function StartScriptInThread(Parameter: Pointer): Integer;
+const
+  ScriptFileName = 'WhiteStarUML_PatternScript.js';
+var
+  ScriptFilePath: string;
+  Gen: TStrings;
+begin
+  Gen := TStrings(Parameter);
+  ScriptFilePath := GetTmpDir + ScriptFileName;
+  Gen.SaveToFile(ScriptFilePath);
+  StartScriptAndWait(ScriptFilePath);
+  //SysUtils.DeleteFile(ScriptFilePath);
+
+  Result := 0;
+  EndThread(0);
+end;
+
+// Code spawning StartScriptInThread() in a new thread
+procedure ExecuteScriptInThread(Gen: TStrings);
+var
+  ThreadId: Cardinal;
+begin
+  BeginThread(nil,0,StartScriptInThread,Gen,0,ThreadId);
+end;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PPatternFolder
@@ -424,14 +478,21 @@ begin
 end;
 
 procedure PPattern.ExecuteJScript(Gen: TStrings);
+const
+  ScriptFileName = '__PatternScript.js';
 var
   SC: TScriptControl;
+  ScriptFilePath: string;
 begin
   SC := TScriptControl.Create(nil);
+  ScriptFilePath := FullPathName + ScriptFileName;
+  Gen.SaveToFile(ScriptFilePath);
+  StartScriptAndWait(ScriptFilePath);
+  SysUtils.DeleteFile(ScriptFilePath);
   try
-    SC.Language := 'JScript';
+    (*SC.Language := 'JScript';
     SC.Reset;
-    SC.AddCode(Gen.Text);
+    SC.AddCode(Gen.Text);*)
   finally
     SC.Free;
   end;
@@ -615,7 +676,8 @@ begin
       try
         //ExeCode.SaveToFile('C:\Temp\Pattern_Executed.js');
         PatternManager.StarUMLApp.Log(Format(MSG_PATTERN_APPLY_START, [Self.Name]));
-        ExecuteJScript(ExeCode);
+        //ExecuteJScript(ExeCode);
+        ExecuteScriptInThread(ExeCode);
         PatternManager.StarUMLApp.Log(MSG_PATTERN_APPLY_SUCCEED);
       except on E: Exception do
         begin
