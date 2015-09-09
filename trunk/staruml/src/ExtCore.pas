@@ -512,6 +512,9 @@ type
 
   // PProfile
   PProfile = class(BasicClasses.PObject)
+  private type
+    PElementPrototypeOrderedSet = POrderedSet <PElementPrototype>;
+    PModelPrototypeOrderedSet = POrderedSet <PModelPrototype>;
   private
     FName: string;
     FDisplayName: string;
@@ -523,8 +526,8 @@ type
     FStereotypes: POrderedSet;
     FTagDefinitionSets: POrderedSet;
     FDataTypes: POrderedSet;
-    FElementPrototypes: POrderedSet;
-    FModelPrototypes: POrderedSet;
+    FElementPrototypes: PElementPrototypeOrderedSet;
+    FModelPrototypes: PModelPrototypeOrderedSet;
     FDiagramTypes: POrderedSet;
     FPalettes: POrderedSet;
     function GetStereotypeCount: Integer;
@@ -550,6 +553,7 @@ type
     function FindDataType(AName: string): PDataType;
     function FindElementPrototype(AName: string): PElementPrototype;
     function FindModelPrototype(AName: string): PModelPrototype;
+    function FindPrototypeNameForStereotype(AStereotypeName: string): string;
     function FindDiagramType(AName: string): PDiagramType;
     function FindPalette(AName: string): PPalette;
     property Name: string read FName;
@@ -2226,8 +2230,8 @@ begin
   FStereotypes := POrderedSet.Create;
   FTagDefinitionSets := POrderedSet.Create;
   FDataTypes := POrderedSet.Create;
-  FElementPrototypes := POrderedSet.Create;
-  FModelPrototypes := POrderedSet.Create;
+  FElementPrototypes := PElementPrototypeOrderedSet.Create;
+  FModelPrototypes := PModelPrototypeOrderedSet.Create;
   FDiagramTypes := POrderedSet.Create;
   FPalettes := POrderedSet.Create;
 end;
@@ -2304,7 +2308,7 @@ end;
 
 function PProfile.GetElementPrototype(Index: Integer): PElementPrototype;
 begin
-  Result := FElementPrototypes.Items[Index] as PElementPrototype;
+  Result := FElementPrototypes.Items[Index];
 end;
 
 function PProfile.GetModelPrototypeCount: Integer;
@@ -2314,7 +2318,7 @@ end;
 
 function PProfile.GetModelPrototype(Index: Integer): PModelPrototype;
 begin
-  Result := FModelPrototypes.Items[Index] as PModelPrototype;
+  Result := FModelPrototypes.Items[Index];
 end;
 
 function PProfile.GetDiagramTypeCount: Integer;
@@ -2435,6 +2439,19 @@ begin
       Result := GetPalette(I);
       Exit;
     end;
+end;
+
+function PProfile.FindPrototypeNameForStereotype(
+  AStereotypeName: string): string;
+var
+  EP: PElementPrototype;
+begin
+    Result := '';
+    for EP in FElementPrototypes do
+       if EP.StereotypeName = AStereotypeName then begin
+          Result := EP.Name;
+          Exit;
+       end;
 end;
 
 // PPRofile

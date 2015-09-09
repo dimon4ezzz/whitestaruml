@@ -391,13 +391,15 @@ type
   // PCreateViewCommand
   // ---------------------------------------------------------------------------
   // is command for creating View Element
-  // which has no Model Reference like Noet, Text.
+  // which has no Model Reference like Note, Text.
   // ---------------------------------------------------------------------------
   PCreateViewCommand = class(PAbstractCreateElementsCommand)
   private
     procedure ComplementEdgeViews(DiagramView: PDiagramView; AView: PView);
     procedure FindViewByModel(DiagramView: PDiagramView; AModel: PModel; ASet: PViewOrderedSet);
-  protected
+    procedure SetViewProperties(V: PView; EP: PElementPrototype); overload;
+    procedure SetViewProperties(V: PView); overload;
+protected
     function Precondition: Boolean; override;
   public
     procedure SetParameter(DiagramView: PDiagramView; Model: PModel;
@@ -1703,6 +1705,34 @@ type
     procedure Reexecute; override;
     procedure Unexecute; override;
   end;
+
+
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Reusable helper functions
+
+procedure SetViewPropertiesImpl(V: PView; EP: PElementPrototype);
+var
+  I: Integer;
+begin
+  if (V is PUMLGeneralNodeView) and (EP.StereotypeDisplay <> '') then begin
+    V.MOF_SetAttribute('StereotypeDisplay', EP.StereotypeDisplay);
+    if EP.StereotypeDisplay = 'sdkIcon' then begin
+      if V is PUMLClassifierView then begin
+        V.MOF_SetAttribute('SuppressAttributes', 'True');
+        V.MOF_SetAttribute('SuppressOperations', 'True');
+      end
+      else if V is PUMLSubSystemView then
+        V.MOF_SetAttribute('SuppressOperations', 'True')
+      else if V is PUMLEnumerationView then
+        V.MOF_SetAttribute('SuppressLieterals', 'True');
+    end;
+  end;
+  V.MOF_SetAttribute('ShowExtendedNotation', BoolToStr(EP.ShowExtendedNotation, True));
+  for I := 0 to EP.ViewPropertyCount - 1 do
+    V.MOF_SetAttribute(EP.ViewPropertyNames[I], EP.ViewPropertyValues[I]);
+end;
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -3832,6 +3862,39 @@ begin
   end;
 end;
 
+
+procedure PCreateViewCommand.SetViewProperties(V: PView; EP: PElementPrototype);
+begin
+  SetViewPropertiesImpl(V,EP);
+end;
+
+// Finds element prototype and sets properties for view
+procedure PCreateViewCommand.SetViewProperties(V: PView);
+var
+  VM: PExtensibleModel;
+  Stereotype: PStereotype;
+  Profile: PProfile;
+  EP: PElementPrototype;
+  ProtoName: string;
+begin
+  if V is PExtensibleView then begin
+    VM := V.Model as PExtensibleModel;
+    if Assigned(VM) then begin
+      Stereotype := VM.GetStereotype;
+      if Assigned(Stereotype) then begin
+        Profile := Stereotype.Profile;
+        Assert(Assigned(Profile),'Stereotype has no profile');
+        ProtoName := Profile.FindPrototypeNameForStereotype(Stereotype.Name);
+        EP := ExtensionManager.FindElementPrototype(Stereotype.Profile.Name, ProtoName);
+        if Assigned(EP) then
+          SetViewProperties(V, EP);
+      end;
+    end;
+  end;
+
+end;
+
+
 function PCreateViewCommand.Precondition: Boolean;
 begin
   Result := True;
@@ -3858,6 +3921,7 @@ begin
   ViewSet.Clear;
   if V <> nil then ViewSet.Add(V);
 end;
+
 
 // PCreateViewCommand
 ////////////////////////////////////////////////////////////////////////////////
@@ -3917,25 +3981,8 @@ begin
 end;
 
 procedure PCreateExtendedElementCommand.SetViewProperties(V: PView; EP: PElementPrototype);
-var
-  I: Integer;
 begin
-  if (V is PUMLGeneralNodeView) and (EP.StereotypeDisplay <> '') then begin
-    V.MOF_SetAttribute('StereotypeDisplay', EP.StereotypeDisplay);
-    if EP.StereotypeDisplay = 'sdkIcon' then begin
-      if V is PUMLClassifierView then begin
-        V.MOF_SetAttribute('SuppressAttributes', 'True');
-        V.MOF_SetAttribute('SuppressOperations', 'True');
-      end
-      else if V is PUMLSubSystemView then
-        V.MOF_SetAttribute('SuppressOperations', 'True')
-      else if V is PUMLEnumerationView then
-        V.MOF_SetAttribute('SuppressLieterals', 'True');
-    end;
-  end;
-  V.MOF_SetAttribute('ShowExtendedNotation', BoolToStr(EP.ShowExtendedNotation, True));
-  for I := 0 to EP.ViewPropertyCount - 1 do
-    V.MOF_SetAttribute(EP.ViewPropertyNames[I], EP.ViewPropertyValues[I]);
+  SetViewPropertiesImpl(V,EP);
 end;
 
 function PCreateExtendedElementCommand.Precondition: Boolean;
@@ -4050,6 +4097,7 @@ var
   S: PStereotype;
   R: TRect;
   C: TPoint;
+
 begin
   M := nil;
   V := nil;
@@ -4138,8 +4186,11 @@ begin
   else begin
     V := UMLFactory.CreateView(DiagramView, X, Y, X, Y, Model);
   end;
-  if M <> nil then ModelSet.Add(M);
-  if V <> nil then ViewSet.Add(V);
+  if Assigned(M) then ModelSet.Add(M);
+  if Assigned(V) then begin
+    SetViewProperties(V);
+    ViewSet.Add(V);
+  end;
 
   if (M = nil) and (V <> nil) then ComplementEdgeViews(DiagramView, V);
 end;
