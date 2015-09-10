@@ -116,6 +116,7 @@ type
   private
     function InstantiateModel(Owner: IModel; ModelKind: string; Argument: Integer = 0; End1: IModel = nil; End2: IModel = nil; AuxArg: IModel = nil): IModel;
     function InstantiateDiagram(Owner: IModel; DiagramKind: string): IDiagram;
+    function InstantiateExtendedDiagram(Owner: IModel; Profile: string; DiagramType: string): IDiagram;
     function InstantiateView(DiagramView: IDiagramView; Model: IModel; ViewKind: string = ''; End1: IView = nil; End2: IView = nil): IView;
   protected
     function CreateModel(const AOwner: IUMLNamespace): IUMLModel; safecall;
@@ -181,6 +182,8 @@ type
     function CreateExtend(const AOwner: IUMLNamespace; const Extender: IUMLUseCase; const Extendee: IUMLUseCase): IUMLExtend; safecall;
     function CreateRealization(const AOwner: IUMLNamespace; const Client: IUMLModelElement; const Supplier: IUMLModelElement): IUMLRealization; safecall;
     function CreateClassDiagram(const AOwner: IModel): IUMLClassDiagram; safecall;
+    function CreateExtendedClassDiagram(const AOwner: IModel; const Profile: WideString; const DiagramType: WideString): IUMLClassDiagram; safecall;
+    function CreateExtendedDiagram(const AOwner: IModel; const Profile: WideString; const DiagramType: WideString): IDiagram; safecall;
     function CreateUseCaseDiagram(const AOwner: IModel): IUMLUseCaseDiagram; safecall;
     function CreateSequenceDiagram(const AOwner: IUMLInteractionInstanceSet): IUMLSequenceDiagram; safecall;
     function CreateSequenceRoleDiagram(const AOwner: IUMLInteraction): IUMLSequenceRoleDiagram; safecall;
@@ -708,6 +711,20 @@ begin
   end;
 end;
 
+function PUMLFactoryAuto.InstantiateExtendedDiagram(Owner: IModel; Profile: string; DiagramType: string): IDiagram;
+var
+  E: PElement;
+  D: PDiagram;
+begin
+  E := MetaModel.FindMetaClass('Model').FindInstanceByGuidRecurse(Owner.GetGuid);
+  if Assigned(E) then begin
+    D := StarUMLApplication.NewExtendedDiagram(E as PModel, Profile, DiagramType, False);
+    Result := D.GetAutomationObject as IDiagram;
+  end
+  else
+    Result := nil;
+end;
+
 function PUMLFactoryAuto.InstantiateView(DiagramView: IDiagramView; Model: IModel; ViewKind: string = ''; End1: IView = nil; End2: IView = nil): IView;
 var
   E, M, E1, E2: PElement;
@@ -1042,6 +1059,18 @@ end;
 function PUMLFactoryAuto.CreateClassDiagram(const AOwner: IModel): IUMLClassDiagram;
 begin
   Result := InstantiateDiagram(AOwner, 'ClassDiagram') as IUMLClassDiagram;
+end;
+
+function PUMLFactoryAuto.CreateExtendedClassDiagram(const AOwner: IModel; const Profile: WideString;
+                                        const DiagramType: WideString): IUMLClassDiagram;
+begin
+  Result := CreateExtendedDiagram(AOwner, Profile, DiagramType) as IUMLClassDiagram;
+end;
+
+function PUMLFactoryAuto.CreateExtendedDiagram(const AOwner: IModel; const Profile: WideString;
+                                  const DiagramType: WideString): IDiagram;
+begin
+  Result := InstantiateExtendedDiagram(AOwner, Profile, DiagramType);
 end;
 
 function PUMLFactoryAuto.CreateUseCaseDiagram(const AOwner: IModel): IUMLUseCaseDiagram;

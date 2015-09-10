@@ -6,11 +6,11 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 5/30/2015 4:33:33 PM (- $Rev: 12980 $, 17700466).
+// File generated on 9/10/2015 4:42:57 PM (- $Rev: 12980 $, 10354862).
 
 [
   uuid(4D5F69B3-73FC-4C09-A1CE-73D1A677A0E7),
-  version(1.0),
+  version(1.1),
   helpstring("WhiteStarUML Library"),
   custom(DE77BA64-517C-11D1-A2DA-0000F8773CE9, 100663657),
   custom(DE77BA63-517C-11D1-A2DA-0000F8773CE9, 1130132647),
@@ -759,7 +759,7 @@ library WhiteStarUML
 
   [
     uuid(93B49661-E40C-4B36-A385-E937DF875AB4),
-    version(1.0),
+    version(1.1),
     helpstring("Dispatch interface for UMLFactory Object"),
     dual,
     oleautomation
@@ -998,6 +998,10 @@ library WhiteStarUML
     HRESULT _stdcall CreateSwimlaneView([in] IUMLActivityDiagramView* ADiagramView, [in] IUMLPartition* AModel, [out, retval] IUMLSwimlaneView** ReturnValue);
     [id(0x00000273)]
     HRESULT _stdcall CreateTransitionView([in] IDiagramView* ADiagramView, [in] IUMLTransition* AModel, [in] IView* Source, [in] IView* Target, [out, retval] IUMLTransitionView** ReturnValue);
+    [id(0x000000C9)]
+    HRESULT _stdcall CreateExtendedClassDiagram([in] IModel* AOwner, [in] BSTR Profile, [in] BSTR DiagramType, [out, retval] IUMLClassDiagram** ReturnValue);
+    [id(0x000000CA)]
+    HRESULT _stdcall CreateExtendedDiagram([in] IModel* AOwner, [in] BSTR Profile, [in] BSTR DiagramType, [out, retval] IDiagram* ReturnValue);
   };
 
   [
