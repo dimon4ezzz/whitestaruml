@@ -4187,10 +4187,8 @@ begin
     V := UMLFactory.CreateView(DiagramView, X, Y, X, Y, Model);
   end;
   if Assigned(M) then ModelSet.Add(M);
-  if Assigned(V) then begin
-    SetViewProperties(V);
+  if Assigned(V) then
     ViewSet.Add(V);
-  end;
 
   if (M = nil) and (V <> nil) then ComplementEdgeViews(DiagramView, V);
 end;
@@ -4229,7 +4227,8 @@ procedure PNewViewByDragDropCommand.SetParameterEdgeTypeElem(DiagramView: PDiagr
           end;
           if B then begin
             V := UMLFactory.CreateView(DiagramView, Model, '', TailView, HeadView);
-            if Assigned(V) then ViewSet.Add(V);
+            if Assigned(V) then
+              ViewSet.Add(V);
           end;
         end;
       end;
@@ -4314,6 +4313,8 @@ begin
 end;
 
 procedure PNewViewByDragDropCommand.SetParameter(DiagramView: PDiagramView; Model: PModel; X, Y: Integer);
+var
+  V: PView;
 begin
   if (Model is PUMLDependency) or (Model is PUMLGeneralization) or
      (Model is PUMLAssociation) or (Model is PUMLAssociationClass) or
@@ -4324,10 +4325,12 @@ begin
      (Model is PUMLConnector) then
   begin
     SetParameterEdgeTypeElem(DiagramView, Model, X, Y);
-  end else
-  begin
+  end
+  else begin
     SetParameterGeneralElem(DiagramView, Model, X, Y);
   end;
+  for V in ViewSet do
+    SetViewProperties(V);
 end;
 
 // PNewViewByDragDropCommand
