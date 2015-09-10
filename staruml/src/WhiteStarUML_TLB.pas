@@ -12,7 +12,7 @@ unit WhiteStarUML_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 5/30/2015 4:35:01 PM from Type Library described below.
+// File generated on 9/10/2015 4:22:01 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml\src\WhiteStarUML (1)
@@ -45,7 +45,7 @@ uses Winapi.Windows, System.Classes, System.Variants, System.Win.StdVCL, Vcl.Gra
 const
   // TypeLibrary Major and minor versions
   WhiteStarUMLMajorVersion = 1;
-  WhiteStarUMLMinorVersion = 0;
+  WhiteStarUMLMinorVersion = 1;
 
   LIBID_WhiteStarUML: TGUID = '{4D5F69B3-73FC-4C09-A1CE-73D1A677A0E7}';
 
@@ -1333,6 +1333,10 @@ type
                                 const AModel: IUMLPartition): IUMLSwimlaneView; safecall;
     function CreateTransitionView(const ADiagramView: IDiagramView; const AModel: IUMLTransition;
                                   const Source: IView; const Target: IView): IUMLTransitionView; safecall;
+    function CreateExtendedClassDiagram(const AOwner: IModel; const Profile: WideString;
+                                        const DiagramType: WideString): IUMLClassDiagram; safecall;
+    function CreateExtendedDiagram(const AOwner: IModel; const Profile: WideString;
+                                   const DiagramType: WideString): IDiagram; safecall;
   end;
 
 // *********************************************************************//
@@ -1509,6 +1513,10 @@ type
                                 const AModel: IUMLPartition): IUMLSwimlaneView; dispid 626;
     function CreateTransitionView(const ADiagramView: IDiagramView; const AModel: IUMLTransition;
                                   const Source: IView; const Target: IView): IUMLTransitionView; dispid 627;
+    function CreateExtendedClassDiagram(const AOwner: IModel; const Profile: WideString;
+                                        const DiagramType: WideString): IUMLClassDiagram; dispid 201;
+    function CreateExtendedDiagram(const AOwner: IModel; const Profile: WideString;
+                                   const DiagramType: WideString): IDiagram; dispid 202;
   end;
 
 // *********************************************************************//
