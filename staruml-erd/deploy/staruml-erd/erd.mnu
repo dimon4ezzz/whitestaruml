@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ADDINMENU addInID="WhiteStarUML.ErdAddIn">
+  <HEADER>
+    <NAME>ERD Add-In</NAME>
+    <VERSION>1.0</VERSION>
+    <DESCRIPTION>Add-In to provide the ERD modeling in WhiteStarUML along with SQL (DDL) code generation and reverse engineering.</DESCRIPTION>
+  </HEADER>
+  <BODY>
+    <MAINMENU>
+      <MAINITEM caption="ERD" beginGroup="TRUE" availableWhen="MODEL_SELECTED">
+        <!-- reserved menu item for checking UML Model
+        <MAINITEM caption="Syntax Check" actionId="1" />
+        -->
+        <MAINITEM caption="&amp;Generate SQL Code..." actionId="2" />
+        <MAINITEM caption="&amp;Reverse SQL..." actionId="3" />
+      </MAINITEM>
+    </MAINMENU>
+
+    <POPUPMENU>
+      <POPUPITEM caption="ERD" beginGroup="TRUE" availableWhen="MODEL_SELECTED">
+        <!-- reserved menu item for checking UML Model
+        <POPUPITEM caption="Syntax Check" actionId="1" />
+        -->
+        <POPUPITEM caption="&amp;Generate SQL Code..." actionId="2" />
+        <POPUPITEM caption="&amp;Reverse SQL..." actionId="3" />
+      </POPUPITEM>
+    </POPUPMENU>
+  </BODY>
+</ADDINMENU>
+
