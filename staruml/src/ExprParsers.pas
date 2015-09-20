@@ -48,18 +48,8 @@ unit ExprParsers;
 interface
 
 uses
-  Classes, PGMR101Lib_TLB, ParserCore_TLB;
+  Classes, ParserCore_TLB;
 
-
-//const
-  // Grammar file path
-  // Grammar directory must be assigned as value specified in registry
-  {GMR_FILE_NAME = 'NameExpr.GMR';
-  GMR_FILE_ATTR = 'AttrExpr.GMR';
-  GMR_FILE_OPER = 'OperExpr.GMR';
-  GMR_FILE_OBJ = 'ObjExpr.GMR';
-  GMR_FILE_ROLE = 'RoleExpr.GMR';
-  GMR_FILE_MSG = 'MsgExpr.GMR';}
 
 type
   // PParseStatus
@@ -272,9 +262,6 @@ end;
 
 
 function PExpressionParser.Parse(Source: string): PParseStatus;
-var
-  I: Integer;
-  Recoverable: Boolean;
 begin
   ClearProperties;
 
@@ -318,8 +305,6 @@ begin
   if FParser <> nil then
     FInitialized := True
 
-  //FInitialized := FParser.SetGrammar(GetAppDir + GMR_FILE_NAME);
-  //FParser.SetStartSymbol(FParser.GetSymbolID('general_name_expression'));
 end;
 
 procedure PGeneralNameExpressionParser.ClearProperties;
@@ -331,7 +316,6 @@ end;
 
 procedure PGeneralNameExpressionParser.PickoutValues;
 begin
-  //RootNode := FParser.GetChild(FParser.GetRoot, 0);
   FName := PickoutValue('name');
   FStereoType := PickoutValue('stereotype_part.stereotype');
   FVisibility := PickoutValue('visibility');
