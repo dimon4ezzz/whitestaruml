@@ -66,7 +66,6 @@ type
   protected
     procedure ClearProperties; virtual; abstract;
     procedure PickoutValues; virtual; abstract;
-    //function ReparsePart(Source: string): Boolean;
   public
     constructor Create;
     destructor Destroy; override;
@@ -244,14 +243,11 @@ const
 constructor PExpressionParser.Create;
 begin
   inherited;
-  //FParser := TPgmr.Create(Application);
   FInitialized := False;
 end;
 
 destructor PExpressionParser.Destroy;
 begin
-  //FParser.Free;
-  //FParser := nil;
   inherited;
 end;
 
@@ -279,7 +275,6 @@ begin
 
   if not FParser.Parse(Source) then begin
     Result := psError;
-    //ShowMessage(FParser.GetFailMessage);
     FLastErrorMsg := FParser.GetFailMessage;
   end
   else
@@ -288,8 +283,6 @@ end;
 
 // PExpressionParser
 ////////////////////////////////////////////////////////////////////////////////
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -492,10 +485,6 @@ begin
     DataValue := PickoutValue(DataPath);
 
   end;
-
-
-
-
 
 end;
 
