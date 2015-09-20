@@ -333,6 +333,7 @@ type
     procedure BrowseElement(PathName: string); overload;
     procedure SelectModelExplorerDockPanel(AModel: PModel);
     procedure LoadImageFromFile(AImageView: PImageView);
+    procedure ValidateNetFramework;
   public
     constructor Create;
     destructor Destroy; override;
@@ -563,6 +564,9 @@ end;
 
 procedure PMain.Initialize_FirstMainFormAppears;
 begin
+
+  ValidateNetFramework;
+
   // Add-Ins Loading
   AddInManager := PAddInManager.Create;
   AddInManager.OnMessage := AddInManagerMessageHandler;
@@ -3212,6 +3216,27 @@ begin
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
+end;
+
+procedure PMain.ValidateNetFramework;
+const
+  NetFrameworkv4CP   ='SOFTWARE\Microsoft\.NETFramework\v4.0.30319\SKUs\.NETFramework,Version=v4.0,Profile=Client';
+  NetFrameworkv4CPShortName = '4.0 Client Profile';
+var
+  Reg: TRegistry;
+  FrameworkPresent: Boolean;
+begin
+  FrameworkPresent := False;
+  Reg := TRegistry.Create(KEY_READ);
+  try
+    Reg.RootKey := HKEY_LOCAL_MACHINE;
+    FrameworkPresent := Reg.KeyExists(NetFrameworkv4CP);
+    if not FrameworkPresent then
+      MessageDlg(Format(MSG_NO_NET_FRAMEWORK,[NetFrameworkv4CPShortName]),
+        mtWarning,[mbOK],0);
+   finally
+    Reg.Free;
+  end
 end;
 
 procedure PMain.VerificationFailedHandler(Sender: TObject; VerifyItem: PUMLVerifyItem; Model: PModel);
