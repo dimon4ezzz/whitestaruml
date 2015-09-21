@@ -3220,7 +3220,7 @@ end;
 
 procedure PMain.ValidateNetFramework;
 const
-  NetFrameworkv4CP  = 'SOFTWARE\Microsoft\.NETFramework\v4.0.30319\SKUs\.NETFramework,Version=v4.0,Profile=Client';
+  NetFrameworkv4CP  = 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client';
   NetFrameworkv4CPShortName = '4.0 Client Profile';
 var
   Reg: TRegistry;
