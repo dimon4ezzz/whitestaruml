@@ -1431,10 +1431,13 @@ begin
   I := 0;
   repeat
     inc(I);
-  until ( ((R.Left <= PS[i].X) and (PS[i].X <= R.Right) and
-           (R.Top <= PS[i].Y) and (PS[i].Y <= R.Bottom) and
-           (C.X <= PS[i].X) and (PS[i].X <= P.X) and
-           (C.Y <= PS[i].Y) and (PS[i].Y <= P.Y)) or (I > 4) );
+  until (
+          (I > 4) or
+          ((R.Left <= PS[i].X) and (PS[i].X <= R.Right) and
+          (R.Top <= PS[i].Y) and (PS[i].Y <= R.Bottom) and
+          (C.X <= PS[i].X) and (PS[i].X <= P.X) and
+          (C.Y <= PS[i].Y) and (PS[i].Y <= P.Y))
+        );
 
   if I > 4 then
     Result := Point((R.Left + R.Right) div 2, (R.Top + R.Bottom) div 2)
