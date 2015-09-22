@@ -12,7 +12,7 @@ unit OptMgr_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 10/30/2014 1:18:21 PM from Type Library described below.
+// File generated on 5/10/2015 6:31:49 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml\src\option-manager\OptMgr (1)
