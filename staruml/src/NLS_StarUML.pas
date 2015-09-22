@@ -71,7 +71,7 @@ const
     + #13#10 + 'For more information on purchasing the product or product specifications, please contact Plastic Software Co., Ltd.';
   C_ERR_INVALID_REGISTRATION = 'Product registration information is incorrect.'
     + #13#10 + 'Please check and try again.';
-
+  C_MSG_NO_NET_FRAMEWORK = 'Required .Net Framework version %s was not detected. Program may not function correctly.';
   // AddInMgr
   C_MSG_ADDIN_LOADED = 'Add-In "%s" is loaded successfully.';
   C_MSG_ADDIN_ACTIVATED = 'Add-In "%s" is activated.';
@@ -398,6 +398,7 @@ var
   MSG_PERSONAL_EDITION_NOTIFICATION: string;
   MSG_TRIAL_EXPIRED: string;
   ERR_INVALID_REGISTRATION: string;
+  MSG_NO_NET_FRAMEWORK: string;
   MSG_ADDIN_LOADED: string;
   MSG_ADDIN_ACTIVATED: string;
   MSG_ADDIN_DEACTIVATED: string;
@@ -1065,6 +1066,7 @@ initialization
   NLSManager.TranslateString(NLS_STR_SECTION, 'MSG_PERSONAL_EDITION_NOTIFICATION', MSG_PERSONAL_EDITION_NOTIFICATION, C_MSG_PERSONAL_EDITION_NOTIFICATION);
   NLSManager.TranslateString(NLS_STR_SECTION, 'MSG_TRIAL_EXPIRED', MSG_TRIAL_EXPIRED, C_MSG_TRIAL_EXPIRED);
   NLSManager.TranslateString(NLS_STR_SECTION, 'ERR_INVALID_REGISTRATION', ERR_INVALID_REGISTRATION, C_ERR_INVALID_REGISTRATION);
+  NLSManager.TranslateString(NLS_STR_SECTION, 'MSG_NO_NET_FRAMEWORK', MSG_NO_NET_FRAMEWORK, C_MSG_NO_NET_FRAMEWORK);
   NLSManager.TranslateString(NLS_STR_SECTION, 'MSG_ADDIN_LOADED', MSG_ADDIN_LOADED, C_MSG_ADDIN_LOADED);
   NLSManager.TranslateString(NLS_STR_SECTION, 'MSG_ADDIN_ACTIVATED', MSG_ADDIN_ACTIVATED, C_MSG_ADDIN_ACTIVATED);
   NLSManager.TranslateString(NLS_STR_SECTION, 'MSG_ADDIN_DEACTIVATED', MSG_ADDIN_DEACTIVATED, C_MSG_ADDIN_DEACTIVATED);
