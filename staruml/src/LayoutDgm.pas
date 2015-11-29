@@ -138,6 +138,7 @@ type
   PDeleteOutputGraphFunc = procedure ( outputGraph: PAnsiChar); cdecl;
   const
     GvcIntfDll = 'gvc_intf';
+    GvcIntfDllDir ='GraphViz';
     LayoutGraphFuncName = 'LayoutGraph';
     DeleteOutputGraphFuncName = 'DeleteOutputGraph';
 
@@ -398,7 +399,9 @@ function PDiagramLayout.ValidateGvcIntfDllBindings: Boolean;
 begin
   if FGvcIntfDllHandle = 0 then begin // Try to load the dll
     Result := False;
+    SetDllDirectory(PWideChar(GvcIntfDllDir)); // Search DLLs in GraphViz dir
     FGvcIntfDllHandle := LoadLibrary(GvcIntfDll);
+    SetDllDirectory(nil); // Reset last DLL dir setting
     if FGvcIntfDllHandle <> 0 then
     begin
       @FLayoutGraphFunc := GetProcAddress(FGvcIntfDllHandle, LayoutGraphFuncName);
@@ -559,6 +562,8 @@ begin
   end
   else begin
     OutputGraph.Add('graph G {');
+    OutputGraph.Add('  splines=line;');
+
   end;
   // Generates Nodes
   for I := 0 to ADiagramView.OwnedViewCount - 1 do begin
