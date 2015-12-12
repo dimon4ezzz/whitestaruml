@@ -200,7 +200,7 @@ type
     function GetFrameColor: Integer; virtual; abstract;
   public
     constructor Create;
-    destructor Destroy; virtual;
+    destructor Destroy; override;
     procedure InitLookAndFeel; virtual; abstract;
     procedure NotifyLookAndFeelChanged; virtual;
 
