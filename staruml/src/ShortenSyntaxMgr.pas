@@ -275,7 +275,7 @@ function PShortenSyntaxManager.CreateViewWithModel(DiagramView: PDiagramView; Ta
       OutGoing: Boolean; NodeType1, NodeType2: String; NodeArgument: Integer): PNodeView;
 var TargetView: PNodeView;
 begin
-  TargetView := nil;
+  //TargetView := nil;
   if not OutGoing then
     TargetView := StarUMLApplication.NewElement(
                     DiagramView, 0, 0, 0, 0, NodeType1, NodeArgument) as PNodeView
@@ -440,6 +440,9 @@ begin
     Exit;
   end;
 
+  // Initializations
+  TargetView := nil;
+
   // target name
   TargetName := Copy(ShortenStr, Length(Rel1)+1, Length(ShortenStr)-Length(Rel1));
 
@@ -517,6 +520,8 @@ begin
     Exit;
   end;
 
+  // Initializations
+  TargetView := nil;
   // target name
   TargetName := Copy(ShortenStr, Length(Rel1)+1, Length(ShortenStr)-Length(Rel1));
 
@@ -576,6 +581,10 @@ var
   TargetNames: TStringList;
   I, L, T, P : Integer;
 begin
+
+  // Initializations
+  L := 0; T := 0; TargetView := nil;
+
   // direction
   Rel := Copy(ShortenStr, 1, Length(Rel1));
   if Rel = Rel2 then
@@ -700,6 +709,9 @@ begin
     Result := nil;
     Exit;
   end;
+
+  // Initializations
+  L := 0; T := 0; TargetView := nil;
 
   // targe name
   TargetName := Copy(ShortenStr, Length(Rel1)+1, Length(ShortenStr)-Length(Rel1));
@@ -899,8 +911,12 @@ var
   SourceView, TargetView: PNodeView;
   DiagramView: PDiagramView;
   TargetNames: TStringList;
-  I, L, T, P : Integer;
+  I, P : Integer;
 begin
+
+  // Initializations
+  TargetView := nil;
+
   // πÊ«‚
   Rel := Copy(ShortenStr, 1, Length(Rel1));
   if Rel = Rel2 then
@@ -1056,7 +1072,7 @@ var _H_INT, _V_INT: Integer;
   end;
 
   procedure ArrangeRect(Left, Top, Right, Bottom, Interval: Integer);
-  var I, C: Integer;
+  //var I, C: Integer;
   begin
     if Left < 0 then Left := 0;
     if Top < 0 then Top := 0;
@@ -1232,6 +1248,7 @@ begin
   NodeType := Copy(FModel.MetaClass.Name, 4, Length(FModel.MetaClass.Name)-3);
 
   // decision
+  View := nil;
   if HasRelation(Value, ['<-<>', '-><>']) then
     View := MakeStateView(FModel, '<-<>', '-><>', Value, 'Pseudostate', 'Pseudostate', 'Transition', false, FA_PSEUDOSTATE_DECISION)
   // synchronization
@@ -1446,7 +1463,7 @@ var
   ActivationView, AV: PNodeView;
   ReturnMsgView: PEdgeView;
   I, Value: Integer;
-  L, T, R, B: Integer;
+  //L, T, R, B: Integer;
 begin
   // exclude ReturnMsgView correspond to CurMsgView
 
@@ -1652,7 +1669,9 @@ function PShortenSyntaxManager.MakeSeqMsgView2(Model: PModel; Rel1,
 //      Result := (CurMsgView.MOF_GetReference('Activation') as PUMLActivationView).Top
       Result := (GetLastMessageView(DiagramView, CurMsgView).MOF_GetReference('Activation') as PUMLActivationView).Top
     else if Pos('-', Relation)>0 then
-      Result := (GetLastMessageView(DiagramView, CurMsgView).MOF_GetReference('Activation') as PUMLActivationView).Top;
+      Result := (GetLastMessageView(DiagramView, CurMsgView).MOF_GetReference('Activation') as PUMLActivationView).Top
+    else
+      Result := 0;
   end;
 
   function GetInsertPos(
@@ -1666,7 +1685,9 @@ function PShortenSyntaxManager.MakeSeqMsgView2(Model: PModel; Rel1,
 //      Result := (CurMsgView.MOF_GetReference('Activation') as PUMLActivationView).Top + V_INT
       Result := (GetLastMessageView(DiagramView, CurMsgView).MOF_GetReference('Activation') as PUMLActivationView).Top + V_INT
     else if Pos('-', Relation)>0 then
-      Result := (GetLastMessageView(DiagramView, CurMsgView).MOF_GetReference('Activation') as PUMLActivationView).Top + V_INT;
+      Result := (GetLastMessageView(DiagramView, CurMsgView).MOF_GetReference('Activation') as PUMLActivationView).Top + V_INT
+    else
+      Result := 0;
   end;
 
   function GetRearrangeActivations(DiagramView: PDiagramView; Top: Integer): TList;
@@ -1776,6 +1797,9 @@ begin
     Result := nil;
     Exit;
   end;
+
+    // Initializations
+  L := 0; T := 0; TargetView := nil; Activations := nil;
 
   // target name
   TargetName := Copy(ShortenStr, Length(Rel1)+1, Length(ShortenStr)-Length(Rel1));
