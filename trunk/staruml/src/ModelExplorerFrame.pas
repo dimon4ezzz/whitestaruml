@@ -333,6 +333,7 @@ begin
   inherited;
   ModelTree.NodeDataSize := SizeOf(TNodeData);
   ModelTree.DoubleBuffered := True;
+  ModelTree.TreeOptions.AutoOptions := ModelTree.TreeOptions.AutoOptions - [toAutoSort];
   NodeHashTable := PNodeHashTable.Create;
   FMetaNodes := THashedStringList.Create;
   FMetaNodes.CaseSensitive := True;
