@@ -54,7 +54,8 @@ namespace Erd
                 DialogResult res = m_CodeGenForm.ShowDialog();
             }
             else
-                MessageBox.Show(Symbols.ERR_PROFILE_NOT_INCLUDED);
+                MessageBox.Show(Symbols.ERR_PROFILE_NOT_INCLUDED, Symbols.APP_NAME,
+                   MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
 
         /// <summary>
