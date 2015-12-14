@@ -10,7 +10,8 @@
   </HEADER>
   <BODY>
     <MAINMENU>
-      <MAINITEM base="MODEL" caption="Convert Diagram" beginGroup="TRUE" availableWhen="MODEL_SELECTED">
+      <MAINITEM base="MODEL" caption="Generate Getter/Setter for Selected Attribute" beginGroup="TRUE" availableWhen="MODEL_SELECTED" script="GenGettersSetters.vbs"/>
+      <MAINITEM base="MODEL" caption="Convert Diagram" beginGroup="FALSE" availableWhen="MODEL_SELECTED">
         <MAINITEM caption="Convert Sequence(Role) to Collaboration(Role)" script="ConvSeq2Col.vbs"/>
         <MAINITEM caption="Convert Collaboration(Role) to Sequence(Role)" script="ConvCol2Seq.vbs"/>
       </MAINITEM>
