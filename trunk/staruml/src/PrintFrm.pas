@@ -204,11 +204,19 @@ var
   Status: string;
   PortName: string;
   Len: Integer;
+  PrinterOk: Boolean;
 begin
   hPrinter := 0;
   try
     hPrinter := GetCurrentPrinterHandle;
-    GetPrinter(hPrinter, 2, nil, 0, @bytesNeeded);
+    if hPrinter = 0 then
+      Exit;
+    PrinterOk := GetPrinter(hPrinter, 2, nil, 0, @bytesNeeded);
+    if not PrinterOk then begin
+      ClosePrinter(hPrinter);
+      Exit;
+    end;
+
     pInfo := AllocMem(bytesNeeded);
     try
       GetPrinter(hPrinter, 2, pInfo, bytesNeeded, @bytesNeeded);
