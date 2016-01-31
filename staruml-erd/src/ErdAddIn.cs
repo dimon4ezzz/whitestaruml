@@ -9,6 +9,7 @@ namespace Erd
     /// Implementation of IStarUMLAddIn interface
     /// Addin entry point
     /// </summary>
+    [ComVisible(true)]
     [Guid("6A29627E-EC54-4437-AEC5-B5F3CE3724C7")]
     [ClassInterface(ClassInterfaceType.None)]
     [ProgId(Symbols.ADDIN_PROG_ID)]

@@ -38,23 +38,23 @@ namespace Erd
         internal const string MSG_PARSING_SUCCEEDED_LONG = "SQL tables for selected diagram were successfully parsed.";
 
         // Queries
-        internal const string QUERY_REVERSE_PROFILE_LOAD = "To reverse engineer an SQL file, ERD Profile is needed.\n"
-            + "Do you want to include ERD Profile to the current project?";
+        internal const string QUERY_REVERSE_PROFILE_LOAD = "To reverse engineer an SQL file, Data Modeling Profile is needed.\n"
+            + "Do you want to include Data Modeling Profile to the current project?";
 
         // Regular expression patterns
         internal const string REGEX_PATTERN_VALID_NAME = @"^\S(.*\S)?$"; // Name enclosing characters must not be white spaces
 
         // Errors
-        internal const string ERR_PROFILE_NOT_DEFINED = "ERD Profile is not installed in system.\n"
+        internal const string ERR_PROFILE_NOT_DEFINED = "Data Modeling Profile is not installed in system.\n"
             + "Install ERD Profile to reverse engineer SQL files.";
 
-        internal const string ERR_PROFILE_NOT_INCLUDED = "ERD Profile is not included";
+        internal const string ERR_PROFILE_NOT_INCLUDED = "Data Modeling Profile is not included";
         internal const string ERR_DIRECTORY_NOT_VALID = "Provide existing directory";
         internal const string ERR_FILENAME_NOT_VALID = "Provide a valid file name";
         internal const string ERR_DIAGRAM_NAME_NOT_VALID = "Provide a valid diagram name";
         internal const string ERR_DIAGRAM_NOT_SELECTED = "Select an ERD diagram";
         internal const string ERR_NO_ERD_DATA = "Selected diagram does not contain valid ERD data.";
-        internal const string ERR_INVALID_OPERATION = "The program may be in anconsistent state. Please restart the application.";
+        internal const string ERR_INVALID_OPERATION = "The program may be in inconsistent state. Please restart the application.";
         internal const string ERR_PACKAGE_NOT_SELECTED = "Select a package";
 
         /// <summary>
