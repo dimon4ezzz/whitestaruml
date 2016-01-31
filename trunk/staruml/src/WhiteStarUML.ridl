@@ -6,7 +6,7 @@
 // However, when applying changes via the Editor this file will be regenerated
 // and comments or formatting changes will be lost.
 // ************************************************************************ //
-// File generated on 9/11/2015 2:40:41 PM (- $Rev: 12980 $, 1301126).
+// File generated on 1/30/2016 4:01:24 PM (- $Rev: 12980 $, 19601166).
 
 [
   uuid(4D5F69B3-73FC-4C09-A1CE-73D1A677A0E7),
@@ -6762,7 +6762,9 @@ library WhiteStarUML
 
   [
     uuid(414633E5-89AA-440F-8B07-F8EFD4B6F539),
-    helpstring("Interface to build a TNX expression")
+    version(1.0),
+    helpstring("Interface to build a TNX expression"),
+    oleautomation
   ]
   interface IExprBuilder: IUnknown
   {

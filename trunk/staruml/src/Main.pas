@@ -334,6 +334,7 @@ type
     procedure SelectModelExplorerDockPanel(AModel: PModel);
     procedure LoadImageFromFile(AImageView: PImageView);
     procedure ValidateNetFramework;
+
   public
     constructor Create;
     destructor Destroy; override;
@@ -456,6 +457,25 @@ begin
     FS.Free;
   end; // End of try
   Result := Graphic;
+end;
+
+procedure SetupMainFormCaption;
+var
+  Doc: PDocument;
+begin
+  MainForm.FileName := '';
+  if StarUMLApplication.DocumentElementCount > 0 then begin
+    Doc := (StarUMLApplication.DocumentElements[0]).Document;
+    if Assigned(Doc) then begin
+      if Doc.ReadOnly then
+        MainForm.FileName := ExtractFileName(StarUMLApplication.FileName) + ' ' + TXT_DOC_STATUS_READONLY
+      else if Doc.ExclusiveFileAccess then
+        MainForm.FileName := ExtractFileName(StarUMLApplication.FileName) + ' ' + TXT_DOC_STATUS_EXCLUSIVE_FILE_OPEN
+    end
+  end;
+
+  if MainForm.FileName = '' then
+     MainForm.FileName := ExtractFileName(StarUMLApplication.FileName);
 end;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -2630,6 +2650,7 @@ begin
   end;
 end;
 
+
 procedure PMain.ClipboardDataChangedHandler(Kind: PClipboardDataKind);
 begin
   try
@@ -2780,8 +2801,6 @@ begin
 end;
 
 procedure PMain.ProjectOpenedHandler(Sender: TObject);
-var
-  Doc: PDocument;
 begin
   try
     //-- MainForm.BrowserFrame.Project := StarUMLApplication.Project;
@@ -2801,22 +2820,14 @@ begin
       MainForm.DiagramExplorer.RebuildAll;
       Screen.Cursor := crDefault;
     end;
-    //--
 
     MainForm.InspectorFrame.Project := StarUMLApplication.Project;
 
     //-- MainForm.BrowserFrame.SelectInModelExplorer(StarUMLApplication.Project);
     SelectModelExplorerDockPanel(StarUMLApplication.Project);
-    if StarUMLApplication.DocumentElementCount <> 0 then begin
-      Doc := (StarUMLApplication.DocumentElements[0]).Document;
-      if (Doc <> nil) and Doc.ReadOnly then
-        MainForm.FileName := ExtractFileName(StarUMLApplication.FileName) + ' ' + TXT_DOC_STATUS_READONLY
-      else if (Doc <> nil) and Doc.ExclusiveFileAccess then
-        MainForm.FileName := ExtractFileName(StarUMLApplication.FileName) + ' ' + TXT_DOC_STATUS_EXCLUSIVE_FILE_OPEN
-      else
-        MainForm.FileName := ExtractFileName(StarUMLApplication.FileName);
-    end;
-    if MainForm.Visible then MainForm.WorkingAreaFrame.UpdateAllDiagrams;
+    SetupMainFormCaption;
+    if MainForm.Visible then
+      MainForm.WorkingAreaFrame.UpdateAllDiagrams;
 
     MenuStateHandler.BeginUpdate;
     MenuStateHandler.SetProjectOpenedGroup(True);
@@ -2833,7 +2844,7 @@ end;
 procedure PMain.ProjectSavedHandler(Sender: TObject);
 begin
   try
-    MainForm.FileName := ExtractFileName(StarUMLApplication.FileName);
+    SetupMainFormCaption;
     MenuStateHandler.BeginUpdate;
     MenuStateHandler.UpdateEditMenus;
     MenuStateHandler.UpdateStatusBar;
@@ -2880,7 +2891,7 @@ begin
     ConstraintEditorForm.Inspect;
     CollectionEditorForm.Inspect;
     TaggedValueEditorForm.Inspect;
-    MainForm.FileName := ExtractFileName(StarUMLApplication.FileName);
+    SetupMainFormCaption;
 
     MainForm.MessagePanel.ClearAllMessages;
 
@@ -5265,20 +5276,10 @@ procedure UpdateDocumentElements;
 var
   I: Integer;
   ASet: PModelOrderedSet;
-  Doc: PDocument;
 begin
   try
     StarUMLApplication.UpdateDocuments;
-    if StarUMLApplication.DocumentElementCount <> 0 then begin
-      Doc := (StarUMLApplication.DocumentElements[0]).Document;
-      if Doc <> nil then begin
-        if Doc.ReadOnly then MainForm.FileName := ExtractFileName(Doc.FileName) + ' ' + TXT_DOC_STATUS_READONLY
-        else begin
-          MainForm.FileName := '';
-          MainForm.FileName := ExtractFileName(Doc.FileName);
-        end;
-      end;
-    end;
+    SetupMainFormCaption;
     ASet := PModelOrderedSet.Create;
     try
       for I := 0 to StarUMLApplication.DocumentElementCount - 1 do
