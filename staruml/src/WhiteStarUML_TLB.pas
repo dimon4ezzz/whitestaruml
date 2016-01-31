@@ -12,7 +12,7 @@ unit WhiteStarUML_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 9/10/2015 4:22:01 PM from Type Library described below.
+// File generated on 1/29/2016 8:11:08 PM from Type Library described below.
 
 // ************************************************************************  //
 // Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml\src\WhiteStarUML (1)
@@ -21,7 +21,7 @@ unit WhiteStarUML_TLB;
 // Helpfile:
 // HelpString: WhiteStarUML Library
 // DepndLst:
-//   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
+//   (1) v2.0 stdole, (C:\Windows\SysWow64\stdole2.tlb)
 // SYS_KIND: SYS_WIN32
 // ************************************************************************ //
 {$TYPEDADDRESS OFF} // Unit must be compiled without type-checked pointers.
@@ -34613,7 +34613,7 @@ type
 
 // *********************************************************************//
 // Interface: IExprBuilder
-// Flags:     (0)
+// Flags:     (256) OleAutomation
 // GUID:      {414633E5-89AA-440F-8B07-F8EFD4B6F539}
 // *********************************************************************//
   IExprBuilder = interface(IUnknown)

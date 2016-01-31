@@ -6531,23 +6531,14 @@ begin
     FileAccess := NormalFileAccess
   else
     FileAccess := ExclusiveFileAccess;
-
   try
     FileStream := TFileStream.Create(FFileName, FileAccess);
   except on E:EFOpenError do begin // Collision with potentially locked file
-    FileOpenError := GetLastError;
-      if FileOpenError = ERROR_SHARING_VIOLATION then begin // If so try to open the copy
-        Result := OpenFileAsReadOnly;
-        AFileAccessType := fatNormal;
-        Exit; // Possibly a read only file was accepted
-      end
-      else begin
-        Result := False;
-        AFileAccessType := fatNormal;
-        Exit; // File reading exception could not be handled
-      end;
-    end;
+    Result := OpenFileAsReadOnly; // Try to find and load read only version
+    AFileAccessType := fatNormal;
+    Exit;
   end;
+end;
 
   LoadingProgress(FFileName, MAX_ASYNC_LOAD_STATE + 2, 0);
   try
@@ -6575,25 +6566,23 @@ function PDocumentInputStream.OpenFileAsReadOnly: Boolean;
 var
   ExclusiveUserInfoNode, UserNameNode, LockTimeNode: IXMLNode;
   ChildNodes: IXMLNodeList;
-  //Count: Integer;
-  //DeleteResult: Integer;
   ButtonSelected : Integer;
 begin
   FFileName := FFileName + PDocument.SharedCopyExt;
   if FileExists(FileName) then begin
     XMLDoc.LoadFromFile(FileName);
     ChildNodes := XMLDoc.DocumentElement.ChildNodes;
-    //Count := ChildNodes.GetCount;
     ExclusiveUserInfoNode := ChildNodes.First.ChildNodes.FindNode(ExclusiveUserInfo);
     UserNameNode := ExclusiveUserInfoNode.ChildNodes.FindNode(UserName);
     LockTimeNode := ExclusiveUserInfoNode.ChildNodes.FindNode(LockTime);
 
-    ButtonSelected := MessageDlg('Do you want to read a copy of file locked by ' + UserNameNode.Text +
-      ' on ' + LockTimeNode.Text ,mtConfirmation, mbYesNo, 0);
+    ButtonSelected := MessageDlg('File locked by ' + UserNameNode.Text +
+      ' on ' + LockTimeNode.Text + #13#10 + 'Do you want to load a read only copy ?', mtConfirmation, mbYesNo, 0);
 
     Result := (buttonSelected = mrYes);
 
-    {DeleteResult := }ChildNodes.First.ChildNodes.Delete(ExclusiveUserInfo);
+    if Result then // Clean extra data
+      ChildNodes.First.ChildNodes.Delete(ExclusiveUserInfo);
 
   end
   else begin
@@ -6610,7 +6599,6 @@ procedure PDocumentInputStream.CreateReadOnlyCopy;
 var
   ExclusiveUserInfoNode,UserNameNode, LockTimeNode: IXMLNode;
   ChildNodes: IXMLNodeList;
-  //DeleteResult: Integer;
   CopyFileName: string;
 begin
   ChildNodes := XMLDoc.DocumentElement.ChildNodes;
@@ -6630,7 +6618,7 @@ begin
   FileSetAttr(CopyFileName, faReadOnly);
 
   // ExclusiveUserInfo node not needed anymore
-  {DeleteResult := }ChildNodes.First.ChildNodes.Delete(ExclusiveUserInfo);
+  ChildNodes.First.ChildNodes.Delete(ExclusiveUserInfo);
 end;
 
 // PDocumentInputStream

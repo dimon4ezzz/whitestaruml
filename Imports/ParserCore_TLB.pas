@@ -12,23 +12,20 @@ unit ParserCore_TLB;
 // ************************************************************************ //
 
 // $Rev: 52393 $
-// File generated on 1/23/2015 5:20:39 PM from Type Library described below.
+// File generated on 1/30/2016 12:51:40 PM from Type Library described below.
 
 // ************************************************************************  //
-// Type Lib: C:\JS\Delphi\WhiteStarDevInstall\ParserCore.dll (1)
+// Type Lib: C:\JS\Delphi\WhiteStarSourceforgeTrunkXE5\staruml\components\parser-core\ParserCore\bin\Release\ParserCore.tlb (1)
 // LIBID: {A5D0740F-EC13-4236-BBC6-9FD1D78BD0AA}
 // LCID: 0
 // Helpfile: 
 // HelpString: 
 // DepndLst: 
 //   (1) v2.0 stdole, (C:\Windows\SysWOW64\stdole2.tlb)
-//   (2) v2.0 mscorlib, (C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.tlb)
-//   (3) v1.0 WhiteStarUML, (C:\JS\Delphi\WhiteStarDevInstall\WhiteStarUML.exe)
+//   (2) v2.4 mscorlib, (C:\Windows\Microsoft.NET\Framework\v4.0.30319\mscorlib.tlb)
+//   (3) v1.1 WhiteStarUML, (C:\JS\Delphi\WhiteStarDevInstall64\WhiteStarUML.exe)
 // SYS_KIND: SYS_WIN32
 // Errors:
-//   Error creating palette bitmap of (TGrammarIndependentParserBase) : Server mscoree.dll contains no icons
-//   Error creating palette bitmap of (TNxGrammarParserBase) : Server mscoree.dll contains no icons
-//   Error creating palette bitmap of (TNxGrammarParserWithTreeProcessing) : Server mscoree.dll contains no icons
 //   Error creating palette bitmap of (TNameExprParserCoreImpl) : Server mscoree.dll contains no icons
 //   Error creating palette bitmap of (TAttrExprParserCoreImpl) : Server mscoree.dll contains no icons
 //   Error creating palette bitmap of (TMsgExprParserCoreImpl) : Server mscoree.dll contains no icons
@@ -60,13 +57,10 @@ Winapi.ActiveX;
 const
   // TypeLibrary Major and minor versions
   ParserCoreMajorVersion = 1;
-  ParserCoreMinorVersion = 2;
+  ParserCoreMinorVersion = 3;
 
   LIBID_ParserCore: TGUID = '{A5D0740F-EC13-4236-BBC6-9FD1D78BD0AA}';
 
-  IID__GrammarIndependentParserBase: TGUID = '{4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}';
-  IID__NxGrammarParserBase: TGUID = '{519F8D2F-8100-39C5-9A75-155B9C1CF2B9}';
-  IID__NxGrammarParserWithTreeProcessing: TGUID = '{19583DCC-5E76-31FF-ACFF-F9A4056B6913}';
   IID_IParserCore: TGUID = '{C2D5AA24-3633-479B-9EA2-5AADBECE1ECE}';
   CLASS_NameExprParserCoreImpl: TGUID = '{41B17622-6FBA-4683-AACD-402F7F021D17}';
   CLASS_AttrExprParserCoreImpl: TGUID = '{90971B47-C855-4E13-96C0-4B2896D03E45}';
@@ -77,20 +71,11 @@ const
   CLASS_TransExprParserCoreImpl: TGUID = '{958DCE18-DB33-4F20-8ADE-B3B6D97260BF}';
   IID_INxParser: TGUID = '{DD062285-0F54-4871-9F59-42A3BA4C46AF}';
   CLASS_NxParser: TGUID = '{88EDE9D0-6E37-4B00-86D7-B689C9748661}';
-  CLASS_GrammarIndependentParserBase: TGUID = '{9FBD33EC-C2F1-32FF-8864-5B143391AF51}';
-  CLASS_NxGrammarParserBase: TGUID = '{E8935786-EDD4-3479-BD70-7ACA395E0914}';
-  CLASS_NxGrammarParserWithTreeProcessing: TGUID = '{49C549BE-BA38-3D92-A8F8-24FAA69DA198}';
 type
 
 // *********************************************************************//
 // Forward declaration of types defined in TypeLibrary                    
 // *********************************************************************//
-  _GrammarIndependentParserBase = interface;
-  _GrammarIndependentParserBaseDisp = dispinterface;
-  _NxGrammarParserBase = interface;
-  _NxGrammarParserBaseDisp = dispinterface;
-  _NxGrammarParserWithTreeProcessing = interface;
-  _NxGrammarParserWithTreeProcessingDisp = dispinterface;
   IParserCore = interface;
   IParserCoreDisp = dispinterface;
   INxParser = interface;
@@ -108,64 +93,7 @@ type
   RoleExprParserCoreImpl = IParserCore;
   TransExprParserCoreImpl = IParserCore;
   NxParser = INxParser;
-  GrammarIndependentParserBase = _GrammarIndependentParserBase;
-  NxGrammarParserBase = _NxGrammarParserBase;
-  NxGrammarParserWithTreeProcessing = _NxGrammarParserWithTreeProcessing;
 
-
-// *********************************************************************//
-// Interface: _GrammarIndependentParserBase
-// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
-// GUID:      {4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}
-// *********************************************************************//
-  _GrammarIndependentParserBase = interface(IDispatch)
-    ['{4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}']
-  end;
-
-// *********************************************************************//
-// DispIntf:  _GrammarIndependentParserBaseDisp
-// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
-// GUID:      {4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}
-// *********************************************************************//
-  _GrammarIndependentParserBaseDisp = dispinterface
-    ['{4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}']
-  end;
-
-// *********************************************************************//
-// Interface: _NxGrammarParserBase
-// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
-// GUID:      {519F8D2F-8100-39C5-9A75-155B9C1CF2B9}
-// *********************************************************************//
-  _NxGrammarParserBase = interface(IDispatch)
-    ['{519F8D2F-8100-39C5-9A75-155B9C1CF2B9}']
-  end;
-
-// *********************************************************************//
-// DispIntf:  _NxGrammarParserBaseDisp
-// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
-// GUID:      {519F8D2F-8100-39C5-9A75-155B9C1CF2B9}
-// *********************************************************************//
-  _NxGrammarParserBaseDisp = dispinterface
-    ['{519F8D2F-8100-39C5-9A75-155B9C1CF2B9}']
-  end;
-
-// *********************************************************************//
-// Interface: _NxGrammarParserWithTreeProcessing
-// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
-// GUID:      {19583DCC-5E76-31FF-ACFF-F9A4056B6913}
-// *********************************************************************//
-  _NxGrammarParserWithTreeProcessing = interface(IDispatch)
-    ['{19583DCC-5E76-31FF-ACFF-F9A4056B6913}']
-  end;
-
-// *********************************************************************//
-// DispIntf:  _NxGrammarParserWithTreeProcessingDisp
-// Flags:     (4432) Hidden Dual OleAutomation Dispatchable
-// GUID:      {19583DCC-5E76-31FF-ACFF-F9A4056B6913}
-// *********************************************************************//
-  _NxGrammarParserWithTreeProcessingDisp = dispinterface
-    ['{19583DCC-5E76-31FF-ACFF-F9A4056B6913}']
-  end;
 
 // *********************************************************************//
 // Interface: IParserCore
@@ -537,120 +465,6 @@ type
     function Parse(const fileName: WideString; const builder: IExprBuilder): WordBool;
     function GetFailMessage: WideString;
     property DefaultInterface: INxParser read GetDefaultInterface;
-  published
-  end;
-
-// *********************************************************************//
-// The Class CoGrammarIndependentParserBase provides a Create and CreateRemote method to          
-// create instances of the default interface _GrammarIndependentParserBase exposed by              
-// the CoClass GrammarIndependentParserBase. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
-// *********************************************************************//
-  CoGrammarIndependentParserBase = class
-    class function Create: _GrammarIndependentParserBase;
-    class function CreateRemote(const MachineName: string): _GrammarIndependentParserBase;
-  end;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TGrammarIndependentParserBase
-// Help String      : 
-// Default Interface: _GrammarIndependentParserBase
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-  TGrammarIndependentParserBase = class(TOleServer)
-  private
-    FIntf: _GrammarIndependentParserBase;
-    function GetDefaultInterface: _GrammarIndependentParserBase;
-  protected
-    procedure InitServerData; override;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: _GrammarIndependentParserBase);
-    procedure Disconnect; override;
-    property DefaultInterface: _GrammarIndependentParserBase read GetDefaultInterface;
-  published
-  end;
-
-// *********************************************************************//
-// The Class CoNxGrammarParserBase provides a Create and CreateRemote method to          
-// create instances of the default interface _NxGrammarParserBase exposed by              
-// the CoClass NxGrammarParserBase. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
-// *********************************************************************//
-  CoNxGrammarParserBase = class
-    class function Create: _NxGrammarParserBase;
-    class function CreateRemote(const MachineName: string): _NxGrammarParserBase;
-  end;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TNxGrammarParserBase
-// Help String      : 
-// Default Interface: _NxGrammarParserBase
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-  TNxGrammarParserBase = class(TOleServer)
-  private
-    FIntf: _NxGrammarParserBase;
-    function GetDefaultInterface: _NxGrammarParserBase;
-  protected
-    procedure InitServerData; override;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: _NxGrammarParserBase);
-    procedure Disconnect; override;
-    property DefaultInterface: _NxGrammarParserBase read GetDefaultInterface;
-  published
-  end;
-
-// *********************************************************************//
-// The Class CoNxGrammarParserWithTreeProcessing provides a Create and CreateRemote method to          
-// create instances of the default interface _NxGrammarParserWithTreeProcessing exposed by              
-// the CoClass NxGrammarParserWithTreeProcessing. The functions are intended to be used by             
-// clients wishing to automate the CoClass objects exposed by the         
-// server of this typelibrary.                                            
-// *********************************************************************//
-  CoNxGrammarParserWithTreeProcessing = class
-    class function Create: _NxGrammarParserWithTreeProcessing;
-    class function CreateRemote(const MachineName: string): _NxGrammarParserWithTreeProcessing;
-  end;
-
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TNxGrammarParserWithTreeProcessing
-// Help String      : 
-// Default Interface: _NxGrammarParserWithTreeProcessing
-// Def. Intf. DISP? : No
-// Event   Interface: 
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
-  TNxGrammarParserWithTreeProcessing = class(TOleServer)
-  private
-    FIntf: _NxGrammarParserWithTreeProcessing;
-    function GetDefaultInterface: _NxGrammarParserWithTreeProcessing;
-  protected
-    procedure InitServerData; override;
-  public
-    constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure Connect; override;
-    procedure ConnectTo(svrIntf: _NxGrammarParserWithTreeProcessing);
-    procedure Disconnect; override;
-    property DefaultInterface: _NxGrammarParserWithTreeProcessing read GetDefaultInterface;
   published
   end;
 
@@ -1300,206 +1114,10 @@ begin
   Result := DefaultInterface.GetFailMessage;
 end;
 
-class function CoGrammarIndependentParserBase.Create: _GrammarIndependentParserBase;
-begin
-  Result := CreateComObject(CLASS_GrammarIndependentParserBase) as _GrammarIndependentParserBase;
-end;
-
-class function CoGrammarIndependentParserBase.CreateRemote(const MachineName: string): _GrammarIndependentParserBase;
-begin
-  Result := CreateRemoteComObject(MachineName, CLASS_GrammarIndependentParserBase) as _GrammarIndependentParserBase;
-end;
-
-procedure TGrammarIndependentParserBase.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{9FBD33EC-C2F1-32FF-8864-5B143391AF51}';
-    IntfIID:   '{4A9DAAD0-358C-3FA9-80B1-E9AAC582645E}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TGrammarIndependentParserBase.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as _GrammarIndependentParserBase;
-  end;
-end;
-
-procedure TGrammarIndependentParserBase.ConnectTo(svrIntf: _GrammarIndependentParserBase);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TGrammarIndependentParserBase.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TGrammarIndependentParserBase.GetDefaultInterface: _GrammarIndependentParserBase;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
-  Result := FIntf;
-end;
-
-constructor TGrammarIndependentParserBase.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-end;
-
-destructor TGrammarIndependentParserBase.Destroy;
-begin
-  inherited Destroy;
-end;
-
-class function CoNxGrammarParserBase.Create: _NxGrammarParserBase;
-begin
-  Result := CreateComObject(CLASS_NxGrammarParserBase) as _NxGrammarParserBase;
-end;
-
-class function CoNxGrammarParserBase.CreateRemote(const MachineName: string): _NxGrammarParserBase;
-begin
-  Result := CreateRemoteComObject(MachineName, CLASS_NxGrammarParserBase) as _NxGrammarParserBase;
-end;
-
-procedure TNxGrammarParserBase.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{E8935786-EDD4-3479-BD70-7ACA395E0914}';
-    IntfIID:   '{519F8D2F-8100-39C5-9A75-155B9C1CF2B9}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TNxGrammarParserBase.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as _NxGrammarParserBase;
-  end;
-end;
-
-procedure TNxGrammarParserBase.ConnectTo(svrIntf: _NxGrammarParserBase);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TNxGrammarParserBase.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TNxGrammarParserBase.GetDefaultInterface: _NxGrammarParserBase;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
-  Result := FIntf;
-end;
-
-constructor TNxGrammarParserBase.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-end;
-
-destructor TNxGrammarParserBase.Destroy;
-begin
-  inherited Destroy;
-end;
-
-class function CoNxGrammarParserWithTreeProcessing.Create: _NxGrammarParserWithTreeProcessing;
-begin
-  Result := CreateComObject(CLASS_NxGrammarParserWithTreeProcessing) as _NxGrammarParserWithTreeProcessing;
-end;
-
-class function CoNxGrammarParserWithTreeProcessing.CreateRemote(const MachineName: string): _NxGrammarParserWithTreeProcessing;
-begin
-  Result := CreateRemoteComObject(MachineName, CLASS_NxGrammarParserWithTreeProcessing) as _NxGrammarParserWithTreeProcessing;
-end;
-
-procedure TNxGrammarParserWithTreeProcessing.InitServerData;
-const
-  CServerData: TServerData = (
-    ClassID:   '{49C549BE-BA38-3D92-A8F8-24FAA69DA198}';
-    IntfIID:   '{19583DCC-5E76-31FF-ACFF-F9A4056B6913}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
-begin
-  ServerData := @CServerData;
-end;
-
-procedure TNxGrammarParserWithTreeProcessing.Connect;
-var
-  punk: IUnknown;
-begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as _NxGrammarParserWithTreeProcessing;
-  end;
-end;
-
-procedure TNxGrammarParserWithTreeProcessing.ConnectTo(svrIntf: _NxGrammarParserWithTreeProcessing);
-begin
-  Disconnect;
-  FIntf := svrIntf;
-end;
-
-procedure TNxGrammarParserWithTreeProcessing.DisConnect;
-begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
-  end;
-end;
-
-function TNxGrammarParserWithTreeProcessing.GetDefaultInterface: _NxGrammarParserWithTreeProcessing;
-begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
-  Result := FIntf;
-end;
-
-constructor TNxGrammarParserWithTreeProcessing.Create(AOwner: TComponent);
-begin
-  inherited Create(AOwner);
-end;
-
-destructor TNxGrammarParserWithTreeProcessing.Destroy;
-begin
-  inherited Destroy;
-end;
-
 procedure Register;
 begin
   RegisterComponents(dtlServerPage, [TNameExprParserCoreImpl, TAttrExprParserCoreImpl, TMsgExprParserCoreImpl, TObjExprParserCoreImpl, 
-    TOperExprParserCoreImpl, TRoleExprParserCoreImpl, TTransExprParserCoreImpl, TNxParser, TGrammarIndependentParserBase, 
-    TNxGrammarParserBase, TNxGrammarParserWithTreeProcessing]);
+    TOperExprParserCoreImpl, TRoleExprParserCoreImpl, TTransExprParserCoreImpl, TNxParser]);
 end;
 
 end.
