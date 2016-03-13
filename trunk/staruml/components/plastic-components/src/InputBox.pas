@@ -136,7 +136,8 @@ end;
 procedure TInputBox.AfterConstruction;
 begin
   inherited;
-  InputBoxForm := TInputBoxForm.Create(nil);
+  InputBoxForm := TInputBoxForm.Create(Owner);
+  InputBoxForm.Position := poOwnerFormCenter;
 end;
 
 procedure TInputBox.BeforeDestruction;
