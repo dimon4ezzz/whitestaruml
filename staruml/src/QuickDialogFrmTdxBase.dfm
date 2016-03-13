@@ -29,6 +29,7 @@ object QuickDialogFormTdxBase: TQuickDialogFormTdxBase
     Categories.Visibles = (
       True
       True)
+    ImageOptions.StretchGlyphs = False
     PopupMenuLinks = <>
     Style = bmsFlat
     UseSystemFont = False
@@ -208,7 +209,7 @@ object QuickDialogFormTdxBase: TQuickDialogFormTdxBase
         ItemName = 'Navigable'
       end>
     UseOwnFont = False
-    Left = 120
+    Left = 168
     Top = 61
   end
 end
