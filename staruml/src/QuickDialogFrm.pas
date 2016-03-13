@@ -3960,17 +3960,31 @@ begin
     RetStr := '';
     ArgStr := '';
   end;
-  FOriginalString := FOriginalString + IteStr + BranchStr;
-  if (IteStr <> '') or (BranchStr <> '') then FOriginalString := FOriginalString + ' ' + RetStr
-  else FOriginalString := FOriginalString + RetStr;
+
+  FOriginalString := IteStr + BranchStr;
+
+  if (IteStr <> '') or (BranchStr <> '') then
+    FOriginalString := FOriginalString + ' ' + RetStr
+  else
+    FOriginalString := FOriginalString + RetStr;
+
   if (IteStr <> '') or (BranchStr <> '') then begin
-    if RetStr <> '' then FOriginalString := FOriginalString + NameStr
-    else FOriginalString := FOriginalString + ' ' + NameStr;
-  end else FOriginalString := FOriginalString + NameStr;
+    if RetStr <> '' then
+      FOriginalString := FOriginalString + NameStr
+    else
+      FOriginalString := FOriginalString + ' ' + NameStr;
+  end
+  else
+    FOriginalString := FOriginalString + NameStr;
+
   if (IteStr <> '') or (BranchStr <> '') then begin
-    if (RetStr <> '') or (NameStr <> '') then FOriginalString := FOriginalString + ArgStr
-    else FOriginalString := FOriginalString + ' ' + ArgStr;
-  end else FOriginalString := FOriginalString + ArgStr;
+    if (RetStr <> '') or (NameStr <> '') then
+      FOriginalString := FOriginalString + ArgStr
+    else
+      FOriginalString := FOriginalString + ' ' + ArgStr;
+  end
+  else
+    FOriginalString := FOriginalString + ArgStr;
 end;
 
 procedure PMessageQuickDialog.AssignNameEditValue;
@@ -4064,7 +4078,11 @@ begin
   AClassifier := GetClassifierModel(FModel);
   if Assigned(AnAction) and (AnAction is PUMLCallAction) and Assigned(AClassifier) then
   begin
-    NameStr := '';
+    if Assigned(FOperation) then
+      NameStr := FOperation.Name
+    else
+      NameStr := AnAction.Stimulus.Name;
+
     if QueryInput(self, TXT_INPUT_ELEM_NAME, TXT_INPUT_OPERATION_NAME, NameStr) and (NameStr <> '') then
     begin
       FManager.CallActionOperationCreatingHandler(AClassifier, AnAction as PUMLCallAction, NameStr);
