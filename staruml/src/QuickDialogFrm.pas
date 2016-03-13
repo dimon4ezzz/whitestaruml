@@ -604,12 +604,12 @@ begin
   Result := AZoomFactor.Numer / AZoomFactor.Denom;
 end;
 
-function QueryInput(ATitle: string; ACaption: string; var Str: string): Boolean;
+function QueryInput(Parent: TForm; ATitle: string; ACaption: string; var Str: string): Boolean;
 var
   Input: TInputBox;
   B: Boolean;
 begin
-  Input := TInputBox.Create(nil);
+  Input := TInputBox.Create(Parent);
   try
     Input.Title := ATitle;
     Input.Caption := ACaption;
@@ -2108,7 +2108,7 @@ begin
   { add Class element and set Base|Classifier reference }
 
   NameStr := '';
-  if QueryInput(TXT_INPUT_ELEM_NAME, TXT_INPUT_CLASS_NAME, NameStr) and (NameStr <> '') then
+  if QueryInput(self, TXT_INPUT_ELEM_NAME, TXT_INPUT_CLASS_NAME, NameStr) and (NameStr <> '') then
   begin
     AOwner := GetParentNamespace(FModel);
     // Assertion
@@ -4065,7 +4065,7 @@ begin
   if Assigned(AnAction) and (AnAction is PUMLCallAction) and Assigned(AClassifier) then
   begin
     NameStr := '';
-    if QueryInput(TXT_INPUT_ELEM_NAME, TXT_INPUT_OPERATION_NAME, NameStr) and (NameStr <> '') then
+    if QueryInput(self, TXT_INPUT_ELEM_NAME, TXT_INPUT_OPERATION_NAME, NameStr) and (NameStr <> '') then
     begin
       FManager.CallActionOperationCreatingHandler(AClassifier, AnAction as PUMLCallAction, NameStr);
       SetNameEditData;
