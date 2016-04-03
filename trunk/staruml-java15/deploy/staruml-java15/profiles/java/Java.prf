@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PROFILE version="1.0">
 	<HEADER>
-		<NAME>Java15</NAME>
+		<NAME>Java</NAME>
 		<DISPLAYNAME>Java 1.5 Profile</DISPLAYNAME>
 		<DESCRIPTION>Java 1.5 Language Profile</DESCRIPTION>
 	</HEADER>
