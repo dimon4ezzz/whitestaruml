@@ -31,10 +31,10 @@ namespace Erd
         internal const string OPTION_SCHEMA = APP_NAME + ".Erd";
 
         // Messages
-        internal const string MSG_GENERATION_SUCCEEDED = "File generation succeded";
+        internal const string MSG_GENERATION_SUCCEEDED = "File generation succeeded";
         internal const string MSG_GENERATION_FAILED = "File generation failed";
         internal const string MSG_GENERATION_SUCCEEDED_LONG = "SQL tables for selected diagram were successfully generated.";
-        internal const string MSG_PARSING_SUCCEEDED = "File parsing succeded";
+        internal const string MSG_PARSING_SUCCEEDED = "File parsing succeeded";
         internal const string MSG_PARSING_SUCCEEDED_LONG = "SQL tables for selected diagram were successfully parsed.";
 
         // Queries
