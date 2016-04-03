@@ -83,25 +83,34 @@ namespace Erd
             List<IR.Table> result = new List<IR.Table>();
 
             IDiagramView diagramView = diagram.DiagramView;
-            int nbOfElems = diagramView.GetOwnedViewCount();
-            for (int i = 0; i < nbOfElems; i++)
+            if (diagramView != null)
             {
-                IView view = diagramView.GetOwnedViewAt(i);
-                IUMLClass umlClass = view.Model as IUMLClass;
-
-                if (umlClass != null)
+                int nbOfElems = diagramView.GetOwnedViewCount();
+                for (int i = 0; i < nbOfElems; i++)
                 {
-                    // Collect only ERD tables
-                    if (
-                        (umlClass.StereotypeProfile == Symbols.ERD_PROFILE_NAME)
-                        && (umlClass.StereotypeName == Symbols.ERD_STEREOTYPE_TABLE)
-                        )
+                    try
                     {
-                        IR.Table irTable = new IR.Table();
-                        irTable.TableName = umlClass.Name;
-                        irTable.Attribues = BuildIRTableAttributes(umlClass);
-                        result.Add(irTable);
+                        IUMLClass umlClass = null;
+                        IView view = diagramView.GetOwnedViewAt(i);
+                        if (view != null)
+                            umlClass = view.Model as IUMLClass;
+
+                        if (umlClass != null)
+                        {
+                            // Collect only ERD tables
+                            if (
+                                (umlClass.StereotypeProfile == Symbols.ERD_PROFILE_NAME)
+                                && (umlClass.StereotypeName == Symbols.ERD_STEREOTYPE_TABLE)
+                                )
+                            {
+                                IR.Table irTable = new IR.Table();
+                                irTable.TableName = umlClass.Name;
+                                irTable.Attribues = BuildIRTableAttributes(umlClass);
+                                result.Add(irTable);
+                            }
+                        }
                     }
+                    catch (System.Exception) { } // Ignore offending model elements
                 }
             }
 
