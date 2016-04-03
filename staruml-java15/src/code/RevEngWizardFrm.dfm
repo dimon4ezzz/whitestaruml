@@ -1,7 +1,7 @@
 object RevEngWizardForm: TRevEngWizardForm
   Left = 346
   Top = 200
-  ActiveControl = SelectTreeFrame.SelectTree
+  ActiveControl = ShellTreeView
   BorderStyle = bsDialog
   Caption = 'Java Reverse Engineering'
   ClientHeight = 420
@@ -95,7 +95,7 @@ object RevEngWizardForm: TRevEngWizardForm
     Top = 0
     Width = 585
     Height = 420
-    ActivePage = SelectPackagePage
+    ActivePage = SelectSourceFilePage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start page'
     ButtonStart.NumGlyphs = 1

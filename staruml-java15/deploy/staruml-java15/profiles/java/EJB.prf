@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <PROFILE version="1.0">
 	<HEADER>
-		<NAME>EJB15</NAME>
+		<NAME>EJB</NAME>
 		<DISPLAYNAME>EJB 1.5 Profile</DISPLAYNAME>
 		<DESCRIPTION>EJB 1.5 (Enterprise Java Beans) Profile</DESCRIPTION>
 	</HEADER>
