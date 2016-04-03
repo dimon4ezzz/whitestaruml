@@ -1,7 +1,7 @@
 object RevEngineForm: TRevEngineForm
   Left = 284
   Top = 198
-  ActiveControl = SelectTreeFrame.SelectTree
+  ActiveControl = ShellTreeView
   BorderStyle = bsDialog
   Caption = 'C++ Reverse Engineering'
   ClientHeight = 418
@@ -24,7 +24,7 @@ object RevEngineForm: TRevEngineForm
     Top = 0
     Width = 585
     Height = 418
-    ActivePage = PackageSelectionPage
+    ActivePage = SourceFileSelectionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start page'
     ButtonStart.NumGlyphs = 1

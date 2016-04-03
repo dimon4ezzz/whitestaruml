@@ -567,6 +567,7 @@ begin
         MessageSubLabel.Caption := TXT_REVERSE_RESULT_DIRECTION;
         Log(MSG_REVERSE_CANCEL);
         InformMessage(MSG_DLG_REVERSE_CANCEL);
+        SetActiveWindow(Handle); // Make sure this form is on the top
       end;
     rsError:
       begin
