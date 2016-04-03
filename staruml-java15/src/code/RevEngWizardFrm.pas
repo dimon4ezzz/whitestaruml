@@ -441,6 +441,7 @@ begin
         MessageLabel.Caption := TXT_REVERSE_COMPLETE;
         MessageSubLabel.Caption := TXT_REVERSE_RESULT_DIRECTION;
         Application.MessageBox(PChar(MSG_DLG_REVERSE_COMPLETE), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
+        SetActiveWindow(Handle); // Make sure this form is on the top
       end;
     rsAbort:
       begin
@@ -448,12 +449,14 @@ begin
         MessageSubLabel.Caption := '';
         FileNumInfoLabel.Caption := '';
         Application.MessageBox(PChar(C_MSG_DLG_REVERSE_CANCEL), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
+        SetActiveWindow(Handle); // Make sure this form is on the top
       end;
     rsError:
       begin
         MessageLabel.Caption := TXT_REVERSE_ERROR;
         MessageSubLabel.Caption := TXT_REVERSE_RESULT_DIRECTION;
         Application.MessageBox(PChar(TXT_REVERSE_ERROR), PChar(Application.Title), MB_ICONERROR + MB_OK);
+        SetActiveWindow(Handle); // Make sure this form is on the top
       end;
   end;
 end;

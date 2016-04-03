@@ -86,7 +86,7 @@ const
   //Profile
   PROFILE_STANDARD = 'UMLStandard';
   //PROFILE_JAVA = 'Java';
-  PROFILE_JAVA15 = 'Java15';
+  PROFILE_JAVA15 = 'Java';
   STD_STEREOTYPE_IMPORT = 'import';
   STD_STEREOTYPE_CREATE = 'create';
   TAGSET_DEFAULT = 'Default';
