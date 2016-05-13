@@ -76,7 +76,7 @@ type
     function ExecuteObject(FModel: PModel; Value: String): Boolean;
     function ExecuteMessage(FModel: PModel; Value: String): Boolean;
 
-    function HasRelation(Value: String; Relations: Array of String): Boolean;
+    function HasRelation(Value: String; const Relations: Array of String): Boolean;
     function GetViewInDiagram(DiagramView: PDiagramView; Name: String): PView; overload;
     function GetViewInDiagram(DiagramView: PDiagramView; Model: PModel): PView; overload;
 
@@ -177,7 +177,7 @@ end;
 
 { PShortenSyntaxManager }
 
-function PShortenSyntaxManager.HasRelation(Value: String; Relations: Array of String): Boolean;
+function PShortenSyntaxManager.HasRelation(Value: String; const Relations: Array of String): Boolean;
 var I: Integer;
 begin
   for I := 0 to 1 do begin

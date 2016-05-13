@@ -227,7 +227,7 @@ type
     function FindExtendedPaletteItemInteraction(Profile: PProfile; ElementPrototypeName: string): PExtendedPaletteItemInteraction;
     function FindExtendedDiagramMenuInteraction(DiagramTypeName: string): PExtendedDiagramMenuInteraction;
     { predefined interaction adding methods }
-    procedure AddPredefinedDiagramMenuInteraction(DiagramKind: string; MenuButton: TMenuElementHandle; AvailablePalettes: array of string);
+    procedure AddPredefinedDiagramMenuInteraction(DiagramKind: string; MenuButton: TMenuElementHandle; const AvailablePalettes: array of string);
     procedure AddPredefinedModelMenuInteraction(ModelKind: string; Argument: Integer; MenuButton: TMenuElementHandle);
     procedure AddPredefinedPaletteInteraction(Name: string; NavBarGroup: TNavBarGroup);
     procedure AddPredefinedPaletteItemInteraction(ElementKind: string; Argument: Integer; HandlerName: string; NavBarItem: TNavBarItem);
@@ -743,7 +743,7 @@ begin
     end;
 end;
 
-procedure PInteractionManager.AddPredefinedDiagramMenuInteraction(DiagramKind: string; MenuButton: TMenuElementHandle; AvailablePalettes: array of string);
+procedure PInteractionManager.AddPredefinedDiagramMenuInteraction(DiagramKind: string; MenuButton: TMenuElementHandle; const AvailablePalettes: array of string);
 var
   DI: PPredefinedDiagramMenuInteraction;
   I: Integer;

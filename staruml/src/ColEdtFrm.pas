@@ -336,7 +336,7 @@ type
     procedure ActivateTabSheet(PageName: string);
     procedure SetSelectedListItem(AListView: TListView; Idx: Integer);
 
-    procedure UpdateUIStatePage(Page: TTabSheet; ListView: TListView; InsertButtons: array of TToolButton;
+    procedure UpdateUIStatePage(Page: TTabSheet; ListView: TListView; const InsertButtons: array of TToolButton;
       DeleteButton: TToolButton; MoveUpButton: TToolButton; MoveDownButton: TToolButton);
     procedure UpdateUIStateRelationsPage;
     procedure UpdatePopupMenuState;
@@ -648,7 +648,7 @@ begin
 end;
 
 procedure TCollectionEditorForm.ComposePopupMenu(Collection: PCollectionKind);
-  procedure SetMenuItemVisible(MenuItems: array of TMenuItem);
+  procedure SetMenuItemVisible(const MenuItems: array of TMenuItem);
   var
     //I: Integer;
     MenuItem: TMenuItem;
@@ -1247,16 +1247,19 @@ end;
 
 procedure TCollectionEditorForm.ShowTabSheetsByModel(AModel: PModel);
 
-  procedure SetTabSheetTabVisible(TabSheet: TTabSheet; AvailableModels: array of PClass);
+  procedure SetTabSheetTabVisible(TabSheet: TTabSheet; const AvailableModels: array of PClass);
   var
-    I: Integer;
+    AvailableModelClass: PClass;
   begin
-    for I := 0 to Length(AvailableModels) - 1 do
-      if AModel is AvailableModels[I] then begin
+    for AvailableModelClass in  AvailableModels do begin
+       if AModel is AvailableModelClass then begin
         TabSheet.TabVisible := True;
         Exit;
       end;
+    end;
+
     TabSheet.TabVisible := False;
+
   end;
 
 begin
@@ -1352,7 +1355,7 @@ begin
   end;
 end;
 
-procedure TCollectionEditorForm.UpdateUIStatePage(Page: TTabSheet; ListView: TListView; InsertButtons: array of TToolButton;
+procedure TCollectionEditorForm.UpdateUIStatePage(Page: TTabSheet; ListView: TListView; const InsertButtons: array of TToolButton;
   DeleteButton: TToolButton; MoveUpButton: TToolButton; MoveDownButton: TToolButton);
 var
   I: Integer;
@@ -1380,7 +1383,7 @@ begin
   if L <> nil then begin
     UndoMenu.Enabled := UndoMenu.Visible and StarUMLApplication.CanUndo;
     RedoMenu.Enabled := RedoMenu.Visible and StarUMLApplication.CanRedo;
-    EditNameMenu.Enabled := EditNameMenu.Visible and (L.Selected <> nil) and (not PModel(L.Selected.Data).ReadOnly) and (not FReadOnly);
+    EditNameMenu.Enabled := EditNameMenu.Visible and Assigned(L.Selected) and not PModel(L.Selected.Data).ReadOnly and not FReadOnly;
     InsertMenu.Enabled := InsertMenu.Visible and (not FReadOnly);
     InsertSignalEventMenu.Enabled := InsertSignalEventMenu.Visible and (not FReadOnly);
     InsertCallEventMenu.Enabled := InsertCallEventMenu.Visible and (not FReadOnly);
