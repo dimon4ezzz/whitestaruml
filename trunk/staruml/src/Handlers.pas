@@ -285,7 +285,7 @@ type
   protected
     procedure CheckContainingBox(Sender: PDiagramView; Canvas: PCanvas; X, Y: Integer); override;
   public
-    constructor Create(HandlerName: string; ContainerCandidates: array of PClass; SkeletonPaintingKind: PSkeletonPaintingKind);
+    constructor Create(HandlerName: string; const ContainerCandidates: array of PClass; SkeletonPaintingKind: PSkeletonPaintingKind);
     // Mouse down/up/move services
     procedure MouseDown(Sender: PDiagramEditor; Canvas: PCanvas; Button: TMouseButton; Shift: TShiftState; X, Y: Integer); override;
     procedure MouseMove(Sender: PDiagramEditor; Canvas: PCanvas; Shift: TShiftState; X, Y: Integer); override;
@@ -348,7 +348,7 @@ type
     constructor Create;
     destructor Destroy; override;
     // CreateHandler adding service
-    procedure AddCreateHandler(HandlerName: string; ContainerCandidates: array of PClass;
+    procedure AddCreateHandler(HandlerName: string; const ContainerCandidates: array of PClass;
       SkeletonPaintingKind: PSkeletonPaintingKind);
     // Handler activating service
     procedure ActivateHandler(HandlerName: string);
@@ -1126,7 +1126,7 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 // PCreateHandler
 
-constructor PCreateHandler.Create(HandlerName: string; ContainerCandidates: array of PClass;
+constructor PCreateHandler.Create(HandlerName: string; const ContainerCandidates: array of PClass;
   SkeletonPaintingKind: PSkeletonPaintingKind);
 var
   I: Integer;
@@ -1474,7 +1474,7 @@ begin
   if Assigned(FOnEdgeReconnecting) then FOnEdgeReconnecting(Edge, Points, NewParticipant, IsTailSide);
 end;
 
-procedure PActionProcessor.AddCreateHandler(HandlerName: string; ContainerCandidates: array of PClass;
+procedure PActionProcessor.AddCreateHandler(HandlerName: string; const ContainerCandidates: array of PClass;
   SkeletonPaintingKind: PSkeletonPaintingKind);
 var
   H: PCreateHandler;

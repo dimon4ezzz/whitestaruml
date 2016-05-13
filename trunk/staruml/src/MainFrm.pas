@@ -619,7 +619,7 @@ type
     procedure ShowAlertMsg(AHeaderText: string;AMessageText: string);
     procedure SetAlertLookAndFeel;
     procedure ActivateHandler(HanderName: string);
-    procedure AddCreateHandler(HandlerName: string; ContainerCandidates: array of PClass; SkeletonPaintingKind: PSkeletonPaintingKind);
+    procedure AddCreateHandler(HandlerName: string; const ContainerCandidates: array of PClass; SkeletonPaintingKind: PSkeletonPaintingKind);
     function IsModelExplorerActive: Boolean;
     procedure ActivateWorkingAreaPanel;
     procedure ActivateModelExplorerPanel;
@@ -1481,7 +1481,7 @@ begin
   ActionProcessor.ActivateHandler(HanderName);
 end;
 
-procedure TMainForm.AddCreateHandler(HandlerName: string; ContainerCandidates: array of PClass;
+procedure TMainForm.AddCreateHandler(HandlerName: string; const ContainerCandidates: array of PClass;
   SkeletonPaintingKind: PSkeletonPaintingKind);
 begin
   ActionProcessor.AddCreateHandler(HandlerName, ContainerCandidates, SkeletonPaintingKind);

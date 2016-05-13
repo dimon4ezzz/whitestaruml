@@ -246,7 +246,7 @@ var
   S: TListItem;
 begin
   S := AllProfilesListView.Selected;
-  if (S <> nil) and (not StarUMLApplication.Project.ReadOnly) then begin
+  if Assigned(S) and not StarUMLApplication.Project.ReadOnly then begin
     P := PProfile(S.Data);
     if Assigned(FOnProfileInclude) then
       FOnProfileInclude(Self, P.Name);

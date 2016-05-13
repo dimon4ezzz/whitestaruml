@@ -3242,11 +3242,11 @@ begin
   try
     Reg.RootKey := HKEY_LOCAL_MACHINE;
     FrameworkPresent := Reg.KeyExists(NetFrameworkv4CP);
+  finally
+    Reg.Free;
     if not FrameworkPresent then
       MessageDlg(Format(MSG_NO_NET_FRAMEWORK,[NetFrameworkv4CPShortName]),
         mtWarning,[mbOK],0);
-   finally
-    Reg.Free;
   end
 end;
 

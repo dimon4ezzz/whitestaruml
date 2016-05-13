@@ -88,7 +88,7 @@ object ElementSelectorForm: TElementSelectorForm
         Width = 389
         Height = 191
         ExplicitWidth = 389
-        ExplicitHeight = 217
+        ExplicitHeight = 191
         inherited ModelTree: TVirtualStringTree
           Width = 387
           Height = 189
@@ -98,7 +98,7 @@ object ElementSelectorForm: TElementSelectorForm
       end
       inherited ModelExplorerToolbar: TToolBar
         Width = 389
-        ExplicitWidth = 387
+        ExplicitWidth = 389
       end
     end
   end

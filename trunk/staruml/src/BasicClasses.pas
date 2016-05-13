@@ -175,7 +175,7 @@ uses
     property Items[Index: Integer]: T read GetItem write SetItem; default;
     property Count: Integer read GetCount;
 
-  type
+  private type
     TEnumerator = class(TEnumerator<T>)
     private
       FOrderedSet: POrderedSet<T>;
@@ -267,13 +267,13 @@ uses
   protected
     function DoGetEnumerator: TEnumerator<PTableRow>; override;
   public
-    constructor Create(ColumnArray: array of string);
+    constructor Create(const ColumnArray: array of string);
     destructor Destroy; override;
     procedure Clear;
     function ContainsColumn(Column: string): Boolean;
     function IndexOfColumn(Column: string): Integer;
-    function AddRow(ValueArray: array of string): Integer; overload;
-    function AddRow(ValueArray: array of string; ObjectArray: array of T): Integer; overload;
+    function AddRow(const ValueArray: array of string): Integer; overload;
+    function AddRow(const ValueArray: array of string; const ObjectArray: array of T): Integer; overload;
     procedure DeleteRow(Row: Integer);
     procedure SortByColumn(Column: string; TreatValueAsInteger: Boolean = False);
     function GetValueAt(Row: Integer; Column: string): string;
@@ -919,7 +919,7 @@ end;
 
 function POrderedSet<T>.DoGetEnumerator: TEnumerator<T>;
 begin
-  Result := TEnumerator.Create(Self);;
+  Result := TEnumerator.Create(Self);
 end;
 
 
@@ -1116,7 +1116,7 @@ end;
 ////////////////////////////////////////////////////////////////////////////////
 // PTable
 
-constructor PTable<T>.Create(ColumnArray: array of string);
+constructor PTable<T>.Create(const ColumnArray: array of string);
 var
   I: Integer;
 begin
@@ -1220,7 +1220,7 @@ begin
     end;
 end;
 
-function PTable<T>.AddRow(ValueArray: array of string): Integer;
+function PTable<T>.AddRow(const ValueArray: array of string): Integer;
 var
   R: PTableRow;
   I: Integer;
@@ -1234,7 +1234,7 @@ begin
   Result := FRows.Add(R);
 end;
 
-function PTable<T>.AddRow(ValueArray: array of string; ObjectArray: array of T): Integer;
+function PTable<T>.AddRow(const ValueArray: array of string; const ObjectArray: array of T): Integer;
 var
   R: PTableRow;
   I: Integer;

@@ -180,7 +180,7 @@ type
       Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var CellText: string);
     procedure ModelTreeGetImageIndex(Sender: TBaseVirtualTree;
       Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
-      var Ghosted: Boolean; var ImageIndex: Integer);
+      var Ghosted: Boolean; var ImageIndex: TImageIndex);
     procedure SortItemClick(Sender: TObject);
     procedure FilterElementsItemClick(Sender: TObject);
     procedure MoveItemClick(Sender: TObject);
@@ -275,8 +275,8 @@ type
     function SelectWithFocus(AModel: PModel): Boolean;
     procedure SetNameEditingMode(AModel: PModel);
     procedure ClearFilter;
-    procedure AddToFilter(Classes: array of PClass);
-    procedure DeleteFromFilter(Classes: array of PClass);
+    procedure AddToFilter(const Classes: array of PClass);
+    procedure DeleteFromFilter(const Classes: array of PClass);
     function IsFiltered(Model: PModel): Boolean;
     function FindMetaNode(Model: PModel): PMetaNode;
     function FindMetaNodeByClass(AClass: PClass): PMetaNode;
@@ -907,29 +907,29 @@ begin
   end;
 end;
 
-procedure TModelExplorerPanel.AddToFilter(Classes: array of PClass);
+procedure TModelExplorerPanel.AddToFilter(const Classes: array of PClass);
 var
-  I: Integer;
   MetaNode: PMetaNode;
+  MetaClass: PClass;
 begin
   // if MetaNode's ModelClass is contained in Classes, Filtered is true
-  for I := 0 to High(Classes) do
-  begin
-    MetaNode := FindMetaNodeByClass(Classes[I]);
-    if MetaNode <> nil then MetaNode.Filtered := True;
+  for MetaClass in Classes do begin
+    MetaNode := FindMetaNodeByClass(MetaClass);
+    if Assigned(MetaNode) then
+      MetaNode.Filtered := True;
   end;
 end;
 
-procedure TModelExplorerPanel.DeleteFromFilter(Classes: array of PClass);
+procedure TModelExplorerPanel.DeleteFromFilter(const Classes: array of PClass);
 var
-  I: Integer;
   MetaNode: PMetaNode;
+  MetaClass: PClass;
 begin
   // if MetaNode's ModelClass is contained in Classes, Filtered is false
-  for I := 0 to High(Classes) do
-  begin
-    MetaNode := FindMetaNodeByClass(Classes[I]);
-    if MetaNode <> nil then MetaNode.Filtered := False;
+  for MetaClass in Classes do begin
+    MetaNode := FindMetaNodeByClass(MetaClass);
+    if Assigned(MetaNode) then
+      MetaNode.Filtered := False;
   end;
 end;
 
@@ -1248,7 +1248,7 @@ end;
 
 procedure TModelExplorerPanel.ModelTreeGetImageIndex(
   Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind;
-  Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
+  Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: TImageIndex);
 var
   NodeData: PNodeData;
   Model: PModel;
