@@ -80,7 +80,7 @@ type
     procedure SetModelExplorer(Value: TModelExplorerPanel);
     procedure BuildFilterItems;
     procedure UpdateFilterChecks; overload;
-    procedure UpdateFilterChecks(Classes: array of PClass; State: Boolean); overload;
+    procedure UpdateFilterChecks(const Classes: array of PClass; State: Boolean); overload;
     procedure SetAllChecks(State: Boolean);
   public
     function Execute: Boolean;
@@ -111,7 +111,7 @@ begin
   end;
 end;
 
-procedure TModelExplorerFilterForm.UpdateFilterChecks(Classes: array of PClass; State: Boolean);
+procedure TModelExplorerFilterForm.UpdateFilterChecks(const Classes: array of PClass; State: Boolean);
 var
   MetaNode: PMetaNode;
   Item: TListItem;

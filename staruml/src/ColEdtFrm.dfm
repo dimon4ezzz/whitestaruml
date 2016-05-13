@@ -1211,6 +1211,10 @@ object CollectionEditorForm: TCollectionEditorForm
     object DoActivitiesPage: TTabSheet
       Caption = 'Do Actions'
       ImageIndex = 9
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object DoActivitiesPanel: TPanel
         Left = 0
         Top = 0
@@ -1305,6 +1309,10 @@ object CollectionEditorForm: TCollectionEditorForm
     object ExitActionsPage: TTabSheet
       Caption = 'Exit Actions'
       ImageIndex = 10
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object ExitActionsPanel: TPanel
         Left = 0
         Top = 0
@@ -1399,6 +1407,10 @@ object CollectionEditorForm: TCollectionEditorForm
     object RaisedSignalsPage: TTabSheet
       Caption = 'Raised Signals'
       ImageIndex = 11
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object RaisedSignalsPanel: TPanel
         Left = 0
         Top = 0
@@ -1814,6 +1826,10 @@ object CollectionEditorForm: TCollectionEditorForm
     object End2QualifiersPage: TTabSheet
       Caption = 'End2 Qualifiers'
       ImageIndex = 15
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object End2QualifiersPanel: TPanel
         Left = 0
         Top = 0
@@ -1908,6 +1924,10 @@ object CollectionEditorForm: TCollectionEditorForm
     object RelationsPage: TTabSheet
       Caption = 'Relations'
       ImageIndex = 16
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object RelationsPanel: TPanel
         Left = 0
         Top = 0

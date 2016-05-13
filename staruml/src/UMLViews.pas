@@ -475,14 +475,14 @@ type
     procedure SetWordWrap(Value: Boolean);
   protected
     // Make use of following functions to arrange view that own compartments and draw atypical
-    procedure MeasureObjectMinSize(Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight: Integer;
+    procedure MeasureObjectMinSize(const Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight: Integer;
       AdditionalWidth: Integer = 0; AdditionalHeight: Integer = 0);
-    procedure MeasureIconicObjectMinSize(Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight, IconMinWidth, IconMinHeight: Integer);
-    procedure ArrangeCompartments(Compartments: array of PUMLListCompartmentView; Bound: TRect);
-    procedure ArrangeIconicCompartments(Compartments: array of PUMLListCompartmentView; Bound: TRect);
+    procedure MeasureIconicObjectMinSize(const Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight, IconMinWidth, IconMinHeight: Integer);
+    procedure ArrangeCompartments(const Compartments: array of PUMLListCompartmentView; Bound: TRect);
+    procedure ArrangeIconicCompartments(const Compartments: array of PUMLListCompartmentView; Bound: TRect);
     // Make use of following functions to arrange view that own compartments in general
-    procedure ArrangeObjectWithCompartments(Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight: Integer);
-    procedure ArrangeIconicObjectWithCompartments(Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight, IconMinWidth, IconMinHeight: Integer);
+    procedure ArrangeObjectWithCompartments(const Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight: Integer);
+    procedure ArrangeIconicObjectWithCompartments(const Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight, IconMinWidth, IconMinHeight: Integer);
     // Drawing style queries
     function IsIconicView: Boolean; virtual;
     function IsDecorationView: Boolean; virtual;
@@ -2517,7 +2517,7 @@ begin
     DrawStereotypeIcon(Canvas, R);
 end;
 
-procedure PUMLGeneralNodeView.MeasureObjectMinSize(Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight: Integer;
+procedure PUMLGeneralNodeView.MeasureObjectMinSize(const Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight: Integer;
   AdditionalWidth: Integer = 0; AdditionalHeight: Integer = 0);
 var
   W, H: Integer;
@@ -2535,7 +2535,7 @@ begin
   MinHeight := Max(H + AdditionalHeight, DefaultMinHeight);
 end;
 
-procedure PUMLGeneralNodeView.MeasureIconicObjectMinSize(Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight, IconMinWidth, IconMinHeight: Integer);
+procedure PUMLGeneralNodeView.MeasureIconicObjectMinSize(const Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight, IconMinWidth, IconMinHeight: Integer);
 var
   W, H: Integer;
   I: Integer;
@@ -2552,7 +2552,7 @@ begin
   MinHeight := Max(H, DefaultMinHeight);
 end;
 
-procedure PUMLGeneralNodeView.ArrangeCompartments(Compartments: array of PUMLListCompartmentView; Bound: TRect);
+procedure PUMLGeneralNodeView.ArrangeCompartments(const Compartments: array of PUMLListCompartmentView; Bound: TRect);
 var
   Y: Integer;
   I: Integer;
@@ -2570,7 +2570,7 @@ begin
   end;
 end;
 
-procedure PUMLGeneralNodeView.ArrangeIconicCompartments(Compartments: array of PUMLListCompartmentView; Bound: TRect);
+procedure PUMLGeneralNodeView.ArrangeIconicCompartments(const Compartments: array of PUMLListCompartmentView; Bound: TRect);
 var
   Y: Integer;
   I: Integer;
@@ -2591,13 +2591,13 @@ begin
   NameCompartment.Top := Y - NameCompartment.Height - COMPARTMENT_INTERVAL;
 end;
 
-procedure PUMLGeneralNodeView.ArrangeObjectWithCompartments(Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight: Integer);
+procedure PUMLGeneralNodeView.ArrangeObjectWithCompartments(const Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight: Integer);
 begin
   MeasureObjectMinSize(Compartments, DefaultMinWidth, DefaultMinHeight);
   ArrangeCompartments(Compartments, Rect(Left, Top, Right, Bottom));
 end;
 
-procedure PUMLGeneralNodeView.ArrangeIconicObjectWithCompartments(Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight, IconMinWidth, IconMinHeight: Integer);
+procedure PUMLGeneralNodeView.ArrangeIconicObjectWithCompartments(const Compartments: array of PUMLListCompartmentView; DefaultMinWidth, DefaultMinHeight, IconMinWidth, IconMinHeight: Integer);
 begin
   MeasureIconicObjectMinSize(Compartments, DefaultMinWidth, DefaultMinHeight, IconMinWidth, IconMinHeight);
   ArrangeIconicCompartments(Compartments, Rect(Left, Top, Right, Bottom));

@@ -1105,7 +1105,7 @@ end;
 
 procedure CollectAllInheritedItems(AModel: PUMLGeneralizableElement; CollectionName: string; ResultItems: PModelOrderedSet);
 var
-  I, J: Integer;
+  J: Integer;
   BaseModels: PModelOrderedSet;
   E, E2: PModel;
 
@@ -1158,10 +1158,11 @@ var
   I: Integer;
   M: PModel;
 begin
-  for I := 0 to Owner.OwnedElementCount - 1 do
+  for I := 0 to Owner.OwnedElementCount - 1 do begin
     M := Owner.OwnedElements[I];
     if (M is PUMLClassifier) and (M.Name = Name) then
       raise ENameConflict.Create(ERR_NAME_CONFLICT);
+  end;
 end;
 
 // ---------------------------------------------------------------------------

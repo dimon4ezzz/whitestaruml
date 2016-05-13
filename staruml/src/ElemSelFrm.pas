@@ -50,7 +50,7 @@ interface
 uses
   BasicClasses, Core, ModelExplorerFrame, UMLModels,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ComCtrls, StdCtrls, ExtCtrls;
+  Dialogs, ComCtrls, StdCtrls, ExtCtrls, Generics.Collections;
 
 type
   TElementSelectorForm = class(TForm)
@@ -71,8 +71,10 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure DataTypeComboBoxChange(Sender: TObject);
     procedure HelpButtonClick(Sender: TObject);
+  private type
+   TClassList = TList<PClass>;
   private
-    FSelectableModels: TList;
+    FSelectableModels: TClassList;
     FSelectedModel: PModel;
     FSelectedName: string;
     FProject: PUMLProject;
@@ -92,10 +94,10 @@ type
     procedure UpdateDataTypes;
     procedure UpdateUIStates;
   public
-    procedure Filter(Classes: array of PClass);
+    procedure Filter(const Classes: array of PClass);
     procedure ClearSelectableModels;
     procedure AddSelectableModel(AModelClass: PClass);
-    procedure AddSelectableModels(AModelClasses: array of PClass);
+    procedure AddSelectableModels(const AModelClasses: array of PClass);
     procedure RemoveSelectableModel(AModelClass: PClass);
     procedure SetReservedModelToSelect(AModel: PModel);
     function Execute(Title: string = ''; ShowDataType: Boolean = False): Boolean;
@@ -134,7 +136,7 @@ begin
   FSelectedName := '';
   FDataTypeVisible := True;
   FAllowNull := True;
-  FSelectableModels := TList.Create;
+  FSelectableModels := TClassList.Create;
   ModelExplorer.Project := nil;
   ModelExplorer.SortType := stStorage;
   ModelExplorer.ClearFilter;
@@ -295,7 +297,7 @@ begin
   end;
 end;
 
-procedure TElementSelectorForm.Filter(Classes: array of PClass);
+procedure TElementSelectorForm.Filter(const Classes: array of PClass);
 begin
   ModelExplorer.ClearFilter;
   ModelExplorer.AddToFilter(Classes);
@@ -311,7 +313,7 @@ begin
   FSelectableModels.Add(AModelClass);
 end;
 
-procedure TElementSelectorForm.AddSelectableModels(AModelClasses: array of PClass);
+procedure TElementSelectorForm.AddSelectableModels(const AModelClasses: array of PClass);
 var
   I: Integer;
 begin

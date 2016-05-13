@@ -94,9 +94,9 @@ type
     IniFile: TIniFile;
     function GetNLSComponent(Index: Integer): TNLSComponentEntry;
     function GetNLSComponentCount: Integer;
-    function IsIn(AComponentClass: TComponentClass; ComponentClassArray: array of TComponentClass): Boolean;
-    procedure ExportComponent(ANLSValues: TNLSValues; AComponent: TComponent; ExcludeComponents: array of TComponentClass);
-    procedure ImportComponent(ANLSValues: TNLSValues; AComponent: TComponent; ExcludeComponents: array of TComponentClass);
+    function IsIn(AComponentClass: TComponentClass; const ComponentClassArray: array of TComponentClass): Boolean;
+    procedure ExportComponent(ANLSValues: TNLSValues; AComponent: TComponent; const ExcludeComponents: array of TComponentClass);
+    procedure ImportComponent(ANLSValues: TNLSValues; AComponent: TComponent; const ExcludeComponents: array of TComponentClass);
     procedure ExportString(AIniFile: TIniFile; ASection, AKey, AValue: string);
     procedure ImportString(AIniFile: TIniFile; ASection, AKey: string; var AValue: string; ADefault: string);
   public
@@ -107,7 +107,7 @@ type
     procedure SetFile(AFileName: string);
     procedure RegisterNLSComponent(ANLSComponent: TComponentClass; Recursive: Boolean; Importer, Exporter: TNLSProc);
     procedure ReadComponentTranslation(Section: string; AComponent: TComponent);
-    procedure TranslateComponent(AComponent: TComponent; ExcludeComponents: array of TComponentClass);
+    procedure TranslateComponent(AComponent: TComponent; const ExcludeComponents: array of TComponentClass);
     procedure TranslateString(Section, Key: string; var S: string; DefaultValue: string);
     property FileName: string read FFileName;
     property IsExportMode: Boolean read FIsExportMode;
@@ -273,7 +273,7 @@ begin
   Result := FNLSComponents.Count;
 end;
 
-function TNLSManager.IsIn(AComponentClass: TComponentClass; ComponentClassArray: array of TComponentClass): Boolean;
+function TNLSManager.IsIn(AComponentClass: TComponentClass; const ComponentClassArray: array of TComponentClass): Boolean;
 var
   I: Integer;
 begin
@@ -323,7 +323,7 @@ begin
   end;
 end;
 
-procedure TNLSManager.ExportComponent(ANLSValues: TNLSValues; AComponent: TComponent; ExcludeComponents: array of TComponentClass);
+procedure TNLSManager.ExportComponent(ANLSValues: TNLSValues; AComponent: TComponent; const ExcludeComponents: array of TComponentClass);
 var
   I, J: Integer;
   SubCom: TComponent;
@@ -352,7 +352,7 @@ begin
   end;
 end;
 
-procedure TNLSManager.ImportComponent(ANLSValues: TNLSValues; AComponent: TComponent; ExcludeComponents: array of TComponentClass);
+procedure TNLSManager.ImportComponent(ANLSValues: TNLSValues; AComponent: TComponent; const ExcludeComponents: array of TComponentClass);
 var
   I, J: Integer;
   SubCom: TComponent;
@@ -391,7 +391,7 @@ begin
   AValue := DecodeString(AIniFile.ReadString(ASection, AKey, ADefault));
 end;
 
-procedure TNLSManager.TranslateComponent(AComponent: TComponent; ExcludeComponents: array of TComponentClass);
+procedure TNLSManager.TranslateComponent(AComponent: TComponent; const ExcludeComponents: array of TComponentClass);
 var
   NLSValues: TNLSValues;
 begin
