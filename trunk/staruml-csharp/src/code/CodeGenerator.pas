@@ -88,6 +88,7 @@ type
     FDocToDoc: Boolean;
     FNilDoc: Boolean;
     FTabToSpace: Boolean;
+    FPropertyAccessorsSingleLine: Boolean;
     FGenerateUtf8: Boolean;
     FSpaceCnt: Integer;
     FBraceAtNewLine: Boolean;
@@ -191,6 +192,7 @@ type
     property DocToDoc: Boolean read FDocToDoc write FDocToDoc;
     property NilDoc: Boolean read FNilDoc write FNilDoc;
     property TabToSpace: Boolean read FTabToSpace write FTabToSpace;
+    property PropertyAccessorsSingleLine: Boolean read FPropertyAccessorsSingleLine write FPropertyAccessorsSingleLine;
     property GenerateUtf8: Boolean read FGenerateUtf8 write FGenerateUtf8;
     property SpaceCnt: Integer read FSpaceCnt write FSpaceCnt;
     property HeaderComment: string read FHeaderComment write FHeaderComment;
@@ -667,45 +669,37 @@ end;
 
 procedure PCodeGenerator.WriteDeclIndexerProperty(AOperation: IUMLOperation);
 var
-  isNotInterface: Boolean;
+  IsNotInterface: Boolean;
+  PropertyGetDefined: Boolean;
+  PropertySetDefined: Boolean;
 begin
-  isNotInterface := Not AOperation.Owner.IsKindOf(ELEM_INTERFACE);
+  IsNotInterface := Not AOperation.Owner.IsKindOf(ELEM_INTERFACE);
+  PropertyGetDefined := GetBooleanTaggedValue(AOperation, CSHARP_PROFILE_NAME, TAGSET_CSHARP_OPERATION, TAG_CSHARP_GET);
+  PropertySetDefined := GetBooleanTaggedValue(AOperation, CSHARP_PROFILE_NAME, TAGSET_CSHARP_OPERATION, TAG_CSHARP_SET);
 
   WriteDeclMethod(AOperation);
   if AOperation.StereotypeName = STEREOTYPE_CSHARP_INDEXER then
     FWriter.Write('[%s]', [GetOperationParametersStr(AOperation)]);
 
-  if GetBooleanTaggedValue(AOperation, CSHARP_PROFILE_NAME, TAGSET_CSHARP_OPERATION, TAG_CSHARP_GET) or GetBooleanTaggedValue(AOperation, CSHARP_PROFILE_NAME, TAGSET_CSHARP_OPERATION, TAG_CSHARP_SET) then
-  begin
+  if  PropertyGetDefined or PropertySetDefined then begin
     SetBrace;
 
-    if GetBooleanTaggedValue(AOperation, CSHARP_PROFILE_NAME, TAGSET_CSHARP_OPERATION, TAG_CSHARP_GET) then
-    begin
+    if PropertyGetDefined then begin
       FWriter.Write('get');
-      if isNotInterface then
-      begin
-        SetBrace;
-        CloseBrace;
-      end
+      if PropertySetDefined and PropertyAccessorsSingleLine then
+        FWriter.Write('; ')
       else
         FWriter.WriteLine(';');
     end;
 
-    if GetBooleanTaggedValue(AOperation, CSHARP_PROFILE_NAME, TAGSET_CSHARP_OPERATION, TAG_CSHARP_SET) then
-    begin
-      FWriter.Write('set');
-      if isNotInterface then
-      begin
-        SetBrace;
-        CloseBrace;
-      end
-      else
-        FWriter.WriteLine(';');
+    if PropertySetDefined then begin
+      FWriter.WriteLine('set;');
     end;
+
     CloseBrace;
   end
   else
-    if isNotInterface then
+    if IsNotInterface then
     begin
       SetBrace;
       CloseBrace;
@@ -749,7 +743,7 @@ begin
     end;
     CloseBrace;
   end
-  else
+  else begin
     if isNotInterface then
     begin
       SetBrace;
@@ -757,6 +751,7 @@ begin
     end
     else
       FWriter.WriteLine(';');
+  end;
 
 end;
 

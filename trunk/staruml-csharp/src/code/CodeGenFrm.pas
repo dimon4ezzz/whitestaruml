@@ -102,6 +102,7 @@ type
     HeaderDescMemo: TMemo;
     OutputFileFormatUtf8ChkBox: TCheckBox;
     GenerateOperImplCheckBox: TCheckBox;
+    PropertyAccessorsSingleLineChkBox: TCheckBox;
     { Event Handlers for CodeGenForm }
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -303,6 +304,7 @@ begin
   NilDocChk.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPTION_CREATE_CSHARP_DOC_EMPTY);
   NewBraceChkBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPTION_BRACE_PUT_NEWLINE);
   TabSpaceChkBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPTION_SPACE_INSTEAD_TAB);
+  PropertyAccessorsSingleLineChkBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPTION_PROPERTY_ACCESSORS_SINGLE_LINE);
   OutputFileFormatUtf8ChkBox.Checked := GetOptionValueAsBoolean(OPTION_SCHEMA, OPTION_GENERATE_UTF8);
   SpaceCntSpinEdit.Value := GetOptionValueAsInteger(OPTION_SCHEMA, OPTION_SPACE_MAGNITUDE);
   HeaderCommentMemo.Lines.Text := GetOptionValueAsString(OPTION_SCHEMA, OPTION_HEADER_COMMENT);
@@ -340,6 +342,7 @@ begin
   CodeGen.NilDoc := NilDocChk.Checked;
   CodeGen.BraceAtNewLine := NewBraceChkBox.Checked;
   CodeGen.TabToSpace := TabSpaceChkBox.Checked;
+  CodeGen.PropertyAccessorsSingleLine := PropertyAccessorsSingleLineChkBox.Checked;
   CodeGen.GenerateUtf8 := OutputFileFormatUtf8ChkBox.Checked;
   CodeGen.SpaceCnt := SpaceCntSpinEdit.Value;
   CodeGen.HeaderComment := HeaderCommentMemo.Text;

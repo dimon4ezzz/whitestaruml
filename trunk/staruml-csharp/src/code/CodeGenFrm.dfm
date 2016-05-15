@@ -385,7 +385,7 @@ object CodeGenForm: TCodeGenForm
         end
         object NewBraceChkBox: TCheckBox
           Left = 16
-          Top = 76
+          Top = 71
           Width = 241
           Height = 17
           Caption = 'Place opening curly brace "{" in the new line'
@@ -393,11 +393,19 @@ object CodeGenForm: TCodeGenForm
         end
         object OutputFileFormatUtf8ChkBox: TCheckBox
           Left = 16
-          Top = 99
+          Top = 117
           Width = 241
           Height = 17
           Caption = 'Create output file in Visual C# format (UTF-8)'
           TabOrder = 3
+        end
+        object PropertyAccessorsSingleLineChkBox: TCheckBox
+          Left = 17
+          Top = 94
+          Width = 225
+          Height = 17
+          Caption = 'Property accessors on a single line'
+          TabOrder = 4
         end
       end
       object HeaderCommentMemo: TMemo
