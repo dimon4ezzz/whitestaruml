@@ -30,14 +30,13 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_Release>3</VerInfo_Release>
         <DCC_UsePackage>rtl;vcl;vclx;elpackD19;$(DCC_UsePackage)</DCC_UsePackage>
         <UsePackages>true</UsePackages>
         <VerInfo_MinorVer>2</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.1.101;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.2;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.3.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.2;Comments=</VerInfo_Keys>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;System.Win;Winapi;Vcl.Shell;Vcl;Xml.Win;Vcl.Imaging;Vcl.Touch;Vcl.Samples;$(DCC_Namespace)</DCC_Namespace>
         <Manifest_File>None</Manifest_File>
-        <VerInfo_Build>101</VerInfo_Build>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -116,13 +115,14 @@
                     <Parameters Name="LoadAllSymbols">True</Parameters>
                     <Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
                 </Parameters>
+                <Excluded_Packages/>
                 <VersionInfo>
-                    <VersionInfo Name="IncludeVerInfo">True</VersionInfo>
-                    <VersionInfo Name="AutoIncBuild">True</VersionInfo>
+                    <VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+                    <VersionInfo Name="AutoIncBuild">False</VersionInfo>
                     <VersionInfo Name="MajorVer">1</VersionInfo>
-                    <VersionInfo Name="MinorVer">1</VersionInfo>
+                    <VersionInfo Name="MinorVer">0</VersionInfo>
                     <VersionInfo Name="Release">0</VersionInfo>
-                    <VersionInfo Name="Build">101</VersionInfo>
+                    <VersionInfo Name="Build">0</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -134,16 +134,38 @@
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName"/>
                     <VersionInfoKeys Name="FileDescription"/>
-                    <VersionInfoKeys Name="FileVersion">1.1.0.101</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName"/>
                     <VersionInfoKeys Name="LegalCopyright"/>
                     <VersionInfoKeys Name="LegalTrademarks"/>
                     <VersionInfoKeys Name="OriginalFilename"/>
                     <VersionInfoKeys Name="ProductName"/>
-                    <VersionInfoKeys Name="ProductVersion">1.1</VersionInfoKeys>
+                    <VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
                     <VersionInfoKeys Name="Comments"/>
+                    <VersionInfoKeys Name="CFBundleName"/>
+                    <VersionInfoKeys Name="CFBundleDisplayName"/>
+                    <VersionInfoKeys Name="UIDeviceFamily"/>
+                    <VersionInfoKeys Name="CFBundleIdentifier"/>
+                    <VersionInfoKeys Name="CFBundleVersion"/>
+                    <VersionInfoKeys Name="CFBundlePackageType"/>
+                    <VersionInfoKeys Name="CFBundleSignature"/>
+                    <VersionInfoKeys Name="CFBundleAllowMixedLocalizations"/>
+                    <VersionInfoKeys Name="UISupportedInterfaceOrientations"/>
+                    <VersionInfoKeys Name="CFBundleExecutable"/>
+                    <VersionInfoKeys Name="CFBundleResourceSpecification"/>
+                    <VersionInfoKeys Name="LSRequiresIPhoneOS"/>
+                    <VersionInfoKeys Name="CFBundleInfoDictionaryVersion"/>
+                    <VersionInfoKeys Name="CFBundleDevelopmentRegion"/>
+                    <VersionInfoKeys Name="package"/>
+                    <VersionInfoKeys Name="label"/>
+                    <VersionInfoKeys Name="versionCode"/>
+                    <VersionInfoKeys Name="versionName"/>
+                    <VersionInfoKeys Name="persistent"/>
+                    <VersionInfoKeys Name="restoreAnyVersion"/>
+                    <VersionInfoKeys Name="installLocation"/>
+                    <VersionInfoKeys Name="largeHeap"/>
+                    <VersionInfoKeys Name="theme"/>
                 </VersionInfoKeys>
-                <Excluded_Packages/>
             </Delphi.Personality>
             <ActiveXProjectInfo>
                 <version>1</version>

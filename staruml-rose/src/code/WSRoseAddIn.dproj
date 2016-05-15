@@ -30,14 +30,14 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <VerInfo_Release>1</VerInfo_Release>
         <DCC_UsePackage>rtl;vcl;vclx;$(DCC_UsePackage)</DCC_UsePackage>
         <UsePackages>true</UsePackages>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_MinorVer>2</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=Plastic Software, Inc.;FileDescription=;FileVersion=1.2.0.75;InternalName=RoseAddIn;LegalCopyright=(r) All rights reserved.;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.2;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.1.0;InternalName=RoseAddIn;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.2;Comments=</VerInfo_Keys>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;System.Win;Winapi;Vcl;Vcl.Shell;Vcl.Imaging;Vcl.Touch;Vcl.Samples;$(DCC_Namespace)</DCC_Namespace>
-        <VerInfo_Build>75</VerInfo_Build>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_ExeOutput>..\..\deploy\staruml-rose</DCC_ExeOutput>
@@ -107,13 +107,14 @@
                     <Parameters Name="LoadAllSymbols">True</Parameters>
                     <Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
                 </Parameters>
+                <Excluded_Packages/>
                 <VersionInfo>
-                    <VersionInfo Name="IncludeVerInfo">True</VersionInfo>
-                    <VersionInfo Name="AutoIncBuild">True</VersionInfo>
+                    <VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+                    <VersionInfo Name="AutoIncBuild">False</VersionInfo>
                     <VersionInfo Name="MajorVer">1</VersionInfo>
-                    <VersionInfo Name="MinorVer">1</VersionInfo>
+                    <VersionInfo Name="MinorVer">0</VersionInfo>
                     <VersionInfo Name="Release">0</VersionInfo>
-                    <VersionInfo Name="Build">75</VersionInfo>
+                    <VersionInfo Name="Build">0</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -134,7 +135,6 @@
                     <VersionInfoKeys Name="ProductVersion">1.1</VersionInfoKeys>
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
-                <Excluded_Packages/>
             </Delphi.Personality>
             <ActiveXProjectInfo>
                 <version>1</version>

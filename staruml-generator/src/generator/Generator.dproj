@@ -59,16 +59,16 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <VerInfo_Release>2</VerInfo_Release>
         <DCC_UsePackage>rtl;vcl;vclx;$(DCC_UsePackage)</DCC_UsePackage>
         <UsePackages>true</UsePackages>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <Manifest_File>None</Manifest_File>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;System.Win;Winapi;Vcl;Vcl.Shell;Vcl.Imaging;Vcl.Touch;Vcl.Samples;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_MinorVer>3</VerInfo_MinorVer>
-        <VerInfo_Build>60</VerInfo_Build>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.3.0.60;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Documentation  Generator;ProductVersion=1.2;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.3.2.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Documentation  Generator;ProductVersion=1.3;Comments=</VerInfo_Keys>
         <DCC_UnitSearchPath>..\..\..\staruml\components\plastic-components\src\$(Platform)\$(Config);..\..\..\staruml\src\$(Platform)\$(Config);..\translators\excel-translator\$(Platform)\$(Config);..\translators\powerpoint-translator\$(Platform)\$(Config);..\translators\word-translator\$(Platform)\$(Config);..\translators\text-translator\$(Platform)\$(Config);..\translators\powerpoint-translator;..\translators\excel-translator;..\translators\text-translator;..\translators\word-translator;..\..\..\Imports;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_ExeOutput>..\..\deploy\staruml-generator</DCC_ExeOutput>
         <DCC_DependencyCheckOutputName>..\..\deploy\staruml-generator\Generator.dll</DCC_DependencyCheckOutputName>
@@ -77,18 +77,12 @@
         <DCC_Platform>x86</DCC_Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <Manifest_File>None</Manifest_File>
         <DCC_DcpOutput>$(BDSCOMMONDIR)\Dcp</DCC_DcpOutput>
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>
         <DCC_Namespace>Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <Manifest_File>None</Manifest_File>
-        <VerInfo_MinorVer>0</VerInfo_MinorVer>
-        <VerInfo_Build>0</VerInfo_Build>
-        <VerInfo_Release>0</VerInfo_Release>
         <DCC_Namespace>Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -122,8 +116,8 @@
         <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
+        <VerInfo_Release>0</VerInfo_Release>
         <VerInfo_MinorVer>0</VerInfo_MinorVer>
-        <VerInfo_Build>0</VerInfo_Build>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
@@ -215,13 +209,14 @@
                     <Parameters Name="LoadAllSymbols">True</Parameters>
                     <Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
                 </Parameters>
+                <Excluded_Packages/>
                 <VersionInfo>
-                    <VersionInfo Name="IncludeVerInfo">True</VersionInfo>
-                    <VersionInfo Name="AutoIncBuild">True</VersionInfo>
+                    <VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+                    <VersionInfo Name="AutoIncBuild">False</VersionInfo>
                     <VersionInfo Name="MajorVer">1</VersionInfo>
-                    <VersionInfo Name="MinorVer">1</VersionInfo>
-                    <VersionInfo Name="Release">2</VersionInfo>
-                    <VersionInfo Name="Build">63</VersionInfo>
+                    <VersionInfo Name="MinorVer">0</VersionInfo>
+                    <VersionInfo Name="Release">0</VersionInfo>
+                    <VersionInfo Name="Build">0</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -242,7 +237,6 @@
                     <VersionInfoKeys Name="Comments"/>
                     <VersionInfoKeys Name="FileVersion">1.1.2.63</VersionInfoKeys>
                 </VersionInfoKeys>
-                <Excluded_Packages/>
             </Delphi.Personality>
             <ActiveXProjectInfo>
                 <version>1</version>

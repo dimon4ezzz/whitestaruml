@@ -7,7 +7,7 @@
         <ProjectVersion>15.3</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Library</AppType>
     </PropertyGroup>
@@ -53,16 +53,16 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <VerInfo_Release>1</VerInfo_Release>
         <DCC_UsePackage>rtl;vcl;vclx;$(DCC_UsePackage)</DCC_UsePackage>
         <UsePackages>true</UsePackages>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_MinorVer>2</VerInfo_MinorVer>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;System.Win;Winapi;Vcl;$(DCC_Namespace)</DCC_Namespace>
-        <VerInfo_Build>19</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.0.19;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Text Generator;ProductVersion=1.2;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.1.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=Text Generator;ProductVersion=1.2;Comments=</VerInfo_Keys>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
-        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <Manifest_File>None</Manifest_File>
         <DCC_ExeOutput>..\..\..\deploy\staruml-generator\translators\text</DCC_ExeOutput>
         <DCC_UnitSearchPath>..\..\generator\$(Platform)\$(Config);..\..\generator;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_DependencyCheckOutputName>..\..\..\deploy\staruml-generator\translators\text\TextTranslator.dll</DCC_DependencyCheckOutputName>
@@ -95,7 +95,6 @@
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <Manifest_File>None</Manifest_File>
         <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
         <DCC_RangeChecking>true</DCC_RangeChecking>
@@ -103,10 +102,7 @@
         <DCC_Optimize>false</DCC_Optimize>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
-        <Manifest_File>None</Manifest_File>
-        <VerInfo_Build>0</VerInfo_Build>
-        <VerInfo_MinorVer>0</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.1.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
