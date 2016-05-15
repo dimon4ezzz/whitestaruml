@@ -277,6 +277,7 @@ type
       Column: TListColumn);
     procedure RelationsListViewCompare(Sender: TObject; Item1, Item2: TListItem;
       Data: Integer; var Compare: Integer);
+    procedure HandleListViewDragDrop(Sender, Source: TObject; X, Y: Integer);
   private
     FModel: PModel;
     FReadOnly: Boolean;
@@ -353,6 +354,8 @@ type
 
     procedure SetListViewSortType(AListView: TListView; Column: TListColumn);
     procedure PerformCompare(Item1,Item2: TListItem; var Compare: Integer);
+
+    procedure PerformInsertItem(AItem: PModel; ACollectionName: string; ACollectionListView: TListView);
 
   public
     procedure ShowCollection(AModel: PModel; ActivePage: string = '');
@@ -1763,8 +1766,52 @@ end;
 
 procedure TCollectionEditorForm.HandleListViewDragOver(Sender, Source: TObject; X, Y: Integer;
   State: TDragState; var Accept: Boolean);
+const
+  InsertableCollections = [ckDeployedComponents,ckDeployedArtifacts,ckResidents,ckRaisedSignals];
 begin
-  Accept := (Sender = Source) and (not FReadOnly);
+  if ReadOnly then
+    Accept := False
+  else if (Sender = Source) then
+    Accept := True
+  else if Source is TModelExplorerPanel then
+    Accept := ActiveCollection in InsertableCollections
+  else
+    Accept := False;
+end;
+
+procedure TCollectionEditorForm.HandleListViewDragDrop(Sender,
+  Source: TObject; X, Y: Integer);
+var
+  Model: PModel;
+  MetaClass: PClass;
+begin
+  if not ReadOnly and (Source is TModelExplorerPanel) then begin
+    Model := StarUMLApplication.SelectedModels[0];
+    if Assigned(Model) then begin
+       case ActiveCollection of
+
+          ckDeployedComponents:
+            if Model.MetaClass.Name = 'UMLComponent' then
+              PerformInsertItem(Model, 'DeployedComponents', DeployedComponentsListView);
+
+          ckDeployedArtifacts:
+            if Model.MetaClass.Name = 'UMLArtifact' then
+              PerformInsertItem(Model, 'DeployedArtifacts', DeployedArtifactsListView);
+
+          ckResidents:
+            for MetaClass in BASIC_FILTERINGSET do
+              if Model.ClassType = MetaClass then begin
+                PerformInsertItem(Model, 'Residents', ResidentsListView);
+                Break;
+              end;
+
+        ckRaisedSignals:
+          if Model.MetaClass.Name = 'UMLSignal' then
+            PerformInsertItem(Model, 'RaisedSignals', RaisedSignalsListView);
+
+      end; // Of case
+    end;
+  end;
 end;
 
 procedure TCollectionEditorForm.HandleListViewEndDrag(Sender, Target: TObject; X, Y: Integer);
@@ -1774,17 +1821,28 @@ var
   LI: TListItem;
   Idx: Integer;
 begin
-  if (Sender = Target) and (not FReadOnly) then begin
+  if not ReadOnly and (Sender = Target) then begin
     C := ActiveCollection;
     L := Sender as TListView;
     LI := L.GetItemAt(X, Y);
-    if (L.Selected <> nil) and (LI <> nil) and (L.Selected <> LI) then begin
+    if Assigned(L.Selected) and Assigned(LI) and (L.Selected <> LI) then begin
       Idx := LI.Index;
       ChangeCollectionItemOrder(GetCollectionOwner(C), GetCollectionName(C), L.Selected.Data, Idx);
       SetSelectedListItem(L, Idx);
       L.SetFocus;
       UpdateUIStates;
     end;
+  end;
+end;
+
+procedure TCollectionEditorForm.PerformInsertItem(AItem: PModel;
+  ACollectionName: string; ACollectionListView: TListView);
+begin
+  if Assigned(AItem) then begin
+    AddCollectionItem(FModel, ACollectionName, AItem);
+    SetSelectedListItem(ACollectionListView, ACollectionListView.Items.Count - 1);
+    ACollectionListView.SetFocus;
+    UpdateUIStates;
   end;
 end;
 
@@ -1795,12 +1853,7 @@ begin
   ElementListForm.AddListElementsByClass('UMLComponent');
   ElementListForm.AllowNull := False;
   if ElementListForm.Execute(MSG_COLLEDIT_SELECT_COMPONENT) then
-    if ElementListForm.SelectedModel <> nil then begin
-      AddCollectionItem(FModel, 'DeployedComponents', ElementListForm.SelectedModel);
-      SetSelectedListItem(DeployedComponentsListView, DeployedComponentsListView.Items.Count - 1);
-      DeployedComponentsListView.SetFocus;
-      UpdateUIStates;
-    end;
+    PerformInsertItem(ElementSelectorForm.SelectedModel, 'DeployedComponents', DeployedComponentsListView);
 end;
 
 procedure TCollectionEditorForm.HandleDeployedArtifactInsertAction(Sender: TObject);
@@ -1810,12 +1863,7 @@ begin
   ElementListForm.AddListElementsByClass('UMLArtifact');
   ElementListForm.AllowNull := False;
   if ElementListForm.Execute(MSG_COLLEDIT_SELECT_ARTIFACT) then
-    if ElementListForm.SelectedModel <> nil then begin
-      AddCollectionItem(FModel, 'DeployedArtifacts', ElementListForm.SelectedModel);
-      SetSelectedListItem(DeployedArtifactsListView, DeployedArtifactsListView.Items.Count - 1);
-      DeployedArtifactsListView.SetFocus;
-      UpdateUIStates;
-    end;
+    PerformInsertItem(ElementSelectorForm.SelectedModel, 'DeployedArtifacts', DeployedArtifactsListView);
 end;
 
 procedure TCollectionEditorForm.HandleResidentInsertAction(Sender: TObject);
@@ -1825,12 +1873,7 @@ begin
   ElementSelectorForm.ClearSelectableModels;
   ElementSelectorForm.AddSelectableModels(BASIC_FILTERINGSET);
   if ElementSelectorForm.Execute(MSG_COLLEDIT_SELECT_RESIDENT) then
-    if ElementSelectorForm.SelectedModel <> nil then begin
-      AddCollectionItem(FModel, 'Residents', ElementSelectorForm.SelectedModel);
-      SetSelectedListItem(ResidentsListView, ResidentsListView.Items.Count - 1);
-      ResidentsListView.SetFocus;
-      UpdateUIStates;
-    end;
+    PerformInsertItem(ElementSelectorForm.SelectedModel, 'Residents', ResidentsListView);
 end;
 
 procedure TCollectionEditorForm.HandleSelectRelatedItemAction(Sender: TObject);
@@ -1855,12 +1898,7 @@ begin
   ElementListForm.AddListElementsByClass('UMLSignal', True);
   ElementListForm.AllowNull := False;
   if ElementListForm.Execute(MSG_COLLEDIT_SELECT_SIGNAL) then
-    if ElementListForm.SelectedModel <> nil then begin
-      AddCollectionItem(FModel, 'RaisedSignals', ElementListForm.SelectedModel);
-      SetSelectedListItem(RaisedSignalsListView, RaisedSignalsListView.Items.Count - 1);
-      RaisedSignalsListView.SetFocus;
-      UpdateUIStates;
-    end;
+    PerformInsertItem(ElementSelectorForm.SelectedModel, 'RaisedSignals', RaisedSignalsListView);
 end;
 
 procedure TCollectionEditorForm.HandleRelationDeleteAction(Sender: TObject);

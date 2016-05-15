@@ -28,7 +28,7 @@ object CollectionEditorForm: TCollectionEditorForm
     Top = 3
     Width = 489
     Height = 226
-    ActivePage = DoActivitiesPage
+    ActivePage = RaisedSignalsPage
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
     OnChange = CollectionPageControlChange
@@ -763,6 +763,7 @@ object CollectionEditorForm: TCollectionEditorForm
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
+          OnDragDrop = HandleListViewDragDrop
           OnDragOver = HandleListViewDragOver
           OnSelectItem = HandleListViewSelectItem
         end
@@ -861,6 +862,7 @@ object CollectionEditorForm: TCollectionEditorForm
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
+          OnDragDrop = HandleListViewDragDrop
           OnDragOver = HandleListViewDragOver
           OnSelectItem = HandleListViewSelectItem
         end
@@ -959,6 +961,7 @@ object CollectionEditorForm: TCollectionEditorForm
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
+          OnDragDrop = HandleListViewDragDrop
           OnDragOver = HandleListViewDragOver
           OnSelectItem = HandleListViewSelectItem
         end
@@ -1407,10 +1410,6 @@ object CollectionEditorForm: TCollectionEditorForm
     object RaisedSignalsPage: TTabSheet
       Caption = 'Raised Signals'
       ImageIndex = 11
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object RaisedSignalsPanel: TPanel
         Left = 0
         Top = 0
@@ -1449,6 +1448,7 @@ object CollectionEditorForm: TCollectionEditorForm
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
+          OnDragDrop = HandleListViewDragDrop
           OnDragOver = HandleListViewDragOver
           OnSelectItem = HandleListViewSelectItem
         end
