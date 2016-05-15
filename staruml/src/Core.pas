@@ -120,7 +120,6 @@ type
   PDocument = class;
 
   // Parametrized collections of Core types
-  PClassOrderedSet = POrderedSet<PClass>;
   PElementOrderedSet = POrderedSet<PElement>;
   PModelOrderedSet = POrderedSet<PModel>;
   PViewOrderedSet = POrderedSet<PView>;
