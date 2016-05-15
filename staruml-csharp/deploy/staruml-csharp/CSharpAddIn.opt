@@ -44,6 +44,11 @@
            <DESCRIPTION>If checked, C# Doc is generated even when the modeling element documentation does not have any values (empty).</DESCRIPTION>
            <DEFAULTVALUE>False</DEFAULTVALUE>
         </OPTIONITEM-BOOLEAN>
+        <OPTIONITEM-BOOLEAN key="PROPERTY_ACCESSORS_SINGLE_LINE">
+           <CAPTION>Property accessors on a single line</CAPTION>
+           <DESCRIPTION>If checked Get and Set property accessors are generated on a single line.</DESCRIPTION>
+           <DEFAULTVALUE>False</DEFAULTVALUE>
+        </OPTIONITEM-BOOLEAN>
         <OPTIONITEM-BOOLEAN key="GENERATE_UTF8">
            <CAPTION>Generate Visual C# style UTF8 files</CAPTION>
            <DESCRIPTION>If checked output C# files are generated in Visual C# UTF8 format. Otherwise in plain ASCII.</DESCRIPTION>
