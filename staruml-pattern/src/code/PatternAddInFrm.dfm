@@ -1,7 +1,7 @@
 object PatternAddInForm: TPatternAddInForm
   Left = 400
   Top = 274
-  ActiveControl = PatternTreeView
+  ActiveControl = ResultInfoListView
   BorderStyle = bsDialog
   Caption = 'Apply pattern'
   ClientHeight = 408
@@ -25,7 +25,7 @@ object PatternAddInForm: TPatternAddInForm
     Top = 0
     Width = 463
     Height = 408
-    ActivePage = SelectPatternPage
+    ActivePage = PatternResultPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -288,10 +288,22 @@ object PatternAddInForm: TPatternAddInForm
       Color = clBtnText
       ParentColor = False
     end
+    object ScriptDebugCheckBox: TCheckBox
+      Left = 22
+      Top = 372
+      Width = 139
+      Height = 17
+      Hint = 'Debug pattern generation script with Visual Studio'#39
+      Caption = 'Enable script debugging '
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 10
+      OnClick = ScriptDebugCheckBoxClick
+    end
   end
   object CategoryImageList: TImageList
-    Left = 112
-    Top = 356
+    Left = 128
+    Top = 316
     Bitmap = {
       494C010103000500040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
