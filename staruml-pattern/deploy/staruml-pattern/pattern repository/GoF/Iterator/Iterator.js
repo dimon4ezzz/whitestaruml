@@ -143,7 +143,7 @@ if(!ViewExist){
 }
 
 // Class View (ConcreteIterator)
-var conIter_len = concreteAggregate.length - 1;
+var conIter_len = concreteIterator.length - 1;
 var ConIterView = GetSingleClassifierView(dgm.DiagramView, concreteIterator[conIter_len]);
 if(!ViewExist){
   ConIterView.Left = 384;
