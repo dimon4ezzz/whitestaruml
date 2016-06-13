@@ -743,7 +743,8 @@ procedure PPatternManager.ScanPatternRepository(Pathname: string);
     if FindFirst(Path + '*', faAnyFile, SearchRec) = 0 then
     begin
       repeat
-        if (SearchRec.Attr and faDirectory = faDirectory) and (SearchRec.Name <> '.')  and (SearchRec.Name <> '..') then
+        if ((SearchRec.Attr and faDirectory) = faDirectory)
+          and (SearchRec.Name <> '.')  and (SearchRec.Name <> '..') then
         begin
           // Folder
           if IsRoot then begin
@@ -756,7 +757,7 @@ procedure PPatternManager.ScanPatternRepository(Pathname: string);
             SearchRepo(Path + SearchRec.Name + '\', PatternFolder);
           end;
         end
-        else if (SearchRec.Attr and faArchive = faArchive) and (SearchRec.Name <> '.')  and (SearchRec.Name <> '..') then
+        else if ((SearchRec.Attr and faArchive) = faArchive) then
         begin
           // File
           if (UpperCase(ExtractFileExt(SearchRec.Name)) = '.PAT') and (Path <> '.\') then
