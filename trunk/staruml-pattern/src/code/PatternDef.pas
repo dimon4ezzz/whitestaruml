@@ -167,6 +167,7 @@ type
     StarUMLApp: IStarUMLApplication;
     constructor Create;
     destructor Destroy; override;
+    procedure SetScriptDebugging(Debug: Boolean);
     procedure ScanPatternRepository(Pathname: string);
     property PathName: string read GetPathName;
     property PatternRepository: PPatternFolder read FPatternRepository;
@@ -183,6 +184,9 @@ uses
   Winapi.Windows, Dialogs, ShellAPI,
   Symbols, NLS_PatternAddIn;
 
+var
+  DebugScript: Boolean; // True if pattern script must be debugged with Visual Studio
+
 // Helper to run script in a separate process and wait for its completion
 procedure StartScriptAndWait(ScriptFileName: string);
 var
@@ -194,7 +198,9 @@ begin
   Info.lpFile := PChar(ScriptFileName);
   Info.nShow := SW_HIDE;
   Info.fMask := SEE_MASK_NOCLOSEPROCESS;
-  //Info.lpParameters := '//d //x'; // Autostart debugging with Visual Studio
+
+  if DebugScript then
+    Info.lpParameters := '//d //x'; // Autostart debugging with Visual Studio
 
   ShellExecuteEx(@Info);
   WaitForSingleObject(Info.hProcess, Infinite);
@@ -783,6 +789,11 @@ begin
     Application.MessageBox(PChar(ERR_PATTERN_REPO_NOT_FOUND), PChar(Application.Title),
           MB_OK + MB_ICONERROR)
   end;
+end;
+
+procedure PPatternManager.SetScriptDebugging(Debug: Boolean);
+begin
+  DebugScript := Debug;
 end;
 
 // PPatternManager

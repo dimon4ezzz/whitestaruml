@@ -84,6 +84,7 @@ type
     PatternMemo: TMemo;
     ResultInfoListView: TListView;
     PatternParamLabel: TLabel;
+    ScriptDebugCheckBox: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -96,6 +97,7 @@ type
     procedure PatternTreeViewCollapsed(Sender: TObject; Node: TTreeNode);
     procedure PatternTreeViewExpanded(Sender: TObject; Node: TTreeNode);
     procedure PatternHelpButtonClick(Sender: TObject);
+    procedure ScriptDebugCheckBoxClick(Sender: TObject);
   protected
     PatternRows: PatternRowsList;
     FPattern: PatternDef.PPattern;
@@ -365,6 +367,11 @@ procedure TPatternAddInForm.PatternResultPageFinishButtonClick(
   Sender: TObject; var Stop: Boolean);
 begin
   ApplyPattern;
+end;
+
+procedure TPatternAddInForm.ScriptDebugCheckBoxClick(Sender: TObject);
+begin
+  PatternManager.SetScriptDebugging(ScriptDebugCheckBox.Checked);
 end;
 
 procedure TPatternAddInForm.SelectPatternPageCancelButtonClick(Sender: TObject; var Stop: Boolean);
