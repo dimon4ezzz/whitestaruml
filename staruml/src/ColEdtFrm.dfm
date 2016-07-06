@@ -1410,6 +1410,10 @@ object CollectionEditorForm: TCollectionEditorForm
     object RaisedSignalsPage: TTabSheet
       Caption = 'Raised Signals'
       ImageIndex = 11
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object RaisedSignalsPanel: TPanel
         Left = 0
         Top = 0

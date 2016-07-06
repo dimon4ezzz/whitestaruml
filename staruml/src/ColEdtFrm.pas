@@ -1853,7 +1853,7 @@ begin
   ElementListForm.AddListElementsByClass('UMLComponent');
   ElementListForm.AllowNull := False;
   if ElementListForm.Execute(MSG_COLLEDIT_SELECT_COMPONENT) then
-    PerformInsertItem(ElementSelectorForm.SelectedModel, 'DeployedComponents', DeployedComponentsListView);
+    PerformInsertItem(ElementListForm.SelectedModel, 'DeployedComponents', DeployedComponentsListView);
 end;
 
 procedure TCollectionEditorForm.HandleDeployedArtifactInsertAction(Sender: TObject);
@@ -1863,7 +1863,7 @@ begin
   ElementListForm.AddListElementsByClass('UMLArtifact');
   ElementListForm.AllowNull := False;
   if ElementListForm.Execute(MSG_COLLEDIT_SELECT_ARTIFACT) then
-    PerformInsertItem(ElementSelectorForm.SelectedModel, 'DeployedArtifacts', DeployedArtifactsListView);
+    PerformInsertItem(ElementListForm.SelectedModel, 'DeployedArtifacts', DeployedArtifactsListView);
 end;
 
 procedure TCollectionEditorForm.HandleResidentInsertAction(Sender: TObject);
