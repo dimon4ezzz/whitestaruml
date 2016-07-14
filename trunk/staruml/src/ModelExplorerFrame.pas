@@ -50,7 +50,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, VirtualTrees, ExtCtrls, IniFiles, ImgList, dxBar,
-  ActiveX, ComCtrls, ToolWin, Generics.Collections,
+  ActiveX, ComCtrls, ToolWin, System.UITypes, Generics.Collections,
   FlatPanel, BasicClasses, Core, UMLModels;
 
 const
