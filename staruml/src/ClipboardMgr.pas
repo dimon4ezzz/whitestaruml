@@ -106,7 +106,7 @@ type
     // Set data to clipboard
     function SetModelData(AModel: PModel): Boolean;
     function SetViewsData(ADiagramView: PDiagramView; SelectedViewsOnly: Boolean): Boolean;
-    function CopyDiagramAsBitmap(ADiagramView: PDiagramView; SelectedViewsOnly: Boolean): Boolean;
+    procedure CopyDiagramAsBitmap(ADiagramView: PDiagramView; SelectedViewsOnly: Boolean);
     // Get data from clipboard
     function GetModelData: PModel;
     function GetViewsData: PViewOrderedSet;
@@ -703,7 +703,7 @@ begin
   end;
 end;
 
-function PClipboardManager.CopyDiagramAsBitmap(ADiagramView: PDiagramView; SelectedViewsOnly: Boolean): Boolean;
+procedure PClipboardManager.CopyDiagramAsBitmap(ADiagramView: PDiagramView; SelectedViewsOnly: Boolean);
 var
   Bitmap: TBitmap;
   Format: Word;
