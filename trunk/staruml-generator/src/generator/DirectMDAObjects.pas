@@ -55,9 +55,9 @@ const
   TXT_DOCTYPE_REPORT = 'REPORT';
   TXT_DOCTYPE_SOURCE = 'SOURCE';
 
-  ERR_UNEXPECTED_DOCUMENTYPE = 'Document type is Unknown';
-  ERR_UNEXPECTED_TRANSLATOR_TYPE = 'Translator type is improperly.';
-  ERR_UNEXPECTED_PARAMETER_TYPE = 'Parameter type is improperly.';
+  ERR_UNEXPECTED_DOCUMENTYPE = 'Document type is unknown';
+  ERR_UNEXPECTED_TRANSLATOR_TYPE = 'Translator type is not set properly.';
+  ERR_UNEXPECTED_PARAMETER_TYPE = 'Parameter type is not set properly.';
 
 type
   // forward declarations
@@ -532,6 +532,7 @@ end;
 
 destructor PTask.Destroy;
 begin
+  ClearParameters;
   FParameters.Free;
   inherited;
 end;

@@ -12,6 +12,7 @@ object ParameterDefinitionForm: TParameterDefinitionForm
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 14
@@ -30,7 +31,6 @@ object ParameterDefinitionForm: TParameterDefinitionForm
     TabOrder = 0
     object CollectionTabSheet: TTabSheet
       Caption = 'Parameter'
-      ExplicitWidth = 301
       object TagColToolBar: TToolBar
         Left = 0
         Top = 0
@@ -114,7 +114,6 @@ object ParameterDefinitionForm: TParameterDefinitionForm
         ViewStyle = vsReport
         OnChange = ParametersListViewChange
         OnDblClick = ParametersListViewDblClick
-        ExplicitWidth = 278
       end
     end
   end

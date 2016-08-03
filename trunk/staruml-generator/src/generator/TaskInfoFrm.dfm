@@ -86,7 +86,7 @@ object TaskInformationForm: TTaskInformationForm
     Top = 88
     Width = 437
     Height = 337
-    ActivePage = PropertyTabSheet
+    ActivePage = ParameterTabSheet
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -12

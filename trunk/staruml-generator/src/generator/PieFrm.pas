@@ -712,6 +712,7 @@ begin
       try
         DirectMDAProcessor.AddGenerationUnit(TemplateRegForm.GenerationUnit);
         DirectMDAProcessor.SaveGenerationUnit(TemplateRegForm.GenerationUnit, TemplateRegForm.GenerationUnitPath);
+        Assert(DirectMDAProcessor.DefaultBatch.HasTask(TemplateRegForm.GenerationUnit));
         UpdateTasksGrid;
         BatchPageControl.ActivePage := MainTabSheet;
       except
