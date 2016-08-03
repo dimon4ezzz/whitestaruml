@@ -412,7 +412,6 @@ var
     Task := Batch.FindTask(AGenerationUnit);
     if Assigned(Task) then begin
       Batch.RemoveTask(Task);
-      Task.Free;
     end;
   end;
 

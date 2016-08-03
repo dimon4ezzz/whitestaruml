@@ -4,7 +4,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
   BorderStyle = bsDialog
   Caption = 'Register Template'
   ClientHeight = 410
-  ClientWidth = 376
+  ClientWidth = 379
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -29,7 +29,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
     Left = 8
     Top = 368
     Width = 361
-    Height = 9
+    Height = 6
     Shape = bsTopLine
   end
   object PathLabel: TLabel
@@ -38,10 +38,15 @@ object TemplateRegisterForm: TTemplateRegisterForm
     Width = 56
     Height = 14
     Caption = 'File Name:'
+    Color = clBtnFace
+    ParentColor = False
+    ParentShowHint = False
+    ShowHint = True
+    Transparent = True
   end
   object PathButton: TSpeedButton
-    Left = 347
-    Top = 12
+    Left = 344
+    Top = 13
     Width = 23
     Height = 22
     Glyph.Data = {
@@ -66,7 +71,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
       1F7C1F7C1F7C}
     OnClick = PathButtonClick
   end
-  object Label1: TLabel
+  object DescriptionLabel: TLabel
     Left = 8
     Top = 296
     Width = 65
@@ -79,9 +84,8 @@ object TemplateRegisterForm: TTemplateRegisterForm
     Width = 90
     Height = 23
     Caption = '&OK'
-    Default = True
-    ModalResult = 1
     TabOrder = 0
+    OnClick = AcceptButtonClick
   end
   object CancelButton: TButton
     Left = 276
@@ -93,30 +97,20 @@ object TemplateRegisterForm: TTemplateRegisterForm
     ModalResult = 2
     TabOrder = 1
   end
-  object DescMemo: TMemo
-    Left = -56
-    Top = 384
-    Width = 225
-    Height = 161
-    ImeName = 'Microsoft IME 2003'
-    TabOrder = 2
-    Visible = False
-    WantTabs = True
-  end
   object PathEdit: TEdit
-    Left = 80
+    Left = 73
     Top = 13
     Width = 265
     Height = 22
-    ImeName = 'Microsoft IME 2003'
-    TabOrder = 4
+    TabOrder = 3
+    OnChange = PathEditChange
   end
   object GenerationUnitDescPanel: TFlatPanel
     Left = 7
     Top = 313
     Width = 362
     Height = 49
-    TabOrder = 3
+    TabOrder = 2
     object GenerationUnitDescMemo: TMemo
       Left = 1
       Top = 3
@@ -125,86 +119,240 @@ object TemplateRegisterForm: TTemplateRegisterForm
       BorderStyle = bsNone
       Color = clBtnFace
       Ctl3D = True
-      ImeName = 'Microsoft IME 2003'
       ParentCtl3D = False
       TabOrder = 0
     end
   end
-  object PropertyInspector: TNextInspector
+  object PropertyInspector: TNextInspector6
     Left = 8
-    Top = 57
+    Top = 60
     Width = 361
-    Height = 233
-    SplitterPosition = 150
-    TabOrder = 5
-    OnSelectItem = PropertyInspectorSelectItem
-    object StandardInfoRow: TNxTextItem
+    Height = 230
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 4
+    TabStop = True
+    BorderSize = 1
+    OnVerticalScroll = PropertyInspectorVerticalScroll
+    Options = [ioCanSelectNone, ioPreviewPopup, ioSplitterMoving]
+    OnSelect = PropertyInspectorSelect
+    object StandardInfoRow: TNxInspectorNode6
       Caption = 'Basic'
-      ReadOnly = True
-      ParentIndex = -1
-      object NameRow: TNxTextItem
-        Caption = 'Template Name'
-        ParentIndex = 0
-      end
-      object GroupRow: TNxComboBoxItem
-        Caption = 'Group'
-        ParentIndex = 0
-      end
-      object CategoryRow: TNxComboBoxItem
-        Caption = 'Category'
-        ParentIndex = 0
-      end
-      object DescriptionRow: TNxMemoItem
-        Caption = 'Description'
-        ItemHeight = 48
-        TransparentColor = clNone
-        ParentIndex = 0
-      end
-    end
-    object DetailInfoRow: TNxTextItem
-      Caption = 'Detail'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Tahoma'
-      Font.Style = []
+      CaptionFont.Charset = ANSI_CHARSET
+      CaptionFont.Color = clWindowText
+      CaptionFont.Height = 14
+      CaptionFont.Name = 'Tahoma'
+      CaptionFont.Style = []
+      Index = 0
+      Padding.Left = 2
+      Padding.Right = 2
+      ParentCaptionFont = False
       ReadOnly = True
       ValueFont.Charset = ANSI_CHARSET
       ValueFont.Color = clWindowText
-      ValueFont.Height = -12
+      ValueFont.Height = 14
       ValueFont.Name = 'Tahoma'
       ValueFont.Style = []
-      ParentIndex = -1
-      object DocumentTypeRow: TNxComboBoxItem
+      object NameRow: TNxInspectorNode6
+        Caption = 'Template Name'
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 0
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
+        OnValueChanged = NameOrGroupRowValueChanged
+      end
+      object GroupRow: TNxComboBoxInspectorNode6
+        Caption = 'Group'
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 1
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
+        OnValueChanged = NameOrGroupRowValueChanged
+      end
+      object CategoryRow: TNxComboBoxInspectorNode6
+        Caption = 'Category'
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 2
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
+        OnValueChanged = AnyRowValueChanged
+      end
+      object DescriptionRow: TNxMemoInspectorNode6
+        Caption = 'Description'
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 3
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
+      end
+    end
+    object DetailInfoRow: TNxInspectorNode6
+      Caption = 'Detail'
+      CaptionColor = clMoneyGreen
+      CaptionFont.Charset = ANSI_CHARSET
+      CaptionFont.Color = clWindowText
+      CaptionFont.Height = 14
+      CaptionFont.Name = 'Tahoma'
+      CaptionFont.Style = []
+      DefaultValue = '(must be filled)'
+      Index = 1
+      Padding.Left = 2
+      Padding.Right = 2
+      ParentCaptionFont = False
+      ReadOnly = True
+      ValueFont.Charset = ANSI_CHARSET
+      ValueFont.Color = clWindowText
+      ValueFont.Height = 14
+      ValueFont.Name = 'Tahoma'
+      ValueFont.Style = []
+      object DocumentTypeRow: TNxComboBoxInspectorNode6
         Caption = 'Document Type'
-        Value = 'DOCUMENT'
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 0
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
+        OnValueChanged = AnyRowValueChanged
         Lines.Strings = (
           'DOCUMENT'
           'REPORT'
           'CODE')
-        ParentIndex = 5
       end
-      object FormatRow: TNxComboBoxItem
+      object FormatRow: TNxComboBoxInspectorNode6
         Caption = 'Format'
-        ParentIndex = 5
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 1
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
+        OnValueChanged = AnyRowValueChanged
       end
-      object VersionRow: TNxTextItem
+      object VersionRow: TNxInspectorNode6
         Caption = 'Version'
-        ParentIndex = 5
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 2
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
       end
-      object ProfilesRow: TNxButtonItem
+      object ProfilesRow: TNxButtonInspectorNode6
         Caption = 'Related Profile'
-        EditOptions = [epDisablePaste, epDisableTyping]
-        TransparentColor = clNone
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 3
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
         OnButtonClick = ProfilesRowButtonClick
-        ParentIndex = 5
       end
-      object ApproachRow: TNxComboBoxItem
+      object ApproachRow: TNxComboBoxInspectorNode6
         Caption = 'Related Approach'
-        ParentIndex = 5
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 4
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
       end
-      object TranslatorTypeRow: TNxComboBoxItem
+      object TranslatorTypeRow: TNxComboBoxInspectorNode6
         Caption = 'Translator Type'
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 5
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
+        OnValueChanged = TranslatorTypeRowValueChanged
         Lines.Strings = (
           'WORD'
           'EXCEL'
@@ -213,56 +361,133 @@ object TemplateRegisterForm: TTemplateRegisterForm
           'COM'
           'SCRIPT'
           'EXE')
-        ParentIndex = 5
       end
-      object TranslatorNameRow: TNxButtonItem
+      object TranslatorNameRow: TNxButtonInspectorNode6
         Caption = 'Translator'
-        TransparentColor = clNone
-        ParentIndex = 5
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 6
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
+        OnValueChanged = AnyRowValueChanged
+        OnButtonClick = TranslatorNameRowButtonClick
       end
-      object SampleRow: TNxButtonItem
+      object SampleRow: TNxButtonInspectorNode6
         Caption = 'Example'
-        TransparentColor = clNone
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 7
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
         OnButtonClick = SampleRowButtonClick
-        ParentIndex = 5
       end
-      object TutorialRow: TNxButtonItem
+      object TutorialRow: TNxButtonInspectorNode6
         Caption = 'Tutorial'
-        Visible = False
-        TransparentColor = clNone
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 8
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
         OnButtonClick = TutorialRowButtonClick
-        ParentIndex = 5
       end
-      object ValidatorRow: TNxButtonItem
+      object ValidatorRow: TNxButtonInspectorNode6
         Caption = 'Model Validator'
-        Visible = False
-        TransparentColor = clNone
-        ParentIndex = 5
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 9
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
+        OnButtonClick = ValidatorRowButtonClick
       end
-      object PreviewsRow: TNxButtonItem
+      object PreviewsRow: TNxButtonInspectorNode6
         Caption = 'Preview'
-        ReadOnly = True
-        Visible = False
-        EditOptions = [epDisablePaste, epDisableTyping]
-        TransparentColor = clNone
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 10
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
         OnButtonClick = PreviewsRowButtonClick
-        ParentIndex = 5
       end
-      object ParametersRow: TNxButtonItem
+      object ParametersRow: TNxButtonInspectorNode6
         Caption = 'Parameters'
-        Value = '(Collection)[0]'
-        EditOptions = [epDisablePaste, epDisableTyping]
-        TransparentColor = clNone
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 11
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
         OnButtonClick = ParametersRowButtonClick
-        ParentIndex = 5
       end
-      object AttachFilesRow: TNxButtonItem
+      object AttachFilesRow: TNxButtonInspectorNode6
         Caption = 'Related files'
-        Value = '(Collection)[0]'
-        EditOptions = [epDisablePaste, epDisableTyping]
-        TransparentColor = clNone
+        CaptionFont.Charset = ANSI_CHARSET
+        CaptionFont.Color = clWindowText
+        CaptionFont.Height = 14
+        CaptionFont.Name = 'Tahoma'
+        CaptionFont.Style = []
+        Index = 12
+        Padding.Left = 2
+        Padding.Right = 2
+        ParentCaptionFont = False
+        ValueFont.Charset = ANSI_CHARSET
+        ValueFont.Color = clWindowText
+        ValueFont.Height = 14
+        ValueFont.Name = 'Tahoma'
+        ValueFont.Style = []
         OnButtonClick = AttachFilesRowButtonClick
-        ParentIndex = 5
       end
     end
   end
