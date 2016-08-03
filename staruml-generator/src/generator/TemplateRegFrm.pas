@@ -51,23 +51,23 @@ uses
   DirectMDAProc, DirectMDAObjects,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ExtCtrls, StdCtrls, ImgList, Buttons, FlatPanel, WhiteStarUML_TLB,
-  NxPropertyItemClasses, NxPropertyItems, NxScrollControl, NxInspector;
+  NxInspectorNode6, NxControls6, NxInspector6, NxEdit6, NxInspectorNodeClasses6;
 
 const
   TXT_PREVIEW = 'Preview';
   TXT_ATTACH_FILE = 'Attach files';
 
-  TXT_BASIC_INFO = 'Set basic informations of template.';
-  TXT_DETAIL_INTO = 'Set detail informations of template.';
-  TXT_DESC_NAME = 'Input template''s name.';
-  TXT_DESC_GROUP = 'Select group to contain template. (New group is available except existing group)';
-  TXT_DESC_CATEGORY = 'Select category to contain template. (New category is available except existing category)';
-  TXT_DESC_DESCRIPTION = 'Fill overall descriptions for template.';
-  TXT_DESC_DOCTYPE = 'Select a document type of DOCUMENT, REPORT, and CODE for template.';
-  TXT_DESC_FORMAT = 'Select format of document to going to be generated.';
+  TXT_BASIC_INFO = 'Set basic information about template.';
+  TXT_DETAIL_INTO = 'Set detailed information about template.';
+  TXT_DESC_NAME = 'Specify template name.';
+  TXT_DESC_GROUP = 'Create or select group for template.';
+  TXT_DESC_CATEGORY = 'Create or select category for template.';
+  TXT_DESC_DESCRIPTION = 'Overall description of template.';
+  TXT_DESC_DOCTYPE = 'Select document type of DOCUMENT, REPORT, and CODE for template.';
+  TXT_DESC_FORMAT = 'Select format of document going to be generated with current template.';
   TXT_DESC_VERSION = 'Fill version information of template. (eg. 1.0)';
-  TXT_DESC_APPROACH = 'Select a approach to apply to model for generation.';
-  TXT_DESC_PROFILES = 'Select profile to apply to model for generation.';
+  TXT_DESC_APPROACH = 'Select approach to be applied to the model during document generation.';
+  TXT_DESC_PROFILES = 'Select profiles to be applied to the model during document generation.';
   TXT_DESC_TRANSLATOR_TYPE = 'Specify type of document translator. Select one of the followings.'
       + 'WORD(Word document translator), EXCEL(Excel document translator), POWERPOINT(Powerpoint document translator), TEXT(Text document translator)'
       + ', COM(COM-based translator made by user), SCRIPT(Script based translator made by user)'
@@ -89,60 +89,59 @@ type
     CancelButton: TButton;
     Bevel: TBevel;
     OpenDialog: TOpenDialog;
-    DescMemo: TMemo;
     PathLabel: TLabel;
     PathEdit: TEdit;
     PathButton: TSpeedButton;
     SaveDialog: TSaveDialog;
     OpenScriptDialog: TOpenDialog;
     OpenExeDialog: TOpenDialog;
-    Label1: TLabel;
+    DescriptionLabel: TLabel;
     GenerationUnitDescPanel: TFlatPanel;
     GenerationUnitDescMemo: TMemo;
-    PropertyInspector: TNextInspector;
-    StandardInfoRow: TNxTextItem;
-    NameRow: TNxTextItem;
-    GroupRow: TNxComboBoxItem;
-    CategoryRow: TNxComboBoxItem;
-    DescriptionRow: TNxMemoItem;
-    DetailInfoRow: TNxTextItem;
-    DocumentTypeRow: TNxComboBoxItem;
-    FormatRow: TNxComboBoxItem;
-    VersionRow: TNxTextItem;
-    ApproachRow: TNxComboBoxItem;
-    TranslatorNameRow: TNxButtonItem;
-    SampleRow: TNxButtonItem;
-    TutorialRow: TNxButtonItem;
-    ValidatorRow: TNxButtonItem;
-    PreviewsRow: TNxButtonItem;
-    AttachFilesRow: TNxButtonItem;
-    TranslatorTypeRow: TNxComboBoxItem;
-    ProfilesRow: TNxButtonItem;
-    ParametersRow: TNxButtonItem;
+    PropertyInspector: TNextInspector6;
+    StandardInfoRow: TNxInspectorNode6;
+    DetailInfoRow: TNxInspectorNode6;
+    NameRow: TNxInspectorNode6;
+    GroupRow: TNxComboBoxInspectorNode6;
+    CategoryRow: TNxComboBoxInspectorNode6;
+    DescriptionRow: TNxMemoInspectorNode6;
+    DocumentTypeRow: TNxComboBoxInspectorNode6;
+    FormatRow: TNxComboBoxInspectorNode6;
+    VersionRow: TNxInspectorNode6;
+    ProfilesRow: TNxButtonInspectorNode6;
+    ApproachRow: TNxComboBoxInspectorNode6;
+    TranslatorTypeRow: TNxComboBoxInspectorNode6;
+    TranslatorNameRow: TNxButtonInspectorNode6;
+    SampleRow: TNxButtonInspectorNode6;
+    TutorialRow: TNxButtonInspectorNode6;
+    ValidatorRow: TNxButtonInspectorNode6;
+    PreviewsRow: TNxButtonInspectorNode6;
+    ParametersRow: TNxButtonInspectorNode6;
+    AttachFilesRow: TNxButtonInspectorNode6;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure ValidatorRowButtonClick(Sender: TObject; AbsoluteIndex: Integer);
-    procedure DescriptionRowCloseUp(Sender: TObject; var Text: String;
-      var Accept: Boolean);
-    procedure DescriptionRowPopup(Sender: TObject; const EditText: String);
     procedure PathButtonClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure TranslatorNameRowButtonClick(Sender: TObject;
-      AbsoluteIndex: Integer);
-    procedure PropertyInspectorChange(Sender: TObject; Item: TNxPropertyItem;
-      Value: WideString);
-    procedure PropertyInspectorSelectItem(Sender: TObject;
-      Item: TNxPropertyItem);
-    procedure SampleRowButtonClick(Sender: TNxPropertyItem);
-    procedure TutorialRowButtonClick(Sender: TNxPropertyItem);
-    procedure PreviewsRowButtonClick(Sender: TNxPropertyItem);
-    procedure ParametersRowButtonClick(Sender: TNxPropertyItem);
-    procedure AttachFilesRowButtonClick(Sender: TNxPropertyItem);
-    procedure ProfilesRowButtonClick(Sender: TNxPropertyItem);
+    procedure PropertyInspectorSelect(Sender: TObject);
+    procedure AcceptButtonClick(Sender: TObject);
+    procedure PathEditChange(Sender: TObject);
+    procedure NameOrGroupRowValueChanged(Sender: TNxInspectorNode6);
+    procedure AnyRowValueChanged(Sender: TNxInspectorNode6);
+    procedure TranslatorTypeRowValueChanged(Sender: TNxInspectorNode6);
+    procedure ProfilesRowButtonClick(Sender: TObject);
+    procedure TranslatorNameRowButtonClick(Sender: TObject);
+    procedure SampleRowButtonClick(Sender: TObject);
+    procedure TutorialRowButtonClick(Sender: TObject);
+    procedure ValidatorRowButtonClick(Sender: TObject);
+    procedure PreviewsRowButtonClick(Sender: TObject);
+    procedure ParametersRowButtonClick(Sender: TObject);
+    procedure AttachFilesRowButtonClick(Sender: TObject);
+    procedure PropertyInspectorVerticalScroll(Sender: TObject);
   private
     FStarUMLApp: IStarUMLApplication;
     FDirectMDAProcessor: TGeneratorProcessor;
     FGenerationUnit: PGenerationUnit;
+    FFixedGenerationUnitPath: Boolean;
     { initializing / finalizing methods }
     procedure Initialize;
     procedure Finalize;
@@ -156,11 +155,11 @@ type
     procedure SetupApproachRow;
     procedure SetupInspector;
     { property editing methods }
+    function GetCollectionString(CollectionCount: Integer): string;
     function GetProfilesString: string;
     function GetPreviewsString: string;
     function GetAttachFilesString: string;
     function GetParametersString: string;
-    function GetDescriptionString: string;
     procedure EditProfiles;
     procedure EditPreviews;
     procedure EditAttachFiles;
@@ -169,12 +168,13 @@ type
     function GetPresuppositionedFileName: string;
     { UI updating methods }
     function IsBuiltInGenerator(GeneratorType: string): Boolean;
-    function RequisiteInputed: Boolean;
-    function GetItemDescription(Row: TNxPropertyItem): string;
+    function GetItemDescription(Row: TnxInspectorNode6): string;
     procedure UpdateUIStates;
+    function SetHints: Boolean;
     { etc methods }
     procedure RegulateFilesPath;
     procedure SetGenerationUnitPath(const Value: string);
+    procedure SetTranslatorNameEditState;
   public
     function Execute: Boolean;
     property StarUMLApp: IStarUMLApplication read FStarUMLApp write FStarUMLApp;
@@ -188,7 +188,8 @@ implementation
 {$R *.dfm}
 
 uses
-  ProfileSelFrm, ColEdtFrm, ParamDefFrm, Serializers, Utilities, Symbols;
+  ProfileSelFrm, ColEdtFrm, ParamDefFrm, Serializers, Utilities, Symbols,
+  Generics.Collections;
 
 ////////////////////////////////////////////////////////////////////////////////
 // TTemplateRegisterForm
@@ -214,18 +215,23 @@ begin
   Result := PathEdit.Text;
 end;
 
-procedure TTemplateRegisterForm.SampleRowButtonClick(Sender: TNxPropertyItem);
-begin
-  if OpenDialog.Execute then begin
-    SampleRow.Value := OpenDialog.FileName;
-    ApplyChanges;
-    UpdateUIStates;
-  end;
-end;
-
 procedure TTemplateRegisterForm.SetGenerationUnitPath(const Value: string);
 begin
   PathEdit.Text := Value;
+end;
+
+procedure TTemplateRegisterForm.SetTranslatorNameEditState;
+begin
+  TranslatorNameRow.Enabled := (TranslatorTypeRow.Value <> '')
+    and not IsBuiltInGenerator(TranslatorTypeRow.Value);
+  if not TranslatorNameRow.Enabled then
+    TranslatorNameRow.Value := '';
+end;
+
+procedure TTemplateRegisterForm.SampleRowButtonClick(Sender: TObject);
+begin
+  if OpenDialog.Execute then
+    SampleRow.Value := OpenDialog.FileName;
 end;
 
 procedure TTemplateRegisterForm.SetupGroupRow;
@@ -284,42 +290,30 @@ begin
   SetupApproachRow;
 end;
 
+function TTemplateRegisterForm.GetCollectionString(CollectionCount: Integer): string;
+begin
+  Result := Format('(Collection)[%d]', [CollectionCount]);
+end;
+
 function TTemplateRegisterForm.GetProfilesString: string;
 begin
-  Result := Format('(Collection)[%d]', [FGenerationUnit.ProfileCount]);
+  Result := GetCollectionString(FGenerationUnit.ProfileCount);
 end;
+
 
 function TTemplateRegisterForm.GetPreviewsString: string;
 begin
-  Result := Format('(Collection)[%d]', [FGenerationUnit.PreviewCount]);
+  Result := GetCollectionString(FGenerationUnit.PreviewCount);
 end;
 
 function TTemplateRegisterForm.GetAttachFilesString: string;
 begin
-  Result := Format('(Collection)[%d]', [FGenerationUnit.AttachFileCount]);
+  Result := GetCollectionString(FGenerationUnit.AttachFileCount);
 end;
 
 function TTemplateRegisterForm.GetParametersString: string;
 begin
-  Result := Format('(Collection)[%d]', [FGenerationUnit.ParameterCount]);
-end;
-
-function TTemplateRegisterForm.GetDescriptionString: string;
-var
-  SL: TStringList;
-begin
-  SL := TStringList.Create;
-  try
-    SL.Text := FGenerationUnit.Description;
-    if SL.Count = 0 then
-      Result := ''
-    else if SL.Count = 1 then
-      Result := SL[0]
-    else
-      Result := '(Text)...';
-  finally
-    SL.Free;
-  end;
+  Result := GetCollectionString(FGenerationUnit.ParameterCount);
 end;
 
 procedure TTemplateRegisterForm.EditProfiles;
@@ -403,6 +397,12 @@ begin
   end;
 end;
 
+procedure TTemplateRegisterForm.AcceptButtonClick(Sender: TObject);
+begin
+  ApplyChanges;
+  ModalResult := mrOK;
+end;
+
 procedure TTemplateRegisterForm.ApplyChanges;
 begin
   FGenerationUnit.Name := NameRow.Value;
@@ -417,35 +417,127 @@ begin
   FGenerationUnit.Sample := SampleRow.Value;
   FGenerationUnit.Tutorial := TutorialRow.Value;
   FGenerationUnit.Validator := ValidatorRow.Value;
+  FGenerationUnit.Path := GenerationUnitPath;
+  FGenerationUnit.Description := DescriptionRow.Value;
 end;
 
 function TTemplateRegisterForm.GetPresuppositionedFileName: string;
 var
   Dir: string;
+  GroupSubdir: string;
 begin
-  if GroupRow.Value <> '' then
-    Dir := GetDirectMDAPath + '\' + GroupRow.Value + '\' + NameRow.Value
+  if NameRow.Value <> '' then begin
+
+    GroupSubdir := GroupRow.Value;
+    if GroupSubdir <> '' then
+      GroupSubdir := IncludeTrailingPathDelimiter(GroupSubdir);
+
+    Dir := IncludeTrailingPathDelimiter(GetDirectMDAPath)
+      + IncludeTrailingPathDelimiter(DIR_GENERATION_UNITS)
+      + GroupSubdir + NameRow.Value;
+
+    Result := IncludeTrailingPathDelimiter(Dir) + NameRow.Value + EXT_TDF;
+  end
   else
-    Dir := GetDirectMDAPath + '\' + NameRow.Value;
-  Result := Dir + '\' + NameRow.Value + EXT_TDF;
+    Result := '';
 end;
 
 function TTemplateRegisterForm.IsBuiltInGenerator(GeneratorType: string): Boolean;
 begin
-  Result := (GeneratorType = VALUE_TRANSTYPE_WORD) or (GeneratorType = VALUE_TRANSTYPE_EXCEL)
-    or (GeneratorType = VALUE_TRANSTYPE_POWERPOINT) or (GeneratorType = VALUE_TRANSTYPE_TEXT);
+  Result := (GeneratorType = VALUE_TRANSTYPE_WORD)
+    or (GeneratorType = VALUE_TRANSTYPE_EXCEL)
+    or (GeneratorType = VALUE_TRANSTYPE_POWERPOINT)
+    or (GeneratorType = VALUE_TRANSTYPE_TEXT);
 end;
 
-function TTemplateRegisterForm.RequisiteInputed: Boolean;
+procedure TTemplateRegisterForm.AnyRowValueChanged(Sender: TNxInspectorNode6);
 begin
-  Result := (NameRow.Value <> '') and (GroupRow.Value <> '') and (CategoryRow.Value <> '')
-    and (DocumentTypeRow.Value <> '') and (FormatRow.Value <> '') and (TranslatorTypeRow.Value <> '')
-    and (IsBuiltInGenerator(TranslatorTypeRow.Value) or (not IsBuiltInGenerator(TranslatorTypeRow.Value) and (TranslatorNameRow.Value <> '')));
+  UpdateUIStates;
 end;
 
-function TTemplateRegisterForm.GetItemDescription(Row: TNxPropertyItem): string;
+procedure TTemplateRegisterForm.NameOrGroupRowValueChanged(Sender: TNxInspectorNode6);
 begin
-  if Row = StandardInfoRow then
+  if not FFixedGenerationUnitPath then
+    GenerationUnitPath := GetPresuppositionedFileName;
+  AnyRowValueChanged(Sender);
+end;
+
+procedure TTemplateRegisterForm.TranslatorTypeRowValueChanged(
+  Sender: TNxInspectorNode6);
+begin
+  SetTranslatorNameEditState;
+  AnyRowValueChanged(Sender);
+end;
+
+function TTemplateRegisterForm.SetHints: Boolean;
+type
+  TNodeList = TList<TnxInspectorNode6>;
+const
+  HintColor = clMoneyGreen;
+  StandardCaptionNodeColor = clWindow;
+var
+  VerifiedNodes: TNodeList;
+  Node: TnxInspectorNode6;
+  HintSet: Boolean;
+
+  procedure SetupHintForNode(Node: TnxInspectorNode6);
+  begin
+    if (Node.Value = '') then begin
+      Node.CaptionColor := HintColor;
+      Node.Hint := C_FIELD_CANNOT_BE_EMPTY;
+      HintSet := True; // Sets value for outer function
+    end
+    else begin
+      Node.CaptionColor := StandardCaptionNodeColor;
+      Node.Hint := '';
+    end;
+  end;
+
+begin
+  HintSet := False;
+  // Standard rows
+  VerifiedNodes := TNodeList.Create();
+  try
+    VerifiedNodes.AddRange([NameRow,GroupRow,CategoryRow,DocumentTypeRow,
+      FormatRow,TranslatorTypeRow]);
+    for Node in VerifiedNodes do
+      SetupHintForNode(Node);
+  finally
+    VerifiedNodes.Free;
+  end;
+
+  // Special cases
+
+  // Translator row
+  if TranslatorNameRow.Enabled then
+    SetupHintForNode(TranslatorNameRow)
+  else begin // Uncheck if disabled
+    TranslatorNameRow.CaptionColor := StandardCaptionNodeColor;
+    TranslatorNameRow.Hint := '';
+  end;
+
+  // Template file name
+  if (PathEdit.Text = '') then begin
+      PathLabel.Color := HintColor;
+      if FFixedGenerationUnitPath then
+        PathLabel.Hint := C_FIELD_CANNOT_BE_EMPTY
+      else
+        PathLabel.Hint := C_FIELD_AUTO_DERIVE;
+      PathLabel.Transparent := False;
+      HintSet := True;
+    end
+    else begin
+      PathLabel.Color := Self.Color;
+      PathLabel.Hint := '';
+      PathLabel.Transparent := True;
+    end;
+
+  Result := HintSet;
+end;
+
+function TTemplateRegisterForm.GetItemDescription(Row: TnxInspectorNode6): string;
+begin
+   if Row = StandardInfoRow then
     Result := TXT_BASIC_INFO
   else if Row = NameRow then
     Result := TXT_DESC_NAME
@@ -489,10 +581,7 @@ end;
 
 procedure TTemplateRegisterForm.UpdateUIStates;
 begin
-  AcceptButton.Enabled := (PathEdit.Text <> '') and RequisiteInputed;
-  TranslatorNameRow.ReadOnly := IsBuiltInGenerator(TranslatorTypeRow.Value);
-  TranslatorNameRow.Visible := (TranslatorTypeRow.Value = VALUE_TRANSTYPE_SCRIPT)
-    or (TranslatorTypeRow.Value = VALUE_TRANSTYPE_EXE);
+  AcceptButton.Enabled := not SetHints;
 end;
 
 procedure TTemplateRegisterForm.RegulateFilesPath;
@@ -548,6 +637,8 @@ begin
     FGenerationUnit.Date := DateToStr(Date);
     ParametersRow.Value := GetParametersString;
     AttachFilesRow.Value := GetAttachFilesString;
+    ProfilesRow.Value := GetProfilesString;
+    PreviewsRow.Value := GetPreviewsString;
     Accepted := (ShowModal = mrOk);
   except
     Accepted := False;
@@ -561,9 +652,6 @@ begin
   Result := Accepted;
 end;
 
-// TTemplateRegisterForm
-////////////////////////////////////////////////////////////////////////////////
-
 procedure TTemplateRegisterForm.FormCreate(Sender: TObject);
 begin
   Initialize;
@@ -574,73 +662,52 @@ begin
   Finalize;
 end;
 
-procedure TTemplateRegisterForm.PreviewsRowButtonClick(Sender: TNxPropertyItem);
+procedure TTemplateRegisterForm.PreviewsRowButtonClick(Sender: TObject);
 begin
   EditPreviews;
-  ApplyChanges;
-  UpdateUIStates;
 end;
 
-procedure TTemplateRegisterForm.ValidatorRowButtonClick(Sender: TObject;
-  AbsoluteIndex: Integer);
+procedure TTemplateRegisterForm.ValidatorRowButtonClick(Sender: TObject);
 begin
-  if OpenDialog.Execute then begin
+  if OpenDialog.Execute then
     ValidatorRow.Value := OpenDialog.FileName;
-    ApplyChanges;
-    UpdateUIStates;
-  end;
 end;
 
-procedure TTemplateRegisterForm.AttachFilesRowButtonClick(
-  Sender: TNxPropertyItem);
+procedure TTemplateRegisterForm.AttachFilesRowButtonClick(Sender: TObject);
 begin
   EditAttachFiles;
-  ApplyChanges;
-  UpdateUIStates;
 end;
 
-procedure TTemplateRegisterForm.DescriptionRowCloseUp(Sender: TObject;
-  var Text: String; var Accept: Boolean);
-begin
-  FGenerationUnit.Description := DescMemo.Text;
-  DescriptionRow.Value := GetDescriptionString;
-  ApplyChanges;
-  UpdateUIStates;
-end;
-
-procedure TTemplateRegisterForm.DescriptionRowPopup(Sender: TObject;
-  const EditText: String);
-begin
-  DescMemo.Lines.Text := FGenerationUnit.Description;
-  ApplyChanges;
-  UpdateUIStates;
-end;
-
-procedure TTemplateRegisterForm.ParametersRowButtonClick(
-  Sender: TNxPropertyItem);
+procedure TTemplateRegisterForm.ParametersRowButtonClick(Sender: TObject);
 begin
   EditParameters;
-  ApplyChanges;
-  UpdateUIStates;
 end;
 
 procedure TTemplateRegisterForm.PathButtonClick(Sender: TObject);
 begin
-  SaveDialog.InitialDir := GetDirectMDAPath + '\' + DIR_GENERATION_UNITS;
+  SaveDialog.InitialDir := IncludeTrailingPathDelimiter(GetDirectMDAPath) + DIR_GENERATION_UNITS;
   if SaveDialog.Execute then begin
     PathEdit.Text := SaveDialog.FileName;
-    UpdateUIStates;
   end;
+end;
+
+procedure TTemplateRegisterForm.PathEditChange(Sender: TObject);
+begin
+  if (Sender as TWinControl).Focused then
+    FFixedGenerationUnitPath := True;
+  UpdateUIStates;
 end;
 
 procedure TTemplateRegisterForm.FormShow(Sender: TObject);
 begin
+  SetTranslatorNameEditState;
   UpdateUIStates;
 
   if GenerationUnitPath <> '' then begin
     Caption := 'Modify template';
-    PathEdit.ReadOnly := true;
+    PathEdit.ReadOnly := True;
     PathButton.Visible := false;
+    FFixedGenerationUnitPath := True;
     NameRow.Value := FGenerationUnit.Name;
     GroupRow.Value := FGenerationUnit.Group;
     CategoryRow.Value := FGenerationUnit.Category;
@@ -652,16 +719,13 @@ begin
     TranslatorNameRow.Value := FGenerationUnit.TranslatorName;
     SampleRow.Value := FGenerationUnit.Sample;
     TutorialRow.Value := FGenerationUnit.Tutorial;
-
-    PropertyInspector.OnChange := PropertyInspectorChange;
-
     ValidatorRow.Value := FGenerationUnit.Validator;
+    DescriptionRow.Value := FGenerationUnit.Description;
+  end
 
-  end;
 end;
 
-procedure TTemplateRegisterForm.TranslatorNameRowButtonClick(
-  Sender: TObject; AbsoluteIndex: Integer);
+procedure TTemplateRegisterForm.TranslatorNameRowButtonClick(Sender: TObject);
 begin
   if TranslatorTypeRow.Value = VALUE_TRANSTYPE_SCRIPT then begin
     if OpenScriptDialog.Execute then
@@ -673,35 +737,36 @@ begin
   end
 end;
 
-procedure TTemplateRegisterForm.TutorialRowButtonClick(Sender: TNxPropertyItem);
+procedure TTemplateRegisterForm.TutorialRowButtonClick(Sender: TObject);
 begin
-  if OpenDialog.Execute then begin
+  if OpenDialog.Execute then
     TutorialRow.Value := OpenDialog.FileName;
-    ApplyChanges;
-    UpdateUIStates;
-  end;
-
 end;
 
-procedure TTemplateRegisterForm.ProfilesRowButtonClick(Sender: TNxPropertyItem);
+procedure TTemplateRegisterForm.ProfilesRowButtonClick(Sender: TObject);
 begin
-  EditProfiles;
-  ApplyChanges;
-  UpdateUIStates;
+   EditProfiles;
 end;
 
-procedure TTemplateRegisterForm.PropertyInspectorChange(Sender: TObject;
-  Item: TNxPropertyItem; Value: WideString);
+procedure TTemplateRegisterForm.PropertyInspectorSelect(Sender: TObject);
+var
+  SelectedNode: TNxInspectorNode6;
 begin
-  ApplyChanges;
-  UpdateUIStates;
+  SelectedNode := (Sender as TNxCustomInspector6).SelectedNode;
+  if Assigned(SelectedNode) then
+    GenerationUnitDescMemo.Text := GetItemDescription(SelectedNode);
 end;
 
-procedure TTemplateRegisterForm.PropertyInspectorSelectItem(Sender: TObject;
-  Item: TNxPropertyItem);
+// Currently (ver 6.5.16) there is a glitch with scrolling inspector
+procedure TTemplateRegisterForm.PropertyInspectorVerticalScroll(
+  Sender: TObject);
 begin
-    if Item <> nil then
-    GenerationUnitDescMemo.Text := GetItemDescription(Item);
+  (Sender as TNxCustomInspector6).Repaint;
 end;
+
+
+// TTemplateRegisterForm
+////////////////////////////////////////////////////////////////////////////////
+
 
 end.

@@ -188,6 +188,8 @@ const
     + #13#10 + 'Confirm and retry again.';
   C_ERR_PERSONAL_EDITION = 'It is not available in personal version.';
   C_ERR_TRIAL_EDITION = 'Trial date is expired.';
+  C_FIELD_CANNOT_BE_EMPTY = 'Field cannot be empty';
+  C_FIELD_AUTO_DERIVE = 'Leave empty to auto derive file name from template name';
 
   GENERATOR_ENGINE_LOCATION = 'modules\staruml-generator';
 

@@ -328,7 +328,7 @@ begin
 end;
 *)
 begin
-  Result := GetDllPath + '\' + GENERATOR_ENGINE_LOCATION;
+  Result := IncludeTrailingPathDelimiter(GetDllPath) + GENERATOR_ENGINE_LOCATION;
   if not DirectoryExists(Result) then
     Result := GetDllPath;
 end;
