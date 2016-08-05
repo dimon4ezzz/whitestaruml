@@ -1,7 +1,7 @@
 object PatternAddInForm: TPatternAddInForm
   Left = 400
   Top = 274
-  ActiveControl = ResultInfoListView
+  ActiveControl = PatternTreeView
   BorderStyle = bsDialog
   Caption = 'Apply pattern'
   ClientHeight = 408
@@ -25,7 +25,7 @@ object PatternAddInForm: TPatternAddInForm
     Top = 0
     Width = 463
     Height = 408
-    ActivePage = PatternResultPage
+    ActivePage = SelectPatternPage
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -293,7 +293,7 @@ object PatternAddInForm: TPatternAddInForm
       Top = 372
       Width = 139
       Height = 17
-      Hint = 'Debug pattern generation script with Visual Studio'#39
+      Hint = 'Debug pattern generation script with Visual Studio'
       Caption = 'Enable script debugging '
       ParentShowHint = False
       ShowHint = True
