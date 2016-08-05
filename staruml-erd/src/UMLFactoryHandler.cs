@@ -20,14 +20,6 @@ namespace Erd
             // For perfomance reasons informs the main program that a sequence of models is created 
             ErdAddIn.StarUMLApp.BeginGroupAction();
 
-            //IUMLFactory factory = ErdAddIn.StarUMLApp.UMLFactory;
-            /*IUMLClassDiagram erdDiagram = factory.CreateClassDiagram(parentPackage);
-            erdDiagram.Name = diagramName;
-            IExtensibleModel extensibleModel = erdDiagram as IExtensibleModel;
-            if (extensibleModel != null)
-                extensibleModel.SetStereotype(Symbols.ERD_DIAGRAM_TYPE);*/
-
-            //IUMLClassDiagram erdDiagram = parentPackage.GetOwnedDiagramAt(1) as IUMLClassDiagram;
             IUMLClassDiagram erdDiagram = m_UMLFactory.CreateExtendedClassDiagram(parentPackage, Symbols.ERD_PROFILE_NAME, Symbols.ERD_DIAGRAM_TYPE);
             erdDiagram.Name = diagramName;
 
@@ -39,14 +31,6 @@ namespace Erd
 
             // End of creation of a sequence of models
             ErdAddIn.StarUMLApp.EndGroupAction();
-
-            /*IUMLClass dummyClass = factory.CreateClass(parentPackage);
-            dummyClass.SetStereotype2(Symbols.ERD_PROFILE_NAME,Symbols.ERD_STEREOTYPE_TABLE);
-            string dcs = dummyClass.StereotypeName;
-            IUMLClassDiagramView diagramView = erdDiagram.DiagramView as IUMLClassDiagramView;
-            IUMLClassView newView = diagramView.CreateViewOf(dummyClass, 50, 50) as IUMLClassView;*/
-
-            //IUMLClassDiagram erdDiagram2 = factory.CreateExtendedClassDiagram(parentPackage, Symbols.ERD_PROFILE_NAME, Symbols.ERD_DIAGRAM_TYPE);
 
         }
 
