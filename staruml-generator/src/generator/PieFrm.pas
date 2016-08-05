@@ -70,6 +70,7 @@ const
   ERR_FAILED_TO_REGISTER_BATCH = 'Registering Batch failed.' + #13#10 + 'Reason : %s';
   ERR_FAILED_TO_ADD_BATCH_ITEM = 'Adding item failed.' + #13#10 + 'Reason : %s';
   ERR_REGISTER_TEMPLATE = 'Registering new template failed.' + #13#10 + 'Reason : %s';
+  ERR_CLONE_TEMPLATE = 'Cloning template failed.' + #13#10 + 'Reason : %s';
   ERR_ON_GENERATING = 'Error occured while generating document.' + #13#10 + 'Reason : %s';
   MSG_GENERATION_COMPLETE = 'Document generation is done.';
   ERR_CANNOT_CREATE_NEW_FOLDER = 'New folder cannot be created.';
@@ -703,24 +704,34 @@ end;
 procedure TPieForm.RegisterTemplate;
 var
   TemplateRegForm: TTemplateRegisterForm;
+  TemplateRegistrationFinished: Boolean;
 begin
   TemplateRegForm := TTemplateRegisterForm.Create(Self);
+  TemplateRegistrationFinished := False;
   try
     TemplateRegForm.StarUMLApp := FStarUMLApp;
     TemplateRegForm.DirectMDAProcessor := DirectMDAProcessor;
-    if TemplateRegForm.Execute then begin
-      try
-        DirectMDAProcessor.AddGenerationUnit(TemplateRegForm.GenerationUnit);
-        DirectMDAProcessor.SaveGenerationUnit(TemplateRegForm.GenerationUnit, TemplateRegForm.GenerationUnitPath);
-        Assert(DirectMDAProcessor.DefaultBatch.HasTask(TemplateRegForm.GenerationUnit));
-        UpdateTasksGrid;
-        BatchPageControl.ActivePage := MainTabSheet;
-      except
-        on E: Exception do begin
-          ErrorMessage(Format(ERR_REGISTER_TEMPLATE, [E.Message]));
+
+    while not TemplateRegistrationFinished do begin
+      if TemplateRegForm.Execute then begin
+        try
+          DirectMDAProcessor.AddGenerationUnit(TemplateRegForm.GenerationUnit);
+          DirectMDAProcessor.SaveGenerationUnit(TemplateRegForm.GenerationUnit, TemplateRegForm.GenerationUnitPath);
+          Assert(DirectMDAProcessor.DefaultBatch.HasTask(TemplateRegForm.GenerationUnit));
+          UpdateTasksGrid;
+          BatchPageControl.ActivePage := MainTabSheet;
+          TemplateRegistrationFinished := True;
+        except
+          on E: Exception do begin
+            ErrorMessage(Format(ERR_REGISTER_TEMPLATE, [E.Message]));
+            TemplateRegistrationFinished := False;
+          end;
         end;
-      end;
-    end;
+      end
+      else
+        TemplateRegistrationFinished := True;
+    end; // of while
+
   finally
     TemplateRegForm.Free;
   end;
@@ -1141,6 +1152,12 @@ begin
     TemplateSelectionPage.EnabledButtons := TemplateSelectionPage.EnabledButtons + [bkNext]
   else
     TemplateSelectionPage.EnabledButtons := TemplateSelectionPage.EnabledButtons - [bkNext];
+
+  // Remove description if no task is currently selected
+  if TasksGrid.SelectedRow < 0 then
+    GenerationUnitDescMemo.Clear;
+
+
 end;
 
 procedure TPieForm.ValidateOutDirectorySelectionPageNextButton;
@@ -1202,12 +1219,14 @@ begin
               GenUnit.Name := TemplateName;
               TgtPath := Path + '\' + ExtractFileName(SrcPath);
               GenUnit.Path := TgtPath;
-              Serializer.WriteGenerationUnit(GenUnit, TgtPath);
               DirectMDAProcessor.AddGenerationUnit(GenUnit);
+              Serializer.WriteGenerationUnit(GenUnit, TgtPath);
               Assert(DirectMDAProcessor.DefaultBatch.HasTask(GenUnit));
-            except
+            except on E:Exception do begin
+              ErrorMessage(Format(ERR_CLONE_TEMPLATE, [E.Message]));
               GenUnit.Free;
             end;
+          end;
           finally
             Serializer.Free;
           end;

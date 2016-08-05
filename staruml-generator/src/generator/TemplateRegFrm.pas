@@ -617,28 +617,27 @@ begin
     raise EIntializationException.Create(ERR_NOT_INITIALIZED);
   SetupInspector;
 
-  if GenerationUnitPath = '' then
-    FGenerationUnit := PGenerationUnit.Create
-  else begin
-    Serializer := PGenerationUnitSerializer.Create;
-    try
-      FGenerationUnit := PGenerationUnit.Create;
+  if not Assigned(FGenerationUnit) then begin // Creating a new gen unit or keep existing
+    FGenerationUnit := PGenerationUnit.Create;
+    if GenerationUnitPath <> '' then begin // There exists a saved one
+      Serializer := PGenerationUnitSerializer.Create;
       try
         Serializer.ReadGenerationUnit(FGenerationUnit, GenerationUnitPath);
-      except
-        FGenerationUnit.Free;
+      finally
+        Serializer.Free;
       end;
-    finally
-      Serializer.Free;
     end;
   end;
 
   try
+    // Set calculated fields
     FGenerationUnit.Date := DateToStr(Date);
     ParametersRow.Value := GetParametersString;
     AttachFilesRow.Value := GetAttachFilesString;
     ProfilesRow.Value := GetProfilesString;
     PreviewsRow.Value := GetPreviewsString;
+
+    // Execute dialog
     Accepted := (ShowModal = mrOk);
   except
     Accepted := False;
