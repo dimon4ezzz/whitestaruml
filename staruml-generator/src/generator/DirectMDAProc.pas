@@ -96,8 +96,10 @@ type
   PBatchList = TList<PBatch>;
   // TGeneratorProcessor
   TGeneratorProcessor = class(TAutoObject, IGeneratorProcessor)
+  private type
+  TGenerationUnitList = TObjectList<PGenerationUnit>;
   private
-    FGenerationUnits: TList;
+    FGenerationUnits: TGenerationUnitList;
     FBatches: PBatchList;
     FDefaultBatch: PBatch;
     FTargetDir: string;
@@ -137,7 +139,7 @@ type
     procedure HandleLog(Sender: TObject; Msg: string; MsgKind: LogMessageKind);
     procedure HandleProgress(Sender: TObject; Position, Max: Integer);
     procedure HandleNotify(Sender: TObject; Msg: string);
-    { miscellonouse }
+    { miscellaneous }
     procedure Log(Msg: string; MsgKind: LogMessageKind);
     procedure Progress(Position, Max: Integer);
     procedure Notify(Msg: string);
@@ -222,7 +224,7 @@ end;
 procedure TGeneratorProcessor.Initialize;
 begin
   inherited;
-  FGenerationUnits := TList.Create;
+  FGenerationUnits := TGenerationUnitList.Create;
   FBatches := PBatchList.Create;
   FDefaultBatch := PBatch.Create;
   FDefaultBatch.Name := BATCH_DEFAULT;
@@ -248,11 +250,7 @@ begin
 end;
 
 procedure TGeneratorProcessor.ClearGenerationUnits;
-var
-  I: Integer;
 begin
-  for I := FGenerationUnits.Count - 1 downto 0 do
-    PGenerationUnit(FGenerationUnits.Items[I]).Free;
   FGenerationUnits.Clear;
 end;
 
@@ -299,8 +297,17 @@ begin
 end;
 
 procedure TGeneratorProcessor.AddGenerationUnit(AGenerationUnit: PGenerationUnit);
+var
+  ExistingGenUnit: PGenerationUnit;
 begin
   if FGenerationUnits.IndexOf(AGenerationUnit) = -1 then begin
+
+    // Look for confilicting name/group cases
+    for ExistingGenUnit in FGenerationUnits do begin
+      if (ExistingGenUnit.Name = AGenerationUnit.Name) and (ExistingGenUnit.Group = AGenerationUnit.Group) then
+        raise Exception.Create(C_ERR_DUPLICATE_TEMPLATE_NAME);
+    end;
+
     FGenerationUnits.Add(AGenerationUnit);
     NotifyAddingGenerationUnit(AGenerationUnit);
   end;
@@ -309,9 +316,10 @@ end;
 procedure TGeneratorProcessor.DeleteGenerationUnit(AGenerationUnit: PGenerationUnit);
 begin
   Assert(FGenerationUnits.IndexOf(AGenerationUnit) > -1);
-  FGenerationUnits.Remove(AGenerationUnit);
   NotifyDeletingGenerationUnit(AGenerationUnit);
-  AGenerationUnit.Free;
+  FGenerationUnits.Remove(AGenerationUnit);
+
+  //AGenerationUnit.Free;
 end;
 
 

@@ -190,6 +190,8 @@ const
   C_ERR_TRIAL_EDITION = 'Trial date is expired.';
   C_FIELD_CANNOT_BE_EMPTY = 'Field cannot be empty';
   C_FIELD_AUTO_DERIVE = 'Leave empty to auto derive file name from template name';
+  C_ERR_DUPLICATE_TEMPLATE_NAME = 'Template with the same name/group already exists';
+
 
   GENERATOR_ENGINE_LOCATION = 'modules\staruml-generator';
 

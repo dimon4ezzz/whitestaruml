@@ -79,8 +79,6 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Height = -15
       Header.Subtitle.Font.Name = 'Tahoma'
       Header.Subtitle.Font.Style = []
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Image1: TImage
         Left = 0
         Top = 70
@@ -444,10 +442,6 @@ object PieForm: TPieForm
         OnChange = BatchPageControlChange
         object MainTabSheet: TTabSheet
           Caption = 'List of templates'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object GenerationUnitDescLabel: TLabel
             Left = 8
             Top = 274

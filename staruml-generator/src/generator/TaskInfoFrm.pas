@@ -51,11 +51,11 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls,  ExtCtrls, ImgList, ComCtrls,
   WhiteStarUML_TLB, Generics.Collections, DirectMDAObjects,
-  NxScrollControl, NxInspector, NxPropertyItems, NxPropertyItemClasses;
+  NxInspectorNode6, NxControls6, NxInspector6;
 
 const
   TXT_SELECT_DIR = 'Select Directory';
-  TXT_NONE = '¾øÀ½';
+  TXT_NONE = 'No description available';
   ERR_CANNOT_RUN_FILE = 'Selected file can''t be excuted.'
     + #13#10 + 'Filename: %s';
 
@@ -77,18 +77,18 @@ type
   PParameterRow = class
   private
     FParameter: PParameter;
-    FInspectorRow: TNxPropertyItem;
+    FInspectorRow: TNxInspectorNode6;
   public
-    constructor Create(AParameter: PParameter; AInspectorRow: TNxPropertyItem);
+    constructor Create(AParameter: PParameter; AInspectorRow: TNxInspectorNode6);
     property Parameter: PParameter read FParameter;
-    property InspectorRow: TNxPropertyItem read FInspectorRow;
+    property InspectorRow: TNxInspectorNode6 read FInspectorRow;
   end;
 
   // TTaskInformationForm
   TTaskInformationForm = class(TForm)
     CloseButton: TButton;
     DocTypeImageList: TImageList;
-    Panel1: TPanel;
+    HeaderPanel: TPanel;
     DocTypeImage: TImage;
     GenUnitNameLabel: TLabel;
     TaskPageControl: TPageControl;
@@ -108,7 +108,6 @@ type
     CaptionSampleLabel: TLabel;
     CaptionValidatorLabel: TLabel;
     LowerBevel: TBevel;
-    //ParameterInspector: TdxInspector;
     SetAsDefaultButton: TButton;
     ParameterLabel: TLabel;
     PreviewLabel: TLabel;
@@ -130,9 +129,9 @@ type
     OpenDialog: TOpenDialog;
     AttachFileListBox: TListBox;
     PathLabel: TLabel;
-    Shape1: TShape;
-    ParameterInspector: TNextInspector;
+    HeaderShape: TShape;
     FolderImageList: TImageList;
+    ParameterInspector: TNextInspector6;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure CloseButtonClick(Sender: TObject);
@@ -140,12 +139,9 @@ type
     procedure SampleLabelClick(Sender: TObject);
     procedure ValidatorLabelClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure HandleInspectorEdited(Sender: TObject; Row: TNxPropertyItem; Value: WideString);
-    //procedure ParameterInspectorChange(Sender: TObject; Item: TNxPropertyItem;
-    //  Value: WideString);
 
   private type
-    ParameterRowsList = TList<PParameterRow>;
+    ParameterRowsList = TObjectList<PParameterRow>;
   private
     FStarUMLApp: IStarUMLApplication;
     FTask: PTask;
@@ -156,15 +152,17 @@ type
     function Initialized: Boolean;
     { parameter handling methods }
     procedure Clear;
-    function FindParameterRow(InspectorRow: TNxPropertyItem): PParameterRow;
-    procedure AddParameterRow(AParameterInspector: TNextInspector; ParentRow: TNxPropertyItem; AParameter: PParameter);
+    function FindParameterRow(InspectorRow: TNxInspectorNode6): PParameterRow;
+    procedure AddParameterRow(AParameterInspector: TNextInspector6;
+      ParentRow: TNxInspectorNode6; AParameter: PParameter);
     procedure SetupParameterRows;
     procedure SetSelectedParameterAsDefault;
-    procedure UpdateInspectorRow(InspectorRow: TNxPropertyItem; Value: string);
+    procedure UpdateInspectorRow(InspectorRow: TNxInspectorNode6; Value: string);
     { row handling methods }
-    procedure HandleElementTypeRowButtonClicked(Sender: TNxPropertyItem);
-    procedure HandleFileNameTypeRowButtonClicked(Sender: TNxPropertyItem);
-    procedure HandlePathNameTypeRowButtonClicked(Sender: TNxPropertyItem);
+    procedure HandleElementTypeRowButtonClicked(Sender: TObject);
+    procedure HandleFileNameTypeRowButtonClicked(Sender: TObject);
+    procedure HandlePathNameTypeRowButtonClicked(Sender: TObject);
+    procedure HandleInspectorNodeValueChanged(Sender: TNxInspectorNode6);
     { task information presentation methods }
     function GetHeaderImageIndex(AGenerationUnit: PGenerationUnit): Integer;
     procedure SetupHeader;
@@ -187,12 +185,12 @@ implementation
 {$R *.dfm}
 
 uses
-  Utilities, Symbols, NxEdit, PieFrm, PreviewFrm;
+  Utilities, Symbols, NxEdit, PieFrm, PreviewFrm, NxEdit6, NxInspectorNodeClasses6;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PParameterRow
 
-constructor PParameterRow.Create(AParameter: PParameter; AInspectorRow: TNxPropertyItem);
+constructor PParameterRow.Create(AParameter: PParameter; AInspectorRow: TNxInspectorNode6);
 begin
   FParameter := AParameter;
   FInspectorRow := AInspectorRow;
@@ -201,108 +199,188 @@ end;
 // PParameterRow
 ////////////////////////////////////////////////////////////////////////////////
 
+
 ////////////////////////////////////////////////////////////////////////////////
 // TTaskInformationForm
+
+
+//////////////////////////////////////////////////////////
+// General form management
+
+procedure TTaskInformationForm.FormCreate(Sender: TObject);
+begin
+  Initialize;
+end;
+
+procedure TTaskInformationForm.FormDestroy(Sender: TObject);
+begin
+  Finalize;
+end;
+
+procedure TTaskInformationForm.CloseButtonClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TTaskInformationForm.FormShow(Sender: TObject);
+var
+  Path: String;
+  L: Integer;
+begin
+  Path := Task.GenerationUnit.Path;
+  L := Length(GetDirectMDAPath);
+  PathLabel.Caption := Copy(Path, L+2, Length(Path)-L-1);
+end;
 
 procedure TTaskInformationForm.Initialize;
 begin
   ParameterRows := ParameterRowsList.Create;
   FTask := nil;
   FStarUMLApp := nil;
-  //ParameterInspector.OnEdit := HandleInspectorEdited;
 end;
 
 procedure TTaskInformationForm.Finalize;
 begin
   Clear;
-  ParameterRows.Clear;
+  ParameterRows.Free;
 end;
 
 function TTaskInformationForm.Initialized: Boolean;
 begin
-  Result := (FStarUMLApp <> nil) and (FTask <> nil);
+  Result := Assigned(FStarUMLApp) and Assigned (FTask);
 end;
 
 procedure TTaskInformationForm.Clear;
-var
-  I: Integer;
 begin
-  for I := ParameterRows.Count - 1 downto 0 do
-    PParameterRow(ParameterRows.Items[I]).Free;
   ParameterRows.Clear;
-  ParameterInspector.Items.Clear;
 end;
 
-function TTaskInformationForm.FindParameterRow(InspectorRow: TNxPropertyItem): PParameterRow;
+procedure TTaskInformationForm.Execute(ActivateParameters: Boolean = False);
+begin
+  if not Initialized then
+    raise EIntializationException.Create(ERR_NOT_INITIALIZED);
+  Clear;
+  SetupHeader;
+  ShowTaskInformation;
+  SetupParameterRows;
+  if ActivateParameters then
+    TaskPageControl.ActivePage := ParameterTabSheet
+  else
+    TaskPageControl.ActivePage := PropertyTabSheet;
+  ShowModal;
+end;
+
+procedure TTaskInformationForm.ShowTaskInformation;
+var
+  GenUnit: PGenerationUnit;
+begin
+  GenUnit := FTask.GenerationUnit;
+  GroupLabel.Caption := LabeledStr(GenUnit.Group);
+  CategoryLabel.Caption := LabeledStr(GenUnit.Category);
+  DocTypeLabel.Caption := LabeledStr(DocumentTypeKindToString(GenUnit.DocumentType));
+  FormatLabel.Caption := LabeledStr(GenUnit.Format);
+  VersionLabel.Caption := LabeledStr(GenUnit.Version);
+  TranslatorTypeLabel.Caption := LabeledStr(TranslatorTypeKindToString(GenUnit.TranslatorType));
+  TranslatorNameLabel.Caption := LabeledStr(GenUnit.TranslatorName);
+  ProfilesLabel.Caption := LabeledStr(GetProfilesString(GenUnit));
+  ApproachLabel.Caption := LabeledStr(GenUnit.Approach);
+  SampleLabel.Caption := LabeledStr(ExtractFileName(GenUnit.Sample));
+  if GenUnit.Sample = '' then
+    SetLabelAsNormal(SampleLabel)
+  else
+    SetLabelAsLinked(SampleLabel, RegulatedPath(GenUnit.Sample, GenUnit.Path));
+  ValidatorLabel.Caption := LabeledStr(ExtractFileName(GenUnit.Validator));
+  if GenUnit.Validator = '' then
+    SetLabelAsNormal(ValidatorLabel)
+  else
+    SetLabelAsLinked(ValidatorLabel, RegulatedPath(GenUnit.Validator, GenUnit.Path));
+  if GenUnit.Description = '' then
+    DescriptionMemo.Lines.Text := TXT_NONE
+  else
+    DescriptionMemo.Lines.Text := GenUnit.Description;
+
+  // NOT WORKING AND HIDDEN!
+  //ShowPreviews;
+  //ShowAttachFiles;
+end;
+
+// General form management
+//////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////
+// Handling Parameters page
+
+function TTaskInformationForm.FindParameterRow(InspectorRow: TNxInspectorNode6): PParameterRow;
 var
   P: PParameterRow;
 begin
   Result := nil;
-  for P in ParameterRows do
-    if P.InspectorRow = InspectorRow then begin
-      Result := P;
-      Exit;
-    end;
+  if Assigned(InspectorRow) then begin
+    for P in ParameterRows do
+      if P.InspectorRow = InspectorRow then begin
+        Result := P;
+        Exit;
+      end;
+  end;
 end;
 
-procedure TTaskInformationForm.AddParameterRow(AParameterInspector: TNextInspector; ParentRow: TNxPropertyItem; AParameter: PParameter);
+procedure TTaskInformationForm.AddParameterRow(AParameterInspector: TNextInspector6; ParentRow: TNxInspectorNode6; AParameter: PParameter);
 var
-  Row: TNxPropertyItem;
+  Row: TNxInspectorNode6;
+  ButtonEditRow: TNxButtonInspectorNode6;
   P: PParameterRow;
 begin
   Row := nil;
+  ButtonEditRow := nil;
   case AParameter.Type_ of
     ptString:
       begin
-        Row := AParameterInspector.Items.AddChild(ParentRow, TNxTextItem, AParameter.Name);
-        Row.AsString := AParameter.Value;
+        Row := AParameterInspector.Nodes.Add(ParentRow, TNxInspectorNode6);
       end;
     ptInteger:
       begin
-        Row := AParameterInspector.Items.AddChild(ParentRow, TNxTextItem, AParameter.Name);
-        Row.AsString := AParameter.Value;
+        Row := AParameterInspector.Nodes.Add(ParentRow, TNxInspectorNode6);
       end;
     ptBoolean:
       begin
-        Row := AParameterInspector.Items.AddChild(ParentRow, TNxCheckBoxItem, AParameter.Name);
-        Row.AsBoolean := StrToBool(AParameter.Value);
+        Row := AParameterInspector.Nodes.Add(ParentRow, TNxCheckBoxInspectorNode6);
       end;
     ptElement:
       begin
-        Row := AParameterInspector.Items.AddChild(ParentRow, TNxButtonItem, AParameter.Name);
-        Row.AsString := AParameter.Value;
-
-        //(Row as TNxButtonItem).EditOptions := [epDisableTyping];
-        (Row as TNxButtonItem).OnButtonClick := HandleElementTypeRowButtonClicked;
-
+        ButtonEditRow := AParameterInspector.Nodes.Add(ParentRow, TNxButtonInspectorNode6)
+          as TNxButtonInspectorNode6;
+        ButtonEditRow.OnButtonClick := HandleElementTypeRowButtonClicked;
       end;
     ptFileName:
       begin
-        Row := AParameterInspector.Items.AddChild(ParentRow, TNxButtonItem, AParameter.Name);
-        Row.AsString := AParameter.Value;
-
-        //(Row as TNxButtonItem).EditOptions := [epDisableTyping];
-        (Row as TNxButtonItem).OnButtonClick := HandleFileNameTypeRowButtonClicked;
-        FolderImageList.GetBitmap(0,(Row as TNxButtonItem).Glyph);
+        ButtonEditRow := AParameterInspector.Nodes.Add(ParentRow, TNxButtonInspectorNode6)
+          as TNxButtonInspectorNode6;
+        ButtonEditRow.OnButtonClick := HandleFileNameTypeRowButtonClicked;
+        FolderImageList.GetBitmap(0,ButtonEditRow.ButtonGlyph.Bitmap);
        end;
     ptPathName:
       begin
-        Row := AParameterInspector.Items.AddChild(ParentRow, TNxButtonItem, AParameter.Name);
-        Row.AsString := AParameter.Value;
-
-        //(Row as TNxButtonItem).EditOptions := [epDisableTyping];
-        (Row as TNxButtonItem).OnButtonClick := HandlePathNameTypeRowButtonClicked;
-        FolderImageList.GetBitmap(0,(Row as TNxButtonItem).Glyph);
+        ButtonEditRow := AParameterInspector.Nodes.Add(ParentRow, TNxButtonInspectorNode6)
+          as TNxButtonInspectorNode6;
+        ButtonEditRow.OnButtonClick := HandlePathNameTypeRowButtonClicked;
+        FolderImageList.GetBitmap(0,ButtonEditRow.ButtonGlyph.Bitmap);
       end;
     ptDate:
       begin
-        Row := AParameterInspector.Items.AddChild(ParentRow, TNxDateItem, AParameter.Name);
-        Row.AsDateTime := StrToDate(AParameter.Value);
+        Row := AParameterInspector.Nodes.Add(ParentRow, TNxDateInspectorNode6);
       end;
     else
-      assert(False, 'Unexpected case');
+      assert(False, 'Unexpected parameter type');
   end;
-  if Row <> nil then begin
+
+  if Assigned(ButtonEditRow) then
+    Row := ButtonEditRow;
+
+  if Assigned(Row) then begin
+    Row.Caption := AParameter.Name;
+    Row.AsString := AParameter.Value;
+    Row.OnValueChanged := HandleInspectorNodeValueChanged;
     P := PParameterRow.Create(AParameter, Row);
     ParameterRows.Add(P);
   end;
@@ -310,116 +388,114 @@ end;
 
 procedure TTaskInformationForm.SetupParameterRows;
 var
-  GenUnitNameRow: TNxPropertyItem;
+  GenUnitNameRow: TNxInspectorNode6;
   I: Integer;
 begin
   Assert(FTask <> nil);
-  GenUnitNameRow := ParameterInspector.Items.AddChild(nil, TNxTextItem, FTask.GenerationUnit.Name);
-
+  GenUnitNameRow := ParameterInspector.Nodes.Add(nil, TNxInspectorNode6);
+  GenUnitNameRow.Caption := FTask.GenerationUnit.Name;
+  GenUnitNameRow.ReadOnly := True;
   for I := 0 to FTask.ParameterCount - 1 do
     AddParameterRow(ParameterInspector, GenUnitNameRow, FTask.Parameters[I]);
 end;
 
 procedure TTaskInformationForm.SetSelectedParameterAsDefault;
 var
-  Row: TNxPropertyItem;
+  Row: TNxInspectorNode6;
   P: PParameterRow;
   Def: PParameter;
 begin
-  if ParameterInspector.SelectedItem <> nil then begin
-    Row := ParameterInspector.SelectedItem;
-    P := FindParameterRow(Row);
-    if P <> nil then begin
-      Def := FTask.GenerationUnit.FindParameter(P.Parameter.Name);
-      if Def <> nil then begin
-        P.Parameter.Value := Def.Value;
-        UpdateInspectorRow(Row, Def.Value);
-      end;
+  Row := ParameterInspector.SelectedNode;
+  P := FindParameterRow(Row);
+  if Assigned(P) then begin
+    Def := FTask.GenerationUnit.FindParameter(P.Parameter.Name);
+    if Assigned(Def) then begin
+      P.Parameter.Value := Def.Value;
+      UpdateInspectorRow(Row, Def.Value);
     end;
   end;
 end;
 
-procedure TTaskInformationForm.UpdateInspectorRow(InspectorRow: TNxPropertyItem; Value: string);
+procedure TTaskInformationForm.UpdateInspectorRow(InspectorRow: TNxInspectorNode6; Value: string);
 begin
-  if InspectorRow is TNxTextItem then
-    InspectorRow.AsString := Value
-  else if InspectorRow is TNxCheckBoxItem then
-    InspectorRow.AsBoolean := StrToBool(Value)
+  InspectorRow.AsString := Value
 end;
 
-procedure TTaskInformationForm.HandleInspectorEdited(Sender: TObject; Row: TNxPropertyItem; Value: WideString);
+procedure TTaskInformationForm.HandleInspectorNodeValueChanged(
+  Sender: TNxInspectorNode6);
 var
   P: PParameterRow;
 begin
-  P := FindParameterRow(Row);
-  if P <> nil then begin
-    if Row is TNxTextItem then
-      P.Parameter.Value := Row.AsString
-    else if Row is TNxCheckBoxItem then
-      P.Parameter.Value := BoolToStr(Row.AsBoolean)
-     else if Row is TNxDateItem then
-      P.Parameter.Value := DateToStr(Row.AsDateTime)
-     else
-      assert(False, 'Unexpected case')
-  end;
+  P := FindParameterRow(Sender);
+  if Assigned(P) then
+    P.Parameter.Value := Sender.AsString;
+
 end;
 
-procedure TTaskInformationForm.HandleElementTypeRowButtonClicked(Sender: TNxPropertyItem);
+procedure TTaskInformationForm.HandleElementTypeRowButtonClicked(Sender: TObject);
 var
   P: PParameterRow;
+  ButtonEdit: TNxButtonEdit6;
   M: IModel;
   I: Integer;
 begin
-  if Sender is TNxButtonItem then begin
-    P := FindParameterRow(Sender);
-    Assert(P <> nil);
-    for I := 0 to Length(DEFAULT_FILTERINGSET) - 1 do
-      FStarUMLApp.ElementSelector.AddSelectableModel(DEFAULT_FILTERINGSET[I]);
-    if FStarUMLApp.ElementSelector.Execute(P.Parameter.Name) then begin
-      M := FStarUMLApp.ElementSelector.GetSelectedModel;
-      if M = nil then
-        P.Parameter.Value := ''
-      else
-        P.Parameter.Value := M.Pathname;
-      Sender.AsString := P.Parameter.Value;
-    end;
+  ButtonEdit := Sender as TNxButtonEdit6;
+  P := FindParameterRow(ParameterInspector.SelectedNode);
+  Assert(P <> nil);
+  for I := 0 to Length(DEFAULT_FILTERINGSET) - 1 do
+    FStarUMLApp.ElementSelector.AddSelectableModel(DEFAULT_FILTERINGSET[I]);
+  if FStarUMLApp.ElementSelector.Execute(P.Parameter.Name) then begin
+    M := FStarUMLApp.ElementSelector.GetSelectedModel;
+    if M = nil then
+      P.Parameter.Value := ''
+    else
+      P.Parameter.Value := M.Pathname;
+    ButtonEdit.AsString := P.Parameter.Value;
   end;
 end;
 
-procedure TTaskInformationForm.HandleFileNameTypeRowButtonClicked(Sender: TNxPropertyItem);
+procedure TTaskInformationForm.HandleFileNameTypeRowButtonClicked(Sender: TObject);
 var
   P: PParameterRow;
+  ButtonEdit: TNxButtonEdit6;
 begin
-  if Sender is TNxButtonItem then begin
-    P := FindParameterRow(Sender);
+  ButtonEdit := Sender as TNxButtonEdit6;
+    P := FindParameterRow(ParameterInspector.SelectedNode);
     Assert(P <> nil);
     if OpenDialog.Execute then begin
       P.Parameter.Value := OpenDialog.FileName;
-      Sender.AsString := P.Parameter.Value;
+      ButtonEdit.AsString := P.Parameter.Value;
     end;
-  end;
 end;
 
-procedure TTaskInformationForm.HandlePathNameTypeRowButtonClicked(Sender: TNxPropertyItem);
+procedure TTaskInformationForm.HandlePathNameTypeRowButtonClicked(Sender: TObject);
 var
   DirDialog: PDirectoryDialog;
   P: PParameterRow;
+  ButtonEdit: TNxButtonEdit6;
 begin
-  if Sender is TNxButtonItem then begin
-    P := FindParameterRow(Sender);
-    Assert(P <> nil);
-    DirDialog := PDirectoryDialog.Create(Self);
-    try
-      DirDialog.Title := TXT_SELECT_DIR;
-      if DirDialog.Execute then begin
-        P.Parameter.Value := DirDialog.DirName;
-        Sender.AsString := P.Parameter.Value;
-      end;
-    finally
-      DirDialog.Free;
+  ButtonEdit := Sender as TNxButtonEdit6;
+
+  P := FindParameterRow(ParameterInspector.SelectedNode);
+  Assert(P <> nil);
+  DirDialog := PDirectoryDialog.Create(Self);
+  try
+    DirDialog.Title := TXT_SELECT_DIR;
+    if DirDialog.Execute then begin
+      P.Parameter.Value := DirDialog.DirName;
+      ButtonEdit.AsString := P.Parameter.Value;
     end;
+  finally
+    DirDialog.Free;
   end;
 end;
+
+// Handling Parameters page
+//////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////
+// Handling Header panel
 
 function TTaskInformationForm.GetHeaderImageIndex(AGenerationUnit: PGenerationUnit): Integer;
 begin
@@ -449,6 +525,13 @@ begin
     Img.Free;
   end;
 end;
+
+//////////////////////////////////////////////////////////
+// Handling Header panel
+
+
+//////////////////////////////////////////////////////////
+// Handling Preview page - NOT WORKING AND HIDDEN!
 
 procedure TTaskInformationForm.AutoSizeImage(AImage: TImage);
 var
@@ -516,6 +599,13 @@ begin
     AttachFileListBox.Items.Add(RegulatedPath(GenUnit.AttachFiles[I], GenUnit.Path));
 end;
 
+// Handling Preview page
+//////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////
+// Handling Properties page
+
 function TTaskInformationForm.LabeledStr(Value: string): string;
 begin
   if Value = '' then
@@ -548,73 +638,9 @@ begin
       on E: Exception do
         ErrorMessage(Format(ERR_CANNOT_RUN_FILE, [ALabel.Hint]));
     end;  
-  end;    
+  end;
 end;
 
-procedure TTaskInformationForm.ShowTaskInformation;
-var
-  GenUnit: PGenerationUnit;
-begin
-  GenUnit := FTask.GenerationUnit;
-  GroupLabel.Caption := LabeledStr(GenUnit.Group);
-  CategoryLabel.Caption := LabeledStr(GenUnit.Category);
-  DocTypeLabel.Caption := LabeledStr(DocumentTypeKindToString(GenUnit.DocumentType));
-  FormatLabel.Caption := LabeledStr(GenUnit.Format);
-  VersionLabel.Caption := LabeledStr(GenUnit.Version);
-  TranslatorTypeLabel.Caption := LabeledStr(TranslatorTypeKindToString(GenUnit.TranslatorType));
-  TranslatorNameLabel.Caption := LabeledStr(GenUnit.TranslatorName);
-  ProfilesLabel.Caption := LabeledStr(GetProfilesString(GenUnit));
-  ApproachLabel.Caption := LabeledStr(GenUnit.Approach);
-  SampleLabel.Caption := LabeledStr(ExtractFileName(GenUnit.Sample));
-  if GenUnit.Sample = '' then
-    SetLabelAsNormal(SampleLabel)
-  else
-    SetLabelAsLinked(SampleLabel, RegulatedPath(GenUnit.Sample, GenUnit.Path));
-  ValidatorLabel.Caption := LabeledStr(ExtractFileName(GenUnit.Validator));
-  if GenUnit.Validator = '' then
-    SetLabelAsNormal(ValidatorLabel)
-  else
-    SetLabelAsLinked(ValidatorLabel, RegulatedPath(GenUnit.Validator, GenUnit.Path));
-  if GenUnit.Description = '' then
-    DescriptionMemo.Lines.Text := TXT_NONE
-  else
-    DescriptionMemo.Lines.Text := GenUnit.Description;
-  ShowPreviews;
-  ShowAttachFiles;
-end;
-
-procedure TTaskInformationForm.Execute(ActivateParameters: Boolean = False);
-begin
-  if not Initialized then
-    raise EIntializationException.Create(ERR_NOT_INITIALIZED);
-  Clear;
-  SetupHeader;
-  ShowTaskInformation;
-  SetupParameterRows;
-  if ActivateParameters then
-    TaskPageControl.ActivePage := ParameterTabSheet
-  else
-    TaskPageControl.ActivePage := PropertyTabSheet;
-  ShowModal;
-end;
-
-// TTaskInformationForm
-////////////////////////////////////////////////////////////////////////////////
-
-procedure TTaskInformationForm.FormCreate(Sender: TObject);
-begin
-  Initialize;
-end;
-
-procedure TTaskInformationForm.FormDestroy(Sender: TObject);
-begin
-  Finalize;
-end;
-
-procedure TTaskInformationForm.CloseButtonClick(Sender: TObject);
-begin
-  Close;
-end;
 
 procedure TTaskInformationForm.SetAsDefaultButtonClick(Sender: TObject);
 begin
@@ -633,14 +659,12 @@ begin
     ExecuteLabel(Sender as TLabel);
 end;
 
-procedure TTaskInformationForm.FormShow(Sender: TObject);
-var
-  Path: String;
-  L: Integer;
-begin
-  Path := Task.GenerationUnit.Path;
-  L := Length(GetDirectMDAPath);
-  PathLabel.Caption := Copy(Path, L+2, Length(Path)-L-1);
-end;
+// Handling Properties page
+//////////////////////////////////////////////////////////
+
+
+// TTaskInformationForm
+////////////////////////////////////////////////////////////////////////////////
+
 
 end.
