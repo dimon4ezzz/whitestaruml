@@ -12,6 +12,7 @@ object TaskInformationForm: TTaskInformationForm
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
@@ -22,13 +23,11 @@ object TaskInformationForm: TTaskInformationForm
     Top = 437
     Width = 90
     Height = 23
-    Cancel = True
     Caption = '&Close'
-    Default = True
     TabOrder = 0
     OnClick = CloseButtonClick
   end
-  object Panel1: TPanel
+  object HeaderPanel: TPanel
     Left = 0
     Top = 0
     Width = 446
@@ -38,7 +37,7 @@ object TaskInformationForm: TTaskInformationForm
     BevelOuter = bvNone
     Color = clWhite
     TabOrder = 1
-    object Shape1: TShape
+    object HeaderShape: TShape
       Left = 1
       Top = 1
       Width = 444
@@ -96,6 +95,10 @@ object TaskInformationForm: TTaskInformationForm
     TabOrder = 2
     object PropertyTabSheet: TTabSheet
       Caption = 'Properties'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object UpperBevel: TBevel
         Left = 8
         Top = 47
@@ -293,6 +296,10 @@ object TaskInformationForm: TTaskInformationForm
       Caption = 'Preview'
       ImageIndex = 1
       TabVisible = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object PreviewLabel: TLabel
         Left = 3
         Top = 100
@@ -333,6 +340,10 @@ object TaskInformationForm: TTaskInformationForm
     object ParameterTabSheet: TTabSheet
       Caption = 'Parameters'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object ParameterLabel: TLabel
         Left = 8
         Top = 8
@@ -349,20 +360,15 @@ object TaskInformationForm: TTaskInformationForm
         TabOrder = 0
         OnClick = SetAsDefaultButtonClick
       end
-      object ParameterInspector: TNextInspector
+      object ParameterInspector: TNextInspector6
         Left = 3
-        Top = 26
-        Width = 409
-        Height = 248
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        SplitterPosition = 180
+        Top = 28
+        Width = 423
+        Height = 246
         TabOrder = 1
-        OnChange = HandleInspectorEdited
+        TabStop = True
+        BorderSize = 1
+        SplitterPosition = 150
       end
     end
   end
