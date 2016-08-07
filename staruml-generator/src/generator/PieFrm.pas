@@ -55,22 +55,24 @@ uses
   JvWizard, ComCtrls, Vcl.ImgList, ExtCtrls,
   Menus, JvExControls, JvComponent,
   DirectMDAProc, DirectMDAObjects, BatchFrm, WhiteStarUML_TLB, FlatPanel,
-  GeneratorScriptHandler, WSGenerator_TLB;
+  GeneratorScriptHandler, WSGenerator_TLB, NxGridView6, NxColumns6, NxControls6,
+  NxCustomGrid6, NxVirtualGrid6, NxGrid6;
 
 
 const
   ERR_ERROR_ON_PROCESSOR = 'Error occured while executing document translator.'
         + #13#10 + 'Reason : %s';
-  TXT_ALL_GROUP = '(all group)';
-  TXT_ALL_CATEGORY = '(all category)';
-  TXT_ALL_DOCTYPE = '(all doc. type)';
-  TXT_ALL_FORMAT = '(all format)';
+  TXT_ALL_GROUP = '(all groups)';
+  TXT_ALL_CATEGORY = '(all categories)';
+  TXT_ALL_DOCTYPE = '(all doc. types)';
+  TXT_ALL_FORMAT = '(all formats)';
   TXT_WAITING = 'Standing by...';
   ERR_CANNOT_FOUND_TDF = 'Template definition file not found. (%s)';
   ERR_FAILED_TO_REGISTER_BATCH = 'Registering Batch failed.' + #13#10 + 'Reason : %s';
   ERR_FAILED_TO_ADD_BATCH_ITEM = 'Adding item failed.' + #13#10 + 'Reason : %s';
   ERR_REGISTER_TEMPLATE = 'Registering new template failed.' + #13#10 + 'Reason : %s';
   ERR_CLONE_TEMPLATE = 'Cloning template failed.' + #13#10 + 'Reason : %s';
+  ERR_MODIFY_TEMPLATE = 'Modifying template failed.' + #13#10 + 'Reason : %s';
   ERR_ON_GENERATING = 'Error occured while generating document.' + #13#10 + 'Reason : %s';
   MSG_GENERATION_COMPLETE = 'Document generation is done.';
   ERR_CANNOT_CREATE_NEW_FOLDER = 'New folder cannot be created.';
@@ -132,16 +134,6 @@ type
     CloneTemplateButton: TButton;
     ModifyTemplateButton: TButton;
     OpenTemplateButton: TButton;
-    TasksGrid: TNextGrid;
-    CheckColumn: TNxCheckBoxColumn;
-    GroupColumn: TNxTextColumn;
-    CategoryColumn: TNxTextColumn;
-    PreviewColumn: TNxImageColumn;
-    NameColumn: TNxTextColumn;
-    DocTypeColumn: TNxTextColumn;
-    FormatColumn: TNxTextColumn;
-    TutorialColumn: TNxImageColumn;
-    ParametersColumn: TNxImageColumn;
     OutputDirEdit: TJvDirectoryEdit;
     QuickDirectoriesGroupBox: TGroupBox;
     QuickDirButtonGroup: TButtonGroup;
@@ -169,13 +161,23 @@ type
     ActionRegisterBatch: TAction;
     ActionAddToBatch: TAction;
     TargetPathGroupBox: TGroupBox;
+    TasksGrid: TNextGrid6;
+    CheckColumn: TNxCheckBoxColumn6;
+    GroupColumn: TNxTextColumn6;
+    CategoryColumn: TNxTextColumn6;
+    NameColumn: TNxTextColumn6;
+    DocTypeColumn: TNxTextColumn6;
+    FormatColumn: TNxTextColumn6;
+    PreviewColumn: TNxIconColumn6;
+    TutorialColumn: TNxIconColumn6;
+    TasksGridView: TNxReportGridView6;
+    ParametersColumn: TNxIconColumn6;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TasksGridDblClick(Sender: TObject);
     procedure TasksGridChange(Sender: TObject; ACol, ARow: Integer);
     procedure RegisterTemplateButtonClick(Sender: TObject);
     procedure ExecutionPagePage(Sender: TObject);
-    procedure TasksGridCellClick(Sender: TObject; ACol, ARow: Integer);
     procedure BatchPageControlChange(Sender: TObject);
     procedure CheckAllCheckBoxClick(Sender: TObject);
     procedure GroupComboBoxChange(Sender: TObject);
@@ -211,6 +213,14 @@ type
     procedure ActionRegisterBatchExecute(Sender: TObject);
     procedure ActionAddToBatchExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure TasksGridCellClick(Sender: TObject; ACol, ARow: Integer;
+      Button: TMouseButton);
+    procedure TasksGridCellChange(Sender: TObject; ACol, ARow: Integer);
+  private type
+    TasksColumn = (TasksColumnCheck, TasksColumnGroup, TasksColumnCategory,
+      TasksColumnPreview, TasksColumnName, TasksColumnDocType, TasksColumnFormat,
+      TasksColumnTutorial, TasksColumnParameters);
+
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -225,7 +235,7 @@ type
     procedure Finalize;
     { page set up & finding methods - TemplateSelectionPage }
     function IsFiltered(AGenerationUnit: PGenerationUnit): Boolean;
-    procedure AddTaskRow(ATask: PTask);
+    procedure SetupTaskRow(ATask: PTask);
     function AddBatchPage(ABatch: PBatch): TTabSheet;
     procedure SetupBatches;
     procedure UpdateBatchPage(ABatch: PBatch);
@@ -292,6 +302,12 @@ type
     procedure SelectSpecialFolderDesktop;
     procedure SelectSpecialFolderMyDocs;
     procedure SelectSpecialFolderHome;
+
+    { Helpers}
+    function GetGenerationUnitForSelectedRow: PGenerationUnit;
+    procedure AttachTaskToRow(Task: PTask; RowIdx: Integer);
+    function GetTaskFromRow(RowIdx: Integer): PTask;
+
   public
     property StarUMLApp: IStarUMLApplication read FStarUMLApp write FStarUMLApp;
     function GetScriptHandler: TGeneratorScriptHandler;
@@ -363,28 +379,30 @@ begin
     end;
 end;
 
-procedure TPieForm.AddTaskRow(ATask: PTask);
+procedure TPieForm.SetupTaskRow(ATask: PTask);
 var
   GenUnit: PGenerationUnit;
   R: Integer;
 begin
   GenUnit := ATask.GenerationUnit;
-  if (GenUnit <> nil) and IsFiltered(GenUnit) then begin
+  if Assigned(GenUnit) and IsFiltered(GenUnit) then begin
     TasksGrid.AddRow;
-    R := TasksGrid.RowCount - 1;
-    TasksGrid.CellByName[COL_CHECK, R].AsBoolean := ATask.Selected;
-    TasksGrid.CellByName[COL_GROUP, R].AsString := GenUnit.Group;
-    TasksGrid.CellByName[COL_CATEGORY, R].AsString := GenUnit.Category;
+    R := TasksGrid.LastAddedRow;
+    TasksGrid.CellBy[TasksColumnCheck, R].AsBoolean := ATask.Selected;
+    TasksGrid.CellBy[TasksColumnGroup, R].AsString := GenUnit.Group;
+    TasksGrid.CellBy[TasksColumnCategory, R].AsString := GenUnit.Category;
     if GenUnit.PreviewCount > 0 then
-      TasksGrid.CellByName[COL_PREVIEW, R].AsInteger := 2
+      TasksGrid.CellBy[TasksColumnPreview, R].AsInteger := 2
     else
-      TasksGrid.CellByName[COL_PREVIEW, R].AsInteger := -1;
-    TasksGrid.CellByName[COL_NAME, R].AsString := GenUnit.Name;
-    TasksGrid.CellByName[COL_NAME, R].ObjectReference := ATask;
-    TasksGrid.CellByName[COL_DOC_TYPE, R].AsString := DocumentTypeKindToLocalizedString(GenUnit.DocumentType);
-    TasksGrid.CellByName[COL_FORMAT, R].AsString := GenUnit.Format;
-    TasksGrid.CellByName[COL_TUTORIAL, R].AsInteger := 1;
-    TasksGrid.CellByName[COL_PARAMETERS, R].AsInteger := 0;
+      TasksGrid.CellBy[TasksColumnPreview, R].AsInteger := -1;
+    TasksGrid.CellBy[TasksColumnName, R].AsString := GenUnit.Name;
+    TasksGrid.CellBy[TasksColumnDocType, R].AsString := DocumentTypeKindToLocalizedString(GenUnit.DocumentType);
+    TasksGrid.CellBy[TasksColumnFormat, R].AsString := GenUnit.Format;
+    TasksGrid.CellBy[TasksColumnTutorial, R].AsInteger := 1;
+    TasksGrid.CellBy[TasksColumnParameters, R].AsInteger := 0;
+
+    AttachTaskToRow(ATask,R);
+
   end
   else
     ATask.Selected := False;
@@ -440,7 +458,7 @@ var
 begin
   TasksGrid.ClearRows;
   for I := 0 to DirectMDAProcessor.DefaultBatch.TaskCount - 1 do
-    AddTaskRow(DirectMDAProcessor.DefaultBatch.Task[I]);
+    SetupTaskRow(DirectMDAProcessor.DefaultBatch.Task[I]);
   TasksGrid.Refresh;
 end;
 
@@ -630,7 +648,6 @@ procedure TPieForm.RegisterBatch;
 var
   BatchRegForm: TBatchRegisterForm;
   Batch: PBatch;
-  RefObj: TObject;
   TabSheet: TTabSheet;
   T: PTask;
   I: Integer;
@@ -642,14 +659,15 @@ begin
         Batch := PBatch.Create;
         Batch.Name := BatchRegForm.BatchName;
         Batch.Description := BatchRegForm.BatchDescription;
-        for I := 0 to TasksGrid.RowCount - 1 do
-          if TasksGrid.CellByName[COL_CHECK, I].AsBoolean = True then begin
-            RefObj := TasksGrid.CellByName[COL_NAME, I].ObjectReference;
-            if (RefObj <> nil) and (RefObj is PTask) then begin
-              T := RefObj as PTask;
+
+        for I := 0 to TasksGrid.RowCount - 1 do begin
+          if TasksGrid.CellBy[TasksColumnCheck, I].AsBoolean = True then begin
+            T := GetTaskFromRow(I);
+            if Assigned(T) then
               Batch.AddTask(T.Clone);
-            end;
           end;
+        end;
+
         DirectMDAProcessor.AddBatch(Batch);
         DirectMDAProcessor.SaveBatch(Batch);
         TabSheet := AddBatchPage(Batch);
@@ -717,14 +735,19 @@ begin
         try
           DirectMDAProcessor.AddGenerationUnit(TemplateRegForm.GenerationUnit);
           DirectMDAProcessor.SaveGenerationUnit(TemplateRegForm.GenerationUnit, TemplateRegForm.GenerationUnitPath);
-          Assert(DirectMDAProcessor.DefaultBatch.HasTask(TemplateRegForm.GenerationUnit));
+          Assert(DirectMDAProcessor.DefaultBatch.HasTaskWithGenUnit(TemplateRegForm.GenerationUnit));
           UpdateTasksGrid;
           BatchPageControl.ActivePage := MainTabSheet;
           TemplateRegistrationFinished := True;
         except
+          on E: EInOutError do begin // Error during saving file
+            DirectMDAProcessor.DeleteGenerationUnit(TemplateRegForm.GenerationUnit);
+            ErrorMessage(Format(ERR_REGISTER_TEMPLATE, [E.Message]));
+            TemplateRegistrationFinished := True; // Give up if there is a saving problem
+          end;
           on E: Exception do begin
             ErrorMessage(Format(ERR_REGISTER_TEMPLATE, [E.Message]));
-            TemplateRegistrationFinished := False;
+            TemplateRegistrationFinished := False; // Give a second chance
           end;
         end;
       end
@@ -744,8 +767,10 @@ var
 begin
 
   if TasksGrid.SelectedRow > -1 then begin
-    T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
+    T := GetTaskFromRow(TasksGrid.SelectedRow);
+
     Assert(T <> nil);
+
     TaskInfoForm := TTaskInformationForm.Create(Self);
     try
       TaskInfoForm.StarUMLApp := FStarUMLApp;
@@ -764,8 +789,7 @@ begin
   try
     try
       MessageLabel.Caption := '';
-      // Handling aborting multiple tasks is too complex
-      if NumberOfTasksToRun > 1 then
+      if NumberOfTasksToRun > 1 then // Handling of aborting multiple tasks is too complex
         ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons - [bkCancel];
       DirectMDAProcessor.Execute(SelectedBatch);
     except
@@ -789,8 +813,6 @@ begin
   PieForm := TPieForm(Parameter);
 
   try
-    //ExecuteTasks;
-    //ExecuteTasksInThread;
     PieForm.ExecuteTasks;
 
   finally
@@ -815,9 +837,10 @@ var
   I: Integer;
 begin
   for I := 0 to TasksGrid.RowCount - 1 do begin
-    T := TasksGrid.CellByName[COL_NAME, I].ObjectReference as PTask;
+    T := GetTaskFromRow(I);
     T.Selected := True;
   end;
+
   UpdateTasksGrid;
 end;
 
@@ -849,7 +872,7 @@ var
   I: Integer;
 begin
   for I := 0 to TasksGrid.RowCount - 1 do begin
-    T := TasksGrid.CellByName[COL_NAME, I].ObjectReference as PTask;
+    T := GetTaskFromRow(I);
     T.Selected := False;
   end;
   UpdateTasksGrid;
@@ -860,8 +883,9 @@ var
   TaskInfoForm: TTaskInformationForm;
   T: PTask;
 begin
-  T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
+  T := GetTaskFromRow(TasksGrid.SelectedRow);
   Assert(T <> nil);
+
   TaskInfoForm := TTaskInformationForm.Create(Self);
   try
     TaskInfoForm.StarUMLApp := FStarUMLApp;
@@ -875,26 +899,25 @@ end;
 
 procedure TPieForm.ShowTaskDescription;
 var
-  T: PTask;
   GenUnit: PGenerationUnit;
 begin
-  T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
-  GenUnit := T.GenerationUnit;
-  Assert(GenUnit <> nil);
-  GenerationUnitDescMemo.Lines.Text := GenUnit.Description;
+  if TasksGrid.Focused and (TasksGrid.SelectedRow > -1) then begin
+    GenUnit := GetGenerationUnitForSelectedRow;
+    Assert(GenUnit <> nil);
+    GenerationUnitDescMemo.Lines.Text := GenUnit.Description;
+  end;
+
 end;
 
 procedure TPieForm.PreviewTemplate;
 var
   PreviewForm: TPreviewForm;
   Images: TStringList;
-  T: PTask;
   GenUnit: PGenerationUnit;
   I: Integer;
 begin
-  T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
-  GenUnit := T.GenerationUnit;
-  if GenUnit <> nil then begin
+  GenUnit := GetGenerationUnitForSelectedRow;
+  if Assigned(GenUnit) then begin
     PreviewForm := TPreviewForm.Create(Self);
     Images := TStringList.Create;
     try
@@ -1191,10 +1214,10 @@ end;
 procedure TPieForm.CloneTemplate;
 var
   Serializer: PGenerationUnitSerializer;
+  ExistingGenUnit: PGenerationUnit;
   GenUnit: PGenerationUnit;
   SrcPath: string;
   TgtPath: String;
-  T: PTask;
 begin
   if (TasksGrid.SelectedCount = 1) and (TasksGrid.SelectedRow <> -1) then
 
@@ -1202,13 +1225,13 @@ begin
 
       RootDir := GetDirectMDAPath + '\' + DIR_GENERATION_UNITS;
 
-      // request to user for new template name and path
+      // Show request to user for new template name and path
       if Execute then begin
         try
           // copy selected template to new path
-          T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
-          Assert(T <> nil);
-          SrcPath := T.GenerationUnit.Path;
+          ExistingGenUnit := GetGenerationUnitForSelectedRow;
+          Assert(ExistingGenUnit <> nil);
+          SrcPath := ExistingGenUnit.Path;
           TDirectory.Copy(ExtractFileDir(SrcPath) + '\', Path);
 
           Serializer := PGenerationUnitSerializer.Create;
@@ -1221,11 +1244,16 @@ begin
               GenUnit.Path := TgtPath;
               DirectMDAProcessor.AddGenerationUnit(GenUnit);
               Serializer.WriteGenerationUnit(GenUnit, TgtPath);
-              Assert(DirectMDAProcessor.DefaultBatch.HasTask(GenUnit));
-            except on E:Exception do begin
-              ErrorMessage(Format(ERR_CLONE_TEMPLATE, [E.Message]));
-              GenUnit.Free;
-            end;
+              Assert(DirectMDAProcessor.DefaultBatch.HasTaskWithGenUnit(GenUnit));
+            except
+              on E: EInOutError do begin // Error during saving file
+                DirectMDAProcessor.DeleteGenerationUnit(GenUnit);
+                ErrorMessage(Format(ERR_CLONE_TEMPLATE, [E.Message]));
+              end;
+              on E:Exception do begin
+                ErrorMessage(Format(ERR_CLONE_TEMPLATE, [E.Message]));
+                GenUnit.Free;
+              end;
           end;
           finally
             Serializer.Free;
@@ -1250,7 +1278,7 @@ var
   GenUnit: PGenerationUnit;
 begin
   if (TasksGrid.SelectedCount = 1) and (TasksGrid.SelectedRow <> -1) then begin
-    GenUnit := DirectMDAProcessor.GenerationUnits[TasksGrid.SelectedRow];
+    GenUnit := GetGenerationUnitForSelectedRow;
     if MessageDlg('Do you want to delete selected template "' + GenUnit.Name +
     '" and all related files?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     begin
@@ -1274,7 +1302,7 @@ end;
 procedure TPieForm.ModifyTemplate;
 var
   TemplateRegForm: TTemplateRegisterForm;
-  T: PTask;
+  ExistingGenUnit : PGenerationUnit;
   TaskToRestore: PTask;
   Batch: PBatch;
   BatchesToRestore: PBatchList;
@@ -1285,12 +1313,10 @@ begin
       TemplateRegForm.StarUMLApp := FStarUMLApp;
       TemplateRegForm.DirectMDAProcessor := DirectMDAProcessor;
 
-      T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
-      Assert(T <> nil);
+      ExistingGenUnit := GetGenerationUnitForSelectedRow;
+      Assert(ExistingGenUnit <> nil);
 
-//      TemplateRegForm.GenerationUnitPath :=
-//        DirectMDAProcessor.GenerationUnits[TasksGrid.SelectedRow].Path;
-      TemplateRegForm.GenerationUnitPath := T.GenerationUnit.Path;
+      TemplateRegForm.GenerationUnitPath := ExistingGenUnit.Path;
 
       // Path name - if pathname exists, modifing current template
       if TemplateRegForm.Execute then begin
@@ -1298,20 +1324,19 @@ begin
 
           // Clean older data
 
-          //TDirectory.Delete(ExtractFileDir(T.GenerationUnit.Path), True);
-
           // Find modified task in batches
           BatchesToRestore := PBatchList.Create;
           for Batch in  DirectMDAProcessor.Batches do begin
-            if Batch.HasTask(T.GenerationUnit) then
+            if Batch.HasTaskWithGenUnit(ExistingGenUnit) then
               BatchesToRestore.Add(Batch);
           end;
 
-          DirectMDAProcessor.DeleteGenerationUnit(T.GenerationUnit);
-
           // Set new data
+          DirectMDAProcessor.AddGenerationUnit(TemplateRegForm.GenerationUnit, ExistingGenUnit);
           DirectMDAProcessor.SaveGenerationUnit(TemplateRegForm.GenerationUnit, TemplateRegForm.GenerationUnitPath);
-          DirectMDAProcessor.AddGenerationUnit(TemplateRegForm.GenerationUnit);
+
+          // Delete existing GenUnit
+          DirectMDAProcessor.DeleteGenerationUnit(ExistingGenUnit);
 
           // Restore changed tasks in batches
           for Batch in BatchesToRestore do begin
@@ -1324,8 +1349,12 @@ begin
           UpdateTasksGrid;
           UpdateUIStates;
         except
+          on E: EInOutError do begin // Error during saving file
+            DirectMDAProcessor.DeleteGenerationUnit(TemplateRegForm.GenerationUnit);
+            ErrorMessage(Format(ERR_MODIFY_TEMPLATE, [E.Message]));
+          end;
           on E: Exception do begin
-            ErrorMessage(Format(ERR_REGISTER_TEMPLATE, [E.Message]));
+            ErrorMessage(Format(ERR_MODIFY_TEMPLATE, [E.Message]));
           end;
         end;
       end;
@@ -1339,21 +1368,14 @@ end;
 
 procedure TPieForm.OpenTemplate;
 var
-  Path: String;
+  Path: string;
   GenUnit: PGenerationUnit;
   I: Integer;
-//  A: array[0..1000] of Char;
   Ext: string;
-  T: PTask;
 begin
   if (TasksGrid.SelectedCount = 1) and (TasksGrid.SelectedRow <> -1) then begin
-
-    T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
-    Assert(T <> nil);
-
     try
-//      GenUnit := DirectMDAProcessor.GenerationUnits[TasksGrid.SelectedRow];
-      GenUnit := T.GenerationUnit;
+      GenUnit := GetGenerationUnitForSelectedRow;
       Path := '';
       for I := 0 to GenUnit.ParameterCount-1 do
         if LowerCase(GenUnit.Parameters[I].Name) = 'templatefile' then begin
@@ -1384,11 +1406,10 @@ begin
           OpenTemplateFile('\designers\CodeTemplateEditor.exe', path);
       end
       else
-        raise Exception.Create('The selected template can''t be opened.');
+        raise Exception.Create('The selected template cannot be opened.');
 
-      Path := DirectMDAProcessor.GenerationUnits[TasksGrid.SelectedRow].Path;
     except
-      MessageDlg('The selected template can''t be opened.', mtError, [mbOk], 0);
+      MessageDlg('The selected template cannot be opened.', mtError, [mbOk], 0);
     end;
   end
   else
@@ -1453,12 +1474,12 @@ end;
 
 procedure TPieForm.TasksGridChange(Sender: TObject; ACol, ARow: Integer);
 var
-  RefObj: TObject;
+  Task: PTask;
 begin
-  if TasksGrid.Columns.Item[ACol].Name = COL_CHECK then begin
-    RefObj := TasksGrid.CellByName[COL_NAME, ARow].ObjectReference;
-    if (RefObj <> nil) and (RefObj is PTask) then
-      (RefObj as PTask).Selected := TasksGrid.CellByName[COL_CHECK, ARow].AsBoolean;
+  if TasksColumn(ACol) = TasksColumnCheck then begin
+    Task := GetTaskFromRow(ARow);
+    if Assigned(Task) then
+      Task.Selected := TasksGrid.CellBy[TasksColumnCheck, ARow].AsBoolean;
     UpdateUIStates;
   end;
 end;
@@ -1525,11 +1546,24 @@ begin
 //  end;
 end;
 
-procedure TPieForm.TasksGridCellClick(Sender: TObject; ACol, ARow: Integer);
+procedure TPieForm.TasksGridCellChange(Sender: TObject; ACol, ARow: Integer);
+var
+  Task: PTask;
+begin
+  if TasksColumn(ACol) = TasksColumnCheck then begin
+    Task := GetTaskFromRow(ARow);
+    if Assigned(Task) then
+      Task.Selected := TasksGrid.CellBy[TasksColumnCheck, ARow].AsBoolean;
+    UpdateUIStates;
+  end;
+end;
+
+procedure TPieForm.TasksGridCellClick(Sender: TObject; ACol, ARow: Integer;
+  Button: TMouseButton);
 begin
   ShowTaskDescription;
   if (TasksGrid.Columns.Item[ACol] = PreviewColumn)
-    and (TasksGrid.CellByName[COL_PREVIEW, ARow].AsInteger <> -1) then begin
+    and (TasksGrid.CellBy[TasksColumnPreview, ARow].AsInteger <> -1) then begin
      PreviewTemplate;
   end
   else if TasksGrid.Columns.Item[ACol] = ParametersColumn then begin
@@ -1537,7 +1571,7 @@ begin
     EditTaskParameters;
   end;
 
- end;
+end;
 
 procedure TPieForm.BatchPageControlChange(Sender: TObject);
 begin
@@ -1554,10 +1588,36 @@ begin
   UpdateUIStates;
 end;
 
+function TPieForm.GetGenerationUnitForSelectedRow: PGenerationUnit;
+var
+  T: PTask;
+begin
+  T := GetTaskFromRow(TasksGrid.SelectedRow);
+  Assert (Assigned(T));
+  Result := T.GenerationUnit;
+end;
+
+procedure TPieForm.AttachTaskToRow(Task: PTask; RowIdx: Integer);
+begin
+  if RowIdx < TasksGrid.RowCount then
+    TasksGrid.Row[RowIdx].Data := Task;
+end;
+
+function TPieForm.GetTaskFromRow(RowIdx: Integer): PTask;
+begin
+  if RowIdx < TasksGrid.RowCount then
+    Result := PTask(TasksGrid.Row[RowIdx].Data)
+  else
+    Result := nil;
+end;
+
+
+
 function TPieForm.GetScriptHandler: TGeneratorScriptHandler;
 begin
   Result := DirectMDAProcessor.GetScriptHandler;
 end;
+
 
 procedure TPieForm.GroupComboBoxChange(Sender: TObject);
 begin

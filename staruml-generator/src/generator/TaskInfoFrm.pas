@@ -49,9 +49,9 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls,  ExtCtrls, ImgList, ComCtrls,
-  WhiteStarUML_TLB, Generics.Collections, DirectMDAObjects,
-  NxInspectorNode6, NxControls6, NxInspector6;
+  Dialogs, StdCtrls,  ExtCtrls, ImgList, ComCtrls, Generics.Collections,
+  NxInspectorNode6, NxControls6, NxInspector6,
+  WhiteStarUML_TLB, DirectMDAObjects;
 
 const
   TXT_SELECT_DIR = 'Select Directory';
@@ -185,7 +185,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Utilities, Symbols, NxEdit, PieFrm, PreviewFrm, NxEdit6, NxInspectorNodeClasses6;
+  Utilities, Symbols, PieFrm, PreviewFrm, NxEdit6, NxInspectorNodeClasses6;
 
 ////////////////////////////////////////////////////////////////////////////////
 // PParameterRow

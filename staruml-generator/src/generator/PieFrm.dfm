@@ -443,11 +443,11 @@ object PieForm: TPieForm
         object MainTabSheet: TTabSheet
           Caption = 'List of templates'
           object GenerationUnitDescLabel: TLabel
-            Left = 8
-            Top = 274
-            Width = 69
+            Left = 3
+            Top = 263
+            Width = 64
             Height = 14
-            Caption = 'Descriptions:'
+            Caption = 'Description:'
           end
           object RegisterBatchButton: TButton
             Left = 8
@@ -473,304 +473,73 @@ object PieForm: TPieForm
             Action = ActionRegisterTemplate
             TabOrder = 2
           end
-          object TasksGrid: TNextGrid
-            Left = 9
-            Top = 65
-            Width = 697
-            Height = 201
-            Touch.InteractiveGestures = [igPan, igPressAndTap]
-            Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
-            AppearanceOptions = [aoAlphaBlendedSelection, aoIndicateSortedColumn]
-            AutoScroll = True
-            Caption = ''
-            Font.Charset = DEFAULT_CHARSET
-            Font.Color = clWindowText
-            Font.Height = -12
-            Font.Name = 'Tahoma'
-            Font.Style = []
-            HighlightedTextColor = clWindowText
-            Options = [goDisableColumnMoving, goGrid, goHeader, goSelectFullRow]
-            RowSize = 18
-            ParentFont = False
-            PopupMenu = TemplatePopupActionBar
-            TabOrder = 3
-            TabStop = True
-            OnCellClick = TasksGridCellClick
-            OnChange = TasksGridChange
-            OnDblClick = TasksGridDblClick
-            object CheckColumn: TNxCheckBoxColumn
-              Alignment = taCenter
-              DefaultWidth = 23
-              Font.Charset = ANSI_CHARSET
-              Font.Color = clWindowText
-              Font.Height = 12
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              Header.DisplayMode = dmImageOnly
-              Header.Font.Charset = DEFAULT_CHARSET
-              Header.Font.Color = clWindowText
-              Header.Font.Height = -11
-              Header.Font.Name = 'Tahoma'
-              Header.Font.Style = []
-              Options = [coCanClick, coCanInput, coEditing, coEditorAutoSelect, coFixedSize]
-              ParentFont = False
-              Position = 0
-              SortKind = skDescending
-              SortType = stBoolean
-              Width = 23
-            end
-            object GroupColumn: TNxTextColumn
-              DefaultWidth = 100
-              Font.Charset = ANSI_CHARSET
-              Font.Color = clWindowText
-              Font.Height = 14
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              Header.Caption = 'Group'
-              Header.Font.Charset = DEFAULT_CHARSET
-              Header.Font.Color = clWindowText
-              Header.Font.Height = -11
-              Header.Font.Name = 'Tahoma'
-              Header.Font.Style = []
-              Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
-              ParentFont = False
-              Position = 1
-              SortKind = skDescending
-              SortType = stAlphabetic
-              Width = 100
-            end
-            object CategoryColumn: TNxTextColumn
-              DefaultWidth = 100
-              Font.Charset = ANSI_CHARSET
-              Font.Color = clWindowText
-              Font.Height = 14
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              Header.Caption = 'Category'
-              Header.Font.Charset = DEFAULT_CHARSET
-              Header.Font.Color = clWindowText
-              Header.Font.Height = -11
-              Header.Font.Name = 'Tahoma'
-              Header.Font.Style = []
-              Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
-              ParentFont = False
-              Position = 2
-              SortKind = skDescending
-              SortType = stAlphabetic
-              Width = 100
-            end
-            object PreviewColumn: TNxImageColumn
-              DefaultValue = '0'
-              DefaultWidth = 22
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = 14
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              Header.DisplayMode = dmImageOnly
-              Header.Glyph.Data = {
-                36030000424D3603000000000000360000002800000010000000100000000100
-                1800000000000003000000000000000000000000000000000000A7ABAD838090
-                BE9EA7C9CED2C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0
-                D4C8D0D4C8D0D4C8D0D47AA2BF4A7AC7837DA4BE9EA7C9CED2C8D0D4C8D0D4C8
-                D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D486C2EC50B4FE
-                4C7BC7837DA4BE9EA7C9CED2C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0
-                D4C8D0D4C8D0D4C8D0D4C8D0D47CBFEF53B7FE4C7BC7837DA4BE9EA7C9CED2C8
-                D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4
-                7CBFEF54B7FE4B7ECB837DA4C0B0B7C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0
-                D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D47BBDEF54B7FE578BD09BA0A5C4
-                A79FCA9C86CA9981CB9B83CFA48FC4A49CC9D1D4C8D0D4C8D0D4C8D0D4C8D0D4
-                C8D0D4C8D0D48CC3EBB9C1C7B98F81D7AB8EEDD6AFFAF4CCFAF5D4EDDCBDD9B6
-                A1C6A293C9D1D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8ACA6D8A98CFF
-                F5C4FFF6C3FFFFD9FFFFE9FFFFF8FFFFFFD9B6A0BD9C94C8D0D4C8D0D4C8D0D4
-                C8D0D4C8D0D4C8D0D4D0A28EEDD3AAFFE5B3FFF9C6FFFFDCFFFFECFFFFFBFFFF
-                F6EDDCBDC99E89C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4CC9A82FAEFC4FF
-                DBA8FFF2BFFFFFD6FFFFE4FFFFEBFFFFE5FAF5D1C99981C8D0D4C8D0D4C8D0D4
-                C8D0D4C8D0D4C8D0D4CC9A82FAEFC4FFE7BCFFF3C1FFFFCDFFFFD4FFFFD6FFFF
-                D5FAF3C9C99881C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4CCA290EDD8B6FF
-                F2DBFFE1B9FFEFBDFFF1BFFFF5C3FFF4C1EDD5ACC79A85C8D0D4C8D0D4C8D0D4
-                C8D0D4C8D0D4C8D0D4C8AFA8D7B097FFFFFFFFF9EEFFF1C8FFDAA7FFE6B4FFF5
-                C6D6A88AC0A49EC8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C9D1D4C8A497D6
-                AF9BEDD8BFFAF1CCFAEDC2EDD5AED6A68AC39B8EC9D1D4C8D0D4C8D0D4C8D0D4
-                C8D0D4C8D0D4C8D0D4C8D0D4C9D1D4C5AEA7C69B8ACA9982CC9B82CBA08EC6AC
-                A6C9D1D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8
-                D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
-              Header.Font.Charset = DEFAULT_CHARSET
-              Header.Font.Color = clWindowText
-              Header.Font.Height = -11
-              Header.Font.Name = 'Tahoma'
-              Header.Font.Style = []
-              Options = [coCanClick, coCanInput, coEditorAutoSelect, coFixedSize]
-              ParentFont = False
-              Position = 3
-              SortType = stNumeric
-              Visible = False
-              Width = 22
-              Images = CellValueImages
-            end
-            object NameColumn: TNxTextColumn
-              DefaultWidth = 222
-              Font.Charset = ANSI_CHARSET
-              Font.Color = clWindowText
-              Font.Height = 14
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              Header.Caption = 'Template Name'
-              Header.Font.Charset = DEFAULT_CHARSET
-              Header.Font.Color = clWindowText
-              Header.Font.Height = -11
-              Header.Font.Name = 'Tahoma'
-              Header.Font.Style = []
-              Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
-              ParentFont = False
-              Position = 4
-              Sorted = True
-              SortKind = skDescending
-              SortType = stAlphabetic
-              Width = 222
-            end
-            object DocTypeColumn: TNxTextColumn
-              DefaultWidth = 100
-              Font.Charset = ANSI_CHARSET
-              Font.Color = clWindowText
-              Font.Height = 14
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              Header.Caption = 'Doc. Type'
-              Header.Font.Charset = DEFAULT_CHARSET
-              Header.Font.Color = clWindowText
-              Header.Font.Height = -11
-              Header.Font.Name = 'Tahoma'
-              Header.Font.Style = []
-              Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
-              ParentFont = False
-              Position = 5
-              SortType = stAlphabetic
-              Width = 100
-            end
-            object FormatColumn: TNxTextColumn
-              Alignment = taCenter
-              DefaultWidth = 70
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = 14
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              Header.Caption = 'Format'
-              Header.Font.Charset = DEFAULT_CHARSET
-              Header.Font.Color = clWindowText
-              Header.Font.Height = -11
-              Header.Font.Name = 'Tahoma'
-              Header.Font.Style = []
-              Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
-              ParentFont = False
-              Position = 6
-              SortType = stAlphabetic
-              Width = 70
-            end
-            object TutorialColumn: TNxImageColumn
-              DefaultValue = '0'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = 14
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              Header.Caption = 'Tutorial'
-              Header.Font.Charset = DEFAULT_CHARSET
-              Header.Font.Color = clWindowText
-              Header.Font.Height = -11
-              Header.Font.Name = 'Tahoma'
-              Header.Font.Style = []
-              ParentFont = False
-              Position = 7
-              SortType = stNumeric
-              Visible = False
-            end
-            object ParametersColumn: TNxImageColumn
-              DefaultValue = '0'
-              Font.Charset = DEFAULT_CHARSET
-              Font.Color = clWindowText
-              Font.Height = 14
-              Font.Name = 'Tahoma'
-              Font.Style = []
-              Header.Caption = 'Opt.'
-              Header.Font.Charset = DEFAULT_CHARSET
-              Header.Font.Color = clWindowText
-              Header.Font.Height = -11
-              Header.Font.Name = 'Tahoma'
-              Header.Font.Style = []
-              ParentFont = False
-              Position = 8
-              SortType = stNumeric
-              Images = CellValueImages
-            end
-          end
           object GroupComboBox: TComboBox
-            Left = 31
+            Left = 28
             Top = 41
-            Width = 98
+            Width = 90
             Height = 22
             Style = csDropDownList
             Ctl3D = True
             ImeName = 'Microsoft IME 2003'
             ParentCtl3D = False
-            TabOrder = 4
+            TabOrder = 3
             OnChange = GroupComboBoxChange
           end
           object CategoryComboBox: TComboBox
-            Left = 134
+            Left = 127
             Top = 41
-            Width = 99
+            Width = 122
+            Height = 22
+            Style = csDropDownList
+            ImeName = 'Microsoft IME 2003'
+            TabOrder = 4
+            OnChange = CategoryComboBoxChange
+          end
+          object DocTypeComboBox: TComboBox
+            Left = 446
+            Top = 41
+            Width = 107
             Height = 22
             Style = csDropDownList
             ImeName = 'Microsoft IME 2003'
             TabOrder = 5
-            OnChange = CategoryComboBoxChange
-          end
-          object DocTypeComboBox: TComboBox
-            Left = 454
-            Top = 37
-            Width = 108
-            Height = 22
-            Style = csDropDownList
-            ImeName = 'Microsoft IME 2003'
-            TabOrder = 6
             OnChange = DocTypeComboBoxChange
           end
           object FormatComboBox: TComboBox
             Left = 568
-            Top = 37
-            Width = 89
+            Top = 41
+            Width = 90
             Height = 22
             Style = csDropDownList
             ImeName = 'Microsoft IME 2003'
-            TabOrder = 7
+            TabOrder = 6
             OnChange = FormatComboBoxChange
           end
           object CheckAllCheckBox: TCheckBox
-            Left = 12
+            Left = 9
             Top = 42
             Width = 17
             Height = 17
-            TabOrder = 8
+            TabOrder = 7
             OnClick = CheckAllCheckBoxClick
           end
           object GenerationUnitDescPanel: TFlatPanel
-            Left = 8
-            Top = 289
-            Width = 697
-            Height = 49
-            TabOrder = 9
+            Left = 3
+            Top = 280
+            Width = 703
+            Height = 52
+            TabOrder = 8
             object GenerationUnitDescMemo: TMemo
-              Left = 7
-              Top = 5
-              Width = 682
-              Height = 39
+              Left = 1
+              Top = 1
+              Width = 701
+              Height = 50
+              Align = alClient
               BorderStyle = bsNone
               Color = clBtnFace
               Ctl3D = True
-              ImeName = 'Microsoft IME 2003'
               ParentCtl3D = False
+              ScrollBars = ssVertical
               TabOrder = 0
             end
           end
@@ -780,7 +549,7 @@ object PieForm: TPieForm
             Width = 105
             Height = 23
             Action = ActionCloneTemplate
-            TabOrder = 10
+            TabOrder = 9
           end
           object ModifyTemplateButton: TButton
             Left = 465
@@ -788,7 +557,7 @@ object PieForm: TPieForm
             Width = 129
             Height = 23
             Action = ActionModifyTemplate
-            TabOrder = 11
+            TabOrder = 10
           end
           object OpenTemplateButton: TButton
             Left = 601
@@ -796,7 +565,260 @@ object PieForm: TPieForm
             Width = 105
             Height = 23
             Action = ActionOpenTemplate
+            TabOrder = 11
+          end
+          object TasksGrid: TNextGrid6
+            Left = 3
+            Top = 69
+            Width = 703
+            Height = 188
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = 14
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+            PopupMenu = TemplatePopupActionBar
             TabOrder = 12
+            OnDblClick = TasksGridDblClick
+            ActiveView = TasksGridView
+            ActiveViewIndex = 0
+            Caption = 'TasksGrid'
+            ScrollBars = [sbHorizontal, sbVertical]
+            SelectFullRow = True
+            OnCellClick = TasksGridCellClick
+            OnCellChange = TasksGridCellChange
+            object TasksGridView: TNxReportGridView6
+              GridLines = True
+              RowMoving = True
+            end
+            object CheckColumn: TNxCheckBoxColumn6
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = 14
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Footer.Font.Charset = DEFAULT_CHARSET
+              Footer.Font.Color = clWindowText
+              Footer.Font.Height = 14
+              Footer.Font.Name = 'Tahoma'
+              Footer.Font.Style = []
+              Footer.FormatMask = '#,##0.00'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = 14
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
+              Index = 0
+              ParentFont = False
+              PlaceholderText = 'True'
+              Position = 0
+              Width = 23
+              InsertString = 'False'
+            end
+            object GroupColumn: TNxTextColumn6
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = 14
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Footer.Font.Charset = DEFAULT_CHARSET
+              Footer.Font.Color = clWindowText
+              Footer.Font.Height = 14
+              Footer.Font.Name = 'Tahoma'
+              Footer.Font.Style = []
+              Footer.FormatMask = '#,##0.00'
+              Header.Caption = 'Group'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = 14
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
+              Index = 1
+              ParentFont = False
+              PlaceholderText = 'Text Text'
+              Position = 1
+              Width = 100
+            end
+            object CategoryColumn: TNxTextColumn6
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = 14
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Footer.Font.Charset = DEFAULT_CHARSET
+              Footer.Font.Color = clWindowText
+              Footer.Font.Height = 14
+              Footer.Font.Name = 'Tahoma'
+              Footer.Font.Style = []
+              Footer.FormatMask = '#,##0.00'
+              Header.Caption = 'Category'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = 14
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
+              Index = 2
+              PlaceholderText = 'Text Text'
+              Position = 2
+              Width = 100
+            end
+            object PreviewColumn: TNxIconColumn6
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = 14
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Footer.Font.Charset = DEFAULT_CHARSET
+              Footer.Font.Color = clWindowText
+              Footer.Font.Height = 14
+              Footer.Font.Name = 'Tahoma'
+              Footer.Font.Style = []
+              Footer.FormatMask = '#,##0.00'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = 14
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
+              Index = 3
+              ParentFont = False
+              PlaceholderText = '0'
+              Position = 3
+              SortType = stAlphabetic
+              Visible = False
+              Width = 22
+              Images = CellValueImages
+              InsertString = '0'
+            end
+            object NameColumn: TNxTextColumn6
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = 14
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Footer.Font.Charset = DEFAULT_CHARSET
+              Footer.Font.Color = clWindowText
+              Footer.Font.Height = 14
+              Footer.Font.Name = 'Tahoma'
+              Footer.Font.Style = []
+              Footer.FormatMask = '#,##0.00'
+              Header.Caption = 'Template Name'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = 14
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
+              Index = 4
+              ParentFont = False
+              PlaceholderText = 'Text Text'
+              Position = 4
+              SortType = stCaseInsensitive
+              Width = 220
+            end
+            object DocTypeColumn: TNxTextColumn6
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = 14
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Footer.Font.Charset = DEFAULT_CHARSET
+              Footer.Font.Color = clWindowText
+              Footer.Font.Height = 14
+              Footer.Font.Name = 'Tahoma'
+              Footer.Font.Style = []
+              Footer.FormatMask = '#,##0.00'
+              Header.Caption = 'Doc. Type'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = 14
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
+              Index = 5
+              PlaceholderText = 'Text Text'
+              Position = 5
+              Width = 120
+            end
+            object FormatColumn: TNxTextColumn6
+              Alignment = taCenter
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = 14
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Footer.Font.Charset = DEFAULT_CHARSET
+              Footer.Font.Color = clWindowText
+              Footer.Font.Height = 14
+              Footer.Font.Name = 'Tahoma'
+              Footer.Font.Style = []
+              Footer.FormatMask = '#,##0.00'
+              Header.Caption = 'Format'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = 14
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
+              Index = 6
+              ParentFont = False
+              PlaceholderText = 'Text Text'
+              Position = 6
+              Width = 60
+            end
+            object TutorialColumn: TNxIconColumn6
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = 14
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Footer.Font.Charset = DEFAULT_CHARSET
+              Footer.Font.Color = clWindowText
+              Footer.Font.Height = 14
+              Footer.Font.Name = 'Tahoma'
+              Footer.Font.Style = []
+              Footer.FormatMask = '#,##0.00'
+              Header.Caption = 'Tutorial'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = 14
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
+              Index = 7
+              PlaceholderText = '0'
+              Position = 7
+              SortType = stAlphabetic
+              Visible = False
+              Images = CellValueImages
+              InsertString = '0'
+            end
+            object ParametersColumn: TNxIconColumn6
+              AutoSize = True
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Footer.Font.Charset = DEFAULT_CHARSET
+              Footer.Font.Color = clWindowText
+              Footer.Font.Height = -11
+              Footer.Font.Name = 'Tahoma'
+              Footer.Font.Style = []
+              Footer.FormatMask = '#,##0.00'
+              Header.Caption = 'Opt.'
+              Header.Font.Charset = DEFAULT_CHARSET
+              Header.Font.Color = clWindowText
+              Header.Font.Height = -11
+              Header.Font.Name = 'Tahoma'
+              Header.Font.Style = []
+              Index = 8
+              ParentFont = False
+              PlaceholderText = '0'
+              Position = 8
+              SortType = stAlphabetic
+              Width = 61
+              Images = CellValueImages
+              InsertString = '0'
+            end
           end
         end
       end
@@ -823,8 +845,6 @@ object PieForm: TPieForm
       Header.Subtitle.Font.Style = []
       OnEnterPage = OutDirectorySelectionPageEnterPage
       OnExitPage = OutDirectorySelectionPageExitPage
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Image2: TImage
         Left = 0
         Top = 70
@@ -1260,8 +1280,6 @@ object PieForm: TPieForm
       OnPage = ExecutionPagePage
       OnNextButtonClick = ExecutionPageNextButtonClick
       OnFinishButtonClick = ExecutionPageFinishButtonClick
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object GenerationItemsLabel: TLabel
         Left = 8
         Top = 88
@@ -1819,7 +1837,7 @@ object PieForm: TPieForm
   object HeaderImageList: TImageList
     Height = 76
     Width = 145
-    Left = 64
+    Left = 40
     Top = 456
     Bitmap = {
       494C010101000500040091004C00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
@@ -7520,7 +7538,7 @@ object PieForm: TPieForm
       00000000000000000000000000000000000000000000}
   end
   object StateMarkImageList: TImageList
-    Left = 96
+    Left = 120
     Top = 456
     Bitmap = {
       494C010104000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
@@ -7795,7 +7813,7 @@ object PieForm: TPieForm
       000000000000}
   end
   object CellValueImages: TImageList
-    Left = 128
+    Left = 224
     Top = 456
     Bitmap = {
       494C010103000500040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
@@ -7941,7 +7959,7 @@ object PieForm: TPieForm
     Enabled = False
     Interval = 10
     OnTimer = HeartBeatTimerTimer
-    Left = 160
+    Left = 304
     Top = 456
   end
   object PieActionList: TActionList
