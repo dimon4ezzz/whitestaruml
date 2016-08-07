@@ -74,6 +74,8 @@ type
 
   // PGenerationUnit
   PGenerationUnit = class
+  private type
+    PParameterList = TObjectList<PParameter>;
   private
     FName: string;
     FGroup: string;
@@ -91,7 +93,7 @@ type
     FTutorial: string;
     FPreviews: TStringList;
     FValidator: string;
-    FParameters: TList;
+    FParameters: PParameterList;
     FAttachFiles: TStringList;
     FPath: string;
     function GetProfileCount: Integer;
@@ -164,7 +166,7 @@ type
     procedure AddTask(Value: PTask);
     procedure RemoveTask(Value: PTask);
     function GetNormalizedString(Str: string): string;
-    function HasTask(AGenerationUnit: PGenerationUnit): Boolean;
+    function HasTaskWithGenUnit(AGenerationUnit: PGenerationUnit): Boolean;
     function FindTask(AGenerationUnit: PGenerationUnit): PTask;
     function GetSelectedTaskCount: Integer;
     procedure DeleteSelectedTasks;
@@ -181,9 +183,11 @@ type
 
   // PTask
   PTask = class
+  private type
+    PParameterList = TObjectList<PParameter>;
   private
     FGenerationUnit: PGenerationUnit;
-    FParameters: TList;
+    FParameters: PParameterList;
     FSelected: Boolean;
     function GetParameterCount: Integer;
     function GetParameter(Index: Integer): PParameter;
@@ -235,7 +239,7 @@ constructor PGenerationUnit.Create;
 begin
   FProfiles := TStringList.Create;
   FPreviews := TStringList.Create;
-  FParameters := TList.Create;
+  FParameters := PParameterList.Create;
   FAttachFiles := TStringList.Create;
 end;
 
@@ -357,11 +361,7 @@ begin
 end;
 
 procedure PGenerationUnit.ClearParameters;
-var
-  I: Integer;
 begin
-  for I := FParameters.Count - 1 downto 0 do
-    PParameter(FParameters.Items[I]).Free;
   FParameters.Clear;
 end;
 
@@ -449,7 +449,7 @@ begin
   Result := S;
 end;
 
-function PBatch.HasTask(AGenerationUnit: PGenerationUnit): Boolean;
+function PBatch.HasTaskWithGenUnit(AGenerationUnit: PGenerationUnit): Boolean;
 var
   I: Integer;
 begin
@@ -498,7 +498,7 @@ var
   I: Integer;
 begin
   for I := TaskCount - 1 downto 0 do
-    if Task[I].Selected and not ABatch.HasTask(Task[I].GenerationUnit) then
+    if Task[I].Selected and not ABatch.HasTaskWithGenUnit(Task[I].GenerationUnit) then
       ABatch.AddTask(Task[I].Clone);
 end;
 
@@ -526,7 +526,7 @@ end;
 
 constructor PTask.Create;
 begin
-  FParameters := TList.Create;
+  FParameters := PParameterList.Create;
   FGenerationUnit := nil;
 end;
 
@@ -548,11 +548,8 @@ begin
 end;
 
 procedure PTask.ClearParameters;
-var
-  I: Integer;
+
 begin
-  for I := FParameters.Count - 1 downto 0 do
-    PParameter(FParameters.Items[I]).Free;
   FParameters.Clear;
 end;
 

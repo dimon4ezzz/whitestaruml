@@ -93,11 +93,12 @@ type
     property OnNotify: PMessageEvent read FOnNotify write FOnNotify;
   end;
 
-  PBatchList = TList<PBatch>;
+  PBatchList = TObjectList<PBatch>;
+
   // TGeneratorProcessor
   TGeneratorProcessor = class(TAutoObject, IGeneratorProcessor)
   private type
-  TGenerationUnitList = TObjectList<PGenerationUnit>;
+    TGenerationUnitList = TObjectList<PGenerationUnit>;
   private
     FGenerationUnits: TGenerationUnitList;
     FBatches: PBatchList;
@@ -152,7 +153,8 @@ type
     destructor Destroy; override;
     procedure Initialize; override;
     { services }
-    procedure AddGenerationUnit(AGenerationUnit: PGenerationUnit);
+    procedure AddGenerationUnit(AGenerationUnit: PGenerationUnit;
+      AModifiedGenerationUnit: PGenerationUnit = nil);
     procedure DeleteGenerationUnit(AGenerationUnit: PGenerationUnit);
     procedure AddBatch(ABatch: PBatch);
     procedure RemoveBatch(ABatch: PBatch);
@@ -255,11 +257,8 @@ begin
 end;
 
 procedure TGeneratorProcessor.ClearBatches;
-var
-  I: Integer;
+
 begin
-  for I := FBatches.Count - 1 downto 0 do
-    FBatches[I].Free;
   FBatches.Clear;
 end;
 
@@ -296,7 +295,8 @@ begin
   Result := FBatches.Items[Index];
 end;
 
-procedure TGeneratorProcessor.AddGenerationUnit(AGenerationUnit: PGenerationUnit);
+procedure TGeneratorProcessor.AddGenerationUnit(AGenerationUnit: PGenerationUnit;
+  AModifiedGenerationUnit: PGenerationUnit);
 var
   ExistingGenUnit: PGenerationUnit;
 begin
@@ -304,7 +304,11 @@ begin
 
     // Look for confilicting name/group cases
     for ExistingGenUnit in FGenerationUnits do begin
-      if (ExistingGenUnit.Name = AGenerationUnit.Name) and (ExistingGenUnit.Group = AGenerationUnit.Group) then
+      // Skip name conflict check with GenUnit being modified
+      if ExistingGenUnit = AModifiedGenerationUnit then
+        Continue;
+     // Raise exception if conflict is detected
+     if (ExistingGenUnit.Name = AGenerationUnit.Name) and (ExistingGenUnit.Group = AGenerationUnit.Group) then
         raise Exception.Create(C_ERR_DUPLICATE_TEMPLATE_NAME);
     end;
 
@@ -315,9 +319,10 @@ end;
 
 procedure TGeneratorProcessor.DeleteGenerationUnit(AGenerationUnit: PGenerationUnit);
 begin
-  Assert(FGenerationUnits.IndexOf(AGenerationUnit) > -1);
-  NotifyDeletingGenerationUnit(AGenerationUnit);
-  FGenerationUnits.Remove(AGenerationUnit);
+  if (FGenerationUnits.IndexOf(AGenerationUnit) > -1) then begin
+    NotifyDeletingGenerationUnit(AGenerationUnit);
+    FGenerationUnits.Remove(AGenerationUnit);
+  end;
 
   //AGenerationUnit.Free;
 end;
@@ -332,7 +337,6 @@ end;
 procedure TGeneratorProcessor.RemoveBatch(ABatch: PBatch);
 begin
   FBatches.Remove(ABatch);
-  ABatch.Free;
 end;
 
 procedure TGeneratorProcessor.DeleteBatchFromFile(ABatch: PBatch);
@@ -418,9 +422,8 @@ var
     Task: PTask;
   begin
     Task := Batch.FindTask(AGenerationUnit);
-    if Assigned(Task) then begin
+    if Assigned(Task) then
       Batch.RemoveTask(Task);
-    end;
   end;
 
 begin
