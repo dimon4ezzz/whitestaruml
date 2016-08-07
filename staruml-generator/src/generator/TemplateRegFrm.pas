@@ -142,6 +142,7 @@ type
     FDirectMDAProcessor: TGeneratorProcessor;
     FGenerationUnit: PGenerationUnit;
     FFixedGenerationUnitPath: Boolean;
+    FCorrectionMode: Boolean;
     { initializing / finalizing methods }
     procedure Initialize;
     procedure Finalize;
@@ -617,7 +618,10 @@ begin
     raise EIntializationException.Create(ERR_NOT_INITIALIZED);
   SetupInspector;
 
-  if not Assigned(FGenerationUnit) then begin // Creating a new gen unit or keep existing
+
+  if Assigned(FGenerationUnit) then
+    FCorrectionMode := True
+  else begin // Creating a new gen unit or keep existing
     FGenerationUnit := PGenerationUnit.Create;
     if GenerationUnitPath <> '' then begin // There exists a saved one
       Serializer := PGenerationUnitSerializer.Create;
@@ -703,10 +707,19 @@ begin
   UpdateUIStates;
 
   if GenerationUnitPath <> '' then begin
-    Caption := 'Modify template';
-    PathEdit.ReadOnly := True;
-    PathButton.Visible := false;
-    FFixedGenerationUnitPath := True;
+
+    if FCorrectionMode then begin
+      Caption := 'Correct template';
+      GenerationUnitPath := '';
+      FFixedGenerationUnitPath := False;
+    end
+    else begin
+      Caption := 'Modify template';
+      PathEdit.ReadOnly := True;
+      PathButton.Visible := false;
+      FFixedGenerationUnitPath := True;
+    end;
+
     NameRow.Value := FGenerationUnit.Name;
     GroupRow.Value := FGenerationUnit.Group;
     CategoryRow.Value := FGenerationUnit.Category;
@@ -720,7 +733,17 @@ begin
     TutorialRow.Value := FGenerationUnit.Tutorial;
     ValidatorRow.Value := FGenerationUnit.Validator;
     DescriptionRow.Value := FGenerationUnit.Description;
-  end
+  end;
+
+{$IFDEF DEBUG}
+  if GenerationUnitPath = '' then begin
+    GroupRow.Value := GroupRow.Lines[0];
+    CategoryRow.Value := CategoryRow.Lines[0];
+    DocumentTypeRow.Value := DocumentTypeRow.Lines[0];
+    FormatRow.Value := FormatRow.Lines[0];
+    TranslatorTypeRow.Value := TranslatorTypeRow.Lines[0];
+  end;
+{$ENDIF DEBUG}
 
 end;
 
