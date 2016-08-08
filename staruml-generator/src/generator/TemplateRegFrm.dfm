@@ -128,13 +128,19 @@ object TemplateRegisterForm: TTemplateRegisterForm
     Top = 60
     Width = 361
     Height = 230
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = 14
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 4
     TabStop = True
     BorderSize = 1
     OnVerticalScroll = PropertyInspectorVerticalScroll
-    Options = [ioCanSelectNone, ioPreviewPopup, ioSplitterMoving]
+    Options = [ioCanSelectNone, ioPreviewPopup, ioSplitterMoving, ioEndEditOnUnfocus]
     OnSelect = PropertyInspectorSelect
     object StandardInfoRow: TNxInspectorNode6
       Caption = 'Basic'

@@ -1,7 +1,7 @@
 object PieForm: TPieForm
   Left = 285
   Top = 142
-  ActiveControl = BatchPageControl
+  ActiveControl = LogMemo
   BorderStyle = bsDialog
   Caption = 'WhiteStarUML Generator'
   ClientHeight = 498
@@ -27,7 +27,7 @@ object PieForm: TPieForm
     Top = 0
     Width = 721
     Height = 498
-    ActivePage = TemplateSelectionPage
+    ActivePage = ExecutionPage
     ButtonBarHeight = 42
     ButtonStart.Caption = '<< &Start page'
     ButtonStart.NumGlyphs = 1
@@ -517,7 +517,7 @@ object PieForm: TPieForm
           end
           object CheckAllCheckBox: TCheckBox
             Left = 9
-            Top = 42
+            Top = 43
             Width = 17
             Height = 17
             TabOrder = 7
@@ -587,11 +587,12 @@ object PieForm: TPieForm
             Caption = 'TasksGrid'
             ScrollBars = [sbHorizontal, sbVertical]
             SelectFullRow = True
+            SelectionTextColor = clWindowText
             OnCellClick = TasksGridCellClick
             OnCellChange = TasksGridCellChange
             object TasksGridView: TNxReportGridView6
+              ColumnMoving = False
               GridLines = True
-              RowMoving = True
             end
             object CheckColumn: TNxCheckBoxColumn6
               Alignment = taCenter
@@ -636,6 +637,7 @@ object PieForm: TPieForm
               Header.Font.Height = 14
               Header.Font.Name = 'Tahoma'
               Header.Font.Style = []
+              Header.ParentFont = False
               Index = 1
               ParentFont = False
               PlaceholderText = 'Text Text'
@@ -660,6 +662,7 @@ object PieForm: TPieForm
               Header.Font.Height = 14
               Header.Font.Name = 'Tahoma'
               Header.Font.Style = []
+              Header.ParentFont = False
               Index = 2
               PlaceholderText = 'Text Text'
               Position = 2
@@ -710,6 +713,7 @@ object PieForm: TPieForm
               Header.Font.Height = 14
               Header.Font.Name = 'Tahoma'
               Header.Font.Style = []
+              Header.ParentFont = False
               Index = 4
               ParentFont = False
               PlaceholderText = 'Text Text'
@@ -735,6 +739,7 @@ object PieForm: TPieForm
               Header.Font.Height = 14
               Header.Font.Name = 'Tahoma'
               Header.Font.Style = []
+              Header.ParentFont = False
               Index = 5
               PlaceholderText = 'Text Text'
               Position = 5
@@ -759,6 +764,7 @@ object PieForm: TPieForm
               Header.Font.Height = 14
               Header.Font.Name = 'Tahoma'
               Header.Font.Style = []
+              Header.ParentFont = False
               Index = 6
               ParentFont = False
               PlaceholderText = 'Text Text'
@@ -800,7 +806,7 @@ object PieForm: TPieForm
               Font.Style = []
               Footer.Font.Charset = DEFAULT_CHARSET
               Footer.Font.Color = clWindowText
-              Footer.Font.Height = -11
+              Footer.Font.Height = 14
               Footer.Font.Name = 'Tahoma'
               Footer.Font.Style = []
               Footer.FormatMask = '#,##0.00'
@@ -810,6 +816,7 @@ object PieForm: TPieForm
               Header.Font.Height = -11
               Header.Font.Name = 'Tahoma'
               Header.Font.Style = []
+              Header.ParentFont = False
               Index = 8
               ParentFont = False
               PlaceholderText = '0'
@@ -1283,9 +1290,9 @@ object PieForm: TPieForm
       object GenerationItemsLabel: TLabel
         Left = 8
         Top = 88
-        Width = 90
+        Width = 119
         Height = 14
-        Caption = 'Generation List: '
+        Caption = 'Generation Task List: '
       end
       object MainMessageLabel: TLabel
         Left = 8
@@ -1660,177 +1667,231 @@ object PieForm: TPieForm
         Height = 14
         Caption = 'Press [Generate] button to start generation.'
       end
-      object ExecTasksGrid: TNextGrid
-        Left = 13
-        Top = 108
-        Width = 705
-        Height = 185
-        Touch.InteractiveGestures = [igPan, igPressAndTap]
-        Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
-        Caption = ''
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        Options = [goGrid, goHeader, goSelectFullRow]
-        ParentFont = False
-        TabOrder = 0
-        TabStop = True
-        OnDblClick = ExecTasksGridDblClick
-        object ExecStateColumn: TNxImageColumn
-          DefaultValue = '0'
-          DefaultWidth = 23
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = 14
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          Header.DisplayMode = dmImageOnly
-          Header.Font.Charset = DEFAULT_CHARSET
-          Header.Font.Color = clWindowText
-          Header.Font.Height = -11
-          Header.Font.Name = 'Tahoma'
-          Header.Font.Style = []
-          Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coFixedSize]
-          ParentFont = False
-          Position = 0
-          SortType = stNumeric
-          Width = 23
-          Images = StateMarkImageList
-        end
-        object ExecGroupColumn: TNxTextColumn
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = 14
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          Header.Caption = 'Group'
-          Header.Font.Charset = DEFAULT_CHARSET
-          Header.Font.Color = clWindowText
-          Header.Font.Height = -11
-          Header.Font.Name = 'Tahoma'
-          Header.Font.Style = []
-          Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
-          ParentFont = False
-          Position = 1
-          SortType = stAlphabetic
-        end
-        object ExecCategoryColumn: TNxTextColumn
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = 14
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          Header.Caption = 'Category'
-          Header.Font.Charset = DEFAULT_CHARSET
-          Header.Font.Color = clWindowText
-          Header.Font.Height = -11
-          Header.Font.Name = 'Tahoma'
-          Header.Font.Style = []
-          Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
-          ParentFont = False
-          Position = 2
-          SortType = stAlphabetic
-        end
-        object ExecDocNameColumn: TNxTextColumn
-          DefaultWidth = 190
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = 14
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          Header.Caption = 'Template Name'
-          Header.Font.Charset = DEFAULT_CHARSET
-          Header.Font.Color = clWindowText
-          Header.Font.Height = -11
-          Header.Font.Name = 'Tahoma'
-          Header.Font.Style = []
-          Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
-          ParentFont = False
-          Position = 3
-          SortType = stAlphabetic
-          Width = 190
-        end
-        object ExecPathColumn: TNxTextColumn
-          DefaultWidth = 190
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWindowText
-          Font.Height = 14
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          Header.Caption = 'Target File'
-          Header.Font.Charset = DEFAULT_CHARSET
-          Header.Font.Color = clWindowText
-          Header.Font.Height = -11
-          Header.Font.Name = 'Tahoma'
-          Header.Font.Style = []
-          Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
-          ParentFont = False
-          Position = 4
-          SortType = stAlphabetic
-          Width = 190
-        end
-        object ExecProgressColumn: TNxProgressColumn
-          DefaultValue = '0'
-          DefaultWidth = 138
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = 14
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          Header.Caption = 'Status'
-          Header.Font.Charset = DEFAULT_CHARSET
-          Header.Font.Color = clWindowText
-          Header.Font.Height = -11
-          Header.Font.Name = 'Tahoma'
-          Header.Font.Style = []
-          Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect]
-          ParentFont = False
-          Position = 5
-          SortType = stNumeric
-          Width = 138
-          HideWhenEmpty = False
-          LowValueColor = clBlack
-          ProgressStyle = psGradient
-          ShowText = True
-        end
-        object ExecFullPathColumn: TNxTextColumn
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = 14
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          Header.Font.Charset = DEFAULT_CHARSET
-          Header.Font.Color = clWindowText
-          Header.Font.Height = -11
-          Header.Font.Name = 'Tahoma'
-          Header.Font.Style = []
-          Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
-          ParentFont = False
-          Position = 6
-          SortType = stAlphabetic
-          Visible = False
-        end
-      end
       object ProgressBar: TProgressBar
         Left = 8
         Top = 421
         Width = 705
         Height = 17
-        TabOrder = 1
+        TabOrder = 0
       end
       object LogMemo: TMemo
-        Left = 8
+        Left = 13
         Top = 316
-        Width = 705
+        Width = 700
         Height = 57
         BevelKind = bkTile
         BorderStyle = bsNone
         ImeName = 'Microsoft IME 2003'
         ReadOnly = True
         ScrollBars = ssVertical
+        TabOrder = 1
+      end
+      object ExecTasksGrid: TNextGrid6
+        Left = 13
+        Top = 108
+        Width = 700
+        Height = 185
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = 14
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
         TabOrder = 2
+        OnDblClick = ExecTasksGridDblClick
+        ActiveView = ExecTasksGridView
+        ActiveViewIndex = 0
+        Caption = 'ExecTasksGrid'
+        ScrollBars = [sbHorizontal, sbVertical]
+        SelectFullRow = True
+        SelectionTextColor = clWindowText
+        object ExecTasksGridView: TNxReportGridView6
+          ColumnMoving = False
+          GridLines = True
+        end
+        object ExecStateColumn: TNxIconColumn6
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = 14
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Footer.Font.Charset = DEFAULT_CHARSET
+          Footer.Font.Color = clWindowText
+          Footer.Font.Height = 14
+          Footer.Font.Name = 'Tahoma'
+          Footer.Font.Style = []
+          Footer.FormatMask = '#,##0.00'
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = -11
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
+          Header.ParentFont = False
+          Index = 0
+          ParentFont = False
+          PlaceholderText = '0'
+          Position = 0
+          SortType = stAlphabetic
+          Width = 23
+          Images = StateMarkImageList
+          InsertString = '0'
+        end
+        object ExecGroupColumn: TNxTextColumn6
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = 14
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Footer.Font.Charset = DEFAULT_CHARSET
+          Footer.Font.Color = clWindowText
+          Footer.Font.Height = 14
+          Footer.Font.Name = 'Tahoma'
+          Footer.Font.Style = []
+          Footer.FormatMask = '#,##0.00'
+          Header.Caption = 'Group'
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = 14
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
+          Header.ParentFont = False
+          Index = 1
+          ParentFont = False
+          PlaceholderText = 'Text Text'
+          Position = 1
+        end
+        object ExecCategoryColumn: TNxTextColumn6
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = 14
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Footer.Font.Charset = DEFAULT_CHARSET
+          Footer.Font.Color = clWindowText
+          Footer.Font.Height = 14
+          Footer.Font.Name = 'Tahoma'
+          Footer.Font.Style = []
+          Footer.FormatMask = '#,##0.00'
+          Header.Caption = 'Category'
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = 14
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
+          Header.ParentFont = False
+          Index = 2
+          ParentFont = False
+          PlaceholderText = 'Text Text'
+          Position = 2
+        end
+        object ExecDocNameColumn: TNxTextColumn6
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = 14
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Footer.Font.Charset = DEFAULT_CHARSET
+          Footer.Font.Color = clWindowText
+          Footer.Font.Height = 14
+          Footer.Font.Name = 'Tahoma'
+          Footer.Font.Style = []
+          Footer.FormatMask = '#,##0.00'
+          Header.Caption = 'Template Name'
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = 14
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
+          Header.ParentFont = False
+          Index = 3
+          ParentFont = False
+          PlaceholderText = 'Text Text'
+          Position = 3
+          Width = 190
+        end
+        object ExecPathColumn: TNxTextColumn6
+          AutoEditing = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = 14
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Footer.Font.Charset = DEFAULT_CHARSET
+          Footer.Font.Color = clWindowText
+          Footer.Font.Height = 14
+          Footer.Font.Name = 'Tahoma'
+          Footer.Font.Style = []
+          Footer.FormatMask = '#,##0.00'
+          Header.Caption = 'Target File'
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = 14
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
+          Header.ParentFont = False
+          Index = 4
+          ParentFont = False
+          PlaceholderText = 'Text Text'
+          Position = 4
+          Width = 180
+        end
+        object ExecProgressColumn: TNxProgressColumn6
+          Alignment = taLeftJustify
+          AutoSize = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = 13
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Footer.Font.Charset = DEFAULT_CHARSET
+          Footer.Font.Color = clWindowText
+          Footer.Font.Height = 14
+          Footer.Font.Name = 'Tahoma'
+          Footer.Font.Style = []
+          Footer.FormatMask = '#,##0.00'
+          Header.Caption = 'Status'
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = 14
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
+          Header.ParentFont = False
+          Index = 5
+          ParentFont = False
+          PlaceholderText = '50'
+          Position = 5
+          Width = 128
+          Max = 100.000000000000000000
+          Precision = 0
+          TextWidth = 32
+          ProgressHeight = 10
+          ProgressStyle = pbStyled
+          InsertString = '0'
+        end
+        object ExecFullPathColumn: TNxTextColumn6
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = 14
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Footer.Font.Charset = DEFAULT_CHARSET
+          Footer.Font.Color = clWindowText
+          Footer.Font.Height = 14
+          Footer.Font.Name = 'Tahoma'
+          Footer.Font.Style = []
+          Footer.FormatMask = '#,##0.00'
+          Header.Font.Charset = DEFAULT_CHARSET
+          Header.Font.Color = clWindowText
+          Header.Font.Height = 14
+          Header.Font.Name = 'Tahoma'
+          Header.Font.Style = []
+          Header.ParentFont = False
+          Index = 6
+          PlaceholderText = 'Text Text'
+          Position = 6
+          Visible = False
+        end
       end
     end
   end
