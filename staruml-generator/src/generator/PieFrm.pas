@@ -50,13 +50,11 @@ interface
 uses
   Vcl.ButtonGroup, Vcl.Mask, JvExMask, JvToolEdit, System.Actions, Vcl.ActnList,
   Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, ComObj, NxColumnClasses, NxColumns, NxScrollControl,
-  NxCustomGridControl, NxCustomGrid, NxGrid, StdCtrls,
-  JvWizard, ComCtrls, Vcl.ImgList, ExtCtrls,
-  Menus, JvExControls, JvComponent,
+  Vcl.Controls, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Forms, ComObj,
+  JvWizard, ComCtrls, Vcl.ImgList, Vcl.Menus, JvExControls, JvComponent,
+  NxGridView6, NxColumns6, NxControls6, NxCustomGrid6, NxVirtualGrid6, NxGrid6,
   DirectMDAProc, DirectMDAObjects, BatchFrm, WhiteStarUML_TLB, FlatPanel,
-  GeneratorScriptHandler, WSGenerator_TLB, NxGridView6, NxColumns6, NxControls6,
-  NxCustomGrid6, NxVirtualGrid6, NxGrid6;
+  GeneratorScriptHandler, WSGenerator_TLB;
 
 
 const
@@ -99,17 +97,10 @@ type
     MainTabSheet: TTabSheet;
     OutDirectorySelectionPage: TJvWizardInteriorPage;
     ExecutionPage: TJvWizardInteriorPage;
-    ExecTasksGrid: TNextGrid;
     GenerationItemsLabel: TLabel;
-    ExecStateColumn: TNxImageColumn;
-    ExecGroupColumn: TNxTextColumn;
-    ExecCategoryColumn: TNxTextColumn;
-    ExecDocNameColumn: TNxTextColumn;
-    ExecPathColumn: TNxTextColumn;
     ProgressBar: TProgressBar;
     MainMessageLabel: TLabel;
     HeaderImageList: TImageList;
-    ExecProgressColumn: TNxProgressColumn;
     RegisterBatchButton: TButton;
     AppendToBatchButton: TButton;
     RegisterTemplateButton: TButton;
@@ -129,7 +120,6 @@ type
     HeartBeatTimer: TTimer;
     GenerationUnitDescPanel: TFlatPanel;
     GenerationUnitDescMemo: TMemo;
-    ExecFullPathColumn: TNxTextColumn;
     MessageLabel: TLabel;
     CloneTemplateButton: TButton;
     ModifyTemplateButton: TButton;
@@ -172,6 +162,15 @@ type
     TutorialColumn: TNxIconColumn6;
     TasksGridView: TNxReportGridView6;
     ParametersColumn: TNxIconColumn6;
+    ExecTasksGrid: TNextGrid6;
+    ExecTasksGridView: TNxReportGridView6;
+    ExecStateColumn: TNxIconColumn6;
+    ExecGroupColumn: TNxTextColumn6;
+    ExecCategoryColumn: TNxTextColumn6;
+    ExecDocNameColumn: TNxTextColumn6;
+    ExecPathColumn: TNxTextColumn6;
+    ExecProgressColumn: TNxProgressColumn6;
+    ExecFullPathColumn: TNxTextColumn6;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure TasksGridDblClick(Sender: TObject);
@@ -221,6 +220,10 @@ type
       TasksColumnPreview, TasksColumnName, TasksColumnDocType, TasksColumnFormat,
       TasksColumnTutorial, TasksColumnParameters);
 
+    ExecTasksColumn = (ExecTasksColumnState, ExecTasksColumnGroup,
+      ExecTasksColumnCategory, ExecTasksColumnDocName, ExecTasksColumnPath,
+      ExecTasksColumnProgress, ExecTasksColumnFullPath);
+
   private
     DirectMDAProcessor: TGeneratorProcessor;
     SelectedBatch: PBatch;
@@ -251,7 +254,7 @@ type
     procedure UpdateDocTypeComboBox;
     procedure UpdateFormatComboBox;
     { page set up methods & finding - ExecutionPage }
-    procedure AddExecTaskRow(ATask: PTask);
+    procedure SetupExecTaskRow(ATask: PTask);
     procedure SetupExecTasks;
     function FindExecTaskRowIndex(ATask: PTask): Integer;
     function NumberOfTasksToRun: Integer;
@@ -305,21 +308,22 @@ type
 
     { Helpers}
     function GetGenerationUnitForSelectedRow: PGenerationUnit;
-    procedure AttachTaskToRow(Task: PTask; RowIdx: Integer);
-    function GetTaskFromRow(RowIdx: Integer): PTask;
+    procedure AttachTaskToGridRow( Task: PTask; AGrid: TNxCustomGrid6; RowIdx: Integer);
+    function GetTaskFromGridRow(AGrid: TNxCustomGrid6; RowIdx: Integer): PTask;
 
   public
     property StarUMLApp: IStarUMLApplication read FStarUMLApp write FStarUMLApp;
     function GetScriptHandler: TGeneratorScriptHandler;
   end;
 
+
+
 implementation
 
 {$R *.dfm}
 
 uses
-  Winapi.Windows, System.IOUtils, Winapi.ShellAPI, System.SysUtils,
-  Vcl.Dialogs,
+  Winapi.Windows, System.IOUtils, Winapi.ShellAPI, System.SysUtils, Vcl.Dialogs,
   TaskInfoFrm, TemplateRegFrm, BatchRegisterFrm, BatchSelFrm, PreviewFrm,
   NewFolderFrm, Utilities, Symbols, NewTemplateDlg, Serializers;
 
@@ -388,20 +392,20 @@ begin
   if Assigned(GenUnit) and IsFiltered(GenUnit) then begin
     TasksGrid.AddRow;
     R := TasksGrid.LastAddedRow;
-    TasksGrid.CellBy[TasksColumnCheck, R].AsBoolean := ATask.Selected;
-    TasksGrid.CellBy[TasksColumnGroup, R].AsString := GenUnit.Group;
-    TasksGrid.CellBy[TasksColumnCategory, R].AsString := GenUnit.Category;
+    TasksGrid.Cell[Ord(TasksColumnCheck), R].AsBoolean := ATask.Selected;
+    TasksGrid.Cell[Ord(TasksColumnGroup), R].AsString := GenUnit.Group;
+    TasksGrid.Cell[Ord(TasksColumnCategory), R].AsString := GenUnit.Category;
     if GenUnit.PreviewCount > 0 then
-      TasksGrid.CellBy[TasksColumnPreview, R].AsInteger := 2
+      TasksGrid.Cell[Ord(TasksColumnPreview), R].AsInteger := 2
     else
-      TasksGrid.CellBy[TasksColumnPreview, R].AsInteger := -1;
-    TasksGrid.CellBy[TasksColumnName, R].AsString := GenUnit.Name;
-    TasksGrid.CellBy[TasksColumnDocType, R].AsString := DocumentTypeKindToLocalizedString(GenUnit.DocumentType);
-    TasksGrid.CellBy[TasksColumnFormat, R].AsString := GenUnit.Format;
-    TasksGrid.CellBy[TasksColumnTutorial, R].AsInteger := 1;
-    TasksGrid.CellBy[TasksColumnParameters, R].AsInteger := 0;
+      TasksGrid.Cell[Ord(TasksColumnPreview), R].AsInteger := -1;
+    TasksGrid.Cell[Ord(TasksColumnName), R].AsString := GenUnit.Name;
+    TasksGrid.Cell[Ord(TasksColumnDocType), R].AsString := DocumentTypeKindToLocalizedString(GenUnit.DocumentType);
+    TasksGrid.Cell[Ord(TasksColumnFormat), R].AsString := GenUnit.Format;
+    TasksGrid.Cell[Ord(TasksColumnTutorial), R].AsInteger := 1;
+    TasksGrid.Cell[Ord(TasksColumnParameters), R].AsInteger := 0;
 
-    AttachTaskToRow(ATask,R);
+    AttachTaskToGridRow(ATask, TasksGrid, R);
 
   end
   else
@@ -595,26 +599,25 @@ begin
   FormatComboBox.ItemIndex := 0;
 end;
 
-procedure TPieForm.AddExecTaskRow(ATask: PTask);
+procedure TPieForm.SetupExecTaskRow(ATask: PTask);
 var
   GenUnit: PGenerationUnit;
-  Idx: Integer;
+  R: Integer;
 begin
   GenUnit := ATask.GenerationUnit;
-  if GenUnit <> nil then begin
+  if Assigned(GenUnit) then begin
     ExecTasksGrid.AddRow;
-    Idx := ExecTasksGrid.RowCount - 1;
-    ExecTasksGrid.CellByName[COL_EXEC_STATE, Idx].AsInteger := 0;
-    ExecTasksGrid.CellByName[COL_EXEC_STATE, Idx].ObjectReference := ATask;
-    ExecTasksGrid.CellByName[COL_EXEC_GROUP, Idx].AsString := GenUnit.Group;
-    ExecTasksGrid.CellByName[COL_EXEC_CATEGORY, Idx].AsString := GenUnit.Category;
-    ExecTasksGrid.CellByName[COL_EXEC_DOC_NAME, Idx].AsString := GenUnit.Name;
-    ExecTasksGrid.CellByName[COL_EXEC_PATH, Idx].AsString := TXT_WAITING;
-    ExecTasksGrid.CellByName[COL_EXEC_PROGRESS, Idx].AsInteger := 0;
-    ExecTasksGrid.CellByName[COL_EXEC_FULL_PATH, Idx].AsString := '';
-  end
-  else
-    Log(ERR_CANNOT_FOUND_TDF, [ATask.GenerationUnit], lmError);
+    R := ExecTasksGrid.LastAddedRow;
+    ExecTasksGrid.Cell[Ord(ExecTasksColumnState), R].AsInteger := 0;
+    ExecTasksGrid.Cell[Ord(ExecTasksColumnGroup), R].AsString := GenUnit.Group;
+    ExecTasksGrid.Cell[Ord(ExecTasksColumnCategory), R].AsString := GenUnit.Category;
+    ExecTasksGrid.Cell[Ord(ExecTasksColumnDocName), R].AsString := GenUnit.Name;
+    ExecTasksGrid.Cell[Ord(ExecTasksColumnPath), R].AsString := TXT_WAITING;
+    ExecTasksGrid.Cell[Ord(ExecTasksColumnProgress), R].AsInteger := 0;
+    ExecTasksGrid.Cell[Ord(ExecTasksColumnFullPath), R].AsString := '';
+
+    AttachTaskToGridRow(ATask,ExecTasksGrid,R);
+  end;
 end;
 
 procedure TPieForm.SetupExecTasks;
@@ -624,7 +627,7 @@ begin
   ExecTasksGrid.ClearRows;
   for I := 0 to SelectedBatch.TaskCount - 1 do begin
     if SelectedBatch.Task[I].Selected then
-      AddExecTaskRow(SelectedBatch.Task[I]);
+      SetupExecTaskRow(SelectedBatch.Task[I]);
     Application.ProcessMessages;
   end;
 end;
@@ -635,8 +638,9 @@ var
   I: Integer;
 begin
   Result := -1;
+
   for I := 0 to ExecTasksGrid.RowCount - 1 do begin
-    T := ExecTasksGrid.CellByName[COL_EXEC_STATE, I].ObjectReference as PTask;
+    T := GetTaskFromGridRow(ExecTasksGrid,I);
     if T = ATask then begin
       Result := I;
       Exit;
@@ -661,8 +665,8 @@ begin
         Batch.Description := BatchRegForm.BatchDescription;
 
         for I := 0 to TasksGrid.RowCount - 1 do begin
-          if TasksGrid.CellBy[TasksColumnCheck, I].AsBoolean = True then begin
-            T := GetTaskFromRow(I);
+          if TasksGrid.Cell[Ord(TasksColumnCheck), I].AsBoolean = True then begin
+            T := GetTaskFromGridRow(TasksGrid,I);
             if Assigned(T) then
               Batch.AddTask(T.Clone);
           end;
@@ -767,7 +771,7 @@ var
 begin
 
   if TasksGrid.SelectedRow > -1 then begin
-    T := GetTaskFromRow(TasksGrid.SelectedRow);
+    T := GetTaskFromGridRow(TasksGrid, TasksGrid.SelectedRow);
 
     Assert(T <> nil);
 
@@ -837,7 +841,7 @@ var
   I: Integer;
 begin
   for I := 0 to TasksGrid.RowCount - 1 do begin
-    T := GetTaskFromRow(I);
+    T := GetTaskFromGridRow(TasksGrid, I);
     T.Selected := True;
   end;
 
@@ -872,7 +876,7 @@ var
   I: Integer;
 begin
   for I := 0 to TasksGrid.RowCount - 1 do begin
-    T := GetTaskFromRow(I);
+    T := GetTaskFromGridRow(TasksGrid, I);
     T.Selected := False;
   end;
   UpdateTasksGrid;
@@ -883,7 +887,7 @@ var
   TaskInfoForm: TTaskInformationForm;
   T: PTask;
 begin
-  T := GetTaskFromRow(TasksGrid.SelectedRow);
+  T := GetTaskFromGridRow(TasksGrid, TasksGrid.SelectedRow);
   Assert(T <> nil);
 
   TaskInfoForm := TTaskInformationForm.Create(Self);
@@ -1032,7 +1036,7 @@ var
   S: string;
 begin
   if ExecTasksGrid.SelectedRow > -1 then begin
-    S := ExecTasksGrid.CellByName[COL_EXEC_FULL_PATH, ExecTasksGrid.SelectedRow].AsString;
+    S := ExecTasksGrid.Cell[Ord(ExecTasksColumnFullPath), ExecTasksGrid.SelectedRow].AsString;
     if S <> '' then
       try
         ExecuteFile(S);
@@ -1063,32 +1067,35 @@ procedure TPieForm.HandleExecutingTask(Sender: TObject; Task: PTask);
 begin
   ActiveTask := Task;
   ActiveTaskRow := FindExecTaskRowIndex(ActiveTask);
-  ExecTasksGrid.CellByName[COL_EXEC_STATE, ActiveTaskRow].AsInteger := 1;
-  ExecTasksGrid.CellByName[COL_EXEC_PATH, ActiveTaskRow].AsString := TXT_ON_GENERATING;
+
+  if ExecTasksGrid.Focused then begin
+    ExecTasksGrid.Cell[Ord(ExecTasksColumnState), ActiveTaskRow].AsInteger := 1;
+    ExecTasksGrid.Cell[Ord(ExecTasksColumnPath), ActiveTaskRow].AsString := TXT_ON_GENERATING;
+  end;
 end;
 
 procedure TPieForm.HandleExecuteTask(Sender: TObject; Task: PTask; Success: Boolean; Items: TStringList);
 begin
   if Success then begin
-    ExecTasksGrid.CellByName[COL_EXEC_STATE, ActiveTaskRow].AsInteger := 2;
+    ExecTasksGrid.Cell[Ord(ExecTasksColumnState), ActiveTaskRow].AsInteger := 2;
     if Items.Count = 0 then
-      ExecTasksGrid.CellByName[COL_EXEC_PATH, ActiveTaskRow].AsString := TXT_EMPTY
+      ExecTasksGrid.Cell[Ord(ExecTasksColumnPath), ActiveTaskRow].AsString := TXT_EMPTY
     else begin
-      ExecTasksGrid.CellByName[COL_EXEC_PATH, ActiveTaskRow].AsString := ExtractFileName(Items[0]);
-      ExecTasksGrid.CellByName[COL_EXEC_PATH, ActiveTaskRow].Hint := Items[0];
-      ExecTasksGrid.CellByName[COL_EXEC_FULL_PATH, ActiveTaskRow].AsString := Items[0];
+      ExecTasksGrid.Cell[Ord(ExecTasksColumnPath), ActiveTaskRow].AsString := ExtractFileName(Items[0]);
+      ExecTasksGrid.Cell[Ord(ExecTasksColumnPath), ActiveTaskRow].Hint := Items[0];
+      ExecTasksGrid.Cell[Ord(ExecTasksColumnFullPath), ActiveTaskRow].AsString := Items[0];
     end;
   end
   else begin
-    ExecTasksGrid.CellByName[COL_EXEC_STATE, ActiveTaskRow].AsInteger := 3;
-    ExecTasksGrid.CellByName[COL_EXEC_PATH, ActiveTaskRow].AsString := TXT_FAILED;
+    ExecTasksGrid.Cell[Ord(ExecTasksColumnState), ActiveTaskRow].AsInteger := 3;
+    ExecTasksGrid.Cell[Ord(ExecTasksColumnPath), ActiveTaskRow].AsString := TXT_FAILED;
   end;
 end;
 
 procedure TPieForm.HandleAbortTask(Sender: TObject; Task: PTask);
 begin
-  ExecTasksGrid.CellByName[COL_EXEC_STATE, ActiveTaskRow].AsInteger := 1;
-  ExecTasksGrid.CellByName[COL_EXEC_PATH, ActiveTaskRow].AsString := TXT_CANCLED;
+  ExecTasksGrid.Cell[Ord(ExecTasksColumnState), ActiveTaskRow].AsInteger := 1;
+  ExecTasksGrid.Cell[Ord(ExecTasksColumnPath), ActiveTaskRow].AsString := TXT_CANCLED;
 end;
 
 procedure TPieForm.HandleWarning(Sender: TObject; Msg: string);
@@ -1112,7 +1119,8 @@ var
   Perc, TotalPerc: Integer;
 begin
   Perc := Position * 100 div Max;
-  ExecTasksGrid.CellByName[COL_EXEC_PROGRESS, ActiveTaskRow].AsInteger := Perc;
+  ExecTasksGrid.Cell[Ord(ExecTasksColumnProgress), ActiveTaskRow].AsInteger := Perc;
+  ExecTasksGrid.RefreshCell(Ord(ExecTasksColumnProgress), ActiveTaskRow);
   TotalPerc := (ActiveTaskRow * 100 + Perc) div SelectedBatch.GetSelectedTaskCount;
   ProgressBar.Position := TotalPerc;
   Application.ProcessMessages;
@@ -1285,9 +1293,7 @@ begin
       try
         TDirectory.Delete(ExtractFileDir(GenUnit.Path), True);
         DirectMDAProcessor.DeleteGenerationUnit(GenUnit);
-
-
-        // rearrange grid
+       // rearrange grid
         UpdateTasksGrid;
         for Batch in  DirectMDAProcessor.Batches do
           UpdateBatchPage(Batch);
@@ -1477,9 +1483,9 @@ var
   Task: PTask;
 begin
   if TasksColumn(ACol) = TasksColumnCheck then begin
-    Task := GetTaskFromRow(ARow);
+    Task := GetTaskFromGridRow(TasksGrid, ARow);
     if Assigned(Task) then
-      Task.Selected := TasksGrid.CellBy[TasksColumnCheck, ARow].AsBoolean;
+      Task.Selected := TasksGrid.Cell[Ord(TasksColumnCheck), ARow].AsBoolean;
     UpdateUIStates;
   end;
 end;
@@ -1537,13 +1543,9 @@ procedure TPieForm.ExecutionPageNextButtonClick(Sender: TObject; var Stop: Boole
 begin
   ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons - [bkNext, bkFinish];
   ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons + [bkCancel];
-  //try
-    //ExecuteTasks;
-    ExecuteTasksInThread;
-//  finally
-//    ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons + [bkFinish];
-//    ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons - [bkCancel];
-//  end;
+
+  ExecuteTasksInThread;
+
 end;
 
 procedure TPieForm.TasksGridCellChange(Sender: TObject; ACol, ARow: Integer);
@@ -1551,9 +1553,9 @@ var
   Task: PTask;
 begin
   if TasksColumn(ACol) = TasksColumnCheck then begin
-    Task := GetTaskFromRow(ARow);
+    Task := GetTaskFromGridRow(TasksGrid, ARow);
     if Assigned(Task) then
-      Task.Selected := TasksGrid.CellBy[TasksColumnCheck, ARow].AsBoolean;
+      Task.Selected := TasksGrid.Cell[Ord(TasksColumnCheck), ARow].AsBoolean;
     UpdateUIStates;
   end;
 end;
@@ -1563,7 +1565,7 @@ procedure TPieForm.TasksGridCellClick(Sender: TObject; ACol, ARow: Integer;
 begin
   ShowTaskDescription;
   if (TasksGrid.Columns.Item[ACol] = PreviewColumn)
-    and (TasksGrid.CellBy[TasksColumnPreview, ARow].AsInteger <> -1) then begin
+    and (TasksGrid.Cell[Ord(TasksColumnPreview), ARow].AsInteger <> -1) then begin
      PreviewTemplate;
   end
   else if TasksGrid.Columns.Item[ACol] = ParametersColumn then begin
@@ -1592,20 +1594,20 @@ function TPieForm.GetGenerationUnitForSelectedRow: PGenerationUnit;
 var
   T: PTask;
 begin
-  T := GetTaskFromRow(TasksGrid.SelectedRow);
+  T := GetTaskFromGridRow(TasksGrid, TasksGrid.SelectedRow);
   Assert (Assigned(T));
   Result := T.GenerationUnit;
 end;
 
-procedure TPieForm.AttachTaskToRow(Task: PTask; RowIdx: Integer);
+procedure TPieForm.AttachTaskToGridRow(Task: PTask; AGrid: TNxCustomGrid6; RowIdx: Integer);
 begin
   if RowIdx < TasksGrid.RowCount then
     TasksGrid.Row[RowIdx].Data := Task;
 end;
 
-function TPieForm.GetTaskFromRow(RowIdx: Integer): PTask;
+function TPieForm.GetTaskFromGridRow(AGrid: TNxCustomGrid6; RowIdx: Integer): PTask;
 begin
-  if RowIdx < TasksGrid.RowCount then
+  if RowIdx < AGrid.RowCount then
     Result := PTask(TasksGrid.Row[RowIdx].Data)
   else
     Result := nil;
