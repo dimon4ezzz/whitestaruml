@@ -57,6 +57,8 @@ var isLog = false;
 var isDebug = false;
 var isConsole = true;
 
+var Shell;
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // Script initialization through script handler object provided by Documantation Generator
@@ -65,7 +67,7 @@ Init()
 
 function Init()
 {
-  var Shell = new ActiveXObject("WScript.Shell")
+  Shell = new ActiveXObject("WScript.Shell")
   var scriptHandlerContainer = WScript.CreateObject("WhiteStarUML.ScriptHanderContainer")
   if ( scriptHandlerContainer != null)
   {
@@ -187,7 +189,7 @@ function main() {
     if(e=="user termination")
       log("Terminated by user request.");
     else
-      log("Error : " + e);
+      log("Error : " + e.message);
     throw e;
   }
   finally
@@ -246,6 +248,17 @@ function connectToExcelApplication() {
 function cloneExcelDocument() {
   try
   {
+    excelWorkbooks = excelApp.Workbooks;
+    
+  if (excelWorkbooks.CanCheckOut(templateFilename))
+    excelWorkbook = excelWorkbooks.Add;
+  else
+  {
+    Shell.Popup("Excel workbook cannot open template file: " + templateFilename);
+    excelWorkbook = null;
+    throw new Error('Excel workbook cannot open template file');
+  }
+    
     excelWorkbook = excelApp.Workbooks.Open(templateFilename);
     //excelWorkbook.ReadOnlyRecommended = false;
 //    excelWorkbook.SaveCopyAs(outputFilename);
@@ -258,7 +271,8 @@ function cloneExcelDocument() {
   }
   finally
   {
-    excelWorkbook.Close();
+    if (excelWorkbook != null)
+      excelWorkbook.Close();
   }
 }
 
