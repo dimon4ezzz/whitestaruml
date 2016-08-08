@@ -304,12 +304,12 @@ begin
 
     // Look for confilicting name/group cases
     for ExistingGenUnit in FGenerationUnits do begin
-      // Skip name conflict check with GenUnit being modified
-      if ExistingGenUnit = AModifiedGenerationUnit then
-        Continue;
-     // Raise exception if conflict is detected
-     if (ExistingGenUnit.Name = AGenerationUnit.Name) and (ExistingGenUnit.Group = AGenerationUnit.Group) then
-        raise Exception.Create(C_ERR_DUPLICATE_TEMPLATE_NAME);
+      if (ExistingGenUnit <> AModifiedGenerationUnit) // Skip name conflict check when GenUnit is being modified
+        and (ExistingGenUnit.Name = AGenerationUnit.Name)
+        and (ExistingGenUnit.Group = AGenerationUnit.Group) then
+          // Raise exception if conflict is detected
+          raise Exception.Create(Format(C_ERR_DUPLICATE_TEMPLATE_NAME,
+            [AGenerationUnit.Name,AGenerationUnit.Group]));
     end;
 
     FGenerationUnits.Add(AGenerationUnit);
