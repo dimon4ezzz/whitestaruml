@@ -127,33 +127,6 @@ const
   EXT_TDF = '.tdf';
   EXT_BTF = '.btf';
 
-  // Grid column index
-  COL_CHECK = 'CheckColumn';
-  COL_GROUP = 'GroupColumn';
-  COL_CATEGORY = 'CategoryColumn';
-  COL_PREVIEW = 'PreviewColumn';
-  COL_NAME = 'NameColumn';
-  COL_DOC_TYPE = 'DocTypeColumn';
-  COL_FORMAT = 'FormatColumn';
-  COL_TUTORIAL = 'TutorialColumn';
-  COL_PARAMETERS = 'ParametersColumn';
-
-  COL_PROFILE_CHECK = 'CheckColumn';
-  COL_PROFILE_ICON = 'ProfileIconColumn';
-  COL_PROFILE_NAME = 'ProfileNameColumn';
-
-  COL_PARAM_NAME = 'ParamNameColumn';
-  COL_PARAM_TYPE = 'ParamTypeColumn';
-  COL_PARAM_VALUE = 'ParamValueColumn';
-
-  COL_EXEC_STATE = 'ExecStateColumn';
-  COL_EXEC_GROUP = 'ExecGroupColumn';
-  COL_EXEC_CATEGORY = 'ExecCategoryColumn';
-  COL_EXEC_DOC_NAME = 'ExecDocNameColumn';
-  COL_EXEC_PATH = 'ExecPathColumn';
-  COL_EXEC_PROGRESS = 'ExecProgressColumn';
-  COL_EXEC_FULL_PATH = 'ExecFullPathColumn';
-
   // COM name of predefined generators
   GEN_WORD = 'WSWordTranslator.WordTranslatorObj';
   GEN_EXCEL = 'WSExcelTranslator.ExcelTranslatorObj';
@@ -184,10 +157,6 @@ const
     'UMLCollaborationRoleDiagram', 'UMLStatechartDiagram', 'UMLActivityDiagram',
     'UMLComponentDiagram', 'UMLDeploymentDiagram');
 
-  C_ERR_INVALID_REGISTRATION = 'Improper Serial number.'
-    + #13#10 + 'Confirm and retry again.';
-  C_ERR_PERSONAL_EDITION = 'It is not available in personal version.';
-  C_ERR_TRIAL_EDITION = 'Trial date is expired.';
   C_FIELD_CANNOT_BE_EMPTY = 'Field cannot be empty';
   C_FIELD_AUTO_DERIVE = 'Leave empty to auto derive file name from template name';
   C_ERR_DUPLICATE_TEMPLATE_NAME = 'Template with the same name/group (%s/%s) already exists.';

@@ -20,9 +20,9 @@ object ProfileSelectorForm: TProfileSelectorForm
   object HeaderLabel: TLabel
     Left = 8
     Top = 8
-    Width = 94
+    Width = 92
     Height = 14
-    Caption = 'Selected &Profiles:'
+    Caption = 'Available Profiles:'
   end
   object Bevel: TBevel
     Left = 8
@@ -111,115 +111,6 @@ object ProfileSelectorForm: TProfileSelectorForm
       00000000}
     Visible = False
   end
-  object ProfileGrid: TNextGrid
-    Left = 8
-    Top = 24
-    Width = 249
-    Height = 161
-    Touch.InteractiveGestures = [igPan, igPressAndTap]
-    Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia, igoPanGutter, igoParentPassthrough]
-    AppearanceOptions = [aoAlphaBlendedSelection, aoHideFocus, aoHideSelection]
-    AutoScroll = True
-    Caption = ''
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    HighlightedTextColor = clWindowText
-    Options = [goSelectFullRow]
-    ParentFont = False
-    TabOrder = 0
-    TabStop = True
-    object CheckColumn: TNxCheckBoxColumn
-      Alignment = taCenter
-      DefaultWidth = 26
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      Header.DisplayMode = dmImageOnly
-      Header.Glyph.Data = {
-        36030000424D3603000000000000360000002800000010000000100000000100
-        1800000000000003000000000000000000000000000000000000C8D0D4C8D0D4
-        C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0
-        D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D480511C80511C80511C80511C80511C80
-        511C80511C80511C80511C80511C80511C80511C80511CC8D0D4C8D0D4C8D0D4
-        80511CF1F3F3F3F5F5F6F7F7F8F9F9F9FAFAFBFCFCFDFDFDFEFEFEFFFFFFFFFF
-        FFFFFFFF80511CC8D0D4C8D0D4C8D0D480511CEFF1F1F1F3F3F3F5F5F6F7F7F8
-        F9F9F9FAFAFBFCFCFDFDFDFEFEFEFFFFFFFFFFFF80511CC8D0D4C8D0D4C8D0D4
-        80511CECEFEFEFF1F1F1F3F3F3F5F521A121F8F9F9F9FAFAFBFCFCFDFDFDFEFE
-        FEFFFFFF80511CC8D0D4C8D0D4C8D0D480511CE9ECECECEFEFEFF1F121A12121
-        A12121A121F8F9F9F9FAFAFBFCFCFDFDFDFEFEFE80511CC8D0D4C8D0D4C8D0D4
-        80511CE6EAEAE9ECEC21A12121A12121A12121A12121A121F8F9F9F9FAFAFBFC
-        FCFDFDFD80511CC8D0D4C8D0D4C8D0D480511CE3E7E7E6EAEA21A12121A121EF
-        F1F121A12121A12121A121F8F9F9F9FAFAFBFCFC80511CC8D0D4C8D0D4C8D0D4
-        80511CE1E5E5E3E7E721A121E9ECECECEFEFEFF1F121A12121A12121A121F8F9
-        F9F9FAFA80511CC8D0D4C8D0D4C8D0D480511CDFE3E3E1E5E5E3E7E7E6EAEAE9
-        ECECECEFEFEFF1F121A12121A121F6F7F7F8F9F980511CC8D0D4C8D0D4C8D0D4
-        80511CDDE2E2DFE3E3E1E5E5E3E7E7E6EAEAE9ECECECEFEFEFF1F121A121F3F5
-        F5F6F7F780511CC8D0D4C8D0D4C8D0D480511CDDE2E2DDE2E2DFE3E3E1E5E5E3
-        E7E7E6EAEAE9ECECECEFEFEFF1F1F1F3F3F3F5F580511CC8D0D4C8D0D4C8D0D4
-        80511CDDE2E2DDE2E2DDE2E2DFE3E3E1E5E5E3E7E7E6EAEAE9ECECECEFEFEFF1
-        F1F1F3F380511CC8D0D4C8D0D4C8D0D480511C80511C80511C80511C80511C80
-        511C80511C80511C80511C80511C80511C80511C80511CC8D0D4C8D0D4C8D0D4
-        C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0
-        D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8
-        D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
-      Header.Font.Charset = DEFAULT_CHARSET
-      Header.Font.Color = clWindowText
-      Header.Font.Height = -11
-      Header.Font.Name = 'Tahoma'
-      Header.Font.Style = []
-      Options = [coCanClick, coCanInput, coCanSort, coEditing, coEditorAutoSelect]
-      ParentFont = False
-      Position = 0
-      SortType = stBoolean
-      Width = 26
-    end
-    object ProfileIconColumn: TNxImageColumn
-      DefaultValue = '0'
-      DefaultWidth = 22
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      Header.Font.Charset = DEFAULT_CHARSET
-      Header.Font.Color = clWindowText
-      Header.Font.Height = -11
-      Header.Font.Name = 'Tahoma'
-      Header.Font.Style = []
-      Options = [coCanClick, coCanInput, coCanSort, coEditorAutoSelect]
-      ParentFont = False
-      Position = 1
-      SortKind = skDescending
-      SortType = stNumeric
-      Width = 22
-      Images = ProfileIconImageList
-    end
-    object ProfileNameColumn: TNxTextColumn
-      DefaultWidth = 199
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      Header.Caption = 'Profile name'
-      Header.Font.Charset = DEFAULT_CHARSET
-      Header.Font.Color = clWindowText
-      Header.Font.Height = -11
-      Header.Font.Name = 'Tahoma'
-      Header.Font.Style = []
-      Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coEditorAutoSelect, coShowTextFitHint]
-      ParentFont = False
-      Position = 2
-      SortKind = skDescending
-      SortType = stAlphabetic
-      Width = 199
-    end
-  end
   object AcceptButton: TButton
     Left = 68
     Top = 206
@@ -228,7 +119,7 @@ object ProfileSelectorForm: TProfileSelectorForm
     Caption = '&OK'
     Default = True
     ModalResult = 1
-    TabOrder = 1
+    TabOrder = 0
   end
   object CancelButton: TButton
     Left = 164
@@ -238,7 +129,99 @@ object ProfileSelectorForm: TProfileSelectorForm
     Cancel = True
     Caption = '&Cancel'
     ModalResult = 2
+    TabOrder = 1
+  end
+  object ProfileGrid: TNextGrid6
+    Left = 8
+    Top = 28
+    Width = 249
+    Height = 162
+    ParentColor = False
     TabOrder = 2
+    ActiveView = ProfileGridView
+    ActiveViewIndex = 0
+    Caption = 'ProfileGrid'
+    HideFocus = True
+    HideSelection = False
+    Options = [goArrowEndEditing, goAutoHideScrollBars, goExitEndEditing, goTabLeaveControl]
+    ScrollBars = [sbVertical]
+    SelectionTextColor = clWindowText
+    object ProfileGridView: TNxReportGridView6
+      ColumnMoving = False
+      ShowHeader = False
+    end
+    object CheckColumn: TNxCheckBoxColumn6
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Footer.Font.Charset = DEFAULT_CHARSET
+      Footer.Font.Color = clWindowText
+      Footer.Font.Height = -11
+      Footer.Font.Name = 'Tahoma'
+      Footer.Font.Style = []
+      Footer.FormatMask = '#,##0.00'
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
+      HideSelection = True
+      Index = 0
+      PlaceholderText = 'True'
+      Position = 0
+      Width = 26
+      InsertString = 'False'
+    end
+    object ProfileIconColumn: TNxIconColumn6
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Footer.Font.Charset = DEFAULT_CHARSET
+      Footer.Font.Color = clWindowText
+      Footer.Font.Height = -11
+      Footer.Font.Name = 'Tahoma'
+      Footer.Font.Style = []
+      Footer.FormatMask = '#,##0.00'
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
+      HideSelection = True
+      Index = 1
+      Position = 1
+      Width = 22
+      Images = ProfileIconImageList
+      InsertString = '0'
+    end
+    object ProfileNameColumn: TNxTextColumn6
+      AutoSize = True
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 14
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Footer.Font.Charset = DEFAULT_CHARSET
+      Footer.Font.Color = clWindowText
+      Footer.Font.Height = -11
+      Footer.Font.Name = 'Tahoma'
+      Footer.Font.Style = []
+      Footer.FormatMask = '#,##0.00'
+      Header.Font.Charset = DEFAULT_CHARSET
+      Header.Font.Color = clWindowText
+      Header.Font.Height = -11
+      Header.Font.Name = 'Tahoma'
+      Header.Font.Style = []
+      HideSelection = True
+      Index = 2
+      PlaceholderText = 'Text Text'
+      Position = 2
+      Width = 199
+    end
   end
   object ProfileIconImageList: TImageList
     Left = 48

@@ -68,7 +68,8 @@ uses
   NewParamFrm in 'NewParamFrm.pas' {NewParameterForm},
   NewTemplateDlg in 'NewTemplateDlg.pas' {NewTemplateDialog},
   WSGenerator_TLB in 'WSGenerator_TLB.pas',
-  GeneratorScriptHandler in 'GeneratorScriptHandler.pas' {GeneratorScriptHandler: CoClass};
+  GeneratorScriptHandler in 'GeneratorScriptHandler.pas' {GeneratorScriptHandler: CoClass},
+  TasksGridFrame in 'TasksGridFrame.pas' {TasksGrid: TFrame};
 
 exports
   DllGetClassObject,

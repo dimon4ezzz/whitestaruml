@@ -49,7 +49,6 @@ object NewParameterForm: TNewParameterForm
     Top = 16
     Width = 137
     Height = 22
-    ImeName = 'Microsoft IME 2003'
     TabOrder = 0
     OnChange = NameEditChange
   end
@@ -58,7 +57,6 @@ object NewParameterForm: TNewParameterForm
     Top = 64
     Width = 137
     Height = 22
-    ImeName = 'Microsoft IME 2003'
     TabOrder = 1
   end
   object TypeComboBox: TComboBox
@@ -67,7 +65,6 @@ object NewParameterForm: TNewParameterForm
     Width = 137
     Height = 22
     Style = csDropDownList
-    ImeName = 'Microsoft IME 2003'
     ItemIndex = 0
     TabOrder = 2
     Text = 'STRING'

@@ -68,6 +68,7 @@ type
       Shift: TShiftState);
     procedure FolderTBItemClick(Sender: TObject);
     procedure FolderBrowserSelChanged(Sender: TObject);
+    procedure TemplateNameEditChange(Sender: TObject);
   private
     FRootDir: String;
     FPath: String;
@@ -114,6 +115,11 @@ begin
 end;
 
 // Events ......................................................................
+
+procedure TNewTemplateDialog.TemplateNameEditChange(Sender: TObject);
+begin
+  OKButton.Enabled := (TemplateNameEdit.Text <> '');
+end;
 
 procedure TNewTemplateDialog.TemplateNameEditKeyUp(Sender: TObject;
   var Key: Word; Shift: TShiftState);
