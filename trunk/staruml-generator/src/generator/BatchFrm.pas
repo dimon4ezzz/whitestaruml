@@ -50,47 +50,26 @@ interface
 uses
   DirectMDAObjects, DirectMDAProc,
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, NxColumnClasses, NxColumns, NxScrollControl,
-  NxCustomGridControl, NxCustomGrid, NxGrid, ImgList, ExtCtrls, FlatPanel,
-  WhiteStarUML_TLB;
+  StdCtrls, ImgList, ExtCtrls, FlatPanel,
+  TasksGridFrame, WhiteStarUML_TLB;
 
 const
-  QUERY_DELETE_SELECTED_TASKS = 'Do you want to delete the selected templates from current batch?';
+  QUERY_DELETE_SELECTED_TASKS = 'Do you want to remove selected templates from current batch?';
 
 type
   // TBatchFrame
   TBatchFrame = class(TFrame)
     DeleteTasksButton: TButton;
-    BatchGenUnitDescLabel: TLabel;
-    CellValueImages: TImageList;
-    GenerationUnitDescPanel: TFlatPanel;
-    GenerationUnitDescMemo: TMemo;
-    TasksGrid: TNextGrid;
-    CheckColumn: TNxCheckBoxColumn;
-    GroupColumn: TNxTextColumn;
-    CategoryColumn: TNxTextColumn;
-    PreviewColumn: TNxImageColumn;
-    NameColumn: TNxTextColumn;
-    DocTypeColumn: TNxTextColumn;
-    FormatColumn: TNxTextColumn;
-    TutorialColumn: TNxImageColumn;
-    ParametersColumn: TNxImageColumn;
+    TasksGrid: TTasksGrid;
     procedure DeleteTasksButtonClick(Sender: TObject);
-    procedure TasksGridChange(Sender: TObject; ACol, ARow: Integer);
-    procedure TasksGridCellClick(Sender: TObject; ACol, ARow: Integer);
-    procedure TasksGridDblClick(Sender: TObject);
   private
     Processor: TGeneratorProcessor;
     Batch: PBatch;
     FStarUMLApp: IStarUMLApplication;
     FOnUpdateUIStates: TNotifyEvent;
-    procedure AddTaskRow(ATask: PTask);
     procedure DeleteSelectedTasks;
-    procedure ShowTaskProperties;
-    procedure ShowTaskDescription;
-    procedure PreviewTemplate;
-    procedure EditTaskParameters;
     procedure RequestUpdateUIStates;
+    procedure HandleRequestUpdateUIStates(Sender: TObject);
   public
     procedure Initialize(AProcessor: TGeneratorProcessor; ABatch: PBatch);
     procedure UpdateTasksGrid(ABatch: PBatch);
@@ -109,31 +88,6 @@ uses
 ////////////////////////////////////////////////////////////////////////////////
 // TBatchFrame
 
-procedure TBatchFrame.AddTaskRow(ATask: PTask);
-var
-  GenUnit: PGenerationUnit;
-  R: Integer;
-begin
-  GenUnit := ATask.GenerationUnit;
-  if GenUnit <> nil then begin
-    TasksGrid.AddRow;
-    R := TasksGrid.RowCount - 1;
-    TasksGrid.CellByName[COL_CHECK, R].AsBoolean := ATask.Selected;
-    TasksGrid.CellByName[COL_GROUP, R].AsString := GenUnit.Group;
-    TasksGrid.CellByName[COL_CATEGORY, R].AsString := GenUnit.Category;
-    if GenUnit.PreviewCount > 0 then
-      TasksGrid.CellByName[COL_PREVIEW, R].AsInteger := 2
-    else
-      TasksGrid.CellByName[COL_PREVIEW, R].AsInteger := -1;
-    TasksGrid.CellByName[COL_NAME, R].AsString := GenUnit.Name;
-    TasksGrid.CellByName[COL_NAME, R].ObjectReference := ATask;
-    TasksGrid.CellByName[COL_DOC_TYPE, R].AsString := DocumentTypeKindToLocalizedString(GenUnit.DocumentType);
-    TasksGrid.CellByName[COL_FORMAT, R].AsString := GenUnit.Format;
-    TasksGrid.CellByName[COL_TUTORIAL, R].AsInteger := 1;
-    TasksGrid.CellByName[COL_PARAMETERS, R].AsInteger := 0;
-  end;
-end;
-
 procedure TBatchFrame.DeleteSelectedTasks;
 begin
   if Batch.GetSelectedTaskCount > 0 then
@@ -143,86 +97,18 @@ begin
     end;
 end;
 
-procedure TBatchFrame.ShowTaskProperties;
-var
-  TaskInfoForm: TTaskInformationForm;
-  T: PTask;
-begin
-  T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
-  Assert(T <> nil);
-  TaskInfoForm := TTaskInformationForm.Create(Self);
-  try
-    TaskInfoForm.StarUMLApp := FStarUMLApp;
-    TaskInfoForm.Task := T;
-    TaskInfoForm.Execute;
-  finally
-    TaskInfoForm.Free;
-  end;
-end;
-
-procedure TBatchFrame.ShowTaskDescription;
-var
-  T: PTask;
-  GenUnit: PGenerationUnit;
-begin
-  T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
-  GenUnit := T.GenerationUnit;
-  if GenUnit <> nil then
-    GenerationUnitDescMemo.Lines.Text := GenUnit.Description;
-end;
-
-procedure TBatchFrame.PreviewTemplate;
-var
-  PreviewForm: TPreviewForm;
-  Images: TStringList;
-  GenUnit: PGenerationUnit;
-  T: PTask;
-  I: Integer;
-begin
-  T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
-  GenUnit := T.GenerationUnit;
-  if GenUnit <> nil then begin
-    PreviewForm := TPreviewForm.Create(Self);
-    Images := TStringList.Create;
-    try
-      for I := 0 to GenUnit.PreviewCount - 1 do
-        Images.Add(ExtractFileDir(GenUnit.Path) + '\' + GenUnit.Previews[I]);
-      PreviewForm.Preview(Images);
-    finally
-      PreviewForm.Free;
-      Images.Free;
-    end;
-  end;
-end;
-
-procedure TBatchFrame.EditTaskParameters;
-var
-  TaskInfoForm: TTaskInformationForm;
-  T: PTask;
-begin
-  T := TasksGrid.CellByName[COL_NAME, TasksGrid.SelectedRow].ObjectReference as PTask;
-  Assert(T <> nil);
-  TaskInfoForm := TTaskInformationForm.Create(Self);
-  try
-    TaskInfoForm.StarUMLApp := FStarUMLApp;
-    TaskInfoForm.Task := T;
-    TaskInfoForm.Execute(True);
-  finally
-    TaskInfoForm.Free;
-  end;
-end;
-
 procedure TBatchFrame.RequestUpdateUIStates;
 begin
   if Assigned(FOnUpdateUIStates) then
     OnUpdateUIStates(Self);
-  UpdateUIStates;    
+  UpdateUIStates;
 end;
 
 procedure TBatchFrame.Initialize(AProcessor: TGeneratorProcessor; ABatch: PBatch);
 begin
   Processor := AProcessor;
   Batch := ABatch;
+  TasksGrid.Inititialize(StarUMLApp,HandleRequestUpdateUIStates);
   UpdateTasksGrid(Batch);
 end;
 
@@ -232,7 +118,8 @@ var
 begin
   TasksGrid.ClearRows;
   for I := 0 to Batch.TaskCount - 1 do
-    AddTaskRow(Batch.Task[I]);
+    TasksGrid.SetupTaskRow(Batch.Task[I]);
+  TasksGrid.Refresh;
 end;
 
 procedure TBatchFrame.UpdateUIStates;
@@ -240,42 +127,20 @@ begin
   DeleteTasksButton.Enabled := (Batch.GetSelectedTaskCount > 0);
 end;
 
-// TBatchFrame
-////////////////////////////////////////////////////////////////////////////////
-
 procedure TBatchFrame.DeleteTasksButtonClick(Sender: TObject);
 begin
   DeleteSelectedTasks;
   RequestUpdateUIStates;
 end;
 
-procedure TBatchFrame.TasksGridChange(Sender: TObject; ACol, ARow: Integer);
-var
-  RefObj: TObject;
+procedure TBatchFrame.HandleRequestUpdateUIStates(Sender: TObject);
 begin
-  if TasksGrid.Columns.Item[ACol].Name = COL_CHECK then begin
-    RefObj := TasksGrid.CellByName[COL_NAME, ARow].ObjectReference;
-    if (RefObj <> nil) and (RefObj is PTask) then
-      (RefObj as PTask).Selected := TasksGrid.CellByName[COL_CHECK, ARow].AsBoolean;
-    RequestUpdateUIStates;
-  end;
+  RequestUpdateUIStates;
 end;
 
-procedure TBatchFrame.TasksGridCellClick(Sender: TObject; ACol, ARow: Integer);
-begin
-  ShowTaskDescription;
-  if (TasksGrid.Columns.Item[ACol] = PreviewColumn)
-    and (TasksGrid.CellByName[COL_PREVIEW, ARow].AsInteger <> -1) then begin
-    PreviewTemplate;
-  end
-  else if TasksGrid.Columns.Item[ACol] = ParametersColumn then begin
-    EditTaskParameters;
-  end;
-end;
+// TBatchFrame
+////////////////////////////////////////////////////////////////////////////////
 
-procedure TBatchFrame.TasksGridDblClick(Sender: TObject);
-begin
-  ShowTaskProperties;
-end;
+
 
 end.

@@ -51,8 +51,8 @@ uses
   Classes, SysUtils;
 
 const
-  ERR_NOT_INITIALIZED = 'It is not executed because object is not initialized.';
-  ERR_CANNOT_CREATE_DIRECTORY = 'Directory can''t be created.';   
+  ERR_NOT_INITIALIZED = 'Execution failed because object is not initialized.';
+  ERR_CANNOT_CREATE_DIRECTORY = 'Directory cannot be created.';
 
 type
   // exceptions
@@ -119,7 +119,7 @@ implementation
 
 uses
   Symbols, Registry, Windows, Forms, Dialogs, HttpApp, ShellAPI, ShlObj,
-  Winapi.ActiveX;
+  Winapi.ActiveX, Vcl.Controls;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -340,23 +340,28 @@ end;
 
 procedure InformMessage(Msg: string);
 begin
-  Application.MessageBox(PChar(Msg), PChar(Application.Title), MB_OK + MB_ICONINFORMATION);
+  //Application.MessageBox(PChar(Msg), PChar(Application.Title), MB_OK + MB_ICONINFORMATION);
+  MessageDlg(Msg, mtInformation, [mbClose], 0)
 end;
 
 procedure WarningMessage(Msg: string);
 begin
-  Application.MessageBox(PChar(Msg), PChar(Application.Title), MB_OK + MB_ICONWARNING);
+  //Application.MessageBox(PChar(Msg), PChar(Application.Title), MB_OK + MB_ICONWARNING);
+  MessageDlg(Msg, mtWarning, [mbClose], 0)
 end;
 
 procedure ErrorMessage(Msg: string);
 begin
-  Application.MessageBox(PChar(Msg), PChar(Application.Title), MB_OK + MB_ICONERROR);
+  //Application.MessageBox(PChar(Msg), PChar(Application.Title), MB_OK + MB_ICONERROR);
+  MessageDlg(Msg, mtError, [mbClose], 0)
 end;
 
 function QueryMessage(Msg: string): Boolean;
 begin
-  Result := (Application.MessageBox(PChar(Msg), PChar(Application.Title),
-    MB_YESNO + MB_ICONQUESTION) = IDYES);
+  {Result := (Application.MessageBox(PChar(Msg), PChar(Application.Title),
+    MB_YESNO + MB_ICONQUESTION) = IDYES);}
+
+  Result := (MessageDlg(Msg, mtConfirmation, [mbYes, mbNo], 0) = mrYes);
 end;
 
 function ExecuteFile(const FilePath: string): Boolean;

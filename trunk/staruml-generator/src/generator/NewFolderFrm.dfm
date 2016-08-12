@@ -28,7 +28,6 @@ object NewFolderForm: TNewFolderForm
     Top = 12
     Width = 177
     Height = 22
-    ImeName = 'Microsoft IME 2003'
     TabOrder = 0
     OnChange = FolderNameEditChange
   end

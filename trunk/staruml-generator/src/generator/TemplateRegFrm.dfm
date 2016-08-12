@@ -308,7 +308,7 @@ object TemplateRegisterForm: TTemplateRegisterForm
         ValueFont.Style = []
       end
       object ProfilesRow: TNxButtonInspectorNode6
-        Caption = 'Related Profile'
+        Caption = 'Related Profiles'
         CaptionFont.Charset = ANSI_CHARSET
         CaptionFont.Color = clWindowText
         CaptionFont.Height = 14

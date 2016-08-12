@@ -93,14 +93,14 @@ type
     property OnNotify: PMessageEvent read FOnNotify write FOnNotify;
   end;
 
-  PBatchList = TObjectList<PBatch>;
-
   // TGeneratorProcessor
   TGeneratorProcessor = class(TAutoObject, IGeneratorProcessor)
   private type
-    TGenerationUnitList = TObjectList<PGenerationUnit>;
+    PGenerationUnitList = TObjectList<PGenerationUnit>;
+    PBatchList = TObjectList<PBatch>; // Handles life cycle of PBatch objects
+
   private
-    FGenerationUnits: TGenerationUnitList;
+    FGenerationUnits: PGenerationUnitList;
     FBatches: PBatchList;
     FDefaultBatch: PBatch;
     FTargetDir: string;
@@ -226,7 +226,7 @@ end;
 procedure TGeneratorProcessor.Initialize;
 begin
   inherited;
-  FGenerationUnits := TGenerationUnitList.Create;
+  FGenerationUnits := PGenerationUnitList.Create;
   FBatches := PBatchList.Create;
   FDefaultBatch := PBatch.Create;
   FDefaultBatch.Name := BATCH_DEFAULT;

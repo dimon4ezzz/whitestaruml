@@ -779,7 +779,7 @@ begin
     GenerationUnitDescMemo.Text := GetItemDescription(SelectedNode);
 end;
 
-// Currently (ver 6.5.16) there is a glitch with scrolling inspector
+// Currently (ver 6.0.15) there is a glitch with scrolling inspector
 procedure TTemplateRegisterForm.PropertyInspectorVerticalScroll(
   Sender: TObject);
 begin

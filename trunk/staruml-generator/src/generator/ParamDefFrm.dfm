@@ -31,6 +31,10 @@ object ParameterDefinitionForm: TParameterDefinitionForm
     TabOrder = 0
     object CollectionTabSheet: TTabSheet
       Caption = 'Parameter'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object TagColToolBar: TToolBar
         Left = 0
         Top = 0
