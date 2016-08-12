@@ -49,24 +49,27 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, NxColumnClasses, NxColumns, NxScrollControl,
-  NxCustomGridControl, NxCustomGrid, NxGrid, ImgList, WhiteStarUML_TLB;
+  Dialogs, StdCtrls, ExtCtrls, ImgList, WhiteStarUML_TLB,
+  NxGridView6, NxColumns6, NxControls6, NxCustomGrid6, NxVirtualGrid6, NxGrid6;
 
 type
   // TProfileSelectorForm
   TProfileSelectorForm = class(TForm)
     HeaderLabel: TLabel;
-    ProfileGrid: TNextGrid;
-    CheckColumn: TNxCheckBoxColumn;
-    ProfileIconColumn: TNxImageColumn;
     Bevel: TBevel;
     AcceptButton: TButton;
     CancelButton: TButton;
     ProfileIconImageList: TImageList;
     DefaultProfileIconImage: TImage;
-    ProfileNameColumn: TNxTextColumn;
+    ProfileGrid: TNextGrid6;
+    ProfileGridView: TNxReportGridView6;
+    CheckColumn: TNxCheckBoxColumn6;
+    ProfileIconColumn: TNxIconColumn6;
+    ProfileNameColumn: TNxTextColumn6;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+  private type
+    ProfileColumn = (ProfileColumnCheck, ProfileColumnIcon, ProfileColumnName);
   private
     FStarUMLApp: IStarUMLApplication;
     FSelectedProfiles: TStringList;
@@ -89,7 +92,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Utilities, Symbols;
+  Utilities, Symbols, NxCells6;
 
 const
   DEFAULT_PROFILE_ICON_INDEX = -1;
@@ -99,7 +102,7 @@ const
 
 function TProfileSelectorForm.Initialized: Boolean;
 begin
-  Result := (FStarUMLApp <> nil);
+  Result := Assigned(FStarUMLApp);
 end;
 
 function TProfileSelectorForm.GetSelectedProfileCount: Integer;
@@ -120,11 +123,14 @@ end;
 procedure TProfileSelectorForm.SetSelectedProfiles;
 var
   I: Integer;
+  Row: InxCellsRow;
 begin
   FSelectedProfiles.Clear;
-  for I := 0 to ProfileGrid.RowCount - 1 do
-    if ProfileGrid.CellByName[COL_PROFILE_CHECK, I].AsBoolean = True then
-      FSelectedProfiles.Add(ProfileGrid.CellByName[COL_PROFILE_NAME, I].AsString);
+  for I := 0 to ProfileGrid.RowCount - 1 do begin
+    Row := ProfileGrid.Row[I] as InxCellsRow;
+    if Row.Cells[Ord(ProfileColumnCheck)].AsBoolean = True then
+      FSelectedProfiles.Add(Row.Cells[Ord(ProfileColumnName)].Text);
+  end;
 end;
 
 procedure TProfileSelectorForm.SetupProfileGrid;
@@ -133,13 +139,16 @@ var
   Icon: TIcon;
   ImgIdx: Integer;
   I: Integer;
+  Row: InxCellsRow;
 begin
-  ProfileGrid.ClearRows;
   ProfileIconImageList.Clear;
   ProfileIconImageList.AddIcon(DefaultProfileIconImage.Picture.Icon);
+  ProfileGrid.ClearRows;
+
   for I := 0 to FStarUMLApp.ExtensionManager.GetAvailableProfileCount - 1 do begin
     P := FStarUMLApp.ExtensionManager.GetAvailableProfileAt(I);
     ImgIdx := DEFAULT_PROFILE_ICON_INDEX;
+
     if FileExists(P.IconFile) and (UpperCase(ExtractFileExt(P.IconFile)) = '.ICO') then begin
       Icon := TIcon.Create;
       try
@@ -149,19 +158,22 @@ begin
         Icon.Free;
       end;
     end;
-    ProfileGrid.AddRow;
-    ProfileGrid.CellByName[COL_PROFILE_ICON, I].AsInteger := ImgIdx;
-    ProfileGrid.CellByName[COL_PROFILE_NAME, I].AsString := P.Name;
-    ProfileGrid.CellByName[COL_PROFILE_CHECK, I].AsBoolean := (FSelectedProfiles.IndexOf(P.Name) <> -1);
+
+    Row := ProfileGrid.AddRow;
+    Row.Cells[Ord(ProfileColumnIcon)].AsInteger := ImgIdx;
+    Row.Cells[Ord(ProfileColumnName)].AsString := P.Name;
+    Row.Cells[Ord(ProfileColumnCheck)].AsBoolean := (FSelectedProfiles.IndexOf(P.Name) <> -1);
   end;
-  for I := 0 to SelectedProfileCount - 1 do
+
+  for I := 0 to SelectedProfileCount - 1 do begin
     if not IsProfileAvailable(SelectedProfiles[I]) then begin
-      ProfileGrid.AddRow;
-      ProfileGrid.CellByName[COL_PROFILE_ICON, I].AsInteger := DEFAULT_PROFILE_ICON_INDEX;
-      ProfileGrid.CellByName[COL_PROFILE_NAME, I].AsString := SelectedProfiles[I];
-      ProfileGrid.CellByName[COL_PROFILE_CHECK, I].AsBoolean := True;
-      ProfileGrid.CellByName[COL_PROFILE_CHECK, I].Color := clGray;
+      Row := ProfileGrid.AddRow;
+      Row.Cells[Ord(ProfileColumnIcon)].AsInteger := DEFAULT_PROFILE_ICON_INDEX;
+      Row.Cells[Ord(ProfileColumnName)].AsString := SelectedProfiles[I];
+      Row.Cells[Ord(ProfileColumnCheck)].AsBoolean := True;
+      Row.Cells[Ord(ProfileColumnCheck)].Color := clGray;
     end;
+  end;
 end;
 
 procedure TProfileSelectorForm.AddSelectedProfiles(Value: string);

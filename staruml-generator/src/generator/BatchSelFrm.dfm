@@ -41,7 +41,6 @@ object BatchSelectionForm: TBatchSelectionForm
     Top = 33
     Width = 225
     Height = 137
-    ImeName = 'Microsoft IME 2003'
     ItemHeight = 14
     TabOrder = 0
     OnClick = BatchesListBoxClick

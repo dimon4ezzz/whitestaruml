@@ -50,8 +50,7 @@ interface
 uses
   DirectMDAObjects,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, NxColumnClasses, NxColumns, NxScrollControl,
-  NxCustomGridControl, NxCustomGrid, NxGrid, ImgList, ComCtrls, ToolWin;
+  Dialogs, StdCtrls, ImgList, ComCtrls, ToolWin;
 
 type
   // TParameterDefinitionForm

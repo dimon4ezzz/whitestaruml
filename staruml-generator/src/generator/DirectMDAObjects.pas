@@ -181,6 +181,10 @@ type
     property Path: string read FPath write FPath;
   end;
 
+  PBatchRefList = TList<PBatch>;   // For storing temporary references to PBatch objects
+
+
+
   // PTask
   PTask = class
   private type

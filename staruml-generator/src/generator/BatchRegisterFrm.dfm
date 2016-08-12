@@ -49,7 +49,6 @@ object BatchRegisterForm: TBatchRegisterForm
     Top = 48
     Width = 289
     Height = 22
-    ImeName = 'Microsoft IME 2003'
     TabOrder = 0
     OnChange = NameEditChange
   end
@@ -58,7 +57,6 @@ object BatchRegisterForm: TBatchRegisterForm
     Top = 88
     Width = 289
     Height = 81
-    ImeName = 'Microsoft IME 2003'
     TabOrder = 1
   end
   object AcceptButton: TButton

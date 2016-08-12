@@ -287,7 +287,6 @@ object TaskInformationForm: TTaskInformationForm
         Height = 49
         BorderStyle = bsNone
         Color = clBtnFace
-        ImeName = 'Microsoft IME 2003'
         ScrollBars = ssVertical
         TabOrder = 0
       end
@@ -332,7 +331,6 @@ object TaskInformationForm: TTaskInformationForm
         Height = 65
         BevelKind = bkTile
         BorderStyle = bsNone
-        ImeName = 'Microsoft IME 2003'
         ItemHeight = 14
         TabOrder = 1
       end
