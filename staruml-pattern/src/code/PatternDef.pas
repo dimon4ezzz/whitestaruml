@@ -48,9 +48,8 @@ unit PatternDef;
 interface
 
 uses
-  WhiteStarUML_TLB,
   Classes, SysUtils, comctrls, Forms, xmldom, XMLIntf, msxmldom, XMLDoc,
-  MSScriptControl_TLB;
+  WhiteStarUML_TLB;
 
 type
   PPatternParameter = class;
@@ -487,21 +486,12 @@ procedure PPattern.ExecuteJScript(Gen: TStrings);
 const
   ScriptFileName = '__PatternScript.js';
 var
-  SC: TScriptControl;
   ScriptFilePath: string;
 begin
-  SC := TScriptControl.Create(nil);
   ScriptFilePath := FullPathName + ScriptFileName;
   Gen.SaveToFile(ScriptFilePath);
   StartScriptAndWait(ScriptFilePath);
   SysUtils.DeleteFile(ScriptFilePath);
-  try
-    (*SC.Language := 'JScript';
-    SC.Reset;
-    SC.AddCode(Gen.Text);*)
-  finally
-    SC.Free;
-  end;
 end;
 
 function PPattern.GetParameters(Index: Integer): PPatternParameter;
