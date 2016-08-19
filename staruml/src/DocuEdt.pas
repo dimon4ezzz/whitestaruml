@@ -153,7 +153,8 @@ end;
 
 procedure TDocumentationEditor.Inspect;
 begin
-  UpdateDocumentation;
+  if Visible then
+    UpdateDocumentation;
 end;
 
 procedure TDocumentationEditor.UpdateDocumentation;

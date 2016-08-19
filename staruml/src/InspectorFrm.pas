@@ -161,7 +161,7 @@ const
 implementation
 
 uses
-  MainFrm, ColEdtFrm, ElemLstFrm, NLS_StarUML, Graphics,
+  dxDockControl, MainFrm, ColEdtFrm, ElemLstFrm, NLS_StarUML, Graphics,
   SysUtils, Dialogs;
 
 {$R *.dfm}
@@ -453,34 +453,34 @@ end;
 
 procedure TInspectorFrame.Inspect;
 begin
-  PropertyEditor.InspectElements;
-  // DocumentationEditor.Inspect;
-  // AttachmentEditor.Inspect;
-  UpdateSelectionText;
-  UpdateUIStatus;
+  if Visible then begin
+    PropertyEditor.InspectElements;
+    UpdateSelectionText;
+    UpdateUIStatus;
+  end;
 end;
 
 procedure TInspectorFrame.UpdateInspector;
 begin
   PropertyEditor.UpdateProperties;
-  // DocumentationEditor.UpdateDocumentation;
-  // AttachmentEditor.UpdateAttachments;
   UpdateSelectionText;
   UpdateUIStatus;
 end;
 
 procedure TInspectorFrame.SetFocusOnPropertyEditor;
+var
+  TabContainer : TdxTabContainerDockSite;
 begin
-   // Is PropertiesDockPanel inside tab panel?
-  if (MainForm.PropertiesDockPanel.TabContainer <> nil) then begin
+  TabContainer := MainForm.PropertiesDockPanel.TabContainer;
+  // Is PropertiesDockPanel inside tab panel?
+  if Assigned (TabContainer) then begin
     // Set PropertiesDockPanel active panel
-    MainForm.PropertiesDockPanel.TabContainer.ActiveChild :=
-      MainForm.PropertiesDockPanel;
+    TabContainer.ActiveChild := MainForm.PropertiesDockPanel;
   end;
   // Now focus can be set
   if MainForm.PropertiesDockPanel.Visible then
     PropertyEditor.SetFocus;
- end;
+end;
 
 procedure TInspectorFrame.ApplyChanges;
 begin

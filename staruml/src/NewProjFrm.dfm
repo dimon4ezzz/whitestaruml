@@ -230,7 +230,6 @@ object NewProjectForm: TNewProjectForm
           BevelInner = bvNone
           BorderStyle = bsNone
           Color = clBtnFace
-          ImeName = 'Microsoft IME 2003'
           Lines.Strings = (
             'DescriptionMemo')
           ParentShowHint = False

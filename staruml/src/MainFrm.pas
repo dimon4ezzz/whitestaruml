@@ -438,6 +438,12 @@ type
     procedure EditFindDiagramsWithSelectedModelClick(Sender: TObject);
     procedure WindowsMessageHandler(var Msg: TMsg; var Handled: Boolean);
     procedure EditGoToPopup(Sender: TObject);
+    procedure AttachmentsDockPanelActivate(Sender: TdxCustomDockControl;
+      Active: Boolean);
+    procedure DocumentationDockPanelActivate(Sender: TdxCustomDockControl;
+      Active: Boolean);
+    procedure PropertiesDockPanelActivate(Sender: TdxCustomDockControl;
+      Active: Boolean);
   private
     AllowToTriggerFontFaceChangedEvent: Boolean;
     AllowToTriggerFontSizeChangedEvent: Boolean;
@@ -1074,6 +1080,13 @@ begin
     FOnDockPanelVisibleChanged(Sender);
 end;
 
+procedure TMainForm.DocumentationDockPanelActivate(Sender: TdxCustomDockControl;
+  Active: Boolean);
+begin
+  if Active then
+    DocumentationEditor.Inspect;
+end;
+
 procedure TMainForm.QuickDlgGeneralNameExpApplyingHandler(AModel: PModel; Value: string);
 begin
   if Assigned(FOnGeneralNameExpressionApplying) then FOnGeneralNameExpressionApplying(AModel, Value);
@@ -1573,6 +1586,13 @@ begin
   if Assigned(FOnModelMenuClicked) then FOnModelMenuClicked(Sender);
 end;
 
+procedure TMainForm.PropertiesDockPanelActivate(Sender: TdxCustomDockControl;
+  Active: Boolean);
+begin
+if Active then
+    InspectorFrame.Inspect;
+end;
+
 procedure TMainForm.ViewCheckTypeMenuClick(Sender: TObject);
 begin
   if Assigned(FOnViewCheckTypeMenuClicked) then
@@ -1617,6 +1637,13 @@ begin
     LookAndFeelManager.NotifyLookAndFeelChanged;
     SetAlertLookAndFeel;
   end;
+end;
+
+procedure TMainForm.AttachmentsDockPanelActivate(Sender: TdxCustomDockControl;
+  Active: Boolean);
+begin
+  if Active then
+    AttachmentEditor.Inspect;
 end;
 
 procedure TMainForm.ViewZoomMenuClick(Sender: TObject);
