@@ -48,10 +48,10 @@ unit DiagramExplorerFrame;
 interface
 
 uses
-
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, Generics.Collections, VirtualTrees, Menus,
-  BasicClasses, Core, UMLModels, FlatPanel, MenuManager;
+  Dialogs, ExtCtrls, Generics.Collections, VirtualTrees, System.UITypes,
+  Menus, BasicClasses, Core, UMLModels, FlatPanel, MenuManager;
+
 
 type
   // PDiagramNodeData
@@ -68,9 +68,6 @@ type
     DiagramTree: TVirtualStringTree;
     procedure DiagramTreeGetText(Sender: TBaseVirtualTree;
       Node: PVirtualNode; Column: TColumnIndex; TextType: TVSTTextType; var CellText: string);
-    procedure DiagramTreeGetImageIndex(Sender: TBaseVirtualTree;
-      Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
-      var Ghosted: Boolean; var ImageIndex: Integer);
     procedure DiagramTreeChange(Sender: TBaseVirtualTree;
       Node: PVirtualNode);
     procedure DiagramTreeEditing(Sender: TBaseVirtualTree;
@@ -89,6 +86,9 @@ type
     procedure PopupCutClick(Sender: TObject);
     procedure PopupCopyClick(Sender: TObject);
     procedure PopupDeleteFromModeClick(Sender: TObject);
+    procedure DiagramTreeGetImageIndex(Sender: TBaseVirtualTree;
+      Node: PVirtualNode; Kind: TVTImageKind; Column: TColumnIndex;
+      var Ghosted: Boolean; var ImageIndex: TImageIndex);
   private type
     PNodeHashTable = TDictionary<string,PVirtualNode>;
   private
@@ -432,7 +432,7 @@ end;
 
 procedure TDiagramExplorerPanel.DiagramTreeGetImageIndex(
   Sender: TBaseVirtualTree; Node: PVirtualNode; Kind: TVTImageKind;
-  Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: Integer);
+  Column: TColumnIndex; var Ghosted: Boolean; var ImageIndex: TImageIndex);
 var
   NodeData: PDiagramNodeData;
 begin

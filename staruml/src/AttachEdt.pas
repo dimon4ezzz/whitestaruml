@@ -448,7 +448,8 @@ end;
 
 procedure TAttachmentEditor.Inspect;
 begin
-  UpdateAttachments;
+  if Visible then
+    UpdateAttachments;
 end;
 
 procedure TAttachmentEditor.UpdateAttachments;
