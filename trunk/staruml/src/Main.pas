@@ -335,6 +335,7 @@ type
     procedure LoadImageFromFile(AImageView: PImageView);
     procedure ValidateNetFramework;
 
+
   public
     constructor Create;
     destructor Destroy; override;
@@ -477,6 +478,31 @@ begin
   if MainForm.FileName = '' then
      MainForm.FileName := ExtractFileName(StarUMLApplication.FileName);
 end;
+
+procedure UpdateEditors;
+var
+  TabContainer : TdxTabContainerDockSite;
+begin
+  TabContainer := MainForm.PropertiesDockPanel.TabContainer;
+  if not Assigned(TabContainer)
+    or (TabContainer.ActiveChild = MainForm.PropertiesDockPanel) then
+    MainForm.InspectorFrame.Inspect;
+
+  TabContainer := MainForm.AttachmentsDockPanel.TabContainer;
+  if not Assigned(TabContainer)
+    or (TabContainer.ActiveChild = MainForm.AttachmentsDockPanel) then
+    MainForm.AttachmentEditor.Inspect;
+
+  TabContainer := MainForm.DocumentationDockPanel.TabContainer;
+  if not Assigned(TabContainer)
+    or (TabContainer.ActiveChild = MainForm.DocumentationDockPanel) then
+    MainForm.DocumentationEditor.Inspect;
+
+  ConstraintEditorForm.Inspect;
+  CollectionEditorForm.Inspect;
+  TaggedValueEditorForm.Inspect;
+end;
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // PMain
@@ -2316,12 +2342,7 @@ begin
   try
     StarUMLApplication.IncludeProfile(ProfileName);
 
-    MainForm.InspectorFrame.Inspect;
-    MainForm.AttachmentEditor.Inspect;
-    MainForm.DocumentationEditor.Inspect;
-    ConstraintEditorForm.Inspect;
-    CollectionEditorForm.Inspect;
-    TaggedValueEditorForm.Inspect;
+    UpdateEditors;
 
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
@@ -2333,12 +2354,7 @@ begin
   try
     StarUMLApplication.ExcludeProfile(ProfileName);
 
-    MainForm.InspectorFrame.Inspect;
-    MainForm.AttachmentEditor.Inspect;
-    MainForm.DocumentationEditor.Inspect;
-    ConstraintEditorForm.Inspect;
-    CollectionEditorForm.Inspect;
-    TaggedValueEditorForm.Inspect;
+    UpdateEditors;
 
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
@@ -2390,11 +2406,7 @@ begin
       for I := 0 to StarUMLApplication.SelectedModelCount - 1 do
         MainForm.InspectorFrame.AddInspectingElement(StarUMLApplication.SelectedModels[I]);
 
-    MainForm.InspectorFrame.Inspect;
-    MainForm.AttachmentEditor.Inspect;
-    MainForm.DocumentationEditor.Inspect;
-    ConstraintEditorForm.Inspect;
-    TaggedValueEditorForm.Inspect;
+    UpdateEditors;
 
     // Setting Menu Status
     MenuStateHandler.BeginUpdate;
@@ -2493,14 +2505,6 @@ begin
       Diagrams.Free;
     end;
     Screen.Cursor := crDefault;
-    //--
-
-    MainForm.InspectorFrame.UpdateInspector;
-    MainForm.AttachmentEditor.UpdateAttachments;
-    MainForm.DocumentationEditor.UpdateDocumentation;
-    ConstraintEditorForm.UpdateConstraints;
-    CollectionEditorForm.UpdateCollection;
-    TaggedValueEditorForm.UpdateTaggedValues;
 
     EventPublisher.NotifyEvent(EK_ELEMENTS_ADDED);
     // if Models.Count > 0 then MainForm.BrowserFrame.Select(Models.Items[0] as PModel);
@@ -2539,12 +2543,7 @@ begin
     // if model is going to be deleted, exclude from selection
     StarUMLApplication.DeselectModelsViews(Models, Views);
 
-    MainForm.InspectorFrame.UpdateInspector;
-    MainForm.AttachmentEditor.UpdateAttachments;
-    MainForm.DocumentationEditor.UpdateDocumentation;
-    ConstraintEditorForm.UpdateConstraints;
-    CollectionEditorForm.UpdateCollection;
-    TaggedValueEditorForm.UpdateTaggedValues;
+    UpdateEditors;
 
     EventPublisher.NotifyEvent(EK_ELEMENTS_DELETING);
   except on
@@ -2560,12 +2559,7 @@ begin
     // MainForm.InspectorFrame.ClearInspectingElements;
     // MainForm.InspectorFrame.Inspect;
 
-    MainForm.InspectorFrame.UpdateInspector;
-    MainForm.AttachmentEditor.UpdateAttachments;
-    MainForm.DocumentationEditor.UpdateDocumentation;
-    ConstraintEditorForm.UpdateConstraints;
-    CollectionEditorForm.UpdateCollection;
-    TaggedValueEditorForm.UpdateTaggedValues;
+    UpdateEditors;
 
     EventPublisher.NotifyEvent(EK_ELEMENTS_DELETED);
   except on
@@ -2614,14 +2608,8 @@ begin
     finally
       ASet.Free;
     end;
-    //--
 
-    MainForm.InspectorFrame.UpdateInspector;
-    MainForm.AttachmentEditor.UpdateAttachments;
-    MainForm.DocumentationEditor.UpdateDocumentation;
-    ConstraintEditorForm.UpdateConstraints;
-    CollectionEditorForm.UpdateCollection;
-    TaggedValueEditorForm.UpdateTaggedValues;
+    UpdateEditors;
 
     EventPublisher.NotifyEvent(EK_MODELS_CHANGED);
   except on
@@ -2703,17 +2691,11 @@ begin
 
     MainForm.DiagramExplorer.RebuildAll;
     Screen.Cursor := crDefault;
-    //--
 
     MainForm.WorkingAreaFrame.UpdateActiveDiagram;
     MainForm.WorkingAreaFrame.RedrawActiveDiagram;
 
-    MainForm.InspectorFrame.UpdateInspector;
-    MainForm.AttachmentEditor.UpdateAttachments;
-    MainForm.DocumentationEditor.UpdateDocumentation;
-    ConstraintEditorForm.UpdateConstraints;
-    CollectionEditorForm.UpdateCollection;
-    TaggedValueEditorForm.UpdateTaggedValues;
+    UpdateEditors;
 
     MenuStateHandler.BeginUpdate;
     MenuStateHandler.UpdateTopLevelMenus;
@@ -2883,14 +2865,8 @@ begin
     CollectionEditorForm.Model := nil;
     TaggedValueEditorForm.Model := nil;
 
-    // MainForm.InspectorFrame.ClearCollectionEditor;
-    CollectionEditorForm.ClearCollection;
-    MainForm.InspectorFrame.Inspect;
-    MainForm.AttachmentEditor.Inspect;
-    MainForm.DocumentationEditor.Inspect;
-    ConstraintEditorForm.Inspect;
-    CollectionEditorForm.Inspect;
-    TaggedValueEditorForm.Inspect;
+    UpdateEditors;
+
     SetupMainFormCaption;
 
     MainForm.MessagePanel.ClearAllMessages;
@@ -5289,12 +5265,7 @@ begin
       MainForm.ModelExplorer.UpdateModels(ASet);
       Screen.Cursor := crDefault;
 
-      MainForm.InspectorFrame.UpdateInspector;
-      MainForm.AttachmentEditor.UpdateAttachments;
-      MainForm.DocumentationEditor.UpdateDocumentation;
-      ConstraintEditorForm.UpdateConstraints;
-      CollectionEditorForm.UpdateCollection;
-      //TaggedValueEditorForm.UpdateTaggedValues;
+      UpdateEditors;
 
     finally
       ASet.Free;

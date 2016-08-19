@@ -79,8 +79,8 @@ object InspectorFrame: TInspectorFrame
       object SelectionText: TLabel
         Left = 1
         Top = 1
-        Width = 336
-        Height = 15
+        Width = 108
+        Height = 13
         Align = alClient
         Caption = ' (Nothing Selected)'
         Font.Charset = ANSI_CHARSET
@@ -89,8 +89,6 @@ object InspectorFrame: TInspectorFrame
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
-        ExplicitWidth = 108
-        ExplicitHeight = 13
       end
     end
   end
