@@ -110,6 +110,7 @@ type
 
   private type
     TOptionItemList = TList<POptionItem>;
+
     TOptionClassificationEnumerator = class
     private
       FIndex: Integer;
@@ -160,6 +161,7 @@ type
 
   private type
     TOptionClassificationList = TList<POptionClassification>;
+
     TOptionCategoryEnumerator = class
     private
       FIndex: Integer;
@@ -203,9 +205,9 @@ type
 
   // POptionSchema
   POptionSchema = class(TAutoIntfObject, IOptionSchema)
-
   private type
     TOptionCategoryList = TList<POptionCategory>;
+
     TOptionSchemaEnumerator = class
     private
       FIndex: Integer;
@@ -255,7 +257,6 @@ type
 
   // PEnumerationOptionItem
   PEnumerationOptionItem = class(POptionItem)
-
   private type
     TEnumerationOptionItemEnumerator = class
     private
@@ -266,7 +267,8 @@ type
       function GetCurrent: string; inline;
       function MoveNext: Boolean;
       property Current: string read GetCurrent;
-    end;
+  end;
+
   private
     FEnumerationItems: TStringList;
     function GetEnumerationItemCount: Integer;
@@ -618,6 +620,7 @@ end;
 
 destructor POptionClassification.Destroy;
 begin
+  ClearOptionItems;
   FOptionItems.Free;
   inherited Destroy;
 end;
@@ -669,10 +672,10 @@ end;
 
 procedure POptionClassification.ClearOptionItems;
 var
-  OI: POptionItem;
+  I: Integer;
 begin
-  for OI in FOptionItems do
-    RemoveOptionItem(OI);
+  for I := FOptionItems.Count -1 downto 0 do
+    DeleteOptionItem(I);
 end;
 
 procedure POptionClassification.AddOptionItem(Value: POptionItem);
@@ -807,6 +810,7 @@ end;
 
 destructor POptionCategory.Destroy;
 begin
+  ClearOptionClassifications;
   FOptionClassifications.Free;
   inherited Destroy;
 end;
@@ -858,10 +862,10 @@ end;
 
 procedure POptionCategory.ClearOptionClassifications;
 var
-  OC: POptionClassification;
+  I: Integer;
 begin
-  for OC in FOptionClassifications do
-    RemoveOptionClassification(OC);
+  for I := FOptionClassifications.Count - 1 downto 0 do
+    DeleteOptionClassification(I);
 end;
 
 procedure POptionCategory.AddOptionClassification(Value: POptionClassification);
@@ -959,6 +963,7 @@ end;
 
 destructor POptionSchema.Destroy;
 begin
+  ClearOptionCategories;
   FOptionCategorys.Free;
   inherited Destroy;
 end;
@@ -1027,7 +1032,7 @@ procedure POptionSchema.ClearOptionCategories;
 var
   I: Integer;
 begin
-  for I := 0 to OptionCategoryCount - 1 do
+  for I := OptionCategoryCount - 1 downto 0 do
     DeleteOptionCategory(I);
 end;
 
