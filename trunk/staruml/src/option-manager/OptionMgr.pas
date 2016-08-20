@@ -63,7 +63,6 @@ type
 
   private type
     TOptionSchemataList = TList<POptionSchema>;
-
   private
     Initialized: Boolean;
     FOptionSchemata: TOptionSchemataList;
@@ -135,6 +134,7 @@ destructor POptionManager.Destroy;
 begin
   // No need to free object in list, because TAutoIntfObject count reference
   // and object is automatically freed when the reference count drops to zero.
+  ClearOptionSchemata;
   FOptionSchemata.Free;
   inherited Destroy;
 end;
@@ -197,25 +197,12 @@ var
   OC: POptionCategory;
   OL: POptionClassification;
   OI: POptionItem;
-  //I, J, K, L: Integer;
 begin
   Result := False;
-  //for I := 0 to OptionSchemaCount - 1 do begin
-  //  OS := OptionSchemata[I];
   for OS in FOptionSchemata do begin
-
-    //for J := 0 to OS.OptionCategoryCount - 1 do begin
-      //OC := OS.OptionCategories[J];
     for OC in OS do begin
-
-      //for K := 0 to OC.OptionClassificationCount - 1 do begin
-        //OL := OC.OptionClassifications[K];
       for OL in OC do begin
-
-        //for L := 0 to OL.OptionItemCount - 1 do begin
-          //OI := OL.OptionItems[L];
         for OI in OL do begin
-
           if OI.Changed then begin
             Result := True;
             Exit;
@@ -328,7 +315,7 @@ procedure POptionManager.ClearOptionSchemata;
 var
   I: Integer;
 begin
-  for I := 0 to OptionSchemaCount - 1 do
+  for I := OptionSchemaCount - 1 downto 0 do
     DeleteOptionSchema(I);
 end;
 
