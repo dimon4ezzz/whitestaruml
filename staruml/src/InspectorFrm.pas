@@ -177,6 +177,7 @@ end;
 
 destructor TInspectorFrame.Destroy;
 begin
+  UMLPropertyAdaptor.Free;
   inherited;
 end;
 
