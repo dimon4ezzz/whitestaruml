@@ -42,24 +42,26 @@ type
 
   public
     { Public declarations }
+    destructor Destroy; override;
   end;
 
-//var
-//  QuickDialogFormTdxBase: TQuickDialogFormTdxBase;
 
 implementation
 
 {$R *.dfm}
+destructor TQuickDialogFormTdxBase.Destroy;
+begin
+  MenuManagerImpl.Free;
+  inherited;
+end;
 
 procedure TQuickDialogFormTdxBase.FormCreate(Sender: TObject);
 var
   MenuElement: TMenuElementHandleTdxImpl;
 
 begin
-// Heta
   MenuManagerImpl := TMenuHandlesManagerTdxImpl.Create;
 
-  //MenuManagerImpl.CreateMenuElementWrapper(ActionCall);
   QuickDialogPopupHandle := MenuManagerImpl.CreateContextMenuWrapper(QUICK_DIALOG_POPUP, QuickDialogPopup);
   VisibilityGroupHandle := MenuManagerImpl.CreateGroupWrapper(VisibilityGroup);
   ActionGroupHandle := MenuManagerImpl.CreateGroupWrapper(ActionGroup);
