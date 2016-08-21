@@ -1677,6 +1677,7 @@ begin
       ListItemEndEdit(L);
       CreateCollectionItem(GetCollectionOwner(C), GetCollectionName(C), GetCreatingModelType(C, Sender),
         GetCreatingModelArgument(C, Sender));
+      UpdateCollection;
       SetSelectedListItem(L, L.Items.Count - 1);
       L.SetFocus;
       UpdateUIStates;
