@@ -479,28 +479,37 @@ begin
      MainForm.FileName := ExtractFileName(StarUMLApplication.FileName);
 end;
 
-procedure UpdateEditors;
+procedure UpdateEditors(Inspecting: Boolean = False);
 var
   TabContainer : TdxTabContainerDockSite;
 begin
   TabContainer := MainForm.PropertiesDockPanel.TabContainer;
   if not Assigned(TabContainer)
-    or (TabContainer.ActiveChild = MainForm.PropertiesDockPanel) then
-    MainForm.InspectorFrame.Inspect;
+    or (TabContainer.ActiveChild = MainForm.PropertiesDockPanel) then begin
+      if Inspecting then
+        MainForm.InspectorFrame.Inspect
+      else
+        MainForm.InspectorFrame.UpdateInspector;
+    end;
 
   TabContainer := MainForm.AttachmentsDockPanel.TabContainer;
   if not Assigned(TabContainer)
     or (TabContainer.ActiveChild = MainForm.AttachmentsDockPanel) then
-    MainForm.AttachmentEditor.Inspect;
+    MainForm.AttachmentEditor.UpdateAttachments;
 
   TabContainer := MainForm.DocumentationDockPanel.TabContainer;
   if not Assigned(TabContainer)
     or (TabContainer.ActiveChild = MainForm.DocumentationDockPanel) then
-    MainForm.DocumentationEditor.Inspect;
+    MainForm.DocumentationEditor.UpdateDocumentation;
 
-  ConstraintEditorForm.Inspect;
-  CollectionEditorForm.Inspect;
-  TaggedValueEditorForm.Inspect;
+  if Inspecting then
+        TaggedValueEditorForm.Inspect
+      else
+        TaggedValueEditorForm.UpdateTaggedValues;
+
+  ConstraintEditorForm.UpdateConstraints;
+  CollectionEditorForm.UpdateCollection;
+
 end;
 
 
@@ -549,15 +558,11 @@ begin
 
 
   MainForm.LoadFromRegistry;
-  MenuStateHandler.BeginUpdate;
   MenuStateHandler.SetProjectOpenedGroup(False);
   MenuStateHandler.SetUnitSelectedGroup(False);
   MenuStateHandler.SetDiagramActivatedGroup(False);
   MenuStateHandler.SetModelSelectedGroup(False);
   MenuStateHandler.SetViewSelectedGroup(False);
-  MenuStateHandler.EndUpdate;
-
-
 
    // GUI Initialization
 
@@ -620,7 +625,6 @@ begin
 
   // executions in same time program starting
   MainForm.LoadWindowPositionFromRegistry;
-  MenuStateHandler.BeginUpdate;
   if Assigned(StarUMLApplication.Project) then begin // added for Add-In
     MenuStateHandler.SetProjectOpenedGroup(False);
     MenuStateHandler.SetProjectOpenedGroup(True);
@@ -636,7 +640,6 @@ begin
   MenuStateHandler.UpdateModelMenus;
   MenuStateHandler.UpdateStatusBar;
   //MenuStateHandler.UpdateViewMenus;
-  MenuStateHandler.EndUpdate;
 
   if (ComServer.StartMode = smStandalone) then
     Initialize_WhenApplicationStartedByUser;
@@ -679,11 +682,9 @@ begin
   try
     ReloadDocumentElements;
     UpdateDocumentElements;
-    MenuStateHandler.BeginUpdate;
     MenuStateHandler.UpdateFileMenus;
     MenuStateHandler.UpdateEditMenus;
     MenuStateHandler.UpdateStatusBar;
-    MenuStateHandler.EndUpdate;
     EventPublisher.NotifyEvent(EK_APPLICATION_ACTIVATE);
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
@@ -2341,9 +2342,7 @@ procedure PMain.ProfileManagerFormProfileInclude(Sender: TObject; ProfileName: s
 begin
   try
     StarUMLApplication.IncludeProfile(ProfileName);
-
-    UpdateEditors;
-
+    UpdateEditors(True);
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
@@ -2353,9 +2352,7 @@ procedure PMain.ProfileManagerFormProfileExclude(Sender: TObject; ProfileName: s
 begin
   try
     StarUMLApplication.ExcludeProfile(ProfileName);
-
-    UpdateEditors;
-
+    UpdateEditors(True);
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
@@ -2406,7 +2403,7 @@ begin
       for I := 0 to StarUMLApplication.SelectedModelCount - 1 do
         MainForm.InspectorFrame.AddInspectingElement(StarUMLApplication.SelectedModels[I]);
 
-    UpdateEditors;
+    UpdateEditors(True);
 
     // Setting Menu Status
     MenuStateHandler.BeginUpdate;
@@ -2542,9 +2539,7 @@ begin
     end;
     // if model is going to be deleted, exclude from selection
     StarUMLApplication.DeselectModelsViews(Models, Views);
-
     UpdateEditors;
-
     EventPublisher.NotifyEvent(EK_ELEMENTS_DELETING);
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
@@ -2556,11 +2551,7 @@ begin
   try
     MainForm.WorkingAreaFrame.UpdateActiveDiagram;
     MainForm.WorkingAreaFrame.RedrawActiveDiagram;
-    // MainForm.InspectorFrame.ClearInspectingElements;
-    // MainForm.InspectorFrame.Inspect;
-
-    UpdateEditors;
-
+    UpdateEditors(True);
     EventPublisher.NotifyEvent(EK_ELEMENTS_DELETED);
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
@@ -2811,11 +2802,9 @@ begin
     if MainForm.Visible then
       MainForm.WorkingAreaFrame.UpdateAllDiagrams;
 
-    MenuStateHandler.BeginUpdate;
     MenuStateHandler.SetProjectOpenedGroup(True);
     MenuStateHandler.UpdateTopLevelMenus;
     MenuStateHandler.UpdateStatusBar;
-    MenuStateHandler.EndUpdate;
 
     EventPublisher.NotifyEvent(EK_PROJECT_OPENED);
   except on
@@ -2865,7 +2854,7 @@ begin
     CollectionEditorForm.Model := nil;
     TaggedValueEditorForm.Model := nil;
 
-    UpdateEditors;
+    UpdateEditors(True);
 
     SetupMainFormCaption;
 
@@ -4424,12 +4413,8 @@ constructor PMainFormMenuStateHandler.Create;
 begin
   inherited;
   FGeneralEditMenuEnabled := True;
-  BeginUpdate;
   MainForm.AlwaysGroup.Visible := ivAlways;
   MainForm.AlwaysGroup.Enabled := True;
-  //UpdateTopLevelMenus;
-  //UpdateViewMenus;
-  EndUpdate;
 end;
 
 procedure PMainFormMenuStateHandler.SetGeneralEditMenuEnabled(Value: Boolean);
