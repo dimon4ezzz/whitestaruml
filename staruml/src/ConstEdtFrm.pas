@@ -270,6 +270,9 @@ var
   S: string;
   I: Integer;
 begin
+  if not Visible then
+    Exit;
+
   ConstraintsListView.Items.BeginUpdate;
   ConstraintsListView.Clear;
   if FConstrainedElement <> nil then begin
