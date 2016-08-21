@@ -48,7 +48,7 @@ unit BasicClasses;
 interface
 
 uses
-  Types, Classes, SysUtils, IniFiles, ComObj,
+  Types, Classes, SysUtils, ComObj,
   Generics.Defaults, Generics.Collections;
 
   procedure DebugMsg(const Msg: String);
@@ -193,8 +193,6 @@ uses
     end; // End of POrderedSet<T>
 
 
-
-
   // PStack not used, replaced with PShrinkingStack
   PStack= class
   private
@@ -253,7 +251,7 @@ uses
   PTable<T: class> = class(TEnumerable<PTableRow<T>>)
   private type
     PTableRow = PTableRow<T>;
-    PTableRowList = TList<PTableRow>;
+    PTableRowList = TObjectList<PTableRow>;
   private
     FColumns: array of string;
     FRows: PTableRowList;
@@ -318,8 +316,10 @@ uses
 
   // PReferenceTable (not used)
   PReferenceTable = class
+  private type
+    PObjectList = TDictionary<string,PObject>;
   private
-    ObjectList: THashedStringList;
+    ObjectList: PObjectList;
     function GetItem(Index: Integer): PObject;
     function GetCount: Integer;
   public
@@ -329,7 +329,7 @@ uses
     procedure Delete(Key: string);
     procedure Put(Key: string; Value: PObject);
     function Get(Key: string): PObject;
-    property Items[Index: Integer]: PObject read GetItem;
+    //property Items[Index: Integer]: PObject read GetItem;
     property Count: Integer read GetCount;
   end;
 
@@ -465,8 +465,10 @@ uses
 
   // PClassRegistry
   PClassRegistry = class
+  private type
+    PEntryList = TObjectDictionary<string,PClassRegistryEntry>;
   private
-    FEntryList: THashedStringList;
+    FEntryList: PEntryList;
     function GetEntry(Index: Integer): PClassRegistryEntry;
     function GetEntryCount: Integer;
   public
@@ -476,7 +478,7 @@ uses
     procedure RegisterAutomationClass(AClass: PClass; AAutoClass: PAutoClass; ADispID: TGUID);
     function FindEntry(AClass: PClass): PClassRegistryEntry; overload;
     function FindEntry(AClassName: string): PClassRegistryEntry; overload;
-    property Entries[Index: Integer]: PClassRegistryEntry read GetEntry;
+    //property Entries[Index: Integer]: PClassRegistryEntry read GetEntry;
     property EntryCount: Integer read GetEntryCount;
   end;
 
@@ -1135,15 +1137,7 @@ begin
 end;
 
 procedure PTable<T>.Clear;
-var
-  I: Integer;
-  R: PTableRow;
 begin
-  for I := FRows.Count - 1 downto 0 do
-  begin
-    R := FRows.Items[I];
-    if R <> nil then R.Free;
-  end;
   FRows.Clear;
 end;
 
@@ -1249,15 +1243,9 @@ begin
 end;
 
 procedure PTable<T>.DeleteRow(Row: Integer);
-var
-  R: PTableRow;
 begin
-  R := FRows.Items[Row];
   FRows.Delete(Row);
-  if R <> nil then R.Free;
 end;
-
-
 
 // CompareRowByColumn
 function PTable<T>.PComparer.Compare(const Left, Right: PTableRow): Integer;
@@ -1383,8 +1371,7 @@ end;
 
 constructor PReferenceTable.Create;
 begin
-  ObjectList := THashedStringList.Create;
-  ObjectList.CaseSensitive := True;
+  ObjectList := PObjectList.Create;
 end;
 
 destructor PReferenceTable.Destroy;
@@ -1396,7 +1383,7 @@ end;
 
 function PReferenceTable.GetItem(Index: Integer): PObject;
 begin
-  Result := ObjectList.Objects[Index] as PObject;
+  Result := ObjectList.Values.ToArray[Index];
 end;
 
 function PReferenceTable.GetCount: Integer;
@@ -1410,28 +1397,19 @@ begin
 end;
 
 procedure PReferenceTable.Delete(Key: string);
-var
-  I: Integer;
 begin
-  I := ObjectList.IndexOf(Key);
-  if I > -1 then ObjectList.Delete(I);
+  ObjectList.Remove(Key);
 end;
 
 procedure PReferenceTable.Put(Key: string; Value: PObject);
-var
-  I: Integer;
 begin
-  I := ObjectList.IndexOf(Key);
-  if I < 0 then ObjectList.AddObject(Key, Value);
+  ObjectList.Add(Key, Value);
 end;
 
 function PReferenceTable.Get(Key: string): PObject;
-var
-  I: Integer;
 begin
-  I := ObjectList.IndexOf(Key);
-  if I < 0 then Result := nil
-           else Result := ObjectList.Objects[I] as PObject;
+  Result := nil;
+  ObjectList.TryGetValue(Key, Result);
 end;
 
 // PReferenceTable
@@ -1765,26 +1743,18 @@ end;
 constructor PClassRegistry.Create;
 begin
   inherited;
-  FEntryList := THashedStringList.Create;
-  FEntryList.CaseSensitive := True;
+  FEntryList := PEntryList.Create([doOwnsValues]);
 end;
 
 destructor PClassRegistry.Destroy;
-var
-  I: Integer;
-  E: PClassRegistryEntry;
 begin
-  for I := FEntryList.Count - 1 downto 0 do
-  begin
-    E := FEntryList.Objects[I] as PClassRegistryEntry;
-    E.Free;
-  end;
+  FEntryList.Free;
   inherited;
 end;
 
 function PClassRegistry.GetEntry(Index: Integer): PClassRegistryEntry;
 begin
-  Result := FEntryList.Objects[Index] as PClassRegistryEntry;
+  Result := FEntryList.Values.ToArray[Index];
 end;
 
 function PClassRegistry.GetEntryCount: Integer;
@@ -1801,7 +1771,7 @@ begin
   begin
     AEntry := PClassRegistryEntry.Create(AClass);
     AEntry.FClassRef := AClass;
-    FEntryList.AddObject(AEntry.ClassRef.ClassName, AEntry);
+    FEntryList.Add(AEntry.ClassRef.ClassName, AEntry);
   end;
 end;
 
@@ -1818,25 +1788,16 @@ begin
 end;
 
 function PClassRegistry.FindEntry(AClass: PClass): PClassRegistryEntry;
-var
-  Idx: Integer;
 begin
-  Idx := FEntryList.IndexOf(AClass.ClassName);
-  if Idx < 0 then
-    Result := nil
-  else
-    Result := FEntryList.Objects[Idx] as PClassRegistryEntry;
+  Result := nil;
+  if Assigned(AClass) then
+    FEntryList.TryGetValue(AClass.ClassName, Result);
 end;
 
 function PClassRegistry.FindEntry(AClassName: string): PClassRegistryEntry;
-var
-  Idx: Integer;
 begin
-  Idx := FEntryList.IndexOf(AClassName);
-  if Idx < 0 then
-    Result := nil
-  else
-    Result := FEntryList.Objects[Idx] as PClassRegistryEntry;
+  Result := nil;
+  FEntryList.TryGetValue(AClassName, Result);
 end;
 
 // PClassRegistry
