@@ -68,7 +68,7 @@ unit Core;
 interface
 
 uses
-  Graphics, Types, Classes, xmldom, XMLIntf, msxmldom, XMLDoc, ComObj, IniFiles,
+  Graphics, Types, Classes, xmldom, XMLIntf, msxmldom, XMLDoc, ComObj,
   Generics.Collections, BasicClasses, GraphicClasses, Windows, SysUtils;
 
 const
@@ -352,11 +352,16 @@ type
 
   // PMetaModel
   PMetaModel = class(PMetaElement)
+  private type
+    PMetaClasses = TObjectDictionary<string, PMetaClass>;
+    PMetaPrimitiveTypes = TObjectDictionary<string, PMetaPrimitiveType>;
+    PMetaDataTypes = TObjectDictionary<string, PMetaDataType>;
+    PFMetaEnumerations = TObjectDictionary<string, PMetaEnumeration>;
   private
-    FMetaClasses: THashedStringList;
-    FMetaPrimitiveTypes: THashedStringList;
-    FMetaDataTypes: THashedStringList;
-    FMetaEnumerations: THashedStringList;
+    FMetaClasses: PMetaClasses;
+    FMetaPrimitiveTypes: PMetaPrimitiveTypes;
+    FMetaDataTypes: PMetaDataTypes;
+    FMetaEnumerations: PFMetaEnumerations;
     function GetMetaClass(Index: Integer): PMetaClass;
     function GetMetaClassCount: Integer;
     function GetMetaPrimitiveType(Index: Integer): PMetaPrimitiveType;
@@ -368,26 +373,15 @@ type
   public
     constructor Create; override;
     destructor Destroy; override;
-    procedure Empty;
     function IsKindOf(SubName, SuperName: string): Boolean;
     procedure ClearInstances;
     function CreateInstance(AMetaClassName: string;
       AGuid: string = ''): PElement;
     function FindInstanceByGuid(AGuid: string): PElement;
     procedure AddMetaClass(AMetaClass: PMetaClass);
-    procedure RemoveMetaClass(AMetaClass: PMetaClass);
-    function IndexOfMetaClass(AMetaClass: PMetaClass): Integer;
     procedure AddMetaPrimitiveType(AMetaPrimitiveType: PMetaPrimitiveType);
-    procedure RemoveMetaPrimitiveType(AMetaPrimitiveType: PMetaPrimitiveType);
-    function IndexOfMetaPrimitiveType(AMetaPrimitiveType: PMetaPrimitiveType)
-      : Integer;
     procedure AddMetaDataType(AMetaDataType: PMetaDataType);
-    procedure RemoveMetaDataType(AMetaDataType: PMetaDataType);
-    function IndexOfMetaDataType(AMetaDataType: PMetaDataType): Integer;
     procedure AddMetaEnumeration(AMetaEnumeration: PMetaEnumeration);
-    procedure RemoveMetaEnumeration(AMetaEnumeration: PMetaEnumeration);
-    function IndexOfMetaEnumeration(AMetaEnumeration: PMetaEnumeration)
-      : Integer;
     function FindMetaClassifier(AName: string): PMetaClassifier;
     function FindMetaPrimitiveType(AName: string): PMetaPrimitiveType;
     function FindMetaDataType(AName: string): PMetaDataType;
@@ -942,9 +936,10 @@ type
   // PReferenceResolver
   PReferenceResolver = class(TObject)
   private type
-    PResolveItemList = TList<PReferenceResolveItem>;
+    PHashedGuidTable = TDictionary<string, PElement>;
+    PResolveItemList = TObjectList<PReferenceResolveItem>;
   private
-    HashedGuidTable: THashedStringList;
+    HashedGuidTable: PHashedGuidTable;
     ResolveItemList: PResolveItemList;
     CurProgress: Integer;
     ProgressMaxStep: Integer;
@@ -974,11 +969,13 @@ type
 
   // PXMLObjectReader
   PXMLObjectReader = class(PObjectReader)
+  private type
+  PCurrentKeyTable = TDictionary<string,IXMLNode>;
   protected
     ReferenceResolver: PReferenceResolver;
     CurrentNode: IXMLNode;
     CurrentObject: PObject;
-    CurrentKeyTable: THashedStringList;
+    CurrentKeyTable: PCurrentKeyTable;
     procedure CurrentBuildKeyTable(BaseNode: IXMLNode);
     function GetNodeByKey(Key: string): IXMLNode;
   public
@@ -1831,33 +1828,24 @@ end;
 constructor PMetaModel.Create;
 begin
   inherited;
-  FMetaClasses := THashedStringList.Create;
-  FMetaClasses.CaseSensitive := True;
-  FMetaPrimitiveTypes := THashedStringList.Create;
-  FMetaPrimitiveTypes.CaseSensitive := True;
-  FMetaDataTypes := THashedStringList.Create;
-  FMetaDataTypes.CaseSensitive := True;
-  FMetaEnumerations := THashedStringList.Create;
-  FMetaEnumerations.CaseSensitive := True;
+  FMetaClasses := PMetaClasses.Create([doOwnsValues]);
+  FMetaPrimitiveTypes := PMetaPrimitiveTypes.Create([doOwnsValues]);
+  FMetaDataTypes := PMetaDataTypes.Create([doOwnsValues]);
+  FMetaEnumerations := PFMetaEnumerations.Create([doOwnsValues]);
 end;
 
 destructor PMetaModel.Destroy;
 begin
-  Empty;
-  FMetaClasses.Free;
-  FMetaClasses := nil;
-  FMetaPrimitiveTypes.Free;
-  FMetaPrimitiveTypes := nil;
-  FMetaDataTypes.Free;
-  FMetaDataTypes := nil;
-  FMetaEnumerations.Free;
-  FMetaEnumerations := nil;
+  FreeAndNil(FMetaClasses);
+  FreeAndNil(FMetaPrimitiveTypes);
+  FreeAndNil(FMetaDataTypes);
+  FreeAndNil(FMetaEnumerations);
   inherited;
 end;
 
 function PMetaModel.GetMetaClass(Index: Integer): PMetaClass;
 begin
-  Result := FMetaClasses.Objects[Index] as PMetaClass;
+  Result := FMetaClasses.Values.ToArray[Index];
 end;
 
 function PMetaModel.GetMetaClassCount: Integer;
@@ -1867,7 +1855,7 @@ end;
 
 function PMetaModel.GetMetaPrimitiveType(Index: Integer): PMetaPrimitiveType;
 begin
-  Result := FMetaPrimitiveTypes.Objects[Index] as PMetaPrimitiveType;
+  Result := FMetaPrimitiveTypes.Values.ToArray[Index];
 end;
 
 function PMetaModel.GetMetaPrimitiveTypeCount: Integer;
@@ -1877,7 +1865,7 @@ end;
 
 function PMetaModel.GetMetaDataType(Index: Integer): PMetaDataType;
 begin
-  Result := FMetaDataTypes.Objects[Index] as PMetaDataType;
+  Result := FMetaDataTypes.Values.ToArray[Index] as PMetaDataType;
 end;
 
 function PMetaModel.GetMetaDataTypeCount: Integer;
@@ -1887,7 +1875,7 @@ end;
 
 function PMetaModel.GetMetaEnumeration(Index: Integer): PMetaEnumeration;
 begin
-  Result := FMetaEnumerations.Objects[Index] as PMetaEnumeration;
+  Result := FMetaEnumerations.Values.ToArray[Index] as PMetaEnumeration;
 end;
 
 function PMetaModel.GetMetaEnumerationCount: Integer;
@@ -1895,36 +1883,6 @@ begin
   Result := FMetaEnumerations.Count;
 end;
 
-procedure PMetaModel.Empty;
-var
-  I: Integer;
-  M: PMetaElement;
-begin
-  for I := FMetaClasses.Count - 1 downto 0 do
-  begin
-    M := FMetaClasses.Objects[I] as PMetaElement;
-    FMetaClasses.Delete(I);
-    M.Free;
-  end;
-  for I := FMetaPrimitiveTypes.Count - 1 downto 0 do
-  begin
-    M := FMetaPrimitiveTypes.Objects[I] as PMetaElement;
-    FMetaPrimitiveTypes.Delete(I);
-    M.Free;
-  end;
-  for I := FMetaDataTypes.Count - 1 downto 0 do
-  begin
-    M := FMetaDataTypes.Objects[I] as PMetaElement;
-    FMetaDataTypes.Delete(I);
-    M.Free;
-  end;
-  for I := FMetaEnumerations.Count - 1 downto 0 do
-  begin
-    M := FMetaEnumerations.Objects[I] as PMetaElement;
-    FMetaEnumerations.Delete(I);
-    M.Free;
-  end;
-end;
 
 function PMetaModel.IsKindOf(SubName, SuperName: string): Boolean;
 var
@@ -1939,14 +1897,10 @@ end;
 
 procedure PMetaModel.ClearInstances;
 var
-  I: Integer;
   M: PMetaClass;
 begin
-  for I := FMetaClasses.Count - 1 downto 0 do
-  begin
-    M := FMetaClasses.Objects[I] as PMetaClass;
+  for M in FMetaClasses.Values do
     M.ClearInstances;
-  end;
 end;
 
 function PMetaModel.CreateInstance(AMetaClassName: string;
@@ -1963,84 +1917,40 @@ end;
 
 function PMetaModel.FindInstanceByGuid(AGuid: string): PElement;
 var
-  I: Integer;
+  MC: PMetaClass;
   Instance: PElement;
 begin
-  for I := 0 to MetaClassCount - 1 do
-  begin
-    Instance := MetaClasses[I].FindInstanceByGuid(AGuid);
-    if Instance <> nil then
+  for MC in FMetaClasses.Values do begin
+    Instance := MC.FindInstanceByGuid(AGuid);
+    if Assigned(Instance) then
     begin
       Result := Instance;
       Exit;
     end;
   end;
+
   Result := nil;
 end;
 
 procedure PMetaModel.AddMetaClass(AMetaClass: PMetaClass);
 begin
-  FMetaClasses.AddObject(AMetaClass.Name, AMetaClass);
-end;
-
-procedure PMetaModel.RemoveMetaClass(AMetaClass: PMetaClass);
-begin
-  FMetaClasses.Delete(FMetaClasses.IndexOfObject(AMetaClass));
-end;
-
-function PMetaModel.IndexOfMetaClass(AMetaClass: PMetaClass): Integer;
-begin
-  Result := FMetaClasses.IndexOfObject(AMetaClass);
+  FMetaClasses.Add(AMetaClass.Name, AMetaClass);
 end;
 
 procedure PMetaModel.AddMetaPrimitiveType
   (AMetaPrimitiveType: PMetaPrimitiveType);
 begin
-  FMetaPrimitiveTypes.AddObject(AMetaPrimitiveType.Name, AMetaPrimitiveType)
-end;
-
-procedure PMetaModel.RemoveMetaPrimitiveType
-  (AMetaPrimitiveType: PMetaPrimitiveType);
-begin
-  FMetaPrimitiveTypes.Delete(FMetaPrimitiveTypes.IndexOfObject
-      (AMetaPrimitiveType));
-end;
-
-function PMetaModel.IndexOfMetaPrimitiveType
-  (AMetaPrimitiveType: PMetaPrimitiveType): Integer;
-begin
-  Result := FMetaPrimitiveTypes.IndexOfObject(AMetaPrimitiveType);
+  FMetaPrimitiveTypes.Add(AMetaPrimitiveType.Name, AMetaPrimitiveType)
 end;
 
 procedure PMetaModel.AddMetaDataType(AMetaDataType: PMetaDataType);
 begin
-  FMetaDataTypes.AddObject(AMetaDataType.Name, AMetaDataType);
-end;
-
-procedure PMetaModel.RemoveMetaDataType(AMetaDataType: PMetaDataType);
-begin
-  FMetaDataTypes.Delete(FMetaDataTypes.IndexOfObject(AMetaDataType));
-end;
-
-function PMetaModel.IndexOfMetaDataType(AMetaDataType: PMetaDataType): Integer;
-begin
-  Result := FMetaDataTypes.IndexOfObject(AMetaDataType);
+  FMetaDataTypes.Add(AMetaDataType.Name, AMetaDataType);
 end;
 
 procedure PMetaModel.AddMetaEnumeration(AMetaEnumeration: PMetaEnumeration);
 begin
-  FMetaEnumerations.AddObject(AMetaEnumeration.Name, AMetaEnumeration);
-end;
-
-procedure PMetaModel.RemoveMetaEnumeration(AMetaEnumeration: PMetaEnumeration);
-begin
-  FMetaEnumerations.Delete(FMetaEnumerations.IndexOfObject(AMetaEnumeration));
-end;
-
-function PMetaModel.IndexOfMetaEnumeration(AMetaEnumeration: PMetaEnumeration)
-  : Integer;
-begin
-  Result := FMetaEnumerations.IndexOfObject(AMetaEnumeration);
+  FMetaEnumerations.Add(AMetaEnumeration.Name, AMetaEnumeration);
 end;
 
 function PMetaModel.FindMetaClassifier(AName: string): PMetaClassifier;
@@ -2058,47 +1968,27 @@ begin
 end;
 
 function PMetaModel.FindMetaPrimitiveType(AName: string): PMetaPrimitiveType;
-var
-  Idx: Integer;
 begin
-  Idx := FMetaPrimitiveTypes.IndexOf(AName);
-  if Idx < 0 then
-    Result := nil
-  else
-    Result := FMetaPrimitiveTypes.Objects[Idx] as PMetaPrimitiveType;
+  Result := nil;
+  FMetaPrimitiveTypes.TryGetValue(AName,Result);
 end;
 
 function PMetaModel.FindMetaDataType(AName: string): PMetaDataType;
-var
-  Idx: Integer;
 begin
-  Idx := FMetaDataTypes.IndexOf(AName);
-  if Idx < 0 then
-    Result := nil
-  else
-    Result := FMetaDataTypes.Objects[Idx] as PMetaDataType;
+  Result := nil;
+  FMetaDataTypes.TryGetValue(AName,Result);
 end;
 
 function PMetaModel.FindMetaEnumeration(AName: string): PMetaEnumeration;
-var
-  Idx: Integer;
 begin
-  Idx := FMetaEnumerations.IndexOf(AName);
-  if Idx < 0 then
-    Result := nil
-  else
-    Result := FMetaEnumerations.Objects[Idx] as PMetaEnumeration;
+  Result := nil;
+  FMetaEnumerations.TryGetValue(AName,Result);
 end;
 
 function PMetaModel.FindMetaClass(AName: string): PMetaClass;
-var
-  Idx: Integer;
 begin
-  Idx := FMetaClasses.IndexOf(AName);
-  if Idx < 0 then
-    Result := nil
-  else
-    Result := FMetaClasses.Objects[Idx] as PMetaClass;
+  Result := nil;
+  FMetaClasses.TryGetValue(AName,Result);
 end;
 
 function PMetaModel.DefineMetaPrimitiveType(AName: string): PMetaPrimitiveType;
@@ -5457,14 +5347,12 @@ constructor PReferenceResolver.Create;
 begin
   inherited;
   ResolveItemList := PResolveItemList.Create;
-  HashedGuidTable := THashedStringList.Create;
-  HashedGuidTable.CaseSensitive := True;
+  HashedGuidTable := PHashedGuidTable.Create;
   ProgressMaxStep := 10;
 end;
 
 destructor PReferenceResolver.Destroy;
 begin
-  Clear;
   ResolveItemList.Free;
   HashedGuidTable.Free;
   inherited;
@@ -5501,39 +5389,24 @@ end;
 
 procedure PReferenceResolver.BuildHashedGuidTable;
 var
-  I: Integer;
   MC: PMetaClass;
   E: PElement;
 begin
   HashedGuidTable.Clear;
-  for I := 0 to MetaModel.MetaClassCount - 1 do begin
-    MC := MetaModel.MetaClasses[I];
+  for MC in MetaModel.FMetaClasses.Values do begin
     for E in MC.Instances do
-      HashedGuidTable.AddObject(E.GUID, E);
+      HashedGuidTable.Add(E.GUID, E);
   end;
 end;
 
 function PReferenceResolver.FindInstance(AGuid: string): PElement;
-var
-  Idx: Integer;
 begin
-  Idx := HashedGuidTable.IndexOf(AGuid);
-  if Idx < 0 then
-    Result := nil
-  else
-    Result := PElement(HashedGuidTable.Objects[Idx]);
+  Result := nil;
+  HashedGuidTable.TryGetValue(AGuid, Result);
 end;
 
 procedure PReferenceResolver.Clear;
-var
-  I: Integer;
-  R: PReferenceResolveItem;
 begin
-  for I := ResolveItemList.Count - 1 downto 0 do
-  begin
-    R := ResolveItemList.Items[I];
-    R.Free;
-  end;
   ResolveItemList.Clear;
 end;
 
@@ -5566,8 +5439,7 @@ begin
 
   BuildHashedGuidTable;
 
-  for I := 0 to ResolveItemList.Count - 1 do
-  begin
+  for I := 0 to ResolveItemList.Count - 1 do begin
     R := ResolveItemList.Items[I];
 
     // (1) find reference by GUID
@@ -5697,8 +5569,7 @@ end;
 
 destructor PXMLObjectReader.Destroy;
 begin
-  if CurrentKeyTable <> nil then
-    CurrentKeyTable.Free;
+  CurrentKeyTable.Free;
   inherited;
 end;
 
@@ -5708,14 +5579,12 @@ var
   Node: IXMLNode;
   Key: string;
 begin
-  CurrentKeyTable := THashedStringList.Create;
-  CurrentKeyTable.CaseSensitive := True;
-  CurrentKeyTable.Clear;
+  CurrentKeyTable := PCurrentKeyTable.Create();
   for I := 0 to BaseNode.ChildNodes.Count - 1 do
   begin
     Node := BaseNode.ChildNodes.Nodes[I];
     Key := Node.Attributes[XPD_NAME];
-    CurrentKeyTable.Add(Key);
+    CurrentKeyTable.Add(Key,Node);
   end;
 end;
 
@@ -5723,11 +5592,8 @@ function PXMLObjectReader.GetNodeByKey(Key: string): IXMLNode;
 var
   Idx: Integer;
 begin
-  Idx := CurrentKeyTable.IndexOf(Key);
-  if Idx < 0 then
-    Result := nil
-  else
-    Result := CurrentNode.ChildNodes.Nodes[Idx];
+  Result := nil;
+  CurrentKeyTable.TryGetValue(Key, Result);
 end;
 
 function PXMLObjectReader.ReadInteger(Key: string;
@@ -5846,7 +5712,7 @@ var
   TempObj: PObject;
   GUID, ClassName: string;
   Obj: PObject;
-  TempKeyTable: THashedStringList;
+  TempKeyTable: PCurrentKeyTable;
 begin
   Node := GetNodeByKey(Key);
   // If Key is not found, return nil.
@@ -5873,8 +5739,7 @@ begin
   Obj.Load(Self);
   CurrentNode := TempNode;
   CurrentObject := TempObj;
-  if CurrentKeyTable <> nil then
-    CurrentKeyTable.Free;
+  CurrentKeyTable.Free;
   CurrentKeyTable := TempKeyTable;
   Result := Obj;
 end;
@@ -6593,8 +6458,6 @@ begin
 
  end;
 
-
-
 procedure PDocumentInputStream.CreateReadOnlyCopy;
 var
   ExclusiveUserInfoNode,UserNameNode, LockTimeNode: IXMLNode;
@@ -6775,78 +6638,6 @@ end;
 // PDocumentOutputStream
 /// /////////////////////////////////////////////////////////////////////////////
 
-/// /////////////////////////////////////////////////////////////////////////////
-// PDocumentOutputStream__
-
-{
-  constructor PDocumentOutputStream__.Create(AFileName: string);
-  begin
-  FFileName := AFileName;
-  XMLDoc := TXMLDocument.Create(Application);
-  XMLDoc.Encoding := DEFAULT_XML_ENCODING;
-  XMLDoc.Active := True;
-  end;
-
-  destructor PDocumentOutputStream__.Destroy;
-  begin
-  XMLDoc.Free;
-  XMLDoc := nil;
-  inherited;
-  end;
-
-  function PDocumentOutputStream__.GetDocumentSymbol: string;
-  begin
-  Result := 'DOCUMENT';
-  end;
-
-  function PDocumentOutputStream__.GetDocumentVersion: Integer;
-  begin
-  Result := 1;
-  end;
-
-  procedure PDocumentOutputStream__.WriteHeader(HeaderNode: IXMLNode; ADocument: PDocument);
-  begin
-  // Nothing to write in header part
-  end;
-
-  procedure PDocumentOutputStream__.WriteBody(BodyNode: IXMLNode; ADocument: PDocument);
-  var
-  Writer: PObjectWriter;
-  begin
-  // PRECONDTIIONS
-  Assert(BodyNode <> nil);
-  Assert(ADocument <> nil);
-  // PRECONDTIIONS
-  Writer := PXMLDOMObjectWriter.Create(BodyNode);
-  Writer.WriteObject(XPD_DOCUMENT_ELEMENT, ADocument.DocumentElement);
-  Writer.Free;
-  end;
-
-  procedure PDocumentOutputStream__.Close;
-  begin
-  XMLDoc.SaveToFile(FFileName);
-  end;
-
-  procedure PDocumentOutputStream__.WriteDocument(ADocument: PDocument);
-  var
-  HeaderNode: IXMLNode;
-  BodyNode: IXMLNode;
-  begin
-  // PRECONDTIIONS
-  Assert(ADocument <> nil);
-  // PRECONDTIIONS
-  XMLDoc.DocumentElement := XMLDoc.AddChild(XPD_PREFIX + ':' + GetDocumentSymbol);
-  XMLDoc.DocumentElement.DeclareNamespace(XPD_PREFIX, XPD_NAMESPACE_URI);
-  XMLDoc.DocumentElement.Attributes[XPD_VERSION] := GetDocumentVersion;
-  HeaderNode := XMLDoc.DocumentElement.AddChild(XPD_HEADER, XPD_NAMESPACE_URI);
-  BodyNode := XMLDoc.DocumentElement.AddChild(XPD_BODY, XPD_NAMESPACE_URI);
-  WriteHeader(HeaderNode, ADocument);
-  WriteBody(BodyNode, ADocument);
-  end;
-}
-
-// PDocumentOutputStream__
-/// /////////////////////////////////////////////////////////////////////////////
 
 /// /////////////////////////////////////////////////////////////////////////////
 // PrimitiveType Conversion Routines
