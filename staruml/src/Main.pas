@@ -2877,9 +2877,14 @@ end;
 procedure PMain.ProjectCloseQueryHandler(Sender: TObject; var CanClose: Boolean);
 var
   R: Integer;
+  MainDoc: PDocument;
 begin
   try
-    if StarUMLApplication.Modified then begin
+    if StarUMLApplication.DocumentElementCount > 0 then
+      MainDoc := StarUMLApplication.DocumentElements[0].Document
+    else
+      MainDoc := nil;
+    if StarUMLApplication.Modified and Assigned(MainDoc) and not MainDoc.ReadOnly then begin
       R := MessageDlg(QUERY_SAVE_MODIFICATION, mtConfirmation, mbYesNoCancel, 0);
       case R of
         mrYes:
