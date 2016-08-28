@@ -447,6 +447,7 @@ begin
     Width := 1;
     Style := psSolid;
     Mode := pmCopy;
+    Color := clSilver;
   end;
 
   VP := Area;
@@ -473,7 +474,6 @@ begin
       P := Point(I * FGridFactor.Width * GIX, J * FGridFactor.Height * GIY);
       CoordTransform(FZoomFactor, FGridFactor, P);
       P := Point(P.X + Canvas.OriginX, P.Y + Canvas.OriginY);
-      Canvas.Pen.Color := clSilver;
       Canvas.Canvas.MoveTo(P.X, P.Y);
       Canvas.Canvas.LineTo(P.X + 1, P.Y);
     end;
