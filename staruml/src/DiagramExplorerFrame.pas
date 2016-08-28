@@ -173,9 +173,7 @@ begin
   { create common nodes of Tree View }
   DiagramTree.NodeDataSize := SizeOf(TDiagramNodeData);
   DiagramTree.DoubleBuffered := True;
-  InitializeNodes;
   NodeHashTable := PNodeHashTable.Create;
-  NodeHashTable.Clear;
 end;
 
 destructor TDiagramExplorerPanel.Destroy;
@@ -332,7 +330,6 @@ procedure TDiagramExplorerPanel.ClearNodes;
 begin
   DiagramTree.Clear;
   NodeHashTable.Clear;
-  InitializeNodes;
 end;
 
 procedure TDiagramExplorerPanel.PopupCopyClick(Sender: TObject);
@@ -372,13 +369,11 @@ procedure TDiagramExplorerPanel.RebuildAll;
     M: PModel;
     GroupNode: PVirtualNode;
   begin
-    if AModel <> nil then
-    begin
-      for I := 0 to AModel.VirtualOwnedModelCount - 1 do
-      begin
+    if Assigned(AModel) then begin
+      DiagramTree.BeginUpdate;
+      for I := 0 to AModel.VirtualOwnedModelCount - 1 do begin
         M := AModel.VirtualOwnedModel[I];
-        if M is PUMLDiagram then
-        begin
+        if M is PUMLDiagram then begin
           GroupNode := FindGroupNode(M as PUMLDiagram);
           CreateDiagramNode(GroupNode, M as PUMLDiagram);
         end
@@ -386,16 +381,16 @@ procedure TDiagramExplorerPanel.RebuildAll;
           AddNodes(M);
         end;
       end;
+      DiagramTree.EndUpdate;
     end;
   end;
 
 begin
-  if FProject <> nil then
+  if Assigned(FProject) then
   begin
-    DiagramTree.BeginUpdate;
     ClearNodes;
+    InitializeNodes;
     AddNodes(FProject);
-    DiagramTree.EndUpdate;
   end;
 end;
 
