@@ -201,8 +201,8 @@ type
   procedure DrawModelExcludedMark(Canvas: PCanvas; X, Y: Integer);
 
   procedure CoordTransform(const ZF: PZoomFactor; const GF: PGridFactor; var X, Y: Integer); overload;
-  procedure CoordTransform(const ZF: PZoomFactor; const GF: PGridFactor; var P: TPoint); overload;
-  procedure CoordTransform(const ZF: PZoomFactor; const GF: PGridFactor; var R: TRect); overload;
+  procedure CoordTransform(const ZF: PZoomFactor; const GF: PGridFactor; var P: TPoint); overload; inline;
+  procedure CoordTransform(const ZF: PZoomFactor; const GF: PGridFactor; var R: TRect); overload; inline;
   procedure CoordRevTransform(const ZF: PZoomFactor; const GF: PGridFactor; var X, Y: Integer); overload;
   procedure CoordRevTransform(const ZF: PZoomFactor; const GF: PGridFactor; var P: TPoint); overload;
   procedure CoordRevTransform(const ZF: PZoomFactor; const GF: PGridFactor; var R: TRect); overload;
@@ -1316,12 +1316,12 @@ begin
   Y := Round(f * Y);
 end;
 
-procedure CoordTransform(const ZF: PZoomFactor; const GF: PGridFactor; var P: TPoint); overload;
+procedure CoordTransform(const ZF: PZoomFactor; const GF: PGridFactor; var P: TPoint); overload; inline;
 begin
   CoordTransform(ZF, GF, P.X, P.Y);
 end;
 
-procedure CoordTransform(const ZF: PZoomFactor; const GF: PGridFactor; var R: TRect); overload;
+procedure CoordTransform(const ZF: PZoomFactor; const GF: PGridFactor; var R: TRect); overload; inline;
 begin
   CoordTransform(ZF, GF, R.TopLeft);
   CoordTransform(ZF, GF, R.BottomRight);
