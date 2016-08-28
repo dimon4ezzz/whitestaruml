@@ -128,7 +128,6 @@ end;
 
 procedure TModelExplorerFilterForm.BuildFilterItems;
 var
-  I: Integer;
   MetaNode: PMetaNode;
   Item: TListItem;
 begin
@@ -136,9 +135,8 @@ begin
   begin
     FilterItemsListView.Clear;
     FilterItemsListView.Items.BeginUpdate;
-    for I := 0 to FModelExplorer.MetaNodeCount - 1 do
+    for MetaNode in FModelExplorer.MetaNodes do
     begin
-      MetaNode := FModelExplorer.MetaNodes[I];
       if MetaNode.ModelClass <> PUMLProject then
       begin
         Item := FilterItemsListView.Items.Add;

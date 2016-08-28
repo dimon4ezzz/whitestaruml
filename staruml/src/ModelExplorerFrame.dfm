@@ -2,7 +2,7 @@ object ModelExplorerPanel: TModelExplorerPanel
   Left = 0
   Top = 0
   Width = 451
-  Height = 304
+  Height = 305
   Align = alClient
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -15,14 +15,14 @@ object ModelExplorerPanel: TModelExplorerPanel
     Left = 0
     Top = 26
     Width = 451
-    Height = 278
+    Height = 279
     Align = alClient
     TabOrder = 0
     object ModelTree: TVirtualStringTree
       Left = 1
       Top = 1
       Width = 449
-      Height = 276
+      Height = 277
       Align = alClient
       BorderStyle = bsNone
       ChangeDelay = 50
