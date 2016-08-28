@@ -889,9 +889,11 @@ procedure TModelExplorerPanel.ClearFilter;
 var
   MetaNode: PMetaNode;
 begin
-  // set all MeteNode's Filtered to false
-  for MetaNode in MetaNodes do
-    MetaNode.Filtered := False;
+  // set property Filtered for all MeteNode except PUMLProject to false
+  for MetaNode in MetaNodes do begin
+    if MetaNode.ModelClass <> PUMLProject then
+      MetaNode.Filtered := False;
+  end;
 end;
 
 procedure TModelExplorerPanel.AddToFilter(const Classes: array of PClass);
