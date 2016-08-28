@@ -57,15 +57,12 @@ type
 
   TMenuHandlesManagerTdxImpl = class (TMenuHandlesManager)
   private type
-    //TMenuItems = TList<TMenuElementHandle>;
-    TMenuItemFromTdxComponent = TDictionary<TdxBarButton, TMenuElementHandle>;
+    TMenuItemFromTdxComponent = TObjectDictionary<TdxBarButton, TMenuElementHandle>;
     TPredefinedMenuItemFromLabel = TDictionary<string,TMenuElementHandle>;
-    TGroupFromNativeGroup = TDictionary<TdxBarGroup,TMenuElementGroup>;
-
-    TSubmenuFromLabel = TDictionary<string, TSubmenuHandle>;
-    //TSubmenus = TList<TSubmenuHandle>;
+    TGroupFromNativeGroup = TObjectDictionary<TdxBarGroup,TMenuElementGroup>;
+    TSubmenuFromLabel = TObjectDictionary<string, TSubmenuHandle>;
+    TContextMenuFromLabel = TObjectDictionary<string,TContextMenuHandle>;
     TContextMenus = TList<TContextMenuHandle>;
-    TContextMenuFromLabel = TDictionary<string,TContextMenuHandle>;
   private
     FMenuItemFromTdxComponent: TMenuItemFromTdxComponent;
     FPredefinedMenuItemFromLabel: TPredefinedMenuItemFromLabel;
@@ -284,39 +281,20 @@ end;
 constructor TMenuHandlesManagerTdxImpl.Create;
 begin
   inherited;
-  FMenuItemFromTdxComponent := TMenuItemFromTdxComponent.Create(256);
+  FMenuItemFromTdxComponent := TMenuItemFromTdxComponent.Create([doOwnsValues],256);
   FPredefinedMenuItemFromLabel := TPredefinedMenuItemFromLabel.Create(16);
-  FSubmenuFromLabel := TSubmenuFromLabel.Create(2);
-  FGroupFromNativeGroup := TGroupFromNativeGroup.Create(4);
-  FContextMenuFromLabel := TContextMenuFromLabel.Create;
+  FSubmenuFromLabel := TSubmenuFromLabel.Create([doOwnsValues],2);
+  FGroupFromNativeGroup := TGroupFromNativeGroup.Create([doOwnsValues],4);
+  FContextMenuFromLabel := TContextMenuFromLabel.Create([doOwnsValues]);
 end;
 
 destructor TMenuHandlesManagerTdxImpl.Destroy;
-var
-  MenuItem: TMenuElementHandle;
-  Submenu: TSubmenuHandle;
-  ElementGroup: TMenuElementGroup;
-  FContextMenu: TContextMenuHandle;
-
 begin
-  for MenuItem in FMenuItemFromTdxComponent.Values do
-    MenuItem.Free;
   FMenuItemFromTdxComponent.Free;
-
   FPredefinedMenuItemFromLabel.Free;
-
-  for Submenu in FSubmenuFromLabel.Values do
-    Submenu.Free;
   FSubmenuFromLabel.Free;
-
-  for ElementGroup in FGroupFromNativeGroup.Values do
-    ElementGroup.Free;
   FGroupFromNativeGroup.Free;
-
-  for FContextMenu in FContextMenuFromLabel.Values do
-    FContextMenu.Free;
   FContextMenuFromLabel.Free;
-
 end;
 
 procedure TMenuHandlesManagerTdxImpl.MenuFormReady;
