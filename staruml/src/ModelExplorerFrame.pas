@@ -49,7 +49,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, VirtualTrees, ExtCtrls, IniFiles, ImgList, dxBar,
+  Dialogs, VirtualTrees, ExtCtrls, ImgList, dxBar,
   ActiveX, ComCtrls, ToolWin, System.UITypes, Generics.Collections,
   FlatPanel, BasicClasses, Core, UMLModels;
 
@@ -145,7 +145,6 @@ type
     FImageIndex: Integer;
     FFiltered: Boolean; // True if node is filtered in
     FIndex: Integer;
-
   public
     constructor Create(AModelClass: PClass; CaptionStr: string; ImgIdx: Integer);
     property ModelClass: PClass read FModelClass;
@@ -214,12 +213,15 @@ type
     procedure DragTimeTimerTimer(Sender: TObject);
   private type
     PNodeHashTable = TDictionary<string,PVirtualNode>;
+    PMetaNodes = TObjectDictionary<string,PMetaNode>;
+    PMetaNodeValues = PMetaNodes.TValueCollection;
   private
+    FMetaNodeCout: Integer;
     FProject: PUMLProject;
     NodeHashTable: PNodeHashTable;
     FDragSourceNode: PVirtualNode;
     FDropTargetNode: PVirtualNode;
-    FMetaNodes: THashedStringList;
+    FMetaNodes: PMetaNodes;
     FPopupMenu: TdxBarPopupMenu;
     FAcceptStatus: Boolean;
     FCollapsedTimeFlag: Boolean;
@@ -238,10 +240,9 @@ type
 
     function GetStereotypeText(AModel: PModel): string;
     procedure InitializeMetaNodes;
-    procedure FinalizeMetaNodes;
     procedure AddMetaNode(AModelClass: PClass; CaptionStr: string; ImgIdx: Integer);
-    function GetMetaNode(Index: Integer): PMetaNode;
     function GetMetaNodeCount: Integer;
+    function GetMetaNodesValues: PMetaNodeValues;
     function GetImageList: TCustomImageList;
     function GetStateImageList: TCustomImageList;
     procedure SetImageList(Value: TCustomImageList);
@@ -278,11 +279,13 @@ type
     procedure AddToFilter(const Classes: array of PClass);
     procedure DeleteFromFilter(const Classes: array of PClass);
     function IsFiltered(Model: PModel): Boolean;
-    function FindMetaNode(Model: PModel): PMetaNode;
+    function FindMetaNode(ClassName: string): PMetaNode;
+    function FindMetaNodeByModel(Model: PModel): PMetaNode;
     function FindMetaNodeByClass(AClass: PClass): PMetaNode;
     procedure SaveToRegistry(Key: string);
     procedure LoadFromRegistry(Key: string);
-    property MetaNodes[Index: Integer]: PMetaNode read GetMetaNode;
+    //property MetaNodes[Index: Integer]: PMetaNode read GetMetaNode;
+    property MetaNodes: PMetaNodeValues read GetMetaNodesValues;
     property MetaNodeCount: Integer read GetMetaNodeCount;
     property Project: PUMLProject read FProject write FProject;
     property ImageList: TCustomImageList read GetImageList write SetImageList;
@@ -335,8 +338,7 @@ begin
   ModelTree.DoubleBuffered := True;
   ModelTree.TreeOptions.AutoOptions := ModelTree.TreeOptions.AutoOptions - [toAutoSort];
   NodeHashTable := PNodeHashTable.Create;
-  FMetaNodes := THashedStringList.Create;
-  FMetaNodes.CaseSensitive := True;
+  FMetaNodes := PMetaNodes.Create([doOwnsValues]);
   FSortType := stStorage;
   FShowStereotype := True;
   FCollapsedTimeFlag := False;
@@ -348,7 +350,6 @@ end;
 destructor TModelExplorerPanel.Destroy;
 begin
   Clear;
-  FinalizeMetaNodes;
   FMetaNodes.Free;
   NodeHashTable.Free;
   inherited;
@@ -459,35 +460,25 @@ begin
   AddMetaNode(PUMLConnector,                'Connector',                    164);
 end;
 
-procedure TModelExplorerPanel.FinalizeMetaNodes;
-var
-  I: Integer;
-  MetaNode: PMetaNode;
-begin
-  for I := MetaNodeCount - 1 downto 0 do begin
-    MetaNode := MetaNodes[I];
-    MetaNode.Free;
-  end;
-end;
-
 procedure TModelExplorerPanel.AddMetaNode(AModelClass: PClass; CaptionStr: string; ImgIdx: Integer);
 var
   M: PMetaNode;
-  Idx: Integer;
 begin
   M := PMetaNode.Create(AModelClass, CaptionStr, ImgIdx);
-  Idx := FMetaNodes.AddObject(AModelClass.ClassName, M);
-  M.FIndex := Idx;
-end;
+  FMetaNodes.Add(AModelClass.ClassName, M);
+  Inc(FMetaNodeCout);
+  M.FIndex := FMetaNodeCout;
 
-function TModelExplorerPanel.GetMetaNode(Index: Integer): PMetaNode;
-begin
-  Result := FMetaNodes.Objects[Index] as PMetaNode;
 end;
 
 function TModelExplorerPanel.GetMetaNodeCount: Integer;
 begin
   Result := FMetaNodes.Count;
+end;
+
+function TModelExplorerPanel.GetMetaNodesValues: PMetaNodeValues;
+begin
+  Result := FMetaNodes.Values;
 end;
 
 function TModelExplorerPanel.GetImageList: TCustomImageList;
@@ -523,7 +514,7 @@ var
   MetaNode: PMetaNode;
 begin
   Node := nil;
-  MetaNode := FindMetaNode(Model);
+  MetaNode := FindMetaNodeByModel(Model);
   if (MetaNode <> nil) and MetaNode.Filtered then
   begin
     if ParentNode <> nil then
@@ -896,15 +887,11 @@ end;
 
 procedure TModelExplorerPanel.ClearFilter;
 var
-  I: Integer;
   MetaNode: PMetaNode;
 begin
   // set all MeteNode's Filtered to false
-  for I := 1 to MetaNodeCount - 1 do
-  begin
-    MetaNode := MetaNodes[I];
+  for MetaNode in MetaNodes do
     MetaNode.Filtered := False;
-  end;
 end;
 
 procedure TModelExplorerPanel.AddToFilter(const Classes: array of PClass);
@@ -938,37 +925,30 @@ var
   MetaNode: PMetaNode;
 begin
   Result := False;
-  MetaNode := FindMetaNode(Model);
+  MetaNode := FindMetaNodeByModel(Model);
   if MetaNode <> nil then
     Result := MetaNode.Filtered;
 end;
 
-function TModelExplorerPanel.FindMetaNode(Model: PModel): PMetaNode;
-var
-  Idx: Integer;
+function TModelExplorerPanel.FindMetaNode(ClassName: string): PMetaNode;
 begin
-  Idx := FMetaNodes.IndexOf(Model.ClassName);
-  if Idx < 0 then
-    Result := nil
-  else
-    Result := FMetaNodes.Objects[Idx] as PMetaNode;
+  Result := nil;
+  FMetaNodes.TryGetValue(ClassName, Result);
+end;
+
+function TModelExplorerPanel.FindMetaNodeByModel(Model: PModel): PMetaNode;
+begin
+  Result := FindMetaNode(Model.ClassName);
 end;
 
 function TModelExplorerPanel.FindMetaNodeByClass(AClass: PClass): PMetaNode;
-var
-  Idx: Integer;
 begin
-  Idx := FMetaNodes.IndexOf(AClass.ClassName);
-  if Idx < 0 then
-    Result := nil
-  else
-    Result := FMetaNodes.Objects[Idx] as PMetaNode;
+  Result := FindMetaNode(AClass.ClassName);
 end;
 
 procedure TModelExplorerPanel.SaveToRegistry(Key: string);
 var
   Reg: TRegistry;
-  I: Integer;
   MetaNode: PMetaNode;
 begin
   Reg := TRegistry.Create;
@@ -979,11 +959,8 @@ begin
       // Save SortType
       Reg.WriteInteger('SortType', Ord(SortType));
       // Save Filtering
-      for I := 0 to MetaNodeCount - 1 do
-      begin
-        MetaNode := MetaNodes[I];
+      for MetaNode in MetaNodes do
         Reg.WriteBool('Filter['+MetaNode.Caption+']', MetaNode.Filtered);
-      end;
       Reg.CloseKey;
     end;
   finally
@@ -994,7 +971,6 @@ end;
 procedure TModelExplorerPanel.LoadFromRegistry(Key: string);
 var
   Reg: TRegistry;
-  I: Integer;
   MetaNode: PMetaNode;
 begin
   Reg := TRegistry.Create;
@@ -1009,9 +985,8 @@ begin
         SortType := stStorage;
       end;
       // Load Filtering
-      for I := 0 to MetaNodeCount - 1 do
+      for MetaNode in MetaNodes do
       begin
-        MetaNode := MetaNodes[I];
         try
           MetaNode.Filtered := Reg.ReadBool('Filter['+MetaNode.Caption+']');
         except
@@ -1291,7 +1266,7 @@ var
 
   function GetUninterpretedActionImageIndex(M: PUMLUninterpretedAction): Integer;
   begin
-         if M.EntryState <> nil      then Result := 65
+    if M.EntryState <> nil           then Result := 65
     else if M.DoActivityState <> nil then Result := 66
     else if M.ExitState <> nil       then Result := 67
                                      else Result := 64;
@@ -1459,9 +1434,6 @@ begin
     FCollapsedTimeFlag := False;
     Exit;
   end;
-
-  //if not MainForm.IsModelExplorerActive then
-  //  MainForm.ActivateModelExplorerPanel;
 
   // Selection changing
   Node := ModelTree.GetNodeAt(X, Y);
