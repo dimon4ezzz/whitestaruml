@@ -91,8 +91,7 @@ begin
   PropertyAdaptor.PropertyButtonClicked(FInspectingElements,
     Item.Name);
   DisplayStr := Item.Data.AsString;
-  Sender.SetFocus;
-
+  //Sender.SetFocus;
 end;
 
 procedure TPropertyEditorWithJvclInspector.ItemDataValueChanged(Sender: TObject);
