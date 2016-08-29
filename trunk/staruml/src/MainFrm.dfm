@@ -146,6 +146,8 @@ object MainForm: TMainForm
             Height = 256
             Align = alClient
             TabOrder = 0
+            ExplicitWidth = 163
+            ExplicitHeight = 256
             inherited PaletteNavBar: TCategoryButtons
               Width = 157
               Height = 250
@@ -840,6 +842,8 @@ object MainForm: TMainForm
                       Action = PaletteNavBarFrame.ConnectorAction
                     end>
                 end>
+              ExplicitWidth = 157
+              ExplicitHeight = 250
             end
           end
         end
@@ -1128,7 +1132,6 @@ object MainForm: TMainForm
           CustomCaptionButtons.Buttons = <>
           ImageIndex = 2
           TabsProperties.CustomButtons.Buttons = <>
-          OnActivate = PropertiesDockPanelActivate
           DockingType = 0
           OriginalWidth = 268
           OriginalHeight = 183
@@ -1226,7 +1229,6 @@ object MainForm: TMainForm
           CustomCaptionButtons.Buttons = <>
           ImageIndex = 3
           TabsProperties.CustomButtons.Buttons = <>
-          OnActivate = DocumentationDockPanelActivate
           DockingType = 0
           OriginalWidth = 268
           OriginalHeight = 183
@@ -1273,7 +1275,6 @@ object MainForm: TMainForm
           CustomCaptionButtons.Buttons = <>
           ImageIndex = 4
           TabsProperties.CustomButtons.Buttons = <>
-          OnActivate = AttachmentsDockPanelActivate
           DockingType = 0
           OriginalWidth = 268
           OriginalHeight = 183
