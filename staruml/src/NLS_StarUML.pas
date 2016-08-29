@@ -48,8 +48,7 @@ unit NLS_StarUML;
 interface
 
 uses
-  Classes, SysUtils, IniFiles, NLS, dxBar, ComCtrls,{dxPageControl,} {TB2Toolbar, TB2Item,}
-  AreaTitleBar, FlatPanel, CompactFontDlg{, dxNavBar, dxNavBarCollns, dxNavBarStyles}{, cxPC};
+  Classes, SysUtils,  NLS, dxBar, ComCtrls, AreaTitleBar, FlatPanel, CompactFontDlg;
 
 const
   // Common

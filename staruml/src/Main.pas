@@ -70,6 +70,7 @@ type
     procedure ApplicationDeactivateHandler(Sender: TObject);
     procedure ApplicationMinimizeHandler(Sender: TObject);
     procedure ApplicationRestoreHandler(Sender: TObject);
+
     // (for MainForm)
     procedure MainFormShowHandler(Sender: TObject);
     procedure MainFormStartedHandler(Sender: TObject);
@@ -150,6 +151,7 @@ type
     procedure MainFormQuickDlgSeqNumberChangingHandler(AElement: PElement; ACollectionItem: PElement; Key: string; NewIndex: Integer);
     procedure MainFormQuickDlgObjectClassCreatingHandler(Owner: PUMLNamespace; AModel: PUMLModelElement; Name: string = '');
     procedure MainFormQuickDlgCallActionOperationCreatingHandler(AClassifier: PUMLClassifier; ACallAction: PUMLCallAction; Name: string = '');
+    procedure MainFormDockSiteActiveChildChanged(Sender: TdxContainerDockSite; Child: TdxCustomDockControl);
 
     // (for InteractionManager)
     procedure InteractionManagerModelAddingHandler(Sender: TObject; ModelKind: string; Argument: Integer);
@@ -598,6 +600,12 @@ begin
 
   MainForm.InspectorFrame.InitializeUserInterfaces;
   MainForm.AttachmentEditor.InitializeUserInterface;
+
+  // ActiveChildChanged handlers
+  // Only right side dock sites are watched ATM
+  MainForm.dxTabContainerDockSite1.OnActiveChildChanged := MainFormDockSiteActiveChildChanged;
+  MainForm.dxTabContainerDockSite3.OnActiveChildChanged := MainFormDockSiteActiveChildChanged;
+
 
 
   // GUI Interactions Setup
@@ -1923,6 +1931,17 @@ begin
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
+end;
+
+procedure PMain.MainFormDockSiteActiveChildChanged(
+  Sender: TdxContainerDockSite; Child: TdxCustomDockControl);
+begin
+ if Child = MainForm.PropertiesDockPanel then
+    MainForm.InspectorFrame.Inspect
+  else if Child = MainForm.DocumentationDockPanel then
+    MainForm.DocumentationEditor.Inspect
+  else if Child = MainForm.AttachmentsDockPanel then
+    MainForm.AttachmentEditor.Inspect;
 end;
 
 procedure PMain.BrowserFormElementSelectedHandler(Sender: TObject; Element: PModel);
