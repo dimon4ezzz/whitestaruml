@@ -86,6 +86,7 @@ type
     procedure AddListElementsByClass(MetaClassName: string; InclusiveInstance: Boolean = False);
     procedure SetReservedModelToSelect(AModel: PModel);
     function Execute(Title: string = ''): Boolean;
+    function HasElements: Boolean;
     property AllowNull: Boolean read FAllowNull write SetAllowNull;
     property SelectedModel: PModel read GetSelectedModel;
     property ImageList: TImageList write SetImageList;
@@ -320,6 +321,11 @@ function ExtractHeadPath(Pathname: string): string;
 
 begin
   Result := SubExtract(ExtractTailPath(Pathname));
+end;
+
+function TElementListForm.HasElements: Boolean;
+begin
+  Result := (ElementList.Count > 0);
 end;
 
 procedure TElementListForm.HelpButtonClick(Sender: TObject);
