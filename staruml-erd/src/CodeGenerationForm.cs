@@ -205,14 +205,17 @@ namespace Erd
         /// <param name="parentNode"></param>
         private void collectChildDiagrams(TreeNode parentNode)
         {
-            WhiteStarUML.IUMLPackage parentPackage = (WhiteStarUML.IUMLPackage)parentNode.Tag;
-
-            List<WhiteStarUML.IUMLClassDiagram> diagrams = ProjectManagerHandler.Instance.GetOwnedErdDiagrams(parentPackage);
-
-            diagramListBox.Items.Clear();
-            foreach (var package in diagrams)
+            if (parentNode != null)
             {
-                diagramListBox.Items.Add(new DiagramListBoxItemWrapper(package));
+                WhiteStarUML.IUMLPackage parentPackage = (WhiteStarUML.IUMLPackage)parentNode.Tag;
+
+                List<WhiteStarUML.IUMLClassDiagram> diagrams = ProjectManagerHandler.Instance.GetOwnedErdDiagrams(parentPackage);
+
+                diagramListBox.Items.Clear();
+                foreach (var package in diagrams)
+                {
+                    diagramListBox.Items.Add(new DiagramListBoxItemWrapper(package));
+                }
             }
 
         }
