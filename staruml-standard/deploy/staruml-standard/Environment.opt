@@ -64,7 +64,7 @@
         <OPTIONITEM-BOOLEAN key="USE_DIRECT2D">
            <CAPTION>Use Direct2D</CAPTION>
            <DESCRIPTION>Specifies whether to use Direct2D to draw some shapes with antialiasing. This option requires Windows 7 or newer.</DESCRIPTION>
-           <DEFAULTVALUE>False</DEFAULTVALUE>
+           <DEFAULTVALUE>True</DEFAULTVALUE>
         </OPTIONITEM-BOOLEAN>
         
         </OPTIONCLASSIFICATION>
