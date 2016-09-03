@@ -396,7 +396,7 @@ begin
   FWordWrapByDefault := False;
   FForceDecimalSeparator := '';
   FAutoLoadUnits := True;
-  FUseDirect2D := False;
+  FUseDirect2D := True;
 end;
 
 procedure POptionDepository.SetOptionProperties;
