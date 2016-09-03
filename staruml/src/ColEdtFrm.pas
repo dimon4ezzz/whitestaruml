@@ -244,6 +244,7 @@ type
     ExtensionPointMoveUp: TToolButton;
     ExtensionPointMoveDown: TToolButton;
     SelectRelatedMenu: TMenuItem;
+    HintMsg: TBalloonHint;
     // Event handlers
     procedure FormCreate(Sender: TObject);
     // Editing event handlers
@@ -278,6 +279,7 @@ type
     procedure RelationsListViewCompare(Sender: TObject; Item1, Item2: TListItem;
       Data: Integer; var Compare: Integer);
     procedure HandleListViewDragDrop(Sender, Source: TObject; X, Y: Integer);
+    procedure ListViewDblClick(Sender: TObject);
   private
     FModel: PModel;
     FReadOnly: Boolean;
@@ -357,6 +359,11 @@ type
 
     procedure PerformInsertItem(AItem: PModel; ACollectionName: string; ACollectionListView: TListView);
 
+    procedure ToolButtonMuteDefaultHint(ToolButton: TToolButton);
+    procedure ToolButtonRestoreHint(Sender: TObject);
+    procedure ShowHintOnToolButton(ToolButton: TToolButton; HintText: string);
+
+
   public
     procedure ShowCollection(AModel: PModel; ActivePage: string = '');
     procedure UpdateCollection;
@@ -403,6 +410,12 @@ begin
   FShowVisibilityIcon := True;
   NLSManager.SetFile(ExtractFilePath(Application.ExeName) + 'NLS\COLEDT.LNG');
   NLSManager.TranslateComponent(Self, []);
+
+  // Handle restoration of tool button hints
+  {if RaisedSignalInsert.ShowHint then
+     RaisedSignalInsert.OnMouseEnter := ToolButtonRestoreHint;}
+
+
 end;
 
 procedure TCollectionEditorForm.FormShow(Sender: TObject);
@@ -1494,6 +1507,38 @@ begin
     FOnCollectionItemAdd(Self, AOwner, ACollectionName, AModel);
 end;
 
+procedure TCollectionEditorForm.ListViewDblClick(Sender: TObject);
+begin
+  HandleEditNameAction(Sender);
+end;
+
+procedure TCollectionEditorForm.ToolButtonMuteDefaultHint(ToolButton: TToolButton);
+begin
+  if ToolButton.ShowHint then begin
+    ToolButton.ShowHint := False; // This requires a handler to restore tool button hint later
+    ToolButton.OnMouseEnter := ToolButtonRestoreHint;
+  end;
+end;
+
+procedure TCollectionEditorForm.ToolButtonRestoreHint(Sender: TObject);
+var
+  ToolBtn: TToolButton;
+begin
+  ToolBtn := Sender as TToolButton;
+  if not HintMsg.ShowingHint then begin
+    ToolBtn.ShowHint := True; // Restore hint
+    ToolBtn.OnMouseEnter := nil; // Handler no needed anymore
+  end;
+end;
+
+procedure TCollectionEditorForm.ShowHintOnToolButton(ToolButton: TToolButton;
+  HintText: string);
+begin
+  ToolButtonMuteDefaultHint(ToolButton);
+  HintMsg.Description := HintText;
+  HintMsg.ShowHint(ToolButton);
+end;
+
 procedure TCollectionEditorForm.RelationsListViewColumnClick(Sender: TObject;
   Column: TListColumn);
 begin
@@ -1657,7 +1702,6 @@ begin
     // Use Win32 editor control handle to send a message selecting all text in the editor
     EditHandle := ListView_GetEditControl(GetCollectionListView(C).Selected.Handle);
     SendMessage(EditHandle, EM_SETSEL, 0, -1);
-
   end;
 end;
 
@@ -1897,9 +1941,14 @@ begin
   ListItemEndEdit(RaisedSignalsListView);
   ElementListForm.ClearListElements;
   ElementListForm.AddListElementsByClass('UMLSignal', True);
-  ElementListForm.AllowNull := False;
-  if ElementListForm.Execute(MSG_COLLEDIT_SELECT_SIGNAL) then
-    PerformInsertItem(ElementSelectorForm.SelectedModel, 'RaisedSignals', RaisedSignalsListView);
+
+  if ElementListForm.HasElements then begin
+    ElementListForm.AllowNull := False;
+    if ElementListForm.Execute(MSG_COLLEDIT_SELECT_SIGNAL) then
+      PerformInsertItem(ElementListForm.SelectedModel, 'RaisedSignals', RaisedSignalsListView);
+  end
+  else
+    ShowHintOnToolButton(RaisedSignalInsert,'No signal defined');
 end;
 
 procedure TCollectionEditorForm.HandleRelationDeleteAction(Sender: TObject);
