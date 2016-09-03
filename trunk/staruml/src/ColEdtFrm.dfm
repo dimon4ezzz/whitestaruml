@@ -28,17 +28,13 @@ object CollectionEditorForm: TCollectionEditorForm
     Top = 3
     Width = 489
     Height = 226
-    ActivePage = RaisedSignalsPage
+    ActivePage = AttributesPage
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
     OnChange = CollectionPageControlChange
     object AttributesPage: TTabSheet
       Hint = 'Attributes'
       Caption = 'Attributes'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object AttributesPanel: TPanel
         Left = 0
         Top = 0
@@ -74,6 +70,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -172,6 +169,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -270,6 +268,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -368,6 +367,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -466,6 +466,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -564,6 +565,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -662,6 +664,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -760,6 +763,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -859,6 +863,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -958,6 +963,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -1057,6 +1063,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -1155,6 +1162,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -1253,6 +1261,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -1351,6 +1360,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -1445,6 +1455,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -1544,6 +1555,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -1642,6 +1654,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -1767,6 +1780,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -1865,6 +1879,7 @@ object CollectionEditorForm: TCollectionEditorForm
           TabOrder = 0
           ViewStyle = vsReport
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnEndDrag = HandleListViewEndDrag
@@ -1968,6 +1983,7 @@ object CollectionEditorForm: TCollectionEditorForm
           OnColumnClick = RelationsListViewColumnClick
           OnCompare = RelationsListViewCompare
           OnContextPopup = HandleListViewContextPopup
+          OnDblClick = ListViewDblClick
           OnEdited = HandleListViewEdited
           OnEditing = HandleListViewEditing
           OnSelectItem = HandleListViewSelectItem
@@ -2080,5 +2096,10 @@ object CollectionEditorForm: TCollectionEditorForm
       ShortCut = 16466
       OnClick = HandleSelectRelatedItemAction
     end
+  end
+  object HintMsg: TBalloonHint
+    HideAfter = 2000
+    Left = 184
+    Top = 232
   end
 end
