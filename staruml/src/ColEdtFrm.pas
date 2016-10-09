@@ -1896,9 +1896,14 @@ begin
   ListItemEndEdit(DeployedComponentsListView);
   ElementListForm.ClearListElements;
   ElementListForm.AddListElementsByClass('UMLComponent');
-  ElementListForm.AllowNull := False;
-  if ElementListForm.Execute(MSG_COLLEDIT_SELECT_COMPONENT) then
-    PerformInsertItem(ElementListForm.SelectedModel, 'DeployedComponents', DeployedComponentsListView);
+
+  if ElementListForm.HasElements then begin
+    ElementListForm.AllowNull := False;
+    if ElementListForm.Execute(MSG_COLLEDIT_SELECT_COMPONENT) then
+      PerformInsertItem(ElementListForm.SelectedModel, 'DeployedComponents', DeployedComponentsListView);
+  end
+  else
+    ShowHintOnToolButton(DeployedComponentInsert,'No component defined');
 end;
 
 procedure TCollectionEditorForm.HandleDeployedArtifactInsertAction(Sender: TObject);
@@ -1906,9 +1911,14 @@ begin
   ListItemEndEdit(DeployedArtifactsListView);
   ElementListForm.ClearListElements;
   ElementListForm.AddListElementsByClass('UMLArtifact');
-  ElementListForm.AllowNull := False;
-  if ElementListForm.Execute(MSG_COLLEDIT_SELECT_ARTIFACT) then
-    PerformInsertItem(ElementListForm.SelectedModel, 'DeployedArtifacts', DeployedArtifactsListView);
+
+  if ElementListForm.HasElements then begin
+    ElementListForm.AllowNull := False;
+    if ElementListForm.Execute(MSG_COLLEDIT_SELECT_ARTIFACT) then
+      PerformInsertItem(ElementListForm.SelectedModel, 'DeployedArtifacts', DeployedArtifactsListView);
+  end
+  else
+    ShowHintOnToolButton(DeployedArtifactInsert,'No artifact defined');
 end;
 
 procedure TCollectionEditorForm.HandleResidentInsertAction(Sender: TObject);
