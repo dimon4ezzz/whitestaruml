@@ -31,6 +31,7 @@ object DocumentationEditor: TDocumentationEditor
       OnEnter = DocumentationMemoEnter
       OnExit = DocumentationMemoExit
       OnKeyPress = DocumentationMemoKeyPress
+      OnMouseLeave = DocumentationMemoMouseLeave
     end
   end
 end

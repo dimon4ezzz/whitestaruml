@@ -76,6 +76,7 @@ type
     procedure DocumentationMemoEnter(Sender: TObject);
     procedure DocumentationMemoExit(Sender: TObject);
     procedure DocumentationMemoKeyPress(Sender: TObject; var Key: Char);
+    procedure DocumentationMemoMouseLeave(Sender: TObject);
   private
     FInspectingElement: PModel;
     FMultiSelected: Boolean;
@@ -115,7 +116,7 @@ end;
 
 procedure TDocumentationEditor.DocumentationChange;
 begin
-  if Assigned(FOnDocumentationChange) and (FInspectingElement <> nil) and
+  if Assigned(FOnDocumentationChange) and Assigned(FInspectingElement) and
     (FInspectingElement.Documentation <> DocumentationMemo.Lines.Text) then
     FOnDocumentationChange(Self, FInspectingElement, DocumentationMemo.Lines.Text);
 end;
@@ -133,6 +134,11 @@ procedure TDocumentationEditor.DocumentationMemoKeyPress(Sender: TObject;
 begin
   if Key = #1 then
     DocumentationMemo.SelectAll;
+end;
+
+procedure TDocumentationEditor.DocumentationMemoMouseLeave(Sender: TObject);
+begin
+  ApplyChanges;
 end;
 
 procedure TDocumentationEditor.SetReadOnly(Value: Boolean);
@@ -153,17 +159,17 @@ end;
 
 procedure TDocumentationEditor.Inspect;
 begin
-  if Visible then
+  if Visible then begin
     UpdateDocumentation;
+  end;
 end;
 
 procedure TDocumentationEditor.UpdateDocumentation;
 begin
-  if FInspectingElement <> nil then begin
+  if Assigned(FInspectingElement) then begin
     DocumentationMemo.Lines.Text := FInspectingElement.Documentation;
-  end;
-  if FInspectingElement <> nil then
     ReadOnly := FInspectingElement.ReadOnly
+  end
   else
     ReadOnly := True;
 end;
