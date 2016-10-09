@@ -501,8 +501,12 @@ begin
 
   TabContainer := MainForm.DocumentationDockPanel.TabContainer;
   if not Assigned(TabContainer)
-    or (TabContainer.ActiveChild = MainForm.DocumentationDockPanel) then
-    MainForm.DocumentationEditor.UpdateDocumentation;
+    or (TabContainer.ActiveChild = MainForm.DocumentationDockPanel) then begin
+    if Inspecting then
+      MainForm.DocumentationEditor.Inspect
+    else
+      MainForm.DocumentationEditor.UpdateDocumentation;
+    end;
 
   if Inspecting then
         TaggedValueEditorForm.Inspect
@@ -605,8 +609,6 @@ begin
   // Only right side dock sites are watched ATM
   MainForm.dxTabContainerDockSite1.OnActiveChildChanged := MainFormDockSiteActiveChildChanged;
   MainForm.dxTabContainerDockSite3.OnActiveChildChanged := MainFormDockSiteActiveChildChanged;
-
-
 
   // GUI Interactions Setup
   InteractionManager.BuildInteractions;
