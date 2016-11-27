@@ -5079,7 +5079,7 @@ begin
   ModelSet.Clear;
   ModelSet.Add(OldAction);
   ElementsDeleting;
-  ElementsDeleted;
+  //ElementsDeleted; // The control will update itself
   // Change to NewAction.
   OldAction.Isolate;
   NewAction.SetMemento(NewActionMemento);

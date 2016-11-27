@@ -2560,7 +2560,7 @@ begin
     end;
     // if model is going to be deleted, exclude from selection
     StarUMLApplication.DeselectModelsViews(Models, Views);
-    UpdateEditors;
+    //UpdateEditors; // No need for update yet
     EventPublisher.NotifyEvent(EK_ELEMENTS_DELETING);
   except on
     E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
