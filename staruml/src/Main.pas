@@ -151,7 +151,7 @@ type
     procedure MainFormQuickDlgSeqNumberChangingHandler(AElement: PElement; ACollectionItem: PElement; Key: string; NewIndex: Integer);
     procedure MainFormQuickDlgObjectClassCreatingHandler(Owner: PUMLNamespace; AModel: PUMLModelElement; Name: string = '');
     procedure MainFormQuickDlgCallActionOperationCreatingHandler(AClassifier: PUMLClassifier; ACallAction: PUMLCallAction; Name: string = '');
-    procedure MainFormDockSiteActiveChildChanged(Sender: TdxContainerDockSite; Child: TdxCustomDockControl);
+    procedure MainFormDockPanelActived( Sender: TdxCustomDockControl; Active: Boolean);
 
     // (for InteractionManager)
     procedure InteractionManagerModelAddingHandler(Sender: TObject; ModelKind: string; Argument: Integer);
@@ -605,10 +605,10 @@ begin
   MainForm.InspectorFrame.InitializeUserInterfaces;
   MainForm.AttachmentEditor.InitializeUserInterface;
 
-  // ActiveChildChanged handlers
-  // Only right side dock sites are watched ATM
-  MainForm.dxTabContainerDockSite1.OnActiveChildChanged := MainFormDockSiteActiveChildChanged;
-  MainForm.dxTabContainerDockSite3.OnActiveChildChanged := MainFormDockSiteActiveChildChanged;
+  // OnActive Dock Panel handlers
+  MainForm.PropertiesDockPanel.OnActivate := MainFormDockPanelActived;
+  MainForm.DocumentationDockPanel.OnActivate := MainFormDockPanelActived;
+  MainForm.AttachmentsDockPanel.OnActivate := MainFormDockPanelActived;
 
   // GUI Interactions Setup
   InteractionManager.BuildInteractions;
@@ -1935,15 +1935,16 @@ begin
   end;
 end;
 
-procedure PMain.MainFormDockSiteActiveChildChanged(
-  Sender: TdxContainerDockSite; Child: TdxCustomDockControl);
+procedure PMain.MainFormDockPanelActived( Sender: TdxCustomDockControl; Active: Boolean);
 begin
- if Child = MainForm.PropertiesDockPanel then
-    MainForm.InspectorFrame.Inspect
-  else if Child = MainForm.DocumentationDockPanel then
-    MainForm.DocumentationEditor.Inspect
-  else if Child = MainForm.AttachmentsDockPanel then
-    MainForm.AttachmentEditor.Inspect;
+  if Active then begin
+    if Sender = MainForm.PropertiesDockPanel then
+      MainForm.InspectorFrame.Inspect
+    else if Sender = MainForm.DocumentationDockPanel then
+      MainForm.DocumentationEditor.Inspect
+    else if Sender = MainForm.AttachmentsDockPanel then
+      MainForm.AttachmentEditor.Inspect;
+  end;
 end;
 
 procedure PMain.BrowserFormElementSelectedHandler(Sender: TObject; Element: PModel);
