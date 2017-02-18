@@ -165,6 +165,8 @@ type
   private
     //Inspector: TdxInspector;
     //PropertySpecifier: PPropertySpecifier;
+    FInspectingElementsModified: Boolean;
+
     procedure SetReadOnly(Value: Boolean);
     function GetInspectingElement(Index: Integer): PElement;
     function GetInspectingElementCount: Integer;
@@ -455,23 +457,29 @@ end;
 procedure TPropertyEditor.ClearInspectingElements;
 begin
   FInspectingElements.Clear;
+  FInspectingElementsModified := True;
 end;
 
 procedure TPropertyEditor.AddInspectingElement(AElement: PElement);
 begin
   FInspectingElements.Add(AElement);
+  FInspectingElementsModified := True;
 end;
 
 procedure TPropertyEditor.RemoveInspectingElement(AElement: PElement);
 begin
   FInspectingElements.Remove(AElement);
+  FInspectingElementsModified := True;
 end;
 
 procedure TPropertyEditor.InspectElements;
 begin
-  CollectProperties;
-  SetupRows;
-  UpdateProperties;
+  if FInspectingElementsModified then begin
+    CollectProperties;
+    SetupRows;
+    UpdateProperties;
+    FInspectingElementsModified := False;
+  end;
 end;
 
 // If there is more than one inspecting (inspected?) element

@@ -695,7 +695,6 @@ type
     procedure SetParentFontSize(Value: Boolean);
     procedure SetParentFontColor(Value: Boolean);
     procedure SetParentFontStyle(Value: Boolean);
-    procedure SetModel(Value: PModel);
     procedure SetParent(Value: PView);
     function GetSubView(Index: Integer): PView;
     function GetSubViewCount: Integer;
@@ -715,6 +714,10 @@ type
     procedure MovePosition(Canvas: PCanvas; DX, DY: Integer); virtual;
     procedure ArrangeObject(Canvas: PCanvas); virtual;
     procedure DelimitContainingBoundary(Canvas: PCanvas); virtual;
+
+    function GetModel: PModel; virtual;
+    procedure SetModel(Value: PModel); virtual;
+
   public
     constructor Create; override;
     destructor Destroy; override;
@@ -773,7 +776,7 @@ type
     function MOF_GetCollectionItem(Name: string; Index: Integer): PElement;
       override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
-    property Model: PModel read FModel write SetModel;
+    property Model: PModel read GetModel write SetModel;
     property SubView[Index: Integer]: PView read GetSubView;
     property SubViewCount: Integer read GetSubViewCount;
     property SubViews: PViewOrderedSet read FSubViews;
@@ -867,6 +870,9 @@ type
 
   protected
     procedure DrawObject(Canvas: PCanvas); override;
+    function GetModel: PModel; override;
+    procedure SetModel(Value: PModel); override;
+
   public
     constructor Create; override;
     destructor Destroy; override;
@@ -882,7 +888,7 @@ type
     function ContainsPoint(Canvas: PCanvas; P: TPoint): Boolean; override;
     function OverlapRect(Canvas: PCanvas; R: TRect): Boolean; override;
     procedure SelectAll;
-    procedure DeselectAll;
+    function DeselectAll: Boolean;
     procedure SelectArea(Canvas: PCanvas; X1, Y1, X2, Y2: Integer);
     procedure ClearOwnedViews;
     procedure AddOwnedView(AView: PView);
@@ -3726,6 +3732,11 @@ begin
   Result := FLineColor;
 end;
 
+function PView.GetModel: PModel;
+begin
+  Result := FModel;
+end;
+
 procedure PView.SetLineColor(Value: TColor);
 begin
   if Value <> FLineColor then
@@ -3859,12 +3870,14 @@ end;
 
 procedure PView.SetModel(Value: PModel);
 begin
-  if FModel <> Value then
-  begin
-    if FModel <> nil then
+  if FModel <> Value then begin
+    // Remove existing model
+    if Assigned (FModel) then
       FModel.RemoveView(Self);
+
+    // Set new model
     FModel := Value;
-    if FModel <> nil then
+    if Assigned(FModel) then
       FModel.AddView(Self);
   end;
 end;
@@ -4840,14 +4853,21 @@ end;
 
 procedure PDiagramView.SetDiagram(Value: PDiagram);
 begin
-  if FDiagram <> Value then
-  begin
-    if FDiagram <> nil then
+  if FDiagram <> Value then begin
+    // Remove existing diagram
+    if Assigned(FDiagram) then
       FDiagram.FDiagramView := nil;
+
+    // Set new diagram
     FDiagram := Value;
-    if FDiagram <> nil then
+    if Assigned(FDiagram) then
       FDiagram.FDiagramView := Self;
   end;
+end;
+
+procedure PDiagramView.SetModel(Value: PModel);
+begin
+  SetDiagram(Value as PDiagram);
 end;
 
 function PDiagramView.GetSelectedView(Index: Integer): PView;
@@ -4932,6 +4952,11 @@ begin
     else
       Result := nil;
   end;
+end;
+
+function PDiagramView.GetModel: PModel;
+begin
+  Result := FDiagram;
 end;
 
 function PDiagramView.GetViewAt(Canvas: PCanvas; X, Y: Integer): PView;
@@ -5032,13 +5057,19 @@ begin
     SelectView(OwnedView);
 end;
 
-procedure PDiagramView.DeselectAll;
+function PDiagramView.DeselectAll: Boolean;
 var
-  I: Integer;
+  View: PView;
 begin
-  for I := FSelectedViews.Count - 1 downto 0 do 
-  FSelectedViews[I].Selected := False;
-  FSelectedViews.Clear;
+  if FSelectedViews.Count > 0 then begin
+    for View in FSelectedViews do
+      View.Selected := False;
+    FSelectedViews.Clear;
+    Result := True;
+  end
+  else
+    Result := False;
+
 end;
 
 procedure PDiagramView.SelectArea(Canvas: PCanvas; X1, Y1, X2, Y2: Integer);
