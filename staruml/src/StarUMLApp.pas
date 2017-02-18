@@ -1457,10 +1457,11 @@ end;
 function PStarUMLApplication.CloseProject: Boolean;
 begin
   Result := False;
-  SelectionManager.DeselectAll;
   if ProjectManager.ProjectCanClose then begin
     CommandExecutor.ClearHistory;
     Result := ProjectManager.CloseProject;
+    if Result then
+      SelectionManager.DeselectAll;
   end;
 end;
 

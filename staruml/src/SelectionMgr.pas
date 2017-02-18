@@ -65,8 +65,8 @@ type
     procedure SetActiveDiagram(Value: PDiagramView);
     procedure SelectionChanged;
     procedure DiagramActivated;
-    procedure ClearSelectedModels;
-    procedure ClearSelectedViews;
+    function ClearSelectedModels: Boolean;
+    function ClearSelectedViews: Boolean;
   public
     constructor Create;
     destructor Destroy; override;
@@ -147,6 +147,16 @@ procedure PSelectionManager.SetActiveDiagram(Value: PDiagramView);
 begin
   if FActiveDiagram <> Value then begin
     FActiveDiagram := Value;
+
+    // Select diagram model if no element is selected
+	  if Assigned(FActiveDiagram) and (GetSelectedViewCount = 0)
+        and Assigned(FActiveDiagram.Diagram) then begin
+
+      ClearSelectedModels;
+      ActiveDiagram.Selected := True;
+      FSelectedModels.Add(FActiveDiagram.Diagram);
+    end;
+
     DiagramActivated;
   end;
 end;
@@ -161,15 +171,22 @@ begin
   if Assigned(FOnDiagramActivated) then FOnDiagramActivated(Self);
 end;
 
-procedure PSelectionManager.ClearSelectedModels;
+function PSelectionManager.ClearSelectedModels: Boolean;
 begin
-  FSelectedModels.Clear;
+  if Assigned(FSelectedModels) and (FSelectedModels.Count > 0) then begin
+    FSelectedModels.Clear;
+    Result := True;
+  end
+  else
+    Result := False;
 end;
 
-procedure PSelectionManager.ClearSelectedViews;
+function PSelectionManager.ClearSelectedViews: Boolean;
 begin
-  if FActiveDiagram <> nil then
-    FActiveDiagram.DeselectAll;
+  if Assigned (FActiveDiagram) then
+    Result := FActiveDiagram.DeselectAll
+  else
+    Result := False;
 end;
 
 procedure PSelectionManager.SelectModel(AModel: PModel; AContextMenuLaunched: Boolean=False);
@@ -403,10 +420,14 @@ begin
 end;
 
 procedure PSelectionManager.DeselectAll;
+var
+  ElementsCleared: Boolean;
 begin
-  ClearSelectedModels;
-  ClearSelectedViews;
-  SelectionChanged;
+  ElementsCleared := ClearSelectedModels;
+  ElementsCleared := ClearSelectedViews or ElementsCleared;
+
+  if ElementsCleared then
+    SelectionChanged;
 end;
 
 procedure PSelectionManager.CollectSelectedModels(AOrderedSet: PModelOrderedSet);

@@ -69,8 +69,6 @@ type
     FormatLayoutDiagram: TMenuItem;
     N2: TMenuItem;
     ViewRefresh: TMenuItem;
-    procedure DiagramPageControlChanging(Sender: TObject;
-      var AllowChange: Boolean);
     procedure DiagramPageControlChange(Sender: TObject);
     procedure DiagramPageControlContextPopup(Sender: TObject;
       MousePos: TPoint; var Handled: Boolean);
@@ -78,11 +76,15 @@ type
     procedure DiagramTabPopupMenuPopupHandler(Sender: TObject);
 
   private type
+    TTabList = TList<TTabSheet>;
+    TDiagramEditorList = TList<PDiagramEditor>;
+    TDiagramList = TList<PDiagram>;
     TDiagramFromMenuItem = TDictionary<TMenuItem,PDiagram>;
+    TDiagramEditorFromDiagram = TDictionary<PDiagram,PDiagramEditor>;
 
   private
-    TabList: TList;
-    DiagramEditorList: TList;
+    TabList: TTabList;
+    FDiagramEditorList: TDiagramEditorList;
     FDiagramWidth: Integer;
     FDiagramHeight: Integer;
     FGridWidth: Integer;
@@ -100,8 +102,8 @@ type
     FOnDiagramClose: PDiagramEvent;
     FOnActiveDiagramEditorChanged: PDiagramEditorEvent;
     FOnViewMenuClicked: TNotifyEvent;
-    //FImageList: TCustomImageList;
     FDiagramFromMenuItem: TDiagramFromMenuItem;
+    FDiagramEditorFromDiagram: TDiagramEditorFromDiagram;
     FLastContextSelectedTab: Integer;
 
     procedure DiagramEditorMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
@@ -124,20 +126,22 @@ type
     function GetTabOfDiagram(ADiagram: PDiagram): TTabSheet;
     function GetDiagramOfTabIdx(TabIdx: Integer): PDiagram;
     function AddDiagramEditor(ADiagram: PDiagram): PDiagramEditor;
-    procedure RemoveDiagramEditor(ADiagramEditor: PDiagramEditor);
+    procedure RemoveDiagramEditor(ADiagramEditor: PDiagramEditor); overload;
+    procedure RemoveDiagramEditor(AIdx: Integer); overload;
     procedure SetImageList(Value: TCustomImageList);
-    procedure DiagramOpen(ADiagram: PDiagram);
-    procedure DiagramClose(ADiagram: PDiagram);
+    procedure DiagramOpening(ADiagram: PDiagram);
+    procedure DiagramClosing(ADiagram: PDiagram);
     procedure UpdateActiveDiagramEditor;
-
     procedure ViewDiagramPagesClickHandler(Sender: TObject);
-
+    procedure CloseDiagramFinalize(ADiagramEditor: PDiagramEditor; ClosingAll: Boolean = False);
 
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
-    procedure OpenDiagram(ADiagram: PDiagram);
-    procedure CloseDiagram(ADiagram: PDiagram);
+    procedure OpenDiagram(ADiagram: PDiagram; ChainOpening: Boolean = False);
+    procedure CloseDiagram(ADiagram: PDiagram; ClosingAll: Boolean = False); overload;
+    procedure CloseDiagram(ADiagramEditor: PDiagramEditor; ClosingAll: Boolean = False); overload;
+    procedure CloseDiagram(AIdx: Integer; ClosingAll: Boolean = False); overload;
     procedure ExecuteViewDiagramPageList(ABarItem: TMenuItem);
     procedure CloseActiveDiagram;
     procedure CloseAllDiagrams;
@@ -182,8 +186,8 @@ uses
 constructor TWorkingAreaFrame.Create(AOwner: TComponent);
 begin
   inherited;
-  TabList := TList.Create;
-  DiagramEditorList := TList.Create;
+  TabList := TTabList.Create;
+  FDiagramEditorList := TDiagramEditorList.Create;
   FActiveDiagramEditor := nil;
   FDiagramPopupMenu := nil;
   FTabPopupMenu := nil;
@@ -194,14 +198,16 @@ begin
   FShowGrid := True;
 
   FDiagramFromMenuItem := TDiagramFromMenuItem.Create(20);
+  FDiagramEditorFromDiagram := TDiagramEditorFromDiagram.Create(20);
 
 end;
 
 destructor TWorkingAreaFrame.Destroy;
 begin
   TabList.Free;
-  DiagramEditorList.Free;
+  FDiagramEditorList.Free;
   FDiagramFromMenuItem.Free;
+  FDiagramEditorFromDiagram.Free;
   inherited;
 end;
 
@@ -232,81 +238,57 @@ end;
 
 procedure TWorkingAreaFrame.SetDiagramWidth(Value: Integer);
 var
-  I: Integer;
   DE: PDiagramEditor;
 begin
-  if FDiagramWidth <> Value then
-  begin
+  if FDiagramWidth <> Value then begin
     FDiagramWidth := Value;
-    for I := 0 to DiagramEditorList.Count - 1 do
-    begin
-      DE := DiagramEditorList.Items[I];
+    for DE in FDiagramEditorList do
       DE.DiagramWidth := FDiagramWidth;
-    end;
   end;
 end;
 
 procedure TWorkingAreaFrame.SetDiagramHeight(Value: Integer);
 var
-  I: Integer;
   DE: PDiagramEditor;
 begin
-  if FDiagramHeight <> Value then
-  begin
+  if FDiagramHeight <> Value then begin
     FDiagramHeight := Value;
-    for I := 0 to DiagramEditorList.Count - 1 do
-    begin
-      DE := DiagramEditorList.Items[I];
+    for DE in FDiagramEditorList do
       DE.DiagramHeight := FDiagramHeight;
-    end;
   end;
 end;
 
 procedure TWorkingAreaFrame.SetGridWidth(Value: Integer);
 var
-  I: Integer;
   DE: PDiagramEditor;
 begin
-  if FGridWidth <> Value then
-  begin
+  if FGridWidth <> Value then begin
     FGridWidth := Value;
-    for I := 0 to DiagramEditorList.Count - 1 do
-    begin
-      DE := DiagramEditorList.Items[I];
+    for DE in FDiagramEditorList do
       DE.GridFactor := GridFactor(GridWidth, DE.GridFactor.Height);
-    end;
   end;
 end;
 
 procedure TWorkingAreaFrame.SetGridHeight(Value: Integer);
 var
-  I: Integer;
   DE: PDiagramEditor;
 begin
   if FGridHeight <> Value then
   begin
     FGridHeight := Value;
-    for I := 0 to DiagramEditorList.Count - 1 do
-    begin
-      DE := DiagramEditorList.Items[I];
+    for DE in FDiagramEditorList do
       DE.GridFactor := GridFactor(DE.GridFactor.Width, GridHeight);
-    end;
   end;
 end;
 
 procedure TWorkingAreaFrame.SetShowGrid(Value: Boolean);
 var
-  I: Integer;
   DE: PDiagramEditor;
 begin
-  if FShowGrid <> Value then
-  begin
+  if FShowGrid <> Value then begin
     FShowGrid := Value;
-    for I := 0 to DiagramEditorList.Count - 1 do
-    begin
-      DE := DiagramEditorList.Items[I];
+    for DE in FDiagramEditorList do
       DE.ShowGrid := ShowGrid;
-    end;
   end;
 end;
 
@@ -314,19 +296,18 @@ function TWorkingAreaFrame.GetOpenedDiagram(Index: Integer): PDiagram;
 var
   E: PDiagramEditor;
 begin
-  E := DiagramEditorList.Items[Index];
+  E := FDiagramEditorList.Items[Index];
   Result := E.DiagramView.Diagram;
 end;
 
 function TWorkingAreaFrame.GetOpenedDiagramCount: Integer;
 begin
-  Result := DiagramEditorList.Count;
+  Result := FDiagramEditorList.Count;
 end;
 
 procedure TWorkingAreaFrame.SetActiveDiagramEditor(Value: PDiagramEditor);
 begin
-  if {(Value <> nil) and} (FActiveDiagramEditor <> Value) then
-  begin
+  if FActiveDiagramEditor <> Value then begin
     FActiveDiagramEditor := Value;
     if Assigned(FOnActiveDiagramEditorChanged) then
       FOnActiveDiagramEditorChanged(Self, FActiveDiagramEditor);
@@ -335,12 +316,12 @@ end;
 
 function TWorkingAreaFrame.GetActiveDiagramIndex: Integer;
 begin
-  Result := DiagramEditorList.IndexOf(FActiveDiagramEditor)
+  Result := FDiagramEditorList.IndexOf(FActiveDiagramEditor)
 end;
 
 function TWorkingAreaFrame.GetActiveDiagram: PDiagram;
 begin
-  if FActiveDiagramEditor <> nil then
+  if Assigned(FActiveDiagramEditor) then
     Result := FActiveDiagramEditor.DiagramView.Diagram
   else
     Result := nil;
@@ -351,49 +332,38 @@ var
   Idx: Integer;
 begin
   Idx := TabList.IndexOf(Tab);
-  if Idx > -1 then Result := DiagramEditorList.Items[Idx]
+  if Idx > -1 then Result := FDiagramEditorList.Items[Idx]
   else Result := nil;
 end;
 
 function TWorkingAreaFrame.GetDiagramEditorOfDiagram(ADiagram: PDiagram): PDiagramEditor;
 var
-  I: Integer;
   DE: PDiagramEditor;
+  EditorFound: Boolean;
 begin
-  for I := 0 to DiagramEditorList.Count - 1 do
-  begin
-    DE := DiagramEditorList.Items[I];
-    if (DE <> nil) and (DE.DiagramView.Diagram = ADiagram) then
-    begin
-      Result := DE;
-      Exit;
-    end;
-  end;
-  Result := nil;
+  EditorFound := FDiagramEditorFromDiagram.TryGetValue(ADiagram, DE);
+  if EditorFound then
+    Result := DE
+  else
+    Result := nil
 end;
 
 function TWorkingAreaFrame.GetTabOfDiagram(ADiagram: PDiagram): TTabSheet;
 var
-  I, Idx: Integer;
   DE: PDiagramEditor;
 begin
-  Idx := -1;
-  for I := 0 to DiagramEditorList.Count - 1 do begin
-    DE := DiagramEditorList.Items[I];
-    if DE.DiagramView = ADiagram.DiagramView then begin
-      Idx := I;
-      break;
-    end;
-  end;
-  if Idx > -1 then Result := TabList.Items[Idx]
-  else Result := nil;
+  DE := GetDiagramEditorOfDiagram(ADiagram);
+  if Assigned(DE) then
+    Result := DE.Owner as TTabSheet // Owner property reused to get the tab object
+  else
+    Result := nil;
 end;
 
 function TWorkingAreaFrame.GetDiagramOfTabIdx(TabIdx: Integer): PDiagram;
 var
   DE: PDiagramEditor;
 begin
-  DE := DiagramEditorList.Items[TabIdx];
+  DE := FDiagramEditorList.Items[TabIdx];
   Result := DE.DiagramView.Diagram;
 end;
 
@@ -422,7 +392,8 @@ begin
   DiagramEditor.OnDragDrop := DiagramEditorDragDrop;
   DiagramEditor.PopupMenu := FDiagramPopupMenu;
   DiagramEditor.MapButtonImage := MapButtonImage;
-  DiagramEditorList.Add(DiagramEditor);
+  FDiagramEditorList.Add(DiagramEditor);
+  FDiagramEditorFromDiagram.Add(ADiagram, DiagramEditor);
   // Initialze Tab.
   Tab.ImageIndex := DiagramEditor.DiagramImageIndex;
   Tab.Caption := ADiagram.Name;
@@ -437,14 +408,24 @@ var
   Idx: Integer;
   Tab: TTabSheet;
 begin
-  Idx := DiagramEditorList.IndexOf(ADiagramEditor);
-  if Idx > -1 then begin
-    Tab := TabList.Items[Idx];
-    DiagramEditorList.Delete(Idx);
-    TabList.Delete(Idx);
+  Idx := FDiagramEditorList.IndexOf(ADiagramEditor);
+  RemoveDiagramEditor(Idx);
+end;
+
+procedure TWorkingAreaFrame.RemoveDiagramEditor(AIdx: Integer);
+var
+  DiagramEditor: PDiagramEditor;
+  Tab: TTabSheet;
+begin
+  if AIdx > -1 then begin
+    Tab := TabList.Items[AIdx];
+    DiagramEditor := FDiagramEditorList[AIdx];
+    FDiagramEditorList.Delete(AIdx);
+    TabList.Delete(AIdx);
     Tab.PageControl := nil;
-    ADiagramEditor.DiagramView.Canvas := nil;
-    ADiagramEditor.Free;
+    FDiagramEditorFromDiagram.Remove(DiagramEditor.DiagramView.Diagram);
+    DiagramEditor.DiagramView.Canvas := nil;
+    DiagramEditor.Free;
     Tab.Free;
   end;
 end;
@@ -455,71 +436,87 @@ begin
   DiagramTabPopupMenu.Images := Value;
 end;
 
-procedure TWorkingAreaFrame.DiagramOpen(ADiagram: PDiagram);
+procedure TWorkingAreaFrame.DiagramOpening(ADiagram: PDiagram);
 begin
   if Assigned(FOnDiagramOpen) then
     FOnDiagramOpen(Self, ADiagram);
 end;
 
-procedure TWorkingAreaFrame.DiagramClose(ADiagram: PDiagram);
+procedure TWorkingAreaFrame.DiagramClosing(ADiagram: PDiagram);
 begin
   if Assigned(FOnDiagramClose) then
     FOnDiagramClose(Self, ADiagram);
 end;
 
-procedure TWorkingAreaFrame.OpenDiagram(ADiagram: PDiagram);
+procedure TWorkingAreaFrame.OpenDiagram(ADiagram: PDiagram; ChainOpening: Boolean = False);
 var
   Tab: TTabSheet;
+  DE: PDiagramEditor;
 begin
   Tab := GetTabOfDiagram(ADiagram);
   if Tab <> nil then begin
-    if DiagramPageControl.ActivePage <> Tab then
-    begin
+    if not ChainOpening and (DiagramPageControl.ActivePage <> Tab) then begin
       DiagramPageControl.ActivePage := Tab;
       UpdateActiveDiagramEditor;
-      DiagramOpen(ADiagram);
+      DiagramOpening(ADiagram);
     end;
   end
   else begin
-    SetActiveDiagramEditor(AddDiagramEditor(ADiagram));
-    //AddDiagramEditor(ADiagram);
-    DiagramOpen(ADiagram);
+    DE := AddDiagramEditor(ADiagram);
+    if not ChainOpening then begin
+      SetActiveDiagramEditor(DE);
+      DiagramOpening(ADiagram);
+    end;
   end;
 end;
 
-procedure TWorkingAreaFrame.CloseDiagram(ADiagram: PDiagram);
+procedure TWorkingAreaFrame.CloseDiagram(ADiagram: PDiagram; ClosingAll: Boolean = False);
 var
   DE: PDiagramEditor;
 begin
   DE := GetDiagramEditorOfDiagram(ADiagram);
-  if DE <> nil then
-  begin
-    DiagramClose(ADiagram);
-    RemoveDiagramEditor(DE);
-    UpdateActiveDiagramEditor;
+  CloseDiagram(DE, ClosingAll);
+end;
+
+procedure TWorkingAreaFrame.CloseDiagram(ADiagramEditor: PDiagramEditor; ClosingAll: Boolean = False);
+begin
+  if Assigned(ADiagramEditor) then begin
+    RemoveDiagramEditor(ADiagramEditor);
+    CloseDiagramFinalize(ADiagramEditor, ClosingAll);
   end;
 end;
+
+procedure TWorkingAreaFrame.CloseDiagram(AIdx: Integer; ClosingAll: Boolean = False);
+var
+  DiagramEditor: PDiagramEditor;
+begin
+  DiagramEditor := FDiagramEditorList[AIdx];
+  if Assigned(DiagramEditor) then begin
+    RemoveDiagramEditor(AIdx);
+    CloseDiagramFinalize(DiagramEditor, ClosingAll);
+  end;
+end;
+
+procedure TWorkingAreaFrame.CloseDiagramFinalize(ADiagramEditor: PDiagramEditor; ClosingAll: Boolean = False);
+begin
+  DiagramClosing(ADiagramEditor.DiagramView.Diagram);
+  if ClosingAll then
+    SetActiveDiagramEditor(nil)
+  else
+    UpdateActiveDiagramEditor;
+end;
+
 
 procedure TWorkingAreaFrame.CloseActiveDiagram;
 begin
-  if FActiveDiagramEditor <> nil then begin
-    CloseDiagram(FActiveDiagramEditor.DiagramView.Diagram);
-    //UpdateActiveDiagramEditor;
-  end;
+  if Assigned(FActiveDiagramEditor) then
+    CloseDiagram(FActiveDiagramEditor);
 end;
 
 procedure TWorkingAreaFrame.CloseAllDiagrams;
-var
-  I: Integer;
-  DE: PDiagramEditor;
 begin
-  for I := TabList.Count - 1 downto 0 do
-  begin
-    DE := DiagramEditorList.Items[I];
-    CloseDiagram(DE.DiagramView.Diagram);
-  end;
-
-  //UpdateActiveDiagramEditor;
+  while FDiagramEditorList.Count > 0 do
+    CloseDiagram(FDiagramEditorList.Count-1, True);
 end;
 
 procedure TWorkingAreaFrame.UpdateAllDiagrams;
@@ -529,10 +526,8 @@ var
   MC: PMetaClass;
 begin
   MC := MetaModel.FindMetaClass('Diagram');
-  if MC <> nil then
-  begin
-    for I := 0 to MC.InclusiveInstanceCount - 1 do
-    begin
+  if Assigned(MC) then begin
+    for I := 0 to MC.InclusiveInstanceCount - 1 do begin
       D := MC.InclusiveInstances[I] as PDiagram;
       D.DiagramView.Update;
     end;
@@ -565,16 +560,27 @@ var
   I: Integer;
   D: PDiagram;
   MC: PMetaClass;
+  DiagramsToOpen: TDiagramList;
+  LastDiagram: Integer;
 begin
   MC := MetaModel.FindMetaClass('Diagram');
-  if MC <> nil then
-  begin
-    for I := 0 to MC.InclusiveInstanceCount - 1 do
-    begin
+  if Assigned(MC) then begin
+    DiagramsToOpen := TDiagramList.Create;
+    for I := 0 to MC.InclusiveInstanceCount - 1 do begin
       D := MC.InclusiveInstances[I] as PDiagram;
       if D.DefaultDiagram then
-        OpenDiagram(D);
+        DiagramsToOpen.Add(D);
     end;
+
+    LastDiagram := DiagramsToOpen.Count - 1;
+    for I := 0 to LastDiagram do begin
+      if I < LastDiagram then
+        OpenDiagram(DiagramsToOpen[I], True) // More diagrams are coming
+      else
+        OpenDiagram(DiagramsToOpen[I], False); // Last diagram
+    end;
+
+    DiagramsToOpen.Free;
   end;
 end;
 
@@ -587,21 +593,10 @@ begin
   for I := 0 to TabList.Count - 1 do
   begin
     Tab := TabList.Items[I];
-    DE := DiagramEditorList.Items[I];
+    DE := FDiagramEditorList.Items[I];
     if Tab.Caption <> DE.DiagramView.Diagram.Name then
       Tab.Caption := DE.DiagramView.Diagram.Name;
   end;
-end;
-
-procedure TWorkingAreaFrame.DiagramPageControlChanging(Sender: TObject;
-  var AllowChange: Boolean);
-var
-  DiagramEditor: PDiagramEditor;
-begin
-
-  //DiagramEditor := DiagramEditorList.Items[DiagramPageControl.TabIndex];
-  //if DiagramEditor <> nil then
-    //SetActiveDiagramEditor(DiagramEditor);
 end;
 
 procedure TWorkingAreaFrame.DiagramPageControlChange(Sender: TObject);
@@ -618,18 +613,14 @@ end;
 
 procedure TWorkingAreaFrame.ViewMenuClick(Sender: TObject);
 begin
-  if Sender = ViewCloseDiagram then begin
-    CloseDiagram(GetDiagramOfTabIdx(FLastContextSelectedTab));
-    //CloseActiveDiagram;
-    //UpdateActiveDiagramEditor;
-  end
-
-  else if Sender = ViewCloseAllDiagrams then begin
-    CloseAllDiagrams;
-  end
-
+  if Sender = ViewCloseDiagram then
+    CloseDiagram(FLastContextSelectedTab)
+  else if Sender = ViewCloseAllDiagrams then
+    CloseAllDiagrams
   else if Sender = FormatLayoutDiagram then
-    StarUMLApplication.LayoutActiveDiagramWithValidation;
+    StarUMLApplication.LayoutActiveDiagramWithValidation
+  else
+    Assert(False, 'Sender not recognized');
 
   if Assigned(FOnViewMenuClicked) then
     FOnViewMenuClicked(Sender);
@@ -643,8 +634,7 @@ var
 begin
   ViewDiagramPages.Clear;
   FDiagramFromMenuItem.Clear;
-  for I := 0 to OpenedDiagramCount - 1 do
-  begin
+  for I := 0 to OpenedDiagramCount - 1 do begin
     D := OpenedDiagrams[I];
     NewMenuItem := TMenuItem.Create(ViewDiagramPages);
     NewMenuItem.OnClick := ViewDiagramPagesClickHandler;
@@ -672,10 +662,8 @@ procedure TWorkingAreaFrame.UpdateActiveDiagramEditor;
 var
   ActiveDiagramEditor: PDiagramEditor;
 begin
-  if (DiagramEditorList.Count > 0) and
-    (DiagramPageControl.TabIndex > -1) then begin
-    ActiveDiagramEditor := DiagramEditorList.Items[DiagramPageControl.TabIndex];
-  end
+  if (FDiagramEditorList.Count > 0) and (DiagramPageControl.TabIndex > -1) then
+    ActiveDiagramEditor := FDiagramEditorList.Items[DiagramPageControl.TabIndex]
   else
     ActiveDiagramEditor := nil;
 

@@ -364,6 +364,7 @@ type
     procedure UpdateModelMenus;
     procedure UpdateViewMenus;
     procedure UpdateStatusBar;
+    procedure CleanStatusBar;
     function IsEditDeleteFromModelEnabled: Boolean;
     function IsEditFindDiagramsWithSelectedModelEnabled: Boolean;
     function IsEditCutEnabled: Boolean;
@@ -2887,7 +2888,7 @@ begin
     MenuStateHandler.SetUnitSelectedGroup(False);
     MenuStateHandler.SetDiagramActivatedGroup(False);
     MenuStateHandler.UpdateTopLevelMenus;
-    MenuStateHandler.UpdateStatusBar;
+    MenuStateHandler.CleanStatusBar;
     MenuStateHandler.EndUpdate;
 
     EventPublisher.NotifyEvent(EK_PROJECT_CLOSED);
@@ -5241,7 +5242,8 @@ begin
           else if M.Document.ReadOnly then S := S + ' ' + TXT_DOC_STATUS_READONLY;
         end
         else begin
-          S := '(' + M.MetaClass.Name + ') ' + M.Pathname;
+          if Assigned(M.MetaClass) then
+            S := '(' + M.MetaClass.Name + ') ' + M.Pathname
         end;
         StatusBarInfo.Caption := S;
       except
@@ -5253,6 +5255,12 @@ begin
     end;
   end;
 end;
+
+procedure PMainFormMenuStateHandler.CleanStatusBar;
+begin
+  MainForm.StatusBarInfo.Caption := '';
+end;
+
 
 // PMainFormMenuStateHandler
 ////////////////////////////////////////////////////////////////////////////////
