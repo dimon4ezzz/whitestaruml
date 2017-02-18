@@ -49,7 +49,6 @@ object WorkingAreaFrame: TWorkingAreaFrame
       PopupMenu = DiagramTabPopupMenu
       TabOrder = 0
       OnChange = DiagramPageControlChange
-      OnChanging = DiagramPageControlChanging
       OnContextPopup = DiagramPageControlContextPopup
     end
   end
