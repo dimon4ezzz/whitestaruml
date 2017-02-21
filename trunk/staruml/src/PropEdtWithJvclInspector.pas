@@ -97,7 +97,7 @@ end;
 procedure TPropertyEditorWithJvclInspector.ItemDataValueChanged(Sender: TObject);
 var
   InspectorItem: TJvCustomInspectorItem;
-  ElementsToUpdate: POrderedSet;
+  ElementsToUpdate: PElementOrderedSet;
   Element: PElement;
   PropertyKey: string;
   PropertyValue: string;
@@ -108,7 +108,7 @@ begin
     InspectorItem := Sender as TJvCustomInspectorItem;
     PropertyKey := InspectorItem.Name;
     PropertyValue := InspectorItem.DisplayValue;
-    ElementsToUpdate := POrderedSet.Create;
+    ElementsToUpdate := PElementOrderedSet.Create;
     try
       for I := 0 to FInspectingElements.Count - 1 do begin
         Element := FInspectingElements[I] as PElement;
@@ -313,7 +313,8 @@ begin
     begin
       try
         Val := MixPropertyValue(Row.Item.Name);
-        Row.Item.DisplayValue := Val;
+        if Val <> '' then
+          Row.Item.DisplayValue := Val;
       except
       end;
     end;

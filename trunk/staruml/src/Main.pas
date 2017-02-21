@@ -1,56 +1,58 @@
 unit Main;
 
-{******************************************************************************}
-{                                                                              }
-{                StarUML - The Open Source UML/MDA Platform.                   }
-{                                                                              }
-{              Copyright (C) 2002-2005 - Plastic Software, Inc.                }
-{                                                                              }
-{                                                                              }
-{ This program is free software; you can redistribute it and/or modify it      }
-{ under the terms of the GNU General Public License as published by the Free   }
-{ Software Foundation; either version 2 of the License, or (at your option)    }
-{ any later version.                                                           }
-{                                                                              }
-{ This program is distributed in the hope that it will be useful, but WITHOUT  }
-{ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or        }
-{ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for     }
-{ more details.                                                                }
-{                                                                              }
+{ ****************************************************************************** }
+{ }
+{ StarUML - The Open Source UML/MDA Platform. }
+{ }
+{ Copyright (C) 2002-2005 - Plastic Software, Inc. }
+{ }
+{ }
+{ This program is free software; you can redistribute it and/or modify it }
+{ under the terms of the GNU General Public License as published by the Free }
+{ Software Foundation; either version 2 of the License, or (at your option) }
+{ any later version. }
+{ }
+{ This program is distributed in the hope that it will be useful, but WITHOUT }
+{ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or }
+{ FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for }
+{ more details. }
+{ }
 { You should have received a copy of the GNU General Public License along with }
-{ this program; if not, write to the Free Software Foundation, Inc., 51        }
-{ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA                          }
-{                                                                              }
-{ Linking StarUML statically or dynamically with other modules is making a     }
-{ combined work based on StarUML. Thus, the terms and conditions of the GNU    }
-{ General Public License cover the whole combination.                          }
-{                                                                              }
+{ this program; if not, write to the Free Software Foundation, Inc., 51 }
+{ Franklin St, Fifth Floor, Boston, MA 02110-1301 USA }
+{ }
+{ Linking StarUML statically or dynamically with other modules is making a }
+{ combined work based on StarUML. Thus, the terms and conditions of the GNU }
+{ General Public License cover the whole combination. }
+{ }
 { In addition, as a special exception, Plastic Software give you permission to }
-{ combine StarUML program with free software programs or libraries that are    }
+{ combine StarUML program with free software programs or libraries that are }
 { released under the GNU LGPL/Mozilla/Apache/BSD and with code included in the }
-{ standard release of ExpressBar, ExpressNavBar, ExpressInspector,             }
-{ ExpressPageControl, ProGrammar, NextGrid under the commercial license (or    }
-{ modified versions of such code, with unchanged license). You may copy and    }
-{ distribute such a system following the terms of the GNU GPL for StarUML and  }
-{ the licenses of the other code concerned, provided that you include the      }
+{ standard release of ExpressBar, ExpressNavBar, ExpressInspector, }
+{ ExpressPageControl, ProGrammar, NextGrid under the commercial license (or }
+{ modified versions of such code, with unchanged license). You may copy and }
+{ distribute such a system following the terms of the GNU GPL for StarUML and }
+{ the licenses of the other code concerned, provided that you include the }
 { source code of that other code when and as the GNU GPL requires distribution }
 { of source code. Plastic Software also give you permission to combine StarUML }
-{ program with dynamically linking plug-in (or add-in) programs that are       }
-{ released under the GPL-incompatible and proprietary license.                 }
-{                                                                              }
-{ Note that people who make modified versions of StarUML are not obligated to  }
+{ program with dynamically linking plug-in (or add-in) programs that are }
+{ released under the GPL-incompatible and proprietary license. }
+{ }
+{ Note that people who make modified versions of StarUML are not obligated to }
 { grant this special exception for their modified versions; it is their choice }
 { whether to do so. The GNU General Public License gives permission to release }
-{ a modified version without this exception; this exception also makes it      }
+{ a modified version without this exception; this exception also makes it }
 { possible to release a modified version which carries forward this exception. }
-{******************************************************************************}
+{ ****************************************************************************** }
 
 interface
 
 uses
-  BasicClasses, GraphicClasses, Core, ExtCore, ViewCore, UMLModels, UMLViews, UMLAux,
+  BasicClasses, GraphicClasses, Core, ExtCore, ViewCore, UMLModels, UMLViews,
+  UMLAux,
   ClipboardMgr, UMLVerify, DiagramEditors, AttachEdt,
-  Classes, Windows, Controls, Forms, Messages, dxBar, dxDockControl, dxDockPanel;
+  Classes, Windows, Controls, Forms, Messages, dxBar, dxDockControl,
+  dxDockPanel;
 
 type
   // Enumeration type
@@ -82,19 +84,24 @@ type
     procedure MainFormInspectorCloseHandler(Sender: TObject);
     procedure MainFormInformationCloseHandler(Sender: TObject);
     procedure MainFormFileMenuClickedHandler(Sender: TObject);
-    procedure MainFormEditFindDiagramsWithSelectedModelClickedHandler(Sender: TObject);
+    procedure MainFormEditFindDiagramsWithSelectedModelClickedHandler
+      (Sender: TObject);
     procedure MainFormEditMenuClickedHandler(Sender: TObject);
     procedure MainFormFormatMenuClickedHandler(Sender: TObject);
-    procedure MainFormFormatCheckTypeMenuClickedHandler(Sender: TObject; Checked: Boolean);
-    procedure MainFormFormatFontFaceChangedHandler(Sender: TObject; FontFace: string);
+    procedure MainFormFormatCheckTypeMenuClickedHandler(Sender: TObject;
+      Checked: Boolean);
+    procedure MainFormFormatFontFaceChangedHandler(Sender: TObject;
+      FontFace: string);
     procedure BarManagerx(Sender: TObject; FontSize: Integer);
     procedure MainFormModelMenuClickedHandler(Sender: TObject);
     procedure MainFormViewMenuClickedHandler(Sender: TObject);
-    procedure MainFormViewCheckTypeMenuClickedHandler(Sender: TObject; Checked: Boolean);
+    procedure MainFormViewCheckTypeMenuClickedHandler(Sender: TObject;
+      Checked: Boolean);
     procedure MainFormZoomChangedHandler(Sender: TObject; Zoom: Integer);
     procedure MainFormToolsMenuClickedHandler(Sender: TObject);
     procedure MainFormHelpMenuClickedHandler(Sender: TObject);
-    procedure MainFormRecentFileClickedHandler(Sender: TObject; RecentFile: string);
+    procedure MainFormRecentFileClickedHandler(Sender: TObject;
+      RecentFile: string);
     procedure MainFormRecentFileAddHandler(Sender: TObject; RecentFile: string);
     procedure MainFormInspectorAttachmentButtonClickedHandler(Sender: TObject);
     procedure MainFormInformationMessagesButtonClickedHandler(Sender: TObject);
@@ -102,12 +109,16 @@ type
     procedure MainFormDiagramOpenHandler(Sender: TObject; Diagram: PDiagram);
     procedure MainFormDiagramCloseHandler(Sender: TObject; Diagram: PDiagram);
     procedure MainFormActiveDockControlChangedHandler(Sender: TObject);
-    procedure MainFormActiveDiagramEditorChangedHandler(Sender: TObject; DiagramEditor: PDiagramEditor);
-    procedure MainFormDockPanelVisibleChangedHandler(Sender: TdxCustomDockControl);
-    procedure MainFormDiagramMapFormMouseMoveHandler(Sender: TObject; DX, DY: Integer);
+    procedure MainFormActiveDiagramEditorChangedHandler(Sender: TObject;
+      DiagramEditor: PDiagramEditor);
+    procedure MainFormDockPanelVisibleChangedHandler
+      (Sender: TdxCustomDockControl);
+    procedure MainFormDiagramMapFormMouseMoveHandler(Sender: TObject;
+      DX, DY: Integer);
     procedure MainFormDiagramTabPopupMenuPopupHandler(Sender: TObject);
 
-    procedure MainFormDiagramViewDragOveredHandler(Sender, Source: TObject; var Accept: Boolean; var Msg: string);
+    procedure MainFormDiagramViewDragOveredHandler(Sender, Source: TObject;
+      var Accept: Boolean; var Msg: string);
     procedure MainFormDiagramViewDragDropHandler(X, Y: Integer);
     procedure MainFormViewSelectingHandler(AView: PView);
     procedure MainFormViewDeselectingHandler(Sender: TObject);
@@ -115,108 +126,192 @@ type
     procedure MainFormAdditionalViewSelectingHandler(Sender: TObject);
     procedure MainFormAreaSelectingHandler(X1, Y1, X2, Y2: Integer);
     procedure MainFormViewMovingHandler(View: PView; DX, DY: Integer);
-    procedure MainFormViewContainerChangingHandler(View: PView; DX, DY: Integer; AContainerView: PView);
+    procedure MainFormViewContainerChangingHandler(View: PView; DX, DY: Integer;
+      AContainerView: PView);
     procedure MainFormSelectedViewsMovingHandler(DX, DY: Integer);
-    procedure MainFormSelectedViewsContainerChangingHandler(DX, DY: Integer; AContainerView: PView);
-    procedure MainFormParasiticViewMovingHandler(AParasiticView: PParasiticView; DX, DY: Extended);
-    procedure MainFormNodeResizingHandler(Node: PNodeView; Left, Top, Right, Bottom: Integer);
-    procedure MainFormEdgeModifyingHandler(Edge: IModifiableEdge; Points: PPoints);
-    procedure MainFormEdgeReonnectingHandler(Edge: PEdgeView; Points: PPoints; NewParticipant: PView; IsTailSide: Boolean);
-    procedure MainFormViewDoubleClickedHandler(Sender: TObject; AView: PView; X, Y: Integer);
+    procedure MainFormSelectedViewsContainerChangingHandler(DX, DY: Integer;
+      AContainerView: PView);
+    procedure MainFormParasiticViewMovingHandler(AParasiticView: PParasiticView;
+      DX, DY: Extended);
+    procedure MainFormNodeResizingHandler(Node: PNodeView;
+      Left, Top, Right, Bottom: Integer);
+    procedure MainFormEdgeModifyingHandler(Edge: IModifiableEdge;
+      Points: PPoints);
+    procedure MainFormEdgeReonnectingHandler(Edge: PEdgeView; Points: PPoints;
+      NewParticipant: PView; IsTailSide: Boolean);
+    procedure MainFormViewDoubleClickedHandler(Sender: TObject; AView: PView;
+      X, Y: Integer);
     procedure MainFormQuickDlgPopup(AView: PView; X, Y: Integer);
 
     procedure MainFormWMDrawClipboardHandler(var Msg: TMessage);
     procedure MainFormWMChangeCBChainHandler(var Msg: TMessage);
     procedure MainFormWMDropFilesHandler(var Msg: TWMDROPFILES);
 
-    procedure MainFormQuickDlgGeneralNameExpressionApplyingHandler(AModel: PModel; Value: string);
-    procedure MainFormQuickDlgClassifierRoleExpressionApplyingHandler(AModel: PModel; Value: string);
-    procedure MainFormQuickDlgInstanceExpressionApplyingHandler(AModel: PModel; Value: string);
-    procedure MainFormQuickDlgAttributeExpressionApplyingHandler(AModel: PModel; Value: string);
-    procedure MainFormQuickDlgOperationExpressionApplyingHandler(AModel: PModel; Value: string);
-    procedure MainFormQuickDlgMessageExpressionApplyingHandler(AModel: PModel; Value: string);
-    procedure MainFormQuickDlgModelCreatingHandler(Owner: PModel; ModelKind: string; Argument: Integer = 0; InsertIndex: Integer = -1);
-    procedure MainFormQuickDlgModelCreatingWithNameHandler(Owner: PModel; ModelKind: string; Name: string = '');
+    procedure MainFormQuickDlgGeneralNameExpressionApplyingHandler
+      (AModel: PModel; Value: string);
+    procedure MainFormQuickDlgClassifierRoleExpressionApplyingHandler
+      (AModel: PModel; Value: string);
+    procedure MainFormQuickDlgInstanceExpressionApplyingHandler(AModel: PModel;
+      Value: string);
+    procedure MainFormQuickDlgAttributeExpressionApplyingHandler(AModel: PModel;
+      Value: string);
+    procedure MainFormQuickDlgOperationExpressionApplyingHandler(AModel: PModel;
+      Value: string);
+    procedure MainFormQuickDlgMessageExpressionApplyingHandler(AModel: PModel;
+      Value: string);
+    procedure MainFormQuickDlgModelCreatingHandler(Owner: PModel;
+      ModelKind: string; Argument: Integer = 0; InsertIndex: Integer = -1);
+    procedure MainFormQuickDlgModelCreatingWithNameHandler(Owner: PModel;
+      ModelKind: string; Name: string = '');
     procedure MainFormQuickDlgElementDeletingHandler(AModel: PModel);
-    procedure MainFormQuickDlgVisibilityChangedHandler(AModel: PModel; Kind: PUMLVisibilityKind);
-    procedure MainFormQuickDlgAggregationKindChangingHandler(AModel: PModel; Kind: PUMLAggregationKind);
-    procedure MainFormQuickDlgNavigableChangingHandler(AModel: PModel; IsNavigable: Boolean);
-    procedure MainFormQuickDlgMultiplicityChangingHandler(AModel: PModel; Str: string);
-    procedure MainFormQuickDlgActionKindChangingHandler(AModel: PModel; Kind: string);
-    procedure MainFormQuickDlgOperationChangingHandler(AModel: PModel; AnOp: PUMLOperation);
-    procedure MainFormQuickDlgSignalChangingHandler(AModel: PModel; AnOp: PUMLSignal);
-    procedure MainFormQuickDlgInstantiationChangingHandler(AModel: PModel; AnOp: PUMLClassifier);
-    procedure MainFormQuickDlgNoteTextChangingHandler(AView: PUMLCustomTextView; Strs: string);
-    procedure MainFormQuickDlgOrderChangingHandler(AModel: PModel; AnItem: PModel; Key: string; NewOrder: Integer);
-    procedure MainFormQuickDlgSeqNumberChangingHandler(AElement: PElement; ACollectionItem: PElement; Key: string; NewIndex: Integer);
-    procedure MainFormQuickDlgObjectClassCreatingHandler(Owner: PUMLNamespace; AModel: PUMLModelElement; Name: string = '');
-    procedure MainFormQuickDlgCallActionOperationCreatingHandler(AClassifier: PUMLClassifier; ACallAction: PUMLCallAction; Name: string = '');
-    procedure MainFormDockPanelActived( Sender: TdxCustomDockControl; Active: Boolean);
+    procedure MainFormQuickDlgVisibilityChangedHandler(AModel: PModel;
+      Kind: PUMLVisibilityKind);
+    procedure MainFormQuickDlgAggregationKindChangingHandler(AModel: PModel;
+      Kind: PUMLAggregationKind);
+    procedure MainFormQuickDlgNavigableChangingHandler(AModel: PModel;
+      IsNavigable: Boolean);
+    procedure MainFormQuickDlgMultiplicityChangingHandler(AModel: PModel;
+      Str: string);
+    procedure MainFormQuickDlgActionKindChangingHandler(AModel: PModel;
+      Kind: string);
+    procedure MainFormQuickDlgOperationChangingHandler(AModel: PModel;
+      AnOp: PUMLOperation);
+    procedure MainFormQuickDlgSignalChangingHandler(AModel: PModel;
+      AnOp: PUMLSignal);
+    procedure MainFormQuickDlgInstantiationChangingHandler(AModel: PModel;
+      AnOp: PUMLClassifier);
+    procedure MainFormQuickDlgNoteTextChangingHandler(AView: PUMLCustomTextView;
+      Strs: string);
+    procedure MainFormQuickDlgOrderChangingHandler(AModel: PModel;
+      AnItem: PModel; Key: string; NewOrder: Integer);
+    procedure MainFormQuickDlgSeqNumberChangingHandler(AElement: PElement;
+      ACollectionItem: PElement; Key: string; NewIndex: Integer);
+    procedure MainFormQuickDlgObjectClassCreatingHandler(Owner: PUMLNamespace;
+      AModel: PUMLModelElement; Name: string = '');
+    procedure MainFormQuickDlgCallActionOperationCreatingHandler
+      (AClassifier: PUMLClassifier; ACallAction: PUMLCallAction;
+      Name: string = '');
+    procedure MainFormDockPanelActived(Sender: TdxCustomDockControl;
+      Active: Boolean);
 
     // (for InteractionManager)
-    procedure InteractionManagerModelAddingHandler(Sender: TObject; ModelKind: string; Argument: Integer);
-    procedure InteractionManagerDiagramAddingHandler(Sender: TObject; DiagramKind: string);
-    procedure InteractionManagerExtendedModelAddingHandler(Sender: TObject; ProfileName: string; ModelPrototypeName: string);
-    procedure InteractionManagerExtendedDiagramAddingHandler(Sender: TObject; ProfileName: string; DiagramTypeName: string);
-    procedure InteractionManagerElementCreatingHandler(Sender: TObject; ElementKind: string; Argument: Integer; X1, Y1, X2, Y2: Integer);
-    procedure InteractionManagerExtElementCreatingHandler(Sender: TObject; ProfileName: string; ElementPrototypeName: string; X1, Y1, X2, Y2: Integer);
+    procedure InteractionManagerModelAddingHandler(Sender: TObject;
+      ModelKind: string; Argument: Integer);
+    procedure InteractionManagerDiagramAddingHandler(Sender: TObject;
+      DiagramKind: string);
+    procedure InteractionManagerExtendedModelAddingHandler(Sender: TObject;
+      ProfileName: string; ModelPrototypeName: string);
+    procedure InteractionManagerExtendedDiagramAddingHandler(Sender: TObject;
+      ProfileName: string; DiagramTypeName: string);
+    procedure InteractionManagerElementCreatingHandler(Sender: TObject;
+      ElementKind: string; Argument: Integer; X1, Y1, X2, Y2: Integer);
+    procedure InteractionManagerExtElementCreatingHandler(Sender: TObject;
+      ProfileName: string; ElementPrototypeName: string;
+      X1, Y1, X2, Y2: Integer);
 
     // (for NewProjectForm)
-    procedure NewProjFormRecentFileDeleteHandler(Sender: TObject; RecentFile: string);
+    procedure NewProjFormRecentFileDeleteHandler(Sender: TObject;
+      RecentFile: string);
 
     // (for BrowserForm)
-    procedure BrowserFormElementSelectedHandler(Sender: TObject; Element: PModel);
+    procedure BrowserFormElementSelectedHandler(Sender: TObject;
+      Element: PModel);
     procedure BrowserFormElementRelocatingHandler(Source, Target: PModel);
-    procedure BrowserFormModelNameChangeHandler(Sender: TObject; Model: PModel; Name: string);
-    procedure BrowserFormElementAttributeChangeHandler(Sender: TObject; Element: PElement; Key, Value: string);
+    procedure BrowserFormModelNameChangeHandler(Sender: TObject; Model: PModel;
+      Name: string);
+    procedure BrowserFormElementAttributeChangeHandler(Sender: TObject;
+      Element: PElement; Key, Value: string);
     procedure BrowserFormDiagramSelectedHandler(Sender: TObject);
     procedure BrowserFormEnableGeneralEditMenu(Sender: TObject);
     procedure BrowserFormDisableGeneralEditMenu(Sender: TObject);
-    procedure BrowserFormModelIndexChangingHandler(Sender: TObject; Owner: PModel; Owned: PModel; Key: string; NewOrder: Integer);
+    procedure BrowserFormModelIndexChangingHandler(Sender: TObject;
+      Owner: PModel; Owned: PModel; Key: string; NewOrder: Integer);
 
     // (for InspectorForm)
-    procedure InspectorFormNameChanged(Sender: TObject; Element: PElement; Name: string);
-    procedure InspectorFormAttributeChanged(Sender: TObject; Element: PElement; Key, Value: string);
-    procedure InspectorFormElementsAttributeChanged(Sender: TObject; ElementSet: POrderedSet; Key, Value: string);
-    procedure InspectorFormReferenceChanged(Sender: TObject; Element: PElement; Key: string; Value: PElement);
-    procedure InspectorFormTypeExpressionChanged(Sender: TObject; Element: PElement; Key, TypeExpr: string; TypeRef: PElement);
-    procedure InspectorFormElementsStereotypeChanged(Sender: TObject; ElementSet: POrderedSet; StereotypeProfile: string; Stereotype: string);
-    procedure InspectorFormActionKindChanged(Sender: TObject; Element: PElement; ActionKind: string);
-    procedure InspectorFormValueExpressionChanged(Sender: TObject; Element: PElement; Key, ValueExpr: string; ValueRef: PElement);
-    procedure InspectorFormCollectionItemCreated(Sender: TObject; AOwner: PModel; ACollectionName: string; AModelType: string; Argument: Integer);
-    procedure InspectorFormCollectionItemDeleted(Sender: TObject; AOwner: PModel; ACollectionName: string; AModel: PModel);
-    procedure InspectorFormCollectionItemAdded(Sender: TObject; AOwner: PModel; ACollectionName: string; AModel: PModel);
-    procedure InspectorFormCollectionItemRemoved(Sender: TObject; AOwner: PModel; ACollectionName: string; AModel: PModel);
-    procedure InspectorFormCollectionItemOrderChanged(Sender: TObject; AOwner: PModel; ACollectionName: string; AModel: PModel; NewIdx: Integer);
-    procedure InspectorFormCollectionItemSelected(Sender: TObject; AOwner: PModel; ACollectionName: string; AModel: PModel);
-    procedure InspectorFormCollectionItemNameChanged(Sender: TObject; AModel: PModel; Value: string);
-    procedure InspectorFormConstraintCreated(Sender: TObject; AModelElement: PUMLModelElement; AName: string; ABody: string);
-    procedure InspectorFormConstraintDeleted(Sender: TObject; AModelElement: PUMLModelElement; AConstraint: PConstraint);
-    procedure InspectorFormConstraintChanged(Sender: TObject; AModelElement: PUMLModelElement; AConstraint: PConstraint; AName: string; ABody: string);
-    procedure InspectorFormConstraintOrderChanged(Sender: TObject; AModelElement: PUMLModelElement; AConstraint: PConstraint; NewIdx: Integer);
-    procedure InspectorFormDataTaggedValueChanged(Sender: TObject; AModel: PExtensibleModel; AProfileName: string; ATagDefinitionSetName: string; AName: string; Value: string);
-    procedure InspectorFormReferenceTaggedValueChanged(Sender: TObject; AModel: PExtensibleModel; AProfileName: string; ATagDefinitionSetName: string; AName: string; Value: PExtensibleModel);
-    procedure InspectorFormCollectionTaggedValueAdd(Sender: TObject; AModel: PExtensibleModel; AProfileName: string;
+    procedure InspectorFormNameChanged(Sender: TObject; Element: PElement;
+      Name: string);
+    procedure InspectorFormAttributeChanged(Sender: TObject; Element: PElement;
+      Key, Value: string);
+    procedure InspectorFormElementsAttributeChanged(Sender: TObject;
+      ElementSet: PElementOrderedSet; Key, Value: string);
+    procedure InspectorFormReferenceChanged(Sender: TObject; Element: PElement;
+      Key: string; Value: PElement);
+    procedure InspectorFormTypeExpressionChanged(Sender: TObject;
+      Element: PElement; Key, TypeExpr: string; TypeRef: PElement);
+    procedure InspectorFormElementsStereotypeChanged(Sender: TObject;
+      ElementSet: PElementOrderedSet; StereotypeProfile: string;
+      Stereotype: string);
+    procedure InspectorFormActionKindChanged(Sender: TObject; Element: PElement;
+      ActionKind: string);
+    procedure InspectorFormValueExpressionChanged(Sender: TObject;
+      Element: PElement; Key, ValueExpr: string; ValueRef: PElement);
+    procedure InspectorFormCollectionItemCreated(Sender: TObject;
+      AOwner: PModel; ACollectionName: string; AModelType: string;
+      Argument: Integer);
+    procedure InspectorFormCollectionItemDeleted(Sender: TObject;
+      AOwner: PModel; ACollectionName: string; AModel: PModel);
+    procedure InspectorFormCollectionItemAdded(Sender: TObject; AOwner: PModel;
+      ACollectionName: string; AModel: PModel);
+    procedure InspectorFormCollectionItemRemoved(Sender: TObject;
+      AOwner: PModel; ACollectionName: string; AModel: PModel);
+    procedure InspectorFormCollectionItemOrderChanged(Sender: TObject;
+      AOwner: PModel; ACollectionName: string; AModel: PModel; NewIdx: Integer);
+    procedure InspectorFormCollectionItemSelected(Sender: TObject;
+      AOwner: PModel; ACollectionName: string; AModel: PModel);
+    procedure InspectorFormCollectionItemNameChanged(Sender: TObject;
+      AModel: PModel; Value: string);
+    procedure InspectorFormConstraintCreated(Sender: TObject;
+      AModelElement: PUMLModelElement; AName: string; ABody: string);
+    procedure InspectorFormConstraintDeleted(Sender: TObject;
+      AModelElement: PUMLModelElement; AConstraint: PConstraint);
+    procedure InspectorFormConstraintChanged(Sender: TObject;
+      AModelElement: PUMLModelElement; AConstraint: PConstraint; AName: string;
+      ABody: string);
+    procedure InspectorFormConstraintOrderChanged(Sender: TObject;
+      AModelElement: PUMLModelElement; AConstraint: PConstraint;
+      NewIdx: Integer);
+    procedure InspectorFormDataTaggedValueChanged(Sender: TObject;
+      AModel: PExtensibleModel; AProfileName: string;
+      ATagDefinitionSetName: string; AName: string; Value: string);
+    procedure InspectorFormReferenceTaggedValueChanged(Sender: TObject;
+      AModel: PExtensibleModel; AProfileName: string;
       ATagDefinitionSetName: string; AName: string; Value: PExtensibleModel);
-    procedure InspectorFormCollectionTaggedValueRemove(Sender: TObject; AModel: PExtensibleModel; AProfileName: string;
+    procedure InspectorFormCollectionTaggedValueAdd(Sender: TObject;
+      AModel: PExtensibleModel; AProfileName: string;
       ATagDefinitionSetName: string; AName: string; Value: PExtensibleModel);
-    procedure InspectorFormCollectionTaggedValueOrderChanged(Sender: TObject; AModel: PExtensibleModel; AProfileName: string;
-      ATagDefinitionSetName: string; AName: string; Value: PExtensibleModel; NewIdx: Integer);
-    procedure InspectorFormSetTaggedValueAsDefault(Sender: TObject; AModel: PExtensibleModel; AProfileName: string; ATagDefinitionSetName: string; AName: string);
-    procedure InspectorFormAttachmentOpen(Sender: TObject; Attachment: string; Kind: PAttachmentKind);
-    procedure InspectorFormAttachmentAdd(Sender: TObject; AModel: PModel; Attachment: string);
-    procedure InspectorFormAttachmentDelete(Sender: TObject; AModel: PModel; Index: Integer);
-    procedure InspectorFormAttachmentChange(Sender: TObject; AModel: PModel; Index: Integer; Attachment: string);
-    procedure InspectorFormAttachmentOrderChange(Sender: TObject; AModel: PModel; Index: Integer; NewIndex: Integer);
-    procedure InspectorFormDocumentationChanged(Sender: TObject; Element: PModel; Documentation: string);
-    procedure InspectorFormPropertySelected(Sender: TObject; PropertyName: string);
+    procedure InspectorFormCollectionTaggedValueRemove(Sender: TObject;
+      AModel: PExtensibleModel; AProfileName: string;
+      ATagDefinitionSetName: string; AName: string; Value: PExtensibleModel);
+    procedure InspectorFormCollectionTaggedValueOrderChanged(Sender: TObject;
+      AModel: PExtensibleModel; AProfileName: string;
+      ATagDefinitionSetName: string; AName: string; Value: PExtensibleModel;
+      NewIdx: Integer);
+    procedure InspectorFormSetTaggedValueAsDefault(Sender: TObject;
+      AModel: PExtensibleModel; AProfileName: string;
+      ATagDefinitionSetName: string; AName: string);
+    procedure InspectorFormAttachmentOpen(Sender: TObject; Attachment: string;
+      Kind: PAttachmentKind);
+    procedure InspectorFormAttachmentAdd(Sender: TObject; AModel: PModel;
+      Attachment: string);
+    procedure InspectorFormAttachmentDelete(Sender: TObject; AModel: PModel;
+      Index: Integer);
+    procedure InspectorFormAttachmentChange(Sender: TObject; AModel: PModel;
+      Index: Integer; Attachment: string);
+    procedure InspectorFormAttachmentOrderChange(Sender: TObject;
+      AModel: PModel; Index: Integer; NewIndex: Integer);
+    procedure InspectorFormDocumentationChanged(Sender: TObject;
+      Element: PModel; Documentation: string);
+    procedure InspectorFormPropertySelected(Sender: TObject;
+      PropertyName: string);
 
     // (for InformationForm)
     procedure InformationFormBrowseElement(Sender: TObject; Model: PModel);
 
     // (for ProfileManagerForm)
-    procedure ProfileManagerFormProfileInclude(Sender: TObject; ProfileName: string);
-    procedure ProfileManagerFormProfileExclude(Sender: TObject; ProfileName: string);
+    procedure ProfileManagerFormProfileInclude(Sender: TObject;
+      ProfileName: string);
+    procedure ProfileManagerFormProfileExclude(Sender: TObject;
+      ProfileName: string);
 
     // (for StarUMLApplication)
     procedure DocumentModifiedHandler(Sender: TObject; Document: PDocument);
@@ -230,11 +325,16 @@ type
     procedure UnitMergedHandler(Sender: TObject; APackage: PUMLPackage);
     procedure UnitOpenedHandler(Sender: TObject; APackage: PUMLPackage);
     procedure UnitUnloadedHandler(Sender: TObject; APackage: PUMLPackage);
-    procedure SavingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
-    procedure LoadingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
-    procedure ResolvingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
-    procedure ElementsCreatedHandler(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
-    procedure ElementsDeletingHandler(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
+    procedure SavingProgressHandler(Sender: TObject; Info: string;
+      Max, Progress: Integer);
+    procedure LoadingProgressHandler(Sender: TObject; Info: string;
+      Max, Progress: Integer);
+    procedure ResolvingProgressHandler(Sender: TObject; Info: string;
+      Max, Progress: Integer);
+    procedure ElementsCreatedHandler(Sender: TObject; Models: PModelOrderedSet;
+      Views: PViewOrderedSet);
+    procedure ElementsDeletingHandler(Sender: TObject; Models: PModelOrderedSet;
+      Views: PViewOrderedSet);
     procedure ElementsDeletedHandler(Sender: TObject);
     procedure SelectionChangedHandler(Sender: TObject);
     procedure DiagramActivatedHandler(Sender: TObject);
@@ -245,7 +345,8 @@ type
     procedure ClipboardDataChangedHandler(Kind: PClipboardDataKind);
     procedure CommandHistoryChangedHandler(Sender: TObject);
     procedure BeginUpdateHandler(Sender: TObject);
-    procedure EndUpdateHandler(Sender: TObject; CompletelyRebuild, UseUpdateLock: Boolean);
+    procedure EndUpdateHandler(Sender: TObject;
+      CompletelyRebuild, UseUpdateLock: Boolean);
     procedure ProfileIncludedHandler(Sender: TObject; AProfileName: string);
     procedure ProfileExcludedHandler(Sender: TObject; AProfileName: string);
 
@@ -260,18 +361,20 @@ type
     // (for UMLVerifier)
     procedure BeginVerificationHandler(Sender: TObject);
     procedure EndVerificationHandler(Sender: TObject);
-    procedure BeginVerifyItemHandler(Sender: TObject; VerifyItem: PUMLVerifyItem);
+    procedure BeginVerifyItemHandler(Sender: TObject;
+      VerifyItem: PUMLVerifyItem);
     procedure EndVerifyItemHandler(Sender: TObject; VerifyItem: PUMLVerifyItem);
-    procedure VerifiedHandler(Sender: TObject; VerifyItem: PUMLVerifyItem; Model: PModel);
-    procedure VerificationFailedHandler(Sender: TObject; VerifyItem: PUMLVerifyItem; Model: PModel);
+    procedure VerifiedHandler(Sender: TObject; VerifyItem: PUMLVerifyItem;
+      Model: PModel);
+    procedure VerificationFailedHandler(Sender: TObject;
+      VerifyItem: PUMLVerifyItem; Model: PModel);
 
     // (for AddInManager)
-    procedure AddInManagerMessageHandler(str: string);
+    procedure AddInManagerMessageHandler(Str: string);
 
     // Go to item list
     procedure MainSetupGoToItemListPopUp(Sender: TObject);
     procedure MainEditGoToItemListClickHandler(Sender: TObject);
-
 
   private
     // Utility Methods connecting Event Handler
@@ -326,8 +429,10 @@ type
     procedure ApplyOptionValues;
 
     // Auxiliary methods
-    procedure PopupQuickDialog(AView: PView; X, Y: Integer; OnElementCreating: Boolean = False);
-    function PopupQuickDialogForSubElement(OwnerModel: PModel; ModelKind: string; Argument: Integer): Boolean;
+    procedure PopupQuickDialog(AView: PView; X, Y: Integer;
+      OnElementCreating: Boolean = False);
+    function PopupQuickDialogForSubElement(OwnerModel: PModel;
+      ModelKind: string; Argument: Integer): Boolean;
     procedure ProcessDoubleClickAction(AView: PView; X, Y: Integer);
     procedure ProcessPropertyAction;
     procedure ProcessAttachmentsAction;
@@ -336,7 +441,6 @@ type
     procedure SelectModelExplorerDockPanel(AModel: PModel);
     procedure LoadImageFromFile(AImageView: PImageView);
     procedure ValidateNetFramework;
-
 
   public
     constructor Create;
@@ -374,8 +478,8 @@ type
   end;
 
   // Miscellaneous Functions
-  procedure UpdateDocumentElements;
-  procedure ReloadDocumentElements;
+procedure UpdateDocumentElements;
+procedure ReloadDocumentElements;
 
 var
   MenuStateHandler: PMainFormMenuStateHandler;
@@ -390,9 +494,11 @@ uses
   Graphics, Vcl.Imaging.jpeg, Vcl.Imaging.pngimage, Vcl.Imaging.GIFImg,
   ExtDlgs, JVStrings, System.Types, System.UITypes, ShellAPI, ComServ, XMLDom,
 
-  StarUMLApp, FrwMgr, LogMgr, UMLFacto, CmdExec, HtmlHlp, ApprMgr, InteractionMgr,
+  StarUMLApp, FrwMgr, LogMgr, UMLFacto, CmdExec, HtmlHlp, ApprMgr,
+  InteractionMgr,
   ContributorMgr, MainFrm, InspectorFrm, ColEdtFrm, AboutFrm, MessageFrame,
-  ProfileMgrFrm, OptionDeps, NewProjFrm, ImportFrameworkFrm, AddInMgr, ConstEdtFrm,
+  ProfileMgrFrm, OptionDeps, NewProjFrm, ImportFrameworkFrm, AddInMgr,
+  ConstEdtFrm,
   AddInMgrFrm, FindFrm, ElemSelFrm, PrintFrm, PageSetupFrm, ModelVerifierFrm,
   ElemLstFrm, DiagramMapFrm, EventPub, TagEdtFrm, TagColEdtFrm, NLS_StarUML,
   NLS, SaveDialogEx, MenuManager, ModelExplorerFrame;
@@ -405,13 +511,14 @@ const
 
 function B64EncodeUnicodeIntf(const S: string): string;
 begin
-  Result:= string (B64Encode(AnsiString(S)));
+  Result := string(B64Encode(AnsiString(S)));
 end;
 
 function SelectTargetModel: PModel;
 begin
-// Identify selected model
-  if StarUMLApplication.SelectedViewCount > 0 then
+
+  // Identify selected model
+  if StarUMLApplication.SelectedViewsOfOneModel then
     Result := StarUMLApplication.SelectedViews[0].Model
   else if StarUMLApplication.SelectedModelCount > 0 then
     Result := StarUMLApplication.SelectedModels[0]
@@ -419,7 +526,8 @@ begin
     Result := nil;
 end;
 
-function CreateGraphic(const InputFileName: string; var ImageType: string): TGraphic;
+function CreateGraphic(const InputFileName: string; var ImageType: string)
+  : TGraphic;
 var
   FS: TFileStream;
   FirstBytes: AnsiString;
@@ -431,31 +539,37 @@ begin
     SetLength(FirstBytes, 8);
     FS.Read(FirstBytes[1], 8);
 
-    if Copy(FirstBytes, 1, 2) = 'BM' then begin
+    if Copy(FirstBytes, 1, 2) = 'BM' then
+    begin
       Graphic := TBitmap.Create;
       ImageType := 'ikBitmap';
     end
-    else if Copy(FirstBytes, 1, 2) = #$FF#$D8 then begin
+    else if Copy(FirstBytes, 1, 2) = #$FF#$D8 then
+    begin
       Graphic := TJPEGImage.Create;
       ImageType := 'ikJpg';
     end
-    else if FirstBytes = #137'PNG'#13#10#26#10 then begin
+    else if FirstBytes = #137'PNG'#13#10#26#10 then
+    begin
       Graphic := TPngImage.Create;
       ImageType := 'ikPng';
     end
-    else if Copy(FirstBytes, 1, 3) =  'GIF' then begin
+    else if Copy(FirstBytes, 1, 3) = 'GIF' then
+    begin
       Graphic := TGIFImage.Create;
       ImageType := 'ikGif';
     end
-    else begin
+    else
+    begin
       ImageType := 'ikNone';
-      raise Exception.Create(Format(C_ERR_FILE_LOADING_FAILED,[InputFileName]));
+      raise Exception.Create(Format(C_ERR_FILE_LOADING_FAILED,
+        [InputFileName]));
     end;
 
     if Assigned(Graphic) then
     begin
       FS.Seek(0, soFromBeginning);
-       Graphic.LoadFromStream(FS);
+      Graphic.LoadFromStream(FS);
     end;
   finally
     FS.Free;
@@ -468,59 +582,64 @@ var
   Doc: PDocument;
 begin
   MainForm.FileName := '';
-  if StarUMLApplication.DocumentElementCount > 0 then begin
+  if StarUMLApplication.DocumentElementCount > 0 then
+  begin
     Doc := (StarUMLApplication.DocumentElements[0]).Document;
-    if Assigned(Doc) then begin
+    if Assigned(Doc) then
+    begin
       if Doc.ReadOnly then
-        MainForm.FileName := ExtractFileName(StarUMLApplication.FileName) + ' ' + TXT_DOC_STATUS_READONLY
+        MainForm.FileName := ExtractFileName(StarUMLApplication.FileName) + ' '
+          + TXT_DOC_STATUS_READONLY
       else if Doc.ExclusiveFileAccess then
-        MainForm.FileName := ExtractFileName(StarUMLApplication.FileName) + ' ' + TXT_DOC_STATUS_EXCLUSIVE_FILE_OPEN
+        MainForm.FileName := ExtractFileName(StarUMLApplication.FileName) + ' '
+          + TXT_DOC_STATUS_EXCLUSIVE_FILE_OPEN
     end
   end;
 
   if MainForm.FileName = '' then
-     MainForm.FileName := ExtractFileName(StarUMLApplication.FileName);
+    MainForm.FileName := ExtractFileName(StarUMLApplication.FileName);
 end;
 
 procedure UpdateEditors(Inspecting: Boolean = False);
 var
-  TabContainer : TdxTabContainerDockSite;
+  TabContainer: TdxTabContainerDockSite;
 begin
   TabContainer := MainForm.PropertiesDockPanel.TabContainer;
-  if not Assigned(TabContainer)
-    or (TabContainer.ActiveChild = MainForm.PropertiesDockPanel) then begin
-      if Inspecting then
-        MainForm.InspectorFrame.Inspect
-      else
-        MainForm.InspectorFrame.UpdateInspector;
-    end;
+  if not Assigned(TabContainer) or
+    (TabContainer.ActiveChild = MainForm.PropertiesDockPanel) then
+  begin
+    if Inspecting then
+      MainForm.InspectorFrame.Inspect
+    else
+      MainForm.InspectorFrame.UpdateInspector;
+  end;
 
   TabContainer := MainForm.AttachmentsDockPanel.TabContainer;
-  if not Assigned(TabContainer)
-    or (TabContainer.ActiveChild = MainForm.AttachmentsDockPanel) then
+  if not Assigned(TabContainer) or
+    (TabContainer.ActiveChild = MainForm.AttachmentsDockPanel) then
     MainForm.AttachmentEditor.UpdateAttachments;
 
   TabContainer := MainForm.DocumentationDockPanel.TabContainer;
-  if not Assigned(TabContainer)
-    or (TabContainer.ActiveChild = MainForm.DocumentationDockPanel) then begin
+  if not Assigned(TabContainer) or
+    (TabContainer.ActiveChild = MainForm.DocumentationDockPanel) then
+  begin
     if Inspecting then
       MainForm.DocumentationEditor.Inspect
     else
       MainForm.DocumentationEditor.UpdateDocumentation;
-    end;
+  end;
 
   if Inspecting then
-        TaggedValueEditorForm.Inspect
-      else
-        TaggedValueEditorForm.UpdateTaggedValues;
+    TaggedValueEditorForm.Inspect
+  else
+    TaggedValueEditorForm.UpdateTaggedValues;
 
   ConstraintEditorForm.UpdateConstraints;
   CollectionEditorForm.UpdateCollection;
 
 end;
 
-
-////////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
 // PMain
 
 constructor PMain.Create;
@@ -558,11 +677,10 @@ begin
   ContributorManager.ReadContributorsFile;
   ContributorManager.LoadFromRegistry;
 
-    // Options Initialization
+  // Options Initialization
   OptionDepository.LoadOptionValues;
   ApplyOptionValues;
   EventPublisher.NotifyEvent(EK_OPTIONS_APPLIED);
-
 
   MainForm.LoadFromRegistry;
   MenuStateHandler.SetProjectOpenedGroup(False);
@@ -571,15 +689,16 @@ begin
   MenuStateHandler.SetModelSelectedGroup(False);
   MenuStateHandler.SetViewSelectedGroup(False);
 
-   // GUI Initialization
+  // GUI Initialization
 
-  MainForm.PaletteNavBarFrame.SetSharedComponents(MainForm.ActionProcessor,MainForm.TotalImageList);
-  //MainForm.LookAndFeelManager.InitLookAndFeel;
+  MainForm.PaletteNavBarFrame.SetSharedComponents(MainForm.ActionProcessor,
+    MainForm.TotalImageList);
+  // MainForm.LookAndFeelManager.InitLookAndFeel;
   MainForm.InspectorFrame.PropertyEditor.MainFormReady;
   InteractionManager.MenuManager := MainForm.MenuManager;
   MainForm.MenuManager.MenuFormReady;
 
-  //MainForm.LookAndFeelManager.NotifyLookAndFeelChanged;
+  // MainForm.LookAndFeelManager.NotifyLookAndFeelChanged;
   MainForm.LookAndFeelManager.InitLookAndFeel;
 
   MainForm.ModelExplorer.ImageList := MainForm.TotalImageList;
@@ -587,19 +706,22 @@ begin
   MainForm.ModelExplorer.PopupMenu := MainForm.ModelExplorerPopupMenu;
 
   MainForm.DiagramExplorer.ImageList := MainForm.TotalImageList;
-  //MainForm.DiagramExplorer.PopupMenu := MainForm.DiagramExplorerPopupMenu;
-  MainForm.DiagramExplorer.PopupMenu := MainForm.MenuManager.GetContextMenu(DIAGRAM_EXPLORER_CONTEXT_MENU);
+  // MainForm.DiagramExplorer.PopupMenu := MainForm.DiagramExplorerPopupMenu;
+  MainForm.DiagramExplorer.PopupMenu := MainForm.MenuManager.GetContextMenu
+    (DIAGRAM_EXPLORER_CONTEXT_MENU);
 
   MainForm.AttachmentEditor.ImageList := MainForm.TotalImageList;
 
-  //-- MainForm.InformationFrame.MessagePanel.PopupMenu := MainForm.MessagesPopupMenu;
-  //MainForm.MessagePanel.PopupMenu := MainForm.MessagesPopupMenu;
-  MainForm.MessagePanel.PopupMenu := MainForm.MenuManager.GetContextMenu(MESSAGE_PANEL_CONTEXT_MENU);
+  // -- MainForm.InformationFrame.MessagePanel.PopupMenu := MainForm.MessagesPopupMenu;
+  // MainForm.MessagePanel.PopupMenu := MainForm.MessagesPopupMenu;
+  MainForm.MessagePanel.PopupMenu := MainForm.MenuManager.GetContextMenu
+    (MESSAGE_PANEL_CONTEXT_MENU);
 
   ElementSelectorForm.ImageList := MainForm.TotalImageList;
   ElementListForm.ImageList := MainForm.TotalImageList;
-  //MainForm.AttachmentEditor.PopupMenu := MainForm.AttachmentsPopupMenu;
-  MainForm.AttachmentEditor.PopupMenu := MainForm.MenuManager.GetContextMenu(ATTACHMENT_EDITOR_CONTEXT_MENU);
+  // MainForm.AttachmentEditor.PopupMenu := MainForm.AttachmentsPopupMenu;
+  MainForm.AttachmentEditor.PopupMenu := MainForm.MenuManager.GetContextMenu
+    (ATTACHMENT_EDITOR_CONTEXT_MENU);
   CollectionEditorForm.ImageList := MainForm.TotalImageList;
   TaggedValueCollectionEditorForm.ImageList := MainForm.TotalImageList;
 
@@ -619,7 +741,6 @@ begin
   NLSManager.SetFile(ExtractFilePath(Application.ExeName) + 'NLS\MAINFRM.LNG');
   NLSManager.ReadComponentTranslation('MainForm', MainForm.BarManager);
 
-
   // Application Initialization
   StarUMLApplication.Initialize;
 end;
@@ -636,11 +757,13 @@ begin
 
   // executions in same time program starting
   MainForm.LoadWindowPositionFromRegistry;
-  if Assigned(StarUMLApplication.Project) then begin // added for Add-In
+  if Assigned(StarUMLApplication.Project) then
+  begin // added for Add-In
     MenuStateHandler.SetProjectOpenedGroup(False);
     MenuStateHandler.SetProjectOpenedGroup(True);
   end;
-  if Assigned(StarUMLApplication.ActiveDiagram) then begin // added for Add-In
+  if Assigned(StarUMLApplication.ActiveDiagram) then
+  begin // added for Add-In
     MenuStateHandler.SetDiagramActivatedGroup(False);
     MenuStateHandler.SetDiagramActivatedGroup(True);
   end;
@@ -650,7 +773,7 @@ begin
   MenuStateHandler.UpdateFormatMenus;
   MenuStateHandler.UpdateModelMenus;
   MenuStateHandler.UpdateStatusBar;
-  //MenuStateHandler.UpdateViewMenus;
+  // MenuStateHandler.UpdateViewMenus;
 
   if (ComServer.StartMode = smStandalone) then
     Initialize_WhenApplicationStartedByUser;
@@ -663,17 +786,17 @@ begin
   if not ExecuteFileOpenWithParam then
   begin
     if OptionDepository.ShowNewDialog then
-        ExecuteFileSelectProject;
+      ExecuteFileSelectProject;
   end;
 end;
 
 procedure PMain.Finalize_BeforeMainFormClose;
 begin
-  //StarUMLApplication.Finalize;
+  // StarUMLApplication.Finalize;
 
   OptionDepository.SaveOptionValues;
 
-  //-- MainForm.BrowserFrame.OnElementSelected := nil;
+  // -- MainForm.BrowserFrame.OnElementSelected := nil;
   MainForm.ModelExplorer.OnElementSelected := nil;
   MainForm.DiagramExplorer.OnElementSelected := nil;
 
@@ -697,8 +820,9 @@ begin
     MenuStateHandler.UpdateEditMenus;
     MenuStateHandler.UpdateStatusBar;
     EventPublisher.NotifyEvent(EK_APPLICATION_ACTIVATE);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -706,8 +830,9 @@ procedure PMain.ApplicationDeactivateHandler(Sender: TObject);
 begin
   try
     EventPublisher.NotifyEvent(EK_APPLICATION_DEACTIVATE);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -715,8 +840,9 @@ procedure PMain.ApplicationMinimizeHandler(Sender: TObject);
 begin
   try
     EventPublisher.NotifyEvent(EK_APPLICATION_MINIMIZE);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -729,8 +855,9 @@ begin
     MenuStateHandler.UpdateEditMenus;
     MenuStateHandler.EndUpdate;
     EventPublisher.NotifyEvent(EK_APPLICATION_RESTORE);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -742,7 +869,7 @@ end;
 
 procedure PMain.MainFormStartedHandler(Sender: TObject);
 begin
-  //Initialize_FirstMainFormAppears;
+  // Initialize_FirstMainFormAppears;
 end;
 
 procedure PMain.MainFormCloseHandler(Sender: TObject; var Action: TCloseAction);
@@ -751,7 +878,8 @@ begin
   Action := caFree;
 end;
 
-procedure PMain.MainFormCloseQueryHandler(Sender: TObject; var CanClose: Boolean);
+procedure PMain.MainFormCloseQueryHandler(Sender: TObject;
+  var CanClose: Boolean);
 begin
   CanClose := StarUMLApplication.CloseProject;
 end;
@@ -762,8 +890,9 @@ begin
     MenuStateHandler.BeginUpdate;
     MenuStateHandler.UpdateEditMenus;
     MenuStateHandler.EndUpdate;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -773,8 +902,9 @@ begin
     MenuStateHandler.BeginUpdate;
     MenuStateHandler.UpdateEditMenus;
     MenuStateHandler.EndUpdate;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -784,8 +914,9 @@ begin
     MenuStateHandler.BeginUpdate;
     MenuStateHandler.UpdateViewMenus;
     MenuStateHandler.EndUpdate;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -795,8 +926,9 @@ begin
     MenuStateHandler.BeginUpdate;
     MenuStateHandler.UpdateViewMenus;
     MenuStateHandler.EndUpdate;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -806,107 +938,146 @@ begin
     MenuStateHandler.BeginUpdate;
     MenuStateHandler.UpdateViewMenus;
     MenuStateHandler.EndUpdate;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.MainFormFileMenuClickedHandler(Sender: TObject);
 begin
   try
-    with MainForm do begin
-      if Sender = FileCreate then ExecuteFileNew
-      else if Sender = FileNew then ExecuteFileNew
-      else if Sender = FileSelectProject then ExecuteFileSelectProject
-      else if Sender = FileOpen then ExecuteFileOpen(fatNormal)
-      else if Sender = ExclusiveFileOpen then ExecuteFileOpen(fatExclusive)
-      else if Sender = FileSave then ExecuteFileSave
-      else if Sender = FileSaveAs then ExecuteFileSaveAs
-      else if Sender = FileClose then ExecuteFileClose
-      else if Sender = FileUnitsSeparateUnit then begin
+    with MainForm do
+    begin
+      if Sender = FileCreate then
+        ExecuteFileNew
+      else if Sender = FileNew then
+        ExecuteFileNew
+      else if Sender = FileSelectProject then
+        ExecuteFileSelectProject
+      else if Sender = FileOpen then
+        ExecuteFileOpen(fatNormal)
+      else if Sender = ExclusiveFileOpen then
+        ExecuteFileOpen(fatExclusive)
+      else if Sender = FileSave then
+        ExecuteFileSave
+      else if Sender = FileSaveAs then
+        ExecuteFileSaveAs
+      else if Sender = FileClose then
+        ExecuteFileClose
+      else if Sender = FileUnitsSeparateUnit then
+      begin
         // BEGIN (PERSONAL EDITION TEMPORAL CODE)
-        if IsPersonalEdition then begin
-          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation, [mbOK], 0);
+        if IsPersonalEdition then
+        begin
+          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation,
+            [mbOK], 0);
           Exit;
         end;
         // END (PERSONAL EDITION TEMPORAL CODE)
         ExecuteFileUnitsSeparateUnit;
       end
-      else if Sender = FileUnitsMergeUnit then begin
+      else if Sender = FileUnitsMergeUnit then
+      begin
         // BEGIN (PERSONAL EDITION TEMPORAL CODE)
-        if IsPersonalEdition then begin
-          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation, [mbOK], 0);
+        if IsPersonalEdition then
+        begin
+          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation,
+            [mbOK], 0);
           Exit;
         end;
         // END (PERSONAL EDITION TEMPORAL CODE)
         ExecuteFileUnitsMergeUnit;
       end
-      else if Sender = FileUnitsDeleteUnit then begin
+      else if Sender = FileUnitsDeleteUnit then
+      begin
         // BEGIN (PERSONAL EDITION TEMPORAL CODE)
-        if IsPersonalEdition then begin
-          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation, [mbOK], 0);
+        if IsPersonalEdition then
+        begin
+          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation,
+            [mbOK], 0);
           Exit;
         end;
         // END (PERSONAL EDITION TEMPORAL CODE)
         ExecuteFileUnitsDeleteUnit;
-        //ExecuteFileUnitsUnloadUnit;
+        // ExecuteFileUnitsUnloadUnit;
       end
 
-      else if Sender = FileUnitsUnloadUnit then begin
+      else if Sender = FileUnitsUnloadUnit then
+      begin
         ExecuteFileUnitsUnloadUnit;
       end
 
       else if Sender = FileUnitsOpenUnit then
         ExecuteFileUnitsOpenUnit
 
-      else if Sender = FileUnitsSave then begin
+      else if Sender = FileUnitsSave then
+      begin
         // BEGIN (PERSONAL EDITION TEMPORAL CODE)
-        if IsPersonalEdition then begin
-          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation, [mbOK], 0);
+        if IsPersonalEdition then
+        begin
+          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation,
+            [mbOK], 0);
           Exit;
         end;
         // END (PERSONAL EDITION TEMPORAL CODE)
         ExecuteFileUnitsSave;
       end
-      else if Sender = FileUnitsSaveAs then begin
+      else if Sender = FileUnitsSaveAs then
+      begin
         // BEGIN (PERSONAL EDITION TEMPORAL CODE)
-        if IsPersonalEdition then begin
-          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation, [mbOK], 0);
+        if IsPersonalEdition then
+        begin
+          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation,
+            [mbOK], 0);
           Exit;
         end;
         // END (PERSONAL EDITION TEMPORAL CODE)
         ExecuteFileUnitsSaveAs;
       end
-      else if Sender = FileImportModelFragment then begin
+      else if Sender = FileImportModelFragment then
+      begin
         // BEGIN (PERSONAL EDITION TEMPORAL CODE)
-        if IsPersonalEdition then begin
-          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation, [mbOK], 0);
+        if IsPersonalEdition then
+        begin
+          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation,
+            [mbOK], 0);
           Exit;
         end;
         // END (PERSONAL EDITION TEMPORAL CODE)
         ExecuteFileImportModelFragment;
       end
-      else if Sender = FileImportFramework then ExecuteFileImportFramework
-      else if Sender = FileExportModelFragment then begin
+      else if Sender = FileImportFramework then
+        ExecuteFileImportFramework
+      else if Sender = FileExportModelFragment then
+      begin
         // BEGIN (PERSONAL EDITION TEMPORAL CODE)
-        if IsPersonalEdition then begin
-          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation, [mbOK], 0);
+        if IsPersonalEdition then
+        begin
+          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation,
+            [mbOK], 0);
           Exit;
         end;
         // END (PERSONAL EDITION TEMPORAL CODE)
         ExecuteFileExportModelFragment;
       end
-      else if Sender = FileExportDiagram then ExecuteFileExportDiagram
-      else if Sender = FilePrint then ExecuteFilePrint
-      else if Sender = FilePageSetup then ExecuteFilePageSetup
-      else if Sender = FileExit then MainForm.Close;
+      else if Sender = FileExportDiagram then
+        ExecuteFileExportDiagram
+      else if Sender = FilePrint then
+        ExecuteFilePrint
+      else if Sender = FilePageSetup then
+        ExecuteFilePageSetup
+      else if Sender = FileExit then
+        MainForm.Close;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormEditFindDiagramsWithSelectedModelClickedHandler(Sender: TObject);
+procedure PMain.MainFormEditFindDiagramsWithSelectedModelClickedHandler
+  (Sender: TObject);
 begin
   StarUMLApplication.FindDiagramsWithSelectedModel;
 end;
@@ -914,46 +1085,62 @@ end;
 procedure PMain.MainFormEditMenuClickedHandler(Sender: TObject);
 begin
   try
-    with MainForm do begin
-      if Sender = EditUndo                     then ExecuteEditUndo
-      else if Sender = EditRedo                then ExecuteEditRedo
-      else if Sender = EditCut                 then StarUMLApplication.Cut
-      else if Sender = EditCopy                then StarUMLApplication.Copy
-      else if Sender = EditCopyDiagram         then StarUMLApplication.CopyActiveDiagram
-      else if Sender = EditCopyDiagramAsBitmap then StarUMLApplication.CopyActiveDiagramAsBitmap
-      else if Sender = EditPaste               then StarUMLApplication.Paste
-      else if Sender = EditPasteFormat         then StarUMLApplication.PasteFormat
-      else if Sender = EditDelete              then StarUMLApplication.DeleteSelectedViews
-      else if Sender = EditDeleteFromModel     then StarUMLApplication.DeleteSelectedViewsWithModels
-      else if Sender = EditFind                then FindForm.Execute
-      else if Sender = EditSelectAll           then StarUMLApplication.SelectAll;
+    with MainForm do
+    begin
+      if Sender = EditUndo then
+        ExecuteEditUndo
+      else if Sender = EditRedo then
+        ExecuteEditRedo
+      else if Sender = EditCut then
+        StarUMLApplication.Cut
+      else if Sender = EditCopy then
+        StarUMLApplication.Copy
+      else if Sender = EditCopyDiagram then
+        StarUMLApplication.CopyActiveDiagram
+      else if Sender = EditCopyDiagramAsBitmap then
+        StarUMLApplication.CopyActiveDiagramAsBitmap
+      else if Sender = EditPaste then
+        StarUMLApplication.Paste
+      else if Sender = EditPasteFormat then
+        StarUMLApplication.PasteFormat
+      else if Sender = EditDelete then
+        StarUMLApplication.DeleteSelectedViews
+      else if Sender = EditDeleteFromModel then
+        StarUMLApplication.DeleteSelectedViewsWithModels
+      else if Sender = EditFind then
+        FindForm.Execute
+      else if Sender = EditSelectAll then
+        StarUMLApplication.SelectAll;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.MainFormFormatMenuClickedHandler(Sender: TObject);
 begin
   try
-    with MainForm do begin
-      if Sender = FormatFont then ExecuteFormatFont
-      else if Sender = FormatLineColor then ExecuteFormatLineColor
-      else if Sender = FormatFillColor then ExecuteFormatFillColor
+    with MainForm do
+    begin
+      if Sender = FormatFont then
+        ExecuteFormatFont
+      else if Sender = FormatLineColor then
+        ExecuteFormatLineColor
+      else if Sender = FormatFillColor then
+        ExecuteFormatFillColor
 
-      // Annotations
+        // Annotations
       else if Sender = FormatAnnotationLineStyleSolid then
         StarUMLApplication.ChangeSelectedAnnotationsLineStyle(lkSolid)
-      else  if Sender = FormatAnnotationLineStyleDash then
+      else if Sender = FormatAnnotationLineStyleDash then
         StarUMLApplication.ChangeSelectedAnnotationsLineStyle(lkDash)
-      else  if Sender = FormatAnnotationLineStyleDot then
+      else if Sender = FormatAnnotationLineStyleDot then
         StarUMLApplication.ChangeSelectedAnnotationsLineStyle(lkDot)
-      else  if Sender = FormatAnnotationLineStyleDashDot then
+      else if Sender = FormatAnnotationLineStyleDashDot then
         StarUMLApplication.ChangeSelectedAnnotationsLineStyle(lkDashDot)
-      else  if Sender = FormatAnnotationLineStyleDashDotDot then
+      else if Sender = FormatAnnotationLineStyleDashDotDot then
         StarUMLApplication.ChangeSelectedAnnotationsLineStyle(lkDashDotDot)
-
-
 
       else if Sender = FormatLineStyleRectilinear then
         StarUMLApplication.ChangeSelectedEdgesLineStyle(lsRectilinear)
@@ -961,19 +1148,22 @@ begin
         StarUMLApplication.ChangeSelectedEdgesLineStyle(lsOblique)
 
       else if Sender = FormatStereotypeDisplayNone then
-        StarUMLApplication.ChangeSelectedViewsAttribute('StereotypeDisplay', 'sdkNone')
+        StarUMLApplication.ChangeSelectedViewsAttribute('StereotypeDisplay',
+          'sdkNone')
       else if Sender = FormatStereotypeDisplayText then
-        StarUMLApplication.ChangeSelectedViewsAttribute('StereotypeDisplay', 'sdkLabel')
+        StarUMLApplication.ChangeSelectedViewsAttribute('StereotypeDisplay',
+          'sdkLabel')
       else if Sender = FormatStereotypeDisplayIcon then
-        StarUMLApplication.ChangeSelectedViewsAttribute('StereotypeDisplay', 'sdkIcon')
+        StarUMLApplication.ChangeSelectedViewsAttribute('StereotypeDisplay',
+          'sdkIcon')
       else if Sender = FormatStereotypeDisplayDecoration then
-        StarUMLApplication.ChangeSelectedViewsAttribute('StereotypeDisplay', 'sdkDecoration')
+        StarUMLApplication.ChangeSelectedViewsAttribute('StereotypeDisplay',
+          'sdkDecoration')
 
       else if Sender = FormatAlignmentSendToBack then
       begin
         if (StarUMLApplication.ActiveDiagram is PUMLSequenceDiagramView) or
-           (StarUMLApplication.ActiveDiagram is PUMLSequenceRoleDiagramView)
-        then
+          (StarUMLApplication.ActiveDiagram is PUMLSequenceRoleDiagramView) then
           MessageDlg(ERR_SEQ_DGM_CMD_NOT_SUPPORT, mtError, [mbOK], 0)
         else
           StarUMLApplication.SendToBackSelectedViews;
@@ -982,8 +1172,7 @@ begin
       else if Sender = FormatAlignmentBringToFront then
       begin
         if (StarUMLApplication.ActiveDiagram is PUMLSequenceDiagramView) or
-           (StarUMLApplication.ActiveDiagram is PUMLSequenceRoleDiagramView)
-        then
+          (StarUMLApplication.ActiveDiagram is PUMLSequenceRoleDiagramView) then
           MessageDlg(ERR_SEQ_DGM_CMD_NOT_SUPPORT, mtError, [mbOK], 0)
         else
           StarUMLApplication.BringToFrontSelectedViews;
@@ -1008,22 +1197,27 @@ begin
       else if Sender = FormatLayoutDiagram then
         StarUMLApplication.LayoutActiveDiagramWithValidation
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormFormatCheckTypeMenuClickedHandler(Sender: TObject; Checked: Boolean);
+procedure PMain.MainFormFormatCheckTypeMenuClickedHandler(Sender: TObject;
+  Checked: Boolean);
 var
   Str: string;
 begin
   try
     Str := BooleanToString(Checked);
-    with MainForm do begin
+    with MainForm do
+    begin
       if Sender = FormatSuppressAttributes then
-        StarUMLApplication.ChangeSelectedViewsAttribute('SuppressAttributes', Str)
+        StarUMLApplication.ChangeSelectedViewsAttribute
+          ('SuppressAttributes', Str)
       else if Sender = FormatSuppressOperations then
-        StarUMLApplication.ChangeSelectedViewsAttribute('SuppressOperations', Str)
+        StarUMLApplication.ChangeSelectedViewsAttribute
+          ('SuppressOperations', Str)
       else if Sender = FormatSuppressEnumerationLiterals then
         StarUMLApplication.ChangeSelectedViewsAttribute('SuppressLiterals', Str)
       else if Sender = FormatWordWrap then
@@ -1031,29 +1225,36 @@ begin
       else if Sender = FormatShowParentName then
         StarUMLApplication.ChangeSelectedViewsAttribute('ShowParentName', Str)
       else if Sender = FormatShowOperationSignature then
-        StarUMLApplication.ChangeSelectedViewsAttribute('ShowOperationSignature', Str)
+        StarUMLApplication.ChangeSelectedViewsAttribute
+          ('ShowOperationSignature', Str)
       else if Sender = FormatShowProperty then
         StarUMLApplication.ChangeSelectedViewsAttribute('ShowProperty', Str)
       else if Sender = FormatShowCompartmentVisibility then
-        StarUMLApplication.ChangeSelectedViewsAttribute('ShowCompartmentVisibility', Str)
+        StarUMLApplication.ChangeSelectedViewsAttribute
+          ('ShowCompartmentVisibility', Str)
       else if Sender = FormatShowCompartmentStereotype then
-        StarUMLApplication.ChangeSelectedViewsAttribute('ShowCompartmentStereotype', Str)
+        StarUMLApplication.ChangeSelectedViewsAttribute
+          ('ShowCompartmentStereotype', Str)
       else if Sender = FormatAutoResize then
         StarUMLApplication.ChangeSelectedViewsAttribute('AutoResize', Str)
       else if Sender = FormatShowExtendedNotation then
-        StarUMLApplication.ChangeSelectedViewsAttribute('ShowExtendedNotation', Str);
+        StarUMLApplication.ChangeSelectedViewsAttribute
+          ('ShowExtendedNotation', Str);
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormFormatFontFaceChangedHandler(Sender: TObject; FontFace: string);
+procedure PMain.MainFormFormatFontFaceChangedHandler(Sender: TObject;
+  FontFace: string);
 begin
   try
     StarUMLApplication.ChangeSelectedViewsFontFace(FontFace);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1061,8 +1262,9 @@ procedure PMain.BarManagerx(Sender: TObject; FontSize: Integer);
 begin
   try
     StarUMLApplication.ChangeSelectedViewsFontSize(FontSize);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1072,22 +1274,24 @@ var
 begin
   Model := SelectTargetModel;
   try
-    with MainForm do begin
+    with MainForm do
+    begin
       if Sender = ModelCollectionEditor then
       begin
         if (Model is PExtensibleModel) then
-          //-- MainForm.InspectorFrame.ShowCollectionEditor
+          // -- MainForm.InspectorFrame.ShowCollectionEditor
           CollectionEditorForm.ShowCollection(Model)
         else
           MessageDlg(ERR_DIAGRAM_NO_COLLECTIONS, mtError, [mbOK], 0);
       end
       else if Sender = ModelConstraints then
       begin
-        if (Model is PExtensibleModel) then begin
-          //-- MainForm.InspectorFrame.ShowConstraintsEditor
+        if (Model is PExtensibleModel) then
+        begin
+          // -- MainForm.InspectorFrame.ShowConstraintsEditor
           ConstraintEditorForm.UpdateConstraints;
           ConstraintEditorForm.Show;
-          //--
+          // --
         end
         else
           MessageDlg(ERR_DIAGRAM_NO_CONSTRAINTS, mtError, [mbOK], 0);
@@ -1095,7 +1299,7 @@ begin
       else if Sender = ModelTaggedValues then
       begin
         if (Model is PExtensibleModel) then
-          //-- MainForm.InspectorFrame.ShowTaggedValuesEditor
+          // -- MainForm.InspectorFrame.ShowTaggedValuesEditor
           TaggedValueEditorForm.ShowTaggedValues(Model as PExtensibleModel)
         else
           MessageDlg(ERR_DIAGRAM_NO_TAGGEDVALUES, mtError, [mbOK], 0);
@@ -1107,8 +1311,10 @@ begin
       else if Sender = ModelModelVerification then
       begin
         // BEGIN (PERSONAL EDITION TEMPORAL CODE)
-        if IsPersonalEdition then begin
-          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation, [mbOK], 0);
+        if IsPersonalEdition then
+        begin
+          MessageDlg(MSG_PERSONAL_EDITION_IS_NOT_ALLOWED, mtInformation,
+            [mbOK], 0);
           Exit;
         end;
         // END (PERSONAL EDITION TEMPORAL CODE)
@@ -1119,81 +1325,106 @@ begin
       else if Sender = ModelAttachments then
         ProcessAttachmentsAction;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.MainFormViewMenuClickedHandler(Sender: TObject);
 begin
   try
-    with MainForm do begin
-      if Sender = ViewCloseDiagram then begin
+    with MainForm do
+    begin
+      if Sender = ViewCloseDiagram then
+      begin
         MainForm.WorkingAreaFrame.CloseActiveDiagram;
       end
-      else if Sender = ViewCloseAllDiagrams then begin
+      else if Sender = ViewCloseAllDiagrams then
+      begin
         MainForm.WorkingAreaFrame.CloseAllDiagrams;
       end
-      else if Sender = ViewSelectInModelExplorer then begin
+      else if Sender = ViewSelectInModelExplorer then
+      begin
         if MainForm.ModelExplorerDockPanel.Visible then
         begin
-          dxDockingController.ActiveDockControl := MainForm.ModelExplorerDockPanel;
+          dxDockingController.ActiveDockControl :=
+            MainForm.ModelExplorerDockPanel;
           MainForm.ModelExplorer.SelectWithFocus(SelectTargetModel);
         end;
       end
-      else if Sender = ViewRefresh then ExecuteViewRefresh
-      else if Sender = ViewZoomZoomIn then ExecuteViewZoom(ztZoomIn, 0)
-      else if Sender = ViewZoomZoomOut then ExecuteViewZoom(ztZoomOut, 0)
-      else if Sender = ViewZoomFitInWindow then ExecuteViewZoom(ztZoomFitInWindow, 0)
+      else if Sender = ViewRefresh then
+        ExecuteViewRefresh
+      else if Sender = ViewZoomZoomIn then
+        ExecuteViewZoom(ztZoomIn, 0)
+      else if Sender = ViewZoomZoomOut then
+        ExecuteViewZoom(ztZoomOut, 0)
+      else if Sender = ViewZoomFitInWindow then
+        ExecuteViewZoom(ztZoomFitInWindow, 0)
       else if Sender = ViewDiagramPageList then
         ExecuteViewDiagramPageList(Sender as TdxBarListItem);
     end;
 
-    with MainForm.WorkingAreaFrame do begin
+    with MainForm.WorkingAreaFrame do
+    begin
       if Sender = ViewRefresh then
         ExecuteViewRefresh;
     end;
 
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormViewCheckTypeMenuClickedHandler(Sender: TObject; Checked: Boolean);
+procedure PMain.MainFormViewCheckTypeMenuClickedHandler(Sender: TObject;
+  Checked: Boolean);
 
   function IsDockPanelVisibleMenu(Obj: TObject): Boolean;
   begin
     with MainForm do
-      Result := (Obj = ViewModelExplorer) or (Obj = ViewDiagramExplorer)
-        or (Obj = ViewPropertyEditor) or (Obj = ViewDocumentationEditor)
-        or (Obj = ViewAttachmentEditor) or (Obj = ViewOutputWindow)
-        or (Obj = ViewMessageWindow) or (Obj = ViewToolbox);
+      Result := (Obj = ViewModelExplorer) or (Obj = ViewDiagramExplorer) or
+        (Obj = ViewPropertyEditor) or (Obj = ViewDocumentationEditor) or
+        (Obj = ViewAttachmentEditor) or (Obj = ViewOutputWindow) or
+        (Obj = ViewMessageWindow) or (Obj = ViewToolbox);
   end;
 
 var
   TargetDockPanel: TdxDockPanel;
 begin
   try
-    with MainForm do begin
-      if IsDockPanelVisibleMenu(Sender) then begin
+    with MainForm do
+    begin
+      if IsDockPanelVisibleMenu(Sender) then
+      begin
         TargetDockPanel := nil;
-        if Sender = ViewModelExplorer            then TargetDockPanel := ModelExplorerDockPanel
-        else if Sender = ViewDiagramExplorer     then TargetDockPanel := DiagramExplorerDockPanel
-        else if Sender = ViewPropertyEditor      then TargetDockPanel := PropertiesDockPanel
-        else if Sender = ViewDocumentationEditor then TargetDockPanel := DocumentationDockPanel
-        else if Sender = ViewAttachmentEditor    then TargetDockPanel := AttachmentsDockPanel
-        else if Sender = ViewOutputWindow        then TargetDockPanel := OutputDockPanel
-        else if Sender = ViewMessageWindow       then TargetDockPanel := MessageDockPanel
-        else if Sender = ViewToolbox             then TargetDockPanel := ToolboxDockPanel;
-        if TargetDockPanel <> nil then begin
+        if Sender = ViewModelExplorer then
+          TargetDockPanel := ModelExplorerDockPanel
+        else if Sender = ViewDiagramExplorer then
+          TargetDockPanel := DiagramExplorerDockPanel
+        else if Sender = ViewPropertyEditor then
+          TargetDockPanel := PropertiesDockPanel
+        else if Sender = ViewDocumentationEditor then
+          TargetDockPanel := DocumentationDockPanel
+        else if Sender = ViewAttachmentEditor then
+          TargetDockPanel := AttachmentsDockPanel
+        else if Sender = ViewOutputWindow then
+          TargetDockPanel := OutputDockPanel
+        else if Sender = ViewMessageWindow then
+          TargetDockPanel := MessageDockPanel
+        else if Sender = ViewToolbox then
+          TargetDockPanel := ToolboxDockPanel;
+        if TargetDockPanel <> nil then
+        begin
           if TargetDockPanel.AutoHide then
             TargetDockPanel.AutoHide := False;
           TargetDockPanel.Visible := Checked;
         end;
       end;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1201,54 +1432,66 @@ procedure PMain.MainFormZoomChangedHandler(Sender: TObject; Zoom: Integer);
 begin
   try
     ExecuteViewZoom(ztZoomValue, Zoom);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.MainFormToolsMenuClickedHandler(Sender: TObject);
 begin
   try
-    with MainForm do begin
-      if Sender = ToolsOptions then ExecuteToolsOptions
-      else if Sender = ToolsAddInManager then ExecuteToolsAddInManager;
+    with MainForm do
+    begin
+      if Sender = ToolsOptions then
+        ExecuteToolsOptions
+      else if Sender = ToolsAddInManager then
+        ExecuteToolsAddInManager;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.MainFormHelpMenuClickedHandler(Sender: TObject);
 begin
   try
-    with MainForm do begin
-      if Sender = HelpContents then begin
+    with MainForm do
+    begin
+      if Sender = HelpContents then
+      begin
         ShowStarUMLHelpPage;
       end
-      {else if Sender = HelpStarUMLOnTheWeb then begin
+      { else if Sender = HelpStarUMLOnTheWeb then begin
         ShellExecute(0, 'open', 'http://www.staruml.com', '', '', SW_SHOWNORMAL);
-      end}
-      else if Sender = HelpAbout then begin
+        end }
+      else if Sender = HelpAbout then
+      begin
         AboutForm.ShowModal;
       end
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormRecentFileClickedHandler(Sender: TObject; RecentFile: string);
+procedure PMain.MainFormRecentFileClickedHandler(Sender: TObject;
+  RecentFile: string);
 begin
   try
-    StarUMLApplication.OpenProject(RecentFile,fatNormal);
+    StarUMLApplication.OpenProject(RecentFile, fatNormal);
     MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
     MainForm.AddRecentFile(StarUMLApplication.FileName);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InteractionManagerModelAddingHandler(Sender: TObject; ModelKind: string; Argument: Integer);
+procedure PMain.InteractionManagerModelAddingHandler(Sender: TObject;
+  ModelKind: string; Argument: Integer);
 var
   Owner: PModel;
 begin
@@ -1257,20 +1500,25 @@ begin
     StarUMLApplication.NewModel(Owner, ModelKind, Argument);
 
     // set created element(TreeNode)'s name editable if Model Explorer panel is being used
-    if MainForm.ModelExplorerDockPanel.Visible
-      and (dxDockingController.ActiveDockControl = MainForm.ModelExplorerDockPanel) then
+    if MainForm.ModelExplorerDockPanel.Visible and
+      (dxDockingController.ActiveDockControl = MainForm.ModelExplorerDockPanel)
+    then
       MainForm.ModelExplorer.SetNameEditingMode(nil)
-    else begin // Otherwise try to activate an editor inside of current model view
-      if not PopupQuickDialogForSubElement(Owner, ModelKind, Argument)
-        and MainForm.ModelExplorerDockPanel.Visible then
-          MainForm.ModelExplorer.SetNameEditingMode(nil) // Finally try to activate inactive Model Explorer
+    else
+    begin // Otherwise try to activate an editor inside of current model view
+      if not PopupQuickDialogForSubElement(Owner, ModelKind, Argument) and
+        MainForm.ModelExplorerDockPanel.Visible then
+        MainForm.ModelExplorer.SetNameEditingMode(nil)
+        // Finally try to activate inactive Model Explorer
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InteractionManagerDiagramAddingHandler(Sender: TObject; DiagramKind: string);
+procedure PMain.InteractionManagerDiagramAddingHandler(Sender: TObject;
+  DiagramKind: string);
 var
   Owner: PModel;
 begin
@@ -1279,65 +1527,81 @@ begin
     StarUMLApplication.NewDiagram(Owner, DiagramKind);
     // set created element(TreeNode)'s name editable
     MainForm.ModelExplorer.SetNameEditingMode(nil);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InteractionManagerExtendedModelAddingHandler(Sender: TObject; ProfileName: string; ModelPrototypeName: string);
+procedure PMain.InteractionManagerExtendedModelAddingHandler(Sender: TObject;
+  ProfileName: string; ModelPrototypeName: string);
 var
   Owner: PModel;
   ModelPrototype: PModelPrototype;
 begin
   try
     Owner := StarUMLApplication.SelectedModels[0];
-    ModelPrototype := ExtensionManager.FindModelPrototype(ProfileName, ModelPrototypeName);
-    if ModelPrototype <> nil then begin
-      StarUMLApplication.NewExtendedModel(Owner, ProfileName, ModelPrototype.Name);
+    ModelPrototype := ExtensionManager.FindModelPrototype(ProfileName,
+      ModelPrototypeName);
+    if ModelPrototype <> nil then
+    begin
+      StarUMLApplication.NewExtendedModel(Owner, ProfileName,
+        ModelPrototype.Name);
       // set created element(TreeNode)'s name editable
       MainForm.ModelExplorer.SetNameEditingMode(nil);
-      PopupQuickDialogForSubElement(Owner, ModelPrototype.BaseModel, ModelPrototype.Argument);
+      PopupQuickDialogForSubElement(Owner, ModelPrototype.BaseModel,
+        ModelPrototype.Argument);
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InteractionManagerExtendedDiagramAddingHandler(Sender: TObject; ProfileName: string; DiagramTypeName: string);
+procedure PMain.InteractionManagerExtendedDiagramAddingHandler(Sender: TObject;
+  ProfileName: string; DiagramTypeName: string);
 var
   DiagramType: PDiagramType;
   Owner: PModel;
 begin
   try
     Owner := StarUMLApplication.SelectedModels[0];
-    DiagramType := ExtensionManager.FindDiagramType(ProfileName, DiagramTypeName);
-    if DiagramType <> nil then begin
-      StarUMLApplication.NewExtendedDiagram(Owner, ProfileName, DiagramTypeName);
+    DiagramType := ExtensionManager.FindDiagramType(ProfileName,
+      DiagramTypeName);
+    if DiagramType <> nil then
+    begin
+      StarUMLApplication.NewExtendedDiagram(Owner, ProfileName,
+        DiagramTypeName);
       // set created element(TreeNode)'s name editable
       MainForm.ModelExplorer.SetNameEditingMode(nil);
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InteractionManagerElementCreatingHandler(Sender: TObject; ElementKind: string;
-  Argument: Integer; X1, Y1, X2, Y2: Integer);
+procedure PMain.InteractionManagerElementCreatingHandler(Sender: TObject;
+  ElementKind: string; Argument: Integer; X1, Y1, X2, Y2: Integer);
 var
   V: PView;
 begin
   try
-    if StarUMLApplication.ActiveDiagram <> nil then begin
-      V := StarUMLApplication.NewElement(StarUMLApplication.ActiveDiagram, X1, Y1, X2, Y2, ElementKind, Argument);
+    if StarUMLApplication.ActiveDiagram <> nil then
+    begin
+      V := StarUMLApplication.NewElement(StarUMLApplication.ActiveDiagram, X1,
+        Y1, X2, Y2, ElementKind, Argument);
 
       if V is PImageView then
         LoadImageFromFile(V as PImageView)
       else if V <> nil then
         PopupQuickDialog(V, X1, Y1, True);
     end;
-  except on
-    //E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
-    E: Exception do MainForm.ShowAlertMsg(C_ERR_DIAGRAM,E.Message);
+  except
+    on
+    // E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+      E: Exception do
+      MainForm.ShowAlertMsg(C_ERR_DIAGRAM, E.Message);
   end;
 end;
 
@@ -1347,31 +1611,40 @@ var
   V: PView;
 begin
   try
-    if StarUMLApplication.ActiveDiagram <> nil then begin
-      V := StarUMLApplication.NewExtendedElement(StarUMLApplication.ActiveDiagram, X1, Y1, X2, Y2, ProfileName, ElementPrototypeName);
+    if StarUMLApplication.ActiveDiagram <> nil then
+    begin
+      V := StarUMLApplication.NewExtendedElement
+        (StarUMLApplication.ActiveDiagram, X1, Y1, X2, Y2, ProfileName,
+        ElementPrototypeName);
       if V <> nil then
         PopupQuickDialog(V, X1, Y1, True);
     end;
-  except on
-    //E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
-     E: Exception do MainForm.ShowAlertMsg(C_ERR_DIAGRAM,E.Message);
+  except
+    on
+    // E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+      E: Exception do
+      MainForm.ShowAlertMsg(C_ERR_DIAGRAM, E.Message);
   end;
 end;
 
-procedure PMain.NewProjFormRecentFileDeleteHandler(Sender: TObject; RecentFile: string);
+procedure PMain.NewProjFormRecentFileDeleteHandler(Sender: TObject;
+  RecentFile: string);
 begin
   MainForm.DeleteRecentFile(RecentFile);
 end;
 
-procedure PMain.MainFormRecentFileAddHandler(Sender: TObject; RecentFile: string);
+procedure PMain.MainFormRecentFileAddHandler(Sender: TObject;
+  RecentFile: string);
 begin
   NewProjectForm.AddRecentFile(RecentFile);
 end;
 
-procedure PMain.MainFormInspectorAttachmentButtonClickedHandler(Sender: TObject);
+procedure PMain.MainFormInspectorAttachmentButtonClickedHandler
+  (Sender: TObject);
 begin
   try
-    with MainForm do begin
+    with MainForm do
+    begin
       if Sender = InspectorAttachmentOpen then
         MainForm.AttachmentEditor.OpenAttachment
       else if Sender = InspectorAttachmentAdd then
@@ -1385,53 +1658,63 @@ begin
       else if Sender = InspectorAttachmentMoveDown then
         MainForm.AttachmentEditor.MoveDownItem;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormInformationMessagesButtonClickedHandler(Sender: TObject);
+procedure PMain.MainFormInformationMessagesButtonClickedHandler
+  (Sender: TObject);
 begin
   try
-    with MainForm do begin
+    with MainForm do
+    begin
       if Sender = MessagesClearAll then
-        //-- MainForm.InformationFrame.ClearAllMessages
+        // -- MainForm.InformationFrame.ClearAllMessages
         MainForm.MessagePanel.ClearAllMessages
       else if Sender = MessagesClearFindResults then
-        //-- MainForm.InformationFrame.ClearMessages(mkFindResult)
+        // -- MainForm.InformationFrame.ClearMessages(mkFindResult)
         MainForm.MessagePanel.ClearMessages(mkFindResult)
       else if Sender = MessagesClearVerificationResults then
-        //-- MainForm.InformationFrame.ClearMessages(mkVerificationResult)
+        // -- MainForm.InformationFrame.ClearMessages(mkVerificationResult)
         MainForm.MessagePanel.ClearMessages(mkVerificationResult)
-      else if Sender = MessagesSaveMessages then begin
+      else if Sender = MessagesSaveMessages then
+      begin
         try
           if MainForm.MessagePanel.SaveMessagesDialog.Execute then
-            //--MainForm.InformationFrame.SaveMessages(MainForm.InformationFrame.SaveMessagesDialog.FileName);
-            MainForm.MessagePanel.SaveMessages(MainForm.MessagePanel.SaveMessagesDialog.FileName);
+            // --MainForm.InformationFrame.SaveMessages(MainForm.InformationFrame.SaveMessagesDialog.FileName);
+            MainForm.MessagePanel.SaveMessages
+              (MainForm.MessagePanel.SaveMessagesDialog.FileName);
         except
-          on SaveDialogEx.EDirectoryNotFound do MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
-          on SaveDialogEx.EInvalidFileName do MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
+          on SaveDialogEx.EDirectoryNotFound do
+            MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
+          on SaveDialogEx.EInvalidFileName do
+            MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
         end;
       end;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.MainFormDiagramOpenHandler(Sender: TObject; Diagram: PDiagram);
 begin
   try
-    if MainForm.WorkingAreaFrame.OpenedDiagramCount = 1 then begin
+    if MainForm.WorkingAreaFrame.OpenedDiagramCount = 1 then
+    begin
       MenuStateHandler.BeginUpdate;
       MenuStateHandler.UpdateFileMenus;
       MenuStateHandler.UpdateEditMenus;
       MenuStateHandler.EndUpdate;
-      //InteractionManager.ChangePaletteVisibility(Diagram as PUMLDiagram);
+      // InteractionManager.ChangePaletteVisibility(Diagram as PUMLDiagram);
     end;
-    MainForm.PaletteNavBarFrame.ActivateSelectHandler(false);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    MainForm.PaletteNavBarFrame.ActivateSelectHandler(False);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1440,8 +1723,9 @@ begin
   try
     if MainForm.WorkingAreaFrame.OpenedDiagramCount = 1 then
       InteractionManager.ChangePaletteVisibility(nil);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1452,8 +1736,9 @@ begin
     // General Edit Menu Status Setting
     MenuStateHandler.GeneralEditMenuEnabled := True;
     if (dxDockingController.ActiveDockControl = MainForm.PropertiesDockPanel) or
-       (dxDockingController.ActiveDockControl = MainForm.DocumentationDockPanel) or
-       (dxDockingController.ActiveDockControl = MainForm.AttachmentsDockPanel) then
+      (dxDockingController.ActiveDockControl = MainForm.DocumentationDockPanel)
+      or (dxDockingController.ActiveDockControl = MainForm.AttachmentsDockPanel)
+    then
     begin
       MenuStateHandler.GeneralEditMenuEnabled := False;
     end;
@@ -1461,48 +1746,57 @@ begin
     MenuStateHandler.UpdateFileMenus;
     MenuStateHandler.UpdateEditMenus;
     MenuStateHandler.EndUpdate;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormActiveDiagramEditorChangedHandler(Sender: TObject; DiagramEditor: PDiagramEditor);
+procedure PMain.MainFormActiveDiagramEditorChangedHandler(Sender: TObject;
+  DiagramEditor: PDiagramEditor);
 begin
   try
     if DiagramEditor <> nil then
     begin
       StarUMLApplication.ActiveDiagram := DiagramEditor.DiagramView;
-      MainForm.PaletteNavBarFrame.ActivateSelectHandler(false);
-      InteractionManager.ChangePaletteVisibility(DiagramEditor.DiagramView.Diagram as PUMLDiagram);
+      MainForm.PaletteNavBarFrame.ActivateSelectHandler(False);
+      InteractionManager.ChangePaletteVisibility
+        (DiagramEditor.DiagramView.Diagram as PUMLDiagram);
       MenuStateHandler.BeginUpdate;
       MenuStateHandler.UpdateViewMenus;
       MenuStateHandler.EndUpdate;
     end
-    else begin
+    else
+    begin
       StarUMLApplication.ActiveDiagram := nil;
     end;
     // show diagram name/pathname on DockPanel Caption
     if DiagramEditor <> nil then
     begin
       MainForm.WorkingAreaDockPanel.Caption :=
-        StarUMLApplication.ActiveDiagram.Diagram.Name +
-        ' (' + ExtractTailPath(StarUMLApplication.ActiveDiagram.Diagram.DiagramOwner.Pathname) + ')';
+        StarUMLApplication.ActiveDiagram.Diagram.Name + ' (' +
+        ExtractTailPath(StarUMLApplication.ActiveDiagram.Diagram.DiagramOwner.
+        PathName) + ')';
     end
     else
       MainForm.WorkingAreaDockPanel.Caption := '';
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormDockPanelVisibleChangedHandler(Sender: TdxCustomDockControl);
+procedure PMain.MainFormDockPanelVisibleChangedHandler
+  (Sender: TdxCustomDockControl);
 begin
   MenuStateHandler.UpdateViewMenus;
 end;
 
-procedure PMain.MainFormDiagramMapFormMouseMoveHandler(Sender: TObject; DX, DY: Integer);
+procedure PMain.MainFormDiagramMapFormMouseMoveHandler(Sender: TObject;
+  DX, DY: Integer);
 begin
-  if MainForm.WorkingAreaFrame.ActiveDiagramEditor <> nil then begin
+  if MainForm.WorkingAreaFrame.ActiveDiagramEditor <> nil then
+  begin
     MainForm.WorkingAreaFrame.ActiveDiagramEditor.ScrollBy(DX, DY);
   end;
 end;
@@ -1516,20 +1810,22 @@ begin
   for I := 0 to MainForm.WorkingAreaFrame.OpenedDiagramCount - 1 do
   begin
     D := MainForm.WorkingAreaFrame.OpenedDiagrams[I];
-    MainForm.ViewDiagramPageList.Items.AddObject(D.Name
-      + ' (' + ExtractTailPath(D.DiagramOwner.Pathname) + ')' , D);
+    MainForm.ViewDiagramPageList.Items.AddObject
+      (D.Name + ' (' + ExtractTailPath(D.DiagramOwner.PathName) + ')', D);
     if MainForm.WorkingAreaFrame.ActiveDiagram = D then
       MainForm.ViewDiagramPageList.ItemIndex := I;
   end;
 end;
 
-procedure PMain.MainFormDiagramViewDragOveredHandler(Sender, Source: TObject; var Accept: Boolean; var Msg: string);
+procedure PMain.MainFormDiagramViewDragOveredHandler(Sender, Source: TObject;
+  var Accept: Boolean; var Msg: string);
 var
   DragSource: PModel;
   DropTarget: PDiagramView;
 begin
   try
-    if Source <> MainForm.ModelExplorer then begin
+    if Source <> MainForm.ModelExplorer then
+    begin
       Accept := False;
       Exit;
     end;
@@ -1541,8 +1837,9 @@ begin
     DragSource := StarUMLApplication.SelectedModels[0];
     DropTarget := StarUMLApplication.ActiveDiagram;
     Accept := DropTarget.CanAcceptModel(DragSource);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1554,30 +1851,37 @@ begin
     // PRECONDITION
     Assert(StarUMLApplication.SelectedModelCount = 1);
     // PRECONDITION
-    if StarUMLApplication.SelectedModelCount = 1 then begin
+    if StarUMLApplication.SelectedModelCount = 1 then
+    begin
       AModel := StarUMLApplication.SelectedModels[0];
-      StarUMLApplication.NewViewByDragDrop(StarUMLApplication.ActiveDiagram, AModel, X, Y);
+      StarUMLApplication.NewViewByDragDrop(StarUMLApplication.ActiveDiagram,
+        AModel, X, Y);
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.MainFormViewSelectingHandler(AView: PView);
 begin
   try
-    if AView <> nil then StarUMLApplication.SelectView(AView);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    if AView <> nil then
+      StarUMLApplication.SelectView(AView);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.MainFormViewDeselectingHandler(Sender: TObject);
 begin
   try
-    if Sender <> nil then StarUMLApplication.DeselectView(Sender as PView);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    if Sender <> nil then
+      StarUMLApplication.DeselectView(Sender as PView);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1585,17 +1889,20 @@ procedure PMain.MainFormAllViewsDeselectingHandler(Sender: TObject);
 begin
   try
     StarUMLApplication.DeselectAll;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.MainFormAdditionalViewSelectingHandler(Sender: TObject);
 begin
   try
-    if Sender <> nil then StarUMLApplication.SelectAdditionalView(Sender as PView);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    if Sender <> nil then
+      StarUMLApplication.SelectAdditionalView(Sender as PView);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1603,26 +1910,33 @@ procedure PMain.MainFormAreaSelectingHandler(X1, Y1, X2, Y2: Integer);
 begin
   try
     StarUMLApplication.SelectArea(X1, Y1, X2, Y2);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.MainFormViewMovingHandler(View: PView; DX, DY: Integer);
 begin
   try
-    if View <> nil then StarUMLApplication.MoveView(View, DX, DY);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    if View <> nil then
+      StarUMLApplication.MoveView(View, DX, DY);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormViewContainerChangingHandler(View: PView; DX, DY: Integer; AContainerView: PView);
+procedure PMain.MainFormViewContainerChangingHandler(View: PView;
+  DX, DY: Integer; AContainerView: PView);
 begin
   try
-    if View <> nil then StarUMLApplication.MoveViewChangingContainerView(View, DX, DY, AContainerView);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    if View <> nil then
+      StarUMLApplication.MoveViewChangingContainerView(View, DX, DY,
+        AContainerView);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1630,63 +1944,81 @@ procedure PMain.MainFormSelectedViewsMovingHandler(DX, DY: Integer);
 begin
   try
     StarUMLApplication.MoveSelectedViews(DX, DY);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormSelectedViewsContainerChangingHandler(DX, DY: Integer; AContainerView: PView);
+procedure PMain.MainFormSelectedViewsContainerChangingHandler(DX, DY: Integer;
+  AContainerView: PView);
 begin
   try
-    StarUMLApplication.MoveSelectedViewsChaningContainerView(DX, DY, AContainerView);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.MoveSelectedViewsChaningContainerView(DX, DY,
+      AContainerView);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormParasiticViewMovingHandler(AParasiticView: PParasiticView;
-    DX, DY: Extended);
+procedure PMain.MainFormParasiticViewMovingHandler(AParasiticView
+  : PParasiticView; DX, DY: Extended);
 begin
   try
-    if AParasiticView <> nil then StarUMLApplication.MoveParasiticView(AParasiticView, DX, DY);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    if AParasiticView <> nil then
+      StarUMLApplication.MoveParasiticView(AParasiticView, DX, DY);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormNodeResizingHandler(Node: PNodeView; Left, Top, Right, Bottom: Integer);
+procedure PMain.MainFormNodeResizingHandler(Node: PNodeView;
+  Left, Top, Right, Bottom: Integer);
 begin
   try
-    if Node <> nil then StarUMLApplication.ResizeNode(Node, Left, Top, Right, Bottom);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    if Node <> nil then
+      StarUMLApplication.ResizeNode(Node, Left, Top, Right, Bottom);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormEdgeModifyingHandler(Edge: IModifiableEdge; Points: PPoints);
+procedure PMain.MainFormEdgeModifyingHandler(Edge: IModifiableEdge;
+  Points: PPoints);
 begin
   try
-    if Edge <> nil then StarUMLApplication.ReshapeEdge(Edge, Points);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    if Edge <> nil then
+      StarUMLApplication.ReshapeEdge(Edge, Points);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormEdgeReonnectingHandler(Edge: PEdgeView; Points: PPoints; NewParticipant: PView; IsTailSide: Boolean);
+procedure PMain.MainFormEdgeReonnectingHandler(Edge: PEdgeView; Points: PPoints;
+  NewParticipant: PView; IsTailSide: Boolean);
 begin
   try
-    if Edge <> nil then StarUMLApplication.ReconnectEdge(Edge, Points, NewParticipant, IsTailSide);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    if Edge <> nil then
+      StarUMLApplication.ReconnectEdge(Edge, Points, NewParticipant,
+        IsTailSide);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormViewDoubleClickedHandler(Sender: TObject; AView: PView; X, Y: Integer);
+procedure PMain.MainFormViewDoubleClickedHandler(Sender: TObject; AView: PView;
+  X, Y: Integer);
 begin
   try
     ProcessDoubleClickAction(AView, X, Y);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1699,8 +2031,9 @@ procedure PMain.MainFormWMDrawClipboardHandler(var Msg: TMessage);
 begin
   try
     StarUMLApplication.NotifyWMDrawClipboard(Msg);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1708,21 +2041,24 @@ procedure PMain.MainFormWMChangeCBChainHandler(var Msg: TMessage);
 begin
   try
     StarUMLApplication.NotifyWMChangeCBChain(Msg);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.MainFormWMDropFilesHandler(var Msg: TWMDROPFILES);
 var
-  FN: array [0..255] of Char;
+  FN: array [0 .. 255] of Char;
   FileName, FileExt: String;
 begin
   DragQueryFile(Msg.Drop, 0, FN, SizeOf(FN));
   FileName := FN;
-  if FileName <> '' then begin
+  if FileName <> '' then
+  begin
     FileExt := LowerCase(ExtractFileExt(FileName));
-    if FileExt = '.uml' then begin
+    if FileExt = '.uml' then
+    begin
       StarUMLApplication.OpenProject(FileName);
       MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
       MainForm.AddRecentFile(StarUMLApplication.FileName);
@@ -1731,70 +2067,82 @@ begin
   DragFinish(Msg.Drop);
 end;
 
-procedure PMain.MainFormQuickDlgGeneralNameExpressionApplyingHandler(AModel: PModel; Value: string);
+procedure PMain.MainFormQuickDlgGeneralNameExpressionApplyingHandler
+  (AModel: PModel; Value: string);
 begin
   // * on Exception, process in QuickDialogFrm
   if AModel is PUMLElement then
     StarUMLApplication.ApplyGeneralNameExpression(AModel as PUMLElement, Value);
 end;
 
-procedure PMain.MainFormQuickDlgClassifierRoleExpressionApplyingHandler(AModel: PModel; Value: string);
+procedure PMain.MainFormQuickDlgClassifierRoleExpressionApplyingHandler
+  (AModel: PModel; Value: string);
 begin
   // * on Exception, process in QuickDialogFrm
   if AModel is PUMLClassifierRole then
-    StarUMLApplication.ApplyClassifierRoleExpression(AModel as PUMLClassifierRole, Value);
+    StarUMLApplication.ApplyClassifierRoleExpression
+      (AModel as PUMLClassifierRole, Value);
 end;
 
-procedure PMain.MainFormQuickDlgInstanceExpressionApplyingHandler(AModel: PModel; Value: string);
+procedure PMain.MainFormQuickDlgInstanceExpressionApplyingHandler
+  (AModel: PModel; Value: string);
 begin
   // * on Exception, process in QuickDialogFrm
   if AModel is PUMLInstance then
     StarUMLApplication.ApplyInstanceExpression(AModel as PUMLInstance, Value);
 end;
 
-procedure PMain.MainFormQuickDlgAttributeExpressionApplyingHandler(AModel: PModel; Value: string);
+procedure PMain.MainFormQuickDlgAttributeExpressionApplyingHandler
+  (AModel: PModel; Value: string);
 begin
   // * on Exception, process in QuickDialogFrm
   if AModel is PUMLAttribute then
     StarUMLApplication.ApplyAttributeExpression(AModel as PUMLAttribute, Value);
 end;
 
-procedure PMain.MainFormQuickDlgOperationExpressionApplyingHandler(AModel: PModel; Value: string);
+procedure PMain.MainFormQuickDlgOperationExpressionApplyingHandler
+  (AModel: PModel; Value: string);
 begin
   // * on Exception, process in QuickDialogFrm
   if AModel is PUMLOperation then
     StarUMLApplication.ApplyOperationExpression(AModel as PUMLOperation, Value);
 end;
 
-procedure PMain.MainFormQuickDlgMessageExpressionApplyingHandler(AModel: PModel; Value: string);
+procedure PMain.MainFormQuickDlgMessageExpressionApplyingHandler(AModel: PModel;
+  Value: string);
 begin
   // * on Exception, process in QuickDialogFrm
   if (AModel is PUMLMessage) or (AModel is PUMLStimulus) then
-    StarUMLApplication.ApplyMessageExpresstion(AModel as PUMLModelElement, Value);
+    StarUMLApplication.ApplyMessageExpresstion
+      (AModel as PUMLModelElement, Value);
 end;
 
-procedure PMain.MainFormQuickDlgModelCreatingHandler(Owner: PModel; ModelKind: string; Argument: Integer = 0;
-  InsertIndex: Integer = -1);
+procedure PMain.MainFormQuickDlgModelCreatingHandler(Owner: PModel;
+  ModelKind: string; Argument: Integer = 0; InsertIndex: Integer = -1);
 begin
   try
     // PRECONDITION
     Assert(Owner <> nil);
     // PRECONDITION
-    StarUMLApplication.NewModel(Owner, ModelKind, Argument, nil, nil, InsertIndex);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.NewModel(Owner, ModelKind, Argument, nil, nil,
+      InsertIndex);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgModelCreatingWithNameHandler(Owner: PModel; ModelKind: string; Name: string = '');
+procedure PMain.MainFormQuickDlgModelCreatingWithNameHandler(Owner: PModel;
+  ModelKind: string; Name: string = '');
 begin
   try
     // PRECONDITION
     Assert(Owner <> nil);
     // PRECONDITION
     StarUMLApplication.NewModelWithName(Owner, ModelKind, Name);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1802,143 +2150,176 @@ procedure PMain.MainFormQuickDlgElementDeletingHandler(AModel: PModel);
 begin
   try
     StarUMLApplication.DeleteModel(AModel);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgVisibilityChangedHandler(AModel: PModel; Kind: PUMLVisibilityKind);
+procedure PMain.MainFormQuickDlgVisibilityChangedHandler(AModel: PModel;
+  Kind: PUMLVisibilityKind);
 var
   V: string;
 begin
   try
     V := UMLVisibilityKindToString(Kind);
     StarUMLApplication.ChangeModelAttribute(AModel, 'Visibility', V);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgAggregationKindChangingHandler(AModel: PModel; Kind: PUMLAggregationKind);
+procedure PMain.MainFormQuickDlgAggregationKindChangingHandler(AModel: PModel;
+  Kind: PUMLAggregationKind);
 var
   Str: string;
 begin
   try
     Str := UMLAggregationKindToString(Kind);
     StarUMLApplication.ChangeModelAttribute(AModel, 'Aggregation', Str);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgNavigableChangingHandler(AModel: PModel; IsNavigable: Boolean);
+procedure PMain.MainFormQuickDlgNavigableChangingHandler(AModel: PModel;
+  IsNavigable: Boolean);
 var
   Str: string;
 begin
   try
     Str := BooleanToString(IsNavigable);
     StarUMLApplication.ChangeModelAttribute(AModel, 'IsNavigable', Str);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgMultiplicityChangingHandler(AModel: PModel; Str: string);
+procedure PMain.MainFormQuickDlgMultiplicityChangingHandler(AModel: PModel;
+  Str: string);
 begin
   try
     StarUMLApplication.ChangeModelAttribute(AModel, 'Multiplicity', Str);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgActionKindChangingHandler(AModel: PModel; Kind: string);
+procedure PMain.MainFormQuickDlgActionKindChangingHandler(AModel: PModel;
+  Kind: string);
 begin
   try
     StarUMLApplication.ChangeActionKind(AModel, Kind);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgOperationChangingHandler(AModel: PModel; AnOp: PUMLOperation);
+procedure PMain.MainFormQuickDlgOperationChangingHandler(AModel: PModel;
+  AnOp: PUMLOperation);
 begin
   try
     StarUMLApplication.ChangeModelReference(AModel, 'Operation', AnOp);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgSignalChangingHandler(AModel: PModel; AnOp: PUMLSignal);
+procedure PMain.MainFormQuickDlgSignalChangingHandler(AModel: PModel;
+  AnOp: PUMLSignal);
 begin
   try
     StarUMLApplication.ChangeModelReference(AModel, 'Signal', AnOp);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgInstantiationChangingHandler(AModel: PModel; AnOp: PUMLClassifier);
+procedure PMain.MainFormQuickDlgInstantiationChangingHandler(AModel: PModel;
+  AnOp: PUMLClassifier);
 begin
   try
     StarUMLApplication.ChangeModelReference(AModel, 'Instantiation', AnOp);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgNoteTextChangingHandler(AView: PUMLCustomTextView; Strs: string);
+procedure PMain.MainFormQuickDlgNoteTextChangingHandler
+  (AView: PUMLCustomTextView; Strs: string);
 begin
   try
     StarUMLApplication.ChangeNoteViewStrings(AView, Strs);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgOrderChangingHandler(AModel: PModel; AnItem: PModel; Key: string; NewOrder: Integer);
+procedure PMain.MainFormQuickDlgOrderChangingHandler(AModel: PModel;
+  AnItem: PModel; Key: string; NewOrder: Integer);
 begin
   try
     StarUMLApplication.ChangeCollectionItemOrder(AModel, AnItem, Key, NewOrder);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgSeqNumberChangingHandler(AElement: PElement; ACollectionItem: PElement; Key: string; NewIndex: Integer);
+procedure PMain.MainFormQuickDlgSeqNumberChangingHandler(AElement: PElement;
+  ACollectionItem: PElement; Key: string; NewIndex: Integer);
 begin
   try
-    StarUMLApplication.ChangeCollectionItemOrder(AElement, ACollectionItem, Key, NewIndex);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.ChangeCollectionItemOrder(AElement, ACollectionItem, Key,
+      NewIndex);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgObjectClassCreatingHandler(Owner: PUMLNamespace; AModel: PUMLModelElement; Name: string = '');
+procedure PMain.MainFormQuickDlgObjectClassCreatingHandler(Owner: PUMLNamespace;
+  AModel: PUMLModelElement; Name: string = '');
 begin
   try
     if AModel is PUMLObject then
-      StarUMLApplication.ChangeModelReferenceWithNamedModelCreating(AModel, 'Classifier', Owner, 'Class', True, Name)
+      StarUMLApplication.ChangeModelReferenceWithNamedModelCreating(AModel,
+        'Classifier', Owner, 'Class', True, Name)
     else if AModel is PUMLClassifierRole then
-      StarUMLApplication.ChangeModelReferenceWithNamedModelCreating(AModel, 'Base', Owner, 'Class', True, Name);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+      StarUMLApplication.ChangeModelReferenceWithNamedModelCreating(AModel,
+        'Base', Owner, 'Class', True, Name);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormQuickDlgCallActionOperationCreatingHandler(AClassifier: PUMLClassifier; ACallAction: PUMLCallAction; Name: string = '');
+procedure PMain.MainFormQuickDlgCallActionOperationCreatingHandler
+  (AClassifier: PUMLClassifier; ACallAction: PUMLCallAction; Name: string = '');
 begin
   try
-    StarUMLApplication.ChangeModelReferenceWithNamedModelCreating(ACallAction, 'Operation', AClassifier, 'Operation', False, Name);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.ChangeModelReferenceWithNamedModelCreating(ACallAction,
+      'Operation', AClassifier, 'Operation', False, Name);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.MainFormDockPanelActived( Sender: TdxCustomDockControl; Active: Boolean);
+procedure PMain.MainFormDockPanelActived(Sender: TdxCustomDockControl;
+  Active: Boolean);
 begin
-  if Active then begin
+  if Active then
+  begin
     if Sender = MainForm.PropertiesDockPanel then
       MainForm.InspectorFrame.Inspect
     else if Sender = MainForm.DocumentationDockPanel then
@@ -1948,7 +2329,8 @@ begin
   end;
 end;
 
-procedure PMain.BrowserFormElementSelectedHandler(Sender: TObject; Element: PModel);
+procedure PMain.BrowserFormElementSelectedHandler(Sender: TObject;
+  Element: PModel);
 var
   ContextMenuLaunched: Boolean;
 begin
@@ -1956,14 +2338,15 @@ begin
     ContextMenuLaunched := False;
 
     if Sender is TModelExplorerPanel then
-      ContextMenuLaunched := (Sender as TModelExplorerPanel).ContextMenuLaunched;
+      ContextMenuLaunched := (Sender as TModelExplorerPanel)
+        .ContextMenuLaunched;
 
-
-    StarUMLApplication.SelectModel(Element,ContextMenuLaunched);
-    //if (Element <> nil) and (Element.ViewCount > 0) then
-    //  StarUMLApplication.SelectView(Element.Views[0]);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.SelectModel(Element, ContextMenuLaunched);
+    // if (Element <> nil) and (Element.ViewCount > 0) then
+    // StarUMLApplication.SelectView(Element.Views[0]);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -1971,29 +2354,34 @@ procedure PMain.BrowserFormElementRelocatingHandler(Source, Target: PModel);
 begin
   try
     StarUMLApplication.RelocateModel(Source, Target);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.BrowserFormModelNameChangeHandler(Sender: TObject; Model: PModel; Name: string);
+procedure PMain.BrowserFormModelNameChangeHandler(Sender: TObject;
+  Model: PModel; Name: string);
 begin
   try
     if Model is PUMLModelElement then
       StarUMLApplication.ApplyGeneralNameExpression(Model as PUMLElement, Name)
     else
       StarUMLApplication.ChangeModelName(Model, Name);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.BrowserFormElementAttributeChangeHandler(Sender: TObject; Element: PElement; Key, Value: string);
+procedure PMain.BrowserFormElementAttributeChangeHandler(Sender: TObject;
+  Element: PElement; Key, Value: string);
 begin
   try
     StarUMLApplication.ChangeModelAttribute(Element as PModel, Key, Value);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2009,8 +2397,9 @@ procedure PMain.BrowserFormEnableGeneralEditMenu(Sender: TObject);
 begin
   try
     MenuStateHandler.GeneralEditMenuEnabled := True;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2018,251 +2407,329 @@ procedure PMain.BrowserFormDisableGeneralEditMenu(Sender: TObject);
 begin
   try
     MenuStateHandler.GeneralEditMenuEnabled := False;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.BrowserFormModelIndexChangingHandler(Sender: TObject; Owner: PModel;
-  Owned: PModel; Key: string; NewOrder: Integer);
+procedure PMain.BrowserFormModelIndexChangingHandler(Sender: TObject;
+  Owner: PModel; Owned: PModel; Key: string; NewOrder: Integer);
 begin
   try
     StarUMLApplication.ChangeCollectionItemOrder(Owner, Owned, Key, NewOrder);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormNameChanged(Sender: TObject; Element: PElement; Name: string);
+procedure PMain.InspectorFormNameChanged(Sender: TObject; Element: PElement;
+  Name: string);
 begin
   try
     StarUMLApplication.ChangeModelName(Element as PModel, Name);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormAttributeChanged(Sender: TObject; Element: PElement; Key, Value: string);
+procedure PMain.InspectorFormAttributeChanged(Sender: TObject;
+  Element: PElement; Key, Value: string);
 begin
   try
     StarUMLApplication.ChangeModelAttribute(Element as PModel, Key, Value);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormElementsAttributeChanged(Sender: TObject; ElementSet: POrderedSet; Key, Value: string);
+procedure PMain.InspectorFormElementsAttributeChanged(Sender: TObject;
+  ElementSet: PElementOrderedSet; Key, Value: string);
+var
+  E: PElement;
 begin
   try
-    StarUMLApplication.ChangeSelectedModelsAttribute(Key, Value);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    for E in ElementSet do
+      StarUMLApplication.ChangeModelAttribute(E as PModel, Key, Value);
+
+    // StarUMLApplication.ChangeSelectedModelsAttribute(Key, Value);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormReferenceChanged(Sender: TObject; Element: PElement; Key: string; Value: PElement);
+procedure PMain.InspectorFormReferenceChanged(Sender: TObject;
+  Element: PElement; Key: string; Value: PElement);
 begin
   try
-    StarUMLApplication.ChangeModelReference(Element as PModel, Key, Value as PModel);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.ChangeModelReference(Element as PModel, Key,
+      Value as PModel);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormTypeExpressionChanged(Sender: TObject; Element: PElement; Key, TypeExpr: string; TypeRef: PElement);
+procedure PMain.InspectorFormTypeExpressionChanged(Sender: TObject;
+  Element: PElement; Key, TypeExpr: string; TypeRef: PElement);
 begin
   try
-    StarUMLApplication.ChangeTypeExpression(Element as PModel, TypeExpr, TypeRef as PModel);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.ChangeTypeExpression(Element as PModel, TypeExpr,
+      TypeRef as PModel);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormElementsStereotypeChanged(Sender: TObject; ElementSet: POrderedSet; StereotypeProfile: string; Stereotype: string);
+procedure PMain.InspectorFormElementsStereotypeChanged(Sender: TObject;
+  ElementSet: PElementOrderedSet; StereotypeProfile: string;
+  Stereotype: string);
 begin
   try
-    StarUMLApplication.ChangeSelectedModelsStereotype(StereotypeProfile, Stereotype);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.ChangeSelectedModelsStereotype(StereotypeProfile,
+      Stereotype);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormActionKindChanged(Sender: TObject; Element: PElement; ActionKind: string);
+procedure PMain.InspectorFormActionKindChanged(Sender: TObject;
+  Element: PElement; ActionKind: string);
 begin
   try
     StarUMLApplication.ChangeActionKind(Element as PModel, ActionKind);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormValueExpressionChanged(Sender: TObject; Element: PElement; Key, ValueExpr: string; ValueRef: PElement);
+procedure PMain.InspectorFormValueExpressionChanged(Sender: TObject;
+  Element: PElement; Key, ValueExpr: string; ValueRef: PElement);
 begin
   try
-    StarUMLApplication.ChangeValueExpression(Element as PModel, ValueExpr, ValueRef as PModel);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.ChangeValueExpression(Element as PModel, ValueExpr,
+      ValueRef as PModel);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormCollectionItemCreated(Sender: TObject; AOwner: PModel; ACollectionName: string; AModelType: string; Argument: Integer);
+procedure PMain.InspectorFormCollectionItemCreated(Sender: TObject;
+  AOwner: PModel; ACollectionName: string; AModelType: string;
+  Argument: Integer);
 begin
   try
     StarUMLApplication.NewModel(AOwner, AModelType, Argument);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormCollectionItemDeleted(Sender: TObject; AOwner: PModel; ACollectionName: string; AModel: PModel);
+procedure PMain.InspectorFormCollectionItemDeleted(Sender: TObject;
+  AOwner: PModel; ACollectionName: string; AModel: PModel);
 begin
   try
     StarUMLApplication.DeleteModel(AModel);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormCollectionItemAdded(Sender: TObject; AOwner: PModel; ACollectionName: string; AModel: PModel);
+procedure PMain.InspectorFormCollectionItemAdded(Sender: TObject;
+  AOwner: PModel; ACollectionName: string; AModel: PModel);
 begin
   try
     StarUMLApplication.AddCollectionItem(AOwner, ACollectionName, AModel);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormCollectionItemRemoved(Sender: TObject; AOwner: PModel; ACollectionName: string; AModel: PModel);
+procedure PMain.InspectorFormCollectionItemRemoved(Sender: TObject;
+  AOwner: PModel; ACollectionName: string; AModel: PModel);
 begin
   try
     StarUMLApplication.RemoveCollectionItem(AOwner, ACollectionName, AModel);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormCollectionItemOrderChanged(Sender: TObject; AOwner: PModel; ACollectionName: string; AModel: PModel; NewIdx: Integer);
+procedure PMain.InspectorFormCollectionItemOrderChanged(Sender: TObject;
+  AOwner: PModel; ACollectionName: string; AModel: PModel; NewIdx: Integer);
 begin
   try
-    StarUMLApplication.ChangeCollectionItemOrder(AOwner, AModel, ACollectionName, NewIdx);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.ChangeCollectionItemOrder(AOwner, AModel,
+      ACollectionName, NewIdx);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormCollectionItemSelected(Sender: TObject; AOwner: PModel; ACollectionName: string; AModel: PModel);
+procedure PMain.InspectorFormCollectionItemSelected(Sender: TObject;
+  AOwner: PModel; ACollectionName: string; AModel: PModel);
 begin
   try
-    if not MainForm.ModelExplorer.Select(AModel) then // Model is present in Model explorer
+    if not MainForm.ModelExplorer.Select(AModel) then
+    // Model is present in Model explorer
       StarUMLApplication.SelectModel(AModel); // Otherwise (filtred out etc.)
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormCollectionItemNameChanged(Sender: TObject; AModel: PModel; Value: string);
+procedure PMain.InspectorFormCollectionItemNameChanged(Sender: TObject;
+  AModel: PModel; Value: string);
 begin
   try
     StarUMLApplication.ChangeModelName(AModel, Value);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormConstraintCreated(Sender: TObject; AModelElement: PUMLModelElement; AName: string; ABody: string);
+procedure PMain.InspectorFormConstraintCreated(Sender: TObject;
+  AModelElement: PUMLModelElement; AName: string; ABody: string);
 begin
   try
     StarUMLApplication.AddConstraint(AModelElement, AName, ABody);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormConstraintDeleted(Sender: TObject; AModelElement: PUMLModelElement; AConstraint: PConstraint);
+procedure PMain.InspectorFormConstraintDeleted(Sender: TObject;
+  AModelElement: PUMLModelElement; AConstraint: PConstraint);
 begin
   try
     StarUMLApplication.DeleteConstraint(AModelElement, AConstraint);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormConstraintChanged(Sender: TObject; AModelElement: PUMLModelElement; AConstraint: PConstraint; AName: string; ABody: string);
+procedure PMain.InspectorFormConstraintChanged(Sender: TObject;
+  AModelElement: PUMLModelElement; AConstraint: PConstraint; AName: string;
+  ABody: string);
 begin
   try
-    StarUMLApplication.ChangeConstraint(AModelElement, AConstraint, AName, ABody);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.ChangeConstraint(AModelElement, AConstraint,
+      AName, ABody);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormConstraintOrderChanged(Sender: TObject; AModelElement: PUMLModelElement; AConstraint: PConstraint; NewIdx: Integer);
+procedure PMain.InspectorFormConstraintOrderChanged(Sender: TObject;
+  AModelElement: PUMLModelElement; AConstraint: PConstraint; NewIdx: Integer);
 begin
   try
-    StarUMLApplication.ChangeConstraintOrder(AModelElement, AConstraint, NewIdx);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.ChangeConstraintOrder(AModelElement,
+      AConstraint, NewIdx);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormDataTaggedValueChanged(Sender: TObject; AModel: PExtensibleModel; AProfileName: string; ATagDefinitionSetName: string; AName: string; Value: string);
+procedure PMain.InspectorFormDataTaggedValueChanged(Sender: TObject;
+  AModel: PExtensibleModel; AProfileName: string; ATagDefinitionSetName: string;
+  AName: string; Value: string);
 begin
   try
-    StarUMLApplication.SetDataTaggedValue(AModel, AProfileName, ATagDefinitionSetName, AName, Value);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.SetDataTaggedValue(AModel, AProfileName,
+      ATagDefinitionSetName, AName, Value);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormReferenceTaggedValueChanged(Sender: TObject; AModel: PExtensibleModel; AProfileName: string; ATagDefinitionSetName: string; AName: string; Value: PExtensibleModel);
+procedure PMain.InspectorFormReferenceTaggedValueChanged(Sender: TObject;
+  AModel: PExtensibleModel; AProfileName: string; ATagDefinitionSetName: string;
+  AName: string; Value: PExtensibleModel);
 begin
   try
-    StarUMLApplication.SetReferenceTaggedValue(AModel, AProfileName, ATagDefinitionSetName, AName, Value);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.SetReferenceTaggedValue(AModel, AProfileName,
+      ATagDefinitionSetName, AName, Value);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormCollectionTaggedValueAdd(Sender: TObject; AModel: PExtensibleModel; AProfileName: string;
-  ATagDefinitionSetName: string; AName: string; Value: PExtensibleModel);
+procedure PMain.InspectorFormCollectionTaggedValueAdd(Sender: TObject;
+  AModel: PExtensibleModel; AProfileName: string; ATagDefinitionSetName: string;
+  AName: string; Value: PExtensibleModel);
 begin
   try
-    StarUMLApplication.AddCollectionTaggedValue(AModel, AProfileName, ATagDefinitionSetName, AName, Value);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.AddCollectionTaggedValue(AModel, AProfileName,
+      ATagDefinitionSetName, AName, Value);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormCollectionTaggedValueRemove(Sender: TObject; AModel: PExtensibleModel; AProfileName: string;
-  ATagDefinitionSetName: string; AName: string; Value: PExtensibleModel);
+procedure PMain.InspectorFormCollectionTaggedValueRemove(Sender: TObject;
+  AModel: PExtensibleModel; AProfileName: string; ATagDefinitionSetName: string;
+  AName: string; Value: PExtensibleModel);
 begin
   try
-    StarUMLApplication.RemoveCollectionTaggedValue(AModel, AProfileName, ATagDefinitionSetName, AName, Value);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.RemoveCollectionTaggedValue(AModel, AProfileName,
+      ATagDefinitionSetName, AName, Value);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormCollectionTaggedValueOrderChanged(Sender: TObject; AModel: PExtensibleModel; AProfileName: string;
-  ATagDefinitionSetName: string; AName: string; Value: PExtensibleModel; NewIdx: Integer);
+procedure PMain.InspectorFormCollectionTaggedValueOrderChanged(Sender: TObject;
+  AModel: PExtensibleModel; AProfileName: string; ATagDefinitionSetName: string;
+  AName: string; Value: PExtensibleModel; NewIdx: Integer);
 begin
   try
-    StarUMLApplication.ChangeCollectionTaggedValueOrder(AModel, AProfileName, ATagDefinitionSetName, AName, Value, NewIdx);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.ChangeCollectionTaggedValueOrder(AModel, AProfileName,
+      ATagDefinitionSetName, AName, Value, NewIdx);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormSetTaggedValueAsDefault(Sender: TObject; AModel: PExtensibleModel; AProfileName: string; ATagDefinitionSetName: string; AName: string);
+procedure PMain.InspectorFormSetTaggedValueAsDefault(Sender: TObject;
+  AModel: PExtensibleModel; AProfileName: string; ATagDefinitionSetName: string;
+  AName: string);
 begin
   try
-    StarUMLApplication.SetTaggedValueAsDefault(AModel, AProfileName, ATagDefinitionSetName, AName);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    StarUMLApplication.SetTaggedValueAsDefault(AModel, AProfileName,
+      ATagDefinitionSetName, AName);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormAttachmentOpen(Sender: TObject; Attachment: string; Kind: PAttachmentKind);
+procedure PMain.InspectorFormAttachmentOpen(Sender: TObject; Attachment: string;
+  Kind: PAttachmentKind);
 const
   NoError = 32;
 var
@@ -2272,17 +2739,23 @@ begin
     case Kind of
       akFile:
         begin
-          if FileExists(Attachment) then begin
-            OpenResult := ShellExecute(0, 'open', PChar(Attachment),'','',SW_SHOWNORMAL);
-            if OpenResult <= NoError then begin
+          if FileExists(Attachment) then
+          begin
+            OpenResult := ShellExecute(0, 'open', PChar(Attachment), '', '',
+              SW_SHOWNORMAL);
+            if OpenResult <= NoError then
+            begin
               if OpenResult = SE_ERR_NOASSOC then
-                Application.MessageBox(PChar(ERR_NOAPPLICATION_ASSOCIATED), PChar(Application.Title))
+                Application.MessageBox(PChar(ERR_NOAPPLICATION_ASSOCIATED),
+                  PChar(Application.Title))
               else
-                Application.MessageBox(PChar(ERR_ATTACH_CANNOT_OPEN), PChar(Application.Title))
+                Application.MessageBox(PChar(ERR_ATTACH_CANNOT_OPEN),
+                  PChar(Application.Title))
             end;
           end
           else
-            Application.MessageBox(PChar(ERR_ATTACH_FILE_NOT_FOUND), PChar(Application.Title));
+            Application.MessageBox(PChar(ERR_ATTACH_FILE_NOT_FOUND),
+              PChar(Application.Title));
         end;
       akURL:
         begin
@@ -2293,62 +2766,75 @@ begin
           BrowseElement(Attachment);
         end;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormAttachmentAdd(Sender: TObject; AModel: PModel; Attachment: string);
+procedure PMain.InspectorFormAttachmentAdd(Sender: TObject; AModel: PModel;
+  Attachment: string);
 begin
   try
     StarUMLApplication.AddAttachment(AModel, Attachment);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormAttachmentDelete(Sender: TObject; AModel: PModel; Index: Integer);
+procedure PMain.InspectorFormAttachmentDelete(Sender: TObject; AModel: PModel;
+  Index: Integer);
 begin
   try
     StarUMLApplication.DeleteAttachment(AModel, Index);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormAttachmentChange(Sender: TObject; AModel: PModel; Index: Integer; Attachment: string);
+procedure PMain.InspectorFormAttachmentChange(Sender: TObject; AModel: PModel;
+  Index: Integer; Attachment: string);
 begin
   try
     StarUMLApplication.ChangeAttachment(AModel, Index, Attachment);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormAttachmentOrderChange(Sender: TObject; AModel: PModel; Index: Integer; NewIndex: Integer);
+procedure PMain.InspectorFormAttachmentOrderChange(Sender: TObject;
+  AModel: PModel; Index: Integer; NewIndex: Integer);
 begin
   try
     StarUMLApplication.ChangeAttachmentOrder(AModel, Index, NewIndex);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormDocumentationChanged(Sender: TObject; Element: PModel; Documentation: string);
+procedure PMain.InspectorFormDocumentationChanged(Sender: TObject;
+  Element: PModel; Documentation: string);
 begin
   try
     StarUMLApplication.ChangeDocumentation(Element, Documentation);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.InspectorFormPropertySelected(Sender: TObject; PropertyName: string);
+procedure PMain.InspectorFormPropertySelected(Sender: TObject;
+  PropertyName: string);
 begin
   try
     // MainForm.UMLAdvisor.BrowseUMLAdvice(PropertyName);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2356,36 +2842,41 @@ procedure PMain.InformationFormBrowseElement(Sender: TObject; Model: PModel);
 begin
   try
     BrowseElement(Model);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.ProfileManagerFormProfileInclude(Sender: TObject; ProfileName: string);
+procedure PMain.ProfileManagerFormProfileInclude(Sender: TObject;
+  ProfileName: string);
 begin
   try
     StarUMLApplication.IncludeProfile(ProfileName);
     UpdateEditors(True);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.ProfileManagerFormProfileExclude(Sender: TObject; ProfileName: string);
+procedure PMain.ProfileManagerFormProfileExclude(Sender: TObject;
+  ProfileName: string);
 begin
   try
     StarUMLApplication.ExcludeProfile(ProfileName);
     UpdateEditors(True);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 {
-procedure PMain.InspectorFormDocumentationChange(Sender: TObject; Element: PModel; Documentation: TStrings);
-begin
+  procedure PMain.InspectorFormDocumentationChange(Sender: TObject; Element: PModel; Documentation: TStrings);
+  begin
   StarUMLApplication.ChangeDocumentation(Element, Documentation.Text);
-end;
+  end;
 
 }
 
@@ -2411,20 +2902,24 @@ begin
     // Inspect
     M := SelectTargetModel;
 
-    if M <> nil then begin
-      if M is PUMLModelElement then begin
-          ConstraintEditorForm.ConstrainedElement := M as PUMLModelElement;
-          TaggedValueEditorForm.Model := M as PExtensibleModel;
-        end;
-        MainForm.DocumentationEditor.InspectingElement := M;
-        MainForm.AttachmentEditor.TargetModel := M;
+    if M <> nil then
+    begin
+      if M is PUMLModelElement then
+      begin
+        ConstraintEditorForm.ConstrainedElement := PUMLModelElement(M);
+        TaggedValueEditorForm.Model := PExtensibleModel(M);
+      end;
+      MainForm.DocumentationEditor.InspectingElement := M;
+      MainForm.AttachmentEditor.TargetModel := M;
     end;
 
-    if StarUMLApplication.SelectedViewCount = 1 then
-      MainForm.InspectorFrame.AddInspectingElement(StarUMLApplication.SelectedViews[0].Model)
+    if StarUMLApplication.SelectedViewsOfOneModel then
+      MainForm.InspectorFrame.AddInspectingElement
+        (StarUMLApplication.SelectedViews[0].Model)
     else
       for I := 0 to StarUMLApplication.SelectedModelCount - 1 do
-        MainForm.InspectorFrame.AddInspectingElement(StarUMLApplication.SelectedModels[I]);
+        MainForm.InspectorFrame.AddInspectingElement
+          (StarUMLApplication.SelectedModels[I]);
 
     UpdateEditors(True);
 
@@ -2433,18 +2928,19 @@ begin
 
     // Setting Unit group
     if StarUMLApplication.SelectedModelCount <> 1 then
-       UnitSelectedGroupEnabled := False
-    else begin
+      UnitSelectedGroupEnabled := False
+    else
+    begin
       M := StarUMLApplication.SelectedModels[0];
-      UnitSelectedGroupEnabled :=
-        M.IsDocumentElement and
-        not (M.Document is PUMLUnitStubDocument) and
-        not (M is PUMLProject);
+      UnitSelectedGroupEnabled := M.IsDocumentElement and
+        not(M.Document is PUMLUnitStubDocument) and not(M is PUMLProject);
     end;
     MenuStateHandler.SetUnitSelectedGroup(UnitSelectedGroupEnabled);
 
-    MenuStateHandler.SetModelSelectedGroup(StarUMLApplication.SelectedModelCount = 1);
-    MenuStateHandler.SetViewSelectedGroup(StarUMLApplication.SelectedViewCount > 0);
+    MenuStateHandler.SetModelSelectedGroup
+      (StarUMLApplication.SelectedModelCount = 1);
+    MenuStateHandler.SetViewSelectedGroup
+      (StarUMLApplication.SelectedViewCount > 0);
     MenuStateHandler.UpdateFileMenus;
     MenuStateHandler.UpdateEditMenus;
     MenuStateHandler.UpdateFormatMenus;
@@ -2452,31 +2948,36 @@ begin
     MenuStateHandler.UpdateStatusBar;
     MenuStateHandler.EndUpdate;
     EventPublisher.NotifyEvent(EK_SELECTION_CHANGED);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.DiagramActivatedHandler(Sender: TObject);
 begin
   try
-    if StarUMLApplication.ActiveDiagram <> nil then begin
+    if StarUMLApplication.ActiveDiagram <> nil then
+    begin
       MainForm.WorkingAreaFrame.UpdateActiveDiagram;
-      MainForm.WorkingAreaFrame.RedrawActiveDiagram;
+      // MainForm.WorkingAreaFrame.RedrawActiveDiagram;
       SelectionChangedHandler(Sender);
       EventPublisher.NotifyEvent(EK_DIAGRAM_ACTIVATED);
     end;
     MenuStateHandler.BeginUpdate;
-    MenuStateHandler.SetDiagramActivatedGroup(StarUMLApplication.ActiveDiagram <> nil);
+    MenuStateHandler.SetDiagramActivatedGroup
+      (StarUMLApplication.ActiveDiagram <> nil);
     MenuStateHandler.UpdateTopLevelMenus;
     MenuStateHandler.UpdateEditMenus;
     MenuStateHandler.EndUpdate;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.ElementsCreatedHandler(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
+procedure PMain.ElementsCreatedHandler(Sender: TObject;
+  Models: PModelOrderedSet; Views: PViewOrderedSet);
 
   procedure CollectDiagrams(AModel: PModel; Diagrams: POrderedSet);
   var
@@ -2493,26 +2994,27 @@ var
   I: Integer;
 begin
   try
-  {
-    for I := 0 to Models.Count - 1 do begin
+    {
+      for I := 0 to Models.Count - 1 do begin
       AModel := Models.Items[I] as PModel;
       AModel.UpdateViews;
       if Assigned(AModel.VirtualNamespace) then AModel.VirtualNamespace.UpdateViews;
-    end;
-    for I := 0 to Views.Count - 1 do begin
+      end;
+      for I := 0 to Views.Count - 1 do begin
       AView := Views.Items[I] as PView;
       AView.Update;
-    end;
-  }
+      end;
+    }
     MainForm.WorkingAreaFrame.UpdateActiveDiagram;
     MainForm.WorkingAreaFrame.RedrawActiveDiagram;
 
-    //-- MainForm.BrowserFrame.AddModels(Models);
+    // -- MainForm.BrowserFrame.AddModels(Models);
     Screen.Cursor := crHourGlass;
     MainForm.ModelExplorer.AddModels(Models);
     Diagrams := POrderedSet.Create;
     try
-      for I := 0 to Models.Count - 1 do begin
+      for I := 0 to Models.Count - 1 do
+      begin
         if Models.Items[I] is PDiagram then
           Diagrams.Add(Models.Items[I])
         else
@@ -2528,28 +3030,33 @@ begin
 
     EventPublisher.NotifyEvent(EK_ELEMENTS_ADDED);
     // if Models.Count > 0 then MainForm.BrowserFrame.Select(Models.Items[0] as PModel);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.ElementsDeletingHandler(Sender: TObject; Models: PModelOrderedSet; Views: PViewOrderedSet);
+procedure PMain.ElementsDeletingHandler(Sender: TObject;
+  Models: PModelOrderedSet; Views: PViewOrderedSet);
 var
   I: Integer;
 begin
   try
     if Models.Count > 0 then
     begin
-      //--MainForm.BrowserFrame.DeleteModels(Models);
+      // --MainForm.BrowserFrame.DeleteModels(Models);
       Screen.Cursor := crHourGlass;
       MainForm.ModelExplorer.DeleteModels(Models);
-      for I := 0 to Models.Count - 1 do begin
-        if Models.Items[I] is PUMLDiagram then begin
-         MainForm.DiagramExplorer.DeleteDiagram(Models.Items[I] as PUMLDiagram);
+      for I := 0 to Models.Count - 1 do
+      begin
+        if Models.Items[I] is PUMLDiagram then
+        begin
+          MainForm.DiagramExplorer.DeleteDiagram
+            (Models.Items[I] as PUMLDiagram);
         end;
       end;
       Screen.Cursor := crDefault;
-      //--.
+      // --.
     end;
 
     // if model is going to be deleted, remove Diagram Tab
@@ -2557,15 +3064,16 @@ begin
     begin
       if Models.Items[I] is PUMLDiagram then
         MainForm.WorkingAreaFrame.CloseDiagram(Models.Items[I] as PUMLDiagram);
-      //--MainForm.InformationFrame.DeleteMessagesLinkedTo(Models.Items[I] as PElement);
+      // --MainForm.InformationFrame.DeleteMessagesLinkedTo(Models.Items[I] as PElement);
       MainForm.MessagePanel.DeleteMessagesLinkedTo(Models.Items[I] as PElement);
     end;
     // if model is going to be deleted, exclude from selection
     StarUMLApplication.DeselectModelsViews(Models, Views);
-    //UpdateEditors; // No need for update yet
+    // UpdateEditors; // No need for update yet
     EventPublisher.NotifyEvent(EK_ELEMENTS_DELETING);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2576,8 +3084,9 @@ begin
     MainForm.WorkingAreaFrame.RedrawActiveDiagram;
     UpdateEditors(True);
     EventPublisher.NotifyEvent(EK_ELEMENTS_DELETED);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2587,21 +3096,21 @@ var
   ASet: PModelOrderedSet;
 begin
   try
-  {
-    for I := 0 to Models.Count - 1 do begin
+    {
+      for I := 0 to Models.Count - 1 do begin
       (Models.Items[I] as PModel).UpdateViews;
       if (Models.Items[I] as PModel).VirtualNamespace <> nil then
-        (Models.Items[I] as PModel).VirtualNamespace.UpdateViews;
+      (Models.Items[I] as PModel).VirtualNamespace.UpdateViews;
       if (Models.Items[I] is PUMLDiagram) then begin
-        (Models.Items[I] as PUMLDiagram).DiagramView.Update;
+      (Models.Items[I] as PUMLDiagram).DiagramView.Update;
       end;
-    end;
-  }
+      end;
+    }
     MainForm.WorkingAreaFrame.UpdateDiagramTabs;
     MainForm.WorkingAreaFrame.UpdateActiveDiagram;
     MainForm.WorkingAreaFrame.RedrawActiveDiagram;
 
-    //-- MainForm.BrowserFrame.UpdateModels(Models);
+    // -- MainForm.BrowserFrame.UpdateModels(Models);
     ASet := PModelOrderedSet.Create;
     try
       ASet.Assign(Models);
@@ -2626,8 +3135,9 @@ begin
     UpdateEditors;
 
     EventPublisher.NotifyEvent(EK_MODELS_CHANGED);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2636,8 +3146,9 @@ begin
   try
     if Diagram <> nil then
       MainForm.WorkingAreaFrame.OpenDiagram(Diagram);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2645,13 +3156,13 @@ procedure PMain.SelectModelInExplorer(Sender: TObject; Model: PModel);
 begin
   try
     if Model <> nil then
-      //-- MainForm.BrowserFrame.Select(Model);
+      // -- MainForm.BrowserFrame.Select(Model);
       MainForm.ModelExplorer.Select(Model);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
-
 
 procedure PMain.ClipboardDataChangedHandler(Kind: PClipboardDataKind);
 begin
@@ -2659,8 +3170,9 @@ begin
     MenuStateHandler.BeginUpdate;
     MenuStateHandler.UpdateEditMenus;
     MenuStateHandler.EndUpdate;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2670,32 +3182,35 @@ begin
     MenuStateHandler.BeginUpdate;
     MenuStateHandler.UpdateEditMenus;
     MenuStateHandler.EndUpdate;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.BeginUpdateHandler(Sender: TObject);
 begin
   try
-  {
-    StarUMLApplication.DeselectAll;
-    MainForm.InspectorFrame.ClearInspectingElements;
-    MainForm.InspectorFrame.Inspect;
-  }
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    {
+      StarUMLApplication.DeselectAll;
+      MainForm.InspectorFrame.ClearInspectingElements;
+      MainForm.InspectorFrame.Inspect;
+    }
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.EndUpdateHandler(Sender: TObject; CompletelyRebuild, UseUpdateLock: Boolean);
+procedure PMain.EndUpdateHandler(Sender: TObject;
+  CompletelyRebuild, UseUpdateLock: Boolean);
 var
   SelectedModel: PModel;
 begin
   try
     StarUMLApplication.UpdateDocuments;
 
-    //--MainForm.BrowserFrame.RebuildAll(CompletelyRebuild, UseUpdateLock);
+    // --MainForm.BrowserFrame.RebuildAll(CompletelyRebuild, UseUpdateLock);
     Screen.Cursor := crHourGlass;
 
     MainForm.ModelExplorer.RebuildAll(CompletelyRebuild, UseUpdateLock);
@@ -2720,8 +3235,9 @@ begin
     MenuStateHandler.UpdateViewMenus;
     MenuStateHandler.UpdateStatusBar;
     MenuStateHandler.EndUpdate;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2731,12 +3247,15 @@ begin
     MenuStateHandler.UpdateModelMenus;
     MainForm.ModelExplorer.Repaint;
     MainForm.WorkingAreaFrame.UpdateAllDiagrams;
-    if StarUMLApplication.ActiveDiagram <> nil then begin
-      InteractionManager.ChangePaletteVisibility(StarUMLApplication.ActiveDiagram.Diagram as PUMLDiagram);
+    if StarUMLApplication.ActiveDiagram <> nil then
+    begin
+      InteractionManager.ChangePaletteVisibility
+        (StarUMLApplication.ActiveDiagram.Diagram as PUMLDiagram);
       MainForm.WorkingAreaFrame.RedrawActiveDiagram;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2746,12 +3265,15 @@ begin
     MenuStateHandler.UpdateModelMenus;
     MainForm.ModelExplorer.Refresh;
     MainForm.WorkingAreaFrame.UpdateAllDiagrams;
-    if StarUMLApplication.ActiveDiagram <> nil then begin
-      InteractionManager.ChangePaletteVisibility(StarUMLApplication.ActiveDiagram.Diagram as PUMLDiagram);
+    if StarUMLApplication.ActiveDiagram <> nil then
+    begin
+      InteractionManager.ChangePaletteVisibility
+        (StarUMLApplication.ActiveDiagram.Diagram as PUMLDiagram);
       MainForm.WorkingAreaFrame.RedrawActiveDiagram;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2767,8 +3289,9 @@ begin
     MenuStateHandler.UpdateFormatMenus;
     MenuStateHandler.EndUpdate;
     EventPublisher.NotifyEvent(EK_VIEWS_CHANGED);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2779,8 +3302,9 @@ begin
     MenuStateHandler.UpdateStatusBar;
     MenuStateHandler.EndUpdate;
     EventPublisher.NotifyEvent(EK_DOCUMENT_MODIFIED);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2791,15 +3315,16 @@ begin
     MenuStateHandler.UpdateStatusBar;
     MenuStateHandler.EndUpdate;
     EventPublisher.NotifyEvent(EK_DOCUMENT_SAVED);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.ProjectOpenedHandler(Sender: TObject);
 begin
   try
-    //-- MainForm.BrowserFrame.Project := StarUMLApplication.Project;
+    // -- MainForm.BrowserFrame.Project := StarUMLApplication.Project;
     MainForm.ModelExplorer.Project := StarUMLApplication.Project;
     MainForm.DiagramExplorer.Project := StarUMLApplication.Project;
 
@@ -2809,7 +3334,8 @@ begin
       MainForm.DiagramExplorer.Clear;
 
     end
-    else begin
+    else
+    begin
       // RebuildAll;
       Screen.Cursor := crHourGlass;
       MainForm.ModelExplorer.RebuildAll;
@@ -2819,7 +3345,7 @@ begin
 
     MainForm.InspectorFrame.Project := StarUMLApplication.Project;
 
-    //-- MainForm.BrowserFrame.SelectInModelExplorer(StarUMLApplication.Project);
+    // -- MainForm.BrowserFrame.SelectInModelExplorer(StarUMLApplication.Project);
     SelectModelExplorerDockPanel(StarUMLApplication.Project);
     SetupMainFormCaption;
     if MainForm.Visible then
@@ -2830,8 +3356,9 @@ begin
     MenuStateHandler.UpdateStatusBar;
 
     EventPublisher.NotifyEvent(EK_PROJECT_OPENED);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2844,8 +3371,9 @@ begin
     MenuStateHandler.UpdateStatusBar;
     MenuStateHandler.EndUpdate;
     EventPublisher.NotifyEvent(EK_PROJECT_SAVED);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2854,8 +3382,9 @@ begin
   try
     MainForm.WorkingAreaFrame.CloseAllDiagrams;
     EventPublisher.NotifyEvent(EK_PROJECT_CLOSING);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2863,12 +3392,12 @@ procedure PMain.ProjectClosedHandler(Sender: TObject);
 begin
   try
 
-    //-- MainForm.BrowserFrame.Project := nil;
+    // -- MainForm.BrowserFrame.Project := nil;
     MainForm.ModelExplorer.Project := nil;
     MainForm.DiagramExplorer.Project := nil;
     MainForm.ModelExplorer.Clear;
     MainForm.DiagramExplorer.Clear;
-    //--
+    // --
 
     MainForm.InspectorFrame.ClearInspectingElements;
     MainForm.AttachmentEditor.TargetModel := nil;
@@ -2892,12 +3421,14 @@ begin
     MenuStateHandler.EndUpdate;
 
     EventPublisher.NotifyEvent(EK_PROJECT_CLOSED);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.ProjectCloseQueryHandler(Sender: TObject; var CanClose: Boolean);
+procedure PMain.ProjectCloseQueryHandler(Sender: TObject;
+  var CanClose: Boolean);
 var
   R: Integer;
   MainDoc: PDocument;
@@ -2907,8 +3438,11 @@ begin
       MainDoc := StarUMLApplication.DocumentElements[0].Document
     else
       MainDoc := nil;
-    if StarUMLApplication.Modified and Assigned(MainDoc) and not MainDoc.ReadOnly then begin
-      R := MessageDlg(QUERY_SAVE_MODIFICATION, mtConfirmation, mbYesNoCancel, 0);
+    if StarUMLApplication.Modified and Assigned(MainDoc) and not MainDoc.ReadOnly
+    then
+    begin
+      R := MessageDlg(QUERY_SAVE_MODIFICATION, mtConfirmation,
+        mbYesNoCancel, 0);
       case R of
         mrYes:
           CanClose := ExecuteFileSave;
@@ -2916,14 +3450,14 @@ begin
           CanClose := True;
         mrCancel:
           CanClose := False;
-        else
-          Assert(False); // Code should not get here
+      else
+        Assert(False); // Code should not get here
       end
     end
     else
       CanClose := True;
   except
-    on  E: Exception do
+    on E: Exception do
     begin
       MessageDlg(E.Message, mtError, [mbOK], 0);
       CanClose := False;
@@ -2936,21 +3470,23 @@ var
   Models: PModelOrderedSet;
 begin
   try
-    if Assigned(APackage) then begin
+    if Assigned(APackage) then
+    begin
       Models := PModelOrderedSet.Create;
       Models.Clear;
       try
         Models.Add(APackage);
-        //-- MainForm.BrowserFrame.UpdateModels(Models);
+        // -- MainForm.BrowserFrame.UpdateModels(Models);
         MainForm.ModelExplorer.UpdateModels(Models);
-        //--
+        // --
         EventPublisher.NotifyEvent(EK_UNIT_SEPARATED);
       finally
         Models.Free;
       end;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -2965,57 +3501,66 @@ var
   Models: PModelOrderedSet;
 begin
   try
-    if Assigned(APackage) then begin
+    if Assigned(APackage) then
+    begin
       Models := PModelOrderedSet.Create;
       Models.Clear;
       try
         Models.Add(APackage);
-        //--MainForm.BrowserFrame.UpdateModels(Models);
+        // --MainForm.BrowserFrame.UpdateModels(Models);
         MainForm.ModelExplorer.UpdateModels(Models);
-        //--
+        // --
         EventPublisher.NotifyEvent(EK_UNIT_MERGED);
       finally
         Models.Free;
       end;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.UnitOpenedHandler(Sender: TObject; APackage: PUMLPackage);
 begin
   try
-    //--MainForm.BrowserFrame.RebuildAll;
+    // --MainForm.BrowserFrame.RebuildAll;
     Screen.Cursor := crHourGlass;
     MainForm.ModelExplorer.RebuildAll;
     MainForm.DiagramExplorer.RebuildAll;
     Screen.Cursor := crDefault;
-    //--
+    // --
     EventPublisher.NotifyEvent(EK_UNIT_OPENED);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.SavingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
+procedure PMain.SavingProgressHandler(Sender: TObject; Info: string;
+  Max, Progress: Integer);
 var
   P: Integer;
 begin
   try
     P := Round((Progress / Max) * 100);
-    if Progress < Max then begin
+    if Progress < Max then
+    begin
       MainForm.SetStatusBarInfo(Info + ' ' + MSG_STATUS_FILE_SAVING, P);
       Screen.Cursor := crHourGlass;
     end
-    else begin
-      MainForm.SetStatusBarInfo(Info + ' ' + MSG_STATUS_FILE_SAVING_COMPLETE, P);
-      MainForm.SetStatusBarInfo(Info + ' ' + MSG_STATUS_FILE_SAVING_COMPLETE, 0);
+    else
+    begin
+      MainForm.SetStatusBarInfo
+        (Info + ' ' + MSG_STATUS_FILE_SAVING_COMPLETE, P);
+      MainForm.SetStatusBarInfo
+        (Info + ' ' + MSG_STATUS_FILE_SAVING_COMPLETE, 0);
       LogManager.Log(Info + ' ' + MSG_STATUS_FILE_SAVING_COMPLETE);
       Screen.Cursor := crDefault;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -3024,8 +3569,8 @@ var
   ImageDlg: TOpenPictureDialog;
   Stream: TStringStream;
   Graphic: TGraphic;
-  //Bitmap: TBitmap;
-  //Metafile: TMetafile;
+  // Bitmap: TBitmap;
+  // Metafile: TMetafile;
   ImageType: string;
   ImageFileName: string;
   FileExt: string;
@@ -3034,131 +3579,158 @@ begin
   ImageDlg := nil;
   try
     ImageDlg := TOpenPictureDialog.Create(Application);
-    ImageDlg.Filter := 'All image files (*.jpg;*.png;*.gif;*.bmp;*.emf;*.wmf)|*.jpg;*.png;*.gif;*.bmp;*.emf;*.wmf';
+    ImageDlg.Filter :=
+      'All image files (*.jpg;*.png;*.gif;*.bmp;*.emf;*.wmf)|*.jpg;*.png;*.gif;*.bmp;*.emf;*.wmf';
 
-    if ImageDlg.Execute then begin
+    if ImageDlg.Execute then
+    begin
       AImageView.ResetImageData;
       ImageFileName := ImageDlg.FileName;
       FileExt := LowerCase(ExtractFileExt(ImageFileName));
-      if (FileExt = '.emf') or (FileExt = '.wmf') then begin
+      if (FileExt = '.emf') or (FileExt = '.wmf') then
+      begin
         Graphic := TMetafile.Create;
         Graphic.LoadFromFile(ImageFileName);
-        StarUMLApplication.ChangeViewAttribute(AImageView, 'Type_', 'ikMetafile');
+        StarUMLApplication.ChangeViewAttribute(AImageView, 'Type_',
+          'ikMetafile');
       end
-      else begin
-        Graphic := CreateGraphic(ImageFileName,ImageType);
+      else
+      begin
+        Graphic := CreateGraphic(ImageFileName, ImageType);
         StarUMLApplication.ChangeViewAttribute(AImageView, 'Type_', ImageType);
       end;
 
       Stream := TStringStream.Create('');
       Graphic.SaveToStream(Stream);
-      StarUMLApplication.ChangeViewAttribute(AImageView, 'ImageData', B64EncodeUnicodeIntf(Stream.DataString));
+      StarUMLApplication.ChangeViewAttribute(AImageView, 'ImageData',
+        B64EncodeUnicodeIntf(Stream.DataString));
       Graphic.Free;
       Stream.Free;
     end; // End of if ImageDlg.Execute
-  except on
-    E: Exception do MessageDlg(E.Message, mtWarning, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtWarning, [mbOK], 0);
   end; // End of try
   ImageDlg.Free;
 end;
 
-procedure PMain.LoadingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
+procedure PMain.LoadingProgressHandler(Sender: TObject; Info: string;
+  Max, Progress: Integer);
 var
   P: Integer;
 begin
   try
     P := Round((Progress / Max) * 100);
-    if Progress < Max then begin
+    if Progress < Max then
+    begin
       MainForm.SetStatusBarInfo(Info + ' ' + MSG_STATUS_FILE_LOADING, P);
       Screen.Cursor := crHourGlass;
     end
-    else begin
-      MainForm.SetStatusBarInfo(Info + ' ' + MSG_STATUS_FILE_LOADING_COMPLETE, P);
-      MainForm.SetStatusBarInfo(Info + ' ' + MSG_STATUS_FILE_LOADING_COMPLETE, 0);
+    else
+    begin
+      MainForm.SetStatusBarInfo
+        (Info + ' ' + MSG_STATUS_FILE_LOADING_COMPLETE, P);
+      MainForm.SetStatusBarInfo
+        (Info + ' ' + MSG_STATUS_FILE_LOADING_COMPLETE, 0);
       LogManager.Log(Info + ' ' + MSG_STATUS_FILE_LOADING_COMPLETE);
       Screen.Cursor := crDefault;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.ResolvingProgressHandler(Sender: TObject; Info: string; Max, Progress: Integer);
+procedure PMain.ResolvingProgressHandler(Sender: TObject; Info: string;
+  Max, Progress: Integer);
 var
   P: Integer;
 begin
   try
     P := Round((Progress / Max) * 100);
-    if Progress < Max then begin
+    if Progress < Max then
+    begin
       MainForm.SetStatusBarInfo(MSG_STATUS_REFERENCE_RESOLVING, P);
       Screen.Cursor := crHourGlass;
     end
-    else begin
+    else
+    begin
       MainForm.SetStatusBarInfo(MSG_STATUS_REFERENCE_RESOLVING_COMPLETE, P);
       MainForm.SetStatusBarInfo(MSG_STATUS_REFERENCE_RESOLVING_COMPLETE, 0);
       Screen.Cursor := crDefault;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.LogHandler(Sender: TObject; Log: string);
 begin
   try
-    //--MainForm.InformationFrame.Output(Log);
+    // --MainForm.InformationFrame.Output(Log);
     MainForm.OutputPanel.Output(Log);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.FindStarted(Sender: TObject);
 begin
   try
-    //--MainForm.InformationFrame.ClearMessages(mkFindResult);
+    // --MainForm.InformationFrame.ClearMessages(mkFindResult);
     MainForm.MessagePanel.ClearMessages(mkFindResult);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.FindFinished(Sender: TObject);
 begin
   try
-    if MainForm.Visible then begin
-      with MainForm do begin
+    if MainForm.Visible then
+    begin
+      with MainForm do
+      begin
         if not MessageDockPanel.Visible then
           MessageDockPanel.Visible := True;
         if MessageDockPanel.ParentDockControl is TdxTabContainerDockSite then
-          (MessageDockPanel.ParentDockControl as TdxTabContainerDockSite).ActiveChild := MessageDockPanel;
-        MessageDlg(Format(MSG_ELEMENTS_FOUND, [FindForm.FoundedElementCount]), mtInformation, [mbOK], 0);
+          (MessageDockPanel.ParentDockControl as TdxTabContainerDockSite)
+            .ActiveChild := MessageDockPanel;
+        MessageDlg(Format(MSG_ELEMENTS_FOUND, [FindForm.FoundedElementCount]),
+          mtInformation, [mbOK], 0);
         dxDockingController.ActiveDockControl := MessageDockPanel;
         MessagePanel.SetFocus;
       end;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.ModelElementFound(Sender: TObject; AModel: PModel);
 begin
   try
-    //--MainForm.InformationFrame.AddMessage(mkFindResult, '(' + AModel.MetaClass.Name + ') ' + AModel.Pathname, AModel);
-    MainForm.MessagePanel.AddMessage(mkFindResult, '(' + AModel.MetaClass.Name + ') ' + AModel.Pathname, AModel);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    // --MainForm.InformationFrame.AddMessage(mkFindResult, '(' + AModel.MetaClass.Name + ') ' + AModel.Pathname, AModel);
+    MainForm.MessagePanel.AddMessage(mkFindResult, '(' + AModel.MetaClass.Name +
+      ') ' + AModel.PathName, AModel);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.BeginVerificationHandler(Sender: TObject);
 begin
   try
-    //--MainForm.InformationFrame.ClearMessages(mkVerificationResult);
+    // --MainForm.InformationFrame.ClearMessages(mkVerificationResult);
     MainForm.MessagePanel.ClearMessages(mkVerificationResult);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -3172,59 +3744,68 @@ begin
 
     Failed := UMLVerifier.VerificationFailedCount;
     if Failed > 0 then
-      MessageDlg(Format(MSG_VERIFICATION_FAILED, [Failed]), mtInformation, [mbOK], 0)
+      MessageDlg(Format(MSG_VERIFICATION_FAILED, [Failed]), mtInformation,
+        [mbOK], 0)
     else
       MessageDlg(MSG_VERIFICATION_ALL_PASSED, mtInformation, [mbOK], 0);
 
     ModelVerifierForm.VerificationProgressBar.Position := 0;
-    //if MainForm.Visible then
+    // if MainForm.Visible then
     MainForm.MessagePanel.Show;
     begin
       {
-      if not MainForm.InformationVisible then
+        if not MainForm.InformationVisible then
         MainForm.InformationVisible := True;
       }
-      //--MainForm.InformationFrame.SetFocusOnMessagePanel;
-      //MainForm.MessagePanel.SetFocus;
+      // --MainForm.InformationFrame.SetFocusOnMessagePanel;
+      // MainForm.MessagePanel.SetFocus;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.BeginVerifyItemHandler(Sender: TObject; VerifyItem: PUMLVerifyItem);
+procedure PMain.BeginVerifyItemHandler(Sender: TObject;
+  VerifyItem: PUMLVerifyItem);
 begin
   try
     ModelVerifierForm.VerifyingRuleNameLabel.Caption := VerifyItem.Title;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.EndVerifyItemHandler(Sender: TObject; VerifyItem: PUMLVerifyItem);
+procedure PMain.EndVerifyItemHandler(Sender: TObject;
+  VerifyItem: PUMLVerifyItem);
 var
   P: Integer;
 begin
   try
-    P := Round((UMLVerifier.IndexOfVerifyItem(VerifyItem) / (UMLVerifier.VerifyItemCount-1)) * 100);
+    P := Round((UMLVerifier.IndexOfVerifyItem(VerifyItem) /
+      (UMLVerifier.VerifyItemCount - 1)) * 100);
     ModelVerifierForm.VerificationProgressBar.Position := P;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.VerifiedHandler(Sender: TObject; VerifyItem: PUMLVerifyItem; Model: PModel);
+procedure PMain.VerifiedHandler(Sender: TObject; VerifyItem: PUMLVerifyItem;
+  Model: PModel);
 begin
   try
-    ModelVerifierForm.VerifyingElementNameLabel.Caption := Model.Pathname;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    ModelVerifierForm.VerifyingElementNameLabel.Caption := Model.PathName;
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.ValidateNetFramework;
 const
-  NetFrameworkv4CP  = 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client';
+  NetFrameworkv4CP = 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client';
   NetFrameworkv4CPShortName = '4.0 Client Profile';
 var
   Reg: TRegistry;
@@ -3238,33 +3819,38 @@ begin
   finally
     Reg.Free;
     if not FrameworkPresent then
-      MessageDlg(Format(MSG_NO_NET_FRAMEWORK,[NetFrameworkv4CPShortName]),
-        mtWarning,[mbOK],0);
+      MessageDlg(Format(MSG_NO_NET_FRAMEWORK, [NetFrameworkv4CPShortName]),
+        mtWarning, [mbOK], 0);
   end
 end;
 
-procedure PMain.VerificationFailedHandler(Sender: TObject; VerifyItem: PUMLVerifyItem; Model: PModel);
+procedure PMain.VerificationFailedHandler(Sender: TObject;
+  VerifyItem: PUMLVerifyItem; Model: PModel);
 var
   S: string;
 begin
   try
-    ModelVerifierForm.VerificationFailedCountLabel.Caption := IntToStr(UMLVerifier.VerificationFailedCount) + ' item(s)';
+    ModelVerifierForm.VerificationFailedCountLabel.Caption :=
+      IntToStr(UMLVerifier.VerificationFailedCount) + ' item(s)';
     S := '';
-    if Model <> nil then S := '(' + Model.Name + ') ';
+    if Model <> nil then
+      S := '(' + Model.Name + ') ';
     S := S + VerifyItem.Title;
-    //--MainForm.InformationFrame.AddMessage(mkVerificationResult, S, Model);
+    // --MainForm.InformationFrame.AddMessage(mkVerificationResult, S, Model);
     MainForm.MessagePanel.AddMessage(mkVerificationResult, S, Model);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
-procedure PMain.AddInManagerMessageHandler(str: string);
+procedure PMain.AddInManagerMessageHandler(Str: string);
 begin
   try
-    LogManager.Log(str);
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+    LogManager.Log(Str);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -3278,30 +3864,35 @@ var
   Attachment: string;
   ItemCaption: string;
 begin
-   // Setting Go To Items
-    M := SelectTargetModel;
-    if Assigned(M) then begin
-      MainForm.EditGoToItemList.Items.Clear;
-      MainForm.EditGoToItemList.OnClick := MainEditGoToItemListClickHandler;
+  // Setting Go To Items
+  M := SelectTargetModel;
+  if Assigned(M) then
+  begin
+    MainForm.EditGoToItemList.Items.Clear;
+    MainForm.EditGoToItemList.OnClick := MainEditGoToItemListClickHandler;
 
-      // Handle classifer of a UML instance type
-      if M is PUMLInstance then begin
-        Classifier := PUMLInstance(M).Classifier;
-        if Assigned(Classifier) then begin
-          ItemCaption := CLASSIFIER_MONIKER + GetModelCaption(Classifier);
-          MainForm.EditGoToItemList.Items.AddObject(ItemCaption, Classifier);
-        end;
+    // Handle classifer of a UML instance type
+    if M is PUMLInstance then
+    begin
+      Classifier := PUMLInstance(M).Classifier;
+      if Assigned(Classifier) then
+      begin
+        ItemCaption := CLASSIFIER_MONIKER + GetModelCaption(Classifier);
+        MainForm.EditGoToItemList.Items.AddObject(ItemCaption, Classifier);
       end;
+    end;
 
-      // Handle attachments
-      for Attachment in M.Attachments do begin
-        M := GetModelFromGuid(Attachment);
-        if Assigned(M) then begin
-          ItemCaption := ATTACHMENT_MONIKER + GetModelCaption(M);
-          MainForm.EditGoToItemList.Items.AddObject(ItemCaption, M);
-        end;
+    // Handle attachments
+    for Attachment in M.Attachments do
+    begin
+      M := GetModelFromGuid(Attachment);
+      if Assigned(M) then
+      begin
+        ItemCaption := ATTACHMENT_MONIKER + GetModelCaption(M);
+        MainForm.EditGoToItemList.Items.AddObject(ItemCaption, M);
       end;
-   end;
+    end;
+  end;
 end;
 
 procedure PMain.MainEditGoToItemListClickHandler(Sender: TObject);
@@ -3314,7 +3905,7 @@ begin
   BrowseElement(Model);
 end;
 
-////////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
 // Inner utility methods
 
 procedure PMain.ConnectHandlersOnApplicationEvents;
@@ -3330,7 +3921,8 @@ end;
 
 procedure PMain.ConnectHandlersOnMainFormEvents;
 begin
-  with MainForm do begin
+  with MainForm do
+  begin
     OnShow := MainFormShowHandler;
     OnStarted := MainFormStartedHandler;
     OnClose := MainFormCloseHandler;
@@ -3345,14 +3937,16 @@ begin
     OnViewMoving := MainFormViewMovingHandler;
     OnViewContainerChanging := MainFormViewContainerChangingHandler;
     OnSelectedViewsMoving := MainFormSelectedViewsMovingHandler;
-    OnSelectedViewsContainerChanging := MainFormSelectedViewsContainerChangingHandler;
+    OnSelectedViewsContainerChanging :=
+      MainFormSelectedViewsContainerChangingHandler;
     OnParasiticViewMoving := MainFormParasiticViewMovingHandler;
     OnNodeResizing := MainFormNodeResizingHandler;
     OnEdgeModifying := MainFormEdgeModifyingHandler;
     OnEdgeReconnecting := MainFormEdgeReonnectingHandler;
     OnViewDoubleClicked := MainFormViewDoubleClickedHandler;
     OnFileMenuClicked := MainFormFileMenuClickedHandler;
-    OnEditFindDiagramsWithSelectedModelClicked := MainFormEditFindDiagramsWithSelectedModelClickedHandler;
+    OnEditFindDiagramsWithSelectedModelClicked :=
+      MainFormEditFindDiagramsWithSelectedModelClickedHandler;
     OnEditMenuClicked := MainFormEditMenuClickedHandler;
     OnEditGoToPopup := MainSetupGoToItemListPopUp;
     OnFormatMenuClicked := MainFormFormatMenuClickedHandler;
@@ -3368,39 +3962,54 @@ begin
     OnHelpMenuClicked := MainFormHelpMenuClickedHandler;
     OnRecentFileAdd := MainFormRecentFileAddHandler;
     OnRecentFileClicked := MainFormRecentFileClickedHandler;
-    OnInspectorAttachmentButtonClicked := MainFormInspectorAttachmentButtonClickedHandler;
-    MainForm.OnInformationMessagesButtonClicked := MainFormInformationMessagesButtonClickedHandler;
+    OnInspectorAttachmentButtonClicked :=
+      MainFormInspectorAttachmentButtonClickedHandler;
+    MainForm.OnInformationMessagesButtonClicked :=
+      MainFormInformationMessagesButtonClickedHandler;
     OnDiagramViewDragOver := MainFormDiagramViewDragOveredHandler;
     OnDiagramViewDragDrop := MainFormDiagramViewDragDropHandler;
-    OnGeneralNameExpressionApplying := MainFormQuickDlgGeneralNameExpressionApplyingHandler;
-    OnClassifierRoleExpressionApplying := MainFormQuickDlgClassifierRoleExpressionApplyingHandler;
-    OnObjectExpressionApplying := MainFormQuickDlgInstanceExpressionApplyingHandler;
-    OnAttributeExpressionApplying := MainFormQuickDlgAttributeExpressionApplyingHandler;
-    OnOperationExpressionApplying := MainFormQuickDlgOperationExpressionApplyingHandler;
-    OnMessageExpressionApplying := MainFormQuickDlgMessageExpressionApplyingHandler;
+    OnGeneralNameExpressionApplying :=
+      MainFormQuickDlgGeneralNameExpressionApplyingHandler;
+    OnClassifierRoleExpressionApplying :=
+      MainFormQuickDlgClassifierRoleExpressionApplyingHandler;
+    OnObjectExpressionApplying :=
+      MainFormQuickDlgInstanceExpressionApplyingHandler;
+    OnAttributeExpressionApplying :=
+      MainFormQuickDlgAttributeExpressionApplyingHandler;
+    OnOperationExpressionApplying :=
+      MainFormQuickDlgOperationExpressionApplyingHandler;
+    OnMessageExpressionApplying :=
+      MainFormQuickDlgMessageExpressionApplyingHandler;
     OnQuickDlgModelCreating := MainFormQuickDlgModelCreatingHandler;
-    OnQuickDlgModelCreatingWithName := MainFormQuickDlgModelCreatingWithNameHandler;
+    OnQuickDlgModelCreatingWithName :=
+      MainFormQuickDlgModelCreatingWithNameHandler;
     OnQuickDlgElementDeleting := MainFormQuickDlgElementDeletingHandler;
     OnQuickDlgVisibilityChanging := MainFormQuickDlgVisibilityChangedHandler;
-    OnQuickDlgAggregationKindChanging := MainFormQuickDlgAggregationKindChangingHandler;
+    OnQuickDlgAggregationKindChanging :=
+      MainFormQuickDlgAggregationKindChangingHandler;
     OnQuickDlgNavigableChanging := MainFormQuickDlgNavigableChangingHandler;
-    OnQuickDlgMultiplicityChanging := MainFormQuickDlgMultiplicityChangingHandler;
+    OnQuickDlgMultiplicityChanging :=
+      MainFormQuickDlgMultiplicityChangingHandler;
     OnQuickDlgActionKindChanging := MainFormQuickDlgActionKindChangingHandler;
     OnQuickDlgOperationChanging := MainFormQuickDlgOperationChangingHandler;
     OnQuickDlgSignalChanging := MainFormQuickDlgSignalChangingHandler;
-    OnQuickDlgInstantiationChanging := MainFormQuickDlgInstantiationChangingHandler;
+    OnQuickDlgInstantiationChanging :=
+      MainFormQuickDlgInstantiationChangingHandler;
     OnQuickDlgNoteTextChanging := MainFormQuickDlgNoteTextChangingHandler;
     OnQuickDlgSeqNumberChanging := MainFormQuickDlgSeqNumberChangingHandler;
     OnQuickDlgOrderChanging := MainFormQuickDlgOrderChangingHandler;
     OnQuickDlgObjectClassCreating := MainFormQuickDlgObjectClassCreatingHandler;
-    OnQuickDlgCallActionOperationCreating := MainFormQuickDlgCallActionOperationCreatingHandler;
+    OnQuickDlgCallActionOperationCreating :=
+      MainFormQuickDlgCallActionOperationCreatingHandler;
     OnWMDrawClipboard := MainFormWMDrawClipboardHandler;
     OnWMDropFiles := MainFormWMDropFilesHandler;
     OnWMChangeCBChain := MainFormWMChangeCBChainHandler;
-    WorkingAreaFrame.OnActiveDiagramEditorChanged := MainFormActiveDiagramEditorChangedHandler;
-    //DiagramTabPopupMenu.OnPopup := MainFormDiagramTabPopupMenuPopupHandler;
+    WorkingAreaFrame.OnActiveDiagramEditorChanged :=
+      MainFormActiveDiagramEditorChangedHandler;
+    // DiagramTabPopupMenu.OnPopup := MainFormDiagramTabPopupMenuPopupHandler;
     DiagramMapForm.OnDiagramMapMove := MainFormDiagramMapFormMouseMoveHandler;
-    DockingManager.OnActiveDockControlChanged := MainFormActiveDockControlChangedHandler;
+    DockingManager.OnActiveDockControlChanged :=
+      MainFormActiveDockControlChangedHandler;
     OnDockPanelVisibleChanged := MainFormDockPanelVisibleChangedHandler;
     OnDiagramOpen := MainFormDiagramOpenHandler;
     OnDiagramClose := MainFormDiagramCloseHandler;
@@ -3410,41 +4019,46 @@ end;
 
 procedure PMain.ConnectHandlersOnNewProjectFormEvents;
 begin
-  with NewProjectForm do begin
+  with NewProjectForm do
+  begin
     OnRecentFileDelete := NewProjFormRecentFileDeleteHandler;
   end;
 end;
 
 procedure PMain.ConnectHandlersOnBrowserFormEvents;
 begin
-  with MainForm do begin
-    //-- OnElementSelected := BrowserFormElementSelectedHandler;
+  with MainForm do
+  begin
+    // -- OnElementSelected := BrowserFormElementSelectedHandler;
     ModelExplorer.OnElementSelected := BrowserFormElementSelectedHandler;
-    DiagramExplorer.OnElementSelected  := BrowserFormElementSelectedHandler;
-    //-- OnElementRelocating := BrowserFormElementRelocatingHandler;
-    ModelExplorer.OnElementRelocating  := BrowserFormElementRelocatingHandler;
-    //-- OnModelNameChange := BrowserFormModelNameChangeHandler;
+    DiagramExplorer.OnElementSelected := BrowserFormElementSelectedHandler;
+    // -- OnElementRelocating := BrowserFormElementRelocatingHandler;
+    ModelExplorer.OnElementRelocating := BrowserFormElementRelocatingHandler;
+    // -- OnModelNameChange := BrowserFormModelNameChangeHandler;
     ModelExplorer.OnModelNameChange := BrowserFormModelNameChangeHandler;
     DiagramExplorer.OnModelNameChange := BrowserFormModelNameChangeHandler;
-    //-- OnElementAttributeChange := BrowserFormElementAttributeChangeHandler;
-    ModelExplorer.OnElementAttributeChange := BrowserFormElementAttributeChangeHandler;
-    //-- OnBrowseDiagram := BrowseDiagramHandler;
+    // -- OnElementAttributeChange := BrowserFormElementAttributeChangeHandler;
+    ModelExplorer.OnElementAttributeChange :=
+      BrowserFormElementAttributeChangeHandler;
+    // -- OnBrowseDiagram := BrowseDiagramHandler;
     ModelExplorer.OnBrowseDiagram := BrowseDiagramHandler;
     DiagramExplorer.OnBrowseDiagram := BrowseDiagramHandler;
-    //-- OnEnableGeneralEditMenu := BrowserFormEnableGeneralEditMenu;
+    // -- OnEnableGeneralEditMenu := BrowserFormEnableGeneralEditMenu;
     ModelExplorer.OnEnableGeneralEditMenu := BrowserFormEnableGeneralEditMenu;
     DiagramExplorer.OnEnableGeneralEditMenu := BrowserFormEnableGeneralEditMenu;
-    //-- OnDisableGeneralEditMenu := BrowserFormDisableGeneralEditMenu;
+    // -- OnDisableGeneralEditMenu := BrowserFormDisableGeneralEditMenu;
     ModelExplorer.OnDisableGeneralEditMenu := BrowserFormDisableGeneralEditMenu;
-    DiagramExplorer.OnDisableGeneralEditMenu := BrowserFormDisableGeneralEditMenu;
-    //-- OnModelIndexChanging := BrowserFormModelIndexChangingHandler;
-    ModelExplorer.OnModelIndexChanging:= BrowserFormModelIndexChangingHandler;
+    DiagramExplorer.OnDisableGeneralEditMenu :=
+      BrowserFormDisableGeneralEditMenu;
+    // -- OnModelIndexChanging := BrowserFormModelIndexChangingHandler;
+    ModelExplorer.OnModelIndexChanging := BrowserFormModelIndexChangingHandler;
   end;
 end;
 
 procedure PMain.ConnectHandlersOnInspectorFormEvents;
 begin
-  with MainForm.InspectorFrame do begin
+  with MainForm.InspectorFrame do
+  begin
     OnNameChange := InspectorFormNameChanged;
     OnAttributeChange := InspectorFormAttributeChanged;
     OnElementsAttributeChange := InspectorFormElementsAttributeChanged;
@@ -3461,31 +4075,46 @@ begin
   MainForm.AttachmentEditor.OnAttachmentAdd := InspectorFormAttachmentAdd;
   MainForm.AttachmentEditor.OnAttachmentDelete := InspectorFormAttachmentDelete;
   MainForm.AttachmentEditor.OnAttachmentChange := InspectorFormAttachmentChange;
-  MainForm.AttachmentEditor.OnAttachmentOrderChange := InspectorFormAttachmentOrderChange;
+  MainForm.AttachmentEditor.OnAttachmentOrderChange :=
+    InspectorFormAttachmentOrderChange;
 
   // Documentation Editor
-  MainForm.DocumentationEditor.OnDocumentationChange := InspectorFormDocumentationChanged;
+  MainForm.DocumentationEditor.OnDocumentationChange :=
+    InspectorFormDocumentationChanged;
   // Collection Editor
-  CollectionEditorForm.OnCollectionItemCreate := InspectorFormCollectionItemCreated;
-  CollectionEditorForm.OnCollectionItemDelete := InspectorFormCollectionItemDeleted;
+  CollectionEditorForm.OnCollectionItemCreate :=
+    InspectorFormCollectionItemCreated;
+  CollectionEditorForm.OnCollectionItemDelete :=
+    InspectorFormCollectionItemDeleted;
   CollectionEditorForm.OnCollectionItemAdd := InspectorFormCollectionItemAdded;
-  CollectionEditorForm.OnCollectionItemRemove := InspectorFormCollectionItemRemoved;
-  CollectionEditorForm.OnCollectionItemOrderChange := InspectorFormCollectionItemOrderChanged;
-  CollectionEditorForm.OnCollectionItemSelected := InspectorFormCollectionItemSelected;
-  CollectionEditorForm.OnCollectionItemNameChanged := InspectorFormCollectionItemNameChanged;
+  CollectionEditorForm.OnCollectionItemRemove :=
+    InspectorFormCollectionItemRemoved;
+  CollectionEditorForm.OnCollectionItemOrderChange :=
+    InspectorFormCollectionItemOrderChanged;
+  CollectionEditorForm.OnCollectionItemSelected :=
+    InspectorFormCollectionItemSelected;
+  CollectionEditorForm.OnCollectionItemNameChanged :=
+    InspectorFormCollectionItemNameChanged;
   // Constraint Editor
   ConstraintEditorForm.OnConstraintCreate := InspectorFormConstraintCreated;
   ConstraintEditorForm.OnConstraintDelete := InspectorFormConstraintDeleted;
   ConstraintEditorForm.OnConstraintChange := InspectorFormConstraintChanged;
-  ConstraintEditorForm.OnConstraintOrderChange := InspectorFormConstraintOrderChanged;
+  ConstraintEditorForm.OnConstraintOrderChange :=
+    InspectorFormConstraintOrderChanged;
 
   // TaggedValue Editor
-  TaggedValueEditorForm.OnDataTaggedValueChange := InspectorFormDataTaggedValueChanged;
-  TaggedValueEditorForm.OnReferenceTaggedValueChange := InspectorFormReferenceTaggedValueChanged;
-  TaggedValueEditorForm.OnAddCollectionTaggedValue := InspectorFormCollectionTaggedValueAdd;
-  TaggedValueEditorForm.OnRemoveCollectionTaggedValue := InspectorFormCollectionTaggedValueRemove;
-  TaggedValueEditorForm.OnChangeCollectionTaggedValueOrder := InspectorFormCollectionTaggedValueOrderChanged;
-  TaggedValueEditorForm.OnSetTaggedValueAsDefault := InspectorFormSetTaggedValueAsDefault;
+  TaggedValueEditorForm.OnDataTaggedValueChange :=
+    InspectorFormDataTaggedValueChanged;
+  TaggedValueEditorForm.OnReferenceTaggedValueChange :=
+    InspectorFormReferenceTaggedValueChanged;
+  TaggedValueEditorForm.OnAddCollectionTaggedValue :=
+    InspectorFormCollectionTaggedValueAdd;
+  TaggedValueEditorForm.OnRemoveCollectionTaggedValue :=
+    InspectorFormCollectionTaggedValueRemove;
+  TaggedValueEditorForm.OnChangeCollectionTaggedValueOrder :=
+    InspectorFormCollectionTaggedValueOrderChanged;
+  TaggedValueEditorForm.OnSetTaggedValueAsDefault :=
+    InspectorFormSetTaggedValueAsDefault;
 
 end;
 
@@ -3496,7 +4125,8 @@ end;
 
 procedure PMain.ConnectHandlersOnStarUMLApplicationEvents;
 begin
-  with StarUMLApplication do begin
+  with StarUMLApplication do
+  begin
     OnSelectionChanged := SelectionChangedHandler;
     OnDiagramActivated := DiagramActivatedHandler;
     OnElementsCreated := ElementsCreatedHandler;
@@ -3561,10 +4191,14 @@ procedure PMain.ConnectHandlersOnInteractionManagerEvents;
 begin
   InteractionManager.OnModelAdding := InteractionManagerModelAddingHandler;
   InteractionManager.OnDiagramAdding := InteractionManagerDiagramAddingHandler;
-  InteractionManager.OnExtModelAdding := InteractionManagerExtendedModelAddingHandler;
-  InteractionManager.OnExtDiagramAdding := InteractionManagerExtendedDiagramAddingHandler;
-  InteractionManager.OnElementCreating := InteractionManagerElementCreatingHandler;
-  InteractionManager.OnExtElementCreating := InteractionManagerExtElementCreatingHandler;
+  InteractionManager.OnExtModelAdding :=
+    InteractionManagerExtendedModelAddingHandler;
+  InteractionManager.OnExtDiagramAdding :=
+    InteractionManagerExtendedDiagramAddingHandler;
+  InteractionManager.OnElementCreating :=
+    InteractionManagerElementCreatingHandler;
+  InteractionManager.OnExtElementCreating :=
+    InteractionManagerExtElementCreatingHandler;
 end;
 
 procedure PMain.ExecuteSaveAllUnits;
@@ -3573,7 +4207,7 @@ var
 begin
   if StarUMLApplication.UnitsModified then
   begin
-    R :=Application.MessageBox(PChar(QUERY_SAVE_CHANGED_UNITS),
+    R := Application.MessageBox(PChar(QUERY_SAVE_CHANGED_UNITS),
       PChar(Application.Title), MB_ICONQUESTION or MB_YESNO);
     if R = IDYES then
       StarUMLApplication.SaveAllUnits;
@@ -3586,55 +4220,65 @@ begin
   try
     if NewProjectForm.DefaultApproachName = '' then
       StarUMLApplication.NewProject
-    else begin
+    else
+    begin
       StarUMLApplication.NewProject(NewProjectForm.DefaultApproachName);
       MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 procedure PMain.ExecuteFileSelectProject;
 begin
-  if NewProjectForm.Execute then begin
+  if NewProjectForm.Execute then
+  begin
     case NewProjectForm.ProjectActionKind of
-      akNew: begin
-        try
-          if NewProjectForm.ApproachName = '' then
-          begin
-            StarUMLApplication.NewProject;
-          end else
-          begin
-            // if default approach setting is changed,
-            // Main's DefaultApproach property is set to changed value
-            StarUMLApplication.NewProject(NewProjectForm.ApproachName);
-            MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
+      akNew:
+        begin
+          try
+            if NewProjectForm.ApproachName = '' then
+            begin
+              StarUMLApplication.NewProject;
+            end
+            else
+            begin
+              // if default approach setting is changed,
+              // Main's DefaultApproach property is set to changed value
+              StarUMLApplication.NewProject(NewProjectForm.ApproachName);
+              MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
+            end;
+          except
+            on E: Exception do
+              MessageDlg(E.Message, mtError, [mbOK], 0);
           end;
-        except on
-          E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
         end;
-      end;
 
-      akOpen: begin
-       try
-          StarUMLApplication.OpenProject(NewProjectForm.FileName);
-          MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
-          MainForm.AddRecentFile(StarUMLApplication.FileName);
-        except on
-          E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+      akOpen:
+        begin
+          try
+            StarUMLApplication.OpenProject(NewProjectForm.FileName);
+            MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
+            MainForm.AddRecentFile(StarUMLApplication.FileName);
+          except
+            on E: Exception do
+              MessageDlg(E.Message, mtError, [mbOK], 0);
+          end;
         end;
-      end;
 
-      akRecent: begin
-        try
-          StarUMLApplication.OpenProject(NewProjectForm.FileName);
-          MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
-          MainForm.AddRecentFile(StarUMLApplication.FileName);
-        except on
-          E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+      akRecent:
+        begin
+          try
+            StarUMLApplication.OpenProject(NewProjectForm.FileName);
+            MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
+            MainForm.AddRecentFile(StarUMLApplication.FileName);
+          except
+            on E: Exception do
+              MessageDlg(E.Message, mtError, [mbOK], 0);
+          end;
         end;
-      end;
     end;
   end;
 end;
@@ -3644,17 +4288,21 @@ begin
   if MainForm.OpenDialog.Execute then
   begin
     try
-      StarUMLApplication.OpenProject(MainForm.OpenDialog.FileName,AFileAccessType);
+      StarUMLApplication.OpenProject(MainForm.OpenDialog.FileName,
+        AFileAccessType);
       MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
       MainForm.AddRecentFile(StarUMLApplication.FileName);
     except
-      on E: EDOMParseError do begin
-        MessageDlg(ERR_INVALID_MODEL_FILE + #13#10 + E.Message, mtError, [mbOK], 0);
+      on E: EDOMParseError do
+      begin
+        MessageDlg(ERR_INVALID_MODEL_FILE + #13#10 + E.Message, mtError,
+          [mbOK], 0);
         Screen.Cursor := crDefault;
         MainForm.SetStatusBarInfo('', 0);
         StarUMLApplication.NewProject('');
       end;
-      on EReadOnlyFile do begin
+      on EReadOnlyFile do
+      begin
         Screen.Cursor := crDefault;
         MainForm.SetStatusBarInfo('', 0);
         StarUMLApplication.NewProject('');
@@ -3673,7 +4321,8 @@ begin
       ExecuteSaveAllUnits;
     end;
   end
-  else begin
+  else
+  begin
     MainForm.SaveDialog.FileName := StarUMLApplication.Project.Title;
     try
       if MainForm.SaveDialog.Execute then
@@ -3683,8 +4332,10 @@ begin
         ExecuteSaveAllUnits;
       end;
     except
-      on SaveDialogEx.EDirectoryNotFound do MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
-      on SaveDialogEx.EInvalidFileName do MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
+      on SaveDialogEx.EDirectoryNotFound do
+        MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
+      on SaveDialogEx.EInvalidFileName do
+        MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
     end;
   end;
   UpdateDocumentElements;
@@ -3703,8 +4354,10 @@ begin
       ExecuteSaveAllUnits;
     end;
   except
-    on SaveDialogEx.EDirectoryNotFound do MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
-    on SaveDialogEx.EInvalidFileName do MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
+    on SaveDialogEx.EDirectoryNotFound do
+      MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
+    on SaveDialogEx.EInvalidFileName do
+      MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
   end;
   UpdateDocumentElements;
 end;
@@ -3719,21 +4372,25 @@ var
   Pkg: PUMLPackage;
 begin
   if (StarUMLApplication.SelectedModelCount = 1) and
-     (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
+    (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
   begin
     try
       Pkg := StarUMLApplication.SelectedModels[0] as PUMLPackage;
       CheckReadOnly(Pkg);
       MainForm.SaveUnitDialog.FileName := Pkg.Name;
-      if MainForm.SaveUnitDialog.Execute then begin
+      if MainForm.SaveUnitDialog.Execute then
+      begin
         StarUMLApplication.SeparateUnit(Pkg, MainForm.SaveUnitDialog.FileName);
         MenuStateHandler.SetUnitSelectedGroup(True);
         MenuStateHandler.UpdateFileMenus;
       end;
     except
-      on SaveDialogEx.EDirectoryNotFound do MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
-      on SaveDialogEx.EInvalidFileName do MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
-      on EReadOnlyDocument do MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
+      on SaveDialogEx.EDirectoryNotFound do
+        MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
+      on SaveDialogEx.EInvalidFileName do
+        MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
+      on EReadOnlyDocument do
+        MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
     end;
   end;
 end;
@@ -3742,17 +4399,18 @@ procedure PMain.ExecuteFileUnitsUnloadUnit;
 var
   APackage: PUMLPackage;
 begin
- if (StarUMLApplication.SelectedModelCount = 1) and
-     (StarUMLApplication.SelectedModels[0] is PUMLPackage) and
-     StarUMLApplication.SelectedModels[0].IsDocumentElement and
-     (StarUMLApplication.SelectedModels[0].Document is PUMLUnitDocument) then
+  if (StarUMLApplication.SelectedModelCount = 1) and
+    (StarUMLApplication.SelectedModels[0] is PUMLPackage) and
+    StarUMLApplication.SelectedModels[0].IsDocumentElement and
+    (StarUMLApplication.SelectedModels[0].Document is PUMLUnitDocument) then
   begin
     APackage := StarUMLApplication.SelectedModels[0] as PUMLPackage;
 
     try
       CheckReadOnly(APackage.Namespace);
     except
-      on EReadOnlyDocument do begin
+      on EReadOnlyDocument do
+      begin
         MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
         Exit;
       end;
@@ -3766,15 +4424,19 @@ end;
 procedure PMain.ExecuteFileUnitsMergeUnit;
 begin
   if (StarUMLApplication.SelectedModelCount = 1) and
-     (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
+    (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
   begin
-    if StarUMLApplication.SelectedModels[0].IsDocumentElement then begin
+    if StarUMLApplication.SelectedModels[0].IsDocumentElement then
+    begin
       try
-        CheckReadOnly((StarUMLApplication.SelectedModels[0] as PUMLPackage).Namespace);
+        CheckReadOnly((StarUMLApplication.SelectedModels[0] as PUMLPackage)
+          .Namespace);
       except
-        on EReadOnlyDocument do MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
+        on EReadOnlyDocument do
+          MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
       end;
-      StarUMLApplication.MergeUnit(StarUMLApplication.SelectedModels[0] as PUMLPackage);
+      StarUMLApplication.MergeUnit(StarUMLApplication.SelectedModels[0]
+        as PUMLPackage);
       MenuStateHandler.SetUnitSelectedGroup(False);
       MenuStateHandler.UpdateFileMenus;
     end;
@@ -3791,18 +4453,20 @@ var
   Models: PModelOrderedSet;
 begin
   if (StarUMLApplication.SelectedModelCount = 1) and
-     (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
+    (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
   begin
     UnitStubDoc := nil;
     try
       ParentPackage := StarUMLApplication.SelectedModels[0] as PUMLPackage;
 
-      if ParentPackage.Document is PUMLUnitStubDocument then begin // Loading unit from stub
+      if ParentPackage.Document is PUMLUnitStubDocument then
+      begin // Loading unit from stub
         UnitStubDoc := ParentPackage.Document as PUMLUnitStubDocument;
         ParentPackage := UnitStubDoc.PackageStubOwner;
         UnitFileName := UnitStubDoc.FullFilePath;
       end
-      else begin // Normal unit
+      else
+      begin // Normal unit
         CheckReadOnly(ParentPackage);
         MainForm.OpenUnitDialog.FileName := '';
         if MainForm.OpenUnitDialog.Execute then
@@ -3812,7 +4476,8 @@ begin
       end;
 
       AUnit := StarUMLApplication.OpenUnit(ParentPackage, UnitFileName);
-      if Assigned(UnitStubDoc) then begin // Clean stub node
+      if Assigned(UnitStubDoc) then
+      begin // Clean stub node
         Models := PModelOrderedSet.Create;
         Models.Add(UnitStubDoc.DocumentElement as PModel);
         MainForm.ModelExplorer.DeleteModels(Models);
@@ -3826,7 +4491,8 @@ begin
       SelectModelExplorerDockPanel(UnitPackage);
 
     except
-      on EReadOnlyDocument do MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
+      on EReadOnlyDocument do
+        MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
     end;
   end;
 end;
@@ -3836,22 +4502,24 @@ var
   R: Integer;
   AUnit: PUMLUnitDocument;
   APackage: PUMLPackage;
-  DeleteConfirmationMsg : string;
+  DeleteConfirmationMsg: string;
 begin
   if (StarUMLApplication.SelectedModelCount = 1) and
-     (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
+    (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
   begin
     APackage := StarUMLApplication.SelectedModels[0] as PUMLPackage;
     try
       CheckReadOnly(APackage.Namespace);
     except
-      on EReadOnlyDocument do begin
+      on EReadOnlyDocument do
+      begin
         MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
         Exit;
       end;
     end;
     AUnit := APackage.Document as PUMLUnitDocument;
-    DeleteConfirmationMsg := Format(QUERY_DELETE_UNIT, [ExtractFileName(AUnit.FileName)]);
+    DeleteConfirmationMsg := Format(QUERY_DELETE_UNIT,
+      [ExtractFileName(AUnit.FileName)]);
     R := MessageDlg(DeleteConfirmationMsg, mtConfirmation, mbOKCancel, 0);
     if R = mrOK then
       StarUMLApplication.DeleteUnit(APackage);
@@ -3861,9 +4529,10 @@ end;
 procedure PMain.ExecuteFileUnitsSave;
 begin
   if (StarUMLApplication.SelectedModelCount = 1) and
-     (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
+    (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
   begin
-    StarUMLApplication.SaveUnit(StarUMLApplication.SelectedModels[0] as PUMLPackage);
+    StarUMLApplication.SaveUnit(StarUMLApplication.SelectedModels[0]
+      as PUMLPackage);
   end;
   UpdateDocumentElements;
 end;
@@ -3871,19 +4540,25 @@ end;
 procedure PMain.ExecuteFileUnitsSaveAs;
 begin
   if (StarUMLApplication.SelectedModelCount = 1) and
-     (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
+    (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
   begin
-    if StarUMLApplication.SelectedModels[0].IsDocumentElement then begin
+    if StarUMLApplication.SelectedModels[0].IsDocumentElement then
+    begin
       try
-        CheckReadOnly((StarUMLApplication.SelectedModels[0] as PUMLPackage).Namespace);
-        MainForm.SaveUnitDialog.FileName := StarUMLApplication.SelectedModels[0].Document.FileName;
+        CheckReadOnly((StarUMLApplication.SelectedModels[0] as PUMLPackage)
+          .Namespace);
+        MainForm.SaveUnitDialog.FileName := StarUMLApplication.SelectedModels[0]
+          .Document.FileName;
         if MainForm.SaveUnitDialog.Execute then
-          StarUMLApplication.SaveUnitAs(StarUMLApplication.SelectedModels[0] as PUMLPackage,
-            MainForm.SaveUnitDialog.FileName);
+          StarUMLApplication.SaveUnitAs(StarUMLApplication.SelectedModels[0]
+            as PUMLPackage, MainForm.SaveUnitDialog.FileName);
       except
-        on SaveDialogEx.EDirectoryNotFound do MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
-        on SaveDialogEx.EInvalidFileName do MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
-        on EReadOnlyDocument do MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
+        on SaveDialogEx.EDirectoryNotFound do
+          MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
+        on SaveDialogEx.EInvalidFileName do
+          MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
+        on EReadOnlyDocument do
+          MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
       end;
     end;
   end;
@@ -3892,28 +4567,34 @@ end;
 
 procedure PMain.ExecuteFileImportFramework;
 begin
-  if ImportFrameworkForm.Execute then begin
-    ElementSelectorForm.Filter([PUMLProject, PUMLModel, PUMLSubsystem, PUMLPackage]);
+  if ImportFrameworkForm.Execute then
+  begin
+    ElementSelectorForm.Filter([PUMLProject, PUMLModel, PUMLSubsystem,
+      PUMLPackage]);
     ElementSelectorForm.ClearSelectableModels;
     ElementSelectorForm.AddSelectableModel(PUMLProject);
     ElementSelectorForm.AddSelectableModel(PUMLModel);
     ElementSelectorForm.AddSelectableModel(PUMLSubsystem);
     ElementSelectorForm.AddSelectableModel(PUMLPackage);
     ElementSelectorForm.AllowNull := False;
-    if ElementSelectorForm.Execute(MSG_ELEMSELTTL_IMPORT_FRAMEWORK) then begin
+    if ElementSelectorForm.Execute(MSG_ELEMSELTTL_IMPORT_FRAMEWORK) then
+    begin
       try
         CheckReadOnly(ElementSelectorForm.SelectedModel);
       except
-        on EReadOnlyDocument do MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
+        on EReadOnlyDocument do
+          MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
       end;
-      StarUMLApplication.ImportFramework(ElementSelectorForm.SelectedModel as PUMLPackage, ImportFrameworkForm.FrameworkName);
+      StarUMLApplication.ImportFramework
+        (ElementSelectorForm.SelectedModel as PUMLPackage,
+        ImportFrameworkForm.FrameworkName);
 
-      //-- MainForm.BrowserFrame.RebuildAll;
+      // -- MainForm.BrowserFrame.RebuildAll;
       Screen.Cursor := crHourGlass;
       MainForm.ModelExplorer.RebuildAll;
       MainForm.DiagramExplorer.RebuildAll;
       Screen.Cursor := crDefault;
-      //--
+      // --
 
       MainForm.ModelExplorer.Expand(ElementSelectorForm.SelectedModel);
       ElementSelectorForm.AllowNull := True;
@@ -3923,28 +4604,34 @@ end;
 
 procedure PMain.ExecuteFileImportModelFragment;
 begin
-  if MainForm.ImportModelFragmentDialog.Execute then begin
-    ElementSelectorForm.Filter([PUMLProject, PUMLModel, PUMLSubsystem, PUMLPackage]);
+  if MainForm.ImportModelFragmentDialog.Execute then
+  begin
+    ElementSelectorForm.Filter([PUMLProject, PUMLModel, PUMLSubsystem,
+      PUMLPackage]);
     ElementSelectorForm.ClearSelectableModels;
     ElementSelectorForm.AddSelectableModel(PUMLProject);
     ElementSelectorForm.AddSelectableModel(PUMLModel);
     ElementSelectorForm.AddSelectableModel(PUMLSubsystem);
     ElementSelectorForm.AddSelectableModel(PUMLPackage);
     ElementSelectorForm.AllowNull := False;
-    if ElementSelectorForm.Execute(MSG_ELEMSELTTL_IMPORT_MODELFRAGMENT) then begin
+    if ElementSelectorForm.Execute(MSG_ELEMSELTTL_IMPORT_MODELFRAGMENT) then
+    begin
       try
         CheckReadOnly(ElementSelectorForm.SelectedModel);
       except
-        on EReadOnlyDocument do MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
+        on EReadOnlyDocument do
+          MessageDlg(C_ERR_READONLY, mtError, [mbOK], 0);
       end;
-      StarUMLApplication.ImportModelFragment(ElementSelectorForm.SelectedModel as PUMLPackage, MainForm.ImportModelFragmentDialog.FileName);
+      StarUMLApplication.ImportModelFragment
+        (ElementSelectorForm.SelectedModel as PUMLPackage,
+        MainForm.ImportModelFragmentDialog.FileName);
 
-      //-- MainForm.BrowserFrame.RebuildAll;
+      // -- MainForm.BrowserFrame.RebuildAll;
       Screen.Cursor := crHourGlass;
       MainForm.ModelExplorer.RebuildAll;
       MainForm.DiagramExplorer.RebuildAll;
       Screen.Cursor := crDefault;
-      //--
+      // --
 
       MainForm.ModelExplorer.Expand(ElementSelectorForm.SelectedModel);
       ElementSelectorForm.AllowNull := True;
@@ -3955,15 +4642,17 @@ end;
 procedure PMain.ExecuteFileExportModelFragment;
 begin
   if (StarUMLApplication.SelectedModelCount = 1) and
-     (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
+    (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
   begin
     try
       if MainForm.SaveModelFragmentDialog.Execute then
-        StarUMLApplication.ExportModelFragment(StarUMLApplication.SelectedModels[0] as PUMLPackage,
-                                               MainForm.SaveModelFragmentDialog.FileName);
+        StarUMLApplication.ExportModelFragment(StarUMLApplication.SelectedModels
+          [0] as PUMLPackage, MainForm.SaveModelFragmentDialog.FileName);
     except
-      on SaveDialogEx.EDirectoryNotFound do MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
-      on SaveDialogEx.EInvalidFileName do MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
+      on SaveDialogEx.EDirectoryNotFound do
+        MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
+      on SaveDialogEx.EInvalidFileName do
+        MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
     end;
 
   end;
@@ -3974,31 +4663,48 @@ var
   ADiagramView: PDiagramView;
   Idx: Integer;
 begin
-  if not Assigned(StarUMLApplication.ActiveDiagram) then begin
+  if not Assigned(StarUMLApplication.ActiveDiagram) then
+  begin
     MessageDlg(ERR_DGM_EXPORT_NO_OPENED_DGM, mtError, [mbOK], 0);
     Exit;
   end;
   ADiagramView := StarUMLApplication.ActiveDiagram;
-  if ADiagramView.OwnedViewCount > 0 then begin
+  if ADiagramView.OwnedViewCount > 0 then
+  begin
     MainForm.ExportDiagramDialog.FileName := ADiagramView.Diagram.Name;
     try
-      if MainForm.ExportDiagramDialog.Execute then begin
+      if MainForm.ExportDiagramDialog.Execute then
+      begin
         Idx := MainForm.ExportDiagramDialog.FilterIndex;
         case Idx of
-          {JPEG} 1,2: StarUMLApplication.SaveDiagramImageToJPEG(ADiagramView, MainForm.ExportDiagramDialog.FileName);
-          {PNG} 3: StarUMLApplication.SaveDiagramImageToPNG(ADiagramView, MainForm.ExportDiagramDialog.FileName);
-          {BITMAP} 4: StarUMLApplication.SaveDiagramImageToBitmap(ADiagramView, MainForm.ExportDiagramDialog.FileName);
-          {METAFILE (Enhanced)} 5: StarUMLApplication.SaveDiagramImageToMetafile(ADiagramView, MainForm.ExportDiagramDialog.FileName, True);
-          {METAFILE} 6: StarUMLApplication.SaveDiagramImageToMetafile(ADiagramView, MainForm.ExportDiagramDialog.FileName, False)
-          else
-            Assert(False,'Unknown image export format');
+          { JPEG } 1, 2:
+            StarUMLApplication.SaveDiagramImageToJPEG(ADiagramView,
+              MainForm.ExportDiagramDialog.FileName);
+          { PNG } 3:
+            StarUMLApplication.SaveDiagramImageToPNG(ADiagramView,
+              MainForm.ExportDiagramDialog.FileName);
+          { BITMAP } 4:
+            StarUMLApplication.SaveDiagramImageToBitmap(ADiagramView,
+              MainForm.ExportDiagramDialog.FileName);
+          { METAFILE (Enhanced) } 5:
+            StarUMLApplication.SaveDiagramImageToMetafile(ADiagramView,
+              MainForm.ExportDiagramDialog.FileName, True);
+          { METAFILE } 6:
+            StarUMLApplication.SaveDiagramImageToMetafile(ADiagramView,
+              MainForm.ExportDiagramDialog.FileName, False)
+        else
+          Assert(False, 'Unknown image export format');
         end;
       end;
     except
-      on SaveDialogEx.EDirectoryNotFound do MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
-      on SaveDialogEx.EInvalidFileName do MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
+      on SaveDialogEx.EDirectoryNotFound do
+        MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
+      on SaveDialogEx.EInvalidFileName do
+        MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
     end;
-  end else begin
+  end
+  else
+  begin
     MessageDlg(ERR_DGM_EXPORT_EMPTY_DGM, mtError, [mbOK], 0);
   end;
 end;
@@ -4012,7 +4718,8 @@ var
     TempModel: PModel;
     I: Integer;
   begin
-    for I := 0 to AModel.VirtualOwnedModelCount - 1 do begin
+    for I := 0 to AModel.VirtualOwnedModelCount - 1 do
+    begin
       TempModel := AModel.VirtualOwnedModel[I];
       if TempModel is PUMLDiagram then
         APrintForm.AddDiagram((TempModel as PUMLDiagram).DiagramView);
@@ -4022,7 +4729,8 @@ var
   end;
 
 begin
-  if Assigned(PrintForm) then begin
+  if Assigned(PrintForm) then
+  begin
     AProject := StarUMLApplication.Project;
     PrintForm.Initialize;
     PrintForm.Project := AProject;
@@ -4035,7 +4743,8 @@ end;
 
 procedure PMain.ExecuteFilePageSetup;
 begin
-  if Assigned(PageSetupForm) then PageSetupForm.ShowModal;
+  if Assigned(PageSetupForm) then
+    PageSetupForm.ShowModal;
 end;
 
 procedure PMain.ExecuteEditUndo;
@@ -4077,20 +4786,28 @@ begin
   NCFontColor := False;
   NCFontStyle := False;
   NCFontEffect := False;
-  StyleDisabled := not ((V is PUMLCustomTextView) or (V is PUMLSystemBoundaryView));
-  for I := 1 to StarUMLApplication.SelectedViewCount - 1 do begin
+  StyleDisabled := not((V is PUMLCustomTextView) or
+    (V is PUMLSystemBoundaryView));
+  for I := 1 to StarUMLApplication.SelectedViewCount - 1 do
+  begin
     V := StarUMLApplication.SelectedViews[I];
-    if V.FontFace <> FontName then NCFontName := True;
-    if V.FontSize <> FontSize then NCFontSize := True;
-    if V.FontColor <> FontColor then NCFontColor := True;
-    if (V.FontStyle * [fsBold, fsItalic]) <> FontStyle then NCFontStyle := True;
-    if (V.FontStyle * [fsUnderline, fsStrikeOut]) <> FontEffect then NCFontEffect := True;
-    if not (V is PUMLCustomTextView) then
+    if V.FontFace <> FontName then
+      NCFontName := True;
+    if V.FontSize <> FontSize then
+      NCFontSize := True;
+    if V.FontColor <> FontColor then
+      NCFontColor := True;
+    if (V.FontStyle * [fsBold, fsItalic]) <> FontStyle then
+      NCFontStyle := True;
+    if (V.FontStyle * [fsUnderline, fsStrikeOut]) <> FontEffect then
+      NCFontEffect := True;
+    if not(V is PUMLCustomTextView) then
       StyleDisabled := True;
   end;
 
   // Execute font dialog
-  with MainForm do begin
+  with MainForm do
+  begin
     FontDialog.DisableParts := [];
     FontDialog.IndeterminateParts := [];
     if StyleDisabled then
@@ -4100,27 +4817,35 @@ begin
     FontDialog.Font.Color := FontColor;
     FontDialog.Font.Style := FontStyle;
     if NCFontName then
-      FontDialog.IndeterminateParts := FontDialog.IndeterminateParts + [fpFontName];
+      FontDialog.IndeterminateParts := FontDialog.IndeterminateParts +
+        [fpFontName];
     if NCFontSize then
-      FontDialog.IndeterminateParts := FontDialog.IndeterminateParts + [fpFontSize];
+      FontDialog.IndeterminateParts := FontDialog.IndeterminateParts +
+        [fpFontSize];
     if NCFontColor then
-      FontDialog.IndeterminateParts := FontDialog.IndeterminateParts + [fpFontColor];
+      FontDialog.IndeterminateParts := FontDialog.IndeterminateParts +
+        [fpFontColor];
     if NCFontStyle then
-      FontDialog.IndeterminateParts := FontDialog.IndeterminateParts + [fpFontStyle];
+      FontDialog.IndeterminateParts := FontDialog.IndeterminateParts +
+        [fpFontStyle];
     if NCFontEffect then
-      FontDialog.IndeterminateParts := FontDialog.IndeterminateParts + [fpFontEffect];
+      FontDialog.IndeterminateParts := FontDialog.IndeterminateParts +
+        [fpFontEffect];
 
-    if FontDialog.Execute then begin
+    if FontDialog.Execute then
+    begin
       FontItems := [];
-      if not (fpFontName in FontDialog.IndeterminateParts) then
+      if not(fpFontName in FontDialog.IndeterminateParts) then
         FontItems := FontItems + [fiName];
-      if not (fpFontSize in FontDialog.IndeterminateParts) then
+      if not(fpFontSize in FontDialog.IndeterminateParts) then
         FontItems := FontItems + [fiSize];
-      if not (fpFontColor in FontDialog.IndeterminateParts) then
+      if not(fpFontColor in FontDialog.IndeterminateParts) then
         FontItems := FontItems + [fiColor];
-      if not (fpFontStyle in FontDialog.DisableParts) and not (fpFontStyle in FontDialog.IndeterminateParts) then
+      if not(fpFontStyle in FontDialog.DisableParts) and
+        not(fpFontStyle in FontDialog.IndeterminateParts) then
         FontItems := FontItems + [fiStyle];
-      if not (fpFontEffect in FontDialog.DisableParts) and not (fpFontEffect in FontDialog.IndeterminateParts) then
+      if not(fpFontEffect in FontDialog.DisableParts) and
+        not(fpFontEffect in FontDialog.IndeterminateParts) then
         FontItems := FontItems + [fiEffect];
       StarUMLApplication.ChangeSelectedViewsFont(FontDialog.Font, FontItems);
     end;
@@ -4131,9 +4856,11 @@ procedure PMain.ExecuteFormatLineColor;
 begin
   if StarUMLApplication.SelectedViewCount = 0 then
     Exit;
-  with MainForm.ColorDialog do begin
+  with MainForm.ColorDialog do
+  begin
     Color := StarUMLApplication.SelectedViews[0].LineColor;
-    if Execute then StarUMLApplication.ChangeSelectedViewsLineColor(Color);
+    if Execute then
+      StarUMLApplication.ChangeSelectedViewsLineColor(Color);
   end;
 end;
 
@@ -4141,9 +4868,11 @@ procedure PMain.ExecuteFormatFillColor;
 begin
   if StarUMLApplication.SelectedViewCount = 0 then
     Exit;
-  with MainForm.ColorDialog do begin
+  with MainForm.ColorDialog do
+  begin
     Color := StarUMLApplication.SelectedViews[0].FillColor;
-    if Execute then StarUMLApplication.ChangeSelectedViewsFillColor(Color);
+    if Execute then
+      StarUMLApplication.ChangeSelectedViewsFillColor(Color);
   end;
 end;
 
@@ -4174,35 +4903,46 @@ var
 
 begin
   // Zoom is available from 10% to 200%
-  if MainForm.WorkingAreaFrame.ActiveDiagramEditor <> nil then begin
+  if MainForm.WorkingAreaFrame.ActiveDiagramEditor <> nil then
+  begin
     CurrentZoom := MainForm.WorkingAreaFrame.ActiveDiagramEditor.ZoomPercent;
     NewZoom := 100;
     case AType of
-      ztZoomIn: NewZoom := Min(200, CurrentZoom + 5);
-      ztZoomOut: NewZoom := Max(10, CurrentZoom - 5);
-      ztZoomFitInWindow: begin
-        BoundingRect := MainForm.WorkingAreaFrame.ActiveDiagramEditor.DiagramView.GetBoundingBox(MainForm.WorkingAreaFrame.ActiveDiagramEditor.DiagramView.Canvas);
-        ScrollClientRect := MainForm.WorkingAreaFrame.ActiveDiagramEditor.ScrollBox.ClientRect;
-        X := BoundingRect.Right;
-        Y := BoundingRect.Bottom;
-        CX := ScrollClientRect.Right;
-        CY := ScrollClientRect.Bottom;
-        if (X <= CX) and (Y <= CY) then
-          NewZoom := 100
-        else if (X > CX) and (Y <= CY) then
-          NewZoom := CalcFittingZoomPercent(CX, X)
-        else if (X <= CX) and (Y > CY) then
-          NewZoom := CalcFittingZoomPercent(CY, Y)
-        else begin
-          if (X - CX) > (Y - CY) then
+      ztZoomIn:
+        NewZoom := Min(200, CurrentZoom + 5);
+      ztZoomOut:
+        NewZoom := Max(10, CurrentZoom - 5);
+      ztZoomFitInWindow:
+        begin
+          BoundingRect := MainForm.WorkingAreaFrame.ActiveDiagramEditor.
+            DiagramView.GetBoundingBox
+            (MainForm.WorkingAreaFrame.ActiveDiagramEditor.DiagramView.Canvas);
+          ScrollClientRect := MainForm.WorkingAreaFrame.ActiveDiagramEditor.
+            ScrollBox.ClientRect;
+          X := BoundingRect.Right;
+          Y := BoundingRect.Bottom;
+          CX := ScrollClientRect.Right;
+          CY := ScrollClientRect.Bottom;
+          if (X <= CX) and (Y <= CY) then
+            NewZoom := 100
+          else if (X > CX) and (Y <= CY) then
             NewZoom := CalcFittingZoomPercent(CX, X)
+          else if (X <= CX) and (Y > CY) then
+            NewZoom := CalcFittingZoomPercent(CY, Y)
           else
-            NewZoom := CalcFittingZoomPercent(CY, Y);
+          begin
+            if (X - CX) > (Y - CY) then
+              NewZoom := CalcFittingZoomPercent(CX, X)
+            else
+              NewZoom := CalcFittingZoomPercent(CY, Y);
+          end;
+          MainForm.WorkingAreaFrame.ActiveDiagramEditor.ScrollBox.HorzScrollBar.
+            Position := 0;
+          MainForm.WorkingAreaFrame.ActiveDiagramEditor.ScrollBox.VertScrollBar.
+            Position := 0;
         end;
-        MainForm.WorkingAreaFrame.ActiveDiagramEditor.ScrollBox.HorzScrollBar.Position := 0;
-        MainForm.WorkingAreaFrame.ActiveDiagramEditor.ScrollBox.VertScrollBar.Position := 0;
-      end;
-      ztZoomValue: NewZoom := Min(200, Max(10, ZoomValue));
+      ztZoomValue:
+        NewZoom := Min(200, Max(10, ZoomValue));
     end;
     MainForm.WorkingAreaFrame.ActiveDiagramEditor.ZoomPercent := NewZoom;
     MainForm.WorkingAreaFrame.RedrawActiveDiagram;
@@ -4220,7 +4960,8 @@ var
 begin
   if MainForm.ViewDiagramPageList.ItemIndex > -1 then
   begin
-    D := MainForm.ViewDiagramPageList.Items.Objects[MainForm.ViewDiagramPageList.ItemIndex] as PDiagram;
+    D := MainForm.ViewDiagramPageList.Items.Objects
+      [MainForm.ViewDiagramPageList.ItemIndex] as PDiagram;
     MainForm.WorkingAreaFrame.OpenDiagram(D);
   end;
 end;
@@ -4244,11 +4985,14 @@ var
   FileName, FileExt: string;
 begin
   Result := False;
-  if ParamCount = 1 then begin
+  if ParamCount = 1 then
+  begin
     FileName := ParamStr(1);
-    if FileName <> '' then begin
+    if FileName <> '' then
+    begin
       FileExt := LowerCase(ExtractFileExt(FileName));
-      if FileExt = '.uml' then begin
+      if FileExt = '.uml' then
+      begin
         StarUMLApplication.OpenProject(FileName);
         MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
         MainForm.AddRecentFile(StarUMLApplication.FileName);
@@ -4261,27 +5005,35 @@ end;
 procedure PMain.ApplyOptionValues;
 begin
   MainForm.NumberOfRecentProjects := OptionDepository.NumberOfRecentProjects;
-  NewProjectForm.NumberOfRecentProjects := OptionDepository.NumberOfRecentProjects;
+  NewProjectForm.NumberOfRecentProjects :=
+    OptionDepository.NumberOfRecentProjects;
   StarUMLApplication.UndoLevel := OptionDepository.UndoLevel;
   StarUMLApplication.CreateBackupFile := OptionDepository.CreateBackupFile;
-  MainForm.ModelExplorer.ShowStereotype := OptionDepository.BrowserShowStereotype;
+  MainForm.ModelExplorer.ShowStereotype :=
+    OptionDepository.BrowserShowStereotype;
   CollectionEditorForm.ShowStereotype := OptionDepository.ColEdtShowStereotype;
-  CollectionEditorForm.ShowVisibilityIcon := OptionDepository.ColEdtShowVisibilityIcon;
+  CollectionEditorForm.ShowVisibilityIcon :=
+    OptionDepository.ColEdtShowVisibilityIcon;
   CollectionEditorForm.ShowNameOnly := OptionDepository.ColEdtShowNameOnly;
-  MainForm.WorkingAreaFrame.DiagramWidth := OptionDepository.DefaultDiagramWidth;
-  MainForm.WorkingAreaFrame.DiagramHeight := OptionDepository.DefaultDiagramHeight;
+  MainForm.WorkingAreaFrame.DiagramWidth :=
+    OptionDepository.DefaultDiagramWidth;
+  MainForm.WorkingAreaFrame.DiagramHeight :=
+    OptionDepository.DefaultDiagramHeight;
   MainForm.WorkingAreaFrame.GridWidth := OptionDepository.GridWidth;
   MainForm.WorkingAreaFrame.GridHeight := OptionDepository.GridHeight;
   MainForm.WorkingAreaFrame.ShowGrid := OptionDepository.ShowGrid;
-  OptionDefaultAttrVisibility := PUMLVisibilityKind(OptionDepository.DefaultAttrVisibility);
-  OptionDefaultOperVisibility := PUMLVisibilityKind(OptionDepository.DefaultOperVisibility);
+  OptionDefaultAttrVisibility :=
+    PUMLVisibilityKind(OptionDepository.DefaultAttrVisibility);
+  OptionDefaultOperVisibility :=
+    PUMLVisibilityKind(OptionDepository.DefaultOperVisibility);
   OptionDefaultFillColor := OptionDepository.DefaultFillColor;
   OptionDefaultLineColor := OptionDepository.DefaultLineColor;
   OptionDefaultFontFace := OptionDepository.DefaultFontFace;
-  OptionDefaultFontSize :=  OptionDepository.DefaultFontSize;
+  OptionDefaultFontSize := OptionDepository.DefaultFontSize;
   OptionDefaultFontColor := OptionDepository.DefaultFontColor;
   OptionLineStyle := PLineStyleKind(OptionDepository.LineStyle);
-  OptionStereotypeDisplay := PUMLStereotypeDisplayKind(OptionDepository.StereotypeDisplay);
+  OptionStereotypeDisplay := PUMLStereotypeDisplayKind
+    (OptionDepository.StereotypeDisplay);
   OptionShowParentName := OptionDepository.ShowParentName;
   OptionAutoResize := OptionDepository.AutoResize;
   OptionShowCompartmentVisibility := OptionDepository.ShowCompartmentVisibility;
@@ -4290,67 +5042,87 @@ begin
   OptionShowProperty := OptionDepository.ShowProperty;
   OptionSuppressAttributes := OptionDepository.SuppressAttributes;
   OptionSuppressOperations := OptionDepository.SuppressOperations;
-  OptionEnumerationSuppressLiterals := OptionDepository.EnumerationSuppressLiterals;
-  OptionActorStereotypeDisplay := PUMLStereotypeDisplayKind(OptionDepository.ActorStereotypeDisplay);
+  OptionEnumerationSuppressLiterals :=
+    OptionDepository.EnumerationSuppressLiterals;
+  OptionActorStereotypeDisplay := PUMLStereotypeDisplayKind
+    (OptionDepository.ActorStereotypeDisplay);
   OptionActorSuppressAttributes := OptionDepository.ActorSuppressAttributes;
   OptionActorSuppressOperations := OptionDepository.ActorSuppressOperations;
-  OptionUseCaseStereotypeDisplay := PUMLStereotypeDisplayKind(OptionDepository.UseCaseStereotypeDisplay);
+  OptionUseCaseStereotypeDisplay := PUMLStereotypeDisplayKind
+    (OptionDepository.UseCaseStereotypeDisplay);
   OptionUseCaseSuppressAttributes := OptionDepository.UsecaseSuppressAttributes;
   OptionUseCaseSuppressOperations := OptionDepository.UsecaseSuppressOperations;
-  OptionInterfaceStereotypeDisplay := PUMLStereotypeDisplayKind(OptionDepository.InterfaceStereotypeDisplay);
-  OptionInterfaceSuppressAttributes := OptionDepository.InterfaceSuppressAttributes;
-  OptionInterfaceSuppressOperations := OptionDepository.InterfaceSuppressOperations;
-  OptionArtifactStereotypeDisplay := PUMLStereotypeDisplayKind(OptionDepository.ArtifactStereotypeDisplay);
-  OptionArtifactSuppressAttributes := OptionDepository.ArtifactSuppressAttributes;
-  OptionArtifactSuppressOperations := OptionDepository.ArtifactSuppressOperations;
-  OptionComponentStereotypeDisplay := PUMLStereotypeDisplayKind(OptionDepository.ComponentStereotypeDisplay);
-  OptionNodeStereotypeDisplay := PUMLStereotypeDisplayKind(OptionDepository.NodeStereotypeDisplay);
+  OptionInterfaceStereotypeDisplay := PUMLStereotypeDisplayKind
+    (OptionDepository.InterfaceStereotypeDisplay);
+  OptionInterfaceSuppressAttributes :=
+    OptionDepository.InterfaceSuppressAttributes;
+  OptionInterfaceSuppressOperations :=
+    OptionDepository.InterfaceSuppressOperations;
+  OptionArtifactStereotypeDisplay := PUMLStereotypeDisplayKind
+    (OptionDepository.ArtifactStereotypeDisplay);
+  OptionArtifactSuppressAttributes :=
+    OptionDepository.ArtifactSuppressAttributes;
+  OptionArtifactSuppressOperations :=
+    OptionDepository.ArtifactSuppressOperations;
+  OptionComponentStereotypeDisplay := PUMLStereotypeDisplayKind
+    (OptionDepository.ComponentStereotypeDisplay);
+  OptionNodeStereotypeDisplay := PUMLStereotypeDisplayKind
+    (OptionDepository.NodeStereotypeDisplay);
   OptionShowSequenceNumber := OptionDepository.ShowSequnceNumber;
-  OptionMessageSignature := PUMLMessageSignatureKind(OptionDepository.MessageSignature);
+  OptionMessageSignature := PUMLMessageSignatureKind
+    (OptionDepository.MessageSignature);
   OptionShowActivation := OptionDepository.ShowActivation;
   OptionHelpUrl := OptionDepository.HelpUrl;
   OptionWordWrapByDefault := OptionDepository.WordWrapByDefault;
 end;
 
-procedure PMain.PopupQuickDialog(AView: PView; X, Y: Integer; OnElementCreating: Boolean = False);
+procedure PMain.PopupQuickDialog(AView: PView; X, Y: Integer;
+  OnElementCreating: Boolean = False);
 var
   P: TPoint;
   C: Integer;
 begin
-  if AView = nil then Exit;
-  if OnElementCreating then begin
-    if AView is PUMLCustomSeqMessageView then begin
+  if AView = nil then
+    Exit;
+  if OnElementCreating then
+  begin
+    if AView is PUMLCustomSeqMessageView then
+    begin
       C := (AView as PEdgeView).Points.Count;
       P := (AView as PEdgeView).Points.PointData[C - 1];
       MainForm.ShowQuickDialog(AView, P, True);
     end
-    else if (AView is PNodeView) and not (AView is PUMLCustomColMessageView) then
+    else if (AView is PNodeView) and not(AView is PUMLCustomColMessageView) then
       MainForm.ShowQuickDialog(AView, Point(X, Y));
   end
   else
     MainForm.ShowQuickDialog(AView, Point(X, Y));
 end;
 
-function PMain.PopupQuickDialogForSubElement(OwnerModel: PModel; ModelKind:
-  string; Argument: Integer): Boolean;
+function PMain.PopupQuickDialogForSubElement(OwnerModel: PModel;
+  ModelKind: string; Argument: Integer): Boolean;
 var
   DgmView: PDiagramView;
   SelView: PView;
   ArgModel: PModel;
 begin
   Result := False;
-  if (ModelKind = 'Operation') or
-     (ModelKind = 'Attribute') or
-     (ModelKind = 'EnumerationLiteral') or
-     ((ModelKind = 'UninterpretedAction') and (Argument >= 0))
-  then begin
+  if (ModelKind = 'Operation') or (ModelKind = 'Attribute') or
+    (ModelKind = 'EnumerationLiteral') or
+    ((ModelKind = 'UninterpretedAction') and (Argument >= 0)) then
+  begin
     DgmView := StarUMLApplication.ActiveDiagram;
-    if DgmView <> nil then begin
-      if StarUMLApplication.SelectedViewCount = 1 then begin
+    if DgmView <> nil then
+    begin
+      if StarUMLApplication.SelectedViewCount = 1 then
+      begin
         SelView := StarUMLApplication.SelectedViews[0];
-        if SelView.Model = OwnerModel then begin
-          if StarUMLApplication.EventArgModelCount > 0 then begin
-            ArgModel := StarUMLApplication.EventArgModels[StarUMLApplication.EventArgModelCount-1];
+        if SelView.Model = OwnerModel then
+        begin
+          if StarUMLApplication.EventArgModelCount > 0 then
+          begin
+            ArgModel := StarUMLApplication.EventArgModels
+              [StarUMLApplication.EventArgModelCount - 1];
             MainForm.ShowQuickDialogByModelCreation(SelView, ArgModel);
             Result := True;
           end;
@@ -4379,22 +5151,25 @@ end;
 
 procedure PMain.ProcessAttachmentsAction;
 begin
-   if StarUMLApplication.SelectedModelCount = 0 then
+  if StarUMLApplication.SelectedModelCount = 0 then
     Exit;
   MainForm.AttachmentEditor.SetFocusOnAttachmentList;
 end;
 
 procedure PMain.BrowseElement(AModel: PModel);
 begin
-  if AModel <> nil then begin
+  if AModel <> nil then
+  begin
     if AModel is PDiagram then
     begin
       MainForm.WorkingAreaFrame.OpenDiagram(AModel as PDiagram);
     end
-    else begin
+    else
+    begin
       if AModel.ViewCount > 0 then
       begin
-        MainForm.WorkingAreaFrame.OpenDiagram(AModel.View[0].GetDiagramView.Diagram);
+        MainForm.WorkingAreaFrame.OpenDiagram
+          (AModel.View[0].GetDiagramView.Diagram);
       end;
     end;
     SelectModelExplorerDockPanel(AModel);
@@ -4414,27 +5189,26 @@ procedure PMain.SelectModelExplorerDockPanel(AModel: PModel);
 begin
   // Is ModelExplorerDockPanel inside tab panel?
   if (MainForm.ModelExplorerDockPanel.TabContainer = nil)
-    // Is ModelExplorerDockPanel active panel?
-    or (MainForm.ModelExplorerDockPanel.TabContainer.ActiveChild =
-      MainForm.ModelExplorerDockPanel ) then
+  // Is ModelExplorerDockPanel active panel?
+    or (MainForm.ModelExplorerDockPanel.TabContainer.ActiveChild = MainForm.
+    ModelExplorerDockPanel) then
 
-     if MainForm.ModelExplorerDockPanel.Visible then begin
-        if  MainForm.ModelExplorerDockPanel.Showing then
-          MainForm.ModelExplorer.SelectWithFocus(AModel);
-        MainForm.ModelExplorer.Expand(AModel);
-     end;
-
+    if MainForm.ModelExplorerDockPanel.Visible then
+    begin
+      if MainForm.ModelExplorerDockPanel.Showing then
+        MainForm.ModelExplorer.SelectWithFocus(AModel);
+      MainForm.ModelExplorer.Expand(AModel);
+    end;
 
 end;
 
 // Inner utility methods
-////////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
 
 // PMain
-////////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
 
-
-////////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
 // PMainFormMenuStateHandler
 
 constructor PMainFormMenuStateHandler.Create;
@@ -4499,7 +5273,8 @@ begin
       EditMenu.Visible := ivAlways;
       ModelMenu.Visible := ivAlways;
     end
-    else begin
+    else
+    begin
       EditMenu.Visible := ivNever;
       ModelMenu.Visible := ivNever;
     end;
@@ -4521,22 +5296,21 @@ begin
   with MainForm do
   begin
     M := SelectTargetModel;
-    if Assigned(M) then begin
+    if Assigned(M) then
+    begin
 
-      FileUnitsSeparateUnit.Enabled :=
-        (M is PUMLPackage) and (not M.IsDocumentElement);
+      FileUnitsSeparateUnit.Enabled := (M is PUMLPackage) and
+        (not M.IsDocumentElement);
 
-      FileUnitsOpenUnit.Enabled :=
-        (M is PUMLPackage) and
+      FileUnitsOpenUnit.Enabled := (M is PUMLPackage) and
         (not M.IsDocumentElement // Is not a document
-        or
-        (M.Document is PUMLUnitStubDocument)); // Is a stub document
+        or (M.Document is PUMLUnitStubDocument)); // Is a stub document
 
+      FileExportModelFragment.Enabled := (M is PUMLPackage) and
+        (not(M is PUMLProject));
 
-      FileExportModelFragment.Enabled :=
-        (M is PUMLPackage) and (not (M is PUMLProject));
-
-      if StarUMLApplication.DocumentElementCount <> 0 then begin
+      if StarUMLApplication.DocumentElementCount <> 0 then
+      begin
         Doc := (StarUMLApplication.DocumentElements[0]).Document;
         FileSave.Enabled := (Doc.ReadOnly = False);
       end;
@@ -4558,45 +5332,34 @@ begin
   with MainForm do
   begin
     // Determine Undo
-    EditUndo.Enabled :=
-      GeneralEditMenuEnabled and
-      MainForm.IsActivated and
+    EditUndo.Enabled := GeneralEditMenuEnabled and MainForm.IsActivated and
       StarUMLApplication.CanUndo;
 
     // Determine Redo
-    EditRedo.Enabled :=
-      GeneralEditMenuEnabled and
-      MainForm.IsActivated and
+    EditRedo.Enabled := GeneralEditMenuEnabled and MainForm.IsActivated and
       StarUMLApplication.CanRedo;
 
     // Determine Delete
-    EditDelete.Enabled :=
-      GeneralEditMenuEnabled and
-      MainForm.IsActivated and
+    EditDelete.Enabled := GeneralEditMenuEnabled and MainForm.IsActivated and
       ((AD <> nil) and (AD.CanDeleteViews));
 
     // Determine Delete from Model
     EditDeleteFromModel.Enabled := IsEditDeleteFromModelEnabled;
 
     // Determine Find Diagrams With Selected Model
-    EditFindDiagramsWithSelectedModel.Enabled := IsEditFindDiagramsWithSelectedModelEnabled;
+    EditFindDiagramsWithSelectedModel.Enabled :=
+      IsEditFindDiagramsWithSelectedModelEnabled;
 
     // Determine SelectAll
-    EditSelectAll.Enabled :=
-      GeneralEditMenuEnabled and
-      MainForm.IsActivated and
+    EditSelectAll.Enabled := GeneralEditMenuEnabled and MainForm.IsActivated and
       (AD <> nil);
 
     // Determine CopyDiagram
-    EditCopyDiagram.Enabled :=
-      MainForm.IsActivated and
-      (AD <> nil) and
+    EditCopyDiagram.Enabled := MainForm.IsActivated and (AD <> nil) and
       (AD.OwnedViewCount > 0);
 
     // Determine CopyDiagramAsBitmap
-    EditCopyDiagramAsBitmap.Enabled :=
-      MainForm.IsActivated and
-      (AD <> nil) and
+    EditCopyDiagramAsBitmap.Enabled := MainForm.IsActivated and (AD <> nil) and
       (AD.OwnedViewCount > 0);
 
     // Determine Copy/Cut/Paste
@@ -4607,43 +5370,44 @@ begin
     CBElemKind := StarUMLApplication.ClipboardElementKind;
     CBCopyContext := StarUMLApplication.ClipboardCopyContext;
     case CBKind of
-      ckView: begin
-        EditPaste.Enabled :=
-          GeneralEditMenuEnabled and
-          (AD <> nil) and
-          AD.CanPasteViews(CBElemKind, CBCopyContext);
-      end;
-      ckModel: begin
-        EditPaste.Enabled :=
-          GeneralEditMenuEnabled and
-          Assigned(SelectedModel) and
-          SelectedModel.CanPaste(CBElemKind, CBCopyContext);
-      end;
+      ckView:
+        begin
+          EditPaste.Enabled := GeneralEditMenuEnabled and (AD <> nil) and
+            AD.CanPasteViews(CBElemKind, CBCopyContext);
+        end;
+      ckModel:
+        begin
+          EditPaste.Enabled := GeneralEditMenuEnabled and
+            Assigned(SelectedModel) and SelectedModel.CanPaste(CBElemKind,
+            CBCopyContext);
+        end;
     end;
 
     // Determine Paste Formatting
-    EditPasteFormat.Enabled := (CBKind = ckView) and (StarUMLApplication.SelectedViewCount > 0);
+    EditPasteFormat.Enabled := (CBKind = ckView) and
+      (StarUMLApplication.SelectedViewCount > 0);
 
     // Determine Go To
-    EditGoTo.Enabled :=
-      MainForm.IsActivated and
-      Assigned(SelectedModel) and SelectedModel.HasAttachedLinks;
+    EditGoTo.Enabled := MainForm.IsActivated and Assigned(SelectedModel) and
+      SelectedModel.HasAttachedLinks;
   end;
 end;
 
 function PMainFormMenuStateHandler.IsEditDeleteFromModelEnabled: Boolean;
 begin
   with StarUMLApplication do
-    Result := {MainForm.IsActivated and}
+    Result := { MainForm.IsActivated and }
       ((SelectedModelCount > 0) and SelectedModels[0].CanDelete);
 end;
 
-function PMainFormMenuStateHandler.IsEditFindDiagramsWithSelectedModelEnabled: Boolean;
+function PMainFormMenuStateHandler.
+  IsEditFindDiagramsWithSelectedModelEnabled: Boolean;
 begin
-    Result := ( (StarUMLApplication.SelectedModelCount > 0)
-    and not StarUMLApplication.SelectedModels[0].MetaClass.IsKindOf('UMLProject')
-    and not StarUMLApplication.SelectedModels[0].MetaClass.IsKindOf('UMLFeature')
-    and StarUMLApplication.SelectedModels[0].MetaClass.IsKindOf('UMLModelElement') );
+  Result := ((StarUMLApplication.SelectedModelCount > 0) and
+    not StarUMLApplication.SelectedModels[0].MetaClass.IsKindOf('UMLProject')
+    and not StarUMLApplication.SelectedModels[0].MetaClass.IsKindOf
+    ('UMLFeature') and StarUMLApplication.SelectedModels[0].MetaClass.IsKindOf
+    ('UMLModelElement'));
 end;
 
 function PMainFormMenuStateHandler.IsEditCutEnabled: Boolean;
@@ -4652,13 +5416,12 @@ var
 begin
   M := SelectTargetModel;
   with StarUMLApplication do
-    Result := GeneralEditMenuEnabled {and MainForm.IsActivated} and
-      ((Assigned(M) and (M.CanCopy) and
-          (M.CanDelete)) or
-        ((ActiveDiagram <> nil) and (ActiveDiagram.CanCopyViews)
-        and (ActiveDiagram.CanDeleteViews)));
+    Result := GeneralEditMenuEnabled { and MainForm.IsActivated } and
+      ((Assigned(M) and (M.CanCopy) and (M.CanDelete)) or
+      ((ActiveDiagram <> nil) and (ActiveDiagram.CanCopyViews) and
+      (ActiveDiagram.CanDeleteViews)));
 
-  end;
+end;
 
 function PMainFormMenuStateHandler.IsEditCopyEnabled: Boolean;
 var
@@ -4666,9 +5429,9 @@ var
 begin
   M := SelectTargetModel;
   with StarUMLApplication do
-    Result := GeneralEditMenuEnabled {and MainForm.IsActivated} and
-      ((Assigned(M) and (M.CanCopy)) or
-        ((ActiveDiagram <> nil) and (ActiveDiagram.CanCopyViews)));
+    Result := GeneralEditMenuEnabled { and MainForm.IsActivated } and
+      ((Assigned(M) and (M.CanCopy)) or ((ActiveDiagram <> nil) and
+      (ActiveDiagram.CanCopyViews)));
 
 end;
 
@@ -4681,8 +5444,10 @@ var
   V: PView;
   ShapeView: PShapeView;
   NodeCount: Integer;
-  ELine, EStereo, EAttr, EOper, ELiter, EParent, EProp, EOperSig, EComVisi, EComStereo, EAuto, EExtNot, EWordWrap: Boolean;
-  VLine, VStereo, VAttr, VOper, VLiter, VParent, VProp, VOperSig, VComVisi, VComStereo, VAuto, VExtNot, VWordWrap: string;
+  ELine, EStereo, EAttr, EOper, ELiter, EParent, EProp, EOperSig, EComVisi,
+    EComStereo, EAuto, EExtNot, EWordWrap: Boolean;
+  VLine, VStereo, VAttr, VOper, VLiter, VParent, VProp, VOperSig, VComVisi,
+    VComStereo, VAuto, VExtNot, VWordWrap: string;
   VFontFace, VFontSize: string;
   EAnnotationLine: Boolean;
   VAnnotationLine: string;
@@ -4690,11 +5455,16 @@ var
 
   function MergeStringValue(Base, Addition: string): string;
   begin
-    if Base = NOT_ASSIGNED then Result := Addition
-    else if Base = ''           then Result := ''
-    else if Base = Addition     then Result := Base
-    else if Base <> Addition    then Result := ''
-                                else Result := '';
+    if Base = NOT_ASSIGNED then
+      Result := Addition
+    else if Base = '' then
+      Result := ''
+    else if Base = Addition then
+      Result := Base
+    else if Base <> Addition then
+      Result := ''
+    else
+      Result := '';
   end;
 
 begin
@@ -4764,70 +5534,95 @@ begin
     for I := 0 to StarUMLApplication.SelectedViewCount - 1 do
     begin
       V := StarUMLApplication.SelectedViews[I];
-      if V is PNodeView then Inc(NodeCount);
+      if V is PNodeView then
+        Inc(NodeCount);
       VFontFace := MergeStringValue(VFontFace, V.MOF_GetAttribute('FontFace'));
       VFontSize := MergeStringValue(VFontSize, V.MOF_GetAttribute('FontSize'));
 
-      if V is PShapeView then begin
+      if V is PShapeView then
+      begin
         EAnnotationLine := True;
-      //if AnnotationLineStyle.Enabled then begin
+        // if AnnotationLineStyle.Enabled then begin
         ShapeView := V as PShapeView;
         VAnnotationLine := MergeStringValue(VAnnotationLine,
           LineKindToString(ShapeView.LineKind));
 
       end;
 
-      if V.MetaClass.ExistsAttribute('LineStyle') then begin
+      if V.MetaClass.ExistsAttribute('LineStyle') then
+      begin
         ELine := True;
         VLine := MergeStringValue(VLine, V.MOF_GetAttribute('LineStyle'));
       end;
-      if V.MetaClass.ExistsAttribute('StereotypeDisplay') then begin
+      if V.MetaClass.ExistsAttribute('StereotypeDisplay') then
+      begin
         EStereo := True;
-        VStereo := MergeStringValue(VStereo, V.MOF_GetAttribute('StereotypeDisplay'));
+        VStereo := MergeStringValue(VStereo,
+          V.MOF_GetAttribute('StereotypeDisplay'));
       end;
-      if V.MetaClass.ExistsAttribute('SuppressAttributes') then begin
+      if V.MetaClass.ExistsAttribute('SuppressAttributes') then
+      begin
         EAttr := True;
-        VAttr := MergeStringValue(VAttr, V.MOF_GetAttribute('SuppressAttributes'));
+        VAttr := MergeStringValue(VAttr,
+          V.MOF_GetAttribute('SuppressAttributes'));
       end;
-      if V.MetaClass.ExistsAttribute('SuppressOperations') then begin
+      if V.MetaClass.ExistsAttribute('SuppressOperations') then
+      begin
         EOper := True;
-        VOper := MergeStringValue(VOper, V.MOF_GetAttribute('SuppressOperations'));
+        VOper := MergeStringValue(VOper,
+          V.MOF_GetAttribute('SuppressOperations'));
       end;
-      if V.MetaClass.ExistsAttribute('SuppressLiterals') then begin
+      if V.MetaClass.ExistsAttribute('SuppressLiterals') then
+      begin
         ELiter := True;
-        VLiter := MergeStringValue(VLiter, V.MOF_GetAttribute('SuppressLiterals'));
+        VLiter := MergeStringValue(VLiter,
+          V.MOF_GetAttribute('SuppressLiterals'));
       end;
-      if V.MetaClass.ExistsAttribute('ShowParentName') then begin
+      if V.MetaClass.ExistsAttribute('ShowParentName') then
+      begin
         EParent := True;
-        VParent := MergeStringValue(VParent, V.MOF_GetAttribute('ShowParentName'));
+        VParent := MergeStringValue(VParent,
+          V.MOF_GetAttribute('ShowParentName'));
       end;
-      if V.MetaClass.ExistsAttribute('ShowOperationSignature') then begin
+      if V.MetaClass.ExistsAttribute('ShowOperationSignature') then
+      begin
         EOperSig := True;
-        VOperSig := MergeStringValue(VOperSig, V.MOF_GetAttribute('ShowOperationSignature'));
+        VOperSig := MergeStringValue(VOperSig,
+          V.MOF_GetAttribute('ShowOperationSignature'));
       end;
-      if V.MetaClass.ExistsAttribute('ShowProperty') then begin
+      if V.MetaClass.ExistsAttribute('ShowProperty') then
+      begin
         EProp := True;
         VProp := MergeStringValue(VProp, V.MOF_GetAttribute('ShowProperty'));
       end;
-      if V.MetaClass.ExistsAttribute('ShowCompartmentVisibility') then begin
+      if V.MetaClass.ExistsAttribute('ShowCompartmentVisibility') then
+      begin
         EComVisi := True;
-        VComVisi := MergeStringValue(VComVisi, V.MOF_GetAttribute('ShowCompartmentVisibility'));
+        VComVisi := MergeStringValue(VComVisi,
+          V.MOF_GetAttribute('ShowCompartmentVisibility'));
       end;
-      if V.MetaClass.ExistsAttribute('ShowCompartmentStereotype') then begin
+      if V.MetaClass.ExistsAttribute('ShowCompartmentStereotype') then
+      begin
         EComStereo := True;
-        VComStereo := MergeStringValue(VComStereo, V.MOF_GetAttribute('ShowCompartmentStereotype'));
+        VComStereo := MergeStringValue(VComStereo,
+          V.MOF_GetAttribute('ShowCompartmentStereotype'));
       end;
-      if V.MetaClass.ExistsAttribute('ShowExtendedNotation') then begin
+      if V.MetaClass.ExistsAttribute('ShowExtendedNotation') then
+      begin
         EExtNot := True;
-        VExtNot := MergeStringValue(VExtNot, V.MOF_GetAttribute('ShowExtendedNotation'));
+        VExtNot := MergeStringValue(VExtNot,
+          V.MOF_GetAttribute('ShowExtendedNotation'));
       end;
-      if V.MetaClass.ExistsAttribute('AutoResize') then begin
+      if V.MetaClass.ExistsAttribute('AutoResize') then
+      begin
         EAuto := True;
         VAuto := MergeStringValue(VAuto, V.MOF_GetAttribute('AutoResize'));
       end;
-      if V.MetaClass.ExistsAttribute('WordWrap') then begin
+      if V.MetaClass.ExistsAttribute('WordWrap') then
+      begin
         EWordWrap := True;
-        VWordWrap := MergeStringValue(VWordWrap, V.MOF_GetAttribute('WordWrap'));
+        VWordWrap := MergeStringValue(VWordWrap,
+          V.MOF_GetAttribute('WordWrap'));
       end;
     end;
     // Setting enables
@@ -4836,7 +5631,8 @@ begin
     FormatLineStyleRectilinear.Enabled := ELine;
     FormatLineStyleOblique.Enabled := ELine;
     if Assigned(V) then
-      FormatFillColor.Enabled := V.ClassType <> PUMLTextView; // TextView has no fill
+      FormatFillColor.Enabled := V.ClassType <> PUMLTextView;
+    // TextView has no fill
     FormatStereotypeDisplay.Enabled := EStereo;
     FormatStereotypeDisplayNone.Enabled := EStereo;
     FormatStereotypeDisplayText.Enabled := EStereo;
@@ -4861,43 +5657,51 @@ begin
     FormatAlignmentSpaceEvenlyHorizontally.Enabled := (NodeCount > 1);
     FormatAlignmentSpaceEvenlyVertically.Enabled := (NodeCount > 1);
     // Setting checks
-    if VLine = 'lsRectilinear' then begin
+    if VLine = 'lsRectilinear' then
+    begin
       FormatLineStyleRectilinear.Down := True;
       FormatLineStyleOblique.Down := False;
     end
-    else if VLine = 'lsOblique' then begin
+    else if VLine = 'lsOblique' then
+    begin
       FormatLineStyleRectilinear.Down := False;
       FormatLineStyleOblique.Down := True;
     end
-    else begin
+    else
+    begin
       FormatLineStyleRectilinear.Down := False;
       FormatLineStyleOblique.Down := False;
     end;
-    if VStereo = 'sdkLabel' then begin
+    if VStereo = 'sdkLabel' then
+    begin
       FormatStereotypeDisplayNone.Down := False;
       FormatStereotypeDisplayText.Down := True;
       FormatStereotypeDisplayIcon.Down := False;
       FormatStereotypeDisplayDecoration.Down := False;
     end
-    else if VStereo = 'sdkIcon' then begin
+    else if VStereo = 'sdkIcon' then
+    begin
       FormatStereotypeDisplayNone.Down := False;
       FormatStereotypeDisplayText.Down := False;
       FormatStereotypeDisplayIcon.Down := True;
       FormatStereotypeDisplayDecoration.Down := False;
     end
-    else if VStereo = 'sdkNone' then begin
+    else if VStereo = 'sdkNone' then
+    begin
       FormatStereotypeDisplayNone.Down := True;
       FormatStereotypeDisplayText.Down := False;
       FormatStereotypeDisplayIcon.Down := False;
       FormatStereotypeDisplayDecoration.Down := False;
     end
-    else if VStereo = 'sdkDecoration' then begin
+    else if VStereo = 'sdkDecoration' then
+    begin
       FormatStereotypeDisplayNone.Down := False;
       FormatStereotypeDisplayText.Down := False;
       FormatStereotypeDisplayIcon.Down := False;
       FormatStereotypeDisplayDecoration.Down := True;
     end
-    else begin
+    else
+    begin
       FormatStereotypeDisplayNone.Down := False;
       FormatStereotypeDisplayText.Down := False;
       FormatStereotypeDisplayIcon.Down := False;
@@ -4914,22 +5718,33 @@ begin
     FormatAutoResize.Down := (VAuto = 'True');
     FormatWordWrap.Down := (VWordWrap = 'True');
     // Updating ComboBoxes
-    if VFontFace = NOT_ASSIGNED then FontFaceComboText := ''
-                                else FontFaceComboText := VFontFace;
-    if VFontSize = NOT_ASSIGNED then FontSizeComboText := ''
-                                else FontSizeComboText := VFontSize;
+    if VFontFace = NOT_ASSIGNED then
+      FontFaceComboText := ''
+    else
+      FontFaceComboText := VFontFace;
+    if VFontSize = NOT_ASSIGNED then
+      FontSizeComboText := ''
+    else
+      FontSizeComboText := VFontSize;
 
-    if VAnnotationLine <> NOT_ASSIGNED then begin
+    if VAnnotationLine <> NOT_ASSIGNED then
+    begin
       VAnnotationLineValue := StringToLineKind(VAnnotationLine);
       case VAnnotationLineValue of
-          lkSolid: FormatAnnotationLineStyleSolid.Down := True;
-          lkDash: FormatAnnotationLineStyleDash.Down := True;
-          lkDot: FormatAnnotationLineStyleDot.Down := True;
-          lkDashDot: FormatAnnotationLineStyleDashDot.Down := True;
-          lkDashDotDot: FormatAnnotationLineStyleDashDotDot.Down := True;
+        lkSolid:
+          FormatAnnotationLineStyleSolid.Down := True;
+        lkDash:
+          FormatAnnotationLineStyleDash.Down := True;
+        lkDot:
+          FormatAnnotationLineStyleDot.Down := True;
+        lkDashDot:
+          FormatAnnotationLineStyleDashDot.Down := True;
+        lkDashDotDot:
+          FormatAnnotationLineStyleDashDotDot.Down := True;
       end;
     end
-    else begin
+    else
+    begin
       FormatAnnotationLineStyleSolid.Down := False;
       FormatAnnotationLineStyleDash.Down := False;
       FormatAnnotationLineStyleDot.Down := False;
@@ -4955,12 +5770,14 @@ begin
     M := SelectTargetModel;
     if Assigned(M) then
     begin
-      //M := StarUMLApplication.SelectedModels[0];
-      if M is PUMLProject then begin
+      // M := StarUMLApplication.SelectedModels[0];
+      if M is PUMLProject then
+      begin
         ModelAdd.Enabled := True;
         NamespacesGroup.Visible := ivAlways;
       end
-      else if M is PUMLModel then begin
+      else if M is PUMLModel then
+      begin
         ModelAdd.Enabled := True;
         NamespacesGroup.Visible := ivAlways;
         ClassifiersGroup.Visible := ivAlways;
@@ -4970,7 +5787,8 @@ begin
         ModelAddDiagram.Enabled := True;
         AllDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLSubsystem then begin
+      else if M is PUMLSubsystem then
+      begin
         ModelAdd.Enabled := True;
         NamespacesGroup.Visible := ivAlways;
         ClassifiersGroup.Visible := ivAlways;
@@ -4981,7 +5799,8 @@ begin
         ModelAddDiagram.Enabled := True;
         AllDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLPackage then begin
+      else if M is PUMLPackage then
+      begin
         ModelAdd.Enabled := True;
         NamespacesGroup.Visible := ivAlways;
         ClassifiersGroup.Visible := ivAlways;
@@ -4991,7 +5810,8 @@ begin
         ModelAddDiagram.Enabled := True;
         AllDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLClass then begin
+      else if M is PUMLClass then
+      begin
         ModelAdd.Enabled := True;
         FeaturesGroup.Visible := ivAlways;
         BehaviorsGroup.Visible := ivAlways;
@@ -5005,7 +5825,8 @@ begin
         ModelAddDiagram.Enabled := True;
         BehavioralDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLInterface then begin
+      else if M is PUMLInterface then
+      begin
         ModelAdd.Enabled := True;
         FeaturesGroup.Visible := ivAlways;
         BehaviorsGroup.Visible := ivAlways;
@@ -5013,7 +5834,8 @@ begin
         ModelAddDiagram.Enabled := True;
         BehavioralDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLEnumeration then begin
+      else if M is PUMLEnumeration then
+      begin
         ModelAdd.Enabled := True;
         BehaviorsGroup.Visible := ivAlways;
         ModelAddOperation.Visible := ivAlways;
@@ -5022,7 +5844,8 @@ begin
         ModelAddDiagram.Enabled := True;
         BehavioralDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLException then begin
+      else if M is PUMLException then
+      begin
         ModelAdd.Enabled := True;
         FeaturesGroup.Visible := ivAlways;
         BehaviorsGroup.Visible := ivAlways;
@@ -5030,7 +5853,8 @@ begin
         ModelAddDiagram.Enabled := True;
         BehavioralDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLSignal then begin
+      else if M is PUMLSignal then
+      begin
         ModelAdd.Enabled := True;
         FeaturesGroup.Visible := ivAlways;
         BehaviorsGroup.Visible := ivAlways;
@@ -5038,7 +5862,8 @@ begin
         ModelAddDiagram.Enabled := True;
         BehavioralDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLComponent then begin
+      else if M is PUMLComponent then
+      begin
         ModelAdd.Enabled := True;
         FeaturesGroup.Visible := ivAlways;
         BehaviorsGroup.Visible := ivAlways;
@@ -5046,7 +5871,8 @@ begin
         ModelAddDiagram.Enabled := True;
         BehavioralDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLNode then begin
+      else if M is PUMLNode then
+      begin
         ModelAdd.Enabled := True;
         BehaviorsGroup.Visible := ivAlways;
         ModelAddAttribute.Visible := ivAlways;
@@ -5054,7 +5880,8 @@ begin
         ModelAddDiagram.Enabled := True;
         BehavioralDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLUseCase then begin
+      else if M is PUMLUseCase then
+      begin
         ModelAdd.Enabled := True;
         FeaturesGroup.Visible := ivAlways;
         BehaviorsGroup.Visible := ivAlways;
@@ -5063,7 +5890,8 @@ begin
         ModelAddDiagram.Enabled := True;
         BehavioralDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLActor then begin
+      else if M is PUMLActor then
+      begin
         ModelAdd.Enabled := True;
         FeaturesGroup.Visible := ivAlways;
         BehaviorsGroup.Visible := ivAlways;
@@ -5071,20 +5899,24 @@ begin
         ModelAddDiagram.Enabled := True;
         BehavioralDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLActivityGraph then begin
+      else if M is PUMLActivityGraph then
+      begin
         ModelAdd.Enabled := True;
         ModelAddSwimlane.Visible := ivAlways;
         ModelAddDiagram.Enabled := True;
         ModelAddDiagramActivityDiagram.Visible := ivAlways;
       end
-      else if M is PUMLStateMachine then begin
+      else if M is PUMLStateMachine then
+      begin
         ModelAddDiagram.Enabled := True;
         ModelAddDiagramStatechartDiagram.Visible := ivAlways;
       end
-      else if M is PUMLCompositeState then begin
+      else if M is PUMLCompositeState then
+      begin
         ModelAdd.Enabled := True;
         ActionsGroup.Visible := ivAlways;
-        if (M as PUMLCompositeState).StateMachine is PUMLActivityGraph then begin
+        if (M as PUMLCompositeState).StateMachine is PUMLActivityGraph then
+        begin
           ModelAddActionState.Visible := ivAlways;
           ModelAddSubactivityState.Visible := ivAlways;
           ModelAddInitialState.Visible := ivAlways;
@@ -5096,7 +5928,8 @@ begin
           ModelAddSignalAcceptState.Visible := ivAlways;
           ModelAddSignalSendState.Visible := ivAlways;
         end
-        else begin
+        else
+        begin
           ModelAddState.Visible := ivAlways;
           ModelAddSubmachineState.Visible := ivAlways;
           ModelAddShallowHistory.Visible := ivAlways;
@@ -5109,7 +5942,8 @@ begin
           ModelAddFlowFinalState.Visible := ivAlways;
         end;
       end
-      else if M is PUMLCollaboration then begin
+      else if M is PUMLCollaboration then
+      begin
         ModelAdd.Enabled := True;
         ModelAddTemplateParameter.Visible := ivAlways;
         ModelAddInteraction.Visible := ivAlways;
@@ -5118,7 +5952,8 @@ begin
         ModelAddDiagramSequenceRoleDiagram.Visible := ivAlways;
         ModelAddDiagramCollaborationRoleDiagram.Visible := ivAlways;
       end
-      else if M is PUMLCollaborationInstanceSet then begin
+      else if M is PUMLCollaborationInstanceSet then
+      begin
         ModelAdd.Enabled := True;
         ModelAddInteractionInstanceSet.Visible := ivAlways;
         ModelAddObject.Visible := ivAlways;
@@ -5126,63 +5961,76 @@ begin
         ModelAddDiagramSequenceDiagram.Visible := ivAlways;
         ModelAddDiagramCollaborationDiagram.Visible := ivAlways;
       end
-      else if M is PUMLInteraction then begin
+      else if M is PUMLInteraction then
+      begin
         ModelAdd.Enabled := True;
         ModelAddCombinedFragment.Visible := ivAlways;
         ModelAddFrame.Visible := ivAlways;
-        if (M as PUMLInteraction).OwnedDiagramCount = 0 then begin
+        if (M as PUMLInteraction).OwnedDiagramCount = 0 then
+        begin
           ModelAddDiagram.Enabled := True;
           ModelAddDiagramSequenceRoleDiagram.Visible := ivAlways;
           ModelAddDiagramCollaborationRoleDiagram.Visible := ivAlways;
         end;
       end
-      else if M is PUMLInteractionInstanceSet then begin
+      else if M is PUMLInteractionInstanceSet then
+      begin
         ModelAdd.Enabled := True;
         ModelAddCombinedFragment.Visible := ivAlways;
         ModelAddFrame.Visible := ivAlways;
-        if (M as PUMLInteractionInstanceSet).OwnedDiagramCount = 0 then begin
+        if (M as PUMLInteractionInstanceSet).OwnedDiagramCount = 0 then
+        begin
           ModelAddDiagram.Enabled := True;
           ModelAddDiagramSequenceDiagram.Visible := ivAlways;
           ModelAddDiagramCollaborationDiagram.Visible := ivAlways;
         end;
       end
-      else if M is PUMLActionState then begin
+      else if M is PUMLActionState then
+      begin
         ModelAdd.Enabled := True;
         ActionsGroup.Visible := ivAlways;
       end
-      else if M is PUMLSubactivityState then begin
+      else if M is PUMLSubactivityState then
+      begin
         ModelAdd.Enabled := True;
         ActionsGroup.Visible := ivAlways;
       end
-      else if M is PUMLFinalState then begin
+      else if M is PUMLFinalState then
+      begin
         ModelAdd.Enabled := True;
         ActionsGroup.Visible := ivAlways;
       end
-      else if M is PUMLSubmachineState then begin
+      else if M is PUMLSubmachineState then
+      begin
         ModelAdd.Enabled := True;
         ActionsGroup.Visible := ivAlways;
       end
-      else if M is PUMLOperation then begin
+      else if M is PUMLOperation then
+      begin
         ModelAdd.Enabled := True;
         BehaviorsGroup.Visible := ivAlways;
         ModelAddParameter.Visible := ivAlways;
         ModelAddDiagram.Enabled := True;
         BehavioralDiagramsGroup.Visible := ivAlways;
       end
-      else if M is PUMLTransition then begin
+      else if M is PUMLTransition then
+      begin
         ModelAdd.Enabled := True;
         EventsGroup.Visible := ivAlways;
         ModelAddEffect.Visible := ivAlways;
       end
-      else if M is PUMLInstance then begin
+      else if M is PUMLInstance then
+      begin
         ModelAdd.Enabled := True;
         ModelAddAttributeLink.Visible := ivAlways;
       end
-      else if M is PUMLCombinedFragment then begin
+      else if M is PUMLCombinedFragment then
+      begin
         ModelAdd.Enabled := True;
         ModelAddInteractionOperand.Visible := ivAlways;
       end
-      else if M is PUMLInteractionOperand then begin
+      else if M is PUMLInteractionOperand then
+      begin
         ModelAdd.Enabled := True;
         ModelAddCombinedFragment.Visible := ivAlways;
       end;
@@ -5195,13 +6043,20 @@ procedure PMainFormMenuStateHandler.UpdateViewMenus;
 begin
   with MainForm do
   begin
-    ViewModelExplorer.Down := ModelExplorerDockPanel.Visible or ModelExplorerDockPanel.AutoHide;
-    ViewDiagramExplorer.Down := DiagramExplorerDockPanel.Visible or DiagramExplorerDockPanel.AutoHide;
-    ViewPropertyEditor.Down := PropertiesDockPanel.Visible or PropertiesDockPanel.AutoHide;
-    ViewDocumentationEditor.Down := DocumentationDockPanel.Visible or DocumentationDockPanel.AutoHide;
-    ViewAttachmentEditor.Down := AttachmentsDockPanel.Visible or AttachmentsDockPanel.AutoHide;
-    ViewOutputWindow.Down := OutputDockPanel.Visible or OutputDockPanel.AutoHide;
-    ViewMessageWindow.Down := MessageDockPanel.Visible or MessageDockPanel.AutoHide;
+    ViewModelExplorer.Down := ModelExplorerDockPanel.Visible or
+      ModelExplorerDockPanel.AutoHide;
+    ViewDiagramExplorer.Down := DiagramExplorerDockPanel.Visible or
+      DiagramExplorerDockPanel.AutoHide;
+    ViewPropertyEditor.Down := PropertiesDockPanel.Visible or
+      PropertiesDockPanel.AutoHide;
+    ViewDocumentationEditor.Down := DocumentationDockPanel.Visible or
+      DocumentationDockPanel.AutoHide;
+    ViewAttachmentEditor.Down := AttachmentsDockPanel.Visible or
+      AttachmentsDockPanel.AutoHide;
+    ViewOutputWindow.Down := OutputDockPanel.Visible or
+      OutputDockPanel.AutoHide;
+    ViewMessageWindow.Down := MessageDockPanel.Visible or
+      MessageDockPanel.AutoHide;
     ViewToolbox.Down := ToolboxDockPanel.Visible or ToolboxDockPanel.AutoHide;
     ViewToolbarsStandard.Down := BarManager.Bars[STANDARD_BAR].Visible;
     ViewToolbarsFormat.Down := BarManager.Bars[FORMAT_BAR].Visible;
@@ -5209,7 +6064,8 @@ begin
     ViewToolbarsAlignment.Down := BarManager.Bars[ALIGNMENT_BAR].Visible;
     ViewToolbarsStatusBar.Down := BarManager.Bars[STATUS_BAR].Visible;
     if WorkingAreaFrame.ActiveDiagramEditor <> nil then
-      ZoomComboText := IntToStr(WorkingAreaFrame.ActiveDiagramEditor.ZoomPercent) + '%'
+      ZoomComboText :=
+        IntToStr(WorkingAreaFrame.ActiveDiagramEditor.ZoomPercent) + '%'
     else
       ZoomComboText := '100%';
   end;
@@ -5228,29 +6084,38 @@ begin
     else
       StatusBarModifiedInfo.Caption := '';
     // Update Status Info.
-    if StarUMLApplication.SelectedModelCount = 0 then begin
+    if StarUMLApplication.SelectedModelCount = 0 then
+    begin
       StatusBarInfo.Caption := '';
     end
-    else if StarUMLApplication.SelectedModelCount = 1 then begin
+    else if StarUMLApplication.SelectedModelCount = 1 then
+    begin
       try
         M := StarUMLApplication.SelectedModels[0];
-        if M.IsDocumentElement then begin
-          if M.Document is PUMLProjectDocument then S := TXT_DOC_TYPE_PROJECT
-          else if M.Document is PUMLUnitDocument then S := TXT_DOC_TYPE_UNIT;
+        if M.IsDocumentElement then
+        begin
+          if M.Document is PUMLProjectDocument then
+            S := TXT_DOC_TYPE_PROJECT
+          else if M.Document is PUMLUnitDocument then
+            S := TXT_DOC_TYPE_UNIT;
           S := S + ' ' + M.Document.FileName;
-          if M.Document.Modified then S := S + ' (' + MSG_DOCUMENT_MODIFIED + ')'
-          else if M.Document.ReadOnly then S := S + ' ' + TXT_DOC_STATUS_READONLY;
+          if M.Document.Modified then
+            S := S + ' (' + MSG_DOCUMENT_MODIFIED + ')'
+          else if M.Document.ReadOnly then
+            S := S + ' ' + TXT_DOC_STATUS_READONLY;
         end
-        else begin
+        else
+        begin
           if Assigned(M.MetaClass) then
-            S := '(' + M.MetaClass.Name + ') ' + M.Pathname
+            S := '(' + M.MetaClass.Name + ') ' + M.PathName
         end;
         StatusBarInfo.Caption := S;
       except
         StatusBarInfo.Caption := '';
       end;
     end
-    else begin
+    else
+    begin
       StatusBarInfo.Caption := TXT_ELEM_SEL_MULTIPLE;
     end;
   end;
@@ -5263,9 +6128,9 @@ end;
 
 
 // PMainFormMenuStateHandler
-////////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
 // Miscellaneous Functions
 
 procedure UpdateDocumentElements;
@@ -5290,8 +6155,9 @@ begin
     finally
       ASet.Free;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
@@ -5306,29 +6172,37 @@ begin
     ExtModified := False;
     StarUMLApplication.UpdateDocuments;
     C := StarUMLApplication.DocumentElementCount;
-    for I := 0 to C - 1 do begin
+    for I := 0 to C - 1 do
+    begin
       Doc := (StarUMLApplication.DocumentElements[I]).Document;
-      if Doc.ExternallyModified then begin
+      if Doc.ExternallyModified then
+      begin
         ExtModified := True;
-        if Str <> '' then Str := Str + #13#10;
+        if Str <> '' then
+          Str := Str + #13#10;
         Str := Str + Doc.FileName;
         Doc.ExternallyModified := False;
       end;
     end;
-    if ExtModified then begin
+    if ExtModified then
+    begin
       Str := Str + #13#10 + QUERY_RELOAD_PROJECT;
-      R :=Application.MessageBox(PChar(Str), PChar(Application.Title), MB_ICONQUESTION or MB_YESNO);
-      if R = IDYES then begin
-        StarUMLApplication.OpenProject(StarUMLApplication.ProjectDocument.FileName);
+      R := Application.MessageBox(PChar(Str), PChar(Application.Title),
+        MB_ICONQUESTION or MB_YESNO);
+      if R = IDYES then
+      begin
+        StarUMLApplication.OpenProject
+          (StarUMLApplication.ProjectDocument.FileName);
         MainForm.WorkingAreaFrame.OpenAllDefaultDiagrams;
       end;
     end;
-  except on
-    E: Exception do MessageDlg(E.Message, mtError, [mbOK], 0);
+  except
+    on E: Exception do
+      MessageDlg(E.Message, mtError, [mbOK], 0);
   end;
 end;
 
 // Miscellaneous Functions
-////////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////
 
 end.

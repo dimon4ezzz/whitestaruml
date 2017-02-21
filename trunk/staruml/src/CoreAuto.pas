@@ -1006,7 +1006,7 @@ function PDiagramViewAuto.GetSelectedViewAt(Index: Integer): IView;
 var
   E: PView;
 begin
-  E := (TheObject as PDiagramView).SelectedViews[Index];
+  E := (TheObject as PDiagramView).SelectedView[Index];
   if E = nil then Result := nil
   else Result := E.GetAutomationObject as PViewAuto;
 end;

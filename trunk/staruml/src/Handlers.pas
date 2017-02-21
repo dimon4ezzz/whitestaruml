@@ -731,8 +731,8 @@ begin
   FDragged := False;
   FDoubleClicked := False;
 
-  if (Sender.DiagramView.SelectedViewCount = 1) and IsPointInSelectionLine(Sender, Canvas, Sender.DiagramView.SelectedViews[0], X, Y) then
-    FView := Sender.DiagramView.SelectedViews[0]
+  if (Sender.DiagramView.SelectedViewCount = 1) and IsPointInSelectionLine(Sender, Canvas, Sender.DiagramView.SelectedView[0], X, Y) then
+    FView := Sender.DiagramView.SelectedView[0]
   else
     FView := Sender.DiagramView.GetViewAt(Canvas, ZX, ZY);
 
@@ -776,7 +776,7 @@ begin
         FBoundingBox := Sender.DiagramView.GetSelectedBoundingBox(Canvas);
         VS := POrderedSet.Create;
         for I := 0 to Sender.DiagramView.SelectedViewCount - 1 do
-          VS.Add(Sender.DiagramView.SelectedViews[I]);
+          VS.Add(Sender.DiagramView.SelectedView[I]);
         if HasTheSameContainerView(VS) then
           FContainmentHandlingProxy.BeginHandling;
         VS.Free;
@@ -846,7 +846,7 @@ begin
       V := Sender.DiagramView.GetViewAt(Canvas, ZX, ZY);
       VS := POrderedSet.Create;
       for I := 0 to Sender.DiagramView.SelectedViewCount - 1 do
-        VS.Add(Sender.DiagramView.SelectedViews[I]);
+        VS.Add(Sender.DiagramView.SelectedView[I]);
       FContainmentHandlingProxy.MouseMoveHandling(Canvas, VS, V);
       VS.Free;
 
@@ -944,7 +944,7 @@ begin
     FContainmentHandlingProxy.MouseUpHandling(Canvas);
     // Selected views moved
     if (GX2 <> GX1) or (GY2 <> GY1) then begin
-      if FContainmentHandlingProxy.Activated and (Sender.DiagramView.SelectedViews[0].ContainerView <> FContainmentHandlingProxy.ContainerView) then
+      if FContainmentHandlingProxy.Activated and (Sender.DiagramView.SelectedView[0].ContainerView <> FContainmentHandlingProxy.ContainerView) then
         ChangeSelectedViewsContainer(GX2 - GX1, GY2 - GY1, FContainmentHandlingProxy.ContainerView)
       else
         MoveSelectedViews(GX2 - GX1, GY2 - GY1);
@@ -1011,7 +1011,7 @@ procedure PSelectHandler.KeyUp(Sender: PDiagramEditor; Canvas: PCanvas; var Key:
   function IsNodeResizingBehavior: Boolean;
   begin
     Result := (Sender.DiagramView.SelectedViewCount = 1)
-      and (Sender.DiagramView.SelectedViews[0] is PNodeView)
+      and (Sender.DiagramView.SelectedView[0] is PNodeView)
       and (ssShift in Shift) and IsArrowKey(Key);
   end;
 
@@ -1068,7 +1068,7 @@ begin
   if IsViewSelectionChangingBehavior then begin
     NearestView := nil;
     if DiagramView.SelectedViewCount = 1 then begin
-      V := DiagramView.SelectedViews[0];
+      V := DiagramView.SelectedView[0];
       if Key = VK_LEFT then
         NearestView := FindNearestView(V, dkLeft)
       else if Key = VK_RIGHT then
@@ -1096,7 +1096,7 @@ begin
   end
   else if IsNodeResizingBehavior then begin
     SetFactor(DX, DY);
-    NodeView := Sender.DiagramView.SelectedViews[0] as PNodeView;
+    NodeView := Sender.DiagramView.SelectedView[0] as PNodeView;
     if Key = VK_LEFT then
       ResizeNode(NodeView, NodeView.Left, NodeView.Top, NodeView.Right - DX, NodeView.Bottom)
     else if Key = VK_RIGHT then
@@ -1107,7 +1107,7 @@ begin
       ResizeNode(NodeView, NodeView.Left, NodeView.Top, NodeView.Right, NodeView.Bottom + DY);
   end
   else if IsQuickDialogLaunchingBehavior then begin
-    V := Sender.DiagramView.SelectedViews[0];
+    V := Sender.DiagramView.SelectedView[0];
     if V is PNodeView then begin
       NodeView := V as PNodeView;
       FOnQuickDlgPopup(V, NodeView.Left, NodeView.Top);
@@ -2747,7 +2747,7 @@ begin
   ZX := X;  ZY := Y;
   CoordRevTransform(Sender.ZoomFactor, NOGRID, ZX, ZY);
 
-  V := Sender.DiagramView.SelectedViews[0];
+  V := Sender.DiagramView.SelectedView[0];
   P := Point(X, Y);
 
   if V is PLineView then begin
