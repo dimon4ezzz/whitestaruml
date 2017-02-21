@@ -54,9 +54,9 @@ uses
 type
   // Event Types
   PNameChangeEvent = procedure(Sender: TObject; Element: PElement; Name: string) of object;
-  PElementsStereotypeChangeEvent = procedure(Sender: TObject; ElementSet: POrderedSet; StereotypeProfile: string; Stereotype: string) of object;
+  PElementsStereotypeChangeEvent = procedure(Sender: TObject; ElementSet: PElementOrderedSet; StereotypeProfile: string; Stereotype: string) of object;
   PAttributeChangeEvent = procedure(Sender: TObject; Element: PElement; Key, Value: string) of object;
-  PElementsAttributeChangeEvent = procedure(Sender: TObject; ElementSet: POrderedSet; Key, Value: string) of object;
+  PElementsAttributeChangeEvent = procedure(Sender: TObject; ElementSet: PElementOrderedSet; Key, Value: string) of object;
   PReferenceChangeEvent = procedure(Sender: TObject; Element: PElement; Key: string; Value: PElement) of object;
   PTypeExpressionChangeEvent = procedure(Sender: TObject; Element: PElement; Key, TypeExpr: string; TypeRef: PElement) of object;
   PValueExpressionChangeEvent = procedure(Sender: TObject; Element: PElement; Key, ValueExpr: string; ValueRef: PElement) of object;
@@ -81,9 +81,9 @@ type
     FOnCollectionEdit: PCollectionEditEvent;
     FOnActionKindChange: PActionKindChangeEvent;
     procedure NameChange(Element: PElement; Name: string);
-    procedure ElementsStereotypeChange(ElementSet: POrderedSet; StereotypeProfile: string; Stereotype: string);
+    procedure ElementsStereotypeChange(ElementSet: PElementOrderedSet; StereotypeProfile: string; Stereotype: string);
     procedure AttributeChange(Element: PElement; Key, Value: string);
-    procedure ElementsAttributeChange(ElementSet: POrderedSet; Key, Value: string);
+    procedure ElementsAttributeChange(ElementSet: PElementOrderedSet; Key, Value: string);
     procedure ReferenceChange(Element: PElement; Key: string; Value: PElement);
     procedure TypeExpressionChange(Element: PElement; Key, TypeExpr: string; TypeRef: PElement);
     procedure ValueExpressionChange(Element: PElement; Key, ValueExpr: string; ValueRef: PElement);
@@ -94,8 +94,8 @@ type
     destructor Destroy; override;
     procedure SpecifyProperties(AElement: PElement; APropertySpecifier: PPropertySpecifier); override;
     function GetPropertyValue(AElement: PElement; Key: string): string; override;
-    procedure SetPropertyValue(AElementSet: POrderedSet; Key: string; Value: string); override;
-    procedure PropertyButtonClicked(AElementSet: POrderedSet; Key: string); override;
+    procedure SetPropertyValue(AElementSet: PElementOrderedSet; Key: string; Value: string); override;
+    procedure PropertyButtonClicked(AElementSet: PElementOrderedSet; Key: string); override;
     property VisibilityKindImages: TImageList write FVisibilityKindImages;
     property AggregationKindImages: TImageList write FAggregationKindImages;
     property PseudostaateKindImages: TImageList write FPseudostaateKindImages;
@@ -133,7 +133,7 @@ begin
     FOnNameChange(Self, Element, Name);
 end;
 
-procedure PUMLPropertyAdaptor.ElementsStereotypeChange(ElementSet: POrderedSet; StereotypeProfile: string; Stereotype: string);
+procedure PUMLPropertyAdaptor.ElementsStereotypeChange(ElementSet: PElementOrderedSet; StereotypeProfile: string; Stereotype: string);
 begin
   if Assigned(FOnElementsStereotypeChange) then
     FOnElementsStereotypeChange(Self, ElementSet, StereotypeProfile, Stereotype);
@@ -145,7 +145,7 @@ begin
     FOnAttributeChange(Self, Element, Key, Value);
 end;
 
-procedure PUMLPropertyAdaptor.ElementsAttributeChange(ElementSet: POrderedSet; Key, Value: string);
+procedure PUMLPropertyAdaptor.ElementsAttributeChange(ElementSet: PElementOrderedSet; Key, Value: string);
 begin
   if Assigned(FOnElementsAttributeChange) then
     FOnElementsAttributeChange(Self, ElementSet, Key, Value);
@@ -1799,7 +1799,7 @@ begin
   end;
 end;
 
-procedure PUMLPropertyAdaptor.SetPropertyValue(AElementSet: POrderedSet; Key: string; Value: string);
+procedure PUMLPropertyAdaptor.SetPropertyValue(AElementSet: PElementOrderedSet; Key: string; Value: string);
 
   function PropertyValueToVisibility(Value: string): string;
   begin
@@ -2361,7 +2361,7 @@ begin
   end;
 end;
 
-procedure PUMLPropertyAdaptor.PropertyButtonClicked(AElementSet: POrderedSet; Key: string);
+procedure PUMLPropertyAdaptor.PropertyButtonClicked(AElementSet: PElementOrderedSet; Key: string);
 
 
   // Find suitable UMLClassifier as owner of operation

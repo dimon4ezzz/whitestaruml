@@ -101,16 +101,16 @@ type
     procedure InitializePropertyAdaptor;
     procedure NameChanged(Element: PElement; Name: string);
     procedure AttributeChanged(Element: PElement; Key, Value: string);
-    procedure ElementsAttributeChanged(ElementSet: POrderedSet; Key, Value: string);
+    procedure ElementsAttributeChanged(ElementSet: PElementOrderedSet; Key, Value: string);
     procedure ReferenceChanged(Element: PElement; Key: string; Value: PElement);
     procedure TypeExpressionChanged(Element: PElement; Key, TypeExpr: string; TypeRef: PElement);
-    procedure ElementsStereotypeChanged(ElementSet: POrderedSet; StereotypeProfile: string; Stereotype: string);
+    procedure ElementsStereotypeChanged(ElementSet: PElementOrderedSet; StereotypeProfile: string; Stereotype: string);
     procedure ActionKindChanged(Element: PElement; ActionKind: string);
     procedure ValueExpressionChanged(Element: PElement; Key, ValueExpr: string; ValueRef: PElement);
     procedure UMLPropertyAdaptorNameChange(Sender: TObject; Element: PElement; Name: string);
-    procedure UMLPropertyAdaptorElementsStereotypeChange(Sender: TObject; ElementSet: POrderedSet; StereotypeProfile: string; Stereotype: string);
+    procedure UMLPropertyAdaptorElementsStereotypeChange(Sender: TObject; ElementSet: PElementOrderedSet; StereotypeProfile: string; Stereotype: string);
     procedure UMLPropertyAdaptorAttributeChange(Sender: TObject; Element: PElement; Key, Value: string);
-    procedure UMLPropertyAdaptorElementsAttributeChange(Sender: TObject; ElementSet: POrderedSet; Key, Value: string);
+    procedure UMLPropertyAdaptorElementsAttributeChange(Sender: TObject; ElementSet: PElementOrderedSet; Key, Value: string);
     procedure UMLPropertAdaptorReferenceChange(Sender: TObject; Element: PElement; Key: string; Value: PElement);
     procedure UMLPropertyAdaptorTypeExpressionChange(Sender: TObject; Element: PElement; Key, TypeExpr: string; TypeRef: PElement);
     procedure UMLPropertyAdaptorActionKindChange(Sender: TObject; Element: PElement; ActionKind: string);
@@ -218,7 +218,7 @@ begin
     FOnAttributeChange(Self, Element, Key, Value);
 end;
 
-procedure TInspectorFrame.ElementsAttributeChanged(ElementSet: POrderedSet; Key, Value: string);
+procedure TInspectorFrame.ElementsAttributeChanged(ElementSet: PElementOrderedSet; Key, Value: string);
 begin
   if Assigned(FOnElementsAttributeChange) then
     FOnElementsAttributeChange(Self, ElementSet, Key, Value);
@@ -236,7 +236,7 @@ begin
     FOnTypeExpressionChange(Self, Element, Key, TypeExpr, TypeRef);
 end;
 
-procedure TInspectorFrame.ElementsStereotypeChanged(ElementSet: POrderedSet; StereotypeProfile: string; Stereotype: string);
+procedure TInspectorFrame.ElementsStereotypeChanged(ElementSet: PElementOrderedSet; StereotypeProfile: string; Stereotype: string);
 begin
   if Assigned(FOnElementsStereotypeChange) then
     FOnElementsStereotypeChange(Self, ElementSet, StereotypeProfile, Stereotype);
@@ -259,7 +259,7 @@ begin
   NameChanged(Element, Name);
 end;
 
-procedure TInspectorFrame.UMLPropertyAdaptorElementsStereotypeChange(Sender: TObject; ElementSet: POrderedSet; StereotypeProfile: string; Stereotype: string);
+procedure TInspectorFrame.UMLPropertyAdaptorElementsStereotypeChange(Sender: TObject; ElementSet: PElementOrderedSet; StereotypeProfile: string; Stereotype: string);
 begin
   ElementsStereotypeChanged(ElementSet, StereotypeProfile, Stereotype);
 end;
@@ -269,7 +269,7 @@ begin
   AttributeChanged(Element, Key, Value);
 end;
 
-procedure TInspectorFrame.UMLPropertyAdaptorElementsAttributeChange(Sender: TObject; ElementSet: POrderedSet; Key, Value: string);
+procedure TInspectorFrame.UMLPropertyAdaptorElementsAttributeChange(Sender: TObject; ElementSet: PElementOrderedSet; Key, Value: string);
 begin
   ElementsAttributeChanged(ElementSet, Key, Value);
 end;

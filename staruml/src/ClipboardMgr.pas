@@ -670,7 +670,7 @@ begin
     // Gather target(view) written in clipboard
     if SelectedViewsOnly then begin
       for I := 0 to ADiagramView.SelectedViewCount - 1 do begin
-        AView := ADiagramView.SelectedViews[I];
+        AView := ADiagramView.SelectedView[I];
         if AView is PParasiticView then Continue;
         if ValidView(AView) then Views.Add(AView);
       end;

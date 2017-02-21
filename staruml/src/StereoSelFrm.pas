@@ -49,7 +49,7 @@ unit StereoSelFrm;
 interface
 
 uses
-  BasicClasses, ExtCore, UMLModels,
+  BasicClasses, Core, ExtCore, UMLModels,
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, FlatPanel, ComCtrls;
 
@@ -79,7 +79,7 @@ type
       Shift: TShiftState);
     procedure HelpButtonClick(Sender: TObject);
   private
-    ModelSet: POrderedSet;
+    ModelSet: PExtensibleModelOrderedSet;
     FStereotypeName, FOldStereotypeName: string;
     FProfileName, FOldProfileName: string;
     AlphaKeyPressed: Boolean;
@@ -96,7 +96,7 @@ type
     procedure ScrollToSelectedItem;
     procedure UpdateUIState;
   public
-    function Execute(AModelSet: POrderedSet): Boolean;
+    function Execute(AModelSet: PElementOrderedSet): Boolean;
     property ProfileName: string read FProfileName;
     property StereotypeName: string read FStereotypeName;
   end;
@@ -126,7 +126,7 @@ const
 
 procedure TStereotypeSelectorForm.FormCreate(Sender: TObject);
 begin
-  ModelSet := POrderedSet.Create;
+  ModelSet := PExtensibleModelOrderedSet.Create;
   EditLocked := False;
   ListViewLocked := False;
   AlphaKeyPressed := False;
@@ -136,15 +136,14 @@ end;
 
 procedure TStereotypeSelectorForm.FormDestroy(Sender: TObject);
 begin
-  ModelSet.Free;
-  ModelSet := nil;
+  FreeAndNil(ModelSet)
 end;
 
 procedure TStereotypeSelectorForm.Initialize;
 var
   M: PExtensibleModel;
   S, P: string;
-  I: Integer;
+  FirstModel: Boolean;
 begin
   // PRECONDITION
   Assert(not ModelSet.IsEmpty);
@@ -158,23 +157,31 @@ begin
   StereotypeTitleLabel.Caption := '';
   DescMemo.Text := '';
 
-  // acquire stereotype name and profile name from paramters
-  M := ModelSet.Items[0] as PExtensibleModel;
-  S := M.StereotypeName;
-  P := M.StereotypeProfile;
-  for I := 1 to ModelSet.Count - 1 do begin
-    M := ModelSet.Items[I] as PExtensibleModel;
+  // acquire stereotype name and profile name from parameters
+  // clear them if not consistent over selected models
+  FirstModel := True;
+  for M in ModelSet do begin
+    if FirstModel then begin
+      S := M.StereotypeName;
+      P := M.StereotypeProfile;
+      if (M.StereotypeName = '') and (M.StereotypeProfile = '') then
+        Break; // No need to continue the loop
+      FirstModel := False;
+    end
+    else
     if (M.StereotypeName <> S) or (M.StereotypeProfile <> P) then begin
       S := '';  P := '';
-      Break;
+      Break; // Inconsistency found
     end;
   end;
+
   FOldStereotypeName := S;
   FOldProfileName := P;
+
   FStereotypeName := S;
   FProfileName := P;
 
-  // set up user interface by stereo type name and profile name
+  // set up user interface by stereotype name and profile name
   SetupStereotypeListView;
   SetStereotype(FStereotypeName, FProfileName);
   SelectStereotype(FStereotypeName, FProfileName);
@@ -191,7 +198,7 @@ begin
     P := ExtensionManager.IncludedProfiles[I];
     for J := 0 to P.StereotypeCount - 1 do begin
       S := P.Stereotypes[J];
-      if S.CanApplyTo((ModelSet.Items[0] as PExtensibleModel).MetaClass.Name) then
+      if S.CanApplyTo((ModelSet.Items[0]).MetaClass.Name) then
         AddStereotypeToListView(S.Name, S.Profile.Name);
     end;
   end;
@@ -215,7 +222,7 @@ begin
     L.Data := nil;
   end
   else begin
-    S := ExtensionManager.FindStereotype(AProfile, AStereotype, (ModelSet.Items[0] as PExtensibleModel).MetaClass.Name);
+    S := ExtensionManager.FindStereotype(AProfile, AStereotype, (ModelSet.Items[0]).MetaClass.Name);
     L.SubItems.Add('(' + AProfile + ')');
     L.SubItems.Add(AProfile);
     L.Data := S;  // can be nil
@@ -224,7 +231,7 @@ end;
 
 function TStereotypeSelectorForm.GetStereotype: PStereotype;
 begin
-  Result := ExtensionManager.FindStereotype(FProfileName, FStereotypeName, (ModelSet.Items[0] as PExtensibleModel).MetaClass.Name);
+  Result := ExtensionManager.FindStereotype(FProfileName, FStereotypeName, (ModelSet.Items[0]).MetaClass.Name);
 end;
 
 procedure TStereotypeSelectorForm.SetStereotype(AStereotype, AProfile: string);
@@ -267,7 +274,7 @@ begin
   end
   else begin
     StereotypeTitleLabel.Caption := AStereotype + ' (' + AProfile + ')';
-    S := ExtensionManager.FindStereotype(AProfile, AStereotype, (ModelSet.Items[0] as PExtensibleModel).MetaClass.Name);
+    S := ExtensionManager.FindStereotype(AProfile, AStereotype, (ModelSet.Items[0]).MetaClass.Name);
     if S = nil then
       DescMemo.Lines.Text := TXT_DESC_PRIFILE_EXCLUDED_STEREOTYPE
     else
@@ -287,7 +294,7 @@ begin
   IconPreviewImage.Canvas.Brush.Color := clWhite;
   IconPreviewImage.Canvas.FillRect(Rect(0, 0, IconPreviewImage.Width, IconPreviewImage.Height));
 
-  S := ExtensionManager.FindStereotype(AProfile, AStereotype, (ModelSet.Items[0] as PExtensibleModel).MetaClass.Name);
+  S := ExtensionManager.FindStereotype(AProfile, AStereotype, (ModelSet.Items[0]).MetaClass.Name);
   if (S <> nil) and FileExists(S.IconFile) then begin
     Ext := LowerCase(ExtractFileExt(S.IconFile));
     Icon := nil;
@@ -345,25 +352,34 @@ begin
     OkButton.Enabled := (FStereotypeName <> FOldStereotypeName) or (FProfileName <> FOldProfileName);
 end;
 
-function TStereotypeSelectorForm.Execute(AModelSet: POrderedSet): Boolean;
+function TStereotypeSelectorForm.Execute(AModelSet: PElementOrderedSet): Boolean;
 var
-  I: Integer;
+  Element: PElement;
+  ParametersValid: Boolean;
 begin
-  // check parameter is suitable to execute dialog
-  if AModelSet.Count < 1 then begin
-    Result := False;
-    Exit;
-  end;
-  for I := 0 to AModelSet.Count - 1 do
-    if not (AModelSet.Items[I] is PExtensibleModel) then begin
-      Result := False;
-      Exit;
+  ParametersValid := True; // Initial assumtion
+  // check if parameter values are suitable for executing dialog
+  if AModelSet.Count < 1 then
+    ParametersValid := False
+  else begin
+    ModelSet.Clear;
+    for Element in AModelSet do begin
+      if (Element is PExtensibleModel) then
+        ModelSet.Add(PExtensibleModel(Element))
+      else begin
+        ModelSet.Clear;
+        ParametersValid := False;
+        Break;
+      end;
     end;
-  // initialize
-  ModelSet.Assign(AModelSet);
-  Initialize;
-  // show dialog
-  Result := (ShowModal = mrOk);
+  end;
+
+  if ParametersValid then begin
+    Initialize; // initialize dialog form
+    Result := (ShowModal = mrOk); // show dialog
+  end
+  else
+    Result := False;
 end;
 
 // Event Handlers

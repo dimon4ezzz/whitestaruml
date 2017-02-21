@@ -11132,7 +11132,7 @@ var
 begin
   C := 0;
   for I := 0 to SelectedViewCount - 1 do
-    if (SelectedViews[I] is PNodeView) and not(SelectedViews[I] is PParasiticView) and SelectedViews[I].ContainerChangeable
+    if (SelectedView[I] is PNodeView) and not(SelectedView[I] is PParasiticView) and SelectedView[I].ContainerChangeable
     then Inc(C);
   Result := (C > 0);
 end;
@@ -12270,7 +12270,7 @@ begin
       ACanvas.OriginY := - ARect.Top;
       if SelectedViewsOnly then begin
         for I := 0 to ADiagramView.SelectedViewCount - 1 do begin
-          AView := ADiagramView.SelectedViews[I] as PView;
+          AView := ADiagramView.SelectedView[I] as PView;
           if AView is PParasiticView then Continue;
           AView.Draw(ACanvas);
         end;
