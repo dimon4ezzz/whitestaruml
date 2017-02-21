@@ -152,6 +152,7 @@ type
     function GetSelectedModelCount: Integer;
     function GetSelectedView(Index: Integer): PView;
     function GetSelectedViewCount: Integer;
+    function CheckModelOfSelectedViews: Boolean;
     procedure SetFileName(Value: string);
     function GetFileName: string;
     function GetModified: Boolean;
@@ -368,6 +369,7 @@ type
     property SelectedModelCount: Integer read GetSelectedModelCount;
     property SelectedViews[Index: Integer]: PView read GetSelectedView;
     property SelectedViewCount: Integer read GetSelectedViewCount;
+    property SelectedViewsOfOneModel: Boolean read CheckModelOfSelectedViews;
     property ActiveDiagram: PDiagramView read GetActiveDiagram write SetActiveDiagram;
     // Project Related Properties
     property Project: PUMLProject read GetProject;
@@ -955,6 +957,28 @@ end;
 function PStarUMLApplication.GetSelectedViewCount: Integer;
 begin
   Result := SelectionManager.SelectedViewCount;
+end;
+
+// Check if there are one or more views of the same model selected
+function PStarUMLApplication.CheckModelOfSelectedViews: Boolean;
+var
+  I: Integer;
+  M: PModel;
+  ViewsOfOneModelSelected: Boolean;
+begin
+  ViewsOfOneModelSelected := False;
+  M := nil;
+  if StarUMLApplication.SelectedViewCount > 0 then begin
+    ViewsOfOneModelSelected := True;
+    M := StarUMLApplication.SelectedViews[0].Model;
+    for I := 1 to StarUMLApplication.SelectedViewCount - 1 do begin
+      if StarUMLApplication.SelectedViews[I].Model <> M then begin
+        ViewsOfOneModelSelected := False;
+        Break;
+      end;
+    end;
+  end;
+  Result := ViewsOfOneModelSelected;
 end;
 
 procedure PStarUMLApplication.DetermineDeletingElements(Models: PModelOrderedSet; Views: PViewOrderedSet);

@@ -147,9 +147,9 @@ type
       APropertySpecifier: PPropertySpecifier); virtual; abstract;
     function GetPropertyValue(AElement: PElement; Key: string): string;
       virtual; abstract;
-    procedure SetPropertyValue(AElementSet: POrderedSet; Key: string;
+    procedure SetPropertyValue(AElementSet: PElementOrderedSet; Key: string;
       Value: string); virtual; abstract;
-    procedure PropertyButtonClicked(AElementSet: POrderedSet; Key: string);
+    procedure PropertyButtonClicked(AElementSet: PElementOrderedSet; Key: string);
       virtual; abstract;
     property ReadOnly: Boolean read FReadOnly;
     property PropertyEditor: TPropertyEditor read FPropertyEditor;
@@ -180,7 +180,7 @@ type
     PropertyList: TPropertyList;
     FReadOnly: Boolean;
     FPropertyAdaptor: PAbstractPropertyAdaptor;
-    FInspectingElements: POrderedSet;
+    FInspectingElements: PElementOrderedSet;
     FOnPropertySelected: PPropertySelectedEvent;
 
     // Setup Inspector rows basing on properties stored in PropertyList
@@ -334,7 +334,7 @@ constructor TPropertyEditor.Create(AOwner: TComponent);
 begin
   inherited;
   PropertyList := TPropertyList.Create;
-  FInspectingElements := POrderedSet.Create;
+  FInspectingElements := PElementOrderedSet.Create;
 
 end;
 

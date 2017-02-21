@@ -62,6 +62,7 @@ type
     function GetSelectedModelCount: Integer;
     function GetSelectedView(Index: Integer): PView;
     function GetSelectedViewCount: Integer;
+    function GetUniqueModelsFromSelectedViews: PModelOrderedSet;
     procedure SetActiveDiagram(Value: PDiagramView);
     procedure SelectionChanged;
     procedure DiagramActivated;
@@ -133,7 +134,7 @@ end;
 
 function PSelectionManager.GetSelectedView(Index: Integer): PView;
 begin
-  if FActiveDiagram <> nil then Result := FActiveDiagram.SelectedViews[Index]
+  if FActiveDiagram <> nil then Result := FActiveDiagram.SelectedView[Index]
                            else raise ERangeError.Create(ERR_OUT_OF_RANGE);
 end;
 
@@ -143,18 +144,40 @@ begin
                            else Result := 0;
 end;
 
+function PSelectionManager.GetUniqueModelsFromSelectedViews: PModelOrderedSet;
+var
+  View: PView;
+  Models: PModelOrderedSet;
+begin
+  Models := PModelOrderedSet.Create;
+  for View in FActiveDiagram.SelectedViews do
+    Models.Add(View.Model);
+  Result := Models;
+end;
+
 procedure PSelectionManager.SetActiveDiagram(Value: PDiagramView);
+var
+ Models: PModelOrderedSet;
+ Model: PModel;
 begin
   if FActiveDiagram <> Value then begin
     FActiveDiagram := Value;
 
     // Select diagram model if no element is selected
-	  if Assigned(FActiveDiagram) and (GetSelectedViewCount = 0)
-        and Assigned(FActiveDiagram.Diagram) then begin
-
-      ClearSelectedModels;
-      ActiveDiagram.Selected := True;
-      FSelectedModels.Add(FActiveDiagram.Diagram);
+	  if Assigned(FActiveDiagram) then begin
+      if (GetSelectedViewCount = 0) then begin
+        ClearSelectedModels;
+        FActiveDiagram.Selected := True;
+        FSelectedModels.Add(FActiveDiagram.Diagram);
+      end
+      // If there are some views selected on the diagram
+      // make sure that selected models are matching
+      else if (GetSelectedViewCount > 0) then begin
+        Models := GetUniqueModelsFromSelectedViews;
+        ClearSelectedModels;
+        FSelectedModels.Assign(Models);
+        Models.Free;
+      end;
     end;
 
     DiagramActivated;
@@ -364,8 +387,8 @@ begin
       FSelectedModels.Add(FActiveDiagram.Diagram)
     else
       for I := 0 to FActiveDiagram.SelectedViewCount - 1 do begin
-        if FActiveDiagram.SelectedViews[I].Model <> nil then
-          FSelectedModels.Add(FActiveDiagram.SelectedViews[I].Model);
+        if FActiveDiagram.SelectedView[I].Model <> nil then
+          FSelectedModels.Add(FActiveDiagram.SelectedView[I].Model);
       end;
     SelectionChanged;
   end;
@@ -385,8 +408,8 @@ begin
   if FActiveDiagram <> nil then begin
     FActiveDiagram.SelectArea(FActiveDiagram.Canvas, X1, Y1, X2, Y2);
     for I := 0 to FActiveDiagram.SelectedViewCount - 1 do begin
-      if FActiveDiagram.SelectedViews[I].Model <> nil then
-        FSelectedModels.Add(FActiveDiagram.SelectedViews[I].Model);
+      if FActiveDiagram.SelectedView[I].Model <> nil then
+        FSelectedModels.Add(FActiveDiagram.SelectedView[I].Model);
     end;
     SelectionChanged;
   end;
@@ -412,8 +435,8 @@ begin
   if FActiveDiagram <> nil then begin
     FActiveDiagram.SelectAll;
     for I := 0 to FActiveDiagram.SelectedViewCount - 1 do begin
-      if FActiveDiagram.SelectedViews[I].Model <> nil then
-        FSelectedModels.Add(FActiveDiagram.SelectedViews[I].Model);
+      if FActiveDiagram.SelectedView[I].Model <> nil then
+        FSelectedModels.Add(FActiveDiagram.SelectedView[I].Model);
     end;
   end;
   SelectionChanged;

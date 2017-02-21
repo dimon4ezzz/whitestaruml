@@ -919,7 +919,8 @@ type
       override;
     function MOF_GetCollectionCount(Name: string): Integer; override;
     property Diagram: PDiagram read FDiagram write SetDiagram;
-    property SelectedViews[Index: Integer]: PView read GetSelectedView;
+    property SelectedViews: PViewOrderedSet read FSelectedViews;
+    property SelectedView[Index: Integer]: PView read GetSelectedView;
     property SelectedViewCount: Integer read GetSelectedCount;
     property OwnedView[Index: Integer]: PView read GetOwnedView;
     property OwnedViews: PViewOrderedSet read FOwnedViews;
@@ -5061,15 +5062,9 @@ function PDiagramView.DeselectAll: Boolean;
 var
   View: PView;
 begin
-  if FSelectedViews.Count > 0 then begin
-    for View in FSelectedViews do
-      View.Selected := False;
-    FSelectedViews.Clear;
-    Result := True;
-  end
-  else
-    Result := False;
-
+  Result := FSelectedViews.Count > 0;
+  while FSelectedViews.Count > 0 do
+    FSelectedViews[FSelectedViews.Count-1].Selected := False;
 end;
 
 procedure PDiagramView.SelectArea(Canvas: PCanvas; X1, Y1, X2, Y2: Integer);
@@ -5324,7 +5319,7 @@ function PDiagramView.MOF_GetCollectionItem(Name: string;
 begin
   if Name = 'SelectedViews' then
   begin
-    Result := SelectedViews[Index];
+    Result := SelectedView[Index];
   end
   else if Name = 'OwnedViews' then
   begin
