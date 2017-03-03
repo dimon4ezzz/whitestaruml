@@ -123,10 +123,12 @@ end;
 
 procedure TDocumentationEditor.SetInspectingElement(Value: PModel);
 begin
-  if FInspectingElement <> Value then
-  begin
-    FInspectingElement := Value;
-  end;
+  if Visible then begin
+    if FInspectingElement <> Value then
+      FInspectingElement := Value;
+  end
+  else
+    FInspectingElement := nil;
 end;
 
 procedure TDocumentationEditor.DocumentationMemoKeyPress(Sender: TObject;
@@ -176,7 +178,8 @@ end;
 
 procedure TDocumentationEditor.ApplyChanges;
 begin
-  DocumentationChange;
+  if Visible then
+    DocumentationChange;
 end;
 
 // PDocumentationEditor

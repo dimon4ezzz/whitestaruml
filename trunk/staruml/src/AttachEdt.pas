@@ -292,7 +292,10 @@ end;}
 
 procedure TAttachmentEditor.SetTargetModel(Value: PModel);
 begin
-  FTargetModel := Value;
+  if Visible then
+    FTargetModel := Value
+   else
+    FTargetModel := nil;
 end;
 
 function TAttachmentEditor.IndexOf(Value: string): Integer;
