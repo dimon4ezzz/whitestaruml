@@ -414,8 +414,6 @@ type
     procedure InspectorAttachmentButtonClick(Sender: TObject);
     // Event Handlers (On Information Form Messages Item Clicked)
     procedure InformationMessagesButtonClick(Sender: TObject);
-    // Event Handlers (On Main Form Bar Manager Item Clicked)
-    procedure BarManagerClickItem(Sender: TdxBarManager; ClickedItem: TdxBarItem);
     // Event Handlers (On System Clipboard related events)
     procedure WMDrawClipboardHandler(var Msg: TMessage); message WM_DRAWCLIPBOARD;
     procedure WMChangeCBChainHandler(var Msg: TMessage); message WM_CHANGECBCHAIN;
@@ -1688,20 +1686,6 @@ begin
     ViewToolbarsView.Down := ABar.Visible
   else if ABar = BarManager.Bars[ALIGNMENT_BAR] then
     ViewToolbarsAlignment.Down := ABar.Visible
-end;
-
-procedure TMainForm.BarManagerClickItem(Sender: TdxBarManager;
-  ClickedItem: TdxBarItem);
-begin
-  // if menu is selected, changes focus to DiagramPanel from Browser, Inspector,
-  // Information Window, etc. after all reflect the change in its. But, if sub
-  // menu is selected, Any menu is not executed but other menu is expanded.
-  // In this case don't need to move focus.
-
-  if not (ClickedItem is TdxBarSubItem) then begin
-    InspectorFrame.ApplyChanges;
-    DocumentationEditor.ApplyChanges;
-  end;
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
