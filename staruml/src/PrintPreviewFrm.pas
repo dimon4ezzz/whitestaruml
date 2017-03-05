@@ -348,7 +348,6 @@ var
   AMetafile: TMetafile;
   AMetafileCanvas: TMetafileCanvas;
 begin
-  Result := nil;
   AMetafile := TMetafile.Create;
   AMetafile.Width := ImageWidth;
   AMetafile.Height := ImageHeight;

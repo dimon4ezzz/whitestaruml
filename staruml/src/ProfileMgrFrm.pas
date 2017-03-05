@@ -226,7 +226,7 @@ end;
 
 procedure TProfileManagerForm.UpdateProfiles;
 var
-  I: Integer;
+  P: PProfile;
 begin
   AllProfilesListView.Clear;
   IncludedProfilesListView.Clear;
@@ -234,9 +234,8 @@ begin
   ProfilesSmallImageList.AddIcon(DefaultProfileIconImage.Picture.Icon);
   ProfilesLargeImageList.Clear;
   ProfilesLargeImageList.AddIcon(DefaultProfileIconImage.Picture.Icon);
-  for I := 0 to ExtensionManager.AvailableProfileCount - 1 do begin
-    AddProfile(ExtensionManager.AvailableProfiles[I]);
-  end;
+  for P in ExtensionManager.AvailableProfiles do
+    AddProfile(P);
   UpdateUIState;
 end;
 

@@ -224,7 +224,7 @@ end;
 
 function PProjectManager.GetIncludedProfile(Index: Integer): string;
 begin
-  Result := ExtensionManager.IncludedProfiles[Index].Name;
+  Result := ExtensionManager.IncludedProfile[Index].Name;
 end;
 
 function PProjectManager.GetIncludedProfileCount: Integer;
@@ -515,12 +515,10 @@ end;
 
 procedure PProjectManager.AutoIncludeProfiles;
 var
-  I: Integer;
   P: PProfile;
 begin
-  for I := 0 to ExtensionManager.AvailableProfileCount - 1 do
+  for P in ExtensionManager.AvailableProfiles do
   begin
-    P := ExtensionManager.AvailableProfiles[I];
     if P.AutoInclude then
       IncludeProfile(P.Name);
   end;
@@ -614,26 +612,23 @@ var
   Approach: PApproach;
   I: Integer;
 begin
-  if CloseProject then
-  begin
-    FProject := MetaModel.CreateInstance('UMLProject') as PUMLProject;
-    FProject.Title := 'Untitled';
-    FProjectDocument := PUMLProjectDocument.Create;
-    FProjectDocument.DocumentElement := FProject;
-    FProjectDocument.OnModified := DocumentModified;
-    FProjectDocument.OnSaved := DocumentSaved;
-    if ApproachName <> '' then begin
-      Approach := ApproachManager.GetApproachByName(ApproachName);
-      if Approach <> nil then begin
-        AutoIncludeProfiles;      
-        for I := 0 to Approach.ImportProfileCount - 1 do
-          IncludeProfile(Approach.ImportProfiles[I]);
-        BuildModelStrNode(Approach, Approach.RootNode, FProject);
-      end;
+  FProject := MetaModel.CreateInstance('UMLProject') as PUMLProject;
+  FProject.Title := 'Untitled';
+  FProjectDocument := PUMLProjectDocument.Create;
+  FProjectDocument.DocumentElement := FProject;
+  FProjectDocument.OnModified := DocumentModified;
+  FProjectDocument.OnSaved := DocumentSaved;
+  if ApproachName <> '' then begin
+    Approach := ApproachManager.GetApproachByName(ApproachName);
+    if Approach <> nil then begin
+      AutoIncludeProfiles;
+      for I := 0 to Approach.ImportProfileCount - 1 do
+        IncludeProfile(Approach.ImportProfiles[I]);
+      BuildModelStrNode(Approach, Approach.RootNode, FProject);
     end;
-    FProjectStatus := psOpened;
-    ProjectOpened;
   end;
+  FProjectStatus := psOpened;
+  ProjectOpened;
 end;
 
 procedure PProjectManager.SaveProject;
@@ -743,34 +738,27 @@ begin
 end;
 
 function PProjectManager.CloseProject: Boolean;
-var
-  CanClose: Boolean;
 begin
-  CanClose := True;
-  if FProjectStatus = psOpened then
-  begin
-    //ProjectCloseQuery(CanClose);
-    if CanClose then
+  if FProjectStatus = psOpened then begin
+  //ProjectCloseQuery(CanClose);
+    ProjectClosing;
+    if FProjectDocument <> nil then
     begin
-      ProjectClosing;
-      if FProjectDocument <> nil then
-      begin
-        FProjectDocument.Free;
-        FProjectDocument := nil;
-      end;
-      if FProject <> nil then
-      begin
-        FProject.Free;
-        FProject := nil;
-      end;
-      FProjectStatus := psClosed;
-      FUnitDocuments.Clear;
-      MetaModel.ClearInstances;
-      ExtensionManager.ExcludeAllProfiles;
-      ProjectClosed;
+      FProjectDocument.Free;
+      FProjectDocument := nil;
     end;
+    if FProject <> nil then
+    begin
+      FProject.Free;
+      FProject := nil;
+    end;
+    FProjectStatus := psClosed;
+    FUnitDocuments.Clear;
+    MetaModel.ClearInstances;
+    ExtensionManager.ExcludeAllProfiles;
+    ProjectClosed;
   end;
-  Result := CanClose;
+  Result := True;
 end;
 
 function PProjectManager.SeparateUnit(APackage: PUMLPackage; AFileName: string): PUMLUnitDocument;

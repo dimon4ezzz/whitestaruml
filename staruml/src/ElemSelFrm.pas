@@ -250,18 +250,15 @@ end;
 
 procedure TElementSelectorForm.UpdateDataTypes;
 var
-  I, J: Integer;
   P: PProfile;
   S: string;
+  DataType: PDataType;
 begin
   DataTypeComboBox.Items.Clear;
-  for I := 0 to ExtensionManager.IncludedProfileCount - 1 do
-  begin
-    P := ExtensionManager.IncludedProfiles[I];
-    for J := 0 to P.DataTypeCount - 1 do
-    begin
-      S := P.DataTypes[J].Name + '  (' + P.Name + ')';
-      DataTypeComboBox.Items.AddObject(S, P.DataTypes[J]);
+  for P in ExtensionManager.IncludedProfiles do begin
+    for DataType in P.DataTypes do begin
+      S := DataType.Name + '  (' + P.Name + ')';
+      DataTypeComboBox.Items.AddObject(S, DataType);
     end;
   end;
 end;
@@ -315,11 +312,10 @@ end;
 
 procedure TElementSelectorForm.AddSelectableModels(const AModelClasses: array of PClass);
 var
-  I: Integer;
+  ModelClass: PClass;
 begin
-  for I := 0 to Length(AModelClasses) - 1 do begin
-    AddSelectableModel(AModelClasses[I]);
-  end;
+  for ModelClass in AModelClasses do
+    AddSelectableModel(ModelClass);
 end;
 
 procedure TElementSelectorForm.RemoveSelectableModel(AModelClass: PClass);
@@ -329,7 +325,8 @@ end;
 
 procedure TElementSelectorForm.SetReservedModelToSelect(AModel: PModel);
 begin
-  if FReservedModelToSelect <> AModel then FReservedModelToSelect := AModel;
+  if FReservedModelToSelect <> AModel then
+    FReservedModelToSelect := AModel;
 end;
 
 function TElementSelectorForm.Execute(Title: string = ''; ShowDataType: Boolean = False): Boolean;
@@ -339,9 +336,12 @@ begin
   DataTypeVisible := ShowDataType;
   ModelExplorer.RebuildAll;
   ModelExplorer.Expand(Project);
-  if Title = '' then Caption := MSG_ELEMSELECTOR_DEFAULT_TITLE
-                else Caption := Title;
-  if DataTypeVisible then UpdateDataTypes;
+  if Title = '' then
+    Caption := MSG_ELEMSELECTOR_DEFAULT_TITLE
+  else
+    Caption := Title;
+  if DataTypeVisible then
+    UpdateDataTypes;
   ArrangeChildControls;
   UpdateUIStates;
   Result := (ShowModal = mrOK);
