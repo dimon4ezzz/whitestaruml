@@ -401,7 +401,7 @@ begin
           tkReference:
             begin
               if Assigned(TV) and (TV.ReferenceValueCount > 0) then
-                NewRefValue := TV.ReferenceValues[0].Name
+                NewRefValue := TV.ReferenceValue[0].Name
               else
                 NewRefValue := '';
 

@@ -48,8 +48,7 @@ unit ExtCore;
 interface
 
 uses
-  BasicClasses, Core, NxMgr,
-  Classes, Graphics, SysUtils, XMLDoc, XMLIntf;
+  BasicClasses, Core, Classes, Graphics, SysUtils, XMLDoc, XMLIntf, NxMgr;
 
 const
   EXT_DIR = 'modules';
@@ -69,9 +68,21 @@ type
   PPalette = class;
   PProfile = class;
   PExtensibleModel = class;
+  PDataType = class;
 
   // Parametrized collections of ExtCore types
   PExtensibleModelOrderedSet = POrderedSet<PExtensibleModel>;
+  PConstraintOrderedSet = POrderedSet<PConstraint>;
+  PTaggedValueOrderedSet = POrderedSet<PTaggedValue>;
+  PElementPrototypeOrderedSet = POrderedSet<PElementPrototype>;
+  PModelPrototypeOrderedSet = POrderedSet<PModelPrototype>;
+  PDiagramTypeOrderedSet = POrderedSet<PDiagramType>;
+  PPaletteOrderedSet = POrderedSet<PPalette>;
+  PStereotypeOrderedSet = POrderedSet<PStereotype>;
+  PTagDefinitionOrderedSet = POrderedSet<PTagDefinition>;
+  PTagDefinitionSetOrderedSet = POrderedSet<PTagDefinitionSet>;
+  PDataTypeOrderedSet = POrderedSet<PDataType>;
+  PProfileOrderedSet = POrderedSet<PProfile>;
 
   // Enumerations
   PTagTypeKind = (tkInteger, tkBoolean, tkString, tkReal, tkEnumeration, tkReference, tkCollection);
@@ -90,10 +101,6 @@ type
 
   // PExtensibleModel
   PExtensibleModel = class(PModel)
-  private type
-    PConstraintOrderedSet = POrderedSet<PConstraint>;
-    PTaggedValueOrderedSet = POrderedSet<PTaggedValue>;
-
   private
     FStereotypeProfile: string;
     FStereotypeName: string;
@@ -150,10 +157,12 @@ type
     function MOF_GetCollectionCount(Name: string): Integer; override;
     property StereotypeProfile: string read FStereotypeProfile write SetStereotypeProfile;
     property StereotypeName: string read FStereotypeName write SetStereotypeName;
-    property Constraints[Index: Integer]: PConstraint read GetConstraint;
+    property Constraint[Index: Integer]: PConstraint read GetConstraint;
     property ConstraintCount: Integer read GetConstraintCount;
-    property TaggedValues[Index: Integer]: PTaggedValue read GetTaggedValue;
+    property Constraints: PConstraintOrderedSet read FConstraints;
+    property TaggedValue[Index: Integer]: PTaggedValue read GetTaggedValue;
     property TaggedValueCount: Integer read GetTaggedValueCount;
+    property TaggedValues: PTaggedValueOrderedSet read FTaggedValues;
     property ReferencingTags[Index: Integer]: PTaggedValue read GetReferencingTag;
     property ReferencingTagCount: Integer read GetReferencingTagCount;
   end;
@@ -187,7 +196,7 @@ type
     FName: string;
     FDataValue: string;
     FTaggedModel: PExtensibleModel;
-    FReferenceValues: POrderedSet;
+    FReferenceValues: PExtensibleModelOrderedSet;
     procedure SetProfileName(Value: string);
     procedure SetTagDefinitionSetName(Value: string);
     procedure SetName(Value: string);
@@ -227,7 +236,8 @@ type
     property Name: string read FName write SetName;
     property DataValue: string read GetDataValue write SetDataValue;
     property ReferenceValueCount: Integer read GetReferenceValueCount;
-    property ReferenceValues[Index: Integer]: PExtensibleModel read GetReferenceValue;
+    property ReferenceValue[Index: Integer]: PExtensibleModel read GetReferenceValue;
+    property ReferenceValues: PExtensibleModelOrderedSet read FReferenceValues;
   end;
 
   // PTagDefinition
@@ -259,7 +269,7 @@ type
 
 
   // PTagDefinitionSet
-  PTagDefinitionSet = class(BasicClasses.PObject{,IEnumerable<PTagDefinition>})
+  PTagDefinitionSet = class(BasicClasses.PObject)
 
   private type
     TTagDefinitionSetEnumerator = class
@@ -273,11 +283,10 @@ type
       property Current: PTagDefinition read GetCurrent;
     end;
 
-
   private
     FName: string;
     FBaseClasses: TStringList;
-    FTagDefinitions: POrderedSet;
+    FTagDefinitions: PTagDefinitionOrderedSet;
     FProfile: PProfile;
     FStereotype: PStereotype;
     function GetBaseClassCount: Integer;
@@ -297,13 +306,6 @@ type
     property TagDefinitions[Index: Integer]: PTagDefinition read GetTagDefinition;
     property Profile: PProfile read FProfile;
     property Stereotype: PStereotype read FStereotype;
-  {type
-    TEnumerator = class(IEnumerator<PTagDefinition>)
-    public
-      function GetCurrent: PTagDefinition;
-    end;
-
-    function GetEnumerator: IEnumerator<PTagDefinition>;}
   end;
 
   // PStereotype
@@ -458,7 +460,7 @@ type
     property PropertyValues[Index: Integer]: string read GetPropertyValue;
     property ContainerModelCount: Integer read GetContainerModelCount;
     property ContainerModels[Index: Integer]: string read GetContainerModel;
-    property ContainerModelStereotypes[Index: Integer]: string read GetContainerModelStereotype; 
+    property ContainerModelStereotypes[Index: Integer]: string read GetContainerModelStereotype;
     property ImageIndex: Integer read FImageIndex write FImageIndex;
     property Profile: PProfile read FProfile;
   end;
@@ -479,7 +481,8 @@ type
     property Name: string read FName write FName;
     property DisplayName: string read FDisplayName write FDisplayName;
     property PaletteItemCount: Integer read GetPaletteItemCount;
-    property PaletteItems[Index: Integer]: string read GetPaletteItem;
+    property PaletteItem[Index: Integer]: string read GetPaletteItem;
+    property PaletteItems: TStringList read FPaletteItems;
     property Profile: PProfile read FProfile;
   end;
 
@@ -505,16 +508,14 @@ type
     property BaseDiagram: string read FBaseDiagram write FBaseDiagram;
     property IconFile: string read GetIconFile write SetIconFile;
     property AvailablePaletteCount: Integer read GetAvailablePaletteCount;
-    property AvailablePalettes[Index: Integer]: string read GetAvailablePalette;
+    property AvailablePalette[Index: Integer]: string read GetAvailablePalette;
+    property AvailablePalettes: TStringList read FAvailablePalettes;
     property Profile: PProfile read FProfile;
     property ImageIndex: Integer read FImageIndex write FImageIndex;
   end;
 
   // PProfile
   PProfile = class(BasicClasses.PObject)
-  private type
-    PElementPrototypeOrderedSet = POrderedSet <PElementPrototype>;
-    PModelPrototypeOrderedSet = POrderedSet <PModelPrototype>;
   private
     FName: string;
     FDisplayName: string;
@@ -523,13 +524,13 @@ type
     FIconFile: string;
     FDescription: string;
     FAutoInclude: Boolean;
-    FStereotypes: POrderedSet;
-    FTagDefinitionSets: POrderedSet;
-    FDataTypes: POrderedSet;
+    FStereotypes: PStereotypeOrderedSet;
+    FTagDefinitionSets: PTagDefinitionSetOrderedSet;
+    FDataTypes: PDataTypeOrderedSet;
     FElementPrototypes: PElementPrototypeOrderedSet;
     FModelPrototypes: PModelPrototypeOrderedSet;
-    FDiagramTypes: POrderedSet;
-    FPalettes: POrderedSet;
+    FDiagramTypes: PDiagramTypeOrderedSet;
+    FPalettes: PPaletteOrderedSet;
     function GetStereotypeCount: Integer;
     function GetStereotype(Index: Integer): PStereotype;
     function GetTagDefinitionSetCount: Integer;
@@ -564,19 +565,26 @@ type
     property Description: string read FDescription;
     property AutoInclude: Boolean read FAutoInclude;
     property StereotypeCount: Integer read GetStereotypeCount;
-    property Stereotypes[Index: Integer]: PStereotype read GetStereotype;
+    property Stereotype[Index: Integer]: PStereotype read GetStereotype;
+    property Stereotypes: PStereotypeOrderedSet read FStereotypes;
     property TagDefinitionSetCount: Integer read GetTagDefinitionSetCount;
-    property TagDefinitionSets[Index: Integer]: PTagDefinitionSet read GetTagDefinitionSet;
+    property TagDefinitionSet[Index: Integer]: PTagDefinitionSet read GetTagDefinitionSet;
+    property TagDefinitionSets: PTagDefinitionSetOrderedSet read FTagDefinitionSets;
     property DataTypeCount: Integer read GetDataTypeCount;
-    property DataTypes[Index: Integer]: PDataType read GetDataType;
+    property DataType[Index: Integer]: PDataType read GetDataType;
+    property DataTypes: PDataTypeOrderedSet read FDataTypes;
     property ElementPrototypeCount: Integer read GetElementPrototypeCount;
-    property ElementPrototypes[Index: Integer]: PElementPrototype read GetElementPrototype;
+    property ElementPrototype[Index: Integer]: PElementPrototype read GetElementPrototype;
+    property ElementPrototypes: PElementPrototypeOrderedSet read FElementPrototypes;
     property ModelPrototypeCount: Integer read GetModelPrototypeCount;
-    property ModelPrototypes[Index: Integer]: PModelPrototype read GetModelPrototype;
+    property ModelPrototype[Index: Integer]: PModelPrototype read GetModelPrototype;
+    property ModelPrototypes: PModelPrototypeOrderedSet read FModelPrototypes;
     property DiagramTypeCount: Integer read GetDiagramTypeCount;
-    property DiagramTypes[Index: Integer]: PDiagramType read GetDiagramType;
+    property DiagramType[Index: Integer]: PDiagramType read GetDiagramType;
+    property DiagramTypes: PDiagramTypeOrderedSet read FDiagramTypes;
     property PaletteCount: Integer read GetPaletteCount;
-    property Palettes[Index: Integer]: PPalette read GetPalette;
+    property Palette[Index: Integer]: PPalette read GetPalette;
+    property Palettes: PPaletteOrderedSet read FPalettes;
   end;
 
   // PStereotypeTableItem
@@ -623,23 +631,27 @@ type
   // PExtensionManager
   PExtensionManager = class(BasicClasses.PObject)
   private
-    FAvailableProfiles: POrderedSet;
-    FIncludedProfiles: POrderedSet;
+    FAvailableProfiles: PProfileOrderedSet;
+    FIncludedProfiles: PProfileOrderedSet;
     function GetAvailableProfileCount: Integer;
     function GetAvailableProfile(Index: Integer): PProfile;
     function GetIncludedProfileCount: Integer;
     function GetIncludedProfile(Index: Integer): PProfile;
     function CanExcludeProfile(AProfile: PProfile): Boolean;
+    procedure DoExcludeProfile(AProfile: PProfile);
   public
     constructor Create; override;
     destructor Destroy; override;
     procedure ClearIncludedProfiles;
-    procedure IncludeProfile(AProfile: string);
-    procedure ExcludeProfile(AProfile: string);
+    procedure IncludeProfile(AProfileName: string);
+    procedure ExcludeProfile(AProfileName: string); overload;
+    procedure ExcludeProfile(AProfile: PProfile); overload;
+    procedure ExcludeProfile(AProfileIdx: Integer); overload;
     procedure ExcludeAllProfiles;
     function IsIncluded(AProfile: PProfile): Boolean;
     function FindAvailableProfile(AName: string): PProfile;
     function FindIncludedProfile(AName: string): PProfile;
+    function FindIncludedProfileIdx(AName: string): Integer;
     function FindStereotype(AProfile, AName: string; BaseClass: string): PStereotype;
     function FindFirstStereotype(Name: string; BaseClass: string): PStereotype;
     function FindTagDefinition(AProfile, ATagDefinitionSetName, AName: string): PTagDefinition;
@@ -649,9 +661,11 @@ type
     function FindModelPrototype(AProfile, AName: string): PModelPrototype;
     procedure LoadProfiles;
     property AvailableProfileCount: Integer read GetAvailableProfileCount;
-    property AvailableProfiles[Index: Integer]: PProfile read GetAvailableProfile;
+    property AvailableProfile[Index: Integer]: PProfile read GetAvailableProfile;
+    property AvailableProfiles: PProfileOrderedSet read FAvailableProfiles;
     property IncludedProfileCount: Integer read GetIncludedProfileCount;
-    property IncludedProfiles[Index: Integer]: PProfile read GetIncludedProfile;
+    property IncludedProfile[Index: Integer]: PProfile read GetIncludedProfile;
+    property IncludedProfiles: PProfileOrderedSet read FIncludedProfiles;
   end;
 
   // Utilities
@@ -668,9 +682,8 @@ var
 implementation
 
 uses
-  LogMgr,
   Windows, Variants, Forms, Registry, Vcl.imaging.jpeg, Vcl.Imaging.pngimage,
-  NLS_StarUML;
+  LogMgr, NLS_StarUML;
 
 const
   //PROFILES_REGPATH = '\Software\StarUML\Profiles';
@@ -862,13 +875,14 @@ end;
 
 procedure PExtensibleModel.Accept(Visitor: PVisitor);
 var
-  I: Integer;
+  Constraint: PConstraint;
+  TaggedValue: PTaggedValue;
 begin
   inherited;
-  for I := 0 to ConstraintCount - 1 do
-    Constraints[I].Accept(Visitor);
-  for I := 0 to TaggedValueCount - 1 do
-    TaggedValues[I].Accept(Visitor);
+  for Constraint in Constraints do
+    Constraint.Accept(Visitor);
+  for TaggedValue in TaggedValues do
+    TaggedValue.Accept(Visitor);
 end;
 
 function PExtensibleModel.GetStereotype: PStereotype;
@@ -920,11 +934,9 @@ begin
 end;
 
 procedure PExtensibleModel.ClearConstraints;
-var
-  I: Integer;
 begin
-  for I := FConstraints.Count - 1 downto 0 do
-    DeleteConstraint(I);
+  while FConstraints.Count > 0 do
+    DeleteConstraint(FConstraints.Count-1);
 end;
 
 procedure PExtensibleModel.AddConstraint(AConstraint: PConstraint);
@@ -957,7 +969,7 @@ end;
 
 procedure PExtensibleModel.DeleteConstraint(Index: Integer);
 begin
-  RemoveConstraint(FConstraints.Items[Index] as PConstraint);
+  RemoveConstraint(FConstraints.Items[Index]);
 end;
 
 function PExtensibleModel.IndexOfConstraint(AConstraint: PConstraint): Integer;
@@ -967,23 +979,22 @@ end;
 
 function PExtensibleModel.GetConstraintByGuid(AGuid: string): PConstraint;
 var
-  I: Integer;
+  Constraint: PConstraint;
 begin
   Result := nil;
-  for I := 0 to ConstraintCount - 1 do
-    if Constraints[I].GUID = AGuid then
+  for Constraint in Constraints do begin
+    if Constraint.GUID = AGuid then
     begin
-      Result := Constraints[I];
-      Exit;
+      Result := Constraint;
+      Break;
     end;
+  end;
 end;
 
 procedure PExtensibleModel.ClearTaggedValues;
-var
-  I: Integer;
 begin
-  for I := FTaggedValues.Count - 1 downto 0 do
-    DeleteTaggedValue(I);
+  while FTaggedValues.Count > 0 do
+    DeleteTaggedValue(FTaggedValues.Count-1);
 end;
 
 procedure PExtensibleModel.AddTaggedValue(ATaggedValue: PTaggedValue);
@@ -1025,11 +1036,9 @@ begin
 end;
 
 procedure PExtensibleModel.ClearReferencingTags;
-var
-  I: Integer;
 begin
-  for I := FReferencingTags.Count - 1 downto 0 do
-    DeleteReferencingTag(I);
+  while FReferencingTags.Count > 0 do
+    DeleteReferencingTag(FReferencingTags.Count-1);
 end;
 
 procedure PExtensibleModel.AddReferencingTag(ATaggedValue: PTaggedValue);
@@ -1068,15 +1077,14 @@ end;
 
 function PExtensibleModel.FindTaggedValue(Profile: string; TagDefinitionSet: string; Name: string): PTaggedValue;
 var
-  I: Integer;
   T: PTaggedValue;
 begin
   Result := nil;
-  for I := 0 to TaggedValueCount - 1 do begin
-    T := TaggedValues[I];
-    if (T.ProfileName = Profile) and (T.TagDefinitionSetName = TagDefinitionSet) and (T.Name = Name) then begin
+  for T in TaggedValues do begin
+    if (T.ProfileName = Profile) and (T.TagDefinitionSetName = TagDefinitionSet)
+        and (T.Name = Name) then begin
       Result := T;
-      Exit;
+      Break;
     end;
   end;
 end;
@@ -1109,7 +1117,7 @@ begin
     if (TD <> nil) and (TD.TagType = tkReference) then
     begin
       if T.ReferenceValueCount > 0 then
-        Result := T.ReferenceValues[0]
+        Result := T.ReferenceValue[0]
       else
         Result := nil;
     end
@@ -1261,10 +1269,10 @@ end;
 function PExtensibleModel.MOF_GetCollectionItem(Name: string; Index: Integer): PElement;
 begin
   if Name = 'Constraints' then begin
-    Result := Constraints[Index];
+    Result := Constraint[Index];
   end
   else if Name = 'TaggedValues' then begin
-    Result := TaggedValues[Index];
+    Result := TaggedValue[Index];
   end
   else if Name = 'ReferencingTags' then begin
     Result := ReferencingTags[Index];
@@ -1396,14 +1404,13 @@ begin
   FName := '';
   FDataValue := '';
   FTaggedModel := nil;
-  FReferenceValues := POrderedSet.Create;
+  FReferenceValues := PExtensibleModelOrderedSet.Create;
 end;
 
 destructor PTaggedValue.Destroy;
 begin
   ClearReferenceValues;
-  FReferenceValues.Free;
-  FReferenceValues := nil;
+  FreeAndNil(FReferenceValues);
   inherited;
 end;
 
@@ -1456,7 +1463,7 @@ end;
 
 function PTaggedValue.GetReferenceValue(Index: Integer): PExtensibleModel;
 begin
-  Result := FReferenceValues.Items[Index] as PExtensibleModel;
+  Result := FReferenceValues.Items[Index];
 end;
 
 function PTaggedValue.GetTagDefinition: PTagDefinition;
@@ -1483,11 +1490,9 @@ begin
 end;
 
 procedure PTaggedValue.ClearReferenceValues;
-var
-  I: Integer;
 begin
-  for I := FReferenceValues.Count - 1 downto 0 do
-    DeleteReferenceValue(I);
+  while FReferenceValues.Count > 0 do
+    DeleteReferenceValue(FReferenceValues.Count - 1);
 end;
 
 procedure PTaggedValue.AddReferenceValue(Value: PExtensibleModel);
@@ -1516,7 +1521,7 @@ end;
 
 procedure PTaggedValue.DeleteReferenceValue(Index: Integer);
 begin
-  RemoveReferenceValue(FReferenceValues.Items[Index] as PExtensibleModel);
+  RemoveReferenceValue(FReferenceValues.Items[Index]);
 end;
 
 function PTaggedValue.IndexOfReferenceValue(Value: PExtensibleModel): Integer;
@@ -1645,7 +1650,7 @@ end;
 function PTaggedValue.MOF_GetCollectionItem(Name: string; Index: Integer): PElement;
 begin
   if Name = 'ReferenceValues' then begin
-    Result := ReferenceValues[Index];
+    Result := ReferenceValue[Index];
   end
   else begin
     Result := inherited MOF_GetCollectionItem(Name, Index);
@@ -1737,27 +1742,24 @@ begin
   Result := TTagDefinitionSetEnumerator.Create(self);
 end;
 
-
-
 constructor PTagDefinitionSet.Create;
 begin
   inherited;
   FBaseClasses := TStringList.Create;
-  FTagDefinitions := POrderedSet.Create;
+  FTagDefinitions := PTagDefinitionOrderedSet.Create;
   FProfile := nil;
   FStereotype := nil;
 end;
 
 destructor PTagDefinitionSet.Destroy;
 var
-  I: Integer;
+  TagDefinition: PTagDefinition;
 begin
   FBaseClasses.Free;
   FBaseClasses := nil;
-  for I := FTagDefinitions.Count - 1 downto 0 do
-    (FTagDefinitions.Items[I] as PTagDefinition).Free;
-  FTagDefinitions.Free;
-  FTagDefinitions := nil;
+  for TagDefinition in FTagDefinitions do
+    TagDefinition.Free;
+  FreeAndNil(FTagDefinitions);
   inherited;
 end;
 
@@ -1778,18 +1780,18 @@ end;
 
 function PTagDefinitionSet.GetTagDefinition(Index: Integer): PTagDefinition;
 begin
-  Result := FTagDefinitions.Items[Index] as PTagDefinition;
+  Result := FTagDefinitions.Items[Index];
 end;
 
 function PTagDefinitionSet.FindTagDefinition(AName: string): PTagDefinition;
 var
-  I: Integer;
+  TagDefinition: PTagDefinition;
 begin
   Result := nil;
-  for I := 0 to FTagDefinitions.Count - 1 do
-    if GetTagDefinition(I).Name = AName then begin
-      Result := GetTagDefinition(I);
-      Exit;
+  for TagDefinition in FTagDefinitions do
+    if TagDefinition.Name = AName then begin
+      Result := TagDefinition;
+      Break;
     end;
 end;
 
@@ -2227,47 +2229,53 @@ end;
 constructor PProfile.Create;
 begin
   inherited;
-  FStereotypes := POrderedSet.Create;
-  FTagDefinitionSets := POrderedSet.Create;
-  FDataTypes := POrderedSet.Create;
+  FStereotypes := PStereotypeOrderedSet.Create;
+  FTagDefinitionSets := PTagDefinitionSetOrderedSet.Create;
+  FDataTypes := PDataTypeOrderedSet.Create;
   FElementPrototypes := PElementPrototypeOrderedSet.Create;
   FModelPrototypes := PModelPrototypeOrderedSet.Create;
-  FDiagramTypes := POrderedSet.Create;
-  FPalettes := POrderedSet.Create;
+  FDiagramTypes := PDiagramTypeOrderedSet.Create;
+  FPalettes := PPaletteOrderedSet.Create;
 end;
 
 destructor PProfile.Destroy;
 var
-  I: Integer;
+ S: PStereotype;
+ Tds: PTagDefinitionSet;
+ Dt: PDataType;
+ Ep: PElementPrototype;
+ Mp: PModelPrototype;
+ DgT: PDiagramType;
+ P: PPalette;
 begin
-  for I := FStereotypes.Count - 1 downto 0 do
-    GetStereotype(I).Free;
-  FStereotypes.Free;
-  FStereotypes := nil;
-  for I := FTagDefinitionSets.Count - 1 downto 0 do
-    GetTagDefinitionSet(I).Free;
-  FTagDefinitionSets.Free;
-  FTagDefinitionSets := nil;
-  for I := FDataTypes.Count - 1 downto 0 do
-    GetDataType(I).Free;
-  FDataTypes.Free;
-  FDataTypes := nil;
-  for I := FElementPrototypes.Count - 1 downto 0 do
-    GetElementPrototype(I).Free;
-  FElementPrototypes.Free;
-  FElementPrototypes := nil;
-  for I := FModelPrototypes.Count - 1 downto 0 do
-    GetModelPrototype(I).Free;
-  FModelPrototypes.Free;
-  FModelPrototypes := nil;
-  for I := FDiagramTypes.Count - 1 downto 0 do
-    GetDiagramType(I).Free;
-  FDiagramTypes.Free;
-  FDiagramTypes := nil;
-  for I := FPalettes.Count - 1 downto 0 do
-    GetPalette(I).Free;
-  FPalettes.Free;
-  FPalettes := nil;
+  for S in FStereotypes do
+    S.Free;
+  FreeAndNil(FStereotypes);
+
+  for Tds in FTagDefinitionSets do
+    Tds.Free;
+  FreeAndNil(FTagDefinitionSets);
+
+  for Dt in FDataTypes do
+    Dt.Free;
+  FreeAndNil(FDataTypes);
+
+  for Ep in FElementPrototypes do
+    Ep.Free;
+  FreeAndNil(FElementPrototypes);
+
+  for Mp in FModelPrototypes do
+    Mp.Free;
+  FreeAndNil(FModelPrototypes);
+
+  for DgT in FDiagramTypes do
+    DgT.Free;
+  FreeAndNil(FDiagramTypes);
+
+  for P in FPalettes do
+    P.Free;
+  FreeAndNil(FPalettes);
+
   inherited;
 end;
 
@@ -2278,7 +2286,7 @@ end;
 
 function PProfile.GetStereotype(Index: Integer): PStereotype;
 begin
-  Result := FStereotypes.Items[Index] as PStereotype;
+  Result := FStereotypes.Items[Index];
 end;
 
 function PProfile.GetTagDefinitionSetCount: Integer;
@@ -2288,7 +2296,7 @@ end;
 
 function PProfile.GetTagDefinitionSet(Index: Integer): PTagDefinitionSet;
 begin
-  Result := FTagDefinitionSets.Items[Index] as PTagDefinitionSet;
+  Result := FTagDefinitionSets.Items[Index];
 end;
 
 function PProfile.GetDataTypeCount: Integer;
@@ -2298,7 +2306,7 @@ end;
 
 function PProfile.GetDataType(Index: Integer): PDataType;
 begin
-  Result := FDataTypes.Items[Index] as PDataType;
+  Result := FDataTypes.Items[Index];
 end;
 
 function PProfile.GetElementPrototypeCount: Integer;
@@ -2328,7 +2336,7 @@ end;
 
 function PProfile.GetDiagramType(Index: Integer): PDiagramType;
 begin
-  Result := FDiagramTypes.Items[Index] as PDiagramType;
+  Result := FDiagramTypes.Items[Index];
 end;
 
 function PProfile.GetPaletteCount: Integer;
@@ -2338,7 +2346,7 @@ end;
 
 function PProfile.GetPalette(Index: Integer): PPalette;
 begin
-  Result := FPalettes.Items[Index] as PPalette;
+  Result := FPalettes.Items[Index];
 end;
 
 function PProfile.FindTagDefinition(ATagDefinitionSetName, AName: string): PTagDefinition;
@@ -2353,43 +2361,43 @@ end;
 
 function PProfile.FindTagDefinitionSet(AName: string): PTagDefinitionSet;
 var
-  I: Integer;
+ TagDefinitionSet: PTagDefinitionSet;
 begin
   Result := nil;
-  for I := 0 to FTagDefinitionSets.Count - 1 do
-    if GetTagDefinitionSet(I).Name = AName then begin
-      Result := GetTagDefinitionSet(I);
-      Exit;
+  for TagDefinitionSet in FTagDefinitionSets do
+    if TagDefinitionSet.Name = AName then begin
+      Result := TagDefinitionSet;
+      Break;
     end;
 end;
 
 function PProfile.FindStereotype(AName: string; BaseClass: string): PStereotype;
 var
-  I: Integer;
+  Stereotype: PStereotype;
 begin
   Result := nil;
-  for I := 0 to FStereotypes.Count - 1 do
-    if (GetStereotype(I).Name = AName) then begin
+  for Stereotype in FStereotypes do
+    if Stereotype.Name = AName then begin
       if BaseClass = '' then begin
-        Result := GetStereotype(I);
-        Exit;
+        Result := Stereotype;
+        Break;
       end
-      else if GetStereotype(I).CanApplyTo(BaseClass) then begin
-        Result := GetStereotype(I);
-        Exit;
+      else if Stereotype.CanApplyTo(BaseClass) then begin
+        Result := Stereotype;
+        Break;
       end;
     end;
 end;
 
 function PProfile.FindDataType(AName: string): PDataType;
 var
-  I: Integer;
+  DataType: PDataType;
 begin
   Result := nil;
-  for I := 0 to FDataTypes.Count - 1 do
-    if GetDataType(I).Name = AName then begin
-      Result := GetDataType(I);
-      Exit;
+  for DataType in FDataTypes do
+    if DataType.Name = AName then begin
+      Result := DataType;
+      Break;
     end;
 end;
 
@@ -2419,25 +2427,25 @@ end;
 
 function PProfile.FindDiagramType(AName: string): PDiagramType;
 var
-  I: Integer;
+  DiagramType: PDiagramType;
 begin
   Result := nil;
-  for I := 0 to FDiagramTypes.Count - 1 do
-    if GetDiagramType(I).Name = AName then begin
-      Result := GetDiagramType(I);
-      Exit;
+  for DiagramType in FDiagramTypes do
+    if DiagramType.Name = AName then begin
+      Result := DiagramType;
+      Break;
     end;
 end;
 
 function PProfile.FindPalette(AName: string): PPalette;
 var
-  I: Integer;
+  Palette: PPalette;
 begin
   Result := nil;
-  for I := 0 to FPalettes.Count - 1 do
-    if GetPalette(I).Name = AName then begin
-      Result := GetPalette(I);
-      Exit;
+  for Palette in FPalettes do
+    if Palette.Name = AName then begin
+      Result := Palette;
+      Break;
     end;
 end;
 
@@ -2720,7 +2728,7 @@ begin
       end
       else
         Dgm.Free;
-      N := FindSibling(N, PRF_DIAGRAMTYPE);        
+      N := FindSibling(N, PRF_DIAGRAMTYPE);
     end;
   end;
 
@@ -2939,7 +2947,7 @@ begin
   if N <> nil then begin
     AElementPrototype.FBaseElement := ReadStringNodeValue(N);
     AElementPrototype.FArgument := GetIntegerAttribute(N, PRF_ATTR_ARGUMENT);
-  end;  
+  end;
   if AElementPrototype.FBaseElement = '' then begin
     Result := False;
     Exit;
@@ -3187,8 +3195,8 @@ begin
   end;
   // set tagdefinitionset's baseclasses as stereotype's baseclasses
   for I := 0 to AProfile.TagDefinitionSetCount - 1 do
-    if AProfile.TagDefinitionSets[I].Stereotype <> nil then
-      AProfile.TagDefinitionSets[I].FBaseClasses.Assign(AProfile.TagDefinitionSets[I].Stereotype.FBaseClasses);
+    if AProfile.TagDefinitionSet[I].Stereotype <> nil then
+      AProfile.TagDefinitionSet[I].FBaseClasses.Assign(AProfile.TagDefinitionSet[I].Stereotype.FBaseClasses);
 end;
 
 function PProfileReader.ReadProfile(AProfile: PProfile): Boolean;
@@ -3246,20 +3254,18 @@ end;
 constructor PExtensionManager.Create;
 begin
   inherited;
-  FAvailableProfiles := POrderedSet.Create;
-  FIncludedProfiles := POrderedSet.Create;
+  FAvailableProfiles := PProfileOrderedSet.Create;
+  FIncludedProfiles := PProfileOrderedSet.Create;
 end;
 
 destructor PExtensionManager.Destroy;
 var
-  I: Integer;
+  Profile: PProfile;
 begin
-  for I := FAvailableProfiles.Count - 1 downto 0 do
-    GetAvailableProfile(I).Free;
-  FAvailableProfiles.Free;
-  FAvailableProfiles := nil;
-  FIncludedProfiles.Free;
-  FIncludedProfiles := nil;
+  FreeAndNil(FIncludedProfiles);
+  for Profile in FAvailableProfiles do
+    Profile.Free;
+  FreeAndNil(FAvailableProfiles);
   inherited;
 end;
 
@@ -3270,7 +3276,7 @@ end;
 
 function PExtensionManager.GetAvailableProfile(Index: Integer): PProfile;
 begin
-  Result := FAvailableProfiles.Items[Index] as PProfile;
+  Result := FAvailableProfiles.Items[Index];
 end;
 
 function PExtensionManager.GetIncludedProfileCount: Integer;
@@ -3280,7 +3286,7 @@ end;
 
 function PExtensionManager.GetIncludedProfile(Index: Integer): PProfile;
 begin
-  Result := FIncludedProfiles.Items[Index] as PProfile;
+  Result := FIncludedProfiles.Items[Index];
 end;
 
 function PExtensionManager.CanExcludeProfile(AProfile: PProfile): Boolean;
@@ -3308,80 +3314,114 @@ begin
   ExcludeAllProfiles;
 end;
 
-procedure PExtensionManager.IncludeProfile(AProfile: string);
+procedure PExtensionManager.IncludeProfile(AProfileName: string);
 var
   P: PProfile;
 begin
-  P := FindAvailableProfile(AProfile);
-  if P = nil then raise EProfileNotFound.Create(MSG_PROFILE_NOT_FOUND + ' (' + AProfile + ')');
+  P := FindAvailableProfile(AProfileName);
+  if P = nil then raise EProfileNotFound.Create(MSG_PROFILE_NOT_FOUND + ' (' + AProfileName + ')');
   FIncludedProfiles.Add(P);
 end;
 
-procedure PExtensionManager.ExcludeProfile(AProfile: string);
+procedure PExtensionManager.ExcludeProfile(AProfileName: string);
 var
-  P: PProfile;
+  Idx: Integer;
+begin
+  Idx := FindIncludedProfileIdx(AProfileName);
+  if Idx < 0 then
+    raise EProfileNotFound.Create(MSG_PROFILE_NOT_FOUND + ' (' + AProfileName + ')');
+  ExcludeProfile(Idx);
+end;
+
+procedure PExtensionManager.ExcludeProfile(AProfile: PProfile);
+begin
+  DoExcludeProfile(AProfile);
+  FIncludedProfiles.Remove(AProfile);
+end;
+
+procedure PExtensionManager.ExcludeProfile(AProfileIdx: Integer);
+var
+  Profile: PProfile;
+begin
+  Assert((AProfileIdx >= 0) and (AProfileIdx < FIncludedProfiles.Count));
+  Profile := FIncludedProfiles[AProfileIdx];
+  DoExcludeProfile(Profile);
+  FIncludedProfiles.Delete(AProfileIdx);
+end;
+
+// Do all actions associated with excluding profile
+// without removing it from the list yet
+procedure PExtensionManager.DoExcludeProfile(AProfile: PProfile);
+var
   MC: PMetaClass;
   T: PTaggedValue;
   I: Integer;
 begin
-  P := FindAvailableProfile(AProfile);
-  if P = nil then raise EProfileNotFound.Create(MSG_PROFILE_NOT_FOUND + ' (' + AProfile + ')');
-
   // Check whether can exclude the profile.
-  if not CanExcludeProfile(P) then
-    raise ECannotExcludeProfile.Create(MSG_PROFILE_CANNOT_EXCLUDE + ' (' + AProfile + ')');
+  if not CanExcludeProfile(AProfile) then
+    raise ECannotExcludeProfile.Create(MSG_PROFILE_CANNOT_EXCLUDE + ' (' + AProfile.Name + ')');
 
   // Delete all TaggedValues related to the Profile.
   MC := MetaModel.FindMetaClass('TaggedValue');
   for I := MC.InstanceCount - 1 downto 0 do begin
     T := MC.Instance[I] as PTaggedValue;
-    if T.ProfileName = AProfile then begin
+    if T.ProfileName = AProfile.Name then begin
       T.Isolate;
       T.Free;
     end;
   end;
-  FIncludedProfiles.Remove(P);
 end;
+
 
 procedure PExtensionManager.ExcludeAllProfiles;
 var
-  I: Integer;
-  P: PProfile;
+  Profile: PProfile;
 begin
-  for I := IncludedProfileCount - 1 downto 0 do begin
-    P := IncludedProfiles[I];
-    ExcludeProfile(P.Name);
-  end;
+  for Profile in IncludedProfiles do
+    DoExcludeProfile(Profile);
+  IncludedProfiles.Clear;
 end;
 
 function PExtensionManager.IsIncluded(AProfile: PProfile): Boolean;
 begin
-  Result := (FIncludedProfiles.IndexOf(AProfile) <> -1);
+  Result := (FIncludedProfiles.IndexOf(AProfile) > -1);
 end;
 
 function PExtensionManager.FindAvailableProfile(AName: string): PProfile;
 var
-  I: Integer;
+  Profile: PProfile;
 begin
   Result := nil;
-  for I := 0 to FAvailableProfiles.Count - 1 do
-    if GetAvailableProfile(I).Name = AName then begin
-      Result := GetAvailableProfile(I);
-      Exit;
+  for Profile in FAvailableProfiles do
+    if Profile.Name = AName then begin
+      Result := Profile;
+      Break;
     end;
+end;
+
+function PExtensionManager.FindIncludedProfileIdx(AName: string): Integer;
+var
+  I: Integer;
+begin
+  for I := 0 to IncludedProfileCount - 1 do begin
+  if IncludedProfile[I].Name = AName then
+    Break;
+  end;
+  if I < IncludedProfileCount then
+    Result := I
+  else
+    Result := -1;
 end;
 
 function PExtensionManager.FindIncludedProfile(AName: string): PProfile;
 var
-  I: Integer;
   Profile: PProfile;
 begin
   Result := nil;
-  for I := 0 to FIncludedProfiles.Count - 1 do begin
-    Profile := GetIncludedProfile(I);
+  for Profile in FIncludedProfiles do begin
     if Profile.Name = AName then begin
-      Result := GetIncludedProfile(I);
-      Exit;
+      Result := Profile;
+      Break;
     end;
   end;
 end;
@@ -3404,7 +3444,7 @@ var
 begin
   Result := nil;
   for I := 0 to IncludedProfileCount - 1 do begin
-    P := IncludedProfiles[I];
+    P := IncludedProfile[I];
     S := P.FindStereotype(Name, BaseClass);
     if S <> nil then begin
       Result := S;

@@ -150,7 +150,7 @@ type
     procedure HelpButtonClick(Sender: TObject);
 
   protected const
-    TAGGEDVALUEEDITORFORM_NOMODEL = 'Nothing Selected';
+    TAGGED_VALUE_EDITOR_FORM_NO_MODEL = 'Nothing Selected';
 
   protected
     TagDefinitionSetInspector: PTagDefinitionSetInspector;
@@ -363,13 +363,13 @@ end;
 procedure TTaggedValueEditorForm.SetupTaggedValueTab(AProfile: PProfile; DefaultTagDefinitionSetName: string = '');
 var
   Idx: Integer;
-  I: Integer;
+  TagDefinitionSet: PTagDefinitionSet;
 begin
   TagDefinitionSetComboBox.Clear;
-  for I := 0 to AProfile.TagDefinitionSetCount - 1 do
-    if AProfile.TagDefinitionSets[I].CanApplyTo(Model.MetaClass.Name) then
-      TagDefinitionSetComboBox.Items.AddObject(AProfile.TagDefinitionSets[I].Name,
-        AProfile.TagDefinitionSets[I]);
+  for TagDefinitionSet in AProfile.TagDefinitionSets do
+    if TagDefinitionSet.CanApplyTo(Model.MetaClass.Name) then
+      TagDefinitionSetComboBox.Items.AddObject(TagDefinitionSet.Name,
+        TagDefinitionSet);
   if TagDefinitionSetComboBox.Items.Count > 0 then begin
 
     // Finish any operation related to the previously selected tag tab
@@ -394,11 +394,11 @@ procedure TTaggedValueEditorForm.SetupTaggedTabControl;
 
   function ExistsAvailableTagDefinitionSet(AProfile: PProfile): Boolean;
   var
-    I: Integer;
+     TagDefinitionSet: PTagDefinitionSet;
   begin
     Result := False;
-    for I := 0 to AProfile.TagDefinitionSetCount - 1 do
-      if AProfile.TagDefinitionSets[I].CanApplyTo(Model.MetaClass.Name) then begin
+    for TagDefinitionSet in AProfile.TagDefinitionSets do
+      if TagDefinitionSet.CanApplyTo(Model.MetaClass.Name) then begin
         Result := True;
         Exit;
       end;
@@ -407,21 +407,36 @@ procedure TTaggedValueEditorForm.SetupTaggedTabControl;
 var
   S: PStereotype;
   Idx: Integer;
-  I: Integer;
+  Profile: PProfile;
+  LastActiveIdx: Integer;
+  LastActiveProfile: PProfile;
+  ActiveTabIdentified: Boolean;
+
 begin
+  LastActiveIdx := TaggedValueTabControl.TabIndex;
+  LastActiveProfile := CurrentProfile;
+
   TaggedValueTabControl.Tabs.Clear;
   TagDefinitionSetComboBox.Items.Clear;
   TagDefinitionSetInspector.ClearRows;
 
+  ActiveTabIdentified := False;
   if Model <> nil then begin
     // append tab sheets for include profiles
-    for I := 0 to ExtensionManager.IncludedProfileCount - 1 do begin
-      if ExistsAvailableTagDefinitionSet(ExtensionManager.IncludedProfiles[I]) then
-        TaggedValueTabControl.Tabs.AddObject(ExtensionManager.IncludedProfiles[I].Name,
-          ExtensionManager.IncludedProfiles[I]);
+    for Profile in ExtensionManager.IncludedProfiles do begin
+      if ExistsAvailableTagDefinitionSet(Profile) then begin
+          TaggedValueTabControl.Tabs.AddObject(Profile.Name, Profile);
+          // Check if previously used tab is still available
+          if Profile = LastActiveProfile then begin
+             TaggedValueTabControl.TabIndex := LastActiveIdx;
+             SetupTaggedValueTab(LastActiveProfile);
+             ActiveTabIdentified := True;
+          end
+        end
     end;
-    // set active tab sheet
-    if (TaggedValueTabControl.Tabs.Count > 0) then begin
+    // set active tab sheet if not previously identified
+    if not ActiveTabIdentified and (TaggedValueTabControl.Tabs.Count > 0) then begin
+      // Find tab related to model stereotype if defined
       if (FModel.StereotypeProfile = '') then begin
         Idx := -1;
         S := nil;
@@ -430,6 +445,7 @@ begin
         Idx := TaggedValueTabControl.Tabs.IndexOf(Model.StereotypeProfile);
         S := ExtensionManager.FindStereotype(Model.StereotypeProfile, Model.StereotypeName, FModel.MetaClass.Name);
       end;
+
       if (Idx > -1) and Assigned(S) then begin
         TaggedValueTabControl.TabIndex := Idx;
         if Assigned(S.TagDefinitionSet) then
@@ -448,9 +464,9 @@ end;
 procedure TTaggedValueEditorForm.UpdateFormTitle;
 begin
   if Model = nil then
-    Caption := TXT_TITLE_TAGGEDVALUEEDITORFORM + ' - (' + TAGGEDVALUEEDITORFORM_NOMODEL + ')'
+    Caption := TXT_TITLE_TAGGED_VALUE_EDITOR_FORM + ' - (' + TAGGED_VALUE_EDITOR_FORM_NO_MODEL + ')'
   else
-    Caption := TXT_TITLE_TAGGEDVALUEEDITORFORM + ' - ('
+    Caption := TXT_TITLE_TAGGED_VALUE_EDITOR_FORM + ' - ('
       + Copy(Model.ClassName, 2, Length(Model.ClassName) - 1) + ') ' + Model.Name;
 end;
 

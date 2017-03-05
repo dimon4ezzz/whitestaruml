@@ -268,17 +268,14 @@ var
   SL: TStringList;
   C: PConstraint;
   S: string;
-  I: Integer;
 begin
   if not Visible then
     Exit;
 
   ConstraintsListView.Items.BeginUpdate;
   ConstraintsListView.Clear;
-  if FConstrainedElement <> nil then begin
-    for I := 0 to FConstrainedElement.ConstraintCount - 1 do
-    begin
-      C := FConstrainedElement.Constraints[I];
+  if Assigned(FConstrainedElement) then begin
+    for C in FConstrainedElement.Constraints do begin
       ListItem := ConstraintsListView.Items.Add;
       ListItem.Data := C;
       ListItem.Caption := C.Name;

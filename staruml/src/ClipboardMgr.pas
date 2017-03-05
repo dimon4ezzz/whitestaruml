@@ -493,7 +493,6 @@ end;
 
 procedure PClipboardManager.ExtractClipboardElementKind;
 var
-  ANode: IXMLNode;
   Strs: TStringList;
 begin
   if FClipboardDataKind = ckElse then Exit;

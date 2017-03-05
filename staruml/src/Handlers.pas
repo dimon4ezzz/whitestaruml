@@ -2631,10 +2631,9 @@ begin
 end;
 
 
-
 procedure PLineManipulator.EndManipulate(ADiagramEditor: PDiagramEditor; Canvas: PCanvas; AView: PView; DX, DY: Integer);
 var
-  V, OldPart: PView;
+  //V, OldPart: PView;
   LineView: PLineView;
 begin
   if (DX <> 0) or (DY <> 0) then begin

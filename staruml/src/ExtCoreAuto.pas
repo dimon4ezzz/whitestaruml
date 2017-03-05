@@ -277,7 +277,7 @@ end;
 
 function PExtensibleModelAuto.GetConstraintAt(Index: Integer): IConstraint;
 begin
-  Result := (TheObject as PExtensibleModel).Constraints[Index].GetAutomationObject as IConstraint;
+  Result := (TheObject as PExtensibleModel).Constraint[Index].GetAutomationObject as IConstraint;
 end;
 
 function PExtensibleModelAuto.GetTaggedValueCount: Integer;
@@ -287,7 +287,7 @@ end;
 
 function PExtensibleModelAuto.GetTaggedValueAt(Index: Integer): ITaggedValue;
 begin
-  Result := (TheObject as PExtensibleModel).TaggedValues[Index].GetAutomationObject as ITaggedValue;
+  Result := (TheObject as PExtensibleModel).TaggedValue[Index].GetAutomationObject as ITaggedValue;
 end;
 
 function PExtensibleModelAuto.GetReferencingTagCount: Integer;
@@ -335,7 +335,7 @@ var
   M: PExtensibleModel;
 begin
   M := TheObject as PExtensibleModel;
-  StarUMLApplication.DeleteConstraint(M, M.Constraints[Index]);
+  StarUMLApplication.DeleteConstraint(M, M.Constraint[Index]);
 end;
 
 procedure PExtensibleModelAuto.MoveConstraint(const AConstraint: IConstraint; NewIndex: Integer);
@@ -415,7 +415,7 @@ var
   E: PExtensibleModel;
 begin
   T := (TheObject as PExtensibleModel).FindTaggedValue(Profile, TagDefinitionSet, Name);
-  E := T.ReferenceValues[Index];
+  E := T.ReferenceValue[Index];
   if E <> nil then
     Result := E.GetAutomationObject as IExtensibleModel
   else
@@ -601,7 +601,7 @@ function PTaggedValueAuto.GetReferenceValueAt(Index: Integer): IExtensibleModel;
 var
   E: PExtensibleModel;
 begin
-  E := (TheObject as PTaggedValue).ReferenceValues[Index];
+  E := (TheObject as PTaggedValue).ReferenceValue[Index];
   if E <> nil then
     Result := E.GetAutomationObject as IExtensibleModel
   else
@@ -679,7 +679,7 @@ end;
 
 function PProfileAuto.GetDataTypeAt(Index: Integer): IDataType;
 begin
-  Result := (TheObject as PProfile).DataTypes[Index].GetAutomationObject as IDataType;
+  Result := (TheObject as PProfile).DataType[Index].GetAutomationObject as IDataType;
 end;
 
 function PProfileAuto.GetStereotypeCount: Integer;
@@ -689,7 +689,7 @@ end;
 
 function PProfileAuto.GetStereotypeAt(Index: Integer): IStereotype;
 begin
-  Result := (TheObject as PProfile).Stereotypes[Index].GetAutomationObject as IStereotype;
+  Result := (TheObject as PProfile).Stereotype[Index].GetAutomationObject as IStereotype;
 end;
 
 function PProfileAuto.GetTagDefinitionSetCount: Integer;
@@ -699,7 +699,7 @@ end;
 
 function PProfileAuto.GetTagDefinitionSetAt(Index: Integer): ITagDefinitionSet;
 begin
-  Result := (TheObject as PProfile).TagDefinitionSets[Index].GetAutomationObject as ITagDefinitionSet;
+  Result := (TheObject as PProfile).TagDefinitionSet[Index].GetAutomationObject as ITagDefinitionSet;
 end;
 
 function PProfileAuto.FindTagDefinition(const TagDefinitionSet: WideString; const Name: WideString): ITagDefinition; safecall;
@@ -966,7 +966,7 @@ end;
 
 function PExtensionManagerAuto.GetIncludedProfileAt(Index: Integer): IProfile;
 begin
-  Result := (TheObject as PExtensionManager).IncludedProfiles[Index].GetAutomationObject as IProfile;
+  Result := (TheObject as PExtensionManager).IncludedProfile[Index].GetAutomationObject as IProfile;
 end;
 
 function PExtensionManagerAuto.GetAvailableProfileCount: Integer;
@@ -976,7 +976,7 @@ end;
 
 function PExtensionManagerAuto.GetAvailableProfileAt(Index: Integer): IProfile;
 begin
-  Result := (TheObject as PExtensionManager).AvailableProfiles[Index].GetAutomationObject as IProfile;
+  Result := (TheObject as PExtensionManager).AvailableProfile[Index].GetAutomationObject as IProfile;
 end;
 
 function PExtensionManagerAuto.FindIncludedProfile(const Name: WideString): IProfile;

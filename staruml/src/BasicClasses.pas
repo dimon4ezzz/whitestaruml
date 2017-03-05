@@ -664,6 +664,7 @@ begin
   FList.Clear;
 end;
 
+
 procedure POrderedSet.Sort(Compare: TListSortCompare);
 begin
   FList.Sort(Compare);

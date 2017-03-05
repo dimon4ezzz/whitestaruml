@@ -277,7 +277,6 @@ function GetZoomRate(AZoomFactor: PZoomFactor): Real;
 var
   Numer, Denom: Integer;
 begin
-  Result := 1.0;
   Numer := AZoomFactor.Numer;
   Denom := AZoomFactor.Denom;
   Result := Numer / Denom;
@@ -287,7 +286,6 @@ function GetReverseZoomRate(AZoomFactor: PZoomFactor): Real;
 var
   Numer, Denom: Integer;
 begin
-  Result := 1.0;
   Numer := AZoomFactor.Numer;
   Denom := AZoomFactor.Denom;
   Result := Denom / Numer;

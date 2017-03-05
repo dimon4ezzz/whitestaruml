@@ -101,7 +101,6 @@ type
 
   // PPredefinedPaletteInteraction
   PPredefinedPaletteInteraction = class(PPaletteInteraction)
-
   end;
 
 
@@ -116,7 +115,6 @@ type
   // PDiagramMenuInteraction
   PDiagramMenuInteraction = class
   private
-    //FMenuButton: TdxBarButton;
     FMenuButton: TMenuElementHandle;
     FAvailablePalettes: TStringList;
     function GetAvailablePaletteCount: Integer;
@@ -126,10 +124,10 @@ type
     destructor Destroy; override;
     procedure AddAvailablePalette(Value: string);
     procedure RemoveAvailablePalette(Value: string);
-    //property MenuButton: TdxBarButton read FMenuButton write FMenuButton;
     property MenuButton: TMenuElementHandle read FMenuButton write FMenuButton;
     property AvailablePaletteCount: Integer read GetAvailablePaletteCount;
-    property AvailablePalettes[Index: Integer]: string read GetAvailablePalette;
+    property AvailablePalette[Index: Integer]: string read GetAvailablePalette;
+    property AvailablePalettes: TStringList read FAvailablePalettes;
   end;
 
   // PPredefinedDiagramMenuInteraction
@@ -180,12 +178,16 @@ type
   // PInteractionManager
   PInteractionManager = class
   private type
-  TNavBarGroups = TList<TNavBarGroup>;
+    TNavBarGroups = TList<TNavBarGroup>;
+    PPaletteItemInteractionList = TObjectList<PPaletteItemInteraction>;
+    PPaletteInteractionList = TObjectList<PPaletteInteraction>;
+    PDiagramMenuInteractionList = TObjectList<PDiagramMenuInteraction>;
+    PModelMenuInteractionList = TObjectList<PModelMenuInteraction>;
   private
-    FPaletteItemInteractions: TList;
-    FPaletteInteractions: TList;
-    FDiagramMenuInteractions: TList;
-    FModelMenuInteractions: TList;
+    FPaletteItemInteractions: PPaletteItemInteractionList;
+    FPaletteInteractions: PPaletteInteractionList;
+    FDiagramMenuInteractions: PDiagramMenuInteractionList;
+    FModelMenuInteractions: PModelMenuInteractionList;
 
     FMenuManager: TMenuHandlesManager;
 
@@ -195,6 +197,7 @@ type
     FOnExtModelAdding: PExtModelAddingEvent;
     FOnExtDiagramAdding: PExtDiagramAddingEvent;
     FOnExtElementCreating: PExtElementCreatingEvent;
+
     { getter / setter }
     function GetPaletteItemInteractionCount: Integer;
     function GetPaletteItemInteraction(Index: Integer): PPaletteItemInteraction;
@@ -206,21 +209,21 @@ type
 
     function GetModelMenuInteractionCount: Integer;
     function GetModelMenuInteraction(Index: Integer): PModelMenuInteraction;
+
     { event handlers }
-    //procedure MainFormHandlingButtonClicked(Sender: TObject);
     procedure MainFormModelAddMenuClicked(Sender: TObject);
     procedure HandleButtonClicked(Sender: TNavBarItem);
     procedure MainFormDiagramAddMenuClicked(Sender: TObject);
     procedure MainFormElementCreatingHandler(Sender: TObject; HandlerName: string; X1, Y1, X2, Y2: Integer);
     procedure MainFormPaletteChanged(Sender: TObject);
-    //procedure MainFormPaletteNavBarCustomDrawLink(Sender: TObject; ACanvas: TCanvas; AViewInfo: TdxNavBarLinkViewInfo; var AHandled: Boolean);
+
     { finding methods }
     function FindPaletteItemInteraction(NavBarItem: TNavBarItem): PPaletteItemInteraction; overload;
-        function FindPaletteItemInteraction(HandlerName: string): PPaletteItemInteraction; overload;
+    function FindPaletteItemInteraction(HandlerName: string): PPaletteItemInteraction; overload;
     function FindModelMenuInteraction(MenuButton: TMenuElementHandle): PModelMenuInteraction;
     function FindDiagramMenuInteraction(MenuButton: TMenuElementHandle): PDiagramMenuInteraction;
     function FindPaletteInteraction(Name: string): PPaletteInteraction;
-        function FindPredefinedDiagramMenuInteraction(DiagramKind: string): PPredefinedDiagramMenuInteraction;
+    function FindPredefinedDiagramMenuInteraction(DiagramKind: string): PPredefinedDiagramMenuInteraction;
     function FindPredefinedModelMenuInteraction(ModelKind: string): PPredefinedModelMenuInteraction;
     function FindPredefinedPaletteItemInteraction(ElementKind: string): PPredefinedPaletteItemInteraction;
     function FindExtendedPaletteInteraction(Palette: PPalette): PExtendedPaletteInteraction;
@@ -244,8 +247,7 @@ type
     procedure AddAllProfileElementIcons;
     { miscellonous }
     function GetDiagramKindName(Diagram: PUMLDiagram): string;
-    //function GetContainerMenuBarGroup(Button: TdxBarButton): TdxBarGroup; overload;
-    //function GetContainerMenuBarGroup(Button: TMenuElementHandle): TMenuElementCategory;
+
   public
     constructor Create;
     destructor Destroy; override;
@@ -254,15 +256,18 @@ type
     procedure SetExtMenuButtonsState(Owner: PModel);
     procedure ChangePaletteVisibility(Diagram: PUMLDiagram);
     property PaletteItemInteractionCount: Integer read GetPaletteItemInteractionCount;
-    property PaletteItemInteractions[Index: Integer]: PPaletteItemInteraction read GetPaletteItemInteraction;
+    property PaletteItemInteraction[Index: Integer]: PPaletteItemInteraction read GetPaletteItemInteraction;
+    property PaletteItemInteractions: PPaletteItemInteractionList read FPaletteItemInteractions;
     property PaletteInteractionCount: Integer read GetPaletteInteractionCount;
-    property PaletteInteractions[Index: Integer]: PPaletteInteraction read GetPaletteInteraction;
+    property PaletteInteraction[Index: Integer]: PPaletteInteraction read GetPaletteInteraction;
+    property PaletteInteractions: PPaletteInteractionList read FPaletteInteractions;
     property DiagramMenuInteractionCount: Integer read GetDiagramMenuInteractionCount;
-    property DiagramMenuInteractions[Index: Integer]: PDiagramMenuInteraction read GetDiagramMenuInteraction;
+    property DiagramMenuInteraction[Index: Integer]: PDiagramMenuInteraction read GetDiagramMenuInteraction;
+    property DiagramMenuInteractions: PDiagramMenuInteractionList read FDiagramMenuInteractions;
     property ModelMenuInteractionCount: Integer read GetModelMenuInteractionCount;
-    property ModelMenuInteractions[Index: Integer]: PModelMenuInteraction read GetModelMenuInteraction;
+    property ModelMenuInteraction[Index: Integer]: PModelMenuInteraction read GetModelMenuInteraction;
+    property ModelMenuInteractions: PModelMenuInteractionList read FModelMenuInteractions;
     property MenuManager: TMenuHandlesManager read FMenuManager write FMenuManager;
-
     property OnModelAdding: PModelAddingEvent read FOnModelAdding write FOnModelAdding;
     property OnDiagramAdding: PDiagramAddingEvent read FOnDiagramAdding write FOnDiagramAdding;
     property OnElementCreating: PElementCreatingEvent read FOnElementCreating write FOnElementCreating;
@@ -389,7 +394,7 @@ begin
     end
     else begin
       if Model is PExtensibleModel then begin
-        EM := Model as PExtensibleModel;
+        EM := PExtensibleModel(Model);
         if Model.MetaClass.IsKindOf(FModelPrototype.ContainerModels[I]) and (EM.StereotypeName = FModelPrototype.ContainerModelStereotypes[I]) then begin
           Result := True;
           Exit;
@@ -407,32 +412,19 @@ end;
 
 constructor PInteractionManager.Create;
 begin
-  FPaletteItemInteractions := TList.Create;
-  FPaletteInteractions := TList.Create;
-  FDiagramMenuInteractions := TList.Create;
-  FModelMenuInteractions := TList.Create;
+  FPaletteItemInteractions := PPaletteItemInteractionList.Create;
+  FPaletteInteractions := PPaletteInteractionList.Create;
+  FDiagramMenuInteractions := PDiagramMenuInteractionList.Create;
+  FModelMenuInteractions := PModelMenuInteractionList.Create;
   MainForm.OnModelAddMenuClicked := MainFormModelAddMenuClicked;
   MainForm.OnModelAddDiagramMenuClicked := MainFormDiagramAddMenuClicked;
   MainForm.OnElementCreating := MainFormElementCreatingHandler;
-  //MainForm.PaletteNavBarFrame.OnHandlerButtonClicked := MainFormHandlingButtonClicked;
   MainForm.PaletteNavBarFrame.OnButtonClicked := HandleButtonClicked;
   MainForm.PaletteNavBarFrame.OnPaletteChanged := MainFormPaletteChanged;
-  //MainForm.PaletteNavBarFrame.OnPaletteNavBarCustomDrawLink := MainFormPaletteNavBarCustomDrawLink;
-  //FHandlerLocked := False;
 end;
 
 destructor PInteractionManager.Destroy;
-var
-  I: Integer;
 begin
-  for I := PaletteItemInteractionCount - 1 downto 0 do
-    PaletteItemInteractions[I].Free;
-  for I := PaletteInteractionCount - 1 downto 0 do
-    PaletteInteractions[I].Free;
-  for I := DiagramMenuInteractionCount - 1 downto 0 do
-    DiagramMenuInteractions[I].Free;
-  for I := ModelMenuInteractionCount - 1 downto 0 do
-    ModelMenuInteractions[I].Free;
   FPaletteItemInteractions.Free;
   FPaletteInteractions.Free;
   FDiagramMenuInteractions.Free;
@@ -511,18 +503,17 @@ begin
   //Assert(Sender is TdxBarButton);
   // PRECONDITIONS
 
-  //MI := FindModelMenuInteraction(Sender as TdxBarButton);
   MI := FindModelMenuInteraction(Sender as TMenuElementHandle);
   // ASSERTIONS
   Assert(MI <> nil);
   // ASSERTIONS
   if MI is PPredefinedModelMenuInteraction then begin
-    PredefMI := MI as PPredefinedModelMenuInteraction;
+    PredefMI := PPredefinedModelMenuInteraction(MI);
     if Assigned(FOnModelAdding) then
       FOnModelAdding(Self, PredefMI.ModelKind, PredefMI.Argument);
   end
   else if MI is PExtendedModelMenuInteraction then begin
-    ExtMI := MI as PExtendedModelMenuInteraction;
+    ExtMI := PExtendedModelMenuInteraction(MI);
     if Assigned(FOnExtModelAdding) then
       FOnExtModelAdding(Self, ExtMI.ModelPrototype.Profile.Name, ExtMI.ModelPrototype.Name);
   end;
@@ -542,12 +533,12 @@ begin
   Assert(DI <> nil);
   // ASSERTIONS
   if DI is PPredefinedDiagramMenuInteraction then begin
-    PredefDI := DI as PPredefinedDiagramMenuInteraction;
+    PredefDI := PPredefinedDiagramMenuInteraction(DI);
     if Assigned(FOnDiagramAdding) then
       FOnDiagramAdding(Self, PredefDI.DiagramKind);
   end
   else if DI is PExtendedDiagramMenuInteraction then begin
-    ExtDI := DI as PExtendedDiagramMenuInteraction;
+    ExtDI := PExtendedDiagramMenuInteraction(DI);
     if Assigned(FOnExtDiagramAdding) then
       FOnExtDiagramAdding(Self, ExtDI.DiagramType.Profile.Name, ExtDI.DiagramType.Name);
   end;
@@ -564,180 +555,176 @@ begin
   Assert(PI <> nil);
   // ASSERTIONS
   if PI is PPredefinedPaletteItemInteraction then begin
-    PredefPI := PI as PPredefinedPaletteItemInteraction;
+    PredefPI := PPredefinedPaletteItemInteraction(PI);
     if Assigned(FOnElementCreating) then
       FOnElementCreating(Self, PredefPI.ElementKind, PredefPI.Argument, X1, Y1, X2, Y2);
   end
   else if PI is PExtendedPaletteItemInteraction then begin
-    ExtPI := PI as PExtendedPaletteItemInteraction;
+    ExtPI := PExtendedPaletteItemInteraction(PI);
     if Assigned(FOnExtElementCreating) then
       FOnExtElementCreating(Self, ExtPI.ElementPrototype.Profile.Name, ExtPI.ElementPrototype.Name, X1, Y1, X2, Y2);
   end;
-  if not MainForm.PaletteNavBarFrame.ButtonClickHandlerReady then begin
-    //FHandlerLocked := False;
+  if not MainForm.PaletteNavBarFrame.ButtonClickHandlerReady then
     MainForm.PaletteNavBarFrame.ActivateSelectHandler(true);
-  end;
 end;
 
 procedure PInteractionManager.MainFormPaletteChanged(Sender: TObject);
 begin
-  //MainForm.PaletteNavBarFrame.HandlerLocked := False;
   MainForm.PaletteNavBarFrame.ActivateSelectHandler(false);
 end;
 
 
 function PInteractionManager.FindPaletteItemInteraction(NavBarItem: TNavBarItem): PPaletteItemInteraction;
 var
-  I: Integer;
+  PII: PPaletteItemInteraction;
 begin
   Result := nil;
-  for I := 0 to PaletteItemInteractionCount - 1 do
-    //if PaletteItemInteractions[I].NavBarItem.Equals(NavBarItem) then begin
-    if PaletteItemInteractions[I].NavBarItem = NavBarItem then begin
-      Result := PaletteItemInteractions[I];
-      Exit;
+  for PII in PaletteItemInteractions do
+    if PII.NavBarItem = NavBarItem then begin
+      Result := PII;
+      Break;
     end;
 end;
 
 function PInteractionManager.FindModelMenuInteraction(MenuButton: TMenuElementHandle): PModelMenuInteraction;
 var
-  I: Integer;
+  MMI: PModelMenuInteraction;
 begin
   Result := nil;
-  for I := 0 to ModelMenuInteractionCount - 1 do
-    if ModelMenuInteractions[I].MenuButton = MenuButton then begin
-      Result := ModelMenuInteractions[I];
-      Exit;
+  for MMI in ModelMenuInteractions do
+    if MMI.MenuButton = MenuButton then begin
+      Result := MMI;
+      Break;
     end;
 end;
 
 function PInteractionManager.FindDiagramMenuInteraction(MenuButton: TMenuElementHandle): PDiagramMenuInteraction;
 var
-  I: Integer;
+  DMI: PDiagramMenuInteraction;
 begin
   Result := nil;
-  for I := 0 to DiagramMenuInteractionCount - 1 do
-    if DiagramMenuInteractions[I].MenuButton = MenuButton then begin
-      Result := DiagramMenuInteractions[I];
-      Exit;
+  for DMI in DiagramMenuInteractions do
+    if DMI.MenuButton = MenuButton then begin
+      Result := DMI;
+      Break;
     end;
 end;
 
 function PInteractionManager.FindPaletteInteraction(Name: string): PPaletteInteraction;
 var
-  I: Integer;
+  PI: PPaletteInteraction;
 begin
   Result := nil;
-  for I := 0 to PaletteInteractionCount - 1 do
-    if PaletteInteractions[I].Name = Name then begin
-      Result := PaletteInteractions[I];
+  for PI in PaletteInteractions do
+    if PI.Name = Name then begin
+      Result := PI;
       Exit;
     end;
 end;
 
 function PInteractionManager.FindPaletteItemInteraction(HandlerName: string): PPaletteItemInteraction;
 var
-  I: Integer;
+  PII: PPaletteItemInteraction;
 begin
   Result := nil;
-  for I := 0 to PaletteItemInteractionCount - 1 do
-    if PaletteItemInteractions[I].HanderName = HandlerName then begin
-      Result := PaletteItemInteractions[I];
-      Exit;
+  for PII in PaletteItemInteractions do
+    if PII.HanderName = HandlerName then begin
+      Result := PII;
+      Break;
     end;
 end;
 
 function PInteractionManager.FindPredefinedDiagramMenuInteraction(DiagramKind: string): PPredefinedDiagramMenuInteraction;
 var
-  DI: PPredefinedDiagramMenuInteraction;
-  I: Integer;
+  DMI: PDiagramMenuInteraction;
+  PDMI: PPredefinedDiagramMenuInteraction;
 begin
   Result := nil;
-  for I := 0 to DiagramMenuInteractionCount - 1 do
-    if DiagramMenuInteractions[I] is PPredefinedDiagramMenuInteraction then begin
-      DI := DiagramMenuInteractions[I] as PPredefinedDiagramMenuInteraction;
-      if DI.DiagramKind = DiagramKind then begin
-        Result := DI;
-        Exit;
+  for DMI in DiagramMenuInteractions do
+    if DMI is PPredefinedDiagramMenuInteraction then begin
+      PDMI := PPredefinedDiagramMenuInteraction(DMI);
+      if PDMI.DiagramKind = DiagramKind then begin
+        Result := PDMI;
+        Break;
       end;
     end;
 end;
 
 function PInteractionManager.FindPredefinedModelMenuInteraction(ModelKind: string): PPredefinedModelMenuInteraction;
 var
-  MI: PPredefinedModelMenuInteraction;
-  I: Integer;
+  MMI: PModelMenuInteraction;
+  PMMI: PPredefinedModelMenuInteraction;
 begin
   Result := nil;
-  for I := 0 to ModelMenuInteractionCount - 1 do
-    if ModelMenuInteractions[I] is PPredefinedModelMenuInteraction then begin
-      MI := ModelMenuInteractions[I] as PPredefinedModelMenuInteraction;
-      if MI.ModelKind = ModelKind then begin
-        Result := MI;
-        Exit;
+  for MMI in ModelMenuInteractions do
+    if MMI is PPredefinedModelMenuInteraction then begin
+      PMMI := PPredefinedModelMenuInteraction(MMI);
+      if PMMI.ModelKind = ModelKind then begin
+        Result := PMMI;
+        Break;
       end;
     end;
 end;
 
 function PInteractionManager.FindPredefinedPaletteItemInteraction(ElementKind: string): PPredefinedPaletteItemInteraction;
 var
-  PI: PPredefinedPaletteItemInteraction;
-  I: Integer;
+  PII: PPaletteItemInteraction;
+  PPI: PPredefinedPaletteItemInteraction;
 begin
   Result := nil;
-  for I := 0 to PaletteItemInteractionCount - 1 do
-    if PaletteItemInteractions[I] is PPredefinedPaletteItemInteraction then begin
-      PI := PaletteItemInteractions[I] as PPredefinedPaletteItemInteraction;
-      if PI.ElementKind = ElementKind then begin
-        Result := PI;
-        Exit;
+  for PII in PaletteItemInteractions do
+    if PII is PPredefinedPaletteItemInteraction then begin
+      PPI := PPredefinedPaletteItemInteraction(PII);
+      if PPI.ElementKind = ElementKind then begin
+        Result := PPI;
+        Break;
       end;
     end;
 end;
 
 function PInteractionManager.FindExtendedPaletteInteraction(Palette: PPalette): PExtendedPaletteInteraction;
 var
-  PI: PExtendedPaletteInteraction;
-  I: Integer;
+  PI: PPaletteInteraction;
+  EPI: PExtendedPaletteInteraction;
 begin
   Result := nil;
-  for I := 0 to PaletteInteractionCount - 1 do
-    if PaletteInteractions[I] is PExtendedPaletteInteraction then begin
-      PI := PaletteInteractions[I] as PExtendedPaletteInteraction;
-      if PI.Palette = Palette then begin
-        Result := PI;
-        Exit;
+  for PI in PaletteInteractions do
+    if PI is PExtendedPaletteInteraction then begin
+      EPI :=  PExtendedPaletteInteraction(PI);
+      if EPI.Palette = Palette then begin
+        Result := EPI;
+        Break;
       end;
     end;
 end;
 
 function PInteractionManager.FindExtendedPaletteItemInteraction(Profile: PProfile; ElementPrototypeName: string): PExtendedPaletteItemInteraction;
 var
-  PI: PExtendedPaletteItemInteraction;
-  I: Integer;
+  PII: PPaletteItemInteraction;
+  EPI: PExtendedPaletteItemInteraction;
 begin
   Result := nil;
-  for I := 0 to PaletteItemInteractionCount - 1 do
-    if PaletteItemInteractions[I] is PExtendedPaletteItemInteraction then begin
-      PI := PaletteItemInteractions[I] as PExtendedPaletteItemInteraction;
-      if (PI.ElementPrototype.Profile = Profile) and (PI.ElementPrototype.Name = ElementPrototypeName) then begin
-        Result := PI;
-        Exit;
+  for PII in PaletteItemInteractions do
+    if PII is PExtendedPaletteItemInteraction then begin
+      EPI := PExtendedPaletteItemInteraction(PII);
+      if (EPI.ElementPrototype.Profile = Profile) and (EPI.ElementPrototype.Name = ElementPrototypeName) then begin
+        Result := EPI;
+        Break;
       end;
     end;
 end;
 
 function PInteractionManager.FindExtendedDiagramMenuInteraction(DiagramTypeName: string): PExtendedDiagramMenuInteraction;
 var
-  DI: PExtendedDiagramMenuInteraction;
-  I: Integer;
+  DMI: PDiagramMenuInteraction;
+  EDMI: PExtendedDiagramMenuInteraction;
 begin
   Result := nil;
-  for I := 0 to DiagramMenuInteractionCount - 1 do
-    if DiagramMenuInteractions[I] is PExtendedDiagramMenuInteraction then begin
-      DI := DiagramMenuInteractions[I] as PExtendedDiagramMenuInteraction;
-      if DI.DiagramType.Name = DiagramTypeName then begin
-        Result := DI;
+  for DMI in DiagramMenuInteractions do
+    if DMI is PExtendedDiagramMenuInteraction then begin
+      EDMI := PExtendedDiagramMenuInteraction(DMI);
+      if EDMI.DiagramType.Name = DiagramTypeName then begin
+        Result := EDMI;
         Exit;
       end;
     end;
@@ -774,7 +761,6 @@ begin
   PI := PPredefinedPaletteInteraction.Create;
   PI.Name := Name;
   PI.NavBarGroup := NavBarGroup;
-  //PI.NavBarGroup := MainForm.PaletteNavBarFrame.CreateNavBarGroup(NavBarGroup);
   FPaletteInteractions.Add(PI);
 end;
 
@@ -792,14 +778,9 @@ end;
 
 procedure PInteractionManager.AddExtDiagramMenuInteraction(ADiagramType: PDiagramType; IsFirst: Boolean = False);
 var
-  //BaseDI: PPredefinedDiagramMenuInteraction;
   DI: PExtendedDiagramMenuInteraction;
   MenuButton: TMenuElementHandle;
-  //MenuLink: TdxBarItemLink;
-  //BarGroup: TdxBarGroup;
-  //Submenu: TSubmenuHandle;
-  //Category: TMenuElementGroup;
-  I: Integer;
+  P: string;
 begin
   with MainForm do begin
     MenuButton := MenuManager.CreateMenuElement;
@@ -807,31 +788,13 @@ begin
     MenuButton.ImageIndex := ADiagramType.ImageIndex;
     MenuButton.OnClick := MainFormDiagramAddMenuClicked;
     MenuManager.GetSubmenu(MODEL_ADD_DIAGRAM_SUBMENU).AddMenuElement(MenuButton, IsFirst);
-
-    {MenuButton := TdxBarButton.Create(MainForm);
-    MenuButton.Caption := ADiagramType.DisplayName;
-    MenuButton.ImageIndex := ADiagramType.ImageIndex;
-    MenuButton.OnClick := MainFormDiagramAddMenuClicked;
-    MenuLink := ModelAddDiagram.ItemLinks.Add;
-    MenuLink.Item := MenuButton;
-    MenuLink.BeginGroup := IsFirst;}
-    //BaseDI := FindPredefinedDiagramMenuInteraction(ADiagramType.BaseDiagram);
-    // ASSERTIONS
-    //Assert(BaseDI <> nil);
-    // ASSERTIONS
-    //Submenu := GetContainerMenuBarGroup(BaseDI.MenuButton);
-    //Category := MenuManager.GetGroup(BaseDI.MenuButton);
-    // ASSERTIONS
-    //Assert(Category <> nil);
-    // ASSERTIONS
-    //Submenu.AddMenuElement(MenuButton);
-    //Category.AddElement(MenuButton);
   end;
+
   DI := PExtendedDiagramMenuInteraction.Create;
   DI.DiagramType := ADiagramType;
   DI.MenuButton := MenuButton;
-  for I := 0 to ADiagramType.AvailablePaletteCount - 1 do
-    DI.AddAvailablePalette(ADiagramType.AvailablePalettes[I]);
+  for P in ADiagramType.AvailablePalettes do
+    DI.AddAvailablePalette(P);
   FDiagramMenuInteractions.Add(DI);
 end;
 
@@ -841,8 +804,6 @@ var
   BaseMI: PPredefinedModelMenuInteraction;
   MI: PExtendedModelMenuInteraction;
   MenuButton: TMenuElementHandle;
-  //MenuLink: TdxBarItemLink;
-  //BarGroup: TdxBarGroup;
   Category: TMenuElementGroup;
 begin
   // PRECONDITIONS
@@ -850,27 +811,16 @@ begin
   Assert(AModelPrototype.ContainerModelCount > 0);
   // PRECONDITIONS
   with MainForm do begin
-    {MenuButton := TdxBarButton.Create(MainForm);
-    MenuButton.Caption := AModelPrototype.DisplayName;
-    MenuButton.ImageIndex := AModelPrototype.ImageIndex;
-    MenuButton.OnClick := MainFormModelAddMenuClicked;
-    MenuLink := ModelAdd.ItemLinks.Add;
-    MenuLink.Index := 0;
-    MenuLink.Item := MenuButton;}
-
     MenuButton := MenuManager.CreateMenuElement;
     MenuButton.Caption := AModelPrototype.DisplayName;
     MenuButton.ImageIndex := AModelPrototype.ImageIndex;
     MenuButton.OnClick := MainFormModelAddMenuClicked;
     MenuManager.GetSubmenu(MODEL_ADD_SUBMENU).AddMenuElement(MenuButton);
 
-
     BaseMI := FindPredefinedModelMenuInteraction(AModelPrototype.BaseModel);
     // ASSERTIONS
     Assert(BaseMI <> nil);
     // ASSERTIONS
-    //BarGroup := GetContainerMenuBarGroup(BaseMI.MenuButton);
-    //BarGroup.Add(MenuButton);
     Category := MenuManager.GetGroup(BaseMI.MenuButton);
     Category.AddElement(MenuButton);
   end;
@@ -886,7 +836,6 @@ var
   PI: PExtendedPaletteInteraction;
   NavBarGroup: TNavBarGroup;
 begin
-  //NavBarGroup := MainForm.PaletteNavBarFrame.PaletteNavBar.Groups.Add;
   NavBarGroup := MainForm.PaletteNavBarFrame.CreateNavBarGroup;
   NavBarGroup.Caption := APalette.DisplayName;
   NavBarGroup.Visible := True;
@@ -906,11 +855,8 @@ var
 begin
   HandlerName := AElementPrototype.Name + HANDLER_POSTFIX;
   MainForm.AddCreateHandler(HandlerName, [], DragTypeToSkeletonPaintKind(AElementPrototype.DragType));
-  //NavBarItem := MainForm.PaletteNavBarFrame.PaletteNavBar.Items.Add;
   NavBarItem := MainForm.PaletteNavBarFrame.CreateNavBarItem;
   NavBarItem.Caption := AElementPrototype.DisplayName;
-  //NavBarItem.SmallImageIndex := AElementPrototype.ImageIndex;
-  //NavBarItem.OnClick := MainFormHandlingButtonClicked;
   NavBarItem.ImageIndex := AElementPrototype.ImageIndex;
 
   PII := PExtendedPaletteItemInteraction.Create;
@@ -924,17 +870,17 @@ procedure PInteractionManager.CreatePaletteItemLinks(APalette: PPalette);
 var
   PI: PExtendedPaletteInteraction;
   PII: PPaletteItemInteraction;
-  I: Integer;
+  P: string;
 begin
   PI := FindExtendedPaletteInteraction(APalette);
   // ASSERTIONS
   Assert(PI <> nil);
   // ASSERTIONS
-  for I := 0 to APalette.PaletteItemCount - 1 do begin
-    PII := FindExtendedPaletteItemInteraction(APalette.Profile, APalette.PaletteItems[I]);
+  for P in APalette.PaletteItems do begin
+    PII := FindExtendedPaletteItemInteraction(APalette.Profile, P);
     if PII = nil then
-      PII := FindPredefinedPaletteItemInteraction(APalette.PaletteItems[I]);
-    if PII <> nil then
+      PII := FindPredefinedPaletteItemInteraction(P);
+    if Assigned(PII) then
       PI.NavBarGroup.AddItem(PII.NavBarItem);
   end;
 end;
@@ -1098,7 +1044,6 @@ begin
       AddPredefinedModelMenuInteraction(EK_INTERACTIONOPERAND, 0, GetPredefinedElement(MODEL_ADD_INTERACTION_OPERAND));
    end;
 
-
     { palette interactions }
     with PaletteNavBarFrame do begin
       AddPredefinedPaletteInteraction(ANNOTATION_GROUP, GetPredefinedInteractionGroup(ANNOTATION_GROUP));
@@ -1113,6 +1058,7 @@ begin
       AddPredefinedPaletteInteraction(COMPONENT_GROUP, GetPredefinedInteractionGroup(COMPONENT_GROUP));
       AddPredefinedPaletteInteraction(DEPLOYMENT_GROUP, GetPredefinedInteractionGroup(DEPLOYMENT_GROUP));
       AddPredefinedPaletteInteraction(COMPOSITE_STRUCTURE_GROUP, GetPredefinedInteractionGroup(COMPOSITE_STRUCTURE_GROUP));
+
       { palette item interactions }
       AddPredefinedPaletteItemInteraction(EK_TEXT, 0, TEXT_CREATE_HANDLER, GetPredefinedInteractionItem(TEXT_CREATE_HANDLER));
       AddPredefinedPaletteItemInteraction(EK_NOTE, 0, NOTE_CREATE_HANDLER, GetPredefinedInteractionItem(NOTE_CREATE_HANDLER));
@@ -1194,28 +1140,28 @@ end;
 procedure PInteractionManager.BuildExtendedInteractions;
 var
   Profile: PProfile;
+  ElementPrototype: PElementPrototype;
   Palette: PPalette;
+  DiagramType: PDiagramType;
+  ModelPrototype: PModelPrototype;
   DiagramMenuAdded: Boolean;
-  I, J: Integer;
 begin
   DiagramMenuAdded := False;
-  for I := 0 to ExtensionManager.AvailableProfileCount - 1 do begin
-    Profile := ExtensionManager.AvailableProfiles[I];
-    for J := 0 to Profile.ElementPrototypeCount - 1 do
-      AddExtPaletteItemInteraction(Profile.ElementPrototypes[J]);
-    for J := 0 to Profile.PaletteCount - 1 do begin
-      Palette := Profile.Palettes[J];
+  for Profile in ExtensionManager.AvailableProfiles do begin
+    for ElementPrototype in Profile.ElementPrototypes do
+      AddExtPaletteItemInteraction(ElementPrototype);
+    for Palette in Profile.Palettes do begin
       AddExtPaletteInteraction(Palette);
       CreatePaletteItemLinks(Palette);
     end;
-    for J := 0 to Profile.DiagramTypeCount - 1 do begin
-      AddExtDiagramMenuInteraction(Profile.DiagramTypes[J], not DiagramMenuAdded);
+    for DiagramType in Profile.DiagramTypes do begin
+      AddExtDiagramMenuInteraction(DiagramType, not DiagramMenuAdded);
       DiagramMenuAdded := True;
     end;
     MainForm.ModelAdd.ItemLinks[0].BeginGroup := True;
-    for J := Profile.ModelPrototypeCount - 1 downto 0 do
-      if Profile.ModelPrototypes[J].ContainerModelCount > 0 then
-        AddExtModelMenuInteraction(Profile.ModelPrototypes[J]);
+    for ModelPrototype in Profile.ModelPrototypes  do
+      if ModelPrototype.ContainerModelCount > 0 then
+        AddExtModelMenuInteraction(ModelPrototype);
   end;
 end;
 
@@ -1226,26 +1172,16 @@ var
   Stereotype: PStereotype;
   ElemPrototype: PElementPrototype;
   ModelPrototype: PModelPrototype;
-  I, J: Integer;
 begin
-  for I := 0 to ExtensionManager.AvailableProfileCount - 1 do begin
-    Profile := ExtensionManager.AvailableProfiles[I];
-    for J := 0 to Profile.StereotypeCount - 1 do begin
-      Stereotype := Profile.Stereotypes[J];
+  for Profile in ExtensionManager.AvailableProfiles do begin
+    for Stereotype in Profile.Stereotypes do
       Stereotype.ImageIndex := AddBitmap(MainForm.TotalImageList, Stereotype.SmallIconFile);
-    end;
-    for J := 0 to Profile.DiagramTypeCount - 1 do begin
-      DiagramType := Profile.DiagramTypes[J];
+    for DiagramType in Profile.DiagramTypes do
       DiagramType.ImageIndex := AddBitmap(MainForm.TotalImageList, DiagramType.IconFile);
-    end;
-    for J := 0 to Profile.ElementPrototypeCount - 1 do begin
-      ElemPrototype := Profile.ElementPrototypes[J];
+    for ElemPrototype in Profile.ElementPrototypes do
       ElemPrototype.ImageIndex := AddBitmap(MainForm.TotalImageList, ElemPrototype.IconFile);
-    end;
-    for J := 0 to Profile.ModelPrototypeCount - 1 do begin
-      ModelPrototype := Profile.ModelPrototypes[J];
+    for ModelPrototype in Profile.ModelPrototypes do
       ModelPrototype.ImageIndex := AddBitmap(MainForm.TotalImageList, ModelPrototype.IconFile);
-    end;
   end;
 end;
 
@@ -1284,26 +1220,6 @@ begin
   Result := S;
 end;
 
-{function PInteractionManager.GetContainerMenuBarGroup(Button: TdxBarButton): TdxBarGroup;
-var
-  Group: TdxBarGroup;
-  I: Integer;
-begin
-  Result := nil;
-  for I := 0 to Button.BarManager.GroupCount - 1 do begin
-    Group := Button.BarManager.Groups[I];
-    if Group.IndexOf(Button) <> -1 then begin
-      Result := Group;
-      Exit;
-    end;
-  end;
-end;}
-
-{function PInteractionManager.GetContainerMenuBarGroup(Button: TMenuElementHandle): TMenuElementCategory;
-begin
-  Result := MenuManager.GetCategory(Button)
-end;}
-
 
 procedure PInteractionManager.BuildInteractions;
 begin
@@ -1317,46 +1233,50 @@ procedure PInteractionManager.AcquireAvailableNavBarGroups(Diagram: PUMLDiagram;
 var
   DI: PDiagramMenuInteraction;
   PI: PPaletteInteraction;
-  I: Integer;
+  P: string;
 begin
   NavBarGroups.Clear;
   if Diagram.DiagramType = '' then
     DI := FindPredefinedDiagramMenuInteraction(GetDiagramKindName(Diagram))
   else
     DI := FindExtendedDiagramMenuInteraction(Diagram.DiagramType);
+
   // ASSERTIONS
   Assert(DI <> nil);
   // ASSERTIONS
-  for I := 0 to DI.AvailablePaletteCount - 1 do begin
-    PI := FindPaletteInteraction(DI.AvailablePalettes[I]);
-    if PI <> nil then
+
+  for P in DI.AvailablePalettes do begin
+    PI := FindPaletteInteraction(P);
+    if Assigned(PI) then
       NavBarGroups.Add(PI.NavBarGroup);
   end;
 end;
 
 procedure PInteractionManager.SetExtMenuButtonsState(Owner: PModel);
 var
-  DI: PExtendedDiagramMenuInteraction;
-  MI: PExtendedModelMenuInteraction;
-  I: Integer;
+  DMI: PDiagramMenuInteraction;
+  EDMI: PExtendedDiagramMenuInteraction;
+  MMI: PModelMenuInteraction;
+  EMMI: PExtendedModelMenuInteraction;
 begin
-  for I := 0 to ModelMenuInteractionCount - 1 do begin
-    if ModelMenuInteractions[I] is PExtendedModelMenuInteraction then begin
-      MI := ModelMenuInteractions[I] as PExtendedModelMenuInteraction;
+  for MMI in ModelMenuInteractions do begin
+    if MMI is PExtendedModelMenuInteraction then begin
+      EMMI := PExtendedModelMenuInteraction(MMI);
       // ASSERTIONS
-      Assert(MI.ModelPrototype.ContainerModelCount > 0);
-      Assert(MI.BaseMenuButton <> nil);
+      Assert(EMMI.ModelPrototype.ContainerModelCount > 0);
+      Assert(EMMI.BaseMenuButton <> nil);
       // ASSERTIONS
-      if (MI.BaseMenuButton.Visible = True) and ExtensionManager.IsIncluded(MI.ModelPrototype.Profile) and MI.IsOneOfContainer(Owner) then
-        MI.MenuButton.Visible := True
+      if (EMMI.BaseMenuButton.Visible = True) and ExtensionManager.IsIncluded(EMMI.ModelPrototype.Profile)
+        and EMMI.IsOneOfContainer(Owner) then
+        EMMI.MenuButton.Visible := True
       else
-        MI.MenuButton.Visible := False;
+        EMMI.MenuButton.Visible := False;
     end;
   end;
-  for I := 0 to DiagramMenuInteractionCount - 1 do begin
-    if DiagramMenuInteractions[I] is PExtendedDiagramMenuInteraction then begin
-      DI := DiagramMenuInteractions[I] as PExtendedDiagramMenuInteraction;
-      DI.MenuButton.Visible := ExtensionManager.IsIncluded(DI.DiagramType.Profile);
+  for DMI in DiagramMenuInteractions do begin
+    if DMI is PExtendedDiagramMenuInteraction then begin
+      EDMI := PExtendedDiagramMenuInteraction(DMI);
+      EDMI.MenuButton.Visible := ExtensionManager.IsIncluded(EDMI.DiagramType.Profile);
     end;
   end;
 end;
@@ -1366,14 +1286,12 @@ procedure PInteractionManager.ChangePaletteVisibility(Diagram: PUMLDiagram);
   function GetFirstVisibleNavBarGroup(NavBarGroups: TNavBarGroups): TNavBarGroup;
   var
     NavBarGroup: TNavBarGroup;
-    //I: Integer;
   begin
     Result := nil;
-    //for I := 0 to NavBarGroups.Count - 1 do
     for NavBarGroup in NavBarGroups do
       if NavBarGroup.Visible then begin
         Result := NavBarGroup;
-        Exit;
+        Break;
       end;
   end;
 
@@ -1383,23 +1301,26 @@ var
   Profile: PProfile;
   Palette: PPalette;
   PI: PPaletteInteraction;
-  I, J: Integer;
 begin
   with MainForm do begin
-    //for I := 0 to PaletteNavBarFrame.Groups.Count - 1 do
+
+    // Hide currently visible groups
     for NavBarGroup in PaletteNavBarFrame.Groups do
       NavBarGroup.Visible := False;
-    NavBarGroups := TNavBarGroups.Create;
-    try
-      if Diagram <> nil then begin
+
+    // Continue if there is a diagram to set up
+    if Assigned(Diagram) then begin
+      NavBarGroups := TNavBarGroups.Create;
+      try
+        // Acquire Palette groups available for current diagram
         AcquireAvailableNavBarGroups(Diagram, NavBarGroups);
         for NavBarGroup in NavBarGroups do
           NavBarGroup.Visible := True;
-        for I := 0 to ExtensionManager.AvailableProfileCount - 1 do begin
-          Profile := ExtensionManager.AvailableProfiles[I];
+
+        // Disable those not active with included profiles
+        for Profile in ExtensionManager.IncludedProfiles do begin
           if not ExtensionManager.IsIncluded(Profile) then
-            for J := 0 to Profile.PaletteCount - 1 do begin
-              Palette := Profile.Palettes[J];
+            for Palette in Profile.Palettes do begin
               PI := FindPaletteInteraction(Palette.Name);
               // ASSERTIONS
               Assert(PI <> nil);
@@ -1407,14 +1328,15 @@ begin
               PI.NavBarGroup.Visible := False;
             end;
         end;
-        //PaletteNavBarFrame.PaletteNavBar.ActiveGroup := GetFirstVisibleNavBarGroup(NavBarGroups);
-        //PaletteNavBarFrame.GetPredefinedInteractionGroup('Annotation').Visible := True;
+
+        // Find initial active group
         PaletteNavBarFrame.SetActiveGroup(GetFirstVisibleNavBarGroup(NavBarGroups));
-        //PaletteNavBarFrame.AnnotationNavBarGroup.Visible := True;
-        PaletteNavBarFrame.GetPredefinedInteractionGroup('Annotation').Visible := True;
+        // Always visible group
+        PaletteNavBarFrame.GetPredefinedInteractionGroup('Annotation')
+          .Visible := True;
+      finally
+        NavBarGroups.Free;
       end;
-    finally
-      NavBarGroups.Free;
     end;
   end;
 end;
@@ -1433,4 +1355,3 @@ begin
 end;
 
 end.
-
