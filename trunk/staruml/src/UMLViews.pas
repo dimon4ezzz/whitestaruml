@@ -12177,17 +12177,17 @@ var
   TagDef: PTagDefinition;
   Tag: PTaggedValue;
   S, V: string;
-  I, J: Integer;
+  PresetProp: string;
+  Ref: PExtensibleModel;
 begin
   S := '';
   if PresetProps <> nil then
-    for I := 0 to PresetProps.Count - 1 do begin
+    for PresetProp in PresetProps do begin
       if S <> '' then
         S := S + ', ';
-      S := S + PresetProps[I];
+      S := S + PresetProp;
     end;
-  for I := 0 to M.TaggedValueCount - 1 do begin
-    Tag := M.TaggedValues[I];
+  for Tag in M.TaggedValues do begin
     TagDef := Tag.GetTagDefinition;
     if TagDef <> nil then begin
       if S <> '' then
@@ -12205,16 +12205,16 @@ begin
         tkEnumeration:
           S := S + Format('%s = %s', [Tag.Name, Tag.DataValue]);
         tkReference:
-          if (Tag.ReferenceValueCount = 1) and (Tag.ReferenceValues[0] <> nil) then
-            S := S + Format('%s = %s', [Tag.Name, Tag.ReferenceValues[0].Name]);
+          if (Tag.ReferenceValueCount = 1) and (Tag.ReferenceValue[0] <> nil) then
+            S := S + Format('%s = %s', [Tag.Name, Tag.ReferenceValue[0].Name]);
         tkCollection:
           begin
             V := '';
-            for J := 0 to Tag.ReferenceValueCount - 1 do
-              if Tag.ReferenceValues[J] <> nil then begin
+            for Ref in Tag.ReferenceValues do
+              if Assigned(Ref) then begin
                 if V <> '' then
                   V := V + '; ';
-                V := V + Tag.ReferenceValues[J].Name;
+                V := V + Ref.Name;
               end;
             if V <> '' then
               S := S + Format('%s = %s', [Tag.Name, V]);

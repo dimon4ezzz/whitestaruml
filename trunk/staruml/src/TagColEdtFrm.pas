@@ -208,14 +208,12 @@ var
   T: PTaggedValue;
   V: PExtensibleModel;
   L: TListItem;
-  I: Integer;
 begin
   if not Initialized then Exit;
   TagColListView.Clear;
   T := FModel.FindTaggedValue(GetProfile.Name, GetTagDefinitionSet.Name, FTagDefinition.Name);
-  if T <> nil then begin
-    for I := 0 to T.ReferenceValueCount - 1 do begin
-      V := T.ReferenceValues[I];
+  if Assigned(T) then begin
+    for V in T.ReferenceValues do begin
       L := TagColListView.Items.Add;
       L.Caption := V.Name;
       L.ImageIndex := GetUMLElementImageIndex(V);

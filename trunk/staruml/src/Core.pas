@@ -4965,22 +4965,24 @@ var
   I: Integer;
   V, SubView: PView;
 begin
-  Result := nil;
+  // Check owned views
   for I := FOwnedViews.Count - 1 downto 0 do
   begin
-    V := FOwnedViews.Items[I] as PView;
-    if V.Visible and V.Selectable then
-    begin
+    V := FOwnedViews[I];
+    if V.Visible and V.Selectable then begin
       SubView := V.GetViewAt(Canvas, X, Y);
-      if SubView <> nil then
-      begin
+      if Assigned(SubView) then begin
         Result := SubView;
         Exit;
       end;
     end;
   end;
+
+  // Check itself
   if ContainsPoint(Canvas, Point(X, Y)) then
-    Result := Self;
+    Result := Self
+  else
+    Result := nil;
 end;
 
 function PDiagramView.GetBottomViewAt(Canvas: PCanvas; X, Y: Integer): PView;
@@ -4988,18 +4990,21 @@ var
   I: Integer;
   V: PView;
 begin
-  Result := nil;
-  for I := FOwnedViews.Count - 1 downto 0 do
-  begin
+  // Check owned views
+  for I := FOwnedViews.Count - 1 downto 0 do begin
     V := FOwnedViews[I];
-    if V.Visible and V.Selectable and V.ContainsPoint(Canvas, X, Y) then
-    begin
+    if V.Visible and V.Selectable and V.ContainsPoint(Canvas, X, Y) then begin
       Result := V;
       Exit;
     end;
   end;
+
+  // Check itself
   if ContainsPoint(Canvas, Point(X, Y)) then
-    Result := Self;
+    Result := Self
+  else
+    Result := nil;
+
 end;
 
 function PDiagramView.GetBoundingBox(Canvas: PCanvas): TRect;
@@ -5059,8 +5064,6 @@ begin
 end;
 
 function PDiagramView.DeselectAll: Boolean;
-var
-  View: PView;
 begin
   Result := FSelectedViews.Count > 0;
   while FSelectedViews.Count > 0 do
@@ -5090,10 +5093,11 @@ end;
 
 procedure PDiagramView.ClearOwnedViews;
 var
-  I: Integer;
+  View: PView;
 begin
-  for I := FOwnedViews.Count - 1 downto 0 do
-    DeleteOwnedView(I);
+  for View in FOwnedViews do
+    View.FOwnerDiagramView := nil;
+  FOwnedViews.Clear;
 end;
 
 procedure PDiagramView.AddDeferredDrawView(AView: PView);
@@ -5615,8 +5619,6 @@ begin
 end;
 
 function PXMLObjectReader.GetNodeByKey(Key: string): IXMLNode;
-var
-  Idx: Integer;
 begin
   Result := nil;
   CurrentKeyTable.TryGetValue(Key, Result);
@@ -6412,7 +6414,6 @@ const
 var
   FileStream: TFileStream;
   FileAccess: Cardinal;
-  FileOpenError: Cardinal;
 begin
   // Check the file existence.
   if not FileExists(FFileName) then

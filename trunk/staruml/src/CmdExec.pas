@@ -7943,7 +7943,7 @@ begin
   else if TaggedValue.ReferenceValueCount = 0 then
     OldReferenceValue := nil
   else
-    OldReferenceValue := TaggedValue.ReferenceValues[0];
+    OldReferenceValue := TaggedValue.ReferenceValue[0];
 
   ModelSet.Clear;
   ModelSet.Add(ExtensibleModel);
@@ -8005,7 +8005,7 @@ end;
 
 procedure PSetTaggedValueAsDefaultCommand.SetParameter(AExtensibleModel: PExtensibleModel; AProfile: string; ATagDefinitionSet: string; AName: string);
 var
-  I: Integer;
+  Ref: PExtensibleModel;
 begin
   ExtensibleModel := AExtensibleModel;
   ProfileName := AProfile;
@@ -8015,10 +8015,10 @@ begin
   ModelSet.Clear;
   ModelSet.Add(ExtensibleModel);
   Items.Clear;
-  if (TaggedValue <> nil) and (TaggedValue.ReferenceValueCount > 0) then
-    for I := 0 to TaggedValue.ReferenceValueCount - 1 do begin
-      Items.Add(TaggedValue.ReferenceValues[I]);
-      ModelSet.Add(TaggedValue.ReferenceValues[I]);
+  if Assigned(TaggedValue) then
+    for Ref in TaggedValue.ReferenceValues do begin
+      Items.Add(Ref);
+      ModelSet.Add(Ref);
     end;
 end;
 
@@ -8262,7 +8262,7 @@ begin
   TagName := AName;
   TaggedValue := ExtensibleModel.FindTaggedValue(ProfileName, TagDefinitionSetName, TagName);
   Index := Idx;
-  ReferenceValue := TaggedValue.ReferenceValues[Index];
+  ReferenceValue := TaggedValue.ReferenceValue[Index];
   ModelSet.Clear;
   ModelSet.Add(ExtensibleModel);
   ModelSet.Add(ReferenceValue);

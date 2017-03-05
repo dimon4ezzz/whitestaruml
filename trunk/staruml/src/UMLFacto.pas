@@ -1278,8 +1278,7 @@ function PUMLFactory.CreateView(DiagramView: PDiagramView; Model: PModel;
   end;
 
 var
-  ConView: PView;  
-  V, V1, V2: PView;
+  V, V1: PView;
   W, H: Integer;
   Idx: Integer;
   I: Integer;
@@ -1287,8 +1286,6 @@ begin
   V := nil;
   W := Abs(X2 - X1);
   H := Abs(Y2 - Y1);
-  V1 := DiagramView.GetViewAt(DiagramView.Canvas, X1, Y1);
-  V2 := DiagramView.GetViewAt(DiagramView.Canvas, X2, Y2);
   if ViewKind = '' then ViewKind := DeriveViewKind(Model);
   // NoteView
   if ViewKind = VK_NOTE_VIEW then begin
@@ -1705,6 +1702,7 @@ begin
   // PortView
   else if ViewKind = VK_PORT_VIEW then begin
     CheckParamError(Model is PUMLPort);
+    V1 := DiagramView.GetViewAt(DiagramView.Canvas, X1, Y1);
     CheckParamError((V1 <> nil) and (V1.Model <> nil) and (V1.Model is PUMLClassifier));
     V := MetaModel.CreateInstance('UMLPortView') as PView;
     V.Model := Model;
@@ -1718,6 +1716,7 @@ begin
   // PartView
   else if ViewKind = VK_PART_VIEW then begin
     CheckParamError(Model is PUMLAttribute);
+    V1 := DiagramView.GetViewAt(DiagramView.Canvas, X1, Y1);
     CheckParamError((V1 <> nil) and (V1.Model <> nil) and (V1.Model is PUMLClassifier));
     V := MetaModel.CreateInstance('UMLPartView') as PView;
     V.Model := Model;

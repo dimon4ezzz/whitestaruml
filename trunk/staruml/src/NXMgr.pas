@@ -1463,22 +1463,23 @@ end;
 
 procedure PNXConstraintValExpr.Evaluate(Canvas: PCanvas; SymbolTable: PNXSymbolTable);
 var
-  I, C: Integer;
   Constraint: PConstraint;
+  Ref: PExtensibleModel;
+  ConstraintFound: Boolean;
 begin
   try
     inherited;
-    with (Exprs[0].GetReference as PExtensibleModel) do begin
-      Constraint := nil;
-      C := MOF_GetCollectionCount('Constraints');
-      for I := 0 to C-1 do
-        if (Constraints[I].Name = Exprs[1].GetValue) then begin
-          Constraint := Constraints[I];
-          break;
-        end;
-    end;
+    Ref := Exprs[0].GetReference as PExtensibleModel;
+    Constraint := nil;
+    ConstraintFound := False;
+    for Constraint in Ref.Constraints do
+      if Constraint.Name = Exprs[1].GetValue then begin
+        ConstraintFound := True;
+        Break;
+      end;
 
-    if (Constraint <> nil) and (Constraint.Body <> '') then
+
+    if ConstraintFound and (Constraint.Body <> '') then
       SetValue(Constraint.Body)
     else
       SetValue('');
@@ -1532,7 +1533,7 @@ begin
                       Exprs[3].GetValue);
 
     if Assigned(TaggedValue) and (TaggedValue.ReferenceValueCount > 0) then
-      SetReference(TaggedValue.ReferenceValues[0])
+      SetReference(TaggedValue.ReferenceValue[0])
     else
       SetReference(nil)
 
@@ -1555,7 +1556,7 @@ begin
                        Exprs[3].GetValue);
 
     if Assigned(TaggedValue) and (TaggedValue.ReferenceValueCount > Exprs[4].GetValue) then
-      SetReference(TaggedValue.ReferenceValues[Exprs[4].GetValue])
+      SetReference(TaggedValue.ReferenceValue[Exprs[4].GetValue])
     else
       SetReference(nil)
 

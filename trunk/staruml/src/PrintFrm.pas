@@ -440,7 +440,6 @@ begin
     try
       for I := 0 To DiagramsListView.Items.Count - 1 Do begin
         try
-          ADiagramView := nil;
           ADiagramView := DiagramsListView.Items[I].Data;
           if Assigned(ADiagramView) and (ADiagramView.OwnedViewCount > 0) then begin
             if I > 0 then Printer.NewPage;

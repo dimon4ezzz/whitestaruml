@@ -182,8 +182,9 @@ type
     function DifferentAttributeExists(ElementSet: PViewOrderedSet; Key, Value: string): Boolean; overload;
     procedure ElementModified(Element: PElement); overload;
     procedure ElementModified(ElementSet: POrderedSet); overload;
-    procedure ElementModified(ElementSet: PModelOrderedSet); overload;
-    procedure ElementModified(ElementSet: PViewOrderedSet); overload;
+    procedure ElementModified(ElementSet: PElementOrderedSet); overload;
+    procedure ElementModified(ModelSet: PModelOrderedSet); overload;
+    procedure ElementModified(ViewSet: PViewOrderedSet); overload;
     procedure CollectElements(Element: PElement; CollectionName: string; ASet: POrderedSet); overload;
     procedure CollectElements(Element: PModel; CollectionName: string; ASet: PModelOrderedSet); overload;
     procedure CollectOwners(Models, Owners: PModelOrderedSet);
@@ -967,7 +968,6 @@ var
   ViewsOfOneModelSelected: Boolean;
 begin
   ViewsOfOneModelSelected := False;
-  M := nil;
   if StarUMLApplication.SelectedViewCount > 0 then begin
     ViewsOfOneModelSelected := True;
     M := StarUMLApplication.SelectedViews[0].Model;
@@ -1375,26 +1375,34 @@ end;
 
 procedure PStarUMLApplication.ElementModified(ElementSet: POrderedSet);
 var
-  I: Integer;
+  Obj: TObject;
 begin
-  for I := 0 to ElementSet.Count - 1 do
-    ElementModified(ElementSet.Items[I] as PElement);
+  for Obj in ElementSet do
+    ElementModified(Obj as PElement);
 end;
 
-procedure PStarUMLApplication.ElementModified(ElementSet: PModelOrderedSet);
+procedure PStarUMLApplication.ElementModified(ElementSet: PElementOrderedSet);
 var
   Element: PElement;
 begin
-  for Element in  ElementSet do
+  for Element in ElementSet do
     ElementModified(Element);
 end;
 
-procedure PStarUMLApplication.ElementModified(ElementSet: PViewOrderedSet);
+procedure PStarUMLApplication.ElementModified(ModelSet: PModelOrderedSet);
 var
-  Element: PElement;
+  Model: PModel;
 begin
-  for Element in  ElementSet do
-    ElementModified(Element);
+  for Model in ModelSet do
+    ElementModified(Model);
+end;
+
+procedure PStarUMLApplication.ElementModified(ViewSet: PViewOrderedSet);
+var
+  View: PView;
+begin
+  for View in  ViewSet do
+    ElementModified(View);
 end;
 
 
@@ -3041,7 +3049,7 @@ begin
     TaggedValue := AExtensibleModel.FindTaggedValue(AProfile, ATagDefinitionSet, AName);
     OldRef := nil;
     if (TaggedValue <> nil) and IsReferenceTagType(TaggedValue.GetTagDefinition.TagType) and (TaggedValue.ReferenceValueCount > 0) then
-      OldRef := TaggedValue.ReferenceValues[0];
+      OldRef := TaggedValue.ReferenceValue[0];
     CommandExecutor.SetReferenceTaggedValue(AExtensibleModel, AProfile, ATagDefinitionSet, AName, AValue);
     ElementModified(AExtensibleModel);
     if AValue <> nil then
@@ -3084,7 +3092,7 @@ begin
   M := nil;
   T := AExtensibleModel.FindTaggedValue(AProfile, ATagDefinitionSet, AName);
   if (T <> nil) and (Index >= 0) and (Index <= T.ReferenceValueCount - 1) then
-    M := T.ReferenceValues[Index];
+    M := T.ReferenceValue[Index];
   CommandExecutor.DeleteCollectionTaggedValue(AExtensibleModel, AProfile, ATagDefinitionSet, AName, Index);
   ElementModified(AExtensibleModel);
   if M <> nil then
@@ -3101,18 +3109,18 @@ end;
 procedure PStarUMLApplication.SetTaggedValueAsDefault(AExtensibleModel: PExtensibleModel; AProfile, ATagDefinitionSet, AName: string);
 var
   TaggedValue: PTaggedValue;
-  RefList: POrderedSet;
-  I: Integer;
+  RefList: PModelOrderedSet;
+  Ref: PExtensibleModel;
 begin
   CheckReadOnly(AExtensibleModel);
   TaggedValue := AExtensibleModel.FindTaggedValue(AProfile, ATagDefinitionSet, AName);
   // ASSERTION
   Assert(TaggedValue <> nil);
   // ASSERTION
-  RefList := POrderedSet.Create;
+  RefList := PModelOrderedSet.Create;
   if IsReferenceTagType(TaggedValue.GetTagDefinition.TagType) then
-    for I := 0 to TaggedValue.ReferenceValueCount - 1 do
-      RefList.Add(TaggedValue.ReferenceValues[I]);
+    for Ref in TaggedValue.ReferenceValues do
+      RefList.Add(Ref);
   try
     CommandExecutor.SetTaggedValueAsDefault(AExtensibleModel, AProfile, ATagDefinitionSet, AName);
     ElementModified(AExtensibleModel);

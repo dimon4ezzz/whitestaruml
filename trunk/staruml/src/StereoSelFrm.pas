@@ -191,13 +191,10 @@ procedure TStereotypeSelectorForm.SetupStereotypeListView;
 var
   P: PProfile;
   S: PStereotype;
-  I, J: Integer;
 begin
   StereotypeListView.Clear;
-  for I := 0 to ExtensionManager.IncludedProfileCount - 1 do begin
-    P := ExtensionManager.IncludedProfiles[I];
-    for J := 0 to P.StereotypeCount - 1 do begin
-      S := P.Stereotypes[J];
+  for P in ExtensionManager.IncludedProfiles do begin
+    for S in P.Stereotypes do begin
       if S.CanApplyTo((ModelSet.Items[0]).MetaClass.Name) then
         AddStereotypeToListView(S.Name, S.Profile.Name);
     end;

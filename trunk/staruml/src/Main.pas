@@ -1756,8 +1756,7 @@ procedure PMain.MainFormActiveDiagramEditorChangedHandler(Sender: TObject;
   DiagramEditor: PDiagramEditor);
 begin
   try
-    if DiagramEditor <> nil then
-    begin
+    if Assigned(DiagramEditor) then begin
       StarUMLApplication.ActiveDiagram := DiagramEditor.DiagramView;
       MainForm.PaletteNavBarFrame.ActivateSelectHandler(False);
       InteractionManager.ChangePaletteVisibility
@@ -1765,21 +1764,19 @@ begin
       MenuStateHandler.BeginUpdate;
       MenuStateHandler.UpdateViewMenus;
       MenuStateHandler.EndUpdate;
-    end
-    else
-    begin
-      StarUMLApplication.ActiveDiagram := nil;
-    end;
-    // show diagram name/pathname on DockPanel Caption
-    if DiagramEditor <> nil then
-    begin
+
+      // show diagram name/pathname on DockPanel Caption
       MainForm.WorkingAreaDockPanel.Caption :=
         StarUMLApplication.ActiveDiagram.Diagram.Name + ' (' +
         ExtractTailPath(StarUMLApplication.ActiveDiagram.Diagram.DiagramOwner.
         PathName) + ')';
     end
-    else
+    else begin
+      StarUMLApplication.ActiveDiagram := nil;
+      InteractionManager.ChangePaletteVisibility(nil);
       MainForm.WorkingAreaDockPanel.Caption := '';
+    end;
+
   except
     on E: Exception do
       MessageDlg(E.Message, mtError, [mbOK], 0);
@@ -2889,7 +2886,7 @@ begin
   try
     // Apply Changes in Inspector
     MainForm.InspectorFrame.ApplyChanges;
-    MainForm.DocumentationEditor.ApplyChanges;
+    //MainForm.DocumentationEditor.ApplyChanges;
 
     MainForm.WorkingAreaFrame.RedrawActiveDiagram;
 
