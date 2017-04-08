@@ -203,7 +203,6 @@ end;
 procedure TElementListForm.AddListElementsByCollection(AModel: PModel; CollectionName: string; CollectInherited: Boolean = False);
 var
   Items: PModelOrderedSet;
-  I: Integer;
   M: PModel;
 
 begin

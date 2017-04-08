@@ -51,7 +51,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ImgList, StdCtrls, ExtCtrls, Buttons,
   Core, ViewCore, UMLModels, UMLViews, QuickDialogFrmTdxBase, JvComponentBase,
-  JvBalloonHint;
+  JvBalloonHint, System.ImageList;
 
 const
   CLASSIFIER_HINT =
@@ -1852,8 +1852,6 @@ begin
 end;
 
 procedure PGeneralQuickDialog.NameEditKeyDownHandler(Sender: TObject; var Key: Word; Shift: TShiftState);
-var
-  NewShift: TShiftState;
 begin
   FKeyUpOnly := False;
   if (Key = VK_RETURN) and (ssCtrl in Shift) then NameEdit.ReadOnly := True;
@@ -4392,7 +4390,7 @@ end;
 
 procedure PGeneralQuickDialog.ShowInformationHint;
 var
-  S, E, I: Integer;
+  E, I: Integer;
   Str: String;
   HintText, HintParam: String;
   HintKey, HintValue: TStringList;

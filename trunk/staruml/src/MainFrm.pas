@@ -58,7 +58,8 @@ uses
   JvBaseDlg, JvDesktopAlert, cxClasses, AttachEdt, DocuEdt,
   ModelExplorerFrame, MessageFrame, OutputFrame, NavBarFrame,
   NavBarFrameVclImpl, VirtualTrees, PropEdtWithJvclInspector, MenuManager,
-  dxDockPanel, dxDockControl, cxLookAndFeelPainters, cxPC, PropEdt;
+  dxDockPanel, dxDockControl, cxLookAndFeelPainters, cxPC, PropEdt,
+  System.ImageList;
 
 const
   FILE_EXT_BMP = '.BMP';
@@ -755,7 +756,7 @@ begin
   OnMouseWheel := MainFormMouseWheelHandler;
 
   WorkingAreaFrame.ImageList := TotalImageList;
-  WorkingAreaFrame.DiagramPopupMenu := DiagramEditorPopupMenu;
+  //WorkingAreaFrame.DiagramPopupMenu := DiagramEditorPopupMenu;
   //WorkingAreaFrame.TabPopupMenu := DiagramTabPopupMenu;
   WorkingAreaFrame.OnMouseUp := WorkingAreaMouseUpHandler;
   WorkingAreaFrame.OnMouseMove := WorkingAreaMouseMoveHandler;

@@ -30,10 +30,9 @@ type
     AssociationGroup: TdxBarGroup;
     QuickDialogPopup: TdxBarPopupMenu;
     procedure FormCreate(Sender: TObject);
-  private
-    { Private declarations }
-    MenuManagerImpl: TMenuHandlesManagerTdxImpl;
+
   protected
+    { Protected declarations }
     MenuManager: TMenuHandlesManager;
     QuickDialogPopupHandle: TContextMenuHandle;
     VisibilityGroupHandle: TMenuElementGroup;
@@ -51,14 +50,13 @@ implementation
 {$R *.dfm}
 destructor TQuickDialogFormTdxBase.Destroy;
 begin
-  MenuManagerImpl.Free;
+  MenuManager.Free;
   inherited;
 end;
 
 procedure TQuickDialogFormTdxBase.FormCreate(Sender: TObject);
 var
-  MenuElement: TMenuElementHandleTdxImpl;
-
+  MenuManagerImpl: TMenuHandlesManagerTdxImpl;
 begin
   MenuManagerImpl := TMenuHandlesManagerTdxImpl.Create;
 
@@ -67,7 +65,7 @@ begin
   ActionGroupHandle := MenuManagerImpl.CreateGroupWrapper(ActionGroup);
   AssociationGroupHandle := MenuManagerImpl.CreateGroupWrapper(AssociationGroup);
 
-  MenuManager := MenuManagerImpl as TMenuHandlesManager;
+  MenuManager := MenuManagerImpl;
 
 end;
 

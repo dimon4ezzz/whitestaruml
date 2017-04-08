@@ -499,10 +499,6 @@ var
   PredefMI: PPredefinedModelMenuInteraction;
   ExtMI: PExtendedModelMenuInteraction;
 begin
-  // PRECONDITIONS
-  //Assert(Sender is TdxBarButton);
-  // PRECONDITIONS
-
   MI := FindModelMenuInteraction(Sender as TMenuElementHandle);
   // ASSERTIONS
   Assert(MI <> nil);
@@ -525,9 +521,6 @@ var
   PredefDI: PPredefinedDiagramMenuInteraction;
   ExtDI: PExtendedDiagramMenuInteraction;
 begin
-  // PRECONDITIONS
-  //Assert(Sender is TdxBarButton);
-  // PRECONDITIONS
   DI := FindDiagramMenuInteraction(Sender as TMenuElementHandle);
   // ASSERTIONS
   Assert(DI <> nil);

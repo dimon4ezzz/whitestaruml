@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, PropEdt, ImgList, ExtCtrls, FlatPanel, JvExControls, JvInspector,
-  JvclExtensions, BasicClasses, Core, MenuManager, Generics.Collections;
+  JvclExtensions, BasicClasses, Core, MenuManager, Generics.Collections,
+  System.ImageList;
 
 type
   TPropertyEditorWithJvclInspector = class(TPropertyEditor, ILookAndFeelChangedListener)

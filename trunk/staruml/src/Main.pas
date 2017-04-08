@@ -703,7 +703,7 @@ begin
 
   MainForm.ModelExplorer.ImageList := MainForm.TotalImageList;
   MainForm.ModelExplorer.StateImageList := MainForm.DocumentStateImageList;
-  MainForm.ModelExplorer.PopupMenu := MainForm.ModelExplorerPopupMenu;
+  MainForm.ModelExplorer.PopupMenu := MainForm.MenuManager.GetContextMenu(MODEL_EXPLORER_CONTEXT_MENU);
 
   MainForm.DiagramExplorer.ImageList := MainForm.TotalImageList;
   // MainForm.DiagramExplorer.PopupMenu := MainForm.DiagramExplorerPopupMenu;
@@ -724,6 +724,9 @@ begin
     (ATTACHMENT_EDITOR_CONTEXT_MENU);
   CollectionEditorForm.ImageList := MainForm.TotalImageList;
   TaggedValueCollectionEditorForm.ImageList := MainForm.TotalImageList;
+
+  // Working Area
+  MainForm.WorkingAreaFrame.DiagramPopupMenu := MainForm.MenuManager.GetContextMenu(DIAGRAM_EDITOR_CONTEXT_MENU);
 
   MainForm.InspectorFrame.InitializeUserInterfaces;
   MainForm.AttachmentEditor.InitializeUserInterface;

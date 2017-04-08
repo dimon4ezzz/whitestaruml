@@ -49,9 +49,9 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, VirtualTrees, ExtCtrls, ImgList, dxBar,
+  Dialogs, VirtualTrees, ExtCtrls, ImgList,
   ActiveX, ComCtrls, ToolWin, System.UITypes, Generics.Collections,
-  FlatPanel, BasicClasses, Core, UMLModels;
+  FlatPanel, BasicClasses, Core, UMLModels, MenuManager, System.ImageList;
 
 const
   DEFAULT_FILTERINGSET: array [0..67] of PClass = (
@@ -222,7 +222,7 @@ type
     FDragSourceNode: PVirtualNode;
     FDropTargetNode: PVirtualNode;
     FMetaNodes: PMetaNodes;
-    FPopupMenu: TdxBarPopupMenu;
+    FPopupMenu: TContextMenuHandle;
     FAcceptStatus: Boolean;
     FCollapsedTimeFlag: Boolean;
     FSortType: PModelExplorerSortType;
@@ -290,7 +290,7 @@ type
     property Project: PUMLProject read FProject write FProject;
     property ImageList: TCustomImageList read GetImageList write SetImageList;
     property StateImageList: TCustomImageList read GetStateImageList write SetStateImageList;
-    property PopupMenu: TdxBarPopupMenu read FPopupMenu write FPopupMenu;
+    property PopupMenu: TContextMenuHandle read FPopupMenu write FPopupMenu;
     property SortType: PModelExplorerSortType read FSortType write SetSortType;
     property ShowStereotype: Boolean read FShowStereotype write SetShowStereotype;
     property OnSortTypeChanged: TNotifyEvent read FOnSortTypeChanged write FOnSortTypeChanged;
