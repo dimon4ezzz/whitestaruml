@@ -158,7 +158,6 @@ end;
 procedure PSelectionManager.SetActiveDiagram(Value: PDiagramView);
 var
  Models: PModelOrderedSet;
- Model: PModel;
 begin
   if FActiveDiagram <> Value then begin
     FActiveDiagram := Value;

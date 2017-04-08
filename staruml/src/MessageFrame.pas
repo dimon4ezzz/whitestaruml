@@ -50,7 +50,8 @@ interface
 uses
   Core,
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls, ImgList, ExtCtrls, FlatPanel, SaveDialogEx, Menus, MenuManager;
+  ComCtrls, ImgList, ExtCtrls, FlatPanel, SaveDialogEx, Menus, MenuManager,
+  System.ImageList;
 
 type
   // Enumeration Types
@@ -67,7 +68,6 @@ type
     procedure FrameResize(Sender: TObject);
     procedure InformationMessagesButtonClick(Sender: TObject);
   private
-    //FPopupMenu: TdxBarPopupMenu;
     FPopupMenu: TContextMenuHandle;
     FOnBrowseElement: PModelEvent;
     FOnInformationMessagesButtonClicked: TNotifyEvent;
@@ -77,7 +77,6 @@ type
     procedure AddMessage(Kind: PInfoMessageKind; Text: string; ElementLink: PElement);
     procedure SaveMessages(FileName: string);
     procedure DeleteMessagesLinkedTo(ElementLink: PElement);
-    //property PopupMenu: TdxBarPopupMenu read FPopupMenu write FPopupMenu;
     property PopupMenu: TContextMenuHandle read FPopupMenu write FPopupMenu;
     property OnBrowseElement: PModelEvent read FOnBrowseElement write FOnBrowseElement;
     property OnInformationMessagesButtonClicked: TNotifyEvent write FOnInformationMessagesButtonClicked;

@@ -61,9 +61,9 @@ unit DiagramEditors;
 interface
 
 uses
-  Core, GraphicClasses,
+  Core, GraphicClasses, MenuManager,
   Classes, Controls, StdCtrls, ExtCtrls, Forms, Buttons, Graphics, Types,
-  dxBar, FlatPanel;
+  FlatPanel;
 
 const
   DEFAULT_SCROLL_TIME_INTERVAL = 50; // milisec
@@ -91,7 +91,7 @@ type
     FMapButton: TFlatPanel;
     FMapButtonImage: TImage;
     FMapButtonShadow: TPanel;
-    FPopupMenu: TdxBarPopupMenu;
+    FPopupMenu: TContextMenuHandle;
     FGridFactor: PGridFactor;
     FZoomFactor: PZoomFactor;
     FScrollTimer: PScrollTimer;
@@ -148,7 +148,7 @@ type
     property Canvas: PCanvas read FCanvas;
     property DiagramView: PDiagramView read FDiagramView;
     property DiagramImageIndex: Integer read GetDiagramImageIndex;
-    property PopupMenu: TdxBarPopupMenu write FPopupMenu;
+    property PopupMenu: TContextMenuHandle write FPopupMenu;
     property MapButtonImage: TImage write SetMapButtonImage;
     property ScrollBox: TScrollBox read FScrollBox;
     property PaintBox: TPaintBox read FPaintBox;

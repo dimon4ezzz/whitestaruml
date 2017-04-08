@@ -49,7 +49,8 @@ interface
 
 uses
   Core, Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls, ImgList, ExtCtrls, FlatPanel, Menus, ToolWin, MenuManager;
+  ComCtrls, ImgList, ExtCtrls, FlatPanel, Menus, ToolWin, MenuManager,
+  System.ImageList;
 
 type
   // Enumeration Types
@@ -89,7 +90,6 @@ type
     procedure AttachmentListViewDblClick(Sender: TObject);
   private
     FTargetModel: PModel;
-    //FPopupMenu: TdxBarPopupMenu;
     FPopupMenu: TContextMenuHandle;
     FReadOnly: Boolean;
     FOnAttachmentOpen: PAttachmentOpenEvent;
@@ -133,7 +133,6 @@ type
     //procedure SetTotalImageList(AImageList: TImageList);
     property TargetModel: PModel read FTargetModel write SetTargetModel;
     property SelectedIndex: Integer read GetSelectedIndex;
-    //property PopupMenu: TdxBarPopupMenu write FPopupMenu;
     property PopupMenu: TContextMenuHandle read FPopupMenu write FPopupMenu;
     property ReadOnly: Boolean read FReadOnly write SetReadOnly;
     property OnAttachmentOpen: PAttachmentOpenEvent read FOnAttachmentOpen write FOnAttachmentOpen;

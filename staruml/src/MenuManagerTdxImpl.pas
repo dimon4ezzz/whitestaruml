@@ -475,6 +475,7 @@ begin
   CreateContextMenuWrapper(DIAGRAM_EXPLORER_CONTEXT_MENU,MainForm.DiagramExplorerPopupMenu);
   CreateContextMenuWrapper(ATTACHMENT_EDITOR_CONTEXT_MENU,MainForm.AttachmentsPopupMenu);
   CreateContextMenuWrapper(MESSAGE_PANEL_CONTEXT_MENU,MainForm.MessagesPopupMenu);
+  CreateContextMenuWrapper(DIAGRAM_EDITOR_CONTEXT_MENU,MainForm.DiagramEditorPopupMenu);
 end;
 
 

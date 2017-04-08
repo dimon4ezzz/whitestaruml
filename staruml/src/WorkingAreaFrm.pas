@@ -48,9 +48,9 @@ unit WorkingAreaFrm;
 interface
 
 uses
-  Core, DiagramEditors,
+  Core, DiagramEditors, MenuManager,
   Windows, Messages, SysUtils, Classes, Graphics, Controls, ComCtrls, Forms, Dialogs,
-  dxBar, ExtCtrls, FlatPanel, Menus, ImgList, Generics.Collections;
+  ExtCtrls, FlatPanel, Menus, ImgList, Generics.Collections;
 
 type
   // Event Types.
@@ -91,8 +91,8 @@ type
     FGridHeight: Integer;
     FShowGrid: Boolean;
     FActiveDiagramEditor: PDiagramEditor;
-    FDiagramPopupMenu: TdxBarPopupMenu;
-    FTabPopupMenu: TdxBarPopupMenu;
+    FDiagramPopupMenu: TContextMenuHandle;
+    FTabPopupMenu: TContextMenuHandle;
     FOnMouseUp: TMouseEvent;
     FOnMouseMove: TMouseMoveEvent;
     FOnMouseDown: TMouseEvent;
@@ -160,8 +160,8 @@ type
     property ActiveDiagramIndex: Integer read GetActiveDiagramIndex;
     property ActiveDiagram: PDiagram read GetActiveDiagram;
     property ActiveDiagramEditor: PDiagramEditor read FActiveDiagramEditor;
-    property DiagramPopupMenu: TdxBarPopupMenu read FDiagramPopupMenu write FDiagramPopupMenu;
-    property TabPopupMenu: TdxBarPopupMenu read FTabPopupMenu write FTabPopupMenu;
+    property DiagramPopupMenu: TContextMenuHandle read FDiagramPopupMenu write FDiagramPopupMenu;
+    property TabPopupMenu: TContextMenuHandle read FTabPopupMenu write FTabPopupMenu;
     property ImageList: TCustomImageList write SetImageList;
     property OnMouseUp: TMouseEvent read FOnMouseUp write FOnMouseUp;
     property OnMouseMove: TMouseMoveEvent read FOnMouseMove write FOnMouseMove;
@@ -613,16 +613,16 @@ end;
 
 procedure TWorkingAreaFrame.ViewMenuClick(Sender: TObject);
 begin
+  // Events handled directly
   if Sender = ViewCloseDiagram then
     CloseDiagram(FLastContextSelectedTab)
   else if Sender = ViewCloseAllDiagrams then
     CloseAllDiagrams
   else if Sender = FormatLayoutDiagram then
     StarUMLApplication.LayoutActiveDiagramWithValidation
-  else
-    Assert(False, 'Sender not recognized');
 
-  if Assigned(FOnViewMenuClicked) then
+  // Delegate other events to handler at higher level
+  else if Assigned(FOnViewMenuClicked) then
     FOnViewMenuClicked(Sender);
 end;
 
