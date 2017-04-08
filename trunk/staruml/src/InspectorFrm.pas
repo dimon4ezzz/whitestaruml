@@ -68,7 +68,7 @@ interface
 uses
   BasicClasses, Core, ExtCore, UMLModels, PropEdt, PropEdtWithJvclInspector, UMLProps, ElemSelFrm,
   Classes, Forms, Controls, ImgList, ExtCtrls, Registry, Windows,
-  StdCtrls, AreaTitleBar, FlatPanel, System.ImageList;
+  StdCtrls, AreaTitleBar, FlatPanel;
 
 type
   // PSelectionKind
