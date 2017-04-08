@@ -51,7 +51,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, VirtualTrees, ExtCtrls, ImgList,
   ActiveX, ComCtrls, ToolWin, System.UITypes, Generics.Collections,
-  FlatPanel, BasicClasses, Core, UMLModels, MenuManager, System.ImageList;
+  FlatPanel, BasicClasses, Core, UMLModels, MenuManager;
 
 const
   DEFAULT_FILTERINGSET: array [0..67] of PClass = (

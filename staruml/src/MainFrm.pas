@@ -58,8 +58,7 @@ uses
   JvBaseDlg, JvDesktopAlert, cxClasses, AttachEdt, DocuEdt,
   ModelExplorerFrame, MessageFrame, OutputFrame, NavBarFrame,
   NavBarFrameVclImpl, VirtualTrees, PropEdtWithJvclInspector, MenuManager,
-  dxDockPanel, dxDockControl, cxLookAndFeelPainters, cxPC, PropEdt,
-  System.ImageList;
+  dxDockPanel, dxDockControl, cxLookAndFeelPainters, cxPC, PropEdt;
 
 const
   FILE_EXT_BMP = '.BMP';

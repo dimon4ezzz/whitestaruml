@@ -49,8 +49,7 @@ interface
 
 uses
   Core, Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls, ImgList, ExtCtrls, FlatPanel, Menus, ToolWin, MenuManager,
-  System.ImageList;
+  ComCtrls, ImgList, ExtCtrls, FlatPanel, Menus, ToolWin, MenuManager;
 
 type
   // Enumeration Types
