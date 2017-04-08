@@ -51,7 +51,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ImgList, StdCtrls, ExtCtrls, Buttons,
   Core, ViewCore, UMLModels, UMLViews, QuickDialogFrmTdxBase, JvComponentBase,
-  JvBalloonHint, System.ImageList;
+  JvBalloonHint;
 
 const
   CLASSIFIER_HINT =
