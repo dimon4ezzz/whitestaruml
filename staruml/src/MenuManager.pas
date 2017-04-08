@@ -87,6 +87,7 @@ const
   DIAGRAM_EXPLORER_CONTEXT_MENU = 'DiagramExplorerContextMenu';
   ATTACHMENT_EDITOR_CONTEXT_MENU = 'AttachmentEditorContextMenu';
   MESSAGE_PANEL_CONTEXT_MENU = 'MessagePanelContextMenu';
+  DIAGRAM_EDITOR_CONTEXT_MENU = 'DiagramEditorContextMenu';
 
   // Contect Menu Items
   INSPECTOR_ATTACHMENT_OPEN = 'InspectorAttachmentOpen';

@@ -62,7 +62,8 @@ interface
 
 uses
   BasicClasses, Core, Windows, Messages, SysUtils, Classes, Graphics, Controls,
-  Forms, Dialogs, ImgList, ExtCtrls, FlatPanel, Generics.Collections;
+  Forms, Dialogs, ImgList, ExtCtrls, FlatPanel, Generics.Collections,
+  System.ImageList;
 
 type
   // Forward Declarations;
@@ -163,8 +164,6 @@ type
     PsedostatsImageList: TImageList;
     ActionKindImageList: TImageList;
   private
-    //Inspector: TdxInspector;
-    //PropertySpecifier: PPropertySpecifier;
     FInspectingElementsModified: Boolean;
 
     procedure SetReadOnly(Value: Boolean);

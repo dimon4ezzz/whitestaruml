@@ -104,7 +104,6 @@ type
     ComponentDiagramGroupNode: PVirtualNode;
     DeploymentDiagramGroupNode: PVirtualNode;
     CompositeStructureDiagramGroupNode: PVirtualNode;
-    //FPopupMenu: TdxBarPopupMenu;
     FPopupMenu: TContextMenuHandle;
     FProject: PUMLProject;
     FRootNode: PVirtualNode;
@@ -136,7 +135,6 @@ type
     procedure DeleteDiagram(ADiagram: PUMLDiagram);
     procedure UpdateDiagram(ADiagram: PUMLDiagram);
     property ImageList: TImageList write SetImageList;
-    //property PopupMenu: TdxBarPopupMenu read FPopupMenu write FPopupMenu;
     property PopupMenu: TContextMenuHandle read FPopupMenu write FPopupMenu;
     property Project: PUMLProject read FProject write SetProject;
     property RootNode: PVirtualNode read FRootNode;

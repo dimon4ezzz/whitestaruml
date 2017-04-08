@@ -694,7 +694,7 @@ var
   SourceView, TargetView: PNodeView;
   DiagramView: PDiagramView;
   TargetNames: TStringList;
-  I, L, T, P, Y, H : Integer;
+  I, L, T, P, H : Integer;
   NextMsgY: Integer;
   Activation: PUMLActivationView;
   PS: PPoints;
@@ -1594,7 +1594,7 @@ function PShortenSyntaxManager.MakeSeqMsgView2(Model: PModel; Rel1,
   var
     ActivationView: PNodeView;
     EdgeView: PEdgeView;
-    Value, I, Y: Integer;
+    Value, I: Integer;
   begin
     Result := nil;
 
@@ -1750,7 +1750,6 @@ function PShortenSyntaxManager.MakeSeqMsgView2(Model: PModel; Rel1,
     I: Integer;
     ReturnMsgView: PEdgeView;
     ActivationView: PUMLActivationView;
-    PS: PPoints;
   begin
     for I := 0 to Activations.Count-1 do begin
       ActivationView := PUMLActivationView(Activations.Items[I]);
