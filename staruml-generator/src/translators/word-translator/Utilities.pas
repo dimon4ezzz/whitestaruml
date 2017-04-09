@@ -95,10 +95,11 @@ begin
   Info.lpFile := PChar(ScriptFileName);
   Info.nShow := SW_HIDE;
   Info.fMask := SEE_MASK_NOCLOSEPROCESS;
-  //Info.lpParameters := '//d //x'; // Autostart debugging with Visual Studio
+  Info.lpParameters := '//d //x'; // Autostart debugging with Visual Studio
 
   ShellExecuteEx(@Info);
   WaitForSingleObject(Info.hProcess, Infinite);
+  CloseHandle(Info.hProcess);
 end;
 
 end.
