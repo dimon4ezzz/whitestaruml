@@ -430,6 +430,7 @@ begin
 
   ShellExecuteEx(@Info);
   WaitForSingleObject(Info.hProcess, Infinite);
+  CloseHandle(Info.hProcess);
 end;
 
 

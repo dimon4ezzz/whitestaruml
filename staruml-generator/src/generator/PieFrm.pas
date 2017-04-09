@@ -765,7 +765,7 @@ begin
     try
       MessageLabel.Caption := '';
       if NumberOfTasksToRun > 1 then
-      // Handling of aborting multiple tasks is too complex
+      // Handling aborting multiple remote tasks is too complex
         ExecutionPage.EnabledButtons := ExecutionPage.EnabledButtons -
           [bkCancel];
       DirectMDAProcessor.Execute(SelectedBatch);
@@ -801,7 +801,6 @@ begin
   end;
 
   Result := 0;
-  EndThread(0);
 end;
 
 procedure TPieForm.ExecuteTasksInThread;
