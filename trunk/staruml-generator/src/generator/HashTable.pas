@@ -50,7 +50,7 @@ unit HashTable;
 interface
 
 uses
-  Classes, ComObj, ActiveX, WSGenerator_TLB, StdVcl, SysUtils;
+  Classes, ComObj, ActiveX, WSGenerator_TLB, StdVcl, SysUtils, Generics.Collections;
 
 const
   ERR_CANNOT_FIND_KEY = 'Key Value doesn''t exist.(%s)';
@@ -61,8 +61,10 @@ type
 
   // THashTable
   THashTable = class(TAutoObject, IHashTable)
+  private type
+    TStringDictionary = TDictionary<WideString,WideString>;
   private
-    SL: TStringList;
+    Dict: TStringDictionary;
   protected
     procedure Clear; safecall;
     function Get(const Key: WideString): WideString; safecall;
@@ -86,40 +88,33 @@ uses
 procedure THashTable.Initialize;
 begin
   inherited;
-  SL := TStringList.Create;
+  Dict := TStringDictionary.Create;
 end;
 
 destructor THashTable.Destroy;
 begin
-  SL.Free;
+  Dict.Free;
   inherited;
 end;
 
 procedure THashTable.Clear;
 begin
-  SL.Clear;
+  Dict.Free;
 end;
 
 function THashTable.Get(const Key: WideString): WideString;
 var
-  Idx: Integer;
+  Value: WideString;
 begin
-  Idx := SL.IndexOfName(Key);
-  if Idx = -1 then
-    raise EHashTableError.Create(Format(ERR_CANNOT_FIND_KEY, [Key]))
+  if Dict.TryGetValue(Key,Value) then
+    Result := Value
   else
-    Result := SL.Values[Key];
+    raise EHashTableError.Create(Format(ERR_CANNOT_FIND_KEY, [Key]))
 end;
 
 procedure THashTable.Put(const Key, Value: WideString);
-var
-  Idx: Integer;
 begin
-  Idx := SL.IndexOfName(Key);
-  if Idx = -1 then
-    SL.Add(Key + '=' + Value)
-  else
-    SL.Values[Key] := Value;
+  Dict.AddOrSetValue(Key, Value)
 end;
 
 // THashTable
