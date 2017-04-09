@@ -62,8 +62,7 @@ interface
 
 uses
   BasicClasses, Core, Windows, Messages, SysUtils, Classes, Graphics, Controls,
-  Forms, Dialogs, ImgList, ExtCtrls, FlatPanel, Generics.Collections,
-  System.ImageList;
+  Forms, Dialogs, ImgList, ExtCtrls, FlatPanel, Generics.Collections;
 
 type
   // Forward Declarations;
