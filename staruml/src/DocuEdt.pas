@@ -161,9 +161,8 @@ end;
 
 procedure TDocumentationEditor.Inspect;
 begin
-  if Visible then begin
+  if Visible then
     UpdateDocumentation;
-  end;
 end;
 
 procedure TDocumentationEditor.UpdateDocumentation;
@@ -172,8 +171,10 @@ begin
     DocumentationMemo.Lines.Text := FInspectingElement.Documentation;
     ReadOnly := FInspectingElement.ReadOnly
   end
-  else
+  else begin
+    DocumentationMemo.Clear;
     ReadOnly := True;
+  end;
 end;
 
 procedure TDocumentationEditor.ApplyChanges;
