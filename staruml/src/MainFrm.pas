@@ -749,7 +749,7 @@ begin
   AllowToTriggerZoomChangedEvent := True;
   AllowToTriggerFormStartedEvent := True;
 
-  // ActionProcessor creatioin and settings
+  // ActionProcessor creation and settings
   InitializeActionProcessor;
 
   OnMouseWheel := MainFormMouseWheelHandler;
@@ -821,7 +821,6 @@ end;
 procedure TMainForm.WorkingAreaFrameDiagramPageControlChange(Sender: TObject);
 begin
   WorkingAreaFrame.DiagramPageControlChange(Sender);
-
 end;
 
 procedure TMainForm.WorkingAreaDragDropHandler(X, Y: Integer);
