@@ -3,7 +3,7 @@
 <assemblyIdentity
 	type="win32"
 	name="WhiteStarUML"
-	version="5.8.6.0"
+	version="5.8.7.0"
 	processorArchitecture="x86"/>
 
 <asmv3:application>
@@ -34,12 +34,12 @@
 </file>
 
 <trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
-	<security>
-	<requestedPrivileges>
-		<requestedExecutionLevel
-			level="asInvoker"
-			uiAccess="false"/>
-	</requestedPrivileges>
+    <security>
+	    <requestedPrivileges>
+		    <requestedExecutionLevel
+			    level="asInvoker"
+			    uiAccess="false"/>
+	    </requestedPrivileges>
 	</security>
 </trustInfo>
 
