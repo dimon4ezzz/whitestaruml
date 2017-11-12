@@ -7,7 +7,7 @@
         <ProjectVersion>15.3</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Library</AppType>
     </PropertyGroup>
@@ -71,8 +71,8 @@
         <DCC_Platform>x86</DCC_Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <Manifest_File>None</Manifest_File>
-        <VerInfo_Build>0</VerInfo_Build>
+        <VerInfo_Release>0</VerInfo_Release>
+        <DCC_ImageBase>02BE0000</DCC_ImageBase>
         <VerInfo_MinorVer>0</VerInfo_MinorVer>
         <DCC_DcpOutput>$(BDSCOMMONDIR)\Dcp</DCC_DcpOutput>
         <DCC_Namespace>Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
@@ -92,16 +92,16 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <VerInfo_Release>0</VerInfo_Release>
         <VerInfo_MinorVer>0</VerInfo_MinorVer>
-        <VerInfo_Build>0</VerInfo_Build>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_Release>0</VerInfo_Release>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>0</VerInfo_Build>
         <VerInfo_MinorVer>0</VerInfo_MinorVer>
         <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
@@ -109,9 +109,8 @@
         <DCC_Optimize>false</DCC_Optimize>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
-        <Manifest_File>None</Manifest_File>
+        <VerInfo_Release>0</VerInfo_Release>
         <VerInfo_MinorVer>0</VerInfo_MinorVer>
-        <VerInfo_Build>0</VerInfo_Build>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>

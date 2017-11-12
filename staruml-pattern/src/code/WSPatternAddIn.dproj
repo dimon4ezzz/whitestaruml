@@ -68,6 +68,7 @@
         <DCC_Platform>x86</DCC_Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <DCC_ImageBase>9700000</DCC_ImageBase>
         <DCC_DcpOutput>$(BDSCOMMONDIR)\Dcp</DCC_DcpOutput>
         <Manifest_File>None</Manifest_File>
         <DCC_Namespace>Data.Win;Datasnap.Win;Web.Win;Soap.Win;Bde;$(DCC_Namespace)</DCC_Namespace>

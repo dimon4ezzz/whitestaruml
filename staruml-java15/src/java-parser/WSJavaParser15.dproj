@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{B6B656A2-E560-400F-8918-20883C053EFB}</ProjectGuid>
         <MainSource>WSJavaParser15.dpr</MainSource>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
         <ProjectVersion>15.3</ProjectVersion>
         <FrameworkType>None</FrameworkType>
@@ -36,11 +36,11 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_Release>2</VerInfo_Release>
         <DCC_UsePackage>rtl;vcl;vclx;$(DCC_UsePackage)</DCC_UsePackage>
         <UsePackages>true</UsePackages>
         <VerInfo_MinorVer>2</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.1.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.2;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.2.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.2;Comments=</VerInfo_Keys>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;System.Win;Winapi;Vcl;$(DCC_Namespace)</DCC_Namespace>
         <Manifest_File>None</Manifest_File>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
@@ -54,6 +54,7 @@
         <DCC_Platform>x86</DCC_Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <DCC_ImageBase>09FB0000</DCC_ImageBase>
         <DCC_DcpOutput>$(BDSCOMMONDIR)\Dcp</DCC_DcpOutput>
         <DCC_Namespace>Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
