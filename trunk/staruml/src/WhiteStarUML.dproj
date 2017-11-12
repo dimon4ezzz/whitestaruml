@@ -53,7 +53,6 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <VerInfo_Release>4</VerInfo_Release>
         <Icon_MainIcon>WhiteStarUML_Icon.ico</Icon_MainIcon>
         <DCC_UNIT_PLATFORM>false</DCC_UNIT_PLATFORM>
         <DCC_Hints>false</DCC_Hints>
@@ -65,9 +64,9 @@
         <Manifest_File>None</Manifest_File>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=5.8.4.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=WhiteStarUML;ProductVersion=5.8;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=5.9.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=WhiteStarUML;ProductVersion=5.9;Comments=</VerInfo_Keys>
         <VerInfo_MajorVer>5</VerInfo_MajorVer>
-        <VerInfo_MinorVer>8</VerInfo_MinorVer>
+        <VerInfo_MinorVer>9</VerInfo_MinorVer>
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;System.Win;Winapi;Xml.Win;IW.Content;$(DCC_Namespace)</DCC_Namespace>
         <DCC_DebugInformation>0</DCC_DebugInformation>
         <DCC_ExeOutput>..\deploy</DCC_ExeOutput>
@@ -86,10 +85,12 @@
         <DCC_AssertionsAtRuntime>false</DCC_AssertionsAtRuntime>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <Icon_MainIcon>WhiteStarUML_Icon.ico</Icon_MainIcon>
         <DCC_DcpOutput>$(BDSCOMMONDIR)\Dcp</DCC_DcpOutput>
         <DCC_Namespace>Data.Win;Datasnap.Win;Web.Win;Soap.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
+        <Icon_MainIcon>WhiteStarUML_Icon.ico</Icon_MainIcon>
         <DCC_Namespace>Data.Win;Datasnap.Win;Web.Win;Soap.Win;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">

@@ -47,7 +47,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <VerInfo_Release>4</VerInfo_Release>
+        <VerInfo_Release>5</VerInfo_Release>
         <DCC_UsePackage>vcl;rtl;elpackD19;$(DCC_UsePackage)</DCC_UsePackage>
         <UsePackages>true</UsePackages>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
@@ -56,7 +56,7 @@
         <VerInfo_MinorVer>2</VerInfo_MinorVer>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;System.Win;Winapi;Vcl;Vcl.Shell;Vcl.Samples;Vcl.Imaging;Vcl.Touch;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.4.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.2;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.2.5.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.2;Comments=</VerInfo_Keys>
         <DCC_ExeOutput>..\..\deploy\staruml-csharp</DCC_ExeOutput>
         <DCC_UnitSearchPath>..\..\..\staruml\src;..\..\..\staruml\components\plastic-components\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_DependencyCheckOutputName>..\..\deploy\staruml-csharp\WSCSharpAddIn.dll</DCC_DependencyCheckOutputName>
@@ -65,6 +65,7 @@
         <DCC_Platform>x86</DCC_Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <DCC_ImageBase>09160000</DCC_ImageBase>
         <DCC_DcpOutput>$(BDSCOMMONDIR)\Dcp</DCC_DcpOutput>
         <DCC_Namespace>Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
