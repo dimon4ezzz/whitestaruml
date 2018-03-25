@@ -18,12 +18,11 @@ object ModelExplorerPanel: TModelExplorerPanel
     Height = 278
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 279
     object ModelTree: TVirtualStringTree
       Left = 1
       Top = 1
       Width = 449
-      Height = 277
+      Height = 276
       Align = alClient
       BorderStyle = bsNone
       ChangeDelay = 50
@@ -31,15 +30,11 @@ object ModelExplorerPanel: TModelExplorerPanel
       DragType = dtVCL
       EditDelay = 300
       Header.AutoSizeIndex = 0
-      Header.Font.Charset = DEFAULT_CHARSET
-      Header.Font.Color = clWindowText
-      Header.Font.Height = -11
-      Header.Font.Name = 'MS Sans Serif'
-      Header.Font.Style = []
       Header.MainColumn = -1
       Header.Options = [hoColumnResize, hoDrag]
       ParentCtl3D = False
       TabOrder = 0
+      TreeOptions.AutoOptions = [toAutoDropExpand, toAutoScrollOnExpand, toAutoTristateTracking, toAutoDeleteMovedNodes, toAutoChangeScale]
       TreeOptions.MiscOptions = [toAcceptOLEDrop, toEditable, toFullRepaintOnResize, toInitOnSave, toToggleOnDblClick, toWheelPanning]
       OnChange = ModelTreeChange
       OnCollapsed = ModelTreeCollapsed

@@ -336,7 +336,7 @@ begin
   inherited;
   ModelTree.NodeDataSize := SizeOf(TNodeData);
   ModelTree.DoubleBuffered := True;
-  ModelTree.TreeOptions.AutoOptions := ModelTree.TreeOptions.AutoOptions - [toAutoSort];
+  //ModelTree.TreeOptions.AutoOptions := ModelTree.TreeOptions.AutoOptions - [toAutoSort];
   NodeHashTable := PNodeHashTable.Create;
   FMetaNodes := PMetaNodes.Create([doOwnsValues]);
   FSortType := stStorage;
