@@ -478,6 +478,8 @@ type
   end;
 
   // Miscellaneous Functions
+function PanelVisible(Panel: TdxDockPanel): Bool;
+procedure FlushDocumentElements;
 procedure UpdateDocumentElements;
 procedure ReloadDocumentElements;
 
@@ -601,28 +603,18 @@ begin
 end;
 
 procedure UpdateEditors(Inspecting: Boolean = False);
-var
-  TabContainer: TdxTabContainerDockSite;
 begin
-  TabContainer := MainForm.PropertiesDockPanel.TabContainer;
-  if not Assigned(TabContainer) or
-    (TabContainer.ActiveChild = MainForm.PropertiesDockPanel) then
-  begin
+  if PanelVisible(MainForm.PropertiesDockPanel) then begin
     if Inspecting then
       MainForm.InspectorFrame.Inspect
     else
       MainForm.InspectorFrame.UpdateInspector;
   end;
 
-  TabContainer := MainForm.AttachmentsDockPanel.TabContainer;
-  if not Assigned(TabContainer) or
-    (TabContainer.ActiveChild = MainForm.AttachmentsDockPanel) then
+  if PanelVisible(MainForm.AttachmentsDockPanel) then
     MainForm.AttachmentEditor.UpdateAttachments;
 
-  TabContainer := MainForm.DocumentationDockPanel.TabContainer;
-  if not Assigned(TabContainer) or
-    (TabContainer.ActiveChild = MainForm.DocumentationDockPanel) then
-  begin
+  if PanelVisible(MainForm.DocumentationDockPanel) then begin
     if Inspecting then
       MainForm.DocumentationEditor.Inspect
     else
@@ -3438,6 +3430,7 @@ begin
       MainDoc := StarUMLApplication.DocumentElements[0].Document
     else
       MainDoc := nil;
+    FlushDocumentElements;
     if StarUMLApplication.Modified and Assigned(MainDoc) and not MainDoc.ReadOnly
     then
     begin
@@ -4209,10 +4202,11 @@ begin
   begin
     R := Application.MessageBox(PChar(QUERY_SAVE_CHANGED_UNITS),
       PChar(Application.Title), MB_ICONQUESTION or MB_YESNO);
-    if R = IDYES then
+    if R = IDYES then begin
+      FlushDocumentElements;
       StarUMLApplication.SaveAllUnits;
+    end;
   end;
-  UpdateDocumentElements;
 end;
 
 procedure PMain.ExecuteFileNew;
@@ -4313,6 +4307,7 @@ end;
 
 function PMain.ExecuteFileSave: Boolean;
 begin
+  FlushDocumentElements;
   if (StarUMLApplication.FileName <> '') then
   begin
     if StarUMLApplication.Modified then
@@ -4338,7 +4333,6 @@ begin
         MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
     end;
   end;
-  UpdateDocumentElements;
 
   Result := not StarUMLApplication.Modified;
 end;
@@ -4349,6 +4343,7 @@ begin
   try
     if MainForm.SaveDialog.Execute then
     begin
+      FlushDocumentElements;
       StarUMLApplication.SaveProjectAs(MainForm.SaveDialog.FileName);
       MainForm.AddRecentFile(StarUMLApplication.FileName);
       ExecuteSaveAllUnits;
@@ -4359,7 +4354,6 @@ begin
     on SaveDialogEx.EInvalidFileName do
       MessageDlg(ERR_INVALID_FILE_NAME, mtError, [mbOK], 0);
   end;
-  UpdateDocumentElements;
 end;
 
 procedure PMain.ExecuteFileClose;
@@ -4531,10 +4525,10 @@ begin
   if (StarUMLApplication.SelectedModelCount = 1) and
     (StarUMLApplication.SelectedModels[0] is PUMLPackage) then
   begin
+    FlushDocumentElements;
     StarUMLApplication.SaveUnit(StarUMLApplication.SelectedModels[0]
       as PUMLPackage);
   end;
-  UpdateDocumentElements;
 end;
 
 procedure PMain.ExecuteFileUnitsSaveAs;
@@ -4549,9 +4543,11 @@ begin
           .Namespace);
         MainForm.SaveUnitDialog.FileName := StarUMLApplication.SelectedModels[0]
           .Document.FileName;
-        if MainForm.SaveUnitDialog.Execute then
+        if MainForm.SaveUnitDialog.Execute then begin
+          FlushDocumentElements;
           StarUMLApplication.SaveUnitAs(StarUMLApplication.SelectedModels[0]
             as PUMLPackage, MainForm.SaveUnitDialog.FileName);
+        end;
       except
         on SaveDialogEx.EDirectoryNotFound do
           MessageDlg(ERR_DIRECTORY_NOT_FOUND, mtError, [mbOK], 0);
@@ -4562,7 +4558,6 @@ begin
       end;
     end;
   end;
-  UpdateDocumentElements;
 end;
 
 procedure PMain.ExecuteFileImportFramework;
@@ -6132,6 +6127,21 @@ end;
 
 /// /////////////////////////////////////////////////////////////////////////////
 // Miscellaneous Functions
+
+function PanelVisible(Panel: TdxDockPanel): Bool;
+var
+  TabContainer: TdxTabContainerDockSite;
+begin
+  TabContainer := Panel.TabContainer;
+  Result := not Assigned(TabContainer) or (TabContainer.ActiveChild = Panel);
+end;
+
+procedure FlushDocumentElements;
+begin
+  // Save changes in documentation editor if it is visible
+  if PanelVisible(MainForm.DocumentationDockPanel) then
+    MainForm.DocumentationEditor.ApplyChanges;
+end;
 
 procedure UpdateDocumentElements;
 var
