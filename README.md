@@ -18,3 +18,5 @@ To build it you will need Delphi XE5 or later and recent versions of following c
 * [Virtual TreeView](https://github.com/Virtual-TreeView/Virtual-TreeView) — MPL 1.1 & Modified LGPL 2.1
 * [JEDI library](https://github.com/project-jedi/jcl) — MPL
 * [ExpressBars](https://www.devexpress.com/products/vcl/navigation/) — [Delphi/C++Builder Controls EULA](https://www.devexpress.com/Support/EULAs/vcl-controls.xml)
+
+*Note:* if you use ExpressBars Trial version, you may got fatal error like `dxBar is not found`. The cause is unavaliable sources of `ExpressBars`. You should enable **Build with runtime packages** in Project options[[1]](https://supportcenter.devexpress.com/Ticket/Details/T103912).
