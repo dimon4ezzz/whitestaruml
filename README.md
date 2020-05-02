@@ -20,3 +20,8 @@ To build it you will need Delphi XE5 or later and recent versions of following c
 * [ExpressBars](https://www.devexpress.com/products/vcl/navigation/) — [Delphi/C++Builder Controls EULA](https://www.devexpress.com/Support/EULAs/vcl-controls.xml)
 
 *Note:* if you use ExpressBars Trial version, you may got fatal error like `dxBar is not found`. The cause is unavaliable sources of `ExpressBars`. You should enable **Build with runtime packages** in Project options[[1]](https://supportcenter.devexpress.com/Ticket/Details/T103912).
+
+## Additional links
+* [WhiteStarUML](https://sourceforge.net/p/whitestaruml/code-0) on SourceForge
+* Original [StarUML](https://sourceforge.net/p/staruml/code) project
+* [Latest build](https://sourceforge.net/projects/whitestaruml/files/WhiteStarUMLSetup-5.9.1.exe/download) on SourceForge ([x86-64](https://sourceforge.net/projects/whitestaruml/files/Win64/WhiteStarUMLSetup-5.9.1-Win64.exe/download))
